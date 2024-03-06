@@ -6,7 +6,6 @@ import Script from "next/script";
 import Head from "next/head";
 
 import { RecoilRoot } from "recoil";
-import { HeaderBar } from "../components/global/headers/HeaderBar";
 
 import { ApolloProvider } from "@apollo/client";
 import client from "@graphql/Apollo/apolloClient";
@@ -54,7 +53,6 @@ class MyApp extends App {
           <RecoilRoot>
             <ApolloProvider client={client}>
               {/* <Layout> */}
-                <HeaderBar />
                 <Component {...pageProps} />
               {/* </Layout> */}
             </ApolloProvider>
