@@ -1,5 +1,6 @@
 const Colors = {
-    activeColor: {backgroundColor:  "#82ffb8" }
+    activeColor: "#82ffb8",
+    inactiveGrey: "#b7c7c5"
 }
 
 export default Colors

@@ -59,7 +59,7 @@ class MyApp extends App {
                 <div style={{zIndex: 10, position: 'relative'}}>
                   <HeaderBar />
                 </div>
-                <div style={{zIndex: -1, position: 'relative'}}>
+                <div style={{zIndex: 1, position: 'relative'}}>
                   <Component {...pageProps} />
                 </div>
               </div>
