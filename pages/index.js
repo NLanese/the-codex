@@ -1,7 +1,9 @@
+import Styles from "../styles/styles";
+
 export default function Landing() {
   return (
     <>
-     <div>Henlo</div>
+     <div style={Styles.Fonts.h1}>Welcome to The Codex</div>
     </>
   );
 }
