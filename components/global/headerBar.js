@@ -69,7 +69,16 @@ export const HeaderBar = ({}) => {
             title: "Information Tech"
         },
         {
-            title: "Sign In"
+            title: "Account", 
+            onClick: () => {
+                setTabBar("Frameworks")
+                router.replace("/account/menu")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: ["Sign In", "Sign Up"],
+                onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
+            }
         }
     ]
 
