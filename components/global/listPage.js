@@ -6,6 +6,7 @@ import Colors from "../../styles/colors"
 
 // NextJS
 import { useRouter } from "next/router"
+import { constSelector } from "recoil";
 
 
 export default function ListPage({items, directory}){
@@ -23,7 +24,6 @@ export default function ListPage({items, directory}){
     ///////////////
 
         function handleMouseEnter(itm){
-            console.log("Hovering")
             setHoveredItm(itm)
         }
 
@@ -33,6 +33,7 @@ export default function ListPage({items, directory}){
 
         function determineColor(itm){
             if (hoveredItm === itm){
+                console.log(itm, " should be active")
                 return Colors.activeColor
             }
             else{
@@ -40,12 +41,16 @@ export default function ListPage({items, directory}){
             }
         }
 
+        function determineStyle(itm){
+            return {backgroundColor: determineColor(itm), width: 500, height: 130, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
+        }
+
     return items.map( itm => {
         return(
             <div
-            onMouseEnter={() => handleMouseEnter()}
+            onMouseEnter={() => handleMouseEnter(itm)}
             onMouseLeave={() => handleMouseLeave()}
-            style={{backgroundColor: determineColor(itm), width: 500, height: 130, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}}
+            style={{...determineStyle(itm)}}
             onClick={(itm) => {router.replace(`/${directory}/${itm}`)}}
             >
                 <div style={{fontFamily: 'Gilroy', fontWeight: 500, fontSize: 36}}>
