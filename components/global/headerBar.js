@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 
 // Recoil
 import { useRecoilState } from "recoil";
-import { tokenState } from "../../recoil/atoms";
+import { tokenState, tabBarState } from "../../recoil/atoms";
 
 // Next JS
 import { useRouter } from "next/router";
@@ -20,7 +20,7 @@ export const HeaderBar = ({}) => {
 
     const [token, setToken] = useRecoilState(tokenState)
 
-    // const [tabBar, setTabBar] = useRecoilState(tabBarState)
+    const [tabBar, setTabBar] = useRecoilState(tabBarState)
 
     const router = useRouter()
 
@@ -29,11 +29,30 @@ export const HeaderBar = ({}) => {
 //////////////
 
     const guestTabs = [
-        {title: "Concepts"},
-        {title: "JavaScript"},
-        {title: "React"},
-        {title: "Information Tech"},
-        {title: "Sign In"}
+        {
+            title: "Concepts", 
+            onClick: () => {
+                setTabBar("Concepts")
+                router.replace("/concepts/list")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: ["Variables", "Functions", "Arrays and Lists", "Coding Strategies"],
+                onDrawerClick: (drawer) => router.replace(`/concepts/${drawer}`)
+            }
+        },
+        {
+            title: "Languages"
+        },
+        {
+            title: "Frameworks"
+        },
+        {
+            title: "Information Tech"
+        },
+        {
+            title: "Sign In"
+        }
     ]
 
 
@@ -43,10 +62,10 @@ export const HeaderBar = ({}) => {
 
     return(
         <OstrichTabBar 
-        // startingTabByTitle={tabBarState}
+        startingTabByTitle={tabBarState}
         tabs={ token ? userTabs : guestTabs}
 
-        style={{height: 50, width: '101%%', paddingRight: 15, paddingLeft: 15, backgroundColor: '#11013b', display: "flex"}}
+        style={{height: 50, width: '101%%', paddingRight: 15, paddingLeft: 15, backgroundColor: '#11013b', display: "flex", zIndex: 10}}
         titleStyle={{textAlign: 'center', textAlignVertical: 'center', fontSize: 24, fontWeight: 500, color: 'white', marginTop: 10, fontFamily: "Gilroy", fontWeight: 300}}
 
         activeTitleStyle={{textAlign: 'center', fontSize: 24, fontWeight: 500, color: '#15c97b', marginTop: 10, fontFamily: "Gilroy", fontWeight: 700}}
