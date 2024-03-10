@@ -116,7 +116,7 @@ export const OstrichDropDown = ({
 
     // Renders the Drop Drawers
     function renderDrawers(){
-        if (isOpen && drawers){
+        if (true && drawers){
             return drawers.map((drawer, index) => {
                 let drawerObject = {}
                 if (typeof(drawer) === "string"){
@@ -141,20 +141,20 @@ export const OstrichDropDown = ({
     }
 
     function renderDrawerContainer(){
-        if (isOpen){
+        // if (isOpen){
             return(
-                <div style={{border: "1px solid black", boxShadow: '2px 2px 1.5px rgba(0, 0, 0, 0.2)'}}>
+                <div style={{border: "1px solid black", boxShadow: '2px 2px 1.5px rgba(0, 0, 0, 0.2)', zIndex: 10}}>
                     {renderDrawers()}
                 </div> 
             )
-        }
+        // }
     }
 
     ////////////////////
     // MAIN RENDERING //
     ////////////////////
     return(
-        <div onMouseLeave={() => handleMouseLeave()}>
+        <div onMouseLeave={() => handleMouseLeave()} style={{zIndex: 100}}>
             <div
             style={style}
             onClick={() => handlePress()}

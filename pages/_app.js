@@ -55,8 +55,12 @@ class MyApp extends App {
           <RecoilRoot>
             <ApolloProvider client={client}>
               {/* <Layout> */}
-              <HeaderBar />
-                <Component {...pageProps} />
+              <div style={{position: 'relative'}}>
+                <HeaderBar />
+                <div style={{zIndex: -1}}>
+                  <Component {...pageProps} />
+                </div>
+              </div>
               {/* </Layout> */}
             </ApolloProvider>
           </RecoilRoot>
