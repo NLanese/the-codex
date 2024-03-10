@@ -10,6 +10,8 @@ import { RecoilRoot } from "recoil";
 import { ApolloProvider } from "@apollo/client";
 import client from "@graphql/Apollo/apolloClient";
 
+import { HeaderBar } from "../components/global/headerBar";
+
 import "../styles/fonts.css"
 
 class MyApp extends App {
@@ -53,6 +55,7 @@ class MyApp extends App {
           <RecoilRoot>
             <ApolloProvider client={client}>
               {/* <Layout> */}
+              <HeaderBar />
                 <Component {...pageProps} />
               {/* </Layout> */}
             </ApolloProvider>
