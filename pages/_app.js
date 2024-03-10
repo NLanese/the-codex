@@ -56,8 +56,10 @@ class MyApp extends App {
             <ApolloProvider client={client}>
               {/* <Layout> */}
               <div style={{position: 'relative'}}>
-                <HeaderBar />
-                <div style={{zIndex: -1}}>
+                <div style={{zIndex: 10, position: 'relative'}}>
+                  <HeaderBar />
+                </div>
+                <div style={{zIndex: -1, position: 'relative'}}>
                   <Component {...pageProps} />
                 </div>
               </div>

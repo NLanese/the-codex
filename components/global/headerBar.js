@@ -42,10 +42,28 @@ export const HeaderBar = ({}) => {
             }
         },
         {
-            title: "Languages"
+            title: "Languages", 
+            onClick: () => {
+                setTabBar("Languages")
+                router.replace("/languages/list")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: ["JavaScript", "Ruby", "Python", "C++"],
+                onDrawerClick: (drawer) => router.replace(`/languages/${drawer}`)
+            }
         },
         {
-            title: "Frameworks"
+            title: "Frameworks", 
+            onClick: () => {
+                setTabBar("Frameworks")
+                router.replace("/frameworks/list")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: ["React JS", "React Native", "Angular", "Ionic", "Pandas", "NumPy"],
+                onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
+            }
         },
         {
             title: "Information Tech"
