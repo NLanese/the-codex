@@ -18,8 +18,14 @@ export const loadingState = atom({
 	default: false
 })
 
-// Determines whether Loading Screen Renders or not
+// Determines the active Tab
 export const tabBarState = atom({
 	key: "tabBarState",
+	default: false
+})
+
+// Determines what Main Directory you are in
+export const directoryState = atom({
+	key: "directoryState",
 	default: false
 })

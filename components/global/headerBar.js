@@ -23,6 +23,8 @@ export const HeaderBar = ({}) => {
 
     const [token, setToken] = useRecoilState(tokenState)
 
+    const [directory, setDirectory] = useRecoilState()
+
     const [tabBar, setTabBar] = useRecoilState(tabBarState)
 
     const router = useRouter()
@@ -31,6 +33,7 @@ export const HeaderBar = ({}) => {
 // Contants //
 //////////////
 
+    // Guest
     const guestTabs = [
         {
             title: "Concepts", 
@@ -82,6 +85,32 @@ export const HeaderBar = ({}) => {
                 drawers: ["Sign In", "Sign Up"],
                 onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
             }
+        }
+    ]
+
+    // Variables
+    const variablesTab = [
+        {
+            title: "Definitions",
+            onClick: (() => router.replace("/concepts/variables/definitions"))
+        },
+        {
+            title: "Lessons",
+            dropdown: {
+                openOnHover: true,
+                drawers: ["What is a Variable", "Data Types", "Objects", "Classes"]
+            }
+        },
+        {
+            title: "Tests",
+            dropdown: {
+                openOnHover: true,
+                drawers: ["Data Types", "Variables Test"]
+            }
+        },
+        {
+            title: "Return",
+            onClick: (() => router.replace("/"))
         }
     ]
 
