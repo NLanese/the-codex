@@ -3,10 +3,23 @@ import React, {useEffect, useState} from "react";
 
 // Recoil
 import { useRecoilState } from "recoil";
+import { directoryDataState } from "../../../recoil/atoms";
 
 const VariablesMenu = ({}) => {
+    ///////////
+    // State //
+    ///////////
+
+    const [directory, setDirectory] = useRecoilState(directoryDataState)
 
 
+    ////////////////
+    // UseEffects //
+    ////////////////
+
+    useEffect(() => {
+        setDirectory("Variables")
+    }, [])
     
     /////////////////
     // Main Return //

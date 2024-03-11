@@ -25,7 +25,7 @@ export const tabBarState = atom({
 })
 
 // Determines what Main Directory you are in
-export const directoryState = atom({
-	key: "directoryState",
+export const directoryDataState = atom({
+	key: "directoryDataState",
 	default: false
 })

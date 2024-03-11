@@ -2,14 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import { OstrichTabBar } from '../../OstrichComponents/Tabs/OstrichTabBar';
 
-
-const CodeSpace = ({
-    javascript,
-    ruby,
-    cpp,
+import {EditorView, keymap} from "@codemirror/view"
 
 
-}) => {
+
+const CodeSpace = ({}) => {
 
     ///////////
     // State //

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { TabItem } from './TabItem';
 
 export const OstrichTabBar = ({ 
-    startingTabByTitle,
+    startingTabByTitle = false,
     tabs,                   // Array of Objects for Tab Information
 
     style,                  // The Style of the Tab Bar itself
@@ -31,6 +31,9 @@ export const OstrichTabBar = ({
     // State //
     ///////////
 
+        console.log("TABS:::")
+        console.log(tabs)
+
         const [loading, setLoading] = useState(true)
 
         const [activeTab, setActiveTab] = useState(startingTabByTitle ? startingTabByTitle : false)
@@ -45,6 +48,7 @@ export const OstrichTabBar = ({
 
         useEffect(() => {
             checkAllStyles()
+            hasNeededValues()
         }, [])
 
     ///////////////
@@ -59,7 +63,7 @@ export const OstrichTabBar = ({
             return false
         }
 
-        // STYLE CHECKERS //
+        // CHECKERS //
 
             // Checks all Styles
             function checkAllStyles(){
@@ -121,6 +125,14 @@ export const OstrichTabBar = ({
                         backgroundColor: 'rgba(49, 255, 73, 0.45)'
                     })
                 }
+            }
+
+            // Checks Valid Mandatory inputs
+            function hasNeededValues(){
+                if (!tabs || tabs.length === 0){
+                   throw new Error("No valid 'tabs' prop provided! This needs to be an array of objects. You provided ", tabs)
+                }
+
             }
 
         // DETERMINATIONS //
