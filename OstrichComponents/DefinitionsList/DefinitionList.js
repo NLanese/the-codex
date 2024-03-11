@@ -5,8 +5,8 @@ const DefinitionList = ({
     title=false,
     titleStyle={display: "flex", justifyContent: "center", fontSize: 24, textAlign: "center"},
     definitionRowStyle,
-    definitionTitleStyle,
-    definitionStyle,
+    titleBoxStyle,
+    definitionBoxStyle,
     definitionsList
 }) => {
 
@@ -15,7 +15,9 @@ const DefinitionList = ({
             return(
                 <DefinitionRow 
                     definitionObject={def}
-                    definitionBoxStyle={definitionRowStyle}
+                    definitionRowStyle={definitionRowStyle}
+                    titleBoxStyle={titleBoxStyle}
+                    definitionBoxStyle={definitionBoxStyle}
                 />
             )  
         })
@@ -24,7 +26,7 @@ const DefinitionList = ({
     function renderTitle(){
         if (title){
             return(
-                <div style={{titleStyle}}>
+                <div style={{...titleStyle}}>
                     {title}
                 </div>
             )
