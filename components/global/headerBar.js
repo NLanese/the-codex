@@ -11,6 +11,9 @@ import { useRouter } from "next/router";
 // Components
 import { OstrichTabBar } from "@Ostrich/Tabs/OstrichTabBar";
 
+// Constants
+import { conceptsList, languagesList, frameworksList } from "../../constants/lessonLists";
+
 
 export const HeaderBar = ({}) => {
 
@@ -37,8 +40,8 @@ export const HeaderBar = ({}) => {
             },
             dropdown: {
                 openOnHover: true,
-                drawers: ["Variables", "Functions", "Arrays and Lists", "Coding Strategies"],
-                onDrawerClick: (drawer) => router.replace(`/concepts/${drawer}`)
+                drawers: conceptsList,
+                onDrawerClick: (drawer) => router.replace(`/concepts/${drawer}/menu`)
             }
         },
         {
@@ -49,24 +52,24 @@ export const HeaderBar = ({}) => {
             },
             dropdown: {
                 openOnHover: true,
-                drawers: ["JavaScript", "Ruby", "Python", "C++"],
-                onDrawerClick: (drawer) => router.replace(`/languages/${drawer}`)
+                drawers: languagesList,
+                onDrawerClick: (drawer) => router.replace(`/languages/${drawer.title}/menu`)
             }
         },
         {
-            title: "Frameworks", 
+            title: "Front End", 
             onClick: () => {
                 setTabBar("Frameworks")
                 router.replace("/frameworks/list")
             },
             dropdown: {
                 openOnHover: true,
-                drawers: ["React JS", "React Native", "Angular", "Ionic", "Pandas", "NumPy"],
-                onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
+                drawers: frameworksList,
+                onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer.title}/menu`)
             }
         },
         {
-            title: "Information Tech"
+            title: "Back End", 
         },
         {
             title: "Account", 

@@ -143,7 +143,7 @@ export const OstrichDropDown = ({
     function renderDrawerContainer(){
         if (isOpen){
             return(
-                <div style={{border: "1px solid black", boxShadow: '2px 2px 1.5px rgba(0, 0, 0, 0.2)', zIndex: 10}}>
+                <div style={{border: "1px solid black", boxShadow: '2px 2px 1.5px rgba(0, 0, 0, 0.2)'}}>
                     {renderDrawers()}
                 </div> 
             )
@@ -154,7 +154,7 @@ export const OstrichDropDown = ({
     // MAIN RENDERING //
     ////////////////////
     return(
-        <div onMouseLeave={() => handleMouseLeave()} style={{zIndex: 100}}>
+        <div onMouseLeave={() => handleMouseLeave()}>
             <div
             style={style}
             onClick={() => handlePress()}

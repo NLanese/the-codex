@@ -1,4 +1,5 @@
 import ListPage from "../../components/global/listPage";
+import { conceptsList } from "../../constants/lessonLists";
 
 export default function ConceptsList({}){
 
@@ -8,7 +9,7 @@ export default function ConceptsList({}){
 
     return(
         <div style={{display: "grid", justifyContent: 'center'}}>
-            <ListPage items={["Variables", "Functions", "Arrays and Lists", "Coding Strategies"]}/>
+            <ListPage items={conceptsList} directory={"concepts"}/>
         </div>
     )
 }

@@ -21,6 +21,7 @@ export const TabItem = ({
     hoverTextStyle,
 
     dropdown=false,
+    onDrawerClick=false,
     dropdownStyles=false,
     drawerColor=false,
     activeDrawerColor=false,
@@ -224,7 +225,6 @@ export const TabItem = ({
                 obj={tabObj}
                 drawers={dropdown.drawers}
                 onDrawerClick={activateTab}
-
                 />
             )
         }

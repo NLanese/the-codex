@@ -179,6 +179,7 @@ export const OstrichTabBar = ({
                     hoverDrawerColor={hoverDrawerColor}
 
                     onPress={determineOnPress(tab)}
+                    onDrawerClick={onDrawerClick}
                     />
                 )
             })
