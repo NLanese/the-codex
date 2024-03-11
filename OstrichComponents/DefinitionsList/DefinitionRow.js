@@ -12,13 +12,13 @@ const DefinitionRow = ({
     
     return(
         <div style={{display: "flex", flexDirection: 'row', ...definitionRowStyle}}>
-            <div style={{...titleBoxStyle}}>
-                <div style={{...definitionObject.titleStyle, backgroundColor: definitionObject.color}}>
+            <div style={{...titleBoxStyle, backgroundColor: definitionObject.color}}>
+                <div style={{...definitionObject.titleStyle}}>
                     {definitionObject.title}
                 </div>
             </div>
-            <div style={{...definitionBoxStyle}}>
-                <div style={{...definitionObject.definitionStyle, backgroundColor: definitionObject.color}}>
+            <div style={{...definitionBoxStyle, backgroundColor: definitionObject.color}}>
+                <div style={{...definitionObject.definitionStyle}}>
                     {definitionObject.definition}
                 </div>
             </div>
