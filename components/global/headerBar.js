@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 
 // Recoil
 import { useRecoilState } from "recoil";
-import { tokenState, tabBarState } from "../../recoil/atoms";
+import { tokenState, tabBarState, directoryState } from "../../recoil/atoms";
 
 // Next JS
 import { useRouter } from "next/router";
@@ -23,7 +23,7 @@ export const HeaderBar = ({}) => {
 
     const [token, setToken] = useRecoilState(tokenState)
 
-    const [directory, setDirectory] = useRecoilState()
+    const [directory, setDirectory] = useRecoilState(directoryState)
 
     const [tabBar, setTabBar] = useRecoilState(tabBarState)
 
@@ -114,6 +114,15 @@ export const HeaderBar = ({}) => {
         }
     ]
 
+///////////////
+// Functions //
+///////////////
+
+    function determineTabs(){
+        if (directoryState === "Variables"){
+            return variablesTab
+        }
+    }
 
 //////////
 // MAIN //
@@ -122,7 +131,7 @@ export const HeaderBar = ({}) => {
     return(
         <OstrichTabBar 
         startingTabByTitle={tabBarState}
-        tabs={ token ? userTabs : guestTabs}
+        tabs={determineTabs()}
 
         style={{height: 50, width: '99%', paddingRight: 15, paddingLeft: 15, backgroundColor: '#11013b', display: "flex", zIndex: 10}}
         titleStyle={{textAlign: 'center', textAlignVertical: 'center', fontSize: 24, fontWeight: 500, color: 'white', marginTop: 10, fontFamily: "Gilroy", fontWeight: 300}}
