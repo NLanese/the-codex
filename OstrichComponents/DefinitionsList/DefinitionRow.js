@@ -7,8 +7,6 @@ const DefinitionRow = ({
     titleBoxStyle,
     definitionBoxStyle,
 }) => {
-
-    console.log(definitionRowStyle)
     
     return(
         <div style={{display: "flex", flexDirection: 'row', ...definitionRowStyle}}>

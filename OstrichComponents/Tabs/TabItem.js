@@ -174,10 +174,31 @@ export const TabItem = ({
             }
 
             // This will be passed into Dropdowns in case the Tab activation is contigent on a drawer click
-            function activateTab(drawer){
+            function activateTab(tab){
                 setActiveTab(titleX)
-                if (tabObj.onDrawerClick){
-                    tabObj.onDrawerClick(drawer)
+                if (tabObj.onClick){
+                    tabObj.onClick(tab)
+                }
+                else if (onDrawerClick){
+                    onDrawerClick(tab)
+                }
+            }
+
+            // This fire on the click of a Dropdown Drawer, if the Tab is a drop down
+            function activateDrawer(drawer){
+                console.log("Activate Drawer Function [TI]")
+                console.log(drawer)
+                if (!tabObj.dropdown){
+                    console.log("No Dropdown for ", tabObj.title, " [TI]")
+                    return
+                }
+                if (drawer.onClick){
+                    console.log("Firing Drawer Specific onClick [TI]")
+                    drawer.onClick(drawer)
+                }
+                else if (tabObj.dropdown.onDrawerClick){
+                    console.log("Firing DropDown Specific onClick [TI]")
+                    tabObj.dropdown.onDrawerClick(drawer)
                 }
             }
 
@@ -224,7 +245,8 @@ export const TabItem = ({
 
                 obj={tabObj}
                 drawers={dropdown.drawers}
-                onDrawerClick={activateTab}
+                onClick={activateTab}
+                onDrawerClick={activateDrawer}
                 />
             )
         }

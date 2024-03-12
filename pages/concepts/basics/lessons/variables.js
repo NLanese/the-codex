@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import Styles from "../../../../styles/styles";
 
 
-const WhatIsAVariable = ({}) => {
+const VariablesLesson = ({}) => {
 
 }
 

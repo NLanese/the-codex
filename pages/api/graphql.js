@@ -14,7 +14,6 @@ const apolloServer = new ApolloServer({
 
 export default startServerAndCreateNextHandler(apolloServer, {
   context: async (req) => {
-      console.log("Handling Context");
     
       if (!req || !req.headers) {
         return { user: null };
@@ -23,12 +22,9 @@ export default startServerAndCreateNextHandler(apolloServer, {
       const token = req.headers.authorization;
       console.log("TOKEN IN HEADER:::", token)
       if (typeof token === "string" && token !== "null") {
-        console.log("Handling Auth with token")
-        console.log(token)
         return await handleAuth(token);
       }
       else{
-        console.log("No token return")
         return { user: null };
       }
     }

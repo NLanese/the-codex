@@ -38,6 +38,7 @@ export const HeaderBar = ({}) => {
 ////////////////
 
     useEffect(() => {
+        setLoading(true)
         setTabs(determineTabs())
         setLoading(false)
     }, [directory])
@@ -194,7 +195,6 @@ export const HeaderBar = ({}) => {
 ///////////////
 
     function determineTabs(){
-        console.log(directory)
         if (directory === "Basics"){
             return basicsTabs
         }
@@ -214,14 +214,12 @@ export const HeaderBar = ({}) => {
         if (loading){
             return
         }
-        console.log("TABS:::::")
-        console.log(tabs)
         return(
             <OstrichTabBar 
             startingTabByTitle={tabBarState}
             tabs={tabs}
     
-            style={{height: 50, width: '99%', paddingRight: 15, paddingLeft: 15, backgroundColor: '#11013b', display: "flex", zIndex: 10}}
+            style={{height: 50, width: '99%', paddingRight: 15, paddingLeft: 15, backgroundColor: '#11013b', display: "flex",}}
             titleStyle={{textAlign: 'center', textAlignVertical: 'center', fontSize: 24, fontWeight: 500, color: 'white', marginTop: 10, fontFamily: "Gilroy", fontWeight: 300}}
     
             activeTitleStyle={{textAlign: 'center', fontSize: 24, fontWeight: 500, color: '#15c97b', marginTop: 10, fontFamily: "Gilroy", fontWeight: 700}}

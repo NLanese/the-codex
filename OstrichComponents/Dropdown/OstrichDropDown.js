@@ -58,6 +58,7 @@ export const OstrichDropDown = ({
 
     // Determines which DrawerPress Function to pass
     function handleDrawerPress(drawer){
+        console.log("Handling Drawer Press [ODD]")
         if (drawer.onClick){
             return drawer.onClick
         }

@@ -31,9 +31,6 @@ export const OstrichTabBar = ({
     // State //
     ///////////
 
-        console.log("TABS:::")
-        console.log(tabs)
-
         const [loading, setLoading] = useState(true)
 
         const [activeTab, setActiveTab] = useState(startingTabByTitle ? startingTabByTitle : false)
