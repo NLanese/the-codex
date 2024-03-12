@@ -113,6 +113,14 @@ const BasicDefinitionsList = [
         color: "#96c4ff"
     },
 
+    {
+        title: "Scope",
+        definition: "Scope is the term used to describe the bounds of variables, classes, and functions. This means to say, the a variable declared in one scope (class, function, etc) may not exist in another scope. In the Social Media App example, a Comment would not have access to the 'Followers' variable because 'Followers' only exists with the scope of a User Class.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#96c4ff"
+    },
+
 ]
 
 export default BasicDefinitionsList
