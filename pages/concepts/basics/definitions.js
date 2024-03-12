@@ -9,7 +9,7 @@ import { tokenState, tabBarState, directoryDataState } from "../../../recoil/ato
 import DefinitionList from "../../../OstrichComponents/DefinitionsList/DefinitionList";
 
 // Varibales Definitions 
-import VariableDefinitionsList from "../../../constants/variableDefinitions";
+import BasicDefinitionsList from "../../../constants/basicDefinitions";
 
 
 const VariableDefinitions = ({}) => {
@@ -25,7 +25,7 @@ const VariableDefinitions = ({}) => {
 ////////////////
 
     useEffect(() => {
-        setDirectory("Variables")
+        setDirectory("Basics")
     }, [])
     
 //////////////////
@@ -33,8 +33,8 @@ const VariableDefinitions = ({}) => {
 /////////////////
 return(
     <DefinitionList    
-        title="Variable Terminology"
-        definitionsList={VariableDefinitionsList}
+        title="Basic Terminology"
+        definitionsList={BasicDefinitionsList}
         titleBoxStyle={{flex: 2,  display: "flex", justifyContent: 'center', alignItems: 'center', borderRight: "1px solid black"}}
         definitionBoxStyle={{flex: 7}}
         definitionRowStyle={{border: "1px solid black", borderRadius: 5, marginTop: 5}}

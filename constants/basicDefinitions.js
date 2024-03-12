@@ -1,6 +1,6 @@
 import Styles from "../styles/styles"
 
-const VariableDefinitionsList = [
+const BasicDefinitionsList = [
     {
         title: "Variable",
         definition: "A Variable is a way to keep track of information in computer science. We can 'read' and 'write' variables meaning we can at any time retrieve or change their values.",
@@ -87,7 +87,32 @@ const VariableDefinitionsList = [
         titleStyle: Styles.Fonts.h2,
         definitionStyle: Styles.Fonts.definition,
         color: "#88fccc"
-    }
+    },
+
+    {
+        title: "Object Oriented Programming (OOP)",
+        definition: "There are many standard practices of coding, but the newest and most widely used is Object Oriented Programming. This methodology of coding states that the best way to develop a program is to simulate real world objects and events through quantifiable data. Social Media Apps will create Classes to mimic these real world phenomena. There will be a Class for Posts, a Class for Users. a Class for Comments, and so on. These Classes will interact with each other just as people and 'posts' would on a real life media board. Other methodologies include Functional Programming, Data Oriented Programing, and Procedural Oriented Programing.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#81afeb"
+    },
+
+    {
+        title: "Classes",
+        definition: "Classes are advanced Datatypes that are created by a developer in order to simulate a real life item or concept. For example, social media sites have Classes for Posts. Every post will have a caption (String Datatype), an amount of likes (Integer), and date posted (String). Classes can have many different values assigned to different key names. Post.caption would return a post's caption.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#96c4ff"
+    },
+
+    {
+        title: "Functions",
+        definition: "Functions are blueprints of code created by a developer that can execute actions in a program. Simply put, functions are instructions we create as developers, and these instructions dictate how variables, classes, and other objects interact with each other in a program. Functions can exist on multiple levels, they can belong to and be unique to specific classes, or they could be global and be accessed anytime within a program.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#96c4ff"
+    },
+
 ]
 
-export default VariableDefinitionsList
+export default BasicDefinitionsList

@@ -157,23 +157,30 @@ export const HeaderBar = ({}) => {
     ]
 
     // Variables
-    const variablesTab = [
+    const basicsTabs = [
         {
             title: "Definitions",
-            onClick: (() => router.replace("/concepts/variables/definitions"))
+            onClick: (() => router.replace("/concepts/basics/definitions"))
         },
         {
             title: "Lessons",
             dropdown: {
                 openOnHover: true,
-                drawers: ["What is a Variable", "Data Types", "Objects", "Classes"]
+                drawers: ["Variables", "Data Types", "Objects", "Functions", "Classes"]
             }
         },
         {
             title: "Tests",
             dropdown: {
                 openOnHover: true,
-                drawers: ["Data Types", "Variables Test"]
+                drawers: ["Data Types", "Operators", "Functions Test",]
+            }
+        },
+        {
+            title: "Labs",
+            dropdown: {
+                openOnHover: true,
+                drawers: ["Basics Mastery Lab",]
             }
         },
         {
@@ -188,8 +195,8 @@ export const HeaderBar = ({}) => {
 
     function determineTabs(){
         console.log(directory)
-        if (directory === "Variables"){
-            return variablesTab
+        if (directory === "Basics"){
+            return basicsTabs
         }
         else if (token){
             return userTabs

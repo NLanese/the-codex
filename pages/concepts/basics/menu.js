@@ -18,7 +18,7 @@ const VariablesMenu = ({}) => {
     ////////////////
 
     useEffect(() => {
-        setDirectory("Variables")
+        setDirectory("Basics")
     }, [])
     
     /////////////////
