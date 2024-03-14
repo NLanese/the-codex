@@ -58,7 +58,7 @@ export const HeaderBar = ({}) => {
             dropdown: {
                 openOnHover: true,
                 drawers: conceptsList,
-                onDrawerClick: (drawer) => router.replace(`/concepts/${drawer}/menu`)
+                onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer) }
             }
         },
         {
@@ -194,6 +194,7 @@ export const HeaderBar = ({}) => {
 // Functions //
 ///////////////
 
+    // Determines which set of Tabs should render on the TabBar
     function determineTabs(){
         if (directory === "Basics"){
             return basicsTabs
@@ -204,6 +205,12 @@ export const HeaderBar = ({}) => {
         else if (!token){
             return guestTabs
         }
+    }
+
+    // Fires on specific drawer type clicks
+    function handleDrawerClick(type, drawer){
+        console.log(`Should navigate to /${type}/${drawer}/menu`)
+        router.replace(`/concepts/${drawer}/menu`)
     }
 
 //////////

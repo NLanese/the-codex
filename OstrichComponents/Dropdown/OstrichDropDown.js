@@ -62,11 +62,11 @@ export const OstrichDropDown = ({
         console.log("Handling Drawer Press [ODD]")
         if (drawer.onClick){
             console.log("Drawer Object has unique onClick")
-            return drawer.onClick
+            return drawer.onClick(drawer)
         }
         else if (onDrawerClick){
             console.log("Using Dropdown supploed onDrawerClick function")
-            return onDrawerClick
+            return onDrawerClick(drawer)
         }
     }
 
