@@ -209,7 +209,6 @@ export const HeaderBar = ({}) => {
 
     // Fires on specific drawer type clicks
     function handleDrawerClick(type, drawer){
-        console.log(`Should navigate to /${type}/${drawer}/menu`)
         router.replace(`/concepts/${drawer}/menu`)
     }
 

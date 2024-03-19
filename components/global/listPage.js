@@ -56,7 +56,7 @@ export default function ListPage({items, directory}){
         // Handles PRessing the option Button
         function handleClick(itm){
             setDirectoryState(itm)
-            router.replace(`/${directory}/${itm.toLowerCase()}/menu`)
+            router.replace(`/${directory.toLowerCase()}/${itm.toLowerCase()}/menu`)
         }
 
     /////////////////

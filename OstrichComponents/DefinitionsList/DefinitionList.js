@@ -14,6 +14,7 @@ const DefinitionList = ({
         return definitionsList.map( (def, i) => {
             return(
                 <DefinitionRow 
+                    key={i}
                     definitionObject={def}
                     definitionRowStyle={definitionRowStyle}
                     titleBoxStyle={titleBoxStyle}

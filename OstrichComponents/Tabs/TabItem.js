@@ -186,19 +186,20 @@ export const TabItem = ({
 
             // This fire on the click of a Dropdown Drawer, if the Tab is a drop down
             function activateDrawer(drawer){
-                console.log("Activate Drawer Function [TI]")
-                console.log(drawer)
                 if (!tabObj.dropdown){
-                    console.log("No Dropdown for ", tabObj.title, " [TI]")
                     return
                 }
                 if (drawer.onClick){
-                    console.log("Firing Drawer Specific onClick [TI]")
                     drawer.onClick(drawer)
                 }
                 else if (tabObj.dropdown.onDrawerClick){
-                    console.log("Firing DropDown Specific onClick [TI]")
                     tabObj.dropdown.onDrawerClick(drawer)
+                }
+                else if (onDrawerClick){
+                    onDrawerClick(drawer)
+                }
+                else{
+                    console.warn("[Ostrich Tab Bar] - A Drawer was pressed but no where in the component structure was a function provided to fire on Drawer Clicks. Please Refer to the documentation.")
                 }
             }
 
