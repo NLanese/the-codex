@@ -37,9 +37,9 @@ export const MenuPage = ({onLessonClick, lessons}) => {
                 backgroundColor: Colors.offWhite, 
                 boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
             }}>
-                <p style={{...Styles.Fonts.h1, textAlign: 'center'}}>
+                <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                     Lessons
-                </p>
+                </div>
                 <ListPage 
                     items={lessons}
                     onClick={onLessonClick}
@@ -51,9 +51,15 @@ export const MenuPage = ({onLessonClick, lessons}) => {
 
     function renderDefinitions(){
         return(
-            <DefinitionList
-                definitionsList={BasicDefinitionsList}
-            />
+            <div>
+                <DefinitionList
+                    title={"Unit Terms"}
+                    definitionsList={BasicDefinitionsList}
+                    titleBoxStyle={{flex: 2,  display: "flex", justifyContent: 'center', alignItems: 'center', borderRight: "1px solid black"}}
+                    definitionBoxStyle={{flex: 7}}
+                    definitionRowStyle={{border: "1px solid black", borderRadius: 5, marginTop: 5}}
+                />
+            </div>
         )
     }
    
@@ -62,13 +68,14 @@ export const MenuPage = ({onLessonClick, lessons}) => {
     /////////////////
 
     return(
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-            <div>
-                {renderLessonsList()}
-            </div>
-            <div style={{display: 'flex', maxHeight: 700, overflow: 'scroll'}}>
-                {renderDefinitions()}
-            </div>
+        <div>
+            TEST
         </div>
+        // <div style={{display: 'flex', flexDirection: 'row'}}>
+        //     {/* <div>
+        //         {renderLessonsList()}
+        //     </div> */}
+        //     {/* {renderDefinitions()} */}
+        // </div>
     )
 }

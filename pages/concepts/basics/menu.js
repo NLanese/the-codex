@@ -20,6 +20,7 @@ const BasicsMenu = ({}) => {
     ///////////
 
     const [directory, setDirectory] = useRecoilState(directoryDataState)
+    const [loading, setLoading] = useState(true)
 
     const router = useRouter()
 
@@ -29,6 +30,7 @@ const BasicsMenu = ({}) => {
 
     useEffect(() => {
         setDirectory("Basics")
+        setLoading(false)
     }, [])
 
     ///////////////
@@ -42,14 +44,27 @@ const BasicsMenu = ({}) => {
     /////////////////
     // Main Return //
     /////////////////
-    return(
-        <div>
-            <MenuPage 
-            onLessonClick={(handleLessonClick)}
-            lessons={basicsLessons}
-            />
-        </div>
-    )
+
+    function MAIN(){
+        if (loading){
+            return null
+        }
+        else{
+            return(
+                <>
+                    {/* <MenuPage 
+                        onLessonClick={(handleLessonClick)}
+                        lessons={basicsLessons}
+                    /> */}
+                    <div>TEST</div>
+                </>
+            )
+        }
+    }
+
+
+    return MAIN()
+    
 }
 
 export default BasicsMenu
