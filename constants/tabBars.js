@@ -1,13 +1,14 @@
 import { conceptsList, languagesList, frameworksList, basicsLessons } from "./lessonLists"
 
 // Fires on specific drawer type clicks
-function handleDrawerClick(type, drawer){
+function handleDrawerClick(type, drawer, router){
     router.replace(`/concepts/${drawer.toLowerCase()}/menu`)
 }
 
 // Guest
-export const guestTabs = [
-    {
+export const guestTabs = (setTabBar, router) => { 
+    return ([
+        {
         title: "Concepts", 
         onClick: () => {
             setTabBar("Concepts")
@@ -16,7 +17,7 @@ export const guestTabs = [
         dropdown: {
             openOnHover: true,
             drawers: conceptsList,
-            onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer) }
+            onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer, router) }
         }
     },
     {
@@ -28,7 +29,7 @@ export const guestTabs = [
         dropdown: {
             openOnHover: true,
             drawers: languagesList,
-            onDrawerClick: (drawer) => router.replace(`/languages/${drawer.title}/menu`)
+            onDrawerClick: (drawer) => { handleDrawerClick('languages', drawer, router) }
         }
     },
     {
@@ -40,7 +41,7 @@ export const guestTabs = [
         dropdown: {
             openOnHover: true,
             drawers: frameworksList,
-            onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer.title}/menu`)
+            onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router) }
         }
     },
     {
@@ -55,68 +56,72 @@ export const guestTabs = [
         dropdown: {
             openOnHover: true,
             drawers: ["Sign In", "Sign Up"],
-            onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
+            onDrawerClick: (drawer) => { handleDrawerClick('account', drawer, router) }
         }
     }
-]
+    ])
+}
 
 // User
-export const userTabs = [
-    {
-        title: "Concepts", 
-        onClick: () => {
-            setTabBar("Concepts")
-            router.replace("/concepts/list")
+export const userTabs = (setTabBar, router)  => {
+    return([
+        {
+            title: "Concepts", 
+            onClick: () => {
+                setTabBar("Concepts")
+                router.replace("/concepts/list")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: conceptsList,
+                onDrawerClick: (drawer) => router.replace(`/concepts/${drawer}/menu`)
+            }
         },
-        dropdown: {
-            openOnHover: true,
-            drawers: conceptsList,
-            onDrawerClick: (drawer) => router.replace(`/concepts/${drawer}/menu`)
-        }
-    },
-    {
-        title: "Languages", 
-        onClick: () => {
-            setTabBar("Languages")
-            router.replace("/languages/list")
+        {
+            title: "Languages", 
+            onClick: () => {
+                setTabBar("Languages")
+                router.replace("/languages/list")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: languagesList,
+                onDrawerClick: (drawer) => router.replace(`/languages/${drawer.title}/menu`)
+            }
         },
-        dropdown: {
-            openOnHover: true,
-            drawers: languagesList,
-            onDrawerClick: (drawer) => router.replace(`/languages/${drawer.title}/menu`)
-        }
-    },
-    {
-        title: "Front End", 
-        onClick: () => {
-            setTabBar("Frameworks")
-            router.replace("/frameworks/list")
+        {
+            title: "Front End", 
+            onClick: () => {
+                setTabBar("Frameworks")
+                router.replace("/frameworks/list")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: frameworksList,
+                onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer.title}/menu`)
+            }
         },
-        dropdown: {
-            openOnHover: true,
-            drawers: frameworksList,
-            onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer.title}/menu`)
-        }
-    },
-    {
-        title: "Back End", 
-    },
-    {
-        title: "Account", 
-        onClick: () => {
-            setTabBar("Frameworks")
-            router.replace("/account/menu")
+        {
+            title: "Back End", 
         },
-        dropdown: {
-            openOnHover: true,
-            drawers: ["Progress", "Lesson Plan", "Settings"],
-            onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
+        {
+            title: "Account", 
+            onClick: () => {
+                setTabBar("Frameworks")
+                router.replace("/account/menu")
+            },
+            dropdown: {
+                openOnHover: true,
+                drawers: ["Progress", "Lesson Plan", "Settings"],
+                onDrawerClick: (drawer) => router.replace(`/frameworks/${drawer}`)
+            }
         }
-    }
-]
+    ])
+}
 
 // Variables
-export const basicsTabs = [
+export const basicsTabs = (setTabBar, router) => {
+    return([
     {
         title: "Definitions",
         onClick: (() => router.replace("/concepts/basics/definitions"))
@@ -146,4 +151,5 @@ export const basicsTabs = [
         title: "Return",
         onClick: (() => router.replace("/"))
     }
-]
+    ])
+}

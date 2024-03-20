@@ -55,13 +55,13 @@ export const HeaderBar = ({}) => {
     // Determines which set of Tabs should render on the TabBar
     function determineTabs(){
         if (directory === "Basics"){
-            return basicsTabs
+            return basicsTabs(setTabBar, router)
         }
         else if (token){
-            return userTabs
+            return userTabs(setTabBar, router)
         }
         else if (!token){
-            return guestTabs
+            return guestTabs(setTabBar, router)
         }
     }
 

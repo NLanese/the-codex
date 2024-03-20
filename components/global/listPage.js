@@ -13,10 +13,10 @@ import { useRouter } from "next/router"
 
 
 export default function ListPage({
-    items, 
-    directory=false,
-    onClick=false,
-    size="large"
+    items,              // Listed Elements
+    directory=false,    // Changes the directory State if this Lsit is a Dropdown Page
+    onClick=false,      // Unique specified onClick if NOT a dropdown page
+    size="large"        // Button Size | large | medium | small |
 }){
 
     ///////////
@@ -61,7 +61,25 @@ export default function ListPage({
                 width = 300
                 height = 62
             }
+            else if (size === "small" || size === "sm"){
+                width = 180
+                height = 50
+            }
             return {backgroundColor: determineColor(itm), width: width, height: height, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
+        }
+
+        function determineFont(){
+            let fontSize = 36
+            let fontWeight = 500
+            if (size === "medium" || size === "med"){
+                fontWeight = 400
+                fontSize = 28
+            }
+            else if (size === "small" || size === "sm"){
+                fontWeight = 400
+                fontSize = 20
+            }
+            return {fontFamily: 'Gilroy', fontWeight: fontWeight, fontSize: fontSize}
         }
 
         // Handles PRessing the option Button
@@ -89,7 +107,7 @@ export default function ListPage({
             style={{...determineStyle(itm)}}
             onClick={() => {handleClick(itm)}}
             >
-                <div style={{fontFamily: 'Gilroy', fontWeight: 500, fontSize: 36}}>
+                <div style={determineFont()}>
                     {itm}
                 </div>
             </div>
