@@ -3,17 +3,19 @@ import React, {useEffect, useState} from "react";
 
 // Recoil
 import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../recoil/atoms";
+import { tabBarState} from "../../recoil/atoms";
 
 // Constants
 import Styles from "../../styles/styles";
 import Colors from "../../styles/colors";
+import BasicDefinitionsList from "../../constants/basicDefinitions";
 
 // Next JS
 import { useRouter } from "next/router";
 
 // Components
 import ListPage from "../global/listPage";
+import DefinitionList from "../../OstrichComponents/DefinitionsList/DefinitionList";
 
 export const MenuPage = ({onLessonClick, lessons}) => {
 
@@ -35,9 +37,9 @@ export const MenuPage = ({onLessonClick, lessons}) => {
                 backgroundColor: Colors.offWhite, 
                 boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
             }}>
-                <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
+                <p style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                     Lessons
-                </div>
+                </p>
                 <ListPage 
                     items={lessons}
                     onClick={onLessonClick}
@@ -46,12 +48,26 @@ export const MenuPage = ({onLessonClick, lessons}) => {
             </div>
         )
     }
+
+    function renderDefinitions(){
+        return(
+            <DefinitionList
+                definitionsList={BasicDefinitionsList}
+            />
+        )
+    }
    
+    /////////////////
+    // Main Return //
+    /////////////////
 
     return(
         <div style={{display: 'flex', flexDirection: 'row'}}>
             <div>
                 {renderLessonsList()}
+            </div>
+            <div style={{display: 'flex', maxHeight: 700, overflow: 'scroll'}}>
+                {renderDefinitions()}
             </div>
         </div>
     )

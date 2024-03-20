@@ -14,7 +14,7 @@ import { MenuPage } from "../../../components/menu/MenuPage";
 // Constants
 import { basicsLessons } from "../../../constants/lessonLists";
 
-const VariablesMenu = ({}) => {
+const BasicsMenu = ({}) => {
     ///////////
     // State //
     ///////////
@@ -52,4 +52,4 @@ const VariablesMenu = ({}) => {
     )
 }
 
-export default VariablesMenu
+export default BasicsMenu
