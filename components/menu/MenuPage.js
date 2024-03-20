@@ -31,6 +31,7 @@ export const MenuPage = ({onLessonClick, lessons}) => {
                 <ListPage 
                     items={lessons}
                     onClick={onLessonClick}
+                    size="med"
                 />
             </div>
         </div>

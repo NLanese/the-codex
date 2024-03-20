@@ -15,7 +15,8 @@ import { useRouter } from "next/router"
 export default function ListPage({
     items, 
     directory=false,
-    onClick=false
+    onClick=false,
+    size="large"
 }){
 
     ///////////
@@ -54,7 +55,13 @@ export default function ListPage({
 
         // Determines Style of Button 
         function determineStyle(itm){
-            return {backgroundColor: determineColor(itm), width: 500, height: 130, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
+            let width = 500
+            let height = 130
+            if (size === "medium" || size === "med"){
+                width = 300
+                height = 62
+            }
+            return {backgroundColor: determineColor(itm), width: width, height: height, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
         }
 
         // Handles PRessing the option Button
