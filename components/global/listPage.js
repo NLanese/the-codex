@@ -12,7 +12,11 @@ import { directoryDataState } from "../../recoil/atoms";
 import { useRouter } from "next/router"
 
 
-export default function ListPage({items, directory}){
+export default function ListPage({
+    items, 
+    directory=false,
+    onClick=false
+}){
 
     ///////////
     // State //
@@ -55,7 +59,13 @@ export default function ListPage({items, directory}){
 
         // Handles PRessing the option Button
         function handleClick(itm){
-            setDirectoryState(itm)
+            if (onClick){
+                onClick(itm)
+                return
+            }
+            if (directory){
+                setDirectoryState(itm)   
+            }
             router.replace(`/${directory.toLowerCase()}/${itm.toLowerCase()}/menu`)
         }
 
