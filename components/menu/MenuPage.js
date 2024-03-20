@@ -63,7 +63,7 @@ export const MenuPage = ({
 
     function renderDefinitions(){
         return(
-            <div style={{flex: 3}}>
+            <div style={{flex: 3, maxHeight: '650px', overflow: 'scroll', marginTop:30}}>
                 <DefinitionList
                     title={"Unit Terms"}
                     definitionsList={BasicDefinitionsList}
