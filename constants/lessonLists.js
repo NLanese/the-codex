@@ -7,11 +7,15 @@ const frameworksList = ["React JS", "React Native", "Angular", "Ionic"]
 
 
 const basicsLessons = ["Variables", "Data Types", "Objects", "Functions", "Classes"]
+const basicsLabs = ["Basics Mastery Lab",]
+const basicsTests = ["Data Types", "Operators", "Functions Test",]
 
 export {
     conceptsList,
     languagesList,
     frameworksList,
 
-    basicsLessons
+    basicsLessons,
+    basicsLabs,
+    basicsTests
 }

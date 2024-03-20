@@ -38,16 +38,14 @@ const DefinitionList = ({
     // Main Return //
     /////////////////
 
-    // return (
-    //     <div>
-    //         {/* {renderTitle()} */}
-    //         <div>
-    //             {/* {renderDefinitions()} */}
-    //         </div>
-    //     </div>
-    // )
-
-    return <div>Test</div>
+    return (
+        <div>
+            {renderTitle()}
+            <div>
+                {renderDefinitions()}
+            </div>
+        </div>
+    )
 
 }
 

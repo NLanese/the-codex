@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { MenuPage } from "../../../components/menu/MenuPage";
 
 // Constants
-import { basicsLessons } from "../../../constants/lessonLists";
+import { basicsLessons, basicsLabs, basicsTests } from "../../../constants/lessonLists";
 
 const BasicsMenu = ({}) => {
     ///////////
@@ -29,7 +29,9 @@ const BasicsMenu = ({}) => {
     ////////////////
 
     useEffect(() => {
-        setDirectory("Basics")
+        if (directory !== "Basics"){
+            setDirectory("Basics")
+        }
         setLoading(false)
     }, [])
 
@@ -52,11 +54,12 @@ const BasicsMenu = ({}) => {
         else{
             return(
                 <>
-                    {/* <MenuPage 
-                        onLessonClick={(handleLessonClick)}
+                    <MenuPage 
+                        onLessonClick={handleLessonClick}
                         lessons={basicsLessons}
-                    /> */}
-                    <div>TEST</div>
+                        labs={basicsLabs}
+                        tests={basicsTests}
+                    />
                 </>
             )
         }

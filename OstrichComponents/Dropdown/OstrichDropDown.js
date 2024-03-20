@@ -61,10 +61,15 @@ export const OstrichDropDown = ({
     function handleDrawerPress(drawer){
         console.log("Handling Drawer Press")
         if (drawer.onClick){
+            console.log("Drawer Specific Function")
             return drawer.onClick(drawer)
         }
         else if (onDrawerClick){
+            console.log("OnDrawerClick General Function")
             return onDrawerClick(drawer)
+        }
+        else{
+            console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")
         }
     }
 

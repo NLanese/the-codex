@@ -17,7 +17,17 @@ import { useRouter } from "next/router";
 import ListPage from "../global/listPage";
 import DefinitionList from "../../OstrichComponents/DefinitionsList/DefinitionList";
 
-export const MenuPage = ({onLessonClick, lessons}) => {
+export const MenuPage = ({
+    onLessonClick, 
+    lessons,
+
+    onTestsClick,
+    tests,
+
+    onLabsClick,
+    labs
+
+}) => {
 
     ///////////
     // State //
@@ -30,28 +40,30 @@ export const MenuPage = ({onLessonClick, lessons}) => {
 
     function renderLessonsList(){
         return(
-            <div style={{ 
-                marginTop: 45, marginRight: 15,
-                padding: 15,
-                justifyContent: 'center', 
-                backgroundColor: Colors.offWhite, 
-                boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
-            }}>
-                <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                    Lessons
+            <div style={{flex: 1}}>
+                <div style={{ 
+                    marginTop: 45,
+                    padding: 15,
+                    justifyContent: 'center', 
+                    backgroundColor: Colors.offWhite, 
+                    boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
+                }}>
+                    <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
+                        Lessons
+                    </div>
+                    <ListPage 
+                        items={lessons}
+                        onClick={onLessonClick}
+                        size="sm"
+                    />
                 </div>
-                <ListPage 
-                    items={lessons}
-                    onClick={onLessonClick}
-                    size="sm"
-                />
             </div>
         )
     }
 
     function renderDefinitions(){
         return(
-            <div>
+            <div style={{flex: 3}}>
                 <DefinitionList
                     title={"Unit Terms"}
                     definitionsList={BasicDefinitionsList}
@@ -62,20 +74,59 @@ export const MenuPage = ({onLessonClick, lessons}) => {
             </div>
         )
     }
+
+    function renderLabsAndTests(){
+        return(
+            <div style={{
+                display: 'flex', flexDirection: 'column', flex: 1, 
+                justifyContent: 'flex-start', alignItems: 'center', 
+            }}>
+                <div style={{ 
+                    marginTop: 45,
+                    padding: 15,
+                    justifyContent: 'center', 
+                    backgroundColor: Colors.offWhite, 
+                    boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
+                }}>
+                    <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
+                        Labs
+                    </div>
+                    <ListPage 
+                        items={labs}
+                        onClick={onLessonClick}
+                        size="sm"
+                    />
+                </div>
+
+                <div style={{ 
+                marginTop: 45,
+                padding: 15,
+                justifyContent: 'center', 
+                backgroundColor: Colors.offWhite, 
+                boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
+                }}>
+                    <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
+                        Tests
+                    </div>
+                    <ListPage 
+                        items={tests}
+                        onClick={onLessonClick}
+                        size="sm"
+                    />
+                </div>
+            </div>
+        )
+    }
    
     /////////////////
     // Main Return //
     /////////////////
 
     return(
-        <div>
-            TEST
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+            {renderLessonsList()}
+            {renderDefinitions()}
+            {renderLabsAndTests()}
         </div>
-        // <div style={{display: 'flex', flexDirection: 'row'}}>
-        //     {/* <div>
-        //         {renderLessonsList()}
-        //     </div> */}
-        //     {/* {renderDefinitions()} */}
-        // </div>
     )
 }

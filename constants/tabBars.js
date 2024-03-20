@@ -2,6 +2,8 @@ import { conceptsList, languagesList, frameworksList, basicsLessons } from "./le
 
 // Fires on specific drawer type clicks
 function handleDrawerClick(type, drawer, router, setTabBar){
+    console.log("Routing to... " + ` /concepts/${drawer.toLowerCase()}/menu`)
+    console.log(router)
     router.replace(`/concepts/${drawer.toLowerCase()}/menu`)
     setTabBar(false)
 }
