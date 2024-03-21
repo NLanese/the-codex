@@ -1,11 +1,18 @@
 import { conceptsList, languagesList, frameworksList, basicsLessons } from "./lessonLists"
 
 // Fires on specific drawer type clicks
-function handleDrawerClick(type, drawer, router, setTabBar){
-    console.log("Routing to... " + ` /concepts/${drawer.toLowerCase()}/menu`)
+function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
+    console.log("Routing to... " + ` /${type}/${drawer.toLowerCase()}/${finalPath}`)
     console.log(router)
-    router.replace(`/concepts/${drawer.toLowerCase()}/menu`)
+    router.replace(`/${type}/${drawer.toLowerCase()}/menu`)
     setTabBar(false)
+}
+
+// Fires on specific Lesson drawer type clicks
+function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
+    console.log("Routing to... " + ` /${type}/${unit}/${LTL}/${finalPath}`)
+    console.log(router)
+    router.replace(`/${type}/${unit}/${LTL}/${finalPath}`)
 }
 
 // Guest
@@ -20,7 +27,7 @@ export const guestTabs = (setTabBar, router) => {
         dropdown: {
             openOnHover: true,
             drawers: conceptsList,
-            onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer, router, setTabBar) }
+            onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer, router,  setTabBar, "menu")}
         }
     },
     {
@@ -32,7 +39,7 @@ export const guestTabs = (setTabBar, router) => {
         dropdown: {
             openOnHover: true,
             drawers: languagesList,
-            onDrawerClick: (drawer) => { handleDrawerClick('languages', drawer, router, setTabBar) }
+            onDrawerClick: (drawer) => { handleDrawerClick('languages', drawer, router,  setTabBar, "menu")}
         }
     },
     {
@@ -44,7 +51,7 @@ export const guestTabs = (setTabBar, router) => {
         dropdown: {
             openOnHover: true,
             drawers: frameworksList,
-            onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router, setTabBar) }
+            onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router,  setTabBar, "menu")}
         }
     },
     {
@@ -59,7 +66,7 @@ export const guestTabs = (setTabBar, router) => {
         dropdown: {
             openOnHover: true,
             drawers: ["Sign In", "Sign Up"],
-            onDrawerClick: (drawer) => { handleDrawerClick('account', drawer, router, setTabBar) }
+            onDrawerClick: (drawer) => { handleDrawerClick('account', drawer, router,  setTabBar, "menu")}
         }
     }
     ])
@@ -77,7 +84,7 @@ export const userTabs = (setTabBar, router)  => {
             dropdown: {
                 openOnHover: true,
                 drawers: conceptsList,
-                onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer, router, setTabBar) }
+                onDrawerClick: (drawer) => { handleDrawerClick('concepts', drawer, router, "menu") }
             }
         },
         {
@@ -89,7 +96,7 @@ export const userTabs = (setTabBar, router)  => {
             dropdown: {
                 openOnHover: true,
                 drawers: languagesList,
-                onDrawerClick: (drawer) => { handleDrawerClick('languages', drawer, router, setTabBar) }
+                onDrawerClick: (drawer) => { handleDrawerClick('languages', drawer, router, "menu") }
             }
         },
         {
@@ -101,7 +108,7 @@ export const userTabs = (setTabBar, router)  => {
             dropdown: {
                 openOnHover: true,
                 drawers: frameworksList,
-                onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router, setTabBar) }
+                onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router, "menu") }
             }
         },
         {
@@ -116,7 +123,7 @@ export const userTabs = (setTabBar, router)  => {
             dropdown: {
                 openOnHover: true,
                 drawers: ["Progress", "Lesson Plan", "Settings"],
-                onDrawerClick: (drawer) => { handleDrawerClick('account', drawer, router, setTabBar) }
+                onDrawerClick: (drawer) => { handleDrawerClick('account', drawer, router, setTabBar, "menu") }
             }
         }
     ])
@@ -133,7 +140,8 @@ export const basicsTabs = (setTabBar, router) => {
         title: "Lessons",
         dropdown: {
             openOnHover: true,
-            drawers: basicsLessons
+            drawers: basicsLessons,
+            onDrawerClick: (drawer) => { handleLessonTestLabDrawerClick("concepts", "basics", "lessons", drawer.toLowerCase(), router) }
         }
     },
     {

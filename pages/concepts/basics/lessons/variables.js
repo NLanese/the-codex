@@ -9,4 +9,4 @@ const VariablesLesson = ({}) => {
 
 }
 
-export default WhatIsAVariable
+export default VariablesLesson

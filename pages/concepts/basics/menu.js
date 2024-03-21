@@ -40,7 +40,7 @@ const BasicsMenu = ({}) => {
     ///////////////
 
     function handleLessonClick(lesson){
-        router.replace("concepts/basics/lessons/" + lesson)
+        router.replace("concepts/basics/lessons/" + lesson.toLowerCase())
     }
     
     /////////////////
