@@ -49,6 +49,25 @@ const VariablesLesson = ({}) => {
             )
         }
 
+        function renderVariableJavaAndC(){
+            return(
+                <div>
+                    <p style={Styles.Code.keyword}>int</p>
+                    <p style={Styles.Code.var}>x</p>
+                    <p style={Styles.Code.reg}>= 0;</p>
+                </div>
+            )
+        }
+
+        function renderVariablesPython(){
+            return(
+                <div>
+                    <p style={Styles.Code.var}>x</p>
+                    <p style={Styles.Code.reg}>= 0</p>
+                </div>
+            )
+        }
+
         
     /////////////////
     // Main Return //
