@@ -1,4 +1,8 @@
+// React
+import React, {useEffect, useState} from "react";
 
+// Ostrich
+import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 
 const CodeSnippet = ({
     js,
@@ -12,6 +16,25 @@ const CodeSnippet = ({
     ///////////
 
     const [language, setLanguage] = useState("js")
+
+    ///////////////
+    // Functions //
+    ///////////////
+
+        function handleLanguagePress(lang){
+            if (lang === "JavaScript"){
+                setLanguage("js")
+            }
+            else if (lang === "C#"){
+                setLanguage("cs")
+            }
+            else if (lang === "Java"){
+                setLanguage("java")
+            }
+            else if (lang === "Python"){
+                setLanguage("py")
+            }
+        }
 
     ////////////////
     // Renderings //
@@ -30,6 +53,21 @@ const CodeSnippet = ({
         else if (language === "java"){
             return java
         }
+    }
+
+    function renderCodeSpace(){
+        return(
+            <div>
+                <OstrichTabBar 
+                    startingTabByTitle={"JavaScript"}
+                    tabs={("JavaScript", "Java", "C#", "Python")}
+                    onTabClick={(tab) => handleLanguagePress(tab)}
+                />
+                <div>
+                    {renderSyntax(language)}
+                </div>
+            </div>
+        )
     }
 }
 
