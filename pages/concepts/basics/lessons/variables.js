@@ -10,6 +10,7 @@ import { directoryDataState } from "../../../../recoil/atoms";
 
 // Components and Functions
 import renderTitle from "../../../../components/lessonsAndLabs/renderTitle";
+import CodeSnippet from "../../../../components/lessonsAndLabs/codeSnippet";
 
 
 const VariablesLesson = ({}) => {
@@ -77,6 +78,12 @@ const VariablesLesson = ({}) => {
         return (
             <div style={{marginTop: '-3.2%'}}>
                 {renderTitle("Variables")}
+                <CodeSnippet
+                    js={renderVariablesJS}
+                    java={renderVariableJavaAndC}
+                    cs={renderVariableJavaAndC}
+                    py={renderVariablesPython}
+                />
             </div>
         )
     }

@@ -57,18 +57,32 @@ const CodeSnippet = ({
 
     function renderCodeSpace(){
         return(
-            <div>
-                <OstrichTabBar 
-                    startingTabByTitle={"JavaScript"}
-                    tabs={("JavaScript", "Java", "C#", "Python")}
-                    onTabClick={(tab) => handleLanguagePress(tab)}
-                />
-                <div>
-                    {renderSyntax(language)}
-                </div>
+            <div style={{backgroundColor: "black"}}>
+                {renderSyntax(language)}
             </div>
         )
     }
+
+    /////////////////
+    // Main Return //
+    /////////////////
+
+    function MAIN(){
+        return(
+            <div>
+                <OstrichTabBar 
+                startingTabByTitle={"JavaScript"}
+                tabs={["JavaScript", "Java", "C#", "Python"]}
+                onTabClick={(tab) => handleLanguagePress(tab)}
+                />
+                {renderCodeSpace()}
+            </div>
+        )
+    }
+
+    return MAIN()
+
+
 }
 
 export default CodeSnippet
