@@ -93,7 +93,7 @@ export const MenuPage = ({
                     </div>
                     <ListPage 
                         items={labs}
-                        onClick={onLessonClick}
+                        onClick={onLabsClick}
                         size="sm"
                     />
                 </div>
@@ -110,7 +110,7 @@ export const MenuPage = ({
                     </div>
                     <ListPage 
                         items={tests}
-                        onClick={onLessonClick}
+                        onClick={onTestsClick}
                         size="sm"
                     />
                 </div>

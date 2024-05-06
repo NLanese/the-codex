@@ -1,40 +1,34 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import 'codemirror/lib/codemirror.css'; // Import CodeMirror CSS
+import 'codemirror/mode/javascript/javascript'; // Import JavaScript mode
 
-import { OstrichTabBar } from '../../OstrichComponents/Tabs/OstrichTabBar';
+const CodeSpace = () => {
+    
+  const [code, setCode] = useState('');
 
-import {EditorView, keymap} from "@codemirror/view"
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("User code:", code); // Do something with the user code
+    // You can send 'code' to a server, evaluate it, etc.
+  };
 
+  return (
+    <form onSubmit={handleSubmit}>
+      <CodeMirror
+        value={code}
+        options={{
+          mode: 'javascript',
+          theme: 'default',
+          lineNumbers: true
+        }}
+        onBeforeChange={(editor, data, value) => {
+          setCode(value);
+        }}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
-
-const CodeSpace = ({}) => {
-
-    ///////////
-    // State //
-    ///////////
-
-        const [language, setLanguage] = useState("javascript")
-
-    /////////////////
-    // Main Return //
-    /////////////////
-    return(
-        <div>
-            <OstrichTabBar 
-                startingTabByTitle={language}
-                tabs={["JavaScript", "Ruby", "C++"]}
-
-                activeTitleStyle={{textAlign: 'center', fontSize: 24, fontWeight: 500, color: '#15c97b', marginTop: 10, fontFamily: "Gilroy", fontWeight: 700}}
-
-                tabStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 5, marginBottom: 5, borderLeft: "1px solid white", borderRight: "1px solid white" }}
-                activeTabStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 5, marginBottom: 5, borderLeft: "1px solid green", borderRight: "1px solid green" }}
-                hoverTabStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 3, marginBottom: 3, borderLeft: "1px solid white", borderRight: "1px solid white",  borderTop: "1px solid white", borderBottom: "1px solid white" }}
-        
-                drawerColor="white"
-                drawerHoverColor=" #E9F1FF"
-            />
-            <div>
-
-            </div>
-        </div>
-    )
-}
+export default CodeSpace;
