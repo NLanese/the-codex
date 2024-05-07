@@ -325,22 +325,24 @@ export const OstrichForm = ({
 
 
 OstrichForm.propTypes = {
-    title: PropTypes.string.isRequired,
-    titleBoxStyle: PropTypes.object,
-    titleTextStyle: PropTypes.object,
+    title: PropTypes.string.isRequired,         // Title (String)
+    titleBoxStyle: PropTypes.object,            // Title Container Style 
+    titleTextStyle: PropTypes.object,           // Title Text Style
 
-    fieldsBoxStyle: PropTypes.object,
-    fieldTitleStyle: PropTypes.object,
-    fields: PropTypes.arrayOf(
+    fieldsBoxStyle: PropTypes.object,           // Form Fields' Container Style
+    fieldTitleStyle: PropTypes.object,          // Form Fields' Title Style
+    fields: PropTypes.arrayOf(                  // Fields- Each Field is an Input
         PropTypes.shape({
-          title: PropTypes.string.isRequired,
-          caption: PropTypes.string,
-          type: PropTypes.string.isRequired,
-          onChange: PropTypes.func.isRequired,
-          value: PropTypes.any.isRequired,
+          title: PropTypes.string.isRequired,   // Field title
+          caption: PropTypes.string,            // Field Description / Caption
+          type: PropTypes.string.isRequired,    // Text, MC, True or False
+          onChange: PropTypes.func.isRequired,  // OnChange Function
+          value: PropTypes.any.isRequired,      // Value of Input
           fieldHidden: PropTypes.bool,
           style: PropTypes.object,
-          placeholder: PropTypes.string
+          placeholder: PropTypes.string,
+          possibleResponses: propagateServerField.arrayOf(PropTypes.string),
+          correctResponse: PropTypes.string
         })
     ).isRequired,
     onSubmit: PropTypes.func.isRequired,

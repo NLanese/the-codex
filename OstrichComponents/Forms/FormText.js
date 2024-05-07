@@ -39,6 +39,7 @@ export const FormText = ({
     // Renderings //
     ////////////////
 
+        // Renders the Field's Description / Caption
         function renderCaption(){
             if (fieldObj.caption){
                 return(
