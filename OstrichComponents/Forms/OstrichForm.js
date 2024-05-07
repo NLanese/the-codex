@@ -119,9 +119,9 @@ export const OstrichForm = ({
             )
         }
 
-    ///////////////
-    // Functions //
-    /////////////// 
+    ////////////////////
+    // Input Checkers //
+    ////////////////////
 
         // Checks all Input Props
         function checkInputs(){
@@ -137,171 +137,175 @@ export const OstrichForm = ({
             checkSubmitTextStyle()
         }
 
-        //////////////////
-        // Style Checks //
-        //////////////////
+        // Checks if Title prop is supplied (Needed)
+        function checkTitle(){
+            if (!title){
+                throw new Error("Ostrich Form Components need a 'title' prop!")
+            }
+        }
 
-            // Checks Style prop
-            function checkStyle(){
-                if (!styleState){
-                    setStyleState({
-                        border: "2px solid #E9F1FF",
-                        borderRadius: 20,
-                        paddingLeft: 20,
-                        paddingRight: 20,
-                        box: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                    })
-                }
+        // Checks if Fields prop is supplied (Needed)
+        function checkFields(){
+            if (!fields){
+                throw new Error("Ostrich Form Components need a 'fields' prop supplied!")
+            }
+        }
+
+        // Determines whether or not to fire a custom or default 'onChange' function
+        function determineOnChange(value, field){
+
+            // If no OnChange Function was Provided
+            const defaultOnChange = (value, field) => {}
+            if (!onChange){
+                defaultOnChange(value, field)
             }
 
-            // Checks if Title prop is supplied (Needed)
-            function checkTitle(){
-                if (!title){
-                    throw new Error("Ostrich Form Components need a 'title' prop!")
-                }
+            // If an OnChange Function was Provided
+            else{
+                onChange(value, field)
             }
+        }
 
-            // Checks if Fields prop is supplied (Needed)
-            function checkFields(){
-                if (!fields){
-                    throw new Error("Ostrich Form Components need a 'fields' prop supplied!")
-                }
-            }
+    //////////////////
+    // Style Checks //
+    //////////////////
 
-            // Determines whether or not to fire a custom or default 'onChange' function
-            function determineOnChange(value, field){
-                const defaultOnChange = (value, field) => {}
-                if (!onChange){
-                   defaultOnChange(value, field)
-                }
-                else{
-                    onChange(value, field)
-                }
+        // Checks Style prop
+        function checkStyle(){
+            if (!styleState){
+                setStyleState({
+                    border: "2px solid #E9F1FF",
+                    borderRadius: 20,
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    box: '2px 3px 3px rgba(0, 0, 0, 0.1)',
+                })
             }
+        }
 
-            // Checks if Title Box Style is provided 
-            function checkTitleBoxStyle(){
-                if (!titleBoxStyleState){
-                    setTitleBoxStyleState({
-                        alignItems: 'center',
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                    })
-                }
+        // Checks if Title Box Style is provided 
+        function checkTitleBoxStyle(){
+            if (!titleBoxStyleState){
+                setTitleBoxStyleState({
+                    alignItems: 'center',
+                    paddingBottom: 10,
+                    paddingTop: 10,
+                })
             }
+        }
 
-            // Checks if Title Text Style is provided
-            function checkTitleTextStyle(){
-                if (!titleTextStyleState){
-                    setTitleTextStyleState({
-                        fontWeight: 700,
-                        fontSize: 32,
-                        textAlign: 'center',
-                    })
-                }
+        // Checks if Title Text Style is provided
+        function checkTitleTextStyle(){
+            if (!titleTextStyleState){
+                setTitleTextStyleState({
+                    fontWeight: 700,
+                    fontSize: 32,
+                    textAlign: 'center',
+                })
             }
+        }
 
-            // Checks if Title Box Style is provided 
-            function checkFieldsBoxStyle(){
-                if (!fieldsBoxStyleState){
-                    setFieldsBoxStyleState({
-                        alignItems: 'center',
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                    })
-                }
+        // Checks if Title Box Style is provided 
+        function checkFieldsBoxStyle(){
+            if (!fieldsBoxStyleState){
+                setFieldsBoxStyleState({
+                    alignItems: 'center',
+                    paddingBottom: 10,
+                    paddingTop: 10,
+                })
             }
+        }
 
-            // Checks if Title Text Style is provided
-            function checkFieldTitleStyle(){
-                if (!fieldsTitleStyleState){
-                    setFieldsTitleStyleState({
-                        fontWeight: 500,
-                        fontSize: 20,
-                        textAlign: 'left',
-                    })
-                }
+        // Checks if Title Text Style is provided
+        function checkFieldTitleStyle(){
+            if (!fieldsTitleStyleState){
+                setFieldsTitleStyleState({
+                    fontWeight: 500,
+                    fontSize: 20,
+                    textAlign: 'left',
+                })
             }
+        }
 
-            // Checks Submission Button Style
-            function checkSubmitStyles(){
-                if (!submitStyle){
-                    setSubmitStyle({
-                        border: "2px solid #E9F1FF",
-                        borderRadius: 20,
-                        backgroundColor: 'grey',
-                        width: 140,
-                        height: 55,
-                        boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: 10,
-                        marginBottom: 20
-                    })
-                }
+        // Checks Submission Button Style
+        function checkSubmitStyles(){
+            if (!submitStyle){
+                setSubmitStyle({
+                    border: "2px solid #E9F1FF",
+                    borderRadius: 20,
+                    backgroundColor: 'grey',
+                    width: 140,
+                    height: 55,
+                    boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 10,
+                    marginBottom: 20
+                })
             }
+        }
 
-            // Checks Inactice Submit Button
-            function checkInactiveSubmitStyle(){
-                if (!inactiveSubmitStyle){
-                    setInactiveSubmitStyle({
-                        border: "2px solid #E9F1FF",
-                        borderRadius: 20,
-                        backgroundColor: 'grey',
-                        width: 140,
-                        height: 55,
-                        boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: 10,
-                        marginBottom: 20
-                    })
-                }
+        // Checks Inactice Submit Button
+        function checkInactiveSubmitStyle(){
+            if (!inactiveSubmitStyle){
+                setInactiveSubmitStyle({
+                    border: "2px solid #E9F1FF",
+                    borderRadius: 20,
+                    backgroundColor: 'grey',
+                    width: 140,
+                    height: 55,
+                    boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 10,
+                    marginBottom: 20
+                })
             }
+        }
 
-            // Checks Submission Text Style
-            function checkSubmitTextStyle(){
-                if (!submitText){
-                    setSubmitText({
-                        fontWeight: 700,
-                        fontSize: 22,
-                        textAlign: 'center',
-                        textAlign: 'center',
-                        paddingTop: 12
-                    })
-                }
+        // Checks Submission Text Style
+        function checkSubmitTextStyle(){
+            if (!submitText){
+                setSubmitText({
+                    fontWeight: 700,
+                    fontSize: 22,
+                    textAlign: 'center',
+                    textAlign: 'center',
+                    paddingTop: 12
+                })
             }
+        }
 
-            // Determines the Style of the Submit Button (Active or Not)
-            function determineSubmitStyle(){
-                if (allowSubmit){
-                    return submitStyle
-                }
-                else {
-                    return inactiveSubmitStyle
-                }
+        // Determines the Style of the Submit Button (Active or Not)
+        function determineSubmitStyle(){
+            if (allowSubmit){
+                return submitStyle
             }
-        
-        //////////////
-        // Handlers //
-        //////////////
-
-            function handleFormChange(value, field=false){
-                determineOnChange(value, field)
-                if (field && field.type === "text"){
-                    setFormData(previous => ({...previous, 
-                        [field]: value
-                    }))
-                }
+            else {
+                return inactiveSubmitStyle
             }
-
-            function submitForm(){
-                onSubmit(formData)
-                if (clearOnSubmit){
-                    setFormData({})
-                }
-            }
+        }
     
+    //////////////
+    // Handlers //
+    //////////////
+
+        function handleFormChange(value, field=false){
+            determineOnChange(value, field)
+            if (field && field.type === "text"){
+                setFormData(previous => ({...previous, 
+                    [field]: value
+                }))
+            }
+        }
+
+        function submitForm(){
+            onSubmit(formData)
+            if (clearOnSubmit){
+                setFormData({})
+            }
+        }
+
 
 
 
