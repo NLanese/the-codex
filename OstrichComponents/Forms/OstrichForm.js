@@ -151,21 +151,6 @@ export const OstrichForm = ({
             }
         }
 
-        // Determines whether or not to fire a custom or default 'onChange' function
-        function determineOnChange(value, field){
-
-            // If no OnChange Function was Provided
-            const defaultOnChange = (value, field) => {}
-            if (!onChange){
-                defaultOnChange(value, field)
-            }
-
-            // If an OnChange Function was Provided
-            else{
-                onChange(value, field)
-            }
-        }
-
     //////////////////
     // Style Checks //
     //////////////////
@@ -294,8 +279,26 @@ export const OstrichForm = ({
             determineOnChange(value, field)
             if (field && field.type === "text"){
                 setFormData(previous => ({...previous, 
-                    [field]: value
+                    [field.title]: value
                 }))
+            }
+            else if (field && field.type === "MC"){
+
+            }
+        }
+
+        // Determines whether or not to fire a custom or default 'onChange' function
+        function determineOnChange(value, field){
+
+            // If no OnChange Function was Provided
+            const defaultOnChange = (value, field) => {return}
+            if (!onChange){
+                defaultOnChange(value, field)
+            }
+
+            // If an OnChange Function was Provided
+            else{
+                onChange(value, field)
             }
         }
 
