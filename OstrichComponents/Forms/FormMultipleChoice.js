@@ -8,6 +8,7 @@ export const FormMultipleChoice = ({
     fieldStyle,
     captionStyle,
     onChange,
+    style="Bubble",
     options,
 }) => {
     
@@ -76,6 +77,10 @@ export const FormMultipleChoice = ({
         }
 
         function renderOptionsRow(rowOptions){
+            let limit = 2
+            if (type === "Box" || type === "box"){
+                limit = 3
+            }
             if (rowOptions.length < 2){
                 return(
                     <OstrichSelectionBox 
@@ -85,6 +90,24 @@ export const FormMultipleChoice = ({
                     />
                 )
             }
+            else if (rowOptions.length < 3){
+                return(
+                    <div style={{display: 'flex', flexDirection: 'space-evenly'}}>
+                        <OstrichSelectionBox 
+                        tag={rowOptions[0]}
+                        selected={isTagSelected(rowOptions[0])}
+                        onSelect={handleInput}
+                        type={type}
+                        />
+                        <OstrichSelectionBox 
+                        tag={rowOptions[0]}
+                        selected={isTagSelected(rowOptions[1])}
+                        onSelect={handleInput}
+                        type={type}
+                        />
+                    </div>
+                )
+            }
             else{
                 return(
                     <div style={{display: 'flex', flexDirection: 'space-evenly'}}>
@@ -92,11 +115,19 @@ export const FormMultipleChoice = ({
                         tag={rowOptions[0]}
                         selected={isTagSelected(rowOptions[0])}
                         onSelect={handleInput}
+                        type={type}
                         />
                         <OstrichSelectionBox 
-                        tag={rowOptions[0]}
-                        selected={isTagSelected(rowOptions[0])}
+                        tag={rowOptions[1]}
+                        selected={isTagSelected(rowOptions[1])}
                         onSelect={handleInput}
+                        type={type}
+                        />
+                        <OstrichSelectionBox 
+                        tag={rowOptions[2]}
+                        selected={isTagSelected(rowOptions[2])}
+                        onSelect={handleInput}
+                        type={type}
                         />
                     </div>
                 )
