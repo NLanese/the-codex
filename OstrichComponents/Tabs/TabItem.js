@@ -17,10 +17,10 @@ export const TabItem = ({
     activeStyle,        // Style for Component when Active
     activeTextStyle,    // Style for Componet Text when Active
 
-    hoverStyle,
-    hoverTextStyle,
+    hoverStyle,         // 
+    hoverTextStyle,     //
 
-    dropdown=false,
+    dropdown=false,     //
     onDrawerClick=false,
     dropdownStyles=false,
     drawerColor=false,

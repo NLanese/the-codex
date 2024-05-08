@@ -49,8 +49,24 @@ export const OstrichSelectionBox = ({
     // Renderings //
     ////////////////
 
-        function renderCircle(){
+        // Determines Whether Selected or Default Style
+        function determineCircleStyle(){
+            if (selected){
+                return selectedCircleStyle;
+            }
+            else{
+                return circleStyle;
+            }
+        }
 
+        // Renders the Selection Circle
+        function renderCircle(){
+            <div
+            style={determineCircleStyle()}
+            onClick={onSelect(tag)}
+            >
+
+            </div>
         }
 
     /////////////////
@@ -58,9 +74,8 @@ export const OstrichSelectionBox = ({
     /////////////////
     return(
         <div style={{display: 'flex', flexDirection: 'row'}}>
-            <div>
-
-            </div>
+           {renderCircle()}
+           <div style={titleStyle}>{tag}</div>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { OstrichSelectionBox } from './OstrichSelectionBox';
 
 export const FormMultipleChoice = ({
     fieldObj,
@@ -8,6 +9,12 @@ export const FormMultipleChoice = ({
     onChange,
     options,
 }) => {
+    
+    ////////////
+    // States //
+    ////////////
+
+    const [selectedAnswer, setSelectedAnswer]
 
     ///////////////
     // Functions //
@@ -51,24 +58,41 @@ export const FormMultipleChoice = ({
             }
         }
 
+        function renderOptions(){
+            let i = 0
+        }
+
+        function renderOptionsRow(options){
+            if (options.length < 2){
+                return(
+                    <OstrichSelectionBox 
+                    tag={options[0]}
+                    selected={isTagSelected(options[0])}
+
+                    />
+                )
+            }
+            else{
+                return(
+                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <
+                    </div>
+                )
+            }
+        }
+
     /////////////////
     // Main Return //
     /////////////////
 
         return(
-            <div>
+            <div style={}>
                 <div style={{...titleStyle}}>
                     {fieldObj.title}
                 </div>
                 {renderCaption()}
                 <div>
-                    <input 
-                    type={fieldObj.type}
-                    value={fieldObj.value}
-                    onChange={(event) => handleInput(event)}
-                    style={fieldObj.formHidden ? { display: 'none' } : {...handleStyle()}}
-                    placeholder={fieldObj.placeholder? fieldObj.placeholder : ""}
-                    />
+                   
                 </div>
             </div>
         )

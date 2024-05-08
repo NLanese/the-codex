@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormText } from './FormText';
+import { FormMultipleChoice } from './FormMultipleChoice';
 import { OstrichButton } from '../Buttons/OstrichButton';
 
 export const OstrichForm = ({
@@ -99,6 +100,13 @@ export const OstrichForm = ({
                         titleStyle={fieldsTitleStyleState}
                         captionStyle={captionTextStyle}
                         onChange={handleFormChange}
+                    />
+                )
+            }
+            else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
+                return(
+                    <FormMultipleChoice 
+
                     />
                 )
             }
