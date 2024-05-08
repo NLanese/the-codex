@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 
 export const FormMultipleChoice = ({
     fieldObj,
     titleStyle,
+    fieldStyle,
     captionStyle,
     onChange,
     options,
@@ -14,13 +15,13 @@ export const FormMultipleChoice = ({
     // States //
     ////////////
 
-    const [selectedAnswer, setSelectedAnswer]
+    const [selectedAnswer, setSelectedAnswer] = useState("")
 
     ///////////////
     // Functions //
     ///////////////
 
-        // Handles any changes in text field
+        // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(event){
             if (fieldObj.onChange){
                 fieldObj.onChange(event.target.value, fieldObj)
@@ -59,25 +60,55 @@ export const FormMultipleChoice = ({
         }
 
         function renderOptions(){
-            let i = 0
+            let i = 0;
+            let toProcess = [];
+            let toRender = [];
+            while (i < options.length){
+                if (i < options.length - 1){
+                    toProcess = [options[i], options[i + 1]];
+                }
+                else{
+                    toProcess = [options[i]]
+                }
+                toRender << renderOptionsRow(toProcess);
+            }
+            return toRender;
         }
 
-        function renderOptionsRow(options){
-            if (options.length < 2){
+        function renderOptionsRow(rowOptions){
+            if (rowOptions.length < 2){
                 return(
                     <OstrichSelectionBox 
-                    tag={options[0]}
-                    selected={isTagSelected(options[0])}
-
+                    tag={rowOptions[0]}
+                    selected={isTagSelected(rowOptions[0])}
+                    onSelect={handleInput}
                     />
                 )
             }
             else{
                 return(
-                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                        <
+                    <div style={{display: 'flex', flexDirection: 'space-evenly'}}>
+                        <OstrichSelectionBox 
+                        tag={rowOptions[0]}
+                        selected={isTagSelected(rowOptions[0])}
+                        onSelect={handleInput}
+                        />
+                        <OstrichSelectionBox 
+                        tag={rowOptions[0]}
+                        selected={isTagSelected(rowOptions[0])}
+                        onSelect={handleInput}
+                        />
                     </div>
                 )
+            }
+        }
+
+        function determineFieldStyle(){
+            if (fieldObj.style){
+                return fieldObj.style;
+            }
+            else{
+                return fieldStyle;
             }
         }
 
@@ -86,13 +117,13 @@ export const FormMultipleChoice = ({
     /////////////////
 
         return(
-            <div style={}>
+            <div style={determineFieldStyle()}>
                 <div style={{...titleStyle}}>
                     {fieldObj.title}
                 </div>
                 {renderCaption()}
                 <div>
-                   
+                    {renderOptions()}
                 </div>
             </div>
         )

@@ -9,8 +9,8 @@ export const OstrichSelectionBox = ({
     onSelect,
 
     titleStyle,
-    circleStyle,
-    selectedCircleStyle,
+    circleStyle = {border: "2px solid black", borderRadius: 50},
+    selectedCircleStyle = {border: "2px solid black", borderRadius: 50, backgroundColor: "#E9F1FF"},
 
     hoverBorderColor
     
