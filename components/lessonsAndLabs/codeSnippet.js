@@ -72,7 +72,14 @@ const CodeSnippet = ({
             <div>
                 <OstrichTabBar 
                 startingTabByTitle={"JavaScript"}
-                tabs={["JavaScript", "Java", "C#", "Python"]}
+                tabs={
+                    [
+                        {title: "JavaScript"},
+                        {title: "Java"}, 
+                        {title: "C#"}, 
+                        {title: "Python"}
+                    ]
+                }
                 onTabClick={(tab) => handleLanguagePress(tab)}
                 />
                 {renderCodeSpace()}

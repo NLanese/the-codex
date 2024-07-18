@@ -80,7 +80,8 @@ export const OstrichTabBar = ({
                         marginBottom: 6, 
                         borderLeft: "0.5px solid #E9F1FF",
                         borderRight: "0.5px solid #E9F1FF",
-                        backgroundColor: 'rgba(189, 236, 255, 0.35)'
+                        backgroundColor: 'rgba(189, 236, 255, 0.35)',
+                        color: 'black'
                     })
                 }
 
@@ -88,7 +89,8 @@ export const OstrichTabBar = ({
                     setTitleStyleX({
                         textAlign: 'center',
                         fontSize: 14,
-                        fontWeight: 500
+                        fontWeight: 500,
+                        color: "black"
                     })
                 }
             }

@@ -11,6 +11,8 @@ const Styles = {
         keyword: {fontSize: 16, color: '#bd2eff'},
         var: {fontSize: 16, color: '#0fdefa'},
         reg: {fontSize: 16, color: 'white'},
+        str: {fontSize: 16, color: "#52c8a9"},
+        bool: {fontSize: 16, color: "#3fa0a0"},
     }
 
 }

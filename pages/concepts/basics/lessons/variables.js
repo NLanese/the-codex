@@ -42,23 +42,52 @@ const VariablesLesson = ({}) => {
 
         function renderVariablesJS(){
             return(
-                <div style={{flexDirection: 'row'}}>
+                <div>
                     <p>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>= 0</span>
                     </p>
+
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.str}>"Hank Hill"</span>
+                    </p>
+
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>isEarthFlat </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.bool}>false</span>
+                    </p>
+
                 </div>
             )
         }
 
         function renderVariableJavaAndC(){
             return(
-                <div style={{flexDirection: 'row'}}>
+                <div>
                     <p>
                     <span style={Styles.Code.keyword}>int </span>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>= 0;</span>
+                    </p>
+
+                    <p>
+                    <span style={Styles.Code.keyword}>String </span>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.str}>"Hank Hill";</span>
+                    </p>
+
+                    <p>
+                    <span style={Styles.Code.keyword}>bool </span>
+                    <span style={Styles.Code.var}>isEarthFlat </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.bool}>false;</span>
                     </p>
                 </div>
             )
@@ -66,10 +95,16 @@ const VariablesLesson = ({}) => {
 
         function renderVariablesPython(){
             return(
-                <div style={{flexDirection: 'row'}}>
+                <div>
                     <p>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>= 0</span>
+                    </p>
+
+                    <p>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.str}>"Hank Hill</span>
                     </p>
                 </div>
             )
