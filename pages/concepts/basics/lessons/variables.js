@@ -36,9 +36,9 @@ const VariablesLesson = ({}) => {
         }, [])
 
  
-    ///////////////
-    // Rendering //
-    ///////////////
+    ////////////////////
+    // Code Rendering //
+    ////////////////////
 
         function renderVariablesJS(){
             return(
@@ -69,6 +69,34 @@ const VariablesLesson = ({}) => {
             )
         }
 
+    //////////////////////
+    // Lesson Rendering //
+    //////////////////////
+
+        function renderFirst(){
+            return(
+                <div>
+                    <p>
+                        Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
+                    </p>
+                    <p>
+                        A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future. This definition may seem a little confusing, but that is because of how abstract Variables are. Let's use some real life examples:
+                    </p>
+                    <div>
+                        <p>
+                            When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or "Hossenpheffer" your account will se set to display whatever is stored under the 'name' variable
+                        </p>
+                        <p>
+                            When you login to a website, both your username and password are stored in the computer as variables. They will begin as just empty values, but as you type into the 'username' or 'email' text bar, the 'login' variable will be changed to match what you type. When you press the login button, the computer will use what you entered into the 'login' variable and check it against all other known usernames.
+                        </p>
+                        <p>
+                            In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
+                        </p>
+                    </div>
+                </div>
+            )
+        }
+
         
     /////////////////
     // Main Return //
@@ -78,6 +106,7 @@ const VariablesLesson = ({}) => {
         return (
             <div style={{marginTop: '-3.2%'}}>
                 {renderTitle("Variables")}
+                {renderFirst()}
                 <CodeSnippet
                     js={renderVariablesJS}
                     java={renderVariableJavaAndC}
