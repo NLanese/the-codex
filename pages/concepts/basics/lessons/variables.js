@@ -42,29 +42,35 @@ const VariablesLesson = ({}) => {
 
         function renderVariablesJS(){
             return(
-                <div>
-                    <p style={Styles.Code.keyword}>let</p>
-                    <p style={Styles.Code.var}>x</p>
-                    <p style={Styles.Code.reg}>= 0</p>
+                <div style={{flexDirection: 'row'}}>
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>x </span>
+                    <span style={Styles.Code.reg}>= 0</span>
+                    </p>
                 </div>
             )
         }
 
         function renderVariableJavaAndC(){
             return(
-                <div>
-                    <p style={Styles.Code.keyword}>int</p>
-                    <p style={Styles.Code.var}>x</p>
-                    <p style={Styles.Code.reg}>= 0;</p>
+                <div style={{flexDirection: 'row'}}>
+                    <p>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>x </span>
+                    <span style={Styles.Code.reg}>= 0;</span>
+                    </p>
                 </div>
             )
         }
 
         function renderVariablesPython(){
             return(
-                <div>
-                    <p style={Styles.Code.var}>x</p>
-                    <p style={Styles.Code.reg}>= 0</p>
+                <div style={{flexDirection: 'row'}}>
+                    <p>
+                    <span style={Styles.Code.var}>x </span>
+                    <span style={Styles.Code.reg}>= 0</span>
+                    </p>
                 </div>
             )
         }
@@ -80,7 +86,7 @@ const VariablesLesson = ({}) => {
                         Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
                     </p>
                     <p>
-                        A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future. This definition may seem a little confusing, but that is because of how abstract Variables are. Let's use some real life examples:
+                        <strong>A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future. </strong> This definition may seem a little confusing, but that is because of how abstract Variables are. Let's use some real life examples:
                     </p>
                     <div>
                         <p>
@@ -93,6 +99,10 @@ const VariablesLesson = ({}) => {
                             In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
                         </p>
                     </div>
+
+                    <p>
+                        Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece. Below, you will see how to <strong>declare</strong> (which means create) a variable.
+                    </p>
                 </div>
             )
         }
@@ -108,10 +118,10 @@ const VariablesLesson = ({}) => {
                 {renderTitle("Variables")}
                 {renderFirst()}
                 <CodeSnippet
-                    js={renderVariablesJS}
-                    java={renderVariableJavaAndC}
-                    cs={renderVariableJavaAndC}
-                    py={renderVariablesPython}
+                    js={renderVariablesJS()}
+                    java={renderVariableJavaAndC()}
+                    cs={renderVariableJavaAndC()}
+                    py={renderVariablesPython()}
                 />
             </div>
         )
