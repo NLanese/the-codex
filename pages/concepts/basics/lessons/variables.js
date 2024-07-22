@@ -150,15 +150,17 @@ const VariablesLesson = ({}) => {
                         <strong>A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future. </strong> This definition may seem a little confusing, but that is because of how abstract Variables are. Let's use some real life examples:
                     </p>
                     <div>
-                        <p>
+                        <li>
                             When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or "Hossenpheffer" your account will se set to display whatever is stored under the 'name' variable
-                        </p>
-                        <p>
+                        </li>
+                        <br></br>
+                        <li>
                             When you login to a website, both your username and password are stored in the computer as variables. They will begin as just empty values, but as you type into the 'username' or 'email' text bar, the 'login' variable will be changed to match what you type. When you press the login button, the computer will use what you entered into the 'login' variable and check it against all other known usernames.
-                        </p>
-                        <p>
+                        </li>
+                        <br></br>
+                        <li>
                             In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
-                        </p>
+                        </li>
                     </div>
 
                     <p>
@@ -172,6 +174,12 @@ const VariablesLesson = ({}) => {
             return(
                 <div>
                     <p>Above, you saw that most languages are a bit different from each other in how the <strong>declare</strong> a variable, but they all have the same basic pattern and premise. Usually, there is a keyword (Like in JavaScript, there is <strong>the keyword let</strong> or in C# and Java the <strong>keyword is instead the data type of the variable</strong>)</p>
+                    <p>Most languages treat variables the same once they have been declared, meaning that interacting with variables across different languages usually stays the same. Adding two number variables in JavaScript will work the same way as it does in Python. However, as we will cover <strong>under the Datatypes lesson</strong> you cannot just go mixing two different kinds of variables, and these constraints vary based on the language. Lets go over some basic examples for right now...</p>
+                    <div>
+                        <li>In some Computer Languages, a whole number cannot be mixed with a decimal point number. This means adding 2 and 2.4 would not work in every language.</li>
+                        <br></br>
+                        <li>In most Computer Languages, variables that contain letters or words cannot interact with variables that hold numeric values. This means I could not make x and y interact with one another if x = "Hank Hill" and y = 6</li>
+                    </div>
                 </div>
             )
         }
