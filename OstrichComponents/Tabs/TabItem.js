@@ -43,9 +43,7 @@ export const TabItem = ({
         // Drop Opened Toggle
         const [dropDeployed, setDropDepoyed] = useState(false)
 
-        // Title X
-        console.log(title)
-        console.log(tabObj.title)
+        // Title X 
         const [titleX, setTitleX] = useState()
         useEffect(() => {
             setTitleX(title? title : tabObj.title)
@@ -227,7 +225,6 @@ export const TabItem = ({
 
         // Renders a Button as a Tab
         function renderTab(){
-            console.log(titleX)
             return(
                 <div
                 style={{...determineStyle().tab}}

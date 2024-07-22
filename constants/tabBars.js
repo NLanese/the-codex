@@ -159,7 +159,7 @@ export const basicsTabs = (setTabBar, router) => {
         }
     },
     {
-        title: "Return",
+        title: "Return Home",
         onClick: (() => router.replace("/"))
     }
     ])

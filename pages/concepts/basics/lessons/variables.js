@@ -6,11 +6,13 @@ import Styles from "../../../../styles/styles";
  
 // Recoil
 import { useRecoilState } from "recoil";
-import { directoryDataState } from "../../../../recoil/atoms";
+import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 
 // Components and Functions
 import renderTitle from "../../../../components/lessonsAndLabs/renderTitle";
 import CodeSnippet from "../../../../components/lessonsAndLabs/codeSnippet";
+import { LessonPage } from "../../../../components/lessonsAndLabs/LessonPage";
+import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 
 const VariablesLesson = ({}) => {
@@ -19,8 +21,13 @@ const VariablesLesson = ({}) => {
     // State //
     ///////////
 
+    // Makes sure URL Path is correct
     const [directory, setDirectory] = useRecoilState(directoryDataState)
 
+    // Makes sure Header Bar Highlights the Active Tab
+    const [tabBar, setTabBar] = useRecoilState(tabBarState)
+
+    // Loading Check
     const [loading, setLoading] = useState(true)
 
     ////////////////
@@ -35,6 +42,22 @@ const VariablesLesson = ({}) => {
             setLoading(false)
         }, [])
 
+
+    ///////////////
+    // Functions //
+    ///////////////
+
+        function handleLessonClick(lesson){
+            router.replace(`/concepts/basics/lessons/${lesson.toLowerCase().replace(" ", "_")}`)
+        }
+
+        function handleTestClick(test){
+            router.replace(`/concepts/basics/tests/${test.toLowerCase().replace(" ", "_")}`)
+        }
+
+        function handleLabsClick(lab){
+            router.replace(`/concepts/basics/labs/${lab.toLowerCase().replace(" ", "_")}`)
+        }
  
     ////////////////////
     // Code Rendering //
@@ -142,6 +165,14 @@ const VariablesLesson = ({}) => {
             )
         }
 
+        function renderSecond(){
+            return(
+                <div>
+                    <p>Above, you saw that most languages are a bit different from each other in how the <strong>declare</strong> a variable, but they all have the same basic pattern and premise. Usually, there is a keyword (Like in JavaScript, there is <strong>the keyword let</strong> or in C# and Java the <strong>keyword is instead the data type of the variable</strong>)</p>
+                </div>
+            )
+        }
+
         
     /////////////////
     // Main Return //
@@ -158,11 +189,23 @@ const VariablesLesson = ({}) => {
                     cs={renderVariableJavaAndC()}
                     py={renderVariablesPython()}
                 />
+                {renderSecond()}
             </div>
         )
     }
 
-    return MAIN()
+    return (
+        <LessonPage
+            onLessonClick={handleLessonClick}
+            lessons={basicsLessons}
+            onLabsClick={handleLabsClick}
+            labs={basicsLabs}
+            onTestsClick={handleTestClick}
+            tests={basicsTests}
+        >
+            {MAIN()}
+        </LessonPage>
+    )
 
 }
 

@@ -17,11 +17,16 @@ const CodeSnippet = ({
 
     const [language, setLanguage] = useState("js")
 
+    useEffect(() => {
+        console.log(language)
+    }, [language])
+
     ///////////////
     // Functions //
     ///////////////
 
         function handleLanguagePress(lang){
+            console.log("switching,,,")
             if (lang === "JavaScript"){
                 setLanguage("js")
             }
@@ -40,7 +45,8 @@ const CodeSnippet = ({
     // Renderings //
     ////////////////
 
-    function renderSyntax(){
+    const renderSyntax = () => {
+        console.log("Should be rendering ", language)
         if (language === "js"){
             return js
         }
@@ -57,8 +63,8 @@ const CodeSnippet = ({
 
     function renderCodeSpace(){
         return(
-            <div style={{backgroundColor: "black"}}>
-                {renderSyntax(language)}
+            <div style={{backgroundColor: "black", marginTop: '-1%', padding: 5}}>
+                {renderSyntax()}
             </div>
         )
     }
@@ -80,7 +86,7 @@ const CodeSnippet = ({
                         {title: "Python"}
                     ]
                 }
-                onTabClick={(tab) => handleLanguagePress(tab)}
+                onTabClick={(tab) => handleLanguagePress(tab.title)}
                 />
                 {renderCodeSpace()}
             </div>
