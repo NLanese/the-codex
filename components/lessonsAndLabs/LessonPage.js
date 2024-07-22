@@ -40,7 +40,10 @@ export const LessonPage = ({
 
     function renderLessonsList(){
         return(
-            <div style={{flex: 1}}>
+            <div style={{
+                display: 'flex', flexDirection: 'column', flex: 1, 
+                justifyContent: 'flex-start', alignItems: 'center', 
+            }}>
                 <div style={{ 
                     marginTop: 45,
                     padding: 15,
@@ -119,10 +122,10 @@ export const LessonPage = ({
 
     return(
         <div style={{display: 'flex', flexDirection: 'row'}}>
-            <div style={{padding: 10, paddingRight: 45}}>
+            <div style={{padding: 10, paddingRight: 45, flex: 4}}>
                 {children}
             </div>
-            <div>
+            <div style={{flex: 1}}>
                 {renderSideMenu()}
             </div>
         </div>
