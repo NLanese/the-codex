@@ -34,10 +34,13 @@ const VariablesLesson = ({}) => {
     // UseEffects //
     ////////////////
 
-        // Sets Directory if not already
+        // Sets Directory and Tabs if not already
         useEffect(() => {
             if (directory !== "Basics"){
-                setDirectory("Basics")
+                setDirectory("Basics");
+            }
+            if (tabBar !== "Lessons"){
+                setTabBar("Lessons");
             }
             setLoading(false)
         }, [])
