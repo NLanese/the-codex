@@ -18,7 +18,7 @@ import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/le
 import { useRouter } from "next/router";
 
 
-const VariablesLesson = ({}) => {
+const DatatypesLesson = ({}) => {
 
     ///////////
     // State //
@@ -515,7 +515,7 @@ const VariablesLesson = ({}) => {
     function MAIN(){
         return (
             <div style={{marginTop: '-3.2%'}}>
-                {renderTitle("Variables")}
+                {renderTitle("Data Types")}
                 {renderFirst()}
                 <CodeSnippet
                     js={renderVariablesJS()}
@@ -549,4 +549,4 @@ const VariablesLesson = ({}) => {
 
 }
 
-export default VariablesLesson
+export default DatatypesLesson
