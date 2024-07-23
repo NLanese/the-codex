@@ -12,7 +12,7 @@ const Styles = {
         keyword: {fontSize: 16, color: '#bd2eff', marginTop: 0, marginBottom: 0},
         var: {fontSize: 16, color: '#0fdefa', marginTop: 0, marginBottom: 0},
         reg: {fontSize: 16, color: 'white', marginTop: 0, marginBottom: 0},
-        str: {fontSize: 16, color: "#52c8a9", marginTop: 0, marginBottom: 0},
+        str: {fontSize: 16, color: "#f7e672", marginTop: 0, marginBottom: 0},
         bool: {fontSize: 16, color: "#3fa0a0", marginTop: 0, marginBottom: 0},
         comment: {fontSize: 16, color: "#41FF00", marginTop: 0, marginBottom: 0},
     }

@@ -77,6 +77,10 @@ const DatatypesLesson = ({}) => {
         function renderVariablesJS(){
             return(
                 <div>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Numbers //</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
+
                     <p>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>x </span>
@@ -120,6 +124,38 @@ const DatatypesLesson = ({}) => {
                     </p>
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.comment}>// Notice how JavaScript converts the result to a Double when mixing Ints and Doubles </span>
+                    </p>
+                    <br></br>
+
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////////////////</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Numbers and Strings //</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////////////////</span></p>
+                    
+
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.str}>"Bobby Hill" </span>
+                    </p>
+    
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>age </span>
+                    <span style={Styles.Code.reg}>= 12</span>
+                    </p>
+
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>sentence </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>+ </span>
+                    <span style={Styles.Code.str}>"is " </span>
+                    <span style={Styles.Code.reg}>+ </span>
+                    <span style={Styles.Code.var}>age </span>
+                    <span style={Styles.Code.reg}>+ </span>
+                    <span style={Styles.Code.str}>"years old." </span>
                     </p>
 
                 </div>
