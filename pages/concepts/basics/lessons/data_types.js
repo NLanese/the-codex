@@ -80,21 +80,46 @@ const DatatypesLesson = ({}) => {
                     <p>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 0</span>
+                    <span style={Styles.Code.reg}>= 5</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>
+                            // The variable x has a data type of an 'Int' short for Integer
+                        </span>
                     </p>
 
                     <p>
                     <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>name </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill"</span>
+                    <span style={Styles.Code.var}>y </span>
+                    <span style={Styles.Code.reg}>= 2.5</span>
                     </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The variable y has a data type of an 'Double.' </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// 'Doubles' take up double the space of an Integer in computer storage </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// but this allows them to be large enough to hold decimal values </span>
+                    </p>
+
 
                     <p>
                     <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>isEarthFlat </span>
+                    <span style={Styles.Code.var}>z </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>false</span>
+                    <span style={Styles.Code.var}>x </span>
+                    <span style={Styles.Code.reg}>* </span>
+                    <span style={Styles.Code.var}>y </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// In JavaScript, the resultant variable, z, will be equal to 5.0. </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Notice how JavaScript converts the result to a Double when mixing Ints and Doubles </span>
                     </p>
 
                 </div>
@@ -455,27 +480,10 @@ const DatatypesLesson = ({}) => {
             return(
                 <div>
                     <p>
-                        Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
+                        As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some programming languages than it does in others. For example, in Java and in C#, variables of different data types cannot interact with each other at all unless they are changed to match. This means that adding 2 to 2.5 would not be valid in C# and Java. In JavaScript, however, you can mix datatypes. 2.5 can be added to or multiplied by 2.
                     </p>
                     <p>
-                        <strong>A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future. </strong> This definition may seem a little confusing, but that is because of how abstract Variables are. Let's use some real life examples:
-                    </p>
-                    <div>
-                        <li>
-                            When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or "Hossenpheffer" your account will se set to display whatever is stored under the 'name' variable
-                        </li>
-                        <br></br>
-                        <li>
-                            When you login to a website, both your username and password are stored in the computer as variables. They will begin as just empty values, but as you type into the 'username' or 'email' text bar, the 'login' variable will be changed to match what you type. When you press the login button, the computer will use what you entered into the 'login' variable and check it against all other known usernames.
-                        </li>
-                        <br></br>
-                        <li>
-                            In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
-                        </li>
-                    </div>
-
-                    <p>
-                        Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece. Below, you will see how to <strong>declare</strong> (which means create) a variable.
+                        <strong>Let's go over some examples of valid and invalid variable interactions.</strong> We will go through each example, and explain why each interaction is or is not valid, as well as what the resulting value of the interacting variables would be. 
                     </p>
                 </div>
             )
