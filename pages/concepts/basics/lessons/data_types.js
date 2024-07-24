@@ -188,9 +188,9 @@ const DatatypesLesson = ({}) => {
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
 
                     <p>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>int </span>
                     <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 5</span>
+                    <span style={Styles.Code.reg}>= 5;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
@@ -200,9 +200,9 @@ const DatatypesLesson = ({}) => {
                     </p>
 
                     <p>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>double </span>
                     <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2.5</span>
+                    <span style={Styles.Code.reg}>= 2.5;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
@@ -217,19 +217,20 @@ const DatatypesLesson = ({}) => {
 
 
                     <p>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>double </span>
                     <span style={Styles.Code.var}>z </span>
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>* </span>
-                    <span style={Styles.Code.var}>y </span>
+                    <span style={Styles.Code.var}>y</span>
+                    <span style={Styles.Code.reg}>;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
-                        <span style={Styles.Code.comment}>// In JavaScript, the resultant variable, z, will be equal to 5.0. </span>
+                        <span style={Styles.Code.comment}>// In Java, the resultant variable, z, will be equal to 5.0. </span>
                     </p>
                     <p style={Styles.Code.code}>
-                        <span style={Styles.Code.comment}>// Notice how JavaScript converts the result to a Double when mixing Ints and Doubles </span>
+                        <span style={Styles.Code.comment}>// You need to declare z as a Double, since Java can convert ints to Doubles but not the other way around. If you declare z as an 'int' this will cause an error. </span>
                     </p>
                     <br></br>
 
@@ -239,10 +240,11 @@ const DatatypesLesson = ({}) => {
                     
 
                     <p>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>String </span>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Bobby Hill" </span>
+                    <span style={Styles.Code.str}>"Bobby Hill"</span>
+                    <span style={Styles.Code.reg}>;</span>
                     </p>
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.comment}>// The variable name will hold a String value as its data type. </span>
@@ -255,16 +257,16 @@ const DatatypesLesson = ({}) => {
                     </p>
     
                     <p>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>int </span>
                     <span style={Styles.Code.var}>age </span>
-                    <span style={Styles.Code.reg}>= 12</span>
+                    <span style={Styles.Code.reg}>= 12;</span>
                     </p>
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.comment}>// Here, the variable 'age' is an int. </span>
                     </p>
 
                     <p>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>String </span>
                     <span style={Styles.Code.var}>sentence </span>
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.var}>name </span>
@@ -273,13 +275,14 @@ const DatatypesLesson = ({}) => {
                     <span style={Styles.Code.reg}>+ </span>
                     <span style={Styles.Code.var}>age </span>
                     <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.str}>"years old." </span>
+                    <span style={Styles.Code.str}>"years old."</span>
+                    <span style={Styles.Code.reg}>;</span>
                     </p>
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.comment}>// Here, the variable 'sentence' takes the value of an int mixed with Strings.  </span>
                     </p>
                     <p style={Styles.Code.code}>
-                        <span style={Styles.Code.comment}>// The valuation of this equation converts the int into a string. This makes 'sentence' a String. </span>
+                        <span style={Styles.Code.comment}>// The valuation of this equation converts the int into a string. This means you need to declare 'sentence' as a String. </span>
                     </p>
 
                 </div>
