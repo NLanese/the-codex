@@ -138,7 +138,7 @@ const VariablesLesson = ({}) => {
                     <p>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill</span>
+                    <span style={Styles.Code.str}>"Hank Hill"</span>
                     </p>
                 </div>
             )

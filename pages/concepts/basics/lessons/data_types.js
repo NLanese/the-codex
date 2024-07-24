@@ -138,11 +138,23 @@ const DatatypesLesson = ({}) => {
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.str}>"Bobby Hill" </span>
                     </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The variable name will hold a String value as its data type. </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Strings are somewhat complicated, and their inner workings vary depending on the language you are using. </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// For now, just know that any words, sentences, or structures of literal language you want saved will be saved as Strings. </span>
+                    </p>
     
                     <p>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>age </span>
                     <span style={Styles.Code.reg}>= 12</span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Here, the variable 'age' is an int. </span>
                     </p>
 
                     <p>
@@ -157,33 +169,119 @@ const DatatypesLesson = ({}) => {
                     <span style={Styles.Code.reg}>+ </span>
                     <span style={Styles.Code.str}>"years old." </span>
                     </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Here, the variable 'sentence' takes the value of an int mixed with Strings.  </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The valuation of this equation converts the int into a string. This makes 'sentence' a String. </span>
+                    </p>
 
                 </div>
             )
         }
 
-        function renderVariableJavaAndC(){
+        function renderVariablesJavaScript(){
             return(
                 <div>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Numbers //</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
+
                     <p>
-                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 0;</span>
+                    <span style={Styles.Code.reg}>= 5</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>
+                            // The variable x has a data type of an 'Int' short for Integer
+                        </span>
                     </p>
 
                     <p>
-                    <span style={Styles.Code.keyword}>String </span>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>y </span>
+                    <span style={Styles.Code.reg}>= 2.5</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The variable y has a data type of an 'Double.' </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// 'Doubles' take up double the space of an Integer in computer storage </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// but this allows them to be large enough to hold decimal values </span>
+                    </p>
+
+
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>z </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>x </span>
+                    <span style={Styles.Code.reg}>* </span>
+                    <span style={Styles.Code.var}>y </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// In JavaScript, the resultant variable, z, will be equal to 5.0. </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Notice how JavaScript converts the result to a Double when mixing Ints and Doubles </span>
+                    </p>
+                    <br></br>
+
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////////////////</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Numbers and Strings //</span></p>
+                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////////////////</span></p>
+                    
+
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill";</span>
+                    <span style={Styles.Code.str}>"Bobby Hill" </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The variable name will hold a String value as its data type. </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Strings are somewhat complicated, and their inner workings vary depending on the language you are using. </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// For now, just know that any words, sentences, or structures of literal language you want saved will be saved as Strings. </span>
+                    </p>
+    
+                    <p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>age </span>
+                    <span style={Styles.Code.reg}>= 12</span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Here, the variable 'age' is an int. </span>
                     </p>
 
                     <p>
-                    <span style={Styles.Code.keyword}>bool </span>
-                    <span style={Styles.Code.var}>isEarthFlat </span>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>sentence </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>false;</span>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>+ </span>
+                    <span style={Styles.Code.str}>"is " </span>
+                    <span style={Styles.Code.reg}>+ </span>
+                    <span style={Styles.Code.var}>age </span>
+                    <span style={Styles.Code.reg}>+ </span>
+                    <span style={Styles.Code.str}>"years old." </span>
                     </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// Here, the variable 'sentence' takes the value of an int mixed with Strings.  </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The valuation of this equation converts the int into a string. This makes 'sentence' a String. </span>
+                    </p>
+
                 </div>
             )
         }
@@ -216,24 +314,25 @@ const DatatypesLesson = ({}) => {
                     <br />
 
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>int </span>
                     <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 4</span>
+                    <span style={Styles.Code.reg}>= 2;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>double </span>
                     <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2</span>
+                    <span style={Styles.Code.reg}>= 2.5;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.keyword}>double </span>
                     <span style={Styles.Code.var}>z </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>x </span>
+                    <span style={Styles.Code.var}>(double)x </span>
                     <span style={Styles.Code.reg}>* </span>
                     <span style={Styles.Code.var}>y </span>
+                    <span style={Styles.Code.reg}>;</span>
                     </p>
                     <br />
 
@@ -563,8 +662,8 @@ const DatatypesLesson = ({}) => {
                 {renderFirst()}
                 <CodeSnippet
                     js={renderVariablesJS()}
-                    java={renderVariableJavaAndC()}
-                    cs={renderVariableJavaAndC()}
+                    java={renderVariablesJavaScript()}
+                    cs={renderVariablesJavaScript()}
                     py={renderVariablesPython()}
                 />
                 {renderSecond()}
