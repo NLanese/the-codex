@@ -1,21 +1,12 @@
 // React
-import React, {useEffect, useState} from "react";
-
-// Recoil
-import { useRecoilState } from "recoil";
-import { tabBarState} from "../../recoil/atoms";
+import React from "react";
 
 // Constants
 import Styles from "../../styles/styles";
 import Colors from "../../styles/colors";
-import BasicDefinitionsList from "../../constants/basicDefinitions";
-
-// Next JS
-import { useRouter } from "next/router";
 
 // Components
 import ListPage from "../global/listPage";
-import DefinitionList from "../../OstrichComponents/DefinitionsList/DefinitionList";
 
 export const LessonPage = ({
     children,
