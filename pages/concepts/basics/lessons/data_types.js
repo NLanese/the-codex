@@ -317,30 +317,33 @@ const DatatypesLesson = ({}) => {
                     <br />
 
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 2;</span>
+                    <span style={Styles.Code.reg}>= 2</span>
                     </p>
 
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>double </span>
+                    <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2.5;</span>
+                    <span style={Styles.Code.reg}>= 2.5</span>
                     </p>
 
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>double </span>
                     <span style={Styles.Code.var}>z </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>(double)x </span>
+                    <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>* </span>
                     <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>;</span>
                     </p>
                     <br />
 
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// z would be equal to 8 since 2 * 4 = 8</span>
+                    <span style={Styles.Code.comment}>// z would be equal to 5.0 since 2 * 2.5 = 5.0. In operations with two different number data types (like int and double)</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// the compiler will automatically make the resulting variable the more complicated of the two numeric data types.</span>
                     </p>
                     <br />
 
