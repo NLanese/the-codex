@@ -13,6 +13,8 @@ export const LessonPage = ({
     onLessonClick, 
     lessons,
 
+    current,
+
     onTestsClick,
     tests,
 
@@ -49,6 +51,8 @@ export const LessonPage = ({
                         items={lessons}
                         onClick={onLessonClick}
                         size="sm"
+                        selected={current}
+                        
                     />
                 </div>
             </div>

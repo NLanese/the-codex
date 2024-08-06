@@ -542,6 +542,7 @@ const VariablesLesson = ({}) => {
             labs={basicsLabs}
             onTestsClick={handleTestClick}
             tests={basicsTests}
+            current={"Variables"}
         >
             {MAIN()}
         </LessonPage>

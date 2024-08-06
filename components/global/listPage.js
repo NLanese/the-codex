@@ -16,7 +16,8 @@ export default function ListPage({
     items,              // Listed Elements
     directory=false,    // Changes the directory State if this Lsit is a Dropdown Page
     onClick=false,      // Unique specified onClick if NOT a dropdown page
-    size="large"        // Button Size | large | medium | small |
+    size="large",       // Button Size | large | medium | small |
+    selected
 }){
 
     ///////////
@@ -45,7 +46,10 @@ export default function ListPage({
 
         // Determines Color
         function determineColor(itm){
-            if (hoveredItm === itm){
+            if (itm === selected){
+                return Colors.selectedColor
+            }
+            else if (hoveredItm === itm){
                 return Colors.activeColor
             }
             else{
