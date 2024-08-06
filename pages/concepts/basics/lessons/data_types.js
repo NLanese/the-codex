@@ -688,6 +688,7 @@ const DatatypesLesson = ({}) => {
             labs={basicsLabs}
             onTestsClick={handleTestClick}
             tests={basicsTests}
+            current={"Data Types"}
         >
             {MAIN()}
         </LessonPage>
