@@ -64,9 +64,60 @@ const DataTypesTest = ({}) => {
             router.replace(`/concepts/basics/labs/${lab.toLowerCase().replace(" ", "_")}`)
         }
  
-    ////////////////////
-    // Code Rendering //
-    ////////////////////
+    /////////////////
+    // Form Object //
+    /////////////////
+
+        let DataTypesTestForm = [
+            {
+                title: "1. What is the data type of the following",
+                type: "MC",
+                caption: "x = 'Bender Rodreguez'",
+                options: ["String", "Integer", "Double", "Name"],
+                correctValue: 'String'
+            },
+
+            {
+                title: "2. What is the data type of the following",
+                type: "MC",
+                caption: "age = 5",
+                options: ["String", "Integer", "Double", "Name"],
+                correctValue: 'Integer'
+            },
+
+            {
+                title: "3. What is the data type of the following",
+                type: "MC",
+                caption: "gpa = 3.5",
+                options: ["String", "Integer", "Double", "Name"],
+                correctValue: 'Double'
+            },
+
+            {
+                title: "4. What is the data type of the following",
+                type: "MC",
+                caption: "year = '2024'",
+                options: ["String", "Integer", "Double", "Name"],
+                correctValue: 'String'
+            },
+
+
+            {
+                title: "5. What is the data type of the following",
+                type: "MC",
+                caption: "x = 9000",
+                options: ["Boolean", "Float", "Double", "Integer"],
+                correctValue: 'Integer'
+            },
+
+            {
+                title: "6. What is the data type of the following",
+                type: "MC",
+                caption: "x = 10.0",
+                options: ["Boolean", "String", "Double", "Integer"],
+                correctValue: 'Double'
+            },
+        ]
 
 
     //////////////////////
