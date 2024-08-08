@@ -96,6 +96,7 @@ export const TestTemplatePage = ({
                         items={tests}
                         onClick={onTestsClick}
                         size="sm"
+                        selected={current}
                     />
                 </div>
             </div>

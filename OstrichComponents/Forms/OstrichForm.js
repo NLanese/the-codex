@@ -5,14 +5,14 @@ import { FormMultipleChoice } from './FormMultipleChoice';
 import { OstrichButton } from '../Buttons/OstrichButton';
 
 export const OstrichForm = ({
-    title,
-    fields,
-    submitButtonTitle="Submit",
+    title,                              // Form Title
+    fields,                             // Object of objects that each represent a field in the Form
+    submitButtonTitle="Submit",         // Title on Submit Button
 
-    onChange,
-    allowSubmit=true,
-    onSubmit,
-    clearOnSubmit=true,
+    onChange,                           // Function to run on ANY field value change
+    allowSubmit=true,                   // Boolean allowing Form to be Submitted or Locking it
+    onSubmit,                           // Function to be run on Form Submission
+    clearOnSubmit=true,                 // Whether or not values clear upon submission
 
     style,
 
@@ -106,7 +106,12 @@ export const OstrichForm = ({
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
                 return(
                     <FormMultipleChoice 
-
+                        key={`field-${index}`}
+                        fieldObj={fieldObj}
+                        titleStyle={fieldsTitleStyleState}
+                        captionStyle={captionTextStyle}
+                        onChange={handleFormChange}
+                        options={fieldObj.options}
                     />
                 )
             }
