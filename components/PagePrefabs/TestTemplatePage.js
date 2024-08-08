@@ -6,7 +6,7 @@ import Styles from "../../styles/styles";
 import Colors from "../../styles/colors";
 
 // Components
-import ListPage from "../Global/listPage";
+import CodexList from "../Global/codexList";
 
 export const TestTemplatePage = ({
     children,
@@ -47,12 +47,10 @@ export const TestTemplatePage = ({
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
                     </div>
-                    <ListPage 
+                    <CodexList 
                         items={lessons}
                         onClick={onLessonClick}
                         size="sm"
-                        selected={current}
-                        
                     />
                 </div>
             </div>
@@ -75,7 +73,7 @@ export const TestTemplatePage = ({
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Labs
                     </div>
-                    <ListPage 
+                    <CodexList 
                         items={labs}
                         onClick={onLabsClick}
                         size="sm"
@@ -92,7 +90,7 @@ export const TestTemplatePage = ({
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Tests
                     </div>
-                    <ListPage 
+                    <CodexList 
                         items={tests}
                         onClick={onTestsClick}
                         size="sm"

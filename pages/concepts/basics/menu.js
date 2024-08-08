@@ -9,7 +9,7 @@ import { directoryDataState } from "../../../recoil/atoms";
 import { useRouter } from "next/router";
 
 // Components
-import { MenuPage } from "../../../components/menu/MenuPage";
+import { MenuPage } from "../../../components/PagePrefabs/MenuPage";
 
 // Constants
 import { basicsLessons, basicsLabs, basicsTests } from "../../../constants/lessonLists";

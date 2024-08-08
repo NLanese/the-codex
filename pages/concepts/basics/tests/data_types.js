@@ -36,40 +36,71 @@ const DataTypesTest = ({}) => {
     // UseEffects //
     ////////////////
 
-    useEffect(() => {
-        if (directory !== "Basics"){
-            setDirectory("Basics")
-        }
-        if (tabBar !== "Tests"){
-            setTabBar("Tests");
-        }
-        setLoading(false)
-    }, [])
+        // Sets Directory and Tabs if not already
+        useEffect(() => {
+            if (directory !== "Basics"){
+                setDirectory("Basics");
+            }
+            if (tabBar !== "Lessons"){
+                setTabBar("Lessons");
+            }
+            setLoading(false)
+        }, [])
+
 
     ///////////////
     // Functions //
     ///////////////
 
+        function handleLessonClick(lesson){
+            router.replace(`/concepts/basics/lessons/${lesson.toLowerCase().replace(" ", "_")}`)
+        }
+
+        function handleTestClick(test){
+            router.replace(`/concepts/basics/tests/${test.toLowerCase().replace(" ", "_")}`)
+        }
+
+        function handleLabsClick(lab){
+            router.replace(`/concepts/basics/labs/${lab.toLowerCase().replace(" ", "_")}`)
+        }
+ 
+    ////////////////////
+    // Code Rendering //
+    ////////////////////
+
+
+    //////////////////////
+    // Lesson Rendering //
+    //////////////////////
+
+
+        
     /////////////////
     // Main Return //
     /////////////////
 
     function MAIN(){
-        if (loading){
-            return null
-        }
-        else{
-            return(
-                <>
-
-                </>
-            )
-        }
+        return (
+            <div style={{marginTop: '-3.2%'}}>
+                {renderTitle("Test 101 -- Data Types")}
+            </div>
+        )
     }
 
+    return (
+        <TestTemplatePage
+            onLessonClick={handleLessonClick}
+            lessons={basicsLessons}
+            onLabsClick={handleLabsClick}
+            labs={basicsLabs}
+            onTestsClick={handleTestClick}
+            tests={basicsTests}
+            current={"Data Types"}
+        >
+            {MAIN()}
+        </TestTemplatePage>
+    )
 
-    return MAIN()
-    
 }
 
 export default DataTypesTest
