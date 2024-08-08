@@ -14,7 +14,7 @@ import BasicDefinitionsList from "../../constants/basicDefinitions";
 import { useRouter } from "next/router";
 
 // Components
-import ListPage from "../global/listPage";
+import ListPage from "../Global/codexList";
 import DefinitionList from "../../OstrichComponents/DefinitionsList/DefinitionList";
 
 export const MenuPage = ({

@@ -9,9 +9,9 @@ import { useRecoilState } from "recoil";
 import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 
 // Components and Functions
-import renderTitle from "../../../../components/lessonsAndLabs/renderTitle";
-import CodeSnippet from "../../../../components/lessonsAndLabs/codeSnippet";
-import { LessonPage } from "../../../../components/lessonsAndLabs/LessonPage";
+import renderTitle from "../../../../components/CodeSpaces/renderTitle";
+import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
+import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Next JS
@@ -535,7 +535,7 @@ const VariablesLesson = ({}) => {
     }
 
     return (
-        <LessonPage
+        <LessonTemplatePage
             onLessonClick={handleLessonClick}
             lessons={basicsLessons}
             onLabsClick={handleLabsClick}
@@ -545,7 +545,7 @@ const VariablesLesson = ({}) => {
             current={"Variables"}
         >
             {MAIN()}
-        </LessonPage>
+        </LessonTemplatePage>
     )
 
 }

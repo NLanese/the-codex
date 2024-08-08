@@ -12,7 +12,7 @@ import { directoryDataState } from "../../recoil/atoms";
 import { useRouter } from "next/router"
 
 
-export default function ListPage({
+export default function CodexList({
     items,              // Listed Elements
     directory=false,    // Changes the directory State if this Lsit is a Dropdown Page
     onClick=false,      // Unique specified onClick if NOT a dropdown page

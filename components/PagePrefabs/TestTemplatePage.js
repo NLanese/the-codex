@@ -6,9 +6,9 @@ import Styles from "../../styles/styles";
 import Colors from "../../styles/colors";
 
 // Components
-import ListPage from "../global/listPage";
+import ListPage from "../Global/listPage";
 
-export const LessonPage = ({
+export const TestTemplatePage = ({
     children,
     onLessonClick, 
     lessons,

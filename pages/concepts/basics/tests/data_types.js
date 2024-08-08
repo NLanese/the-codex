@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 // Constants
 
-const BasicsMenu = ({}) => {
+const DataTypesTest = ({}) => {
     ///////////
     // State //
     ///////////
@@ -59,4 +59,4 @@ const BasicsMenu = ({}) => {
     
 }
 
-export default BasicsMenu
+export default DataTypesTest
