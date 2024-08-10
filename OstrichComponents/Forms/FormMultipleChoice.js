@@ -8,7 +8,7 @@ export const FormMultipleChoice = ({
     fieldStyle,
     captionStyle,
     onChange,
-    style="Bubble",
+    type="Bubble",
     options,
 }) => {
     
@@ -16,7 +16,7 @@ export const FormMultipleChoice = ({
     // States //
     ////////////
 
-    const [selectedAnswer, setSelectedAnswer] = useState("")
+    const [selectedAnswer, setSelectedAnswer] = useState([])
 
     ///////////////
     // Functions //
@@ -42,6 +42,15 @@ export const FormMultipleChoice = ({
             }
             else{
                 return fieldObj.style
+            }
+        }
+
+        function isTagSelected(option){
+            if (selectedAnswer.includes(option)){
+                return true
+            }
+            else{
+                return false
             }
         }
 
@@ -163,16 +172,16 @@ export const FormMultipleChoice = ({
 ///////////////////////
 // Prop Restrictions //
 ///////////////////////
-FormText.propTypes = {
-    fieldObj: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        onChange: PropTypes.func,
-        value: PropTypes.any.isRequired,
-        fieldHidden: PropTypes.bool,
-        style: PropTypes.object,
-        placeholder: PropTypes.string
-    }).isRequired,
-    onChange: PropTypes.func.isRequired,
-    titleStyle: PropTypes.object,
-};
+// FormText.propTypes = {
+//     fieldObj: PropTypes.shape({
+//         title: PropTypes.string.isRequired,
+//         type: PropTypes.string.isRequired,
+//         onChange: PropTypes.func,
+//         value: PropTypes.any.isRequired,
+//         fieldHidden: PropTypes.bool,
+//         style: PropTypes.object,
+//         placeholder: PropTypes.string
+//     }).isRequired,
+//     onChange: PropTypes.func.isRequired,
+//     titleStyle: PropTypes.object,
+// };

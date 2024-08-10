@@ -13,6 +13,9 @@ import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import { TestTemplatePage } from "../../../../components/PagePrefabs/TestTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
+// Ostirch
+import { OstrichForm } from "../../../../OstrichComponents/Forms/OstrichForm";
+
 
 const DataTypesTest = ({}) => {
 
@@ -133,7 +136,14 @@ const DataTypesTest = ({}) => {
     function MAIN(){
         return (
             <div style={{marginTop: '-3.2%'}}>
-                {renderTitle("Test 101 -- Data Types")}
+                     <OstrichForm
+                        title={"Data Types Test"}
+                        fields={DataTypesTestForm}
+                        onSubmit={() => handleSignUp()}
+                        titleTextStyle={{ fontSize: 32, fontWeight: 600, textAlign: 'center'}}
+                        fieldsTitleStyle={{ fontSize: 18, fontWeight: 500}}
+                        captionTextStyle={{ fontSize: 14, fontWeight: 200, backgroundcolor: 'grey'}}
+                    />
             </div>
         )
     }

@@ -361,7 +361,7 @@ OstrichForm.propTypes = {
           fieldHidden: PropTypes.bool,
           style: PropTypes.object,
           placeholder: PropTypes.string,
-          possibleResponses: propagateServerField.arrayOf(PropTypes.string),
+          possibleResponses: PropTypes.arrayOf(PropTypes.string),
           correctResponse: PropTypes.string
         })
     ).isRequired,
