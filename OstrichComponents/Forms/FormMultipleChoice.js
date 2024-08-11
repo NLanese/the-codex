@@ -28,7 +28,13 @@ export const FormMultipleChoice = ({
             if (fieldObj.onChange){
                 fieldObj.onChange(event.target.value, fieldObj)
             }
-            onChange(event.target.value, fieldObj)
+            if (event.target){
+                onChange(event.target.value, fieldObj)
+            }
+            else{
+                console.warn("There was no event detected on MultipleChoice Input.")
+            }
+            
         }
 
         // Determines the Input Style based on inputs or lackthereof
@@ -71,65 +77,27 @@ export const FormMultipleChoice = ({
         }
 
         function renderOptions(){
-            console.log(fieldObj.options)
+            if (fieldObj.options.length < 5){
+                return(
+                    <div style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                        {renderOptionsRow(fieldObj.options)}
+                    </div>
+                )
+            }
         }
 
         function renderOptionsRow(rowOptions){
-            let limit = 2
-            if (type === "Box" || type === "box"){
-                limit = 3
-            }
-            if (rowOptions.length < 2){
+            return rowOptions.map( (opt, index) => {
+                console.log("Should render field ", opt)
                 return(
                     <OstrichSelectionBox 
-                    tag={rowOptions[0]}
-                    selected={isTagSelected(rowOptions[0])}
+                    tag={opt}
+                    selected={isTagSelected(opt)}
                     onSelect={handleInput}
+                    key={index}
                     />
                 )
-            }
-            else if (rowOptions.length < 3){
-                return(
-                    <div style={{display: 'flex', flexDirection: 'space-evenly'}}>
-                        <OstrichSelectionBox 
-                        tag={rowOptions[0]}
-                        selected={isTagSelected(rowOptions[0])}
-                        onSelect={handleInput}
-                        type={type}
-                        />
-                        <OstrichSelectionBox 
-                        tag={rowOptions[0]}
-                        selected={isTagSelected(rowOptions[1])}
-                        onSelect={handleInput}
-                        type={type}
-                        />
-                    </div>
-                )
-            }
-            else{
-                return(
-                    <div style={{display: 'flex', flexDirection: 'space-evenly'}}>
-                        <OstrichSelectionBox 
-                        tag={rowOptions[0]}
-                        selected={isTagSelected(rowOptions[0])}
-                        onSelect={handleInput}
-                        type={type}
-                        />
-                        <OstrichSelectionBox 
-                        tag={rowOptions[1]}
-                        selected={isTagSelected(rowOptions[1])}
-                        onSelect={handleInput}
-                        type={type}
-                        />
-                        <OstrichSelectionBox 
-                        tag={rowOptions[2]}
-                        selected={isTagSelected(rowOptions[2])}
-                        onSelect={handleInput}
-                        type={type}
-                        />
-                    </div>
-                )
-            }
+            })
         }
 
         function determineFieldStyle(){
