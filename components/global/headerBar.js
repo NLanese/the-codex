@@ -14,7 +14,9 @@ import { OstrichTabBar } from "@Ostrich/Tabs/OstrichTabBar";
 // Constants
 import { guestTabs, userTabs, basicsTabs } from "../../constants/tabBars";
 
-export const HeaderBar = ({}) => {
+export const HeaderBar = ({
+    // directory
+}) => {
 
 ///////////
 // State //

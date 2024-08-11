@@ -9,7 +9,6 @@ import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 import { useRouter } from "next/router";
 
 // Components
-import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import { TestTemplatePage } from "../../../../components/PagePrefabs/TestTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
@@ -135,7 +134,7 @@ const DataTypesTest = ({}) => {
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{marginTop: '3%'}}>
                      <OstrichForm
                         title={"Data Types Test"}
                         fields={DataTypesTestForm}

@@ -71,19 +71,7 @@ export const FormMultipleChoice = ({
         }
 
         function renderOptions(){
-            let i = 0;
-            let toProcess = [];
-            let toRender = [];
-            while (i < options.length){
-                if (i < options.length - 1){
-                    toProcess = [options[i], options[i + 1]];
-                }
-                else{
-                    toProcess = [options[i]]
-                }
-                toRender << renderOptionsRow(toProcess);
-            }
-            return toRender;
+            console.log(fieldObj.options)
         }
 
         function renderOptionsRow(rowOptions){
@@ -164,7 +152,7 @@ export const FormMultipleChoice = ({
                 </div>
                 {renderCaption()}
                 <div>
-                    {/* {renderOptions()} */}
+                    {renderOptions()}
                 </div>
             </div>
         )

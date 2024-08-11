@@ -6,7 +6,7 @@ import Colors from "../../styles/colors"
 
 // Recoil
 import { useRecoilState } from "recoil";
-import { directoryDataState } from "../../recoil/atoms";
+// import { directoryDataState } from "../../recoil/atoms";
 
 // NextJS
 import { useRouter } from "next/router"
@@ -26,7 +26,7 @@ export default function CodexList({
 
         const [hoveredItm, setHoveredItm] = useState(false)
 
-        const [directoryState, setDirectoryState] = useRecoilState(directoryDataState)
+        // const [directoryState, setDirectoryState] = useRecoilState(directoryDataState)
 
         const router = useRouter()
 
