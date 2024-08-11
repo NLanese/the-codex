@@ -104,6 +104,7 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
+                console.log("Creating FormMultipleChoice Item -- ", index)
                 return(
                     <FormMultipleChoice 
                         key={`field-${index}`}

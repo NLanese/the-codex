@@ -17,6 +17,7 @@ export const FormMultipleChoice = ({
     ////////////
 
     const [selectedAnswer, setSelectedAnswer] = useState([])
+    console.log("This FieldObj --- ", fieldObj )
 
     ///////////////
     // Functions //
@@ -163,7 +164,7 @@ export const FormMultipleChoice = ({
                 </div>
                 {renderCaption()}
                 <div>
-                    {renderOptions()}
+                    {/* {renderOptions()} */}
                 </div>
             </div>
         )
