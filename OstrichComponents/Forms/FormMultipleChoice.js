@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 
@@ -17,7 +17,23 @@ export const FormMultipleChoice = ({
     ////////////
 
     const [selectedAnswer, setSelectedAnswer] = useState([])
-    console.log("This FieldObj --- ", fieldObj )
+
+    const [loading, setLoading] = useState(true)
+
+    ////////////////
+    // UseEffects //
+    ////////////////
+
+    // Sets options to Field Options if empty
+    useEffect(() => {
+        if (!options){
+            if (!fieldObj.options){
+                console.warn("[Ostrich Component Error] -- No Options provided in FormMultipleChoice Component. If <OstrichForm>, make sure that al of your FieldObjects that are of type 'MultipleChoice', 'MC', or 'mc' also have an 'options' property. This property should be an array of strings. If using a <FormMultipleChoice> component alone... for some reason... make sure you provide the options property, which is an array of strings.")
+            }
+            options = fieldObj.options
+        }
+        setLoading(false)
+    }, [])
 
     ///////////////
     // Functions //
@@ -77,10 +93,13 @@ export const FormMultipleChoice = ({
         }
 
         function renderOptions(){
+            if (loading){
+                return
+            }
             if (fieldObj.options.length < 5){
                 return(
                     <div style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                        {renderOptionsRow(fieldObj.options)}
+                        {renderOptionsRow(options)}
                     </div>
                 )
             }
