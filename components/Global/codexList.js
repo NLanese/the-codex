@@ -92,9 +92,9 @@ export default function CodexList({
                 onClick(itm)
                 return
             }
-            if (directory){
-                setDirectoryState(itm)   
-            }
+            // if (directory){
+            //     setDirectoryState(itm)   
+            // }
             router.replace(`/${directory.toLowerCase()}/${itm.toLowerCase()}/menu`)
         }
 

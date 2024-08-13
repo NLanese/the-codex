@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 
 export const FormMultipleChoice = ({
-    fieldObj,
-    titleStyle,
-    fieldStyle,
-    captionStyle,
-    onChange,
-    type="Bubble",
-    options,
+    fieldObj,               // If coming from a form, this object will represent the properties needed to fill this component
+    titleStyle,             // Style of the Title for the Multiple Choice Question
+    fieldStyle,             // 
+    captionStyle,           //
+    onChange,               // Function to fire whenever a value is selected or unselected
+    type="Bubble",          // 
+    options,                // Selection Options
+    singleOption = true,    // One Answer or Multiple
+    limit = false           // If Multiple Answers, the limit to how many
 }) => {
     
     ////////////
@@ -98,7 +100,7 @@ export const FormMultipleChoice = ({
             }
             if (fieldObj.options.length < 5){
                 return(
-                    <div style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                    <div style={{display:'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
                         {renderOptionsRow(options)}
                     </div>
                 )
@@ -114,6 +116,7 @@ export const FormMultipleChoice = ({
                     selected={isTagSelected(opt)}
                     onSelect={handleInput}
                     key={index}
+                    type={type}
                     />
                 )
             })

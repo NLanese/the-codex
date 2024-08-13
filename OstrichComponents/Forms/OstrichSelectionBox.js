@@ -72,12 +72,12 @@ export const OstrichSelectionBox = ({
 
         // Renders the Selection Circle
         function renderCircle(){
-            <div
-            style={determineCircleStyle()}
-            onClick={onSelect(tag)}
-            >
-            
-            </div>
+            return(
+                <div
+                    style={determineCircleStyle()}
+                    onClick={onSelect(tag)}
+                ></div>
+            )
         }
 
         // Renders For BUBBLE
