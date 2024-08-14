@@ -6,7 +6,7 @@ export const FormMultipleChoice = ({
     fieldObj,               // If coming from a form, this object will represent the properties needed to fill this component
     titleStyle,             // Style of the Title for the Multiple Choice Question
     fieldStyle,             // 
-    captionStyle,           //
+    captionStyle = {fontSize: 18, padding: 5, fontWeight: 400},           //
     onChange,               // Function to fire whenever a value is selected or unselected
     type="Bubble",          // 
     options,                // Selection Options
@@ -87,7 +87,7 @@ export const FormMultipleChoice = ({
         function renderCaption(){
             if (fieldObj.caption){
                 return(
-                    <div style={{...captionStyle}}>
+                    <div style={{captionStyle}}>
                         {fieldObj.caption}
                     </div>
                 )
@@ -141,7 +141,7 @@ export const FormMultipleChoice = ({
                     {fieldObj.title}
                 </div>
                 {renderCaption()}
-                <div>
+                <div style={{padding: 5, paddingTop: 15}}>
                     {renderOptions()}
                 </div>
             </div>

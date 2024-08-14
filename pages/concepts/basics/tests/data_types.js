@@ -140,8 +140,8 @@ const DataTypesTest = ({}) => {
                         fields={DataTypesTestForm}
                         onSubmit={() => handleSignUp()}
                         titleTextStyle={{ fontSize: 32, fontWeight: 600, textAlign: 'center'}}
-                        fieldsTitleStyle={{ fontSize: 18, fontWeight: 500}}
-                        captionTextStyle={{ fontSize: 14, fontWeight: 200, backgroundcolor: 'grey'}}
+                        fieldsTitleStyle={{ fontSize: 24, fontWeight: 600, padding: 5}}
+                        captionTextStyle={{ fontSize: 18, fontWeight: 400, backgroundcolor: 'grey', padding: 3}}
                     />
             </div>
         )

@@ -17,11 +17,11 @@ export const OstrichForm = ({
     style,
 
     titleBoxStyle,
-    titleTextStyle,
-    captionTextStyle,
+    titleTextStyle = {fontSize: 24, padding: 5, fontWeight: 600},
 
     fieldsBoxStyle,
-    fieldsTitleStyle,
+    fieldsTitleStyle = {fontSize: 24, padding: 5, fontWeight: 600},
+    captionTextStyle = {fontSize: 18, padding: 3, fontWeight: 400},
 
     submitButtonStyle,
     submitButtonIncativeStyle,

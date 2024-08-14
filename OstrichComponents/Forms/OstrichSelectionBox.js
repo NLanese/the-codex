@@ -9,10 +9,11 @@ export const OstrichSelectionBox = ({
     type,
 
     titleStyle,
-    circleStyle = {border: "2px solid black", borderRadius: 50, height: 50, width: 50},
+    circleStyle = {border: "2px solid black", borderRadius: 32, height: 32, width: 32},
     boxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100},
     selectedCircleStyle = {border: "2px solid black", borderRadius: 50, padding: 5, backgroundColor: "#E9F1FF"},
     selectedBoxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100, padding: 5, backgroundColor: "#E9F1FF"},
+    optionsTextStlye = {fontSize: 15, fontWeight: 800},
     hoverBorderColor
     
 }) => {
@@ -85,7 +86,9 @@ export const OstrichSelectionBox = ({
             return(
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                    {renderCircle()}
-                   <div style={titleStyle}>{tag}</div>
+                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%", paddingLeft: 10, ...optionsTextStlye}}>
+                        {tag}
+                    </div>
                 </div>
             )
         }
