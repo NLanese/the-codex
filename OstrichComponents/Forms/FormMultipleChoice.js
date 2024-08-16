@@ -43,12 +43,38 @@ export const FormMultipleChoice = ({
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
-            if (fieldObj.onChange){
+            if (fieldObj.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
-            if (tag){
+            if (tag){                               // Fires local onChange function
                 onChange(tag, fieldObj)
             } 
+            if (singleOption){                      // Single Answer Questions
+                if (selectedAnswer === tag){
+                    setSelectedAnswer([])           // Removing Previous Answer
+                }
+                else{
+                    setSelectedAnswer(tag)          // Changing / Selecting Answer
+                }
+            }
+
+
+            else{                                   // Multiple Answers
+                if (limit && limit <= selectedAnswer.answer){
+                    if (selectedAnswer.includes(tag)){
+                        let newSelected = selectedAnswer
+                        newSelected = newSelected.filter(sel => {
+                            if (sel !== tag){
+                                return sel
+                            }
+                        })
+                    }
+                    setSelectedAnswer(newSelected)
+                }
+                else{
+                    setSelectedAnswer([...selectedAnswer, tag])
+                }
+            }
             
         }
 
@@ -114,6 +140,7 @@ export const FormMultipleChoice = ({
                     onSelect={handleInput}
                     key={index}
                     type={type}
+                    fieldObj={fieldObj}
                     />
                 )
             })

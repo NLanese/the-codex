@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 export const OstrichSelectionBox = ({
     tag,
-    selected,
+    selected = false,
     onSelect,
     type,
+    fieldObj = false,
 
     titleStyle,
     circleStyle = {border: "2px solid black", borderRadius: 32, height: 32, width: 32},
@@ -25,11 +26,10 @@ export const OstrichSelectionBox = ({
         // Hovered Toggled
         const [isHovered, setIsHovered] = useState(false)
         const hoverRef = useRef(isHovered)
+
         useEffect(() => {
             hoverRef.current = isHovered
         }, [isHovered])
-
-        const [isSelected, setIsSelected] = useState(false)
 
     ///////////////
     // Functions //
@@ -47,13 +47,23 @@ export const OstrichSelectionBox = ({
             }
         };
 
+        const handleSelectionClick = (tag) => {
+            onSelect(tag)
+            if (fieldObj){          // If there is a Field Obj
+
+            }
+            else{                   // If there is no Field Obj
+                setIsSelected(true)
+            }
+        }
+
     ////////////////
     // Renderings //
     ////////////////
 
         // Determines Whether Selected or Default Style for BUBBLE
         function determineCircleStyle(){
-            if (selected){
+            if (isSelected){
                 return selectedCircleStyle;
             }
             else{
