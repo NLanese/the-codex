@@ -289,15 +289,16 @@ export const OstrichForm = ({
     // Handlers //
     //////////////
 
-        function handleFormChange(value, field=false){
-            determineOnChange(value, field)
-            if (field && field.type === "text"){
+        function handleFormChange(value, fieldObj=false){
+            determineOnChange(value, fieldObj)
+            if (fieldObj && fieldObj.type === "text"){
                 setFormData(previous => ({...previous, 
-                    [field.title]: value
+                    [fieldObj.title]: value
                 }))
             }
-            else if (field && (field.type === fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc")){
+            else if (field.type === fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
                 console.log("Multiple choice form field has been hit")
+                handleMultiChoiceChange(value, fieldObj)
             }
         }
 
@@ -313,6 +314,22 @@ export const OstrichForm = ({
             // If an OnChange Function was Provided
             else{
                 onChange(value, field)
+            }
+        }
+
+        // Handles Changes to the Form when the Field Changed is of type Multiple Choice
+        function handleMultiChoiceChange(value, fieldObj){
+            if (fieldObj.multiAnswer){              // If Multiple Answers Accepted
+                if (formData[fieldObj.title]){      // If Field exists already in FormData Object
+                    setFormData(previous => ({...previous, 
+                        [fieldObj.title]: [...formData[fieldObj.title], value]
+                    }))
+                }
+                else{                               // If the field is not yet present in FormData Object
+                    setFormData(previous => ({...previous, 
+                        [fieldObj.title]: [value]
+                    }))
+                }
             }
         }
 
