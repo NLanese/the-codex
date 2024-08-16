@@ -296,8 +296,8 @@ export const OstrichForm = ({
                     [field.title]: value
                 }))
             }
-            else if (field && field.type === "MC"){
-
+            else if (field && (field.type === fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc")){
+                console.log("Multiple choice form field has been hit")
             }
         }
 

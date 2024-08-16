@@ -42,16 +42,13 @@ export const FormMultipleChoice = ({
     ///////////////
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
-        function handleInput(event){
+        function handleInput(tag){
             if (fieldObj.onChange){
-                fieldObj.onChange(event.target.value, fieldObj)
+                fieldObj.onChange(tag, fieldObj)
             }
-            if (event.target){
-                onChange(event.target.value, fieldObj)
-            }
-            else{
-                console.warn("There was no event detected on MultipleChoice Input.")
-            }
+            if (tag){
+                onChange(tag, fieldObj)
+            } 
             
         }
 

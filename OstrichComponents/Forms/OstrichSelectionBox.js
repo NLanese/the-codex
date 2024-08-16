@@ -74,10 +74,10 @@ export const OstrichSelectionBox = ({
         // Renders the Selection Circle
         function renderCircle(){
             return(
-                <div
+                <button
                     style={determineCircleStyle()}
-                    onClick={onSelect(tag)}
-                ></div>
+                    onClick={() => onSelect(tag)}
+                ></button>
             )
         }
 
