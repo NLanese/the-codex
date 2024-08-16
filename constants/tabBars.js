@@ -3,7 +3,6 @@ import { conceptsList, languagesList, frameworksList, basicsLessons } from "./le
 // Fires on specific drawer type clicks
 function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
     console.log("Routing to... " + ` /${type}/${drawer.toLowerCase()}/${finalPath}`)
-    // console.log(router)
     router.replace(`/${type}/${drawer.toLowerCase()}/menu`)
     setTabBar(false)
 }
@@ -11,7 +10,6 @@ function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
 // Fires on specific Lesson drawer type clicks
 function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
     console.log("Routing to... " + ` /${type}/${unit}/${LTL}/${finalPath}`)
-    // console.log(router)
     router.replace(`/${type}/${unit}/${LTL}/${finalPath}`)
 }
 

@@ -17,16 +17,11 @@ const CodeSnippet = ({
 
     const [language, setLanguage] = useState("js")
 
-    useEffect(() => {
-        console.log(language)
-    }, [language])
-
     ///////////////
     // Functions //
     ///////////////
 
         function handleLanguagePress(lang){
-            console.log("switching,,,")
             if (lang === "JavaScript"){
                 setLanguage("js")
             }
@@ -46,7 +41,6 @@ const CodeSnippet = ({
     ////////////////
 
     const renderSyntax = () => {
-        console.log("Should be rendering ", language)
         if (language === "js"){
             return js
         }
