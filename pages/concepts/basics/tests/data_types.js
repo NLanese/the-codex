@@ -72,6 +72,7 @@ const DataTypesTest = ({}) => {
 
         let DataTypesTestForm = [
             {
+                id: "1",
                 title: "1. What is the data type of the following",
                 type: "MC",
                 caption: "x = 'Bender Rodreguez'",
@@ -80,6 +81,7 @@ const DataTypesTest = ({}) => {
             },
 
             {
+                id: "2",
                 title: "2. What is the data type of the following",
                 type: "MC",
                 caption: "age = 5",
@@ -88,6 +90,7 @@ const DataTypesTest = ({}) => {
             },
 
             {
+                id: "3",
                 title: "3. What is the data type of the following",
                 type: "MC",
                 caption: "gpa = 3.5",
@@ -96,6 +99,7 @@ const DataTypesTest = ({}) => {
             },
 
             {
+                id: "4",
                 title: "4. What is the data type of the following",
                 type: "MC",
                 caption: "year = '2024'",
@@ -105,6 +109,7 @@ const DataTypesTest = ({}) => {
 
 
             {
+                id: "5",
                 title: "5. What is the data type of the following",
                 type: "MC",
                 caption: "x = 9000",
@@ -113,6 +118,7 @@ const DataTypesTest = ({}) => {
             },
 
             {
+                id: "6",
                 title: "6. What is the data type of the following",
                 type: "MC",
                 caption: "x = 10.0",

@@ -132,7 +132,6 @@ export const FormMultipleChoice = ({
 
         function renderOptionsRow(rowOptions){
             return rowOptions.map( (opt, index) => {
-                console.log("Should render field ", opt)
                 return(
                     <OstrichSelectionBox 
                     tag={opt}

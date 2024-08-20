@@ -48,7 +48,6 @@ export const OstrichDropDown = ({
 
     // Opens the dropdown (if not on hover), dires any function on press
     function handlePress(){
-        console.log("Handling Base Press")
         if (!openOnHover && !manualOpen){
             setIsOpen(!isOpen)
         }
@@ -59,13 +58,10 @@ export const OstrichDropDown = ({
 
     // Determines which DrawerPress Function to pass
     function handleDrawerPress(drawer){
-        console.log("Handling Drawer Press")
         if (drawer.onClick){
-            console.log("Drawer Specific Function")
             return drawer.onClick(drawer)
         }
         else if (onDrawerClick){
-            console.log("OnDrawerClick General Function")
             return onDrawerClick(drawer)
         }
         else{

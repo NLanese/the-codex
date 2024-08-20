@@ -50,7 +50,7 @@ export const OstrichSelectionBox = ({
         const handleSelectionClick = (tag) => {
             onSelect(tag)
             if (fieldObj){          // If there is a Field Obj
-
+                console.log("Clicked ", tag, " in the field object ", fieldObj)
             }
             else{                   // If there is no Field Obj
                 setIsSelected(true)
@@ -63,7 +63,7 @@ export const OstrichSelectionBox = ({
 
         // Determines Whether Selected or Default Style for BUBBLE
         function determineCircleStyle(){
-            if (isSelected){
+            if (selected){
                 return selectedCircleStyle;
             }
             else{
@@ -86,7 +86,7 @@ export const OstrichSelectionBox = ({
             return(
                 <button
                     style={determineCircleStyle()}
-                    onClick={() => onSelect(tag)}
+                    onClick={() => handleSelectionClick(tag)}
                 ></button>
             )
         }

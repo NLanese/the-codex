@@ -60,6 +60,15 @@ export const OstrichForm = ({
     }, [])
 
 
+    /////////////
+    // Testing //
+    /////////////
+
+    useEffect(() => {
+        console.log("Form Data has been changed. This is the new value")
+        formData
+    }, [formData])
+
     ////////////////
     // Renderings //
     ////////////////
@@ -95,23 +104,25 @@ export const OstrichForm = ({
             if (fieldObj.type === "text" || fieldObj.type === "password" || fieldObj.type === "tel"){
                 return(
                     <FormText 
-                        key={`field-${index}`}
+                        key={fieldObj.id}
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyleState}
                         captionStyle={captionTextStyle}
                         onChange={handleFormChange}
+                        fieldID={fieldObj.id}
                     />
                 )
             }
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
                 return(
                     <FormMultipleChoice 
-                        key={`field-${index}`}
+                        key={fieldObj.id}
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyleState}
                         captionStyle={captionTextStyle}
                         onChange={handleFormChange}
                         options={fieldObj.options}
+                        fieldID={fieldObj.id}
                     />
                 )
             }
@@ -292,11 +303,10 @@ export const OstrichForm = ({
             determineOnChange(value, fieldObj)
             if (fieldObj && fieldObj.type === "text"){
                 setFormData(previous => ({...previous, 
-                    [fieldObj.title]: value
+                    [fieldObj.id]: value
                 }))
             }
             else if (fieldObj && fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
-                console.log("Multiple choice form field has been hit")
                 handleMultiChoiceChange(value, fieldObj)
             }
         }
@@ -321,12 +331,12 @@ export const OstrichForm = ({
             if (fieldObj.multiAnswer){              // If Multiple Answers Accepted
                 if (formData[fieldObj.title]){      // If Field exists already in FormData Object
                     setFormData(previous => ({...previous, 
-                        [fieldObj.title]: [...formData[fieldObj.title], value]
+                        [fieldObj.id]: [...formData[fieldObj.title], value]
                     }))
                 }
                 else{                               // If the field is not yet present in FormData Object
                     setFormData(previous => ({...previous, 
-                        [fieldObj.title]: [value]
+                        [fieldObj.id]: [value]
                     }))
                 }
             }
