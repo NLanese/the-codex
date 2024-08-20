@@ -300,6 +300,7 @@ export const OstrichForm = ({
     //////////////
 
         function handleFormChange(value, fieldObj=false){
+            console.log("On handleFormChange")
             determineOnChange(value, fieldObj)
             if (fieldObj && fieldObj.type === "text"){
                 setFormData(previous => ({...previous, 
@@ -313,6 +314,8 @@ export const OstrichForm = ({
 
         // Determines whether or not to fire a custom or default 'onChange' function
         function determineOnChange(value, field){
+            console.log("In determinbe onChange, which checks the field for a specific onChange")
+            console.log("Value -- ", value , " Field -- ", field)
 
             // If no OnChange Function was Provided
             const defaultOnChange = (value, field) => {return}
@@ -328,6 +331,8 @@ export const OstrichForm = ({
 
         // Handles Changes to the Form when the Field Changed is of type Multiple Choice
         function handleMultiChoiceChange(value, fieldObj){
+            console.log("HAndling MC Response in main form")
+
             if (fieldObj.multiAnswer){              // If Multiple Answers Accepted
                 if (formData[fieldObj.title]){      // If Field exists already in FormData Object
                     setFormData(previous => ({...previous, 
