@@ -331,7 +331,7 @@ export const OstrichForm = ({
 
         // Handles Changes to the Form when the Field Changed is of type Multiple Choice
         function handleMultiChoiceChange(value, fieldObj){
-            console.log("HAndling MC Response in main form")
+            console.log("Handling MC Response in main form")
 
             if (fieldObj.multiAnswer){              // If Multiple Answers Accepted
                 if (formData[fieldObj.title]){      // If Field exists already in FormData Object
