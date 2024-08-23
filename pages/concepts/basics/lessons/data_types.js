@@ -11,14 +11,14 @@ import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
-import { LessonPage } from "../../../../components/PagePrefabs/LessonTemplatePage";
+import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Next JS
 import { useRouter } from "next/router";
 
 
-const DatatypesLesson = ({}) => {
+const DataTypesLesson = ({}) => {
 
     ///////////
     // State //
@@ -684,7 +684,7 @@ const DatatypesLesson = ({}) => {
     }
 
     return (
-        <LessonPage
+        <LessonTemplatePage
             onLessonClick={handleLessonClick}
             lessons={basicsLessons}
             onLabsClick={handleLabsClick}
@@ -694,9 +694,9 @@ const DatatypesLesson = ({}) => {
             current={"Data Types"}
         >
             {MAIN()}
-        </LessonPage>
+        </LessonTemplatePage>
     )
 
 }
 
-export default DatatypesLesson
+export default DataTypesLesson

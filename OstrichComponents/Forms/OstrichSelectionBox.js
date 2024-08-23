@@ -49,7 +49,7 @@ export const OstrichSelectionBox = ({
 
         const handleSelectionClick = (tag) => {
             onSelect(tag)
-            if (fieldObj){          // If there is a Field Obj
+            if (fieldObj && fieldObj.onChange){          // If there is a Field Obj
                 console.log("Clicked ", tag)
             }
             else{                   // If there is no Field Obj

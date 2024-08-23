@@ -59,16 +59,6 @@ export const OstrichForm = ({
         setLoading(false)
     }, [])
 
-
-    /////////////
-    // Testing //
-    /////////////
-
-    useEffect(() => {
-        console.log("Form Data has been changed. This is the new value")
-        console.log(formData)
-    }, [formData])
-
     ////////////////
     // Renderings //
     ////////////////
@@ -300,7 +290,6 @@ export const OstrichForm = ({
     //////////////
 
         function handleFormChange(value, fieldObj=false){
-            console.log("On handleFormChange")
             determineOnChange(value, fieldObj)
             if (fieldObj && fieldObj.type === "text"){
                 setFormData(previous => ({...previous, 
@@ -308,7 +297,6 @@ export const OstrichForm = ({
                 }))
             }
             else if (fieldObj && fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
-                console.log("Handling Multiple Choice")
                 handleMultiChoiceChange(value, fieldObj)
             }
         }
@@ -330,10 +318,7 @@ export const OstrichForm = ({
 
         // Handles Changes to the Form when the Field Changed is of type Multiple Choice
         function handleMultiChoiceChange(value, fieldObj){
-            console.log("Handling MC Response in main form")
-            console.log(fieldObj)
             if (fieldObj.multiAnswer && formData[fieldObj.id]){              // If Multiple Answers Accepted
-                console.log("Multi answer hit")
                 if (formData[fieldObj.id]){      // If Field exists already in FormData Object
                     setFormData(previous => ({...previous, 
                         [fieldObj.id]: [...formData[fieldObj.id], value]
@@ -341,7 +326,6 @@ export const OstrichForm = ({
                 }
             }
             else{                               // If the field is not yet present in FormData Object
-                console.log("Single Answer hit")
                 setFormData(previous => ({...previous, 
                     [fieldObj.id]: [value]
                 }))
