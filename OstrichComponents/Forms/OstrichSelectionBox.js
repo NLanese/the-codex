@@ -12,7 +12,7 @@ export const OstrichSelectionBox = ({
     titleStyle,
     circleStyle = {border: "2px solid black", borderRadius: 32, height: 32, width: 32},
     boxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100},
-    selectedCircleStyle = {border: "2px solid black", borderRadius: 50, padding: 5, backgroundColor: "#E9F1FF"},
+    selectedCircleStyle = {border: "2px solid black", backgroundColor: '#3b63bf', borderRadius: 32, height: 32, width: 32},
     selectedBoxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100, padding: 5, backgroundColor: "#E9F1FF"},
     optionsTextStlye = {fontSize: 15, fontWeight: 800},
     hoverBorderColor
@@ -50,7 +50,7 @@ export const OstrichSelectionBox = ({
         const handleSelectionClick = (tag) => {
             onSelect(tag)
             if (fieldObj){          // If there is a Field Obj
-                console.log("Clicked ", tag, " in the field object ", fieldObj)
+                console.log("Clicked ", tag)
             }
             else{                   // If there is no Field Obj
                 setIsSelected(true)

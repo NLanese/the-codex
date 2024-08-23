@@ -66,7 +66,7 @@ export const OstrichForm = ({
 
     useEffect(() => {
         console.log("Form Data has been changed. This is the new value")
-        formData
+        console.log(formData)
     }, [formData])
 
     ////////////////
@@ -308,14 +308,13 @@ export const OstrichForm = ({
                 }))
             }
             else if (fieldObj && fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
+                console.log("Handling Multiple Choice")
                 handleMultiChoiceChange(value, fieldObj)
             }
         }
 
         // Determines whether or not to fire a custom or default 'onChange' function
         function determineOnChange(value, field){
-            console.log("In determinbe onChange, which checks the field for a specific onChange")
-            console.log("Value -- ", value , " Field -- ", field)
 
             // If no OnChange Function was Provided
             const defaultOnChange = (value, field) => {return}
@@ -332,18 +331,20 @@ export const OstrichForm = ({
         // Handles Changes to the Form when the Field Changed is of type Multiple Choice
         function handleMultiChoiceChange(value, fieldObj){
             console.log("Handling MC Response in main form")
-
-            if (fieldObj.multiAnswer){              // If Multiple Answers Accepted
-                if (formData[fieldObj.title]){      // If Field exists already in FormData Object
+            console.log(fieldObj)
+            if (fieldObj.multiAnswer && formData[fieldObj.id]){              // If Multiple Answers Accepted
+                console.log("Multi answer hit")
+                if (formData[fieldObj.id]){      // If Field exists already in FormData Object
                     setFormData(previous => ({...previous, 
-                        [fieldObj.id]: [...formData[fieldObj.title], value]
+                        [fieldObj.id]: [...formData[fieldObj.id], value]
                     }))
                 }
-                else{                               // If the field is not yet present in FormData Object
-                    setFormData(previous => ({...previous, 
-                        [fieldObj.id]: [value]
-                    }))
-                }
+            }
+            else{                               // If the field is not yet present in FormData Object
+                console.log("Single Answer hit")
+                setFormData(previous => ({...previous, 
+                    [fieldObj.id]: [value]
+                }))
             }
         }
 
