@@ -9,6 +9,10 @@ export const OstrichForm = ({
     fields,                             // Object of objects that each represent a field in the Form
     submitButtonTitle="Submit",         // Title on Submit Button
 
+    correctResponse=false,
+    showWrongAnswers=false,
+    allowResubmission=false,
+
     onChange,                           // Function to run on ANY field value change
     allowSubmit=true,                   // Boolean allowing Form to be Submitted or Locking it
     onSubmit,                           // Function to be run on Form Submission
@@ -333,13 +337,24 @@ export const OstrichForm = ({
             }
         }
 
+    /////////////////////////
+    // Submission Handlers //
+    /////////////////////////
+
         // Handles the Submission of the Form
         function submitForm(){
             console.log(formData)
+            if (correctResponse){
+                checkAgainstAnswers()
+            }
             onSubmit(formData)
             if (clearOnSubmit){
                 setFormData({})
             }
+        }
+
+        function checkAgainstAnswers(){
+            
         }
 
 
@@ -382,7 +397,6 @@ OstrichForm.propTypes = {
           style: PropTypes.object,
           placeholder: PropTypes.string,
           possibleResponses: PropTypes.arrayOf(PropTypes.string),
-          correctResponse: PropTypes.string
         })
     ).isRequired,
     onSubmit: PropTypes.func.isRequired,

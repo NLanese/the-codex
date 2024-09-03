@@ -127,6 +127,14 @@ const DataTypesTest = ({}) => {
             },
         ]
 
+        const correctAnswers = {
+            1: ["String"],
+            2: ["Integer"],
+            3: ["Double"],
+            4: ["String"],
+            5: ["Integer"],
+            6: ["Double"]
+        }
 
     //////////////////////
     // Lesson Rendering //
@@ -144,6 +152,7 @@ const DataTypesTest = ({}) => {
                      <OstrichForm
                         title={"Data Types Test"}
                         fields={DataTypesTestForm}
+                        correctResponse={correctAnswers}
                         onSubmit={() => console.log("Submitted Bay Bay!")}
                         titleTextStyle={{ fontSize: 32, fontWeight: 600, textAlign: 'center'}}
                         fieldsTitleStyle={{ fontSize: 24, fontWeight: 600, padding: 5}}
