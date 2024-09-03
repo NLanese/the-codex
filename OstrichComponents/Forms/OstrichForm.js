@@ -353,11 +353,27 @@ export const OstrichForm = ({
             }
         }
 
+        // If correctResponse, checks all submitted values against the correct answers
         function checkAgainstAllAnswers(){
             let answerKeys = Object.keys(correctResponse)
+            let checkedAnswers = {}
+            answerKeys.forEach(answerKey => {
+                if (checkSingleAnswer(answerKey)){
+                    checkedAnswers[answerKey] = "Correct"
+                }
+                else{
+                    checkedAnswers[answerKey] = "Incorrect"
+                }
+            })
+            console.log("Checked Answers Object")
+            console.log(checkedAnswers)
+            return checkedAnswers
         }
 
-        function checkSingleAnswer(key, value){
+        // Checks if a single answer'd question matches the values of the correct answer
+        function checkSingleAnswer(key){
+            console.log("The correct Answer to ", key, " is ", correctResponse[key])
+            console.log("The given Answer to ", key, " is ", formData[key])
             let isCorrect = true
             if (formData[key]){
                 if (correctResponse[key]){
@@ -380,6 +396,7 @@ export const OstrichForm = ({
                 isCorrect = false
             }
 
+            console.log("The given answer was correct? --- ", isCorrect)
             return isCorrect
         }
 
