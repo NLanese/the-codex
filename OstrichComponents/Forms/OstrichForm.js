@@ -345,7 +345,7 @@ export const OstrichForm = ({
         function submitForm(){
             console.log(formData)
             if (correctResponse){
-                checkAgainstAnswers()
+                checkAgainstAllAnswers()
             }
             onSubmit(formData)
             if (clearOnSubmit){
@@ -353,8 +353,34 @@ export const OstrichForm = ({
             }
         }
 
-        function checkAgainstAnswers(){
-            
+        function checkAgainstAllAnswers(){
+            let answerKeys = Object.keys(correctResponse)
+        }
+
+        function checkSingleAnswer(key, value){
+            let isCorrect = true
+            if (formData[key]){
+                if (correctResponse[key]){
+                    correctResponse[key].forEach((correctAns) => {
+                        if (!formData[key].includes(correctAns)){
+                            isCorrect = false
+                        }
+                    })
+                    formData[key].forEach(inputAnswer => {
+                        if (!correctResponse[key].includes(inputAnswer)){
+                            isCorrect = false
+                        }
+                    })
+                }
+                else{
+                    isCorrect = false
+                }
+            }
+            else {
+                isCorrect = false
+            }
+
+            return isCorrect
         }
 
 
