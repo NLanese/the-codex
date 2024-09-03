@@ -289,6 +289,7 @@ export const OstrichForm = ({
     // Handlers //
     //////////////
 
+        // Fires on every Form Change (All User Input on Forms)
         function handleFormChange(value, fieldObj=false){
             determineOnChange(value, fieldObj)
             if (fieldObj && fieldObj.type === "text"){
@@ -332,7 +333,9 @@ export const OstrichForm = ({
             }
         }
 
+        // Handles the Submission of the Form
         function submitForm(){
+            console.log(formData)
             onSubmit(formData)
             if (clearOnSubmit){
                 setFormData({})

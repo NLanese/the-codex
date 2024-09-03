@@ -512,7 +512,6 @@ const VariablesLesson = ({}) => {
         }
 
         function renderThird(){
-            console.log(imageA)
             return(
                 <div>
                     <p>

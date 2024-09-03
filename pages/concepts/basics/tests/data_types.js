@@ -144,7 +144,7 @@ const DataTypesTest = ({}) => {
                      <OstrichForm
                         title={"Data Types Test"}
                         fields={DataTypesTestForm}
-                        onSubmit={() => handleSignUp()}
+                        onSubmit={() => console.log("Submitted Bay Bay!")}
                         titleTextStyle={{ fontSize: 32, fontWeight: 600, textAlign: 'center'}}
                         fieldsTitleStyle={{ fontSize: 24, fontWeight: 600, padding: 5}}
                         captionTextStyle={{ fontSize: 18, fontWeight: 400, backgroundcolor: 'grey', padding: 3}}
