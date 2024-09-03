@@ -537,7 +537,7 @@ const VariablesLesson = ({}) => {
                             This is actually some of the code running the very site we are using in action. Look below as the variable, 'lang' will have a different result in the function based off of its value. If this is all still confusing to you, do not worry! There is a lot more to cover before this all comes together
                         </p>
                         <div>
-                            <Image src={require('../../../../public/assets/lesson_images/variables/codeExample.png')} width="100" height="50"/>
+                            <Image src={require('../../../../public/assets/lesson_images/variables/codeExample.png')} width="70%" height="20%"/>
                         </div>
                     </div>
                 </div>
