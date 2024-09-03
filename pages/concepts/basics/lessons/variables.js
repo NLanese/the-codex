@@ -9,7 +9,7 @@ import { useRecoilState } from "recoil";
 import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 
 // Images
-import imageA from '../../../../public/assets/lesson_images/variables/A.png';
+import imageA from "@lessonAssets/variables/codeExample.png"
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
@@ -19,6 +19,7 @@ import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/le
 
 // Next JS
 import { useRouter } from "next/router";
+import Image from 'next/image';
 
 
 const VariablesLesson = ({}) => {
@@ -511,6 +512,7 @@ const VariablesLesson = ({}) => {
         }
 
         function renderThird(){
+            console.log(imageA)
             return(
                 <div>
                     <p>
@@ -535,7 +537,7 @@ const VariablesLesson = ({}) => {
                             This is actually some of the code running the very site we are using in action. Look below as the variable, 'lang' will have a different result in the function based off of its value. If this is all still confusing to you, do not worry! There is a lot more to cover before this all comes together
                         </p>
                         <div>
-                            <img src={imageA}></img>
+                            <Image src={require('../../../../public/assets/lesson_images/variables/codeExample.png')} width="100" height="50"/>
                         </div>
                     </div>
                 </div>

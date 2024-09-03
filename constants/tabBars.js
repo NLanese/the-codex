@@ -160,3 +160,4 @@ export const basicsTabs = (setTabBar, router) => {
     }
     ])
 }
+
