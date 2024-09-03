@@ -16,7 +16,7 @@ export const OstrichForm = ({
     onChange,                           // Function to run on ANY field value change
     allowSubmit=true,                   // Boolean allowing Form to be Submitted or Locking it
     onSubmit,                           // Function to be run on Form Submission
-    clearOnSubmit=true,                 // Whether or not values clear upon submission
+    clearOnSubmit=false,                 // Whether or not values clear upon submission
 
     style,
 
@@ -355,6 +355,8 @@ export const OstrichForm = ({
 
         // If correctResponse, checks all submitted values against the correct answers
         function checkAgainstAllAnswers(){
+            console.log("============\n")
+            console.log(formData)
             let answerKeys = Object.keys(correctResponse)
             let checkedAnswers = {}
             answerKeys.forEach(answerKey => {

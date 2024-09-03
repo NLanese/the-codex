@@ -10,12 +10,25 @@ export const OstrichSelectionBox = ({
     fieldObj = false,
 
     titleStyle,
+
     circleStyle = {border: "2px solid black", borderRadius: 32, height: 32, width: 32},
     boxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100},
+
     selectedCircleStyle = {border: "2px solid black", backgroundColor: '#3b63bf', borderRadius: 32, height: 32, width: 32},
-    selectedBoxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100, padding: 5, backgroundColor: "#E9F1FF"},
+    selectedBoxStyle = {border: "2px solid black", backgroundColor: '#3b63bf', borderRadius: 15, height: 55, minWidth: 100, padding: 5},
+
+    incorrectCircleStyle = {border: "2px solid black", backgroundColor: 'red', borderRadius: 32, height: 32, width: 32},
+    incorrectBoxStyle = {border: "2px solid black", backgroundColor: 'red', borderRadius: 15, height: 55, minWidth: 100, padding: 5},
+
+
+    correctCircleStyle = {border: "2px solid black", backgroundColor: 'green', borderRadius: 32, height: 32, width: 32},
+    correctBoxStyle = {border: "2px solid black", backgroundColor: 'green', borderRadius: 15, height: 55, minWidth: 100, padding: 5},
+
     optionsTextStlye = {fontSize: 15, fontWeight: 800},
-    hoverBorderColor
+    hoverBorderColor,
+
+    correct = false,
+    incorrect = false,
     
 }) => {
     
@@ -60,7 +73,13 @@ export const OstrichSelectionBox = ({
 
         // Determines Whether Selected or Default Style for BUBBLE
         function determineCircleStyle(){
-            if (selected){
+            if (correct){
+
+            }
+            else if (incorrect){
+
+            }
+            else if (selected){
                 return selectedCircleStyle;
             }
             else{
