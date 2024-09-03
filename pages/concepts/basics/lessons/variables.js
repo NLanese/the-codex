@@ -72,7 +72,7 @@ const VariablesLesson = ({}) => {
     ////////////////////
 
 
-        // First Code Snippet // 
+    // First Code Snippet // 
 
         function renderVariablesJS(){
             return(
@@ -144,7 +144,7 @@ const VariablesLesson = ({}) => {
             )
         }
 
-        // Second Code Snippet //
+    // Second Code Snippet //
 
         function renderVariablesJS_2(){
             return(
@@ -507,6 +507,25 @@ const VariablesLesson = ({}) => {
             )
         }
 
+        function renderThird(){
+            return(
+                <div>
+                    <p>
+                        Variables are the basic building blocks of <strong>Object Oriented Programming</strong> focused software development. This means that nearly every operation or every computation will be done using variables. The examples shown above are very basic, but as we continue along the course you will learn more and more about variables and how to use them when developing.
+                    </p>
+                    <p>
+                        For example, even this web page is comprised of variables. In the examples of code above, when you the user select a different tab ("JavaScript", "Java", "C", or "Python") you are actually changing a variable named 'display' to match the value of the button you selected. To explain this more simply, allow me to explain in <strong>pseudocode</strong>  
+                    </p>
+                    <div>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </div>
+                </div>
+            )
+        }
+
         
     /////////////////
     // Main Return //
@@ -530,6 +549,7 @@ const VariablesLesson = ({}) => {
                     cs={renderVariablesC_2()}
                     py={renderVariablesPython_2()}
                 />
+                {renderThird()}
             </div>
         )
     }
