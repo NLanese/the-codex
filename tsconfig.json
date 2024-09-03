@@ -22,7 +22,8 @@
       "@helpers/*": ["api/helpers/*"],
       "@prismaDB": ["prisma/prismaDB.js"],
       "@graphql/*": ["api/graphql/*"],
-      "@Ostrich/*": ["OstrichComponents/*"]
+      "@Ostrich/*": ["OstrichComponents/*"],
+      "@lessonAssets/*": ["public/assets/lesson_images/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts",

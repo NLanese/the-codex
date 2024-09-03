@@ -8,6 +8,9 @@ import Styles from "../../../../styles/styles";
 import { useRecoilState } from "recoil";
 import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 
+// Images
+import imageA from '../../../../public/assets/lesson_images/variables/A.png';
+
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
@@ -518,9 +521,22 @@ const VariablesLesson = ({}) => {
                     </p>
                     <div>
                         <li>
+                            A user presses a button that has a variable attached to it. That variable's value is the same as the text shown on each button (Java, JavaScript, C#, or Python)
                         </li>
+                        <br></br>
                         <li>
+                            A <strong>function</strong> fires that uses this variable. Depending on what is variable's value is ("Java", "JavaScript", "Python", or "C#") it will load a specific set of lines to render. If the code box's variable's value is "JavaScript", it will load the text you see in the box when 'JavaScript' is selected, for example
                         </li>
+                        <br></br>
+                        <li>
+                            Once this value is changed, the code box will render the newly selected text
+                        </li>
+                        <p>
+                            This is actually some of the code running the very site we are using in action. Look below as the variable, 'lang' will have a different result in the function based off of its value. If this is all still confusing to you, do not worry! There is a lot more to cover before this all comes together
+                        </p>
+                        <div>
+                            <img src={imageA}></img>
+                        </div>
                     </div>
                 </div>
             )
