@@ -362,6 +362,7 @@ export const OstrichForm = ({
             console.log(formData)
             if (correctResponse){
                 setCheckedAnswerData(checkAgainstAllAnswers())
+                updateFieldsWithAnswerCheck()
             }
             onSubmit(formData)
             if (clearOnSubmit){
@@ -418,6 +419,14 @@ export const OstrichForm = ({
             return isCorrect
         }
 
+        function updateFieldsWithAnswerCheck(){
+            if (fields && checkedAnswerData){
+                let answerKeys = Object.Keys(checkedAnswerData)
+                answerKeys.forEach(key => {
+                    fields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
+                })
+            }
+        }
 
 
 
