@@ -8,6 +8,7 @@ export const OstrichForm = ({
     title,                              // Form Title
     fields,                             // Object of objects that each represent a field in the Form
     submitButtonTitle="Submit",         // Title on Submit Button
+    allFieldsRequired=true,
 
     correctResponse=false,
     showWrongAnswers=false,
@@ -52,6 +53,8 @@ export const OstrichForm = ({
 
         // Data States
         const [formData, setFormData] = useState({})
+        const [checkedAnswerData, setCheckedAnswerData] = useState({})
+        const [canSubmit, setCanSubmit] = useState( (!allFieldsRequired && allowSubmit) ? true : false )
         
 
     /////////////
@@ -62,6 +65,19 @@ export const OstrichForm = ({
         checkInputs()
         setLoading(false)
     }, [])
+
+    ///////////////////////////////////
+    // After Every Form Value Change //
+    ///////////////////////////////////
+
+    useEffect(() => {
+        if (Object.keys(formData).length === fields.length){
+            setCanSubmit(true)
+        }
+        else{
+            setCanSubmit(false)
+        }
+    }, [formData])
 
     ////////////////
     // Renderings //
@@ -126,12 +142,12 @@ export const OstrichForm = ({
         function renderSubmit(){
             return(
                 <OstrichButton 
-                 style={submitStyle}
+                 style={determineSubmitStyle()}
                  title={submitButtonTitle}
                  activeColor={"rgba(73, 148, 244, 1)"}
                  inactiveColor={"rgba(215, 216, 218, 1)"}
                  titleStyle={submitText}
-                 isActive={allowSubmit}
+                 isActive={canSubmit}
                  onSubmit={submitForm}
                 />
             )
@@ -345,7 +361,7 @@ export const OstrichForm = ({
         function submitForm(){
             console.log(formData)
             if (correctResponse){
-                checkAgainstAllAnswers()
+                setCheckedAnswerData(checkAgainstAllAnswers())
             }
             onSubmit(formData)
             if (clearOnSubmit){
