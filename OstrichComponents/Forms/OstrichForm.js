@@ -52,6 +52,7 @@ export const OstrichForm = ({
 
 
         // Data States
+        const [fieldsState, setFieldsState] = useState(fields)
         const [formData, setFormData] = useState({})
         const [checkedAnswerData, setCheckedAnswerData] = useState({})
         const [canSubmit, setCanSubmit] = useState( (!allFieldsRequired && allowSubmit) ? true : false )
@@ -71,7 +72,7 @@ export const OstrichForm = ({
     ///////////////////////////////////
 
     useEffect(() => {
-        if (Object.keys(formData).length === fields.length){
+        if (Object.keys(formData).length === fieldsState.length){
             setCanSubmit(true)
         }
         else{
@@ -421,11 +422,13 @@ export const OstrichForm = ({
         }
 
         function updateFieldsWithAnswerCheck(){
-            if (fields && checkedAnswerData){
+            if (fieldsState && checkedAnswerData){
                 let answerKeys = Object.keys(checkedAnswerData)
+                let tempFields = fieldsState
                 answerKeys.forEach(key => {
-                    fields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
+                    tempFields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
                 })
+                setFieldsState(tempFields)
             }
         }
 
@@ -442,7 +445,7 @@ export const OstrichForm = ({
         <div style={{...styleState}}>
             {renderTitle()}
             <div style={{...fieldsBoxStyleState}}>
-                {renderFields(fields)}
+                {renderFields(fieldsState)}
             </div>
             {renderSubmit()}
         </div>
