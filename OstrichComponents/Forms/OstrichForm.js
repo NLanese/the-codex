@@ -96,10 +96,11 @@ export const OstrichForm = ({
 
         // Renders All Fields
         function renderFields(fields){
+            console.log("Called 'renderFields")
             return fields.map( (field, index) => {
                 return (
                     <div key={index} style={{
-                        borderWidth: 1, borderStyle: 'solid', borderColor: "#E9F1FF",
+                        borderWidth: 1, borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" : "#E9F1FF"),
                         marginBottom: 8, padding: 8,
                         boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
                     }}>
@@ -421,7 +422,7 @@ export const OstrichForm = ({
 
         function updateFieldsWithAnswerCheck(){
             if (fields && checkedAnswerData){
-                let answerKeys = Object.Keys(checkedAnswerData)
+                let answerKeys = Object.keys(checkedAnswerData)
                 answerKeys.forEach(key => {
                     fields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
                 })

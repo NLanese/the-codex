@@ -22,8 +22,9 @@ export const FormText = ({
 
         // Determines the Input Style based on inputs or lackthereof
         function handleStyle(){
+            let returnStyle;
             if (!fieldObj.style){
-                return {
+                returnStyle = {
                     marginTop: 10, marginLeft: '3%', marginRight: '3%',
                     height: 30, width: '94%',
                     fontSize: 18,
@@ -31,7 +32,7 @@ export const FormText = ({
                 }
             }
             else{
-                return fieldObj.style
+                returnStyle =  fieldObj.style
             }
         }
 
