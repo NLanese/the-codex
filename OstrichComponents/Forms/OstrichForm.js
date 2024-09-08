@@ -72,13 +72,23 @@ export const OstrichForm = ({
     ///////////////////////////////////
 
     useEffect(() => {
-        if (Object.keys(formData).length === fieldsState.length){
+        if (Object.keys(formData).length === Object.keys(fieldsState).length){
             setCanSubmit(true)
         }
         else{
             setCanSubmit(false)
         }
     }, [formData])
+    
+    useEffect(() => {
+        let fieldsAsObject = {}
+        if (Array.isArray(fieldsState)){
+            fieldsState.forEach(field => {
+                fieldsAsObject[field.id] = field
+            })
+        }
+        setFieldsState(fieldsAsObject)
+    }, [])
 
     ////////////////
     // Renderings //
@@ -98,10 +108,12 @@ export const OstrichForm = ({
         // Renders All Fields
         function renderFields(fields){
             console.log("Called 'renderFields")
-            return fields.map( (field, index) => {
+            let fieldsKeys = Object.keys(fieldsState)
+            return fieldsKeys.map( (fieldKey, index) => {
+                let field = fieldsState[fieldKey]
                 return (
                     <div key={index} style={{
-                        borderWidth: 1, borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" : "#E9F1FF"),
+                        borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" : "#E9F1FF"),
                         marginBottom: 8, padding: 8,
                         boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
                     }}>
@@ -424,7 +436,8 @@ export const OstrichForm = ({
         function updateFieldsWithAnswerCheck(){
             if (fieldsState && checkedAnswerData){
                 let answerKeys = Object.keys(checkedAnswerData)
-                let tempFields = fieldsState
+                let tempFields = {...fieldsState}
+                console.log(fieldsState)
                 answerKeys.forEach(key => {
                     tempFields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
                 })
