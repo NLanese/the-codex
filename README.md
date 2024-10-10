@@ -1,18 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## /////////////////////////////////
+## // Running The Project Locally //
+## /////////////////////////////////
 
-First, run the development server:
+    Run `npm run dev` to run the project locally.
+    It will begin running at http://localhost:3000
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    Requirements 
+    node version 14 - 20 will work
+    Next.js version 14^
+
+## ////////////////////
+## // File Structure //
+## ////////////////////
+
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
