@@ -113,7 +113,7 @@ export const OstrichForm = ({
                 let field = fieldsState[fieldKey]
                 return (
                     <div key={index} style={{
-                        borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" : "#E9F1FF"),
+                        borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" :  (field.isWrong ? "#d6111b" : "#E9F1FF")),
                         marginBottom: 8, padding: 8,
                         boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
                     }}>
@@ -408,16 +408,19 @@ export const OstrichForm = ({
             console.log("The correct Answer to ", key, " is ", correctResponse[key])
             console.log("The given Answer to ", key, " is ", formData[key])
             let isCorrect = true
+            let isWrong = false
             if (formData[key]){
                 if (correctResponse[key]){
                     correctResponse[key].forEach((correctAns) => {
                         if (!formData[key].includes(correctAns)){
                             isCorrect = false
+                            isWrong = true
                         }
                     })
                     formData[key].forEach(inputAnswer => {
                         if (!correctResponse[key].includes(inputAnswer)){
                             isCorrect = false
+                            isWrong = true
                         }
                     })
                 }
@@ -440,6 +443,7 @@ export const OstrichForm = ({
                 console.log(fieldsState)
                 answerKeys.forEach(key => {
                     tempFields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
+                    tempFields[key].isWrong = ((checkedAnswerData[key] === "Incorrect")? true : false)
                 })
                 setFieldsState(tempFields)
             }

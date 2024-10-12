@@ -14,7 +14,12 @@
 ## // File Structure //
 ## ////////////////////
 
+ - Ostrich Components = Locally saved version of OstrichReactJs Node Module
 
+ - pages = This holds all of the pages that can be displayed to the client. This structure also correlates to the url for each web page. 
+    For example, pages/concepts/basics/menu.js can be accessed on localhost:3000/concepts/basics/menu
+
+ - public = This holds all of the projects public assets, like its fonts and non hidden images
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
