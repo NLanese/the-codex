@@ -9,10 +9,12 @@ export const OstrichForm = ({
     fields,                             // Object of objects that each represent a field in the Form
     submitButtonTitle="Submit",         // Title on Submit Button
     allFieldsRequired=true,
+    formLocked=false,                   // If the form had previously been completed and is not allowed for resubmit, this locks it and displays pastAnswerData if possible
+    pastAnswerData={},                  // Previous Answer Data to be displayed if form is locked
 
     correctResponse=false,
-    showWrongAnswers=false,
-    allowResubmission=false,
+    showWrongAnswers=false,             // WIP -- Would show the correct answer if the user got the answer incorrect and submitted the form
+    allowResubmission=false,            // Allows form resubmission. If False, form is locked.
 
     onChange,                           // Function to run on ANY field value change
     allowSubmit=true,                   // Boolean allowing Form to be Submitted or Locking it
