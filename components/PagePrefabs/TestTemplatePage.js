@@ -41,8 +41,9 @@ export const TestTemplatePage = ({
                     marginTop: 45,
                     padding: 15,
                     justifyContent: 'center', 
+                    borderRadius: 12,
                     backgroundColor: Colors.offWhite, 
-                    boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
+                    boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
                 }}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
@@ -64,11 +65,12 @@ export const TestTemplatePage = ({
                 justifyContent: 'flex-start', alignItems: 'center', 
             }}>
                 <div style={{ 
-                    marginTop: 45,
-                    padding: 15,
-                    justifyContent: 'center', 
-                    backgroundColor: Colors.offWhite, 
-                    boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
+                   marginTop: 45,
+                   padding: 15,
+                   justifyContent: 'center', 
+                   borderRadius: 12,
+                   backgroundColor: Colors.offWhite, 
+                   boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
                 }}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Labs
@@ -81,11 +83,12 @@ export const TestTemplatePage = ({
                 </div>
 
                 <div style={{ 
-                marginTop: 45,
-                padding: 15,
-                justifyContent: 'center', 
-                backgroundColor: Colors.offWhite, 
-                boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
+                    marginTop: 45,
+                    padding: 15,
+                    justifyContent: 'center', 
+                    borderRadius: 12,
+                    backgroundColor: Colors.offWhite, 
+                    boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
                 }}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Tests

@@ -1,19 +1,25 @@
+
+// React and Next
 import App from "next/app";
 import React from "react";
-
 import { DefaultSeo } from "next-seo";
 import Script from "next/script";
 import Head from "next/head";
 
+// Recoil
 import { RecoilRoot } from "recoil";
 
+// Apollo GraphQL
 import { ApolloProvider } from "@apollo/client";
 import client from "@graphql/Apollo/apolloClient";
 
-import { HeaderBar } from "../components/global/headerBar";
-
+// Local Components
+import { HeaderBar } from "../components/Global/headerBar";
 import "../styles/fonts.css"
 
+////////////////
+// App Loader //
+////////////////
 class MyApp extends App {
   constructor(props) {
     super(props);
@@ -56,7 +62,7 @@ class MyApp extends App {
             <ApolloProvider client={client}>
               {/* <Layout> */}
               <div style={{position: 'relative'}}>
-                <div style={{zIndex: 10, position: 'relative'}}>
+                <div style={{zIndex: 10, margin: 0, padding: 0, position: 'relative'}}>
                   <HeaderBar />
                 </div>
                 <div style={{zIndex: 1, position: 'relative'}}>
@@ -67,15 +73,6 @@ class MyApp extends App {
             </ApolloProvider>
           </RecoilRoot>
         </>
-        <Script
-          strategy="afterInteractive"
-          id="facebook-init"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(d){var s = d.createElement("script");s.setAttribute("data-account", "iL8vpSq4Dj");s.setAttribute("src", "https://accessibilityserver.org/widget.js");(d.body || d.head).appendChild(s);})(document)
-              `,
-          }}
-        />
       </>
     );
   }

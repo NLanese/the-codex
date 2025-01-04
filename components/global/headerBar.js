@@ -91,7 +91,7 @@ export const HeaderBar = ({
                 startingTabByTitle={tabBarState}
                 tabs={tabs}
         
-                style={{height: 50, width: '99%', paddingRight: 15, paddingLeft: 15, backgroundColor: '#11013b', display: "flex",}}
+                style={{height: 50, width: '99%', backgroundColor: '#11013b', display: "flex", boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)'}}
                 titleStyle={{textAlign: 'center', textAlignVertical: 'center', fontSize: 24, fontWeight: 500, color: 'white', marginTop: 10, fontFamily: "Gilroy", fontWeight: 300}}
         
                 activeTitleStyle={{textAlign: 'center', fontSize: 24, fontWeight: 500, color: '#15c97b', marginTop: 10, fontFamily: "Gilroy", fontWeight: 700}}
