@@ -2,7 +2,8 @@ const Colors = {
     activeColor: "#82ffb8",
     selectedColor: "#7e71c9",
     inactiveGrey: "#b7c7c5",
-    offWhite: "#ebf4ff"
+    offWhite: "#ebf4ff",
+    offWhiteContent: "#fafffe",
 }
 
 export default Colors

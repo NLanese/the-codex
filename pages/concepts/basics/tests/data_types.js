@@ -15,6 +15,9 @@ import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/le
 // Ostirch
 import { OstrichForm } from "../../../../OstrichComponents/Forms/OstrichForm";
 
+// Local
+import Colors from "../../../../styles/colors";
+
 
 const DataTypesTest = ({}) => {
 
@@ -150,10 +153,16 @@ const DataTypesTest = ({}) => {
         return (
             <div style={{marginTop: '3%'}}>
                      <OstrichForm
+                        style={{
+                            backgroundColor: Colors.offWhiteContent, 
+                            boxShadow:'2px 2px 10px 2px rgba(20, 20, 15, 0.1)',
+                            borderRadius: 15
+                        }}
                         title={"Data Types Test"}
                         fields={DataTypesTestForm}
                         correctResponse={correctAnswers}
                         onSubmit={() => console.log("Submitted Bay Bay!")}
+                        reviewOnSubmit={true}
                         titleTextStyle={{ fontSize: 32, fontWeight: 600, textAlign: 'center'}}
                         fieldsTitleStyle={{ fontSize: 24, fontWeight: 600, padding: 5}}
                         captionTextStyle={{ fontSize: 18, fontWeight: 400, backgroundcolor: 'grey', padding: 3}}

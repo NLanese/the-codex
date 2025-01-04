@@ -19,7 +19,8 @@ export const OstrichForm = ({
     onChange,                           // Function to run on ANY field value change
     allowSubmit=true,                   // Boolean allowing Form to be Submitted or Locking it
     onSubmit,                           // Function to be run on Form Submission
-    clearOnSubmit=false,                 // Whether or not values clear upon submission
+    reviewOnSubmit,                     // Whether or not after submission, shows x / total correct
+    clearOnSubmit=false,                // Whether or not values clear upon submission
 
     style,
 
@@ -109,7 +110,6 @@ export const OstrichForm = ({
 
         // Renders All Fields
         function renderFields(fields){
-            console.log("Called 'renderFields")
             let fieldsKeys = Object.keys(fieldsState)
             return fieldsKeys.map( (fieldKey, index) => {
                 let field = fieldsState[fieldKey]
@@ -375,7 +375,6 @@ export const OstrichForm = ({
 
         // Handles the Submission of the Form
         function submitForm(){
-            console.log(formData)
             if (correctResponse){
                 setCheckedAnswerData(checkAgainstAllAnswers())
                 updateFieldsWithAnswerCheck()
@@ -388,8 +387,6 @@ export const OstrichForm = ({
 
         // If correctResponse, checks all submitted values against the correct answers
         function checkAgainstAllAnswers(){
-            console.log("============\n")
-            console.log(formData)
             let answerKeys = Object.keys(correctResponse)
             let checkedAnswers = {}
             answerKeys.forEach(answerKey => {
@@ -400,15 +397,11 @@ export const OstrichForm = ({
                     checkedAnswers[answerKey] = "Incorrect"
                 }
             })
-            console.log("Checked Answers Object")
-            console.log(checkedAnswers)
             return checkedAnswers
         }
 
         // Checks if a single answer'd question matches the values of the correct answer
         function checkSingleAnswer(key){
-            console.log("The correct Answer to ", key, " is ", correctResponse[key])
-            console.log("The given Answer to ", key, " is ", formData[key])
             let isCorrect = true
             let isWrong = false
             if (formData[key]){
@@ -434,7 +427,6 @@ export const OstrichForm = ({
                 isCorrect = false
             }
 
-            console.log("The given answer was correct? --- ", isCorrect)
             return isCorrect
         }
 
@@ -442,7 +434,6 @@ export const OstrichForm = ({
             if (fieldsState && checkedAnswerData){
                 let answerKeys = Object.keys(checkedAnswerData)
                 let tempFields = {...fieldsState}
-                console.log(fieldsState)
                 answerKeys.forEach(key => {
                     tempFields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
                     tempFields[key].isWrong = ((checkedAnswerData[key] === "Incorrect")? true : false)

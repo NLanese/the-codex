@@ -31,6 +31,7 @@ export const TestTemplatePage = ({
     // Renderings //
     ////////////////
 
+    // Renders the List of Lessons on the Side Menu
     function renderLessonsList(){
         return(
             <div style={{
@@ -58,6 +59,7 @@ export const TestTemplatePage = ({
         )
     }
 
+    // Renders the List of Labs and Tests on the Side Menu
     function renderLabsAndTests(){
         return(
             <div style={{
@@ -104,6 +106,7 @@ export const TestTemplatePage = ({
         )
     }
 
+    // Renders all of the Side Menus
     function renderSideMenu(){
         return(
             <div>
@@ -117,9 +120,12 @@ export const TestTemplatePage = ({
     // Main Return //
     /////////////////
 
+    // Main Return
     return(
         <div style={{display: 'flex', flexDirection: 'row'}}>
-            <div style={{padding: 10, paddingRight: 45, flex: 4}}>
+            <div style={{
+                padding: 10, paddingRight: 45, flex: 4,
+            }}>
                 {children}
             </div>
             <div style={{flex: 1}}>
