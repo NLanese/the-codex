@@ -22,8 +22,6 @@ export const FormMultipleChoice = ({
 
     const [loading, setLoading] = useState(true)
 
-    console.log("Rendeirng Multiple Choice Form Field with Specs...")
-    console.log(fieldObj)
 
     ////////////////
     // UseEffects //
