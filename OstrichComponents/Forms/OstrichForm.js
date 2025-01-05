@@ -58,7 +58,6 @@ export const OstrichForm = ({
         // Data States
         const [fieldsState, setFieldsState] = useState(fields)
         const [formData, setFormData] = useState({})
-        const [checkedAnswerData, setCheckedAnswerData] = useState({})
         const [canSubmit, setCanSubmit] = useState( (!allFieldsRequired && allowSubmit) ? true : false )
         
 
@@ -402,13 +401,15 @@ export const OstrichForm = ({
             }
             else if (correctResponse){
                 console.log("CHECKING PROPER ANSWERS")
-                checkAgainstAllAnswers.then( async (checkedAns) => {
-                    console.log("Checked Answer Data...")
-                    console.log(checkedAns)
-                    setCheckedAnswerData(checkedAns)
+                checkAgainstAllAnswers().then( async (checkedAns) => {
                     return checkedAns
                 }).then(checkedAns => {
-                    updateFieldsWithAnswerCheck(checkedAns)
+                    console.log("Updating temp object to set fields")
+                    return updateFieldsWithAnswerCheck(checkedAns)
+                }).then( async (tempFields) => {
+                    console.log("Setting Fields with...")
+                    console.log(tempFields)
+                    setFieldsState(tempFields)
                 })
             }
             setSubmitted(true)
@@ -465,19 +466,21 @@ export const OstrichForm = ({
             console.log(fieldsState)
             console.log("Local Param")
             console.log(checkedAns)
-            if (fieldsState && checkedAnswerData){
-                let answerKeys = Object.keys(checkedAnswerData)
+            if (fieldsState && checkedAns){
+                let answerKeys = Object.keys(checkedAns)
                 let tempFields = {...fieldsState}
                 answerKeys.forEach(key => {
-                    tempFields[key].isCorrect = ((checkedAnswerData[key] === "Correct")? true : false)
-                    tempFields[key].isWrong = ((checkedAnswerData[key] === "Incorrect")? true : false)
+                    tempFields[key].isCorrect = ((checkedAns[key] === "Correct")? true : false)
+                    tempFields[key].isWrong = ((checkedAns[key] === "Incorrect")? true : false)
                 })
                 console.log("AFTER CHECK")
                 console.log(tempFields)
-                setFieldsState(tempFields)
+                // setFieldsState(tempFields)
+                return tempFields
             }
             else{
                 console.log("Missing either fieldsState or CheckedAnswerData")
+                return {}
             }
         }
 
