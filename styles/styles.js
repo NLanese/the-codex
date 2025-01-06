@@ -1,4 +1,5 @@
 const Styles = {
+
     Fonts: {
         pageTitle: {fontFamily: "Gilroy", fontSize: 48, fontWeight: 700, textAlignVertical: 'center', letterSpacing: 0.95, },
         h1: {fontFamily: "Gilroy", fontSize: 24, fontWeight: 600},
@@ -15,6 +16,18 @@ const Styles = {
         str: {fontSize: 16, color: "#f7e672", marginTop: 0, marginBottom: 0},
         bool: {fontSize: 16, color: "#3fa0a0", marginTop: 0, marginBottom: 0},
         comment: {fontSize: 16, color: "#41FF00", marginTop: 0, marginBottom: 0},
+    },
+
+    Sections: {
+        sideMenu: {position: 'sticky', top: 10},
+        subContentBubble: {
+            marginTop: 45,
+            padding: 15,
+            justifyContent: 'center', 
+            borderRadius: 12,
+            backgroundColor: "#fafffe",
+            boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
+        }
     }
 
 }

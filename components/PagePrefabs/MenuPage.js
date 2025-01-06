@@ -41,13 +41,7 @@ export const MenuPage = ({
     function renderLessonsList(){
         return(
             <div style={{flex: 1}}>
-                <div style={{ 
-                    marginTop: 45,
-                    padding: 15,
-                    justifyContent: 'center', 
-                    backgroundColor: Colors.offWhite, 
-                    boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
-                }}>
+                <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
                     </div>
@@ -81,13 +75,7 @@ export const MenuPage = ({
                 display: 'flex', flexDirection: 'column', flex: 1, 
                 justifyContent: 'flex-start', alignItems: 'center', 
             }}>
-                <div style={{ 
-                    marginTop: 45,
-                    padding: 15,
-                    justifyContent: 'center', 
-                    backgroundColor: Colors.offWhite, 
-                    boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
-                }}>
+                <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Labs
                     </div>
@@ -98,13 +86,7 @@ export const MenuPage = ({
                     />
                 </div>
 
-                <div style={{ 
-                marginTop: 45,
-                padding: 15,
-                justifyContent: 'center', 
-                backgroundColor: Colors.offWhite, 
-                boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)'
-                }}>
+                <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Tests
                     </div>

@@ -38,14 +38,7 @@ export const TestTemplatePage = ({
                 display: 'flex', flexDirection: 'column', flex: 1, 
                 justifyContent: 'flex-start', alignItems: 'center', 
             }}>
-                <div style={{ 
-                    marginTop: 45,
-                    padding: 15,
-                    justifyContent: 'center', 
-                    borderRadius: 12,
-                    backgroundColor: Colors.offWhite, 
-                    boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
-                }}>
+                <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
                     </div>
@@ -66,14 +59,7 @@ export const TestTemplatePage = ({
                 display: 'flex', flexDirection: 'column', flex: 1, 
                 justifyContent: 'flex-start', alignItems: 'center', 
             }}>
-                <div style={{ 
-                   marginTop: 45,
-                   padding: 15,
-                   justifyContent: 'center', 
-                   borderRadius: 12,
-                   backgroundColor: Colors.offWhite, 
-                   boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
-                }}>
+                <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Labs
                     </div>
@@ -84,14 +70,7 @@ export const TestTemplatePage = ({
                     />
                 </div>
 
-                <div style={{ 
-                    marginTop: 45,
-                    padding: 15,
-                    justifyContent: 'center', 
-                    borderRadius: 12,
-                    backgroundColor: Colors.offWhite, 
-                    boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
-                }}>
+                <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Tests
                     </div>
@@ -109,7 +88,7 @@ export const TestTemplatePage = ({
     // Renders all of the Side Menus
     function renderSideMenu(){
         return(
-            <div>
+            <div style={Styles.Sections.sideMenu}>
                 {renderLessonsList()}
                 {renderLabsAndTests()}
             </div>
