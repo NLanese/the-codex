@@ -155,9 +155,7 @@ const OperatorsTest = ({}) => {
                             <p style={{...Styles.Code.code, fontSize: 24}}>
                                 <span style={Styles.Code.keyword}>let </span>
                                 <span style={Styles.Code.var}>x </span>
-                                <span style={Styles.Code.reg}>= "</span>
-                                <span style={Styles.Code.str}>100</span>
-                                <span style={Styles.Code.reg}>"</span>
+                                <span style={Styles.Code.reg}>= 10</span>
                             </p>
 
                             <p style={{...Styles.Code.code, fontSize: 24}}>
@@ -178,17 +176,43 @@ const OperatorsTest = ({}) => {
                         </div>
                     </div>
                 ),
-                options: ["String", "Integer", "Double", "Name"],
-                correctValue: 'Double'
+                options: [ "60", "150", "1050", "This throws an Error"],
+                correctValue: '1050'
             },
 
             {
                 id: "4",
                 title: "4. What is the data type of the following",
                 type: "MC",
-                caption: "year = '2024'",
-                options: ["String", "Integer", "Double", "Name"],
-                correctValue: 'String'
+                render: () => (
+                    <div style={{justifyItems: 'center'}}>
+                        <div style={Styles.Code.testCodeSegment}>
+                            <p style={{...Styles.Code.code, fontSize: 24}}>
+                                <span style={Styles.Code.keyword}>const </span>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>= "</span>
+                                <span style={Styles.Code.str}>50</span>
+                                <span style={Styles.Code.reg}>"</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 24}}>
+                                <span style={Styles.Code.keyword}>let </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>= 50</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 24}}>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>+ </span>
+                                <span style={Styles.Code.var}>y </span>
+                            </p>
+                        </div>
+                    </div>
+                ),
+                options: [ "60", "150", "1050", "This throws an Error"],
+                correctValue: 'This throws an Error'
             },
 
 

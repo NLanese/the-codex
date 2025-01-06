@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: 'Gilroy-Regular';
+    font-family: 'Gilroy';
     src: url("../public/fonts/Gilroy-Regular.ttf") format('woff2'),
          url("../public/fonts/Gilroy-Regular.ttf") format('woff');
     font-weight: 500;
@@ -39,7 +39,7 @@
 }
 
 @font-face {
-    font-family: 'Gilroy-Black';
+    font-family: 'Gilroy';
     src: url("../public/fonts/Gilroy-Black.ttf") format('woff2'),
          url("../public/fonts/Gilroy-Black.ttf") format('woff');
     font-weight: 700;
@@ -47,7 +47,7 @@
 }
 
 @font-face {
-    font-family: 'Gilroy-Blacker';
+    font-family: 'Gilroy-Black';
     src: url("../public/fonts/Gilroy-Black.ttf") format('woff2'),
          url("../public/fonts/Gilroy-Black.ttf") format('woff');
     font-weight: 800;
