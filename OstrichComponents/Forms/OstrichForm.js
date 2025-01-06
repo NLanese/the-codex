@@ -89,7 +89,15 @@ export const OstrichForm = ({
         // Determines if Submit is allowed or not
         useEffect(() => {
             if (Object.keys(formData).length === Object.keys(fieldsState).length){
-                setCanSubmit(true)
+                if (submitted){
+                    if (allowResubmission){
+                        setCanSubmit(true)
+                    }
+                    else{
+                        setCanSubmit(false)
+                    }
+                }
+                
             }
             else{
                 setCanSubmit(false)
@@ -171,6 +179,26 @@ export const OstrichForm = ({
 
         // Renders the Form Submission Button
         function renderSubmit(){
+            if (submitted && reviewOnSubmit){
+                return(
+                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <div style={{flex: 5}}>
+                        <OstrichButton 
+                            style={determineSubmitStyle()}
+                            title={submitButtonTitle}
+                            activeColor={"rgba(73, 148, 244, 1)"}
+                            inactiveColor={"rgba(215, 216, 218, 1)"}
+                            titleStyle={submitText}
+                            isActive={canSubmit}
+                            onSubmit={submitForm}
+                        />
+                        </div>
+                        <div style={{flex: 7}}>
+
+                        </div>
+                    </div>
+                )
+            }
             return(
                 <OstrichButton 
                  style={determineSubmitStyle()}
@@ -390,25 +418,18 @@ export const OstrichForm = ({
 
         // Handles the Submission of the Form
         async function submitForm(){
-            console.log("SUBMIT FORM")
             if (onSubmit){
-                console.log("Running localized onSubmit")
                 onSubmit(formData)
             }
             if (clearOnSubmit){
-                console.log("Clearing Data in Form")
                 setFormData({})
             }
             else if (correctResponse){
-                console.log("CHECKING PROPER ANSWERS")
                 checkAgainstAllAnswers().then( async (checkedAns) => {
                     return checkedAns
                 }).then(checkedAns => {
-                    console.log("Updating temp object to set fields")
                     return updateFieldsWithAnswerCheck(checkedAns)
                 }).then( async (tempFields) => {
-                    console.log("Setting Fields with...")
-                    console.log(tempFields)
                     setFieldsState(tempFields)
                 })
             }
@@ -462,10 +483,6 @@ export const OstrichForm = ({
 
         // Updates the existing fields with "Correct" or "Incorrect" properties to dictate green or red border
         async function updateFieldsWithAnswerCheck(checkedAns){
-            console.log("BEFORE CHECK")
-            console.log(fieldsState)
-            console.log("Local Param")
-            console.log(checkedAns)
             if (fieldsState && checkedAns){
                 let answerKeys = Object.keys(checkedAns)
                 let tempFields = {...fieldsState}
@@ -473,9 +490,6 @@ export const OstrichForm = ({
                     tempFields[key].isCorrect = ((checkedAns[key] === "Correct")? true : false)
                     tempFields[key].isWrong = ((checkedAns[key] === "Incorrect")? true : false)
                 })
-                console.log("AFTER CHECK")
-                console.log(tempFields)
-                // setFieldsState(tempFields)
                 return tempFields
             }
             else{
