@@ -108,13 +108,16 @@ export const FormMultipleChoice = ({
     ////////////////
 
         // Renders the Field's Description / Caption
-        function renderCaption(){
+        function renderCaptionOrCustom(){
             if (fieldObj.caption){
                 return(
                     <div style={{captionStyle}}>
                         {fieldObj.caption}
                     </div>
                 )
+            }
+            else if (fieldObj.render){
+                return fieldObj.render()
             }
         }
 
@@ -164,7 +167,7 @@ export const FormMultipleChoice = ({
                 <div style={{...titleStyle}}>
                     {fieldObj.title}
                 </div>
-                {renderCaption()}
+                {renderCaptionOrCustom()}
                 <div style={{padding: 5, paddingTop: 15}}>
                     {renderOptions()}
                 </div>

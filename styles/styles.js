@@ -23,13 +23,21 @@ const Styles = {
     },
 
     Code: {
-        code: {marginBottom: 0, marginTop: 0},
-        keyword: {fontSize: 16, color: '#bd2eff', marginTop: 0, marginBottom: 0},
-        var: {fontSize: 16, color: '#0fdefa', marginTop: 0, marginBottom: 0},
-        reg: {fontSize: 16, color: 'white', marginTop: 0, marginBottom: 0},
-        str: {fontSize: 16, color: "#f7e672", marginTop: 0, marginBottom: 0},
-        bool: {fontSize: 16, color: "#3fa0a0", marginTop: 0, marginBottom: 0},
-        comment: {fontSize: 16, color: "#41FF00", marginTop: 0, marginBottom: 0},
+        code: {marginBottom: 0, marginTop: 0, fontSize: 18},
+        keyword: {color: '#bd2eff', marginTop: 0, marginBottom: 0},
+        var: {color: '#0fdefa', marginTop: 0, marginBottom: 0},
+        reg: {color: 'white', marginTop: 0, marginBottom: 0},
+        str: {color: "#f7e672", marginTop: 0, marginBottom: 0},
+        bool: {color: "#3fa0a0", marginTop: 0, marginBottom: 0},
+        comment: {color: "#41FF00", marginTop: 0, marginBottom: 0},
+
+        testCodeSegment: {
+            backgroundColor: "black", 
+            marginRight: '20%', padding: 10,
+            borderRadius: 15, border: "2px solid rgb(156, 161, 158)",
+            boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)',
+            width: 200, maxWidth: '80%'
+        }
     },
 
     Sections: {
@@ -41,7 +49,7 @@ const Styles = {
             borderRadius: 12,
             backgroundColor: "#ebf4ff",
             boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
-        }
+        },
     }
 
 }
