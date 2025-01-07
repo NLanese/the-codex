@@ -12,7 +12,6 @@ const Styles = {
             fontSize: 48, fontWeight: 700, 
             textAlignVertical: 'center', textAlign: 'center', 
             letterSpacing: 0.95, 
-            marginBottom: 20,
             backgroundColor: "#fafffe",
             boxShadow:'1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
             paddingRight: '3.5%', paddingLeft: '3.5%', paddingTop: 5.5,
@@ -25,6 +24,7 @@ const Styles = {
             letterSpacing: 0.95, 
             boxShadow:'2px 2px 0.5px 1px rgba(0, 0, 0, 0.2)',
             paddingRight: '2.5%', paddingLeft: '2.5%', paddingTop: 3.5,
+            marginTop: 20,
         },
 
 
@@ -35,7 +35,7 @@ const Styles = {
     },
 
     Code: {
-        code: {marginBottom: 0, marginTop: 0, fontSize: 18},
+        code: {marginBottom: 0, marginTop: 0, fontSize: 22},
         keyword: {color: '#bd2eff', marginTop: 0, marginBottom: 0},
         var: {color: '#0fdefa', marginTop: 0, marginBottom: 0},
         reg: {color: 'white', marginTop: 0, marginBottom: 0},
@@ -49,6 +49,27 @@ const Styles = {
             borderRadius: 15, border: "2px solid rgb(156, 161, 158)",
             boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)',
             width: 200, maxWidth: '80%'
+        },
+
+        codeSnippetTab: {
+            fontFamily: "Gilroy", 
+            fontWeight: 500,  fontSize: 20, 
+            letterSpacing: 0.95, textAlign: 'center',
+            textAlignVertical: 'center'
+        },
+
+        codeSnippetTabACTIVE: {
+            fontFamily: "Gilroy", 
+            fontWeight: 600,  fontSize: 22, 
+            letterSpacing: 1.05, textAlign: 'center',
+            textAlignVertical: 'center'
+        },
+
+        codeSnippetTabHOVER: {
+            fontFamily: "Gilroy", 
+            fontWeight: 600,  fontSize: 22, 
+            letterSpacing: 1.20, textAlign: 'center',
+            textAlignVertical: 'center'
         }
     },
 

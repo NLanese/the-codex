@@ -81,20 +81,20 @@ const VariablesLesson = ({}) => {
         function renderVariablesJS(){
             return(
                 <div>
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>= 0</span>
                     </p>
 
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.str}>"Hank Hill"</span>
                     </p>
 
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>isEarthFlat </span>
                     <span style={Styles.Code.reg}>= </span>
@@ -108,20 +108,20 @@ const VariablesLesson = ({}) => {
         function renderVariableJavaAndC(){
             return(
                 <div>
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>int </span>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>= 0;</span>
                     </p>
 
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>String </span>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.str}>"Hank Hill";</span>
                     </p>
 
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>bool </span>
                     <span style={Styles.Code.var}>isEarthFlat </span>
                     <span style={Styles.Code.reg}>= </span>
@@ -134,12 +134,12 @@ const VariablesLesson = ({}) => {
         function renderVariablesPython(){
             return(
                 <div>
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.var}>x </span>
                     <span style={Styles.Code.reg}>= 0</span>
                     </p>
 
-                    <p>
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.str}>"Hank Hill"</span>
@@ -481,25 +481,11 @@ const VariablesLesson = ({}) => {
                             </li>
                             <br></br>
                             <li>
-                                In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
+                                <strong>Variables will have their Data referenced -- </strong> What's the point in storing data if you don't use it? In most previous examples, the variable we mention ends up being referenced when it is displayed to the user. The score is displayed, the amount of items in a cart is displayed, and so is a username. However, they can be referenced by the code itself. For example, a game will know to end when a score reaches a certain number. In a pickup game for example, if you play to 21 points, the app would check every time a team scores to see if their score is 21. If the score is 21 the game ends. <strong>We will go into this deeper in the future when we learn about conditionals</strong>
                             </li>
                         </div>
                     </div>
-
-                    <div style={Styles.Fonts.basic}>
-                        <li>
-                            When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or "Hossenpheffer" your account will se set to display whatever is stored under the 'name' variable
-                        </li>
-                        <br></br>
-                        <li>
-                            When you login to a website, both your username and password are stored in the computer as variables. They will begin as just empty values, but as you type into the 'username' or 'email' text bar, the 'login' variable will be changed to match what you type. When you press the login button, the computer will use what you entered into the 'login' variable and check it against all other known usernames.
-                        </li>
-                        <br></br>
-                        <li>
-                            In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
-                        </li>
-                    </div>
-
+                    <div style={Styles.Fonts.lessonHeader}>How to use a Variable</div>
                     <p style={Styles.Fonts.basic}>
                         Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece. Below, you will see how to <strong>declare</strong> (which means create) a variable.
                     </p>

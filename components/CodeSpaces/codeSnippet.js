@@ -4,6 +4,9 @@ import React, {useEffect, useState} from "react";
 // Ostrich
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 
+// Local
+import Styles from "../../styles/styles";
+
 const CodeSnippet = ({
     js,
     cs,
@@ -57,7 +60,7 @@ const CodeSnippet = ({
 
     function renderCodeSpace(){
         return(
-            <div style={{backgroundColor: "black", marginTop: '-1%', padding: 5}}>
+            <div style={{backgroundColor: "black", marginTop: '0%', padding: 25}}>
                 {renderSyntax()}
             </div>
         )
@@ -69,8 +72,16 @@ const CodeSnippet = ({
 
     function MAIN(){
         return(
-            <div>
-                <OstrichTabBar 
+            <div style={{
+            borderRadius: 15, border: "2px solid rgb(156, 161, 158)",
+            boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)',
+            overflow: 'hidden'
+            }}>
+                <OstrichTabBar
+                style={{height: "105%"}} 
+                titleStyle={Styles.Code.codeSnippetTab}
+                activeTitleStyle={Styles.Code.codeSnippetTabACTIVE}
+                hoverTitleStyle={Styles.Code.codeSnippetTabHOVER}
                 startingTabByTitle={"JavaScript"}
                 tabs={
                     [
