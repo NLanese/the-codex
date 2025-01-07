@@ -182,7 +182,7 @@ const OperatorsTest = ({}) => {
 
             {
                 id: "4",
-                title: "4. What is the data type of the following",
+                title: "4. If the following code is executed, what is the value of x by the end?",
                 type: "MC",
                 render: () => (
                     <div style={{justifyItems: 'center'}}>
@@ -211,7 +211,7 @@ const OperatorsTest = ({}) => {
                         </div>
                     </div>
                 ),
-                options: [ "60", "150", "1050", "This throws an Error"],
+                options: [ "5050", "150", "100", "This throws an Error"],
                 correctValue: 'This throws an Error'
             },
 

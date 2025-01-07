@@ -458,13 +458,19 @@ const VariablesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-                    <p>
-                        Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
-                    </p>
-                    <p>
-                        <strong>A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future. </strong> This definition may seem a little confusing, but that is because of how abstract Variables are. Let's use some real life examples:
-                    </p>
-                    <div>
+                    <div style={Styles.Fonts.lessonHeader}>What is a Variable</div>
+                    <div style={Styles.Sections.lessonContent}>
+                        <p style={Styles.Fonts.basic}>
+                            Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
+                        </p>
+                        <div style={Styles.Sections.importantNote}>
+                            <p style={Styles.Fonts.basic}>
+                                <strong>A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future.</strong> For example, a user on a website may have a firstName and a lastName variable associated with their account. The value of that variable would change from user to user. Another example could be on a shopping website, as you add items to your cart you may notice a little counter over your cart icon, indicating how many items you have added. This counter shows the value of a variable that keeps track of this data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style={Styles.Fonts.basic}>
                         <li>
                             When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or "Hossenpheffer" your account will se set to display whatever is stored under the 'name' variable
                         </li>
@@ -478,7 +484,7 @@ const VariablesLesson = ({}) => {
                         </li>
                     </div>
 
-                    <p>
+                    <p style={Styles.Fonts.basic}>
                         Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece. Below, you will see how to <strong>declare</strong> (which means create) a variable.
                     </p>
                 </div>

@@ -2,19 +2,31 @@ const Styles = {
 
     Fonts: {
 
+        basic: {
+            fontFamily: "Gilroy", 
+            fontSize: 18.5, fontWeight: 400, 
+        },
+
         pageTitle: {
             fontFamily: "Gilroy", 
             fontSize: 48, fontWeight: 700, 
-            textAlignVertical: 'center', 
+            textAlignVertical: 'center', textAlign: 'center', 
             letterSpacing: 0.95, 
-            marginBottom: 0,
-            textAlign: 'center', 
-            width: '30%,', maxWidth: '75%', 
+            marginBottom: 20,
             backgroundColor: "#fafffe",
             boxShadow:'1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
-            paddingRight: '5.5%', paddingLeft: '5.5%', paddingTop: 8.5,
-            borderRadius: 30
+            paddingRight: '3.5%', paddingLeft: '3.5%', paddingTop: 5.5,
+            borderRadius: 20
         },
+
+        lessonHeader: {
+            fontFamily: "Gilroy", 
+            fontSize: 32, fontWeight: 600, 
+            letterSpacing: 0.95, 
+            boxShadow:'2px 2px 0.5px 1px rgba(0, 0, 0, 0.2)',
+            paddingRight: '2.5%', paddingLeft: '2.5%', paddingTop: 3.5,
+        },
+
 
         h1: {fontFamily: "Gilroy", fontSize: 24, fontWeight: 600},
         h2: {fontFamily: "Gilroy", fontSize: 20, fontWeight: 500, textAlignVertical: 'center', textAlign: 'center'},
@@ -50,6 +62,18 @@ const Styles = {
             backgroundColor: "#ebf4ff",
             boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
         },
+
+        lessonContent: {
+            paddingRight: 25,
+            paddingLeft: 25,
+        },
+
+        importantNote: {
+            backgroundColor: "#ebf4ff",
+            padding: 15, borderRadius: 25,
+            boxShadow:'1px 1px 2px 1px rgba(40, 40, 40, 0.1)',
+            marginBottom: 15
+        }
     }
 
 }
