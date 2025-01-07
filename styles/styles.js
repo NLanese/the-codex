@@ -89,6 +89,14 @@ const Styles = {
             paddingLeft: 25,
         },
 
+        simpleLessonCode: {
+            backgroundColor: "black", 
+            margin: 15, padding: 10,
+            borderRadius: 15, border: "2px solid rgb(156, 161, 158)",
+            boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)',
+            width: 200, maxWidth: '80%'
+        },
+
         importantNote: {
             backgroundColor: "#ebf4ff",
             padding: 15, borderRadius: 25,

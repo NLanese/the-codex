@@ -487,8 +487,28 @@ const VariablesLesson = ({}) => {
                     </div>
                     <div style={Styles.Fonts.lessonHeader}>How to use a Variable</div>
                     <p style={Styles.Fonts.basic}>
-                        Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece. Below, you will see how to <strong>declare</strong> (which means create) a variable.
+                        Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece.
                     </p>
+                    <p style={Styles.Fonts.basic}>
+                        There can be a few parts of a Variable's lifecycle in computer science. 
+                    </p>
+                    <p style={Styles.Fonts.basic}>
+                        The first part is called <strong>Declaration</strong>. This step is in just creating the variable. To us it is a simple process, but when doing this the computer compiler actually sections off a dedicated part of its memory for this value.
+                    </p>
+                    <div style={Styles.Sections.importantNote}>
+                        <p style={Styles.Fonts.basic}>
+                            Declaration can look as simple as this
+                        </p>
+                        <div style={Styles.Sections.simpleLessonCode}>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>var </span>
+                            <span style={Styles.Code.var}>x </span>
+                            </p>
+                        </div>
+                        <p style={Styles.Fonts.basic}>
+                            Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x" and the computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x"
+                        </p>
+                    </div>
                 </div>
             )
         }
