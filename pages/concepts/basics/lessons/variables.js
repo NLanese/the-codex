@@ -465,8 +465,24 @@ const VariablesLesson = ({}) => {
                         </p>
                         <div style={Styles.Sections.importantNote}>
                             <p style={Styles.Fonts.basic}>
-                                <strong>A Variable is essentially a container for information that be changed, referenced, checked or otherwise used in the future.</strong> For example, a user on a website may have a firstName and a lastName variable associated with their account. The value of that variable would change from user to user. Another example could be on a shopping website, as you add items to your cart you may notice a little counter over your cart icon, indicating how many items you have added. This counter shows the value of a variable that keeps track of this data.
+                                <strong>A Variable is essentially a container for information that be stored, changed, referenced, checked or otherwise used in the future.</strong> For example, a user on a website may have a firstName and a lastName variable associated with their account. The value of that variable would change from user to user. Another example could be on a shopping website, as you add items to your cart you may notice a little counter over your cart icon, indicating how many items you have added. This counter shows the value of a variable that keeps track of this data.
                             </p>
+                        </div>
+                        <p style={Styles.Fonts.basic}>
+                            Let's go over some of the specifics of what exactly a variable can do, again considering that their role is to store, change, reference, or check the data given to them.
+                        </p>
+                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                            <li>
+                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <strong>string</strong> which is how we refer to text in computer science. A variable, for example could contain a name like "Rick Sanchez"
+                            </li>
+                            <br></br>
+                            <li>
+                                <strong>Variables can have their Data changed -- </strong>More times than not, when working with a technical project, you will have more values that can change than not. For example, if we were developing a game, we would need a variable to keep score. This score would need to be changed quite frequently. Similarly, a user may have a username associated with an account, and they will need the ability to change that. Sometimes, variables will not change and SHOULD not change, and as such these variables are actually created differently than others, and are often referred to as <strong>constants</strong> but these will be covered later.
+                            </li>
+                            <br></br>
+                            <li>
+                                In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
+                            </li>
                         </div>
                     </div>
 
