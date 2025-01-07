@@ -473,7 +473,7 @@ const VariablesLesson = ({}) => {
                         </p>
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             <li>
-                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <strong>string</strong> which is how we refer to text in computer science. A variable, for example could contain a name like "Rick Sanchez"
+                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <strong>string</strong> which is how we refer to text in computer science. A variable, for example could contain a name like "Jeff Winger"
                             </li>
                             <br></br>
                             <li>
@@ -486,6 +486,7 @@ const VariablesLesson = ({}) => {
                         </div>
                     </div>
                     <div style={Styles.Fonts.lessonHeader}>How to use a Variable</div>
+                    <div style={Styles.Sections.lessonContent}>
                     <p style={Styles.Fonts.basic}>
                         Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece.
                     </p>
@@ -493,7 +494,10 @@ const VariablesLesson = ({}) => {
                         There can be a few parts of a Variable's lifecycle in computer science. 
                     </p>
                     <p style={Styles.Fonts.basic}>
-                        The first part is called <strong>Declaration</strong>. This step is in just creating the variable. To us it is a simple process, but when doing this the computer compiler actually sections off a dedicated part of its memory for this value.
+                        The first part is called <strong>Declaration</strong>. This step is in just creating the variable. To us it is a simple process, but it informs the compiler to kickstart the variable life cycle.
+                    </p>
+                    <p style={Styles.Fonts.basic}>
+                        Once we as the developer <strong>declare</strong> a variable, the computer compiler actually sections off a dedicated part of its memory for this value. This is called the <strong>Initialization</strong> phase of the Variable Lifecycle
                     </p>
                     <div style={Styles.Sections.importantNote}>
                         <p style={Styles.Fonts.basic}>
@@ -506,9 +510,50 @@ const VariablesLesson = ({}) => {
                             </p>
                         </div>
                         <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x" and the computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x"
+                            Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x", The computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x" in the <strong>Initialization</strong> Phase that automatically follows.
                         </p>
                     </div>
+                    <p style={Styles.Fonts.basic}>
+                        The final part of the lifecycle is the <strong>Assignment</strong> Phase. This is where we assign a value to the newly created variable. This then saves that value in the section of memory that was segmented off during the <strong>Initialization</strong> Phase
+                    </p>
+                    <div style={Styles.Sections.importantNote}>
+                        <p style={Styles.Fonts.basic}>
+                            <strong>Assignment</strong> can come after the <strong>Declaration</strong> of a variable
+                        </p>
+                        <div style={Styles.Sections.simpleLessonCode}>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>var </span>
+                            <span style={Styles.Code.var}>x </span>
+                            </p>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.var}>x </span>
+                            <span style={Styles.Code.reg}>= 4</span>
+                            </p>
+                        </div>
+                        <p style={Styles.Fonts.basic}>
+                            Here, we are simply <strong>declaring</strong> a variable and then on the next line we are <strong>assigning</strong> the numeric value of 4 to the variable. 
+                        </p>
+                    </div>
+                    <div style={Styles.Sections.importantNote}>
+                        
+                        <p style={Styles.Fonts.basic}>
+                            <strong>Assignment</strong> can also come during the <strong>Declaration</strong> of a variable, keeping things all on one line of code
+                        </p>
+                        <div style={Styles.Sections.simpleLessonCode}>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>var </span>
+                            <span style={Styles.Code.var}>x </span>
+                            <span style={Styles.Code.reg}>= 4</span>
+                            </p>
+                        </div>
+                        <p style={Styles.Fonts.basic}>
+                            Here, we are simply <strong>declaring</strong> a variable and  simultaneously we are <strong>assigning</strong> the numeric value of 4 to the variable. 
+                        </p>
+                    </div>
+                    <p style={Styles.Fonts.basic}>
+                        Below, we will go over how to <strong>declaring</strong> and <strong>assign</strong> a variable in four different <strong>programming languages</strong>. We will go over these in more depth later; for now all you need to know is that each programming language, much like regular spoken languages, each have their own different rules. <strong>Keywords, syntax, and overall structure</strong> will differ between languages although the general concepts of Computer Science remain consistent between them.   
+                    </p>
+                </div>
                 </div>
             )
         }
@@ -516,8 +561,9 @@ const VariablesLesson = ({}) => {
         function renderSecond(){
             return(
                 <div>
-                    <p>
-                        Above, you saw that most languages are a bit different from each other in how the <strong>declare</strong> a variable, but they all have the same basic pattern and premise. Usually, there is a keyword (Like in JavaScript, there is <strong>the keyword let</strong> or in C# and Java the <strong>keyword is instead the data type of the variable</strong>)
+                    <div style={Styles.Sections.lessonContent}>
+                    <p style={Styles.Fonts.basic}>
+                        Above, you saw that most languages are a bit different from each other in how the <strong>declare and assign</strong> a variable, but they all have the same basic pattern and premise. Usually, there is a keyword (Like in JavaScript, there is <strong>the keyword let</strong> or in C# and Java the <strong>keyword is instead the data type of the variable</strong>)
                     </p>
                     <p>
                         Most languages treat variables the same once they have been declared, meaning that interacting with variables across different languages usually stays the same. Adding two number variables in JavaScript will work the same way as it does in Python. However, as we will cover <strong>under the Datatypes lesson</strong> you cannot just go mixing two different kinds of variables, and these constraints vary based on the language. Lets go over some basic examples for right now...
@@ -534,7 +580,7 @@ const VariablesLesson = ({}) => {
                     <p>
                         Lets go through some examples of valid operations with variables!
                     </p>
-
+                    </div>
                 </div>
             )
         }
