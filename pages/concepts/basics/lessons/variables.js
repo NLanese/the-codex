@@ -563,55 +563,26 @@ const VariablesLesson = ({}) => {
                 <div>
                     <div style={Styles.Sections.lessonContent}>
                     <p style={Styles.Fonts.basic}>
-                        Above, you saw that most languages are a bit different from each other in how the <strong>declare and assign</strong> a variable, but they all have the same basic pattern and premise. Usually, there is a keyword (Like in JavaScript, there is <strong>the keyword let</strong> or in C# and Java the <strong>keyword is instead the data type of the variable</strong>)
+                    Above, you saw that most languages are a bit different from each other in how the <strong>declare and assign</strong> a variable, but they all have the same basic pattern and premise. 
                     </p>
-                    <p>
-                        Most languages treat variables the same once they have been declared, meaning that interacting with variables across different languages usually stays the same. Adding two number variables in JavaScript will work the same way as it does in Python. However, as we will cover <strong>under the Datatypes lesson</strong> you cannot just go mixing two different kinds of variables, and these constraints vary based on the language. Lets go over some basic examples for right now...
+                    <p style={Styles.Fonts.basic}>
+                    Let's break down a few of the things we're seeing above...
                     </p>
-                    <div>
-                        <li>
-                            In some Computer Languages, a whole number cannot be mixed with a decimal point number. This means adding 2 and 2.4 would not work in every language.
-                        </li>
-                        <br></br>
-                        <li>
-                            In most Computer Languages, variables that contain letters or words cannot interact with variables that hold numeric values. This means I could not make x and y interact with one another if x = "Hank Hill" and y = 6
-                        </li>
-                    </div>
-                    <p>
-                        Lets go through some examples of valid operations with variables!
-                    </p>
-                    </div>
-                </div>
-            )
-        }
-
-        function renderThird(){
-            return(
-                <div>
-                    <p>
-                        Variables are the basic building blocks of <strong>Object Oriented Programming</strong> focused software development. This means that nearly every operation or every computation will be done using variables. The examples shown above are very basic, but as we continue along the course you will learn more and more about variables and how to use them when developing.
-                    </p>
-                    <p>
-                        For example, even this web page is comprised of variables. In the examples of code above, when you the user select a different tab ("JavaScript", "Java", "C", or "Python") you are actually changing a variable named 'display' to match the value of the button you selected. To explain this more simply, allow me to explain in <strong>pseudocode</strong>  
-                    </p>
-                    <div>
-                        <li>
-                            A user presses a button that has a variable attached to it. That variable's value is the same as the text shown on each button (Java, JavaScript, C#, or Python)
-                        </li>
-                        <br></br>
-                        <li>
-                            A <strong>function</strong> fires that uses this variable. Depending on what is variable's value is ("Java", "JavaScript", "Python", or "C#") it will load a specific set of lines to render. If the code box's variable's value is "JavaScript", it will load the text you see in the box when 'JavaScript' is selected, for example
-                        </li>
-                        <br></br>
-                        <li>
-                            Once this value is changed, the code box will render the newly selected text
-                        </li>
-                        <p>
-                            This is actually some of the code running the very site we are using in action. Look below as the variable, 'lang' will have a different result in the function based off of its value. If this is all still confusing to you, do not worry! There is a lot more to cover before this all comes together
+                    <div style={Styles.Sections.importantNote}>
+                        <p style={Styles.Fonts.basic}>
+                        In each language, we are declaring and assigning three variables, each one has a different <strong>Datatype</strong>.
                         </p>
-                        <div>
-                            <Image src={require('../../../../public/assets/lesson_images/variables/codeExample.png')} width="70%" height="20%"/>
-                        </div>
+                        <p style={Styles.Fonts.basic}>
+                        A <strong>Datatype</strong> is a category for the kind of value that a variable may store. We've already covered two basic datatypes, <strong>Integers</strong> and <strong>Strings</strong>.
+                        </p>
+                        <p style={Styles.Fonts.basic}>
+                        As you may have already seen, <strong>some programming languages like C# and Java</strong> require you to declare the Datatype that will be stored in the variable before you assign the value. We will cover Datatypes in more detail in the next lesson.
+                        </p>
+                        <p style={Styles.Fonts.basic}>
+                        Even still, some programming languages like <strong>JavaScript</strong> have dynamic variables that can change data types, but the variable still needs a <strong>keyword</strong> to let the compiler know a variable declaration is taking place. JavaScript uses <strong>'let'</strong> as the keyword in our example, but developers can also use <strong>'var'</strong>
+                        </p>
+
+                    </div>
                     </div>
                 </div>
             )
@@ -634,13 +605,6 @@ const VariablesLesson = ({}) => {
                     py={renderVariablesPython()}
                 />
                 {renderSecond()}
-                <CodeSnippet
-                    js={renderVariablesJS_2()}
-                    java={renderVariablesJava_2()}
-                    cs={renderVariablesC_2()}
-                    py={renderVariablesPython_2()}
-                />
-                {renderThird()}
             </div>
         )
     }
