@@ -148,309 +148,6 @@ const VariablesLesson = ({}) => {
             )
         }
 
-    // Second Code Snippet //
-
-        function renderVariablesJS_2(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Numbers //</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 4</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>z </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>* </span>
-                    <span style={Styles.Code.var}>y </span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// z would be equal to 8 since 2 * 4 = 8</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>////////////////////////////////////////////</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Strings or Characters //</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>////////////////////////////////////////////</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Rick"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Morty"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>showName </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.str}>" and " </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// showName would be equal to 'Rick and Morty'</span>
-                    </p>
-
-
-                </div>
-            )
-        }
-
-        function renderVariablesJava_2(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Numbers //</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 4;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>z </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>* </span>
-                    <span style={Styles.Code.var}>y</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// z would be equal to 8 since 2 * 4 = 8</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>////////////////////////////////////////////</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>// Interacting with Strings or Characters //</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>////////////////////////////////////////////</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Rick"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Morty"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>showName </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.str}>" and " </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// showName would be equal to 'Rick and Morty'</span>
-                    </p>
-
-
-                </div>
-            )
-        }
-
-        function renderVariablesC_2(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>##############################</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>## Interacting with Numbers ##</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>##############################</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 4;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>z </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>* </span>
-                    <span style={Styles.Code.var}>y</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>## z would be equal to 8 since 2 * 4 = 8</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>############################################</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>## Interacting with Strings or Characters ##</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>############################################</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Rick"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Morty"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>showName </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.str}>" and " </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>## showName would be equal to 'Rick and Morty'</span>
-                    </p>
-
-
-                </div>
-            )
-        }
-
-        function renderVariablesPython_2(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>##############################</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>## Interacting with Numbers ##</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>##############################</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 4</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>y </span>
-                    <span style={Styles.Code.reg}>= 2</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>z </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>* </span>
-                    <span style={Styles.Code.var}>y </span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>## z would be equal to 8 since 2 * 4 = 8</span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>############################################</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>## Interacting with Strings or Characters ##</span></p>
-                    <p style={Styles.Code.code}><span style={Styles.Code.comment}>############################################</span></p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Rick"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>name2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Morty"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>showName</span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>name1 </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.str}>" and " </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>name2 </span>
-                    </p>
-                    <br />
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>## showName would be equal to 'Rick and Morty'</span>
-                    </p>
-                </div>
-            )
-        }
-
     //////////////////////
     // Lesson Rendering //
     //////////////////////
@@ -583,6 +280,31 @@ const VariablesLesson = ({}) => {
                         </p>
 
                     </div>
+                    </div>
+                    <div style={Styles.Fonts.lessonHeader}>Changing a Variable's Value</div>
+                    <div style={Styles.Sections.lessonContent}>
+                        <p style={Styles.Fonts.basic}>
+                            Most times, a variable will be intended to have its value changed. In previous examples, we have mentioned Variables that hold values like a score or a cart total. Lets go over how we would make some of those changes
+                        </p>
+                        <p style={Styles.Fonts.basic}>
+                            Again, imagine we create (declare and assign) a variabe similarly to how we've done so in the past.
+                        </p>
+                        <div style={Styles.Sections.simpleLessonCode}>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>var </span>
+                            <span style={Styles.Code.var}>x </span>
+                            <span style={Styles.Code.reg}>= 5</span>
+                            </p>
+                        </div>
+                        <p style={Styles.Fonts.basic}>
+                            We can now simply reassign a new value to the variable to have it changed
+                        </p>
+                        <div style={Styles.Sections.simpleLessonCode}>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.var}>x </span>
+                            <span style={Styles.Code.reg}>= 50</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             )
