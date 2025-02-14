@@ -305,6 +305,9 @@ const VariablesLesson = ({}) => {
                             <span style={Styles.Code.reg}>= 50</span>
                             </p>
                         </div>
+                        <p style={Styles.Fonts.basic}>
+                            In the next lesson, we will go over the <strong>types</strong> of variables, as well as how and when to combine them, and have one variable influence the value of another!
+                        </p>
                     </div>
                 </div>
             )
