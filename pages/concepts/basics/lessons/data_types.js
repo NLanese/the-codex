@@ -631,15 +631,23 @@ const DataTypesLesson = ({}) => {
                         </p>
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             <li>
-                                <strong>Integer -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum  (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,647
+                                <strong>Integer (int) -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum  (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,647. This makes the Integer, or int; the smallest data type in terms of memory it takes up. 
                             </li>
                             <br></br>
                             <li>
-                                <strong>Variables can have their Data changed -- </strong>More times than not, when working with a technical project, you will have more values that can change than not. For example, if we were developing a game, we would need a variable to keep score. This score would need to be changed quite frequently. Similarly, a user may have a username associated with an account, and they will need the ability to change that. Sometimes, variables will not change and SHOULD not change, and as such these variables are actually created differently than others, and are often referred to as <strong>constants</strong> but these will be covered later.
+                                <strong>Double (double) -- </strong> A Double is a variable that functions much like an Integer but takes up an increased amount of memory in storage. As such, its range is larger and it is able to be used with decimal point numbers, unlike the int. A double is one of the largest numeric datatypes, taking up 64 bits of storage per variable of this type.
                             </li>
                             <br></br>
                             <li>
-                                <strong>Variables will have their Data referenced -- </strong> What's the point in storing data if you don't use it? In most previous examples, the variable we mention ends up being referenced when it is displayed to the user. The score is displayed, the amount of items in a cart is displayed, and so is a username. However, they can be referenced by the code itself. For example, a game will know to end when a score reaches a certain number. In a pickup game for example, if you play to 21 points, the app would check every time a team scores to see if their score is 21. If the score is 21 the game ends. <strong>We will go into this deeper in the future when we learn about conditionals</strong>
+                                <strong>Float (float) -- </strong> A Float is a variable that functions much like a Double but takes up less storage, operating at only 32 bits. This means you can still have decimal numbers represented as a Float data type, but when handling massive numbers or searching for percsion to the 15th decimal, you may be better off using the Double data type. 
+                            </li>
+                            <br></br>
+                            <li>
+                                <strong>Character (char) -- </strong> A single typed character. This could be a letter, a symbol (such as + - * ! etc.) or even a number. However the char data type cannot be manipulated the same way as a numeric data type. This means to say that 5(int) and '5'(char) will behave differently. 
+                            </li>
+                            <br></br>
+                            <li>
+                                <strong>String (String) -- </strong> A single typed character. This could be a letter, a symbol (such as + - * ! etc.) or even a number. However the char data type cannot be manipulated the same way as a numeric data type. This means to say that 5(int) and '5'(char) will behave differently. 
                             </li>
                         </div>
                     </div>
