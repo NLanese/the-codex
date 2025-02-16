@@ -620,12 +620,30 @@ const DataTypesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-                    <p>
-                        As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some programming languages than it does in others. For example, in Java and in C#, variables of different data types cannot interact with each other at all unless they are changed to match. This means that adding 2 to 2.5 would not be valid in C# and Java. In JavaScript, however, you can mix datatypes. 2.5 can be added to or multiplied by 2.
-                    </p>
-                    <p>
-                        <strong>Let's go over some examples of valid and invalid variable interactions.</strong> We will go through each example, and explain why each interaction is or is not valid, as well as what the resulting value of the interacting variables would be. 
-                    </p>
+                    <div style={Styles.Fonts.lessonHeader}>What is are Data Types?</div>
+                    <div style={Styles.Sections.lessonContent}>
+                        <p style={Styles.Fonts.basic}>
+                            As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some programming languages than it does in others. For example, in <strong>Java and C#</strong>, variables of different data types cannot interact with each other at all unless the developer makes some changes in order to change one or more of their data types so that they match. 
+                            For example, in Java, if we try to add x which has a value of 2 (which has the datatype 'integer') to y, which has a value of 2.5 (which is of the data type 'double') the compiler will throw an error.
+                        </p>
+                        <p style={Styles.Fonts.basic}> 
+                            <strong>Let's go over some basic Data Types</strong>
+                        </p>
+                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                            <li>
+                                <strong>Integer -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum  (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,647
+                            </li>
+                            <br></br>
+                            <li>
+                                <strong>Variables can have their Data changed -- </strong>More times than not, when working with a technical project, you will have more values that can change than not. For example, if we were developing a game, we would need a variable to keep score. This score would need to be changed quite frequently. Similarly, a user may have a username associated with an account, and they will need the ability to change that. Sometimes, variables will not change and SHOULD not change, and as such these variables are actually created differently than others, and are often referred to as <strong>constants</strong> but these will be covered later.
+                            </li>
+                            <br></br>
+                            <li>
+                                <strong>Variables will have their Data referenced -- </strong> What's the point in storing data if you don't use it? In most previous examples, the variable we mention ends up being referenced when it is displayed to the user. The score is displayed, the amount of items in a cart is displayed, and so is a username. However, they can be referenced by the code itself. For example, a game will know to end when a score reaches a certain number. In a pickup game for example, if you play to 21 points, the app would check every time a team scores to see if their score is 21. If the score is 21 the game ends. <strong>We will go into this deeper in the future when we learn about conditionals</strong>
+                            </li>
+                        </div>
+                    </div>
+                    
                 </div>
             )
         }
