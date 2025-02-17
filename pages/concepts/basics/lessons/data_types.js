@@ -620,6 +620,7 @@ const DataTypesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
+
                     <div style={Styles.Fonts.lessonHeader}>What is are Data Types?</div>
                     <div style={Styles.Sections.lessonContent}>
                         <p style={Styles.Fonts.basic}>
@@ -631,7 +632,7 @@ const DataTypesLesson = ({}) => {
                         </p>
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             <li>
-                                <strong>Integer (int) -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum  (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,647. This makes the Integer, or int; the smallest data type in terms of memory it takes up. 
+                                <strong>Integer (int) -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum  (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,647. This makes the Integer, or int; the smallest numeric data type in terms of memory it takes up. 
                             </li>
                             <br></br>
                             <li>
@@ -647,11 +648,59 @@ const DataTypesLesson = ({}) => {
                             </li>
                             <br></br>
                             <li>
-                                <strong>String (String) -- </strong> A single typed character. This could be a letter, a symbol (such as + - * ! etc.) or even a number. However the char data type cannot be manipulated the same way as a numeric data type. This means to say that 5(int) and '5'(char) will behave differently. 
+                                <strong>String (String) -- </strong> A series of connected characters. A String in computer science is essentially how all text is recorded. A string does have a few different behaviors than a character, despite them being very similar. We will go over more on this later on.
+                            </li>
+                            <br></br>
+                            <li>
+                                <strong>Boolean (bool) -- </strong> A true or false value. Takes up minimal computer memory and can be used to quickly identify if conditions are met. More on this later as well!
                             </li>
                         </div>
                     </div>
                     
+                    <div style={Styles.Fonts.lessonHeader}>Why are Data Types Important?</div>
+                    <div style={Styles.Sections.lessonContent}>
+                        <p style={Styles.Fonts.basic}> 
+                            Data types help segment different kinds of variables and minimize storage. Their importance depends on the langauage, as some languages like <strong>Java and C</strong> require a data type be provided the moment a variable is declared; whereas the compilers in languages like <strong>JavaScript and Ruby</strong> can determine the data type based on the value provided during initalization. In these languages the data type can also change, whereas in older languages once a data type is set it cannot be easily altered.
+                        </p>
+                        <p style={Styles.Fonts.basic}> 
+                            Regardless of the language however, all data types behave a little differently. Lets take a look at some simple examples...
+                        </p>
+                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                            Below we declare an initialize variables that look like they have a similar value, but are of different data types. We will first initialize an int, and then a char.
+                            <div style={Styles.Sections.simpleLessonCode}>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>int </span>
+                                <span style={Styles.Code.var}>num </span>
+                                <span style={Styles.Code.reg}>= 4;</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>int </span>
+                                <span style={Styles.Code.var}>num2 </span>
+                                <span style={Styles.Code.reg}>= 5;</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>char </span>
+                                <span style={Styles.Code.var}>txt </span>
+                                <span style={Styles.Code.reg}>= </span> 
+                                <span style={Styles.Code.str}>'4'</span>
+                                <span style={Styles.Code.reg}>;</span> 
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>char </span>
+                                <span style={Styles.Code.var}>txt2 </span>
+                                <span style={Styles.Code.reg}>= </span> 
+                                <span style={Styles.Code.str}>'5'</span>
+                                <span style={Styles.Code.reg}>;</span> 
+                                </p>
+                            </div>
+
+                            Now we will compare how they interact with each other was well as between themselves.
+                        </div>
+                    </div>
                 </div>
             )
         }
