@@ -99,7 +99,70 @@ const DataTypesLesson = ({}) => {
                         <span style={Styles.Code.var}>txt2 </span>
                         <span style={Styles.Code.reg}>= </span> 
                         <span style={Styles.Code.str}>'5'</span>
-                    </p>
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>combinedNums </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>num2 </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span> 
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>combinedTxt </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>txt </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>txt2 </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// Remmeber that a char data type can pnly hold one character.</span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// This means that to have multiple chars together, you will need a String.</span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The value of combinedTxt would be "54".</span> 
+                        </p> 
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>mixedDataTypes </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>text </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// In JavaScript, mixing two data types will convert.</span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The less computationally demanding variable and convert it to the </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// more computationally heavy variable. In this case, our int will convert </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// into a string. This makes the mixedDataTypes value '54'</span> 
+                        </p>
+
                 </div>
             )
         }
@@ -944,6 +1007,7 @@ const DataTypesLesson = ({}) => {
                             </div>
 
                             As previously mentioned, data types are more important in some languages than in others. Below we will show how different languages may have some limitations that others don't. 
+                            <br></br>
                             <div>
                                 <CodeSnippet 
                                     js={renderJavaScript()}
