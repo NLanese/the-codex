@@ -71,10 +71,217 @@ const DataTypesLesson = ({}) => {
     // Code Rendering //
     ////////////////////
 
+        // First Code Snippet // 
+        function renderJavaScript(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>= 4</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>num2 </span>
+                        <span style={Styles.Code.reg}>= 5</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>txt </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.str}>'4'</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>txt2 </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.str}>'5'</span>
+                    </p>
+                </div>
+            )
+        }
+
+        function renderJava(){
+            return(
+                <div>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>= 4</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>num2 </span>
+                            <span style={Styles.Code.reg}>= 5</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>char </span>
+                            <span style={Styles.Code.var}>txt </span>
+                            <span style={Styles.Code.reg}>= </span> 
+                            <span style={Styles.Code.str}>'4'</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>char </span>
+                            <span style={Styles.Code.var}>txt2 </span>
+                            <span style={Styles.Code.reg}>= </span> 
+                            <span style={Styles.Code.str}>'5'</span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>combinedNums </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>num2 </span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span> 
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>String </span>
+                            <span style={Styles.Code.var}>combinedTxt </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>txt </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>txt2 </span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// Remmeber that a char data type can pnly hold one character.</span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// This means that to have multiple chars together, you will need a String.</span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The value of combinedTxt would be "54".</span> 
+                        </p>
+                </div>
+            )
+        }
+
+        function renderCs(){
+            return(
+                <div>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>= 4</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>num2 </span>
+                            <span style={Styles.Code.reg}>= 5</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>char </span>
+                            <span style={Styles.Code.var}>txt </span>
+                            <span style={Styles.Code.reg}>= </span> 
+                            <span style={Styles.Code.str}>'4'</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>char </span>
+                            <span style={Styles.Code.var}>txt2 </span>
+                            <span style={Styles.Code.reg}>= </span> 
+                            <span style={Styles.Code.str}>'5'</span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>combinedNums </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>num2 </span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># The value of combinedNums would be 9</span> 
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>String </span>
+                            <span style={Styles.Code.var}>combinedTxt </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>txt </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>txt2 </span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># Remmeber that a char data type can pnly hold one character.</span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># This means that to have multiple chars together, you will need a String.</span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># The value of combinedTxt would be "54".</span> 
+                        </p>
+                </div>
+            )
+        }
+
+        function renderPython(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>= 4</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>num2 </span>
+                        <span style={Styles.Code.reg}>= 5</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>txt </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.str}>'4'</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>txt2 </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.str}>'5'</span>
+                    </p>
+                </div>
+            )
+        }
+
+
+
 
         // First Code Snippet // 
 
-        function renderVariablesJS(){
+        function renderVariablesJS_2(){
             return(
                 <div>
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
@@ -180,7 +387,7 @@ const DataTypesLesson = ({}) => {
             )
         }
 
-        function renderVariablesJavaScript(){
+        function renderVariablesJavaScript_2(){
             return(
                 <div>
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
@@ -289,7 +496,7 @@ const DataTypesLesson = ({}) => {
             )
         }
 
-        function renderVariablesPython(){
+        function renderVariablesPython_2(){
             return(
                 <div>
                     <p>
@@ -308,7 +515,7 @@ const DataTypesLesson = ({}) => {
 
         // Second Code Snippet //
 
-        function renderVariablesJS_2(){
+        function renderVariablesJS_3(){
             return(
                 <div>
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
@@ -387,7 +594,7 @@ const DataTypesLesson = ({}) => {
             )
         }
 
-        function renderVariablesJava_2(){
+        function renderVariablesJava_3(){
             return(
                 <div>
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>//////////////////////////////</span></p>
@@ -466,7 +673,7 @@ const DataTypesLesson = ({}) => {
             )
         }
 
-        function renderVariablesC_2(){
+        function renderVariablesC_3(){
             return(
                 <div>
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>##############################</span></p>
@@ -545,7 +752,7 @@ const DataTypesLesson = ({}) => {
             )
         }
 
-        function renderVariablesPython_2(){
+        function renderVariablesPython_3(){
             return(
                 <div>
                     <p style={Styles.Code.code}><span style={Styles.Code.comment}>##############################</span></p>
@@ -667,7 +874,7 @@ const DataTypesLesson = ({}) => {
                         <p style={Styles.Fonts.basic}> 
                             Regardless of the language however, all data types behave a little differently. Lets take a look at some simple examples...
                         </p>
-                        
+
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             Below we declare an initialize variables that look like they have a similar value, but are of different data types. We will first initialize an int, and then a char.
                             <div style={Styles.Sections.simpleLessonCode}>
@@ -736,7 +943,15 @@ const DataTypesLesson = ({}) => {
                                 </p>
                             </div>
 
-                            <br></br>
+                            As previously mentioned, data types are more important in some languages than in others. Below we will show how different languages may have some limitations that others don't. 
+                            <div>
+                                <CodeSnippet 
+                                    js={renderJavaScript()}
+                                    java={renderJava()}
+                                    cs={renderCs()}
+                                    py={renderPython()}
+                                />
+                            </div>
                         </div>
 
                         <p style={Styles.Fonts.basic}>
@@ -784,17 +999,17 @@ const DataTypesLesson = ({}) => {
                 {renderTitle("Data Types")}
                 {renderFirst()}
                 <CodeSnippet
-                    js={renderVariablesJS()}
-                    java={renderVariablesJavaScript()}
-                    cs={renderVariablesJavaScript()}
-                    py={renderVariablesPython()}
+                    // js={renderVariablesJS()}
+                    // java={renderVariablesJavaScript()}
+                    // cs={renderVariablesJavaScript()}
+                    // py={renderVariablesPython()}
                 />
                 {renderSecond()}
                 <CodeSnippet
-                    js={renderVariablesJS_2()}
-                    java={renderVariablesJava_2()}
-                    cs={renderVariablesC_2()}
-                    py={renderVariablesPython_2()}
+                    // js={renderVariablesJS_2()}
+                    // java={renderVariablesJava_2()}
+                    // cs={renderVariablesC_2()}
+                    // py={renderVariablesPython_2()}
                 />
             </div>
         )
