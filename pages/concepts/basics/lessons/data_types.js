@@ -659,12 +659,15 @@ const DataTypesLesson = ({}) => {
                     
                     <div style={Styles.Fonts.lessonHeader}>Why are Data Types Important?</div>
                     <div style={Styles.Sections.lessonContent}>
+
                         <p style={Styles.Fonts.basic}> 
                             Data types help segment different kinds of variables and minimize storage. Their importance depends on the langauage, as some languages like <strong>Java and C</strong> require a data type be provided the moment a variable is declared; whereas the compilers in languages like <strong>JavaScript and Ruby</strong> can determine the data type based on the value provided during initalization. In these languages the data type can also change, whereas in older languages once a data type is set it cannot be easily altered.
                         </p>
+
                         <p style={Styles.Fonts.basic}> 
                             Regardless of the language however, all data types behave a little differently. Lets take a look at some simple examples...
                         </p>
+                        
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             Below we declare an initialize variables that look like they have a similar value, but are of different data types. We will first initialize an int, and then a char.
                             <div style={Styles.Sections.simpleLessonCode}>
@@ -699,7 +702,46 @@ const DataTypesLesson = ({}) => {
                             </div>
 
                             Now we will compare how they interact with each other was well as between themselves.
+                            <div style={{...Styles.Sections.simpleLessonCode, width: 750}}>
+                                <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>int </span>
+                                    <span style={Styles.Code.var}>combinedNums </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>num </span>
+                                    <span style={Styles.Code.reg}>+ </span>
+                                    <span style={Styles.Code.var}>num2 </span>
+                                    <span style={Styles.Code.reg}>;</span>
+                                </p>
+                                <p style={Styles.Code.code}>
+                                   <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span> 
+                                </p>
+                                <br></br>
+                                <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>String </span>
+                                    <span style={Styles.Code.var}>combinedTxt </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>txt </span>
+                                    <span style={Styles.Code.reg}>+ </span>
+                                    <span style={Styles.Code.var}>txt2 </span>
+                                    <span style={Styles.Code.reg}>;</span>
+                                </p>
+                                <p style={Styles.Code.code}>
+                                   <span style={Styles.Code.comment}>// Remmeber that a char data type can pnly hold one character.</span> 
+                                </p>
+                                <p style={Styles.Code.code}>
+                                   <span style={Styles.Code.comment}>// This means that to have multiple chars together, you will need a String.</span> 
+                                </p>
+                                <p style={Styles.Code.code}>
+                                   <span style={Styles.Code.comment}>// The value of combinedTxt would be "54".</span> 
+                                </p>
+                            </div>
+
+                            <br></br>
                         </div>
+
+                        <p style={Styles.Fonts.basic}>
+
+                        </p>
                     </div>
                 </div>
             )
