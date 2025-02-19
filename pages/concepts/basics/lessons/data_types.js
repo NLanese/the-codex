@@ -235,6 +235,41 @@ const DataTypesLesson = ({}) => {
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.comment}>// The value of combinedTxt would be "54".</span> 
                         </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>String </span>
+                            <span style={Styles.Code.var}>mixedDataTypes </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.keyword}>(char) </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>text </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>int </span>
+                            <span style={Styles.Code.var}>mixedDataTypes </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.keyword}>(int) </span>
+                            <span style={Styles.Code.var}>text </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// In Java, you can sometimes mix different data types through a process called <strong>casting</strong> .</span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The less computationally demanding variable and convert it to the </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// more computationally heavy variable. In this case, our int will convert </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// into a string. This makes the mixedDataTypes value '54'</span> 
+                        </p>
                 </div>
             )
         }
