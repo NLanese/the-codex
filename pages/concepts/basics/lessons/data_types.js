@@ -1126,7 +1126,9 @@ const DataTypesLesson = ({}) => {
                             </div>
 
                             As previously mentioned, data types are more important in some languages than in others. Below we will show how different languages may have some limitations that others don't. 
+                           
                             <br></br>
+
                             <div>
                                 <CodeSnippet 
                                     js={renderJavaScript()}
@@ -1135,11 +1137,12 @@ const DataTypesLesson = ({}) => {
                                     py={renderPython()}
                                 />
                             </div>
+
+                            <br></br>
+
                         </div>
 
-                        <p style={Styles.Fonts.basic}>
-
-                        </p>
+                        <br></br>
                     </div>
                 </div>
             )
