@@ -163,6 +163,36 @@ const DataTypesLesson = ({}) => {
                             <span style={Styles.Code.comment}>// into a string. This makes the mixedDataTypes value '54'</span> 
                         </p>
 
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>num3 </span>
+                            <span style={Styles.Code.reg}>= 1.5</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>numberType </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>num3 </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// JavaScript is different than most langauages in that 'int', 'float' and 'double' do.</span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// not actually exist. Instead, every numerical value in JavaScript is of data type 'number' </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// This makes working with numbers easier to develop in JavaScript, but less computationally efficient </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// since a 'number' can be as large as a double, so it takes much more space in storage than ints</span> 
+                        </p>
+
                 </div>
             )
         }
@@ -269,6 +299,33 @@ const DataTypesLesson = ({}) => {
                         </p>
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.comment}>// into a string. This makes the mixedDataTypes value '54'</span> 
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>float </span>
+                            <span style={Styles.Code.var}>decimal </span>
+                            <span style={Styles.Code.reg}>= 1.5</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>float </span>
+                            <span style={Styles.Code.var}>numberType </span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>num3 </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// Java can easily convert ints to floats or doubles when needed.</span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// thus you can execute the code above without needing to use casting like you would </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// when changing non-numerical data types. </span> 
                         </p>
                 </div>
             )
@@ -1139,6 +1196,11 @@ const DataTypesLesson = ({}) => {
                             </div>
 
                             <br></br>
+                            <br></br>
+                            
+                            <p style={Styles.Fonts.basic}>
+                                Let's go over a bit of what we saw above. 
+                            </p>    
 
                         </div>
 
