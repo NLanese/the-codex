@@ -18,8 +18,8 @@ const BasicDefinitionsList = [
     },
 
     {
-        title: "Operators",
-        definition: "Operators are characters or phrases that are used to manipulate the value of a variable. Common operators are (+) for addition, (-) for subtraction, (*) for multiplication, and (/) for division.",
+        title: "Operators / Operations",
+        definition: "Operators are characters or phrases that are used to manipulate the value of a variable. Common operators are (+) for addition, (-) for subtraction, (*) for multiplication, and (/) for division. The symbol itself is the Operator while the whole statement would be an operation. For example, if you were to aadd the value of two variables, you would have an operation that uses the ( + ) operator in order to get the sum of two variables.",
         titleStyle: Styles.Fonts.h2,
         definitionStyle: Styles.Fonts.definition,
         color: "#ffd591"

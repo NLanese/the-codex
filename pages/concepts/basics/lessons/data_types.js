@@ -1199,7 +1199,9 @@ const DataTypesLesson = ({}) => {
                             <br></br>
                             
                             <p style={Styles.Fonts.basic}>
-                                Let's go over a bit of what we saw above. 
+                                Let's go over a bit of what we saw above. Foremost, you can see clearly in these small code snippets some of the bigger differences between langauges. <strong>Python</strong>, for example does not even have developers use a <strong>keyword</strong> to announce the creation of a variable. 
+                                
+                                As you can see, in most cases you will be able to switch the data type of a variable (or create a new variable to do so) when mixing data types in operations. While some languages rely on the developer guiding the compiler through the process of mixing data types; others can figure out what the developer wants and automatically make the adjustments. 
                             </p>    
 
                         </div>
