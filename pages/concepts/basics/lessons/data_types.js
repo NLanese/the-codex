@@ -3,6 +3,10 @@ import React, {useEffect, useState} from "react";
 
 // Styles
 import Styles from "../../../../styles/styles";
+
+// Ostrich
+import {ODef} from "../../../../OstrichComponents/Text/OstrichDefinition";
+import {ODefContnet}  from "../../../../constants/oDefContent";
  
 // Recoil
 import { useRecoilState } from "recoil";
@@ -1199,7 +1203,17 @@ const DataTypesLesson = ({}) => {
                             <br></br>
                             
                             <p style={Styles.Fonts.basic}>
-                                Let's go over a bit of what we saw above. Foremost, you can see clearly in these small code snippets some of the bigger differences between langauges. <strong>Python</strong>, for example does not even have developers use a <strong>keyword</strong> to announce the creation of a variable. 
+                                Let's go over a bit of what we saw above. Foremost, you can see clearly in these small code snippets some of the bigger differences between langauges. <strong>Python</strong>, for example does not even have developers use a 
+                                <ODef 
+                                text="Keyword" 
+                                modalcontent={
+                                <ODefContnet 
+                                    color="#ffd591" 
+                                    word="Keywords" 
+                                    definition="Keywords are phrases or words that have an inherent definition in whatever language you are currently using, and thus cannot be used as variable names. For example, words like 'if', 'else', 'let', and 'public' are some examples of keywords in JavaScript. These words cannot be used as variable names."
+                                />} 
+                                />  
+                                to announce the creation of a variable. 
                                 
                                 As you can see, in most cases you will be able to switch the data type of a variable (or create a new variable to do so) when mixing data types in operations. While some languages rely on the developer guiding the compiler through the process of mixing data types; others can figure out what the developer wants and automatically make the adjustments. 
                             </p>    
