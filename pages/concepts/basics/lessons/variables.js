@@ -3,6 +3,10 @@ import React, {useEffect, useState} from "react";
 
 // Styles
 import Styles from "../../../../styles/styles";
+
+// Ostrich
+import {ODef} from "../../../../OstrichComponents/Text/OstrichDefinition";
+import {ODefContnet}  from "../../../../constants/oDefContent";
  
 // Recoil
 import { useRecoilState } from "recoil";
@@ -170,7 +174,18 @@ const VariablesLesson = ({}) => {
                         </p>
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             <li>
-                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <strong>string</strong> which is how we refer to text in computer science. A variable, for example could contain a name like "Jeff Winger"
+                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <span>
+                                <ODef 
+                                text="string" 
+                                modalContent={
+                                <ODefContnet 
+                                    color="#bef576" 
+                                    word="String" 
+                                    definition= "A string is a list of chars in consequtive order. For example, 'Hello World' is a string, but that really means it is just a list of 'H' followed by 'e' followed by 'l' and so on."
+                                    />} 
+                                />  
+                                </span>
+                                which is how we refer to text in computer science. A variable, for example could contain a name like "Jeff Winger"
                             </li>
                             <br></br>
                             <li>
@@ -194,7 +209,17 @@ const VariablesLesson = ({}) => {
                         The first part is called <strong>Declaration</strong>. This step is in just creating the variable. To us it is a simple process, but it informs the compiler to kickstart the variable life cycle.
                     </p>
                     <p style={Styles.Fonts.basic}>
-                        Once we as the developer <strong>declare</strong> a variable, the computer compiler actually sections off a dedicated part of its memory for this value. This is called the <strong>Initialization</strong> phase of the Variable Lifecycle
+                        Once we as the developer                                 
+                        <ODef 
+                        text="declare" 
+                        modalContent={
+                        <ODefContnet 
+                            color="#88fccc" 
+                            word="Declaration" 
+                            definition="Creating a variable in Computer Science is referred to as 'Declaring.' If I wanted to create and use a new variable, x, I would first have to declare it. In most languages, there will be a keyword immediately proceeding the variable name. For instance, in JavaScript, if I wanted to declare an empty variable x, I could do so by entering 'let x' or 'var x', as 'let' and 'var' are keywords for creating variables in JavaScript."
+                            />} 
+                        />   
+                        a variable, the computer compiler actually sections off a dedicated part of its memory for this value. This is called the <strong>Initialization</strong> phase of the Variable Lifecycle
                     </p>
                     <div style={Styles.Sections.importantNote}>
                         <p style={Styles.Fonts.basic}>

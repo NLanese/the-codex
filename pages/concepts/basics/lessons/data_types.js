@@ -1119,7 +1119,27 @@ const DataTypesLesson = ({}) => {
                         </p>
 
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            Below we declare an initialize variables that look like they have a similar value, but are of different data types. We will first initialize an int, and then a char.
+                            Below we 
+                            <ODef 
+                            text="declare" 
+                            modalContent={
+                            <ODefContnet 
+                                color="#88fccc" 
+                                word="Declaration" 
+                                definition="Creating a variable in Computer Science is referred to as 'Declaring.' If I wanted to create and use a new variable, x, I would first have to declare it. In most languages, there will be a keyword immediately proceeding the variable name. For instance, in JavaScript, if I wanted to declare an empty variable x, I could do so by entering 'let x' or 'var x', as 'let' and 'var' are keywords for creating variables in JavaScript."
+                                />} 
+                            /> 
+                            and 
+                            <ODef 
+                            text="initialize" 
+                            modalContent={
+                            <ODefContnet 
+                                color="#88fccc" 
+                                word="Initializing a Variable" 
+                                definition="In most langauges, we can declare and initialize a variable at the same time. To initialize a variable simply means to assign a value to it. In our previous example, 'let x', we would simply need to add a value to the statement to consider x initialized. 'let x = 5' is an example of full variable initialization."
+                                />} 
+                            />
+                             variables that look like they have a similar value, but are of different data types. We will first initialize an int, and then a char.
                             <div style={Styles.Sections.simpleLessonCode}>
 
                                 <p style={Styles.Code.code}>

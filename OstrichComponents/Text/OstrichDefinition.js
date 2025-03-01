@@ -50,18 +50,18 @@ export const ODef = ({
     /////////////////
     const { top, left } = getModalPosition();
     return (
-        <span style={{backgroundColor: 'yellow'}} className="relative inline-block">
+        <span className="relative inline-block">
           <span 
           style={{fontWeight: 600, color: 'blue'}} 
           onClick={() => setOpen(!open)}
           ref={textRef}
           >
-            {(" " + text + " ")} 
+            <strong>{(" " + text + " ")}</strong>
         </span>
            {open && (
             <div
-            style={{  position: 'absolute',
-                      top: (top - 175), left: left,
+            style={{  position: 'absolute', zIndex: 500,
+                      top: (top - 120), left: left,
                       maxWidth: 500, height: 'auto',
                       backgroundColor: 'lightgrey',
                       borderRadius: 15,
