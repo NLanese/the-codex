@@ -1074,7 +1074,17 @@ const DataTypesLesson = ({}) => {
                     <div style={Styles.Fonts.lessonHeader}>What is are Data Types?</div>
                     <div style={Styles.Sections.lessonContent}>
                         <p style={Styles.Fonts.basic}>
-                            As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some programming languages than it does in others. For example, in <strong>Java and C#</strong>, variables of different data types cannot interact with each other at all unless the developer makes some changes in order to change one or more of their data types so that they match. 
+                            As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some 
+                            <ODef 
+                            text="programming languages" 
+                            modalContent={
+                            <ODefContnet 
+                                color="#88fccc" 
+                                word="Programming Language" 
+                                definition= "Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we have created systems of 'syntax' to form a bridge between human comprehension and computer binary code. This means we created 'languages' with their own syntax, or 'grammer' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in rela life, each language will have its own quirks, its own rules words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#."
+                                />} 
+                            />  
+                            than it does in others. For example, in <strong>Java and C#</strong>, variables of different data types cannot interact with each other at all unless the developer makes some changes in order to change one or more of their data types so that they match. 
                             For example, in Java, if we try to add x which has a value of 2 (which has the datatype 'integer') to y, which has a value of 2.5 (which is of the data type 'double') the compiler will throw an error.
                         </p>
                         <p style={Styles.Fonts.basic}> 

@@ -26,6 +26,14 @@ const BasicDefinitionsList = [
     },
 
     {
+        title: "Programming Languages",
+        definition: "Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we created 'languages' with their own syntax, or 'grammer' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in rela life, each language will have its own quirks, its own rules words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#ffd591"
+    },
+
+    {
         title: "Datatypes",
         definition: "Every variable will have a data type, but depending on the Programming Language you are using, this data type can be changed. Data Types denote what kind of value is stored inside of the variable. For example, in x=5, x would be a variable with a datatype of an Integer",
         titleStyle: Styles.Fonts.h2,

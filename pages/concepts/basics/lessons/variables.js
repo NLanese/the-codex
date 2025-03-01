@@ -273,7 +273,17 @@ const VariablesLesson = ({}) => {
                         </p>
                     </div>
                     <p style={Styles.Fonts.basic}>
-                        Below, we will go over how to <strong>declaring</strong> and <strong>assign</strong> a variable in four different <strong>programming languages</strong>. We will go over these in more depth later; for now all you need to know is that each programming language, much like regular spoken languages, each have their own different rules. <strong>Keywords, syntax, and overall structure</strong> will differ between languages although the general concepts of Computer Science remain consistent between them.   
+                        Below, we will go over how to <strong>declaring</strong> and <strong>assign</strong> a variable in four different 
+                        <ODef 
+                        text="programming language" 
+                        modalContent={
+                        <ODefContnet 
+                            color="#88fccc" 
+                            word="Programming Language" 
+                            definition= "Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we have created systems of 'syntax' to form a bridge between human comprehension and computer binary code. This means we created 'languages' with their own syntax, or 'grammer' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in rela life, each language will have its own quirks, its own rules words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#."
+                            />} 
+                        />  
+                        We will go over these in more depth later; for now all you need to know is that each programming language, much like regular spoken languages, each have their own different rules. <strong>Keywords, syntax, and overall structure</strong> will differ between languages although the general concepts of Computer Science remain consistent between them.   
                     </p>
                 </div>
                 </div>
