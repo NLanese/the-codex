@@ -9,8 +9,7 @@ export const ODef = ({
     // State
     const [open, setOpen] = useState(false);
     const modalRef = useRef(null);
-
-    console.log("ChatGPT is retarded and should go fuck itself")
+    const textRef = useRef(null);
 
     /////////////////
     // Use Effects //
@@ -31,14 +30,45 @@ export const ODef = ({
         };
     }, [open]);
 
+    //////////////////////
+    // Position Handler //
+    //////////////////////
+    const getModalPosition = () => {
+        if (textRef.current) {
+            const rect = textRef.current.getBoundingClientRect();
+            return {
+                top: rect.top + window.scrollY,    // Account for scroll position
+                left: rect.left + rect.width + 5,   // Position to the right of the text with some margin
+            };
+        }
+        return { top: 0, left: 0 };  // Default if no element is found
+    };
+    
+
+    /////////////////
+    // Main Return //
+    /////////////////
+    const { top, left } = getModalPosition();
     return (
-        <span className="relative inline-block">
-          <span style={{fontWeight: 600, color: 'blue'}} onClick={() => setOpen(!open)}>{(" " + text + " ")} </span>
+        <span style={{backgroundColor: 'yellow'}} className="relative inline-block">
+          <span 
+          style={{fontWeight: 600, color: 'blue'}} 
+          onClick={() => setOpen(!open)}
+          ref={textRef}
+          >
+            {(" " + text + " ")} 
+        </span>
            {open && (
             <div
-              style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'green'}}
-              ref={modalRef}
-            >
+            style={{  position: 'absolute',
+                      top: (top - 175), left: left,
+                      maxWidth: 500, height: 'auto',
+                      backgroundColor: 'lightgrey',
+                      borderRadius: 15,
+                      boxShadow:'10px 4px 10px 4px rgba(00, 00, 00, 0.3)',
+            }}
+            ref={modalRef}
+          >
               {modalContent}
             </div>
           )}
