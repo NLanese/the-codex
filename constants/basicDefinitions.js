@@ -10,6 +10,14 @@ const BasicDefinitionsList = [
     },
 
     {
+        title: "Constant",
+        definition: "A constant is just a value that cannot have its value changed once one have been provided",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#ffd591"
+    },
+
+    {
         title: "Keywords",
         definition: "Keywords are phrases or words that have an inherent definition in whatever language you are currently using, and thus cannot be used as variable names. For example, words like 'if', 'else', 'let', and 'public' are some examples of keywords in JavaScript. These words cannot be used as variable names.",
         titleStyle: Styles.Fonts.h2,

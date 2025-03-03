@@ -1232,7 +1232,7 @@ const DataTypesLesson = ({}) => {
                             <br></br>
                             <br></br>
                             
-                            <div style={Styles.Fonts.basic}>
+                            <p style={Styles.Fonts.basic}>
                                 Let's go over a bit of what we saw above. Foremost, you can see clearly in these small code snippets some of the bigger differences between langauges. <strong>Python</strong>, for example does not even have developers use a 
                                 <span>
                                 <ODef 
@@ -1245,10 +1245,13 @@ const DataTypesLesson = ({}) => {
                                 />} 
                                 />  
                                 </span>
-                                to announce the creation of a variable. 
+                                to announce the creation of a variable. <strong>JavaScript</strong> just uses they keywords 'let', 'var', and 'const' to create variables and constants respectively. Older, lower-level programming Languages like <strong>Java and C# </strong>require developers to specify the variable's data type at the moment of declaration. 
                                 
-                                As you can see, in most cases you will be able to switch the data type of a variable (or create a new variable to do so) when mixing data types in operations. While some languages rely on the developer guiding the compiler through the process of mixing data types; others can figure out what the developer wants and automatically make the adjustments. 
-                            </div>    
+                            </p>   
+
+                            <p style={Styles.Fonts.basic}>
+                            As you can see, in most cases you will be able to switch the data type of a variable (or create a new variable to do so) when mixing data types in operations. While some languages rely on the developer guiding the compiler through the process of mixing data types; others can figure out what the developer wants and automatically make the adjustments. 
+                            </p> 
 
                         </div>
 
