@@ -156,11 +156,77 @@ const OperatorsLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-                    <div style={Styles.Fonts.lessonHeader}>What is a Variable</div>
+                    <div style={Styles.Fonts.lessonHeader}>What are Operators</div>
                     <div style={Styles.Sections.lessonContent}>
                         <p style={Styles.Fonts.basic}>
-                            Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
+                            <strong>Operators are symbols </strong> {"(primarily +, -, *, /, >, <, and %)"} <strong>that are used to convey some sort of action or comparison between two or more variables or values.</strong> More simply put, we use them to express certain actions; we would use + to convey the fact that we wish to add two values together. 
                         </p>
+                        <p>
+                            Lets go over some examples of using these operators
+                        </p>
+                        <div style={Styles.Sections.importantNote}>
+                            <p style={Styles.Fonts.basic}>
+                                Let's start with the basic mathematical operators that we are all used to. 
+                            </p>
+                            <div>
+                            <div style={Styles.Sections.simpleLessonCode}>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>= 4</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>= 6</span>
+                                </p>
+
+                                <br></br>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>addition </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>+ </span>
+                                <span style={Styles.Code.var}>x </span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>subtraction </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>- </span>
+                                <span style={Styles.Code.var}>x </span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>multi </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>* </span>
+                                <span style={Styles.Code.var}>x </span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>division </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>/ </span>
+                                <span style={Styles.Code.var}>x </span>
+                                </p>
+                                
+                            </div>
+                            </div>
+                            <p style={Styles.Fonts.basic}>
+                                Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x", The computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x" in the <strong>Initialization</strong> Phase that automatically follows.
+                            </p>
+                        </div>
+
                         <div style={Styles.Sections.importantNote}>
                             <p style={Styles.Fonts.basic}>
                                 <strong>A Variable is essentially a container for information that be stored, changed, referenced, checked or otherwise used in the future.</strong> For example, a user on a website may have a firstName and a lastName variable associated with their account. The value of that variable would change from user to user. Another example could be on a shopping website, as you add items to your cart you may notice a little counter over your cart icon, indicating how many items you have added. This counter shows the value of a variable that keeps track of this data.
