@@ -168,59 +168,77 @@ const OperatorsLesson = ({}) => {
                             <p style={Styles.Fonts.basic}>
                                 Let's start with the basic mathematical operators that we are all used to. 
                             </p>
-                            <div>
-                            <div style={Styles.Sections.simpleLessonCode}>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>var </span>
-                                <span style={Styles.Code.var}>x </span>
-                                <span style={Styles.Code.reg}>= 4</span>
-                                </p>
+                            <div style={{display: 'flex', flexDirection: 'row'}}>
+                                <div style={{...Styles.Sections.simpleLessonCode, flex: 4}}>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    <span style={Styles.Code.reg}>= 2</span>
+                                    </p>
 
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>var </span>
-                                <span style={Styles.Code.var}>y </span>
-                                <span style={Styles.Code.reg}>= 6</span>
-                                </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>= 6</span>
+                                    </p>
 
-                                <br></br>
+                                    <br></br>
 
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>var </span>
-                                <span style={Styles.Code.var}>addition </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.var}>y </span>
-                                <span style={Styles.Code.reg}>+ </span>
-                                <span style={Styles.Code.var}>x </span>
-                                </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>addition </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>+ </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
 
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>var </span>
-                                <span style={Styles.Code.var}>subtraction </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.var}>y </span>
-                                <span style={Styles.Code.reg}>- </span>
-                                <span style={Styles.Code.var}>x </span>
-                                </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>subtraction </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>- </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
 
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>var </span>
-                                <span style={Styles.Code.var}>multi </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.var}>y </span>
-                                <span style={Styles.Code.reg}>* </span>
-                                <span style={Styles.Code.var}>x </span>
-                                </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>multi </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>* </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
 
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>var </span>
-                                <span style={Styles.Code.var}>division </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.var}>y </span>
-                                <span style={Styles.Code.reg}>/ </span>
-                                <span style={Styles.Code.var}>x </span>
-                                </p>
-                                
-                            </div>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>division </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>/ </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
+                                    
+                                </div>
+                                <div style={{...Styles.Fonts.basic, flex: 8}}>
+                                    <p style={ Styles.Fonts.basic}>
+                                        Here, you see we have created two numeric variables, and then using operators created four new variables that are the result of some operation between the first two.
+                                    </p> 
+                                    <p></p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'addition'</strong>  would have a value of 8 ( 6 + 2 )
+                                    </p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'subtraction'</strong>  would have a value of 4 ( 6 - 2 )
+                                    </p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'multi'</strong>  would have a value of 12 ( 6 * 2 )
+                                    </p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'addition'</strong>  would have a value of 3 ( 6 / 2 )
+                                    </p>
+                                </div>
                             </div>
                             <p style={Styles.Fonts.basic}>
                                 Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x", The computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x" in the <strong>Initialization</strong> Phase that automatically follows.
