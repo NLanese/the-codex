@@ -286,7 +286,91 @@ const OperatorsLesson = ({}) => {
                                 definition= "Every variable will have a data type, but depending on the Programming Language you are using, this data type can be changed. Data Types denote what kind of value is stored inside of the variable. For example, in x=5, x would be a variable with a datatype of an Integer"
                                 />} 
                             /> 
-                        . These are ways we categorize variables, and some operators will work on some variable types but not others. For example, if we had two variables that were text based, we wouldn't be able to perform division between them. This means to say we cannot divide 5 by w. </p>
+                        . These are ways we categorize variables, and some operators will work on some variable types but not others. For example, if we had two variables that were text based, we wouldn't be able to perform division between them. This means to say we cannot divide 5 by "w". However there is one more form of operator that exists for use with numeric variables and that is the <strong>comparative operator</strong> Lets go over some of those now
+                        </p>
+                        <div style={Styles.Sections.importantNote}>
+                        <p style={Styles.Fonts.basic}>
+                            Comparative operators will compare two numeric variables using operations like "greater than" and "less than." There are four total operators of this kind, and we will show them below.
+                        </p>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                <div style={{...Styles.Sections.simpleLessonCode, flex: 4}}>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    <span style={Styles.Code.reg}>= 2</span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>= 6</span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>z </span>
+                                    <span style={Styles.Code.reg}>= 6</span>
+                                    </p>
+
+                                    <br></br>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>greaterThan </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>{'> '} </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>lessThan </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>{'< '} </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>greaterOrEqual </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>{'>= '} </span>
+                                    <span style={Styles.Code.var}>z </span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>lessOrEqual </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    <span style={Styles.Code.reg}>{'<= '} </span>
+                                    <span style={Styles.Code.var}>z </span>
+                                    </p>
+                                    
+                                </div>
+                                <div style={{...Styles.Fonts.basic, flex: 8}}>
+                                    <p style={ Styles.Fonts.basic}>
+                                        Here, you see we have created two numeric variables, and then using operators created four new variables that are the result of some operation between the first two.
+                                    </p> 
+                                    <p></p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'greaterThan'</strong>  would have a value of <strong>true</strong>
+                                    </p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'lessThan'</strong>  would have a value of <strong>false</strong>
+                                    </p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'greaterOrEqual'</strong>  would have a value of <strong>true</strong>
+                                    </p>
+                                    <p style={ Styles.Fonts.basic}>
+                                        <strong>The variable named 'lessOrEqual'</strong>  would have a value of <strong>true</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )
