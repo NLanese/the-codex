@@ -528,7 +528,7 @@ const DataTypesLesson = ({}) => {
             return(
                 <div>
 
-                    <div style={Styles.Fonts.lessonHeader}>What is are Data Types?</div>
+                    <div style={Styles.Fonts.lessonHeader}>What are Data Types?</div>
                     <div style={Styles.Sections.lessonContent}>
                         <p style={Styles.Fonts.basic}>
                             As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some 

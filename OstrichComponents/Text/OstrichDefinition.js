@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 export const ODef = ({
-    text, modalContent
+    text, modalContent, definitionObject
 }) => {
 
     // State
@@ -33,6 +33,7 @@ export const ODef = ({
     //////////////////////
     // Position Handler //
     //////////////////////
+
     const getModalPosition = () => {
         if (textRef.current) {
             const rect = textRef.current.getBoundingClientRect();
@@ -43,6 +44,30 @@ export const ODef = ({
         }
         return { top: 0, left: 0 };  // Default if no element is found
     };
+
+    const determineContent = () => {
+        if (definitionObject){
+            return(
+                <div style={{padding: 10}}>
+                    <DefinitionRow 
+                        definitionObject={
+                            {
+                                title: definitionObject.title,
+                                definition: definitionObject.definition,
+                                titleStyle: definitionObject.titleStyle,
+                                definitionStyle: definitionObject.definitionStyle,
+                                color: definitionObject.color
+                            }
+                        }
+                        definitionRowStyle={{border: "1px solid black", borderRadius: 5, marginTop: 5}}
+                        titleBoxStyle={{flex: 2,  display: "flex", justifyContent: 'center', alignItems: 'center', borderRight: "1px solid black"}}
+                        definitionBoxStyle={{flex: 7}}
+                    />
+                </div>
+            )
+        }
+        else return modalContent
+    }
     
 
     /////////////////
@@ -69,7 +94,7 @@ export const ODef = ({
             }}
             ref={modalRef}
           >
-              {modalContent}
+              {determineContent()}
             </div>
           )}
         </span>
