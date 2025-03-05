@@ -240,133 +240,54 @@ const OperatorsLesson = ({}) => {
                                     </p>
                                 </div>
                             </div>
-                            <p style={Styles.Fonts.basic}>
-                                Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x", The computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x" in the <strong>Initialization</strong> Phase that automatically follows.
-                            </p>
-                        </div>
 
-                        <div style={Styles.Sections.importantNote}>
+                            <br></br>
+
                             <p style={Styles.Fonts.basic}>
-                                <strong>A Variable is essentially a container for information that be stored, changed, referenced, checked or otherwise used in the future.</strong> For example, a user on a website may have a firstName and a lastName variable associated with their account. The value of that variable would change from user to user. Another example could be on a shopping website, as you add items to your cart you may notice a little counter over your cart icon, indicating how many items you have added. This counter shows the value of a variable that keeps track of this data.
+                                Next we will go over another lesser known numeric operator, the <strong>modulo</strong>
+                            </p>
+
+                            <div style={Styles.Sections.simpleLessonCode}>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    <span style={Styles.Code.reg}>= 5</span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>= 13</span>
+                                    </p>
+
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>var </span>
+                                    <span style={Styles.Code.var}>modulo </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>y </span>
+                                    <span style={Styles.Code.reg}>% </span>
+                                    <span style={Styles.Code.var}>x </span>
+                                    </p>
+
+                            </div>
+
+                            <p style={Styles.Fonts.basic}>
+                                Here, the new variable named <strong>modulo</strong> would have a value of 3. This is because modulo returns <strong>the remainder of a standard division operation.</strong> This means since 5 can go into 13 two times with a remainder of 3, the value of 13 % 5 is 3. 
                             </p>
                         </div>
                         <p style={Styles.Fonts.basic}>
-                            Let's go over some of the specifics of what exactly a variable can do, again considering that their role is to store, change, reference, or check the data given to them.
-                        </p>
-                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <li>
-                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <span>
-                                <ODef 
-                                text="string" 
-                                modalContent={
-                                <ODefContnet 
-                                    color="#bef576" 
-                                    word="String" 
-                                    definition= "A string is a list of chars in consequtive order. For example, 'Hello World' is a string, but that really means it is just a list of 'H' followed by 'e' followed by 'l' and so on."
-                                    />} 
-                                />  
-                                </span>
-                                which is how we refer to text in computer science. A variable, for example could contain a name like "Jeff Winger"
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Variables can have their Data changed -- </strong>More times than not, when working with a technical project, you will have more values that can change than not. For example, if we were developing a game, we would need a variable to keep score. This score would need to be changed quite frequently. Similarly, a user may have a username associated with an account, and they will need the ability to change that. Sometimes, variables will not change and SHOULD not change, and as such these variables are actually created differently than others, and are often referred to as <strong>constants</strong> but these will be covered later.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Variables will have their Data referenced -- </strong> What's the point in storing data if you don't use it? In most previous examples, the variable we mention ends up being referenced when it is displayed to the user. The score is displayed, the amount of items in a cart is displayed, and so is a username. However, they can be referenced by the code itself. For example, a game will know to end when a score reaches a certain number. In a pickup game for example, if you play to 21 points, the app would check every time a team scores to see if their score is 21. If the score is 21 the game ends. <strong>We will go into this deeper in the future when we learn about conditionals</strong>
-                            </li>
-                        </div>
+                            In the next lesson, we will go over something called 
+                            <ODef 
+                            text="data types" 
+                            modalContent={
+                            <ODefContnet 
+                                color="#a3fc2d" 
+                                word="Data Types" 
+                                definition= "Every variable will have a data type, but depending on the Programming Language you are using, this data type can be changed. Data Types denote what kind of value is stored inside of the variable. For example, in x=5, x would be a variable with a datatype of an Integer"
+                                />} 
+                            /> 
+                        . These are ways we categorize variables, and some operators will work on some variable types but not others. For example, if we had two variables that were text based, we wouldn't be able to perform division between them. This means to say we cannot divide 5 by w. </p>
                     </div>
-                    <div style={Styles.Fonts.lessonHeader}>How to use a Variable</div>
-                    <div style={Styles.Sections.lessonContent}>
-                    <p style={Styles.Fonts.basic}>
-                        Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece.
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        There can be a few parts of a Variable's lifecycle in computer science. 
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        The first part is called <strong>Declaration</strong>. This step is in just creating the variable. To us it is a simple process, but it informs the compiler to kickstart the variable life cycle.
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        Once we as the developer                                 
-                        <ODef 
-                        text="declare" 
-                        modalContent={
-                        <ODefContnet 
-                            color="#88fccc" 
-                            word="Declaration" 
-                            definition="Creating a variable in Computer Science is referred to as 'Declaring.' If I wanted to create and use a new variable, x, I would first have to declare it. In most languages, there will be a keyword immediately proceeding the variable name. For instance, in JavaScript, if I wanted to declare an empty variable x, I could do so by entering 'let x' or 'var x', as 'let' and 'var' are keywords for creating variables in JavaScript."
-                            />} 
-                        />   
-                        a variable, the computer compiler actually sections off a dedicated part of its memory for this value. This is called the <strong>Initialization</strong> phase of the Variable Lifecycle
-                    </p>
-                    <div style={Styles.Sections.importantNote}>
-                        <p style={Styles.Fonts.basic}>
-                            Declaration can look as simple as this
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            </p>
-                        </div>
-                        <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x", The computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x" in the <strong>Initialization</strong> Phase that automatically follows.
-                        </p>
-                    </div>
-                    <p style={Styles.Fonts.basic}>
-                        The final part of the lifecycle is the <strong>Assignment</strong> Phase. This is where we assign a value to the newly created variable. This then saves that value in the section of memory that was segmented off during the <strong>Initialization</strong> Phase
-                    </p>
-                    <div style={Styles.Sections.importantNote}>
-                        <p style={Styles.Fonts.basic}>
-                            <strong>Assignment</strong> can come after the <strong>Declaration</strong> of a variable
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            </p>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.var}>x </span>
-                            <span style={Styles.Code.reg}>= 4</span>
-                            </p>
-                        </div>
-                        <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable and then on the next line we are <strong>assigning</strong> the numeric value of 4 to the variable. 
-                        </p>
-                    </div>
-                    <div style={Styles.Sections.importantNote}>
-                        
-                        <p style={Styles.Fonts.basic}>
-                            <strong>Assignment</strong> can also come during the <strong>Declaration</strong> of a variable, keeping things all on one line of code
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            <span style={Styles.Code.reg}>= 4</span>
-                            </p>
-                        </div>
-                        <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable and  simultaneously we are <strong>assigning</strong> the numeric value of 4 to the variable. 
-                        </p>
-                    </div>
-                    <p style={Styles.Fonts.basic}>
-                        Below, we will go over how to <strong>declaring</strong> and <strong>assign</strong> a variable in four different 
-                        <ODef 
-                        text="programming language" 
-                        modalContent={
-                        <ODefContnet 
-                            color="#88fccc" 
-                            word="Programming Language" 
-                            definition= "Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we have created systems of 'syntax' to form a bridge between human comprehension and computer binary code. This means we created 'languages' with their own syntax, or 'grammer' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in rela life, each language will have its own quirks, its own rules words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#."
-                            />} 
-                        />  
-                        We will go over these in more depth later; for now all you need to know is that each programming language, much like regular spoken languages, each have their own different rules. <strong>Keywords, syntax, and overall structure</strong> will differ between languages although the general concepts of Computer Science remain consistent between them.   
-                    </p>
-                </div>
                 </div>
             )
         }
@@ -439,13 +360,12 @@ const OperatorsLesson = ({}) => {
             <div style={{marginTop: '-3.2%'}}>
                 {renderTitle("Operators")}
                 {renderFirst()}
-                <CodeSnippet
+                {/* <CodeSnippet
                     js={renderVariablesJS()}
                     java={renderVariableJavaAndC()}
                     cs={renderVariableJavaAndC()}
                     py={renderVariablesPython()}
-                />
-                {renderSecond()}
+                /> */}
             </div>
         )
     }
