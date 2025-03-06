@@ -33,26 +33,47 @@ export const OstCard =({
     ///////////////
     // Rendrings //
     ///////////////
-    
+
+
+    // Top Level Render
     function determineReturn(){
+        if (!templateStyle){
+            return(
+                <div style={completeStyle()}>
+                    {children}
+                </div>
+            )
+        }
         if (templateStyle === 1){
             return TemplateOneRender()
         }
     }
 
-    const TemplateOneRender = () => {
-        return(
-            <div style={{...completeStyle(false), display: 'flex', width: 100%}}>
-                <div style={{flex: 7, width: '100%', justifyContent: '100%', alignItems: 'center'}}>
-                    <img src={imageSrc} style={{width: '100%', height: '100%'}} />
-                </div>
-            </div>
-        )
-    }
 
-    const TemplateTwoRender = () => {
-        
-    }
+    // Templates //
+
+        // Template One
+        const TemplateOneRender = () => {
+            return(
+                <div style={{...completeStyle(false), display: 'flex', width: '100%'}}>
+                    <div style={{flex: 7, width: '100%', justifyContent: '100%', alignItems: 'center'}}>
+                        <img src={imageSrc} style={{width: '100%', height: '100%'}} />
+                    </div>
+                    <div style={{padding: 10, textAlign: 'center', fontSize: 24}}>
+                        {children}
+                    </div>
+                </div>
+            )
+        }
+
+        // Template Two
+        const TemplateTwoRender = () => {
+            return
+        }
     
+    /////////////////
+    // Main Render //
+    /////////////////
+    return determineReturn()
     
 }
