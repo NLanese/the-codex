@@ -17,6 +17,7 @@ export const OstCard =({
     // Style Functions //
     /////////////////////
 
+    // This takes imported Styles and Applies Ostrich Effects to it. 
     function completeStyle(use = true){
         let completeStyle
         if (!style || !use){

@@ -7,7 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -17,17 +17,16 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@helpers/*": ["api/helpers/*"],
+      "@recoil/*": ["recoil/atoms.js"],  // Keep this without ".js" extension
       "@prismaDB": ["prisma/prismaDB.js"],
       "@graphql/*": ["api/graphql/*"],
       "@Ostrich/*": ["OstrichComponents/*"],
       "@lessonAssets/*": ["public/assets/lesson_images/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts",
-  //  "src/app/_app.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

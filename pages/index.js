@@ -1,6 +1,9 @@
 // React
 import React, {useEffect, useState} from "react";
 
+// Next JS
+import { useRouter } from "next/router";
+
 // Recoil
 import { useRecoilState } from "recoil";
 import { tokenState, tabBarState, directoryDataState } from "../recoil/atoms";
@@ -23,6 +26,7 @@ export default function Landing() {
   ///////////
 
   const [directory, setDirectory] = useRecoilState(directoryDataState)
+  const router = useRouter()
 
   ////////////////
   // UseEffects //
@@ -61,6 +65,7 @@ export default function Landing() {
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
                     console.log("Pressed")
+                    router.replace("/showcases/ostrich-components/ostrich-showcase")
                   }}
                 >
                   Ostrich Component Library
