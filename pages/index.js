@@ -59,6 +59,9 @@ export default function Landing() {
                   templateStyle={1}
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
+                  onClick={() => {
+                    console.log("Pressed")
+                  }}
                 >
                   Ostrich Component Library
                 </OstCard>

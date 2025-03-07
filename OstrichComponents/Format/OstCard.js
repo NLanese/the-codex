@@ -1,3 +1,6 @@
+import React, {useEffect, useState} from "react";
+
+
 export const OstCard =({
     children,
     imageSrc,
@@ -7,6 +10,8 @@ export const OstCard =({
     onClick
 }) =>{
 
+    const [isPressed, setIsPressed] = useState(false);
+    const [isHovered, setIsHovered] = useState(false)
 
     /////////////////////
     // Style Functions //
@@ -91,11 +96,20 @@ export const OstCard =({
                         overflow: 'hidden',
                         transform: isPressed ? 'scale(0.95)' : 'scale(1)',
                         transition: 'transform 0.1s ease-out',
-                        cursor: 'pointer',
+                        background: isHovered ? 'rgba(0, 0, 0, 0.15)' : 'transparent',
+                        cursor: onClick ? 'pointer' : "none"
                     }} 
                     onMouseDown={() => setIsPressed(true)}
                     onMouseUp={() => setIsPressed(false)}
-                    onMouseLeave={() => setIsPressed(false)} // Ensures reset if the cursor leaves
+                    onMouseLeave={() => {
+                        setIsPressed(false);
+                        setIsHovered(false);
+                    }} 
+                    onMouseEnter={() => {
+                        if (onClick){
+                            setIsHovered(true)
+                        }
+                    }}
                     onClick={(details) => {
                         setIsPressed(false); 
                         onClick(details);
