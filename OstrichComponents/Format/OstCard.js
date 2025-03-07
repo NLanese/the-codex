@@ -18,12 +18,12 @@ export const OstCard =({
     /////////////////////
 
     function completeStyle(use = true){
+        let completeStyle
         if (!style || !use){
-            return {borderRadius: 15, padding: 10, boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'}
+            completeStyle = {borderRadius: 15, padding: 10, boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'}
         }
         else{
-            console.log(style)
-            let completeStyle = {...style}
+            completeStyle = {...style}
             if (!style.borderRadius){
                 completeStyle = {...completeStyle, borderRadius: 15}
             }
@@ -33,8 +33,17 @@ export const OstCard =({
             if (!style.boxShadow){
                 completeStyle = {...completeStyle, boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'}
             }
-            return completeStyle
         }
+        if (onClick){
+            completeStyle = {
+                ...completeStyle, 
+                transform: isPressed ? 'scale(0.95)' : 'scale(1)',
+                transition: 'transform 0.1s ease-out',
+                background: isHovered ? 'rgba(0, 0, 0, 0.15)' : 'transparent',
+                cursor: onClick ? 'pointer' : "none"
+            }
+        }
+        return completeStyle
     }
 
 
@@ -94,10 +103,6 @@ export const OstCard =({
                         display: 'flex', flexDirection: 'column', 
                         minHeight: 100, paddingBottom: 10,
                         overflow: 'hidden',
-                        transform: isPressed ? 'scale(0.95)' : 'scale(1)',
-                        transition: 'transform 0.1s ease-out',
-                        background: isHovered ? 'rgba(0, 0, 0, 0.15)' : 'transparent',
-                        cursor: onClick ? 'pointer' : "none"
                     }} 
                     onMouseDown={() => setIsPressed(true)}
                     onMouseUp={() => setIsPressed(false)}
