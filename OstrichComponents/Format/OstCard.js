@@ -4,6 +4,7 @@ export const OstCard =({
     templateStyle,
     style,
     details,
+    onClick
 }) =>{
 
 
@@ -56,29 +57,66 @@ export const OstCard =({
 
         // Template One
         const TemplateOneRender = () => {
-            return(
-                <div style={{
-                    ...completeStyle(true), 
-                    display: 'flex', flexDirection: 'column', 
-                    minHeight: 100, paddingBottom: 10,
-                    overflow: 'hidden',
-                }}>
-                    <div style={{ display: 'flex',
-                        flex: 8, 
-                        justifyContent: 'center', alignItems: 'center', 
+            if (!onClick){
+                return(
+                    <div style={{
+                        ...completeStyle(true), 
+                        display: 'flex', flexDirection: 'column', 
+                        minHeight: 100, paddingBottom: 10,
+                        overflow: 'hidden',
                     }}>
-                        <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
+                        <div style={{ display: 'flex',
+                            flex: 8, 
+                            justifyContent: 'center', alignItems: 'center', 
+                        }}>
+                            <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
+                        </div>
+                        <div style={{ display: 'flex',
+                            flex: 2, 
+                            paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
+                            justifyContent: 'center', 
+                            fontSize: (details?.titleStyle ? details?.titleStyle : 24)
+                        }}>
+                            {children}
+                        </div>
                     </div>
-                    <div style={{ display: 'flex',
-                        flex: 2, 
-                        paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
-                        justifyContent: 'center', 
-                        fontSize: (details?.titleStyle ? details?.titleStyle : 24)
+                )
+            }
+            else{
+                return(
+                    <div style={{
+                        ...completeStyle(true), 
+                        display: 'flex', flexDirection: 'column', 
+                        minHeight: 100, paddingBottom: 10,
+                        overflow: 'hidden',
+                        transform: isPressed ? 'scale(0.95)' : 'scale(1)',
+                        transition: 'transform 0.1s ease-out',
+                        cursor: 'pointer',
+                    }} 
+                    onMouseDown={() => setIsPressed(true)}
+                    onMouseUp={() => setIsPressed(false)}
+                    onMouseLeave={() => setIsPressed(false)} // Ensures reset if the cursor leaves
+                    onClick={(details) => {
+                        setIsPressed(false); 
+                        onClick(details);
                     }}>
-                        {children}
+                        <div style={{ display: 'flex',
+                            flex: 8, 
+                            justifyContent: 'center', alignItems: 'center', 
+                        }}>
+                            <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
+                        </div>
+                        <div style={{ display: 'flex',
+                            flex: 2, 
+                            paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
+                            justifyContent: 'center', 
+                            fontSize: (details?.titleStyle ? details?.titleStyle : 24)
+                        }}>
+                            {children}
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            }
         }
 
         // Template Two

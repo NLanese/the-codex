@@ -60,21 +60,21 @@ export default function Landing() {
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                 >
-                  Check out the Ostrich Component Library
+                  Ostrich Component Library
                 </OstCard>
                 <OstCard
                   templateStyle={1}
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                 >
-                  Word words words
+                  Current Projects by Nick
                 </OstCard>
                 <OstCard
                   templateStyle={1}
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                 >
-                  Word words words
+                  Nick's Portfolio
                 </OstCard>
         </div>
      </div>
