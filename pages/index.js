@@ -13,6 +13,9 @@ import { ODef } from "../OstrichComponents/Text/OstrichDefinition";
 import { ODefContnet } from "../constants/oDefContent";
 import { OstCard } from "../OstrichComponents/Format/OstCard";
 
+// Assets
+const OstCompImg = "/assets/icons/big/OstrichComponentsLogo.png";
+
 export default function Landing() {
 
   ///////////
@@ -48,10 +51,31 @@ export default function Landing() {
         <p style={Styles.Fonts.basic}>
             I believe that anyone can become a developer, as I myself learned the skills of my trade through onlione courses, YouTube videos, and the occasional educational Reddit post. As such, I hope The Codex will be used as a repository of knowledge for all things Computer Science, and if even one person's life trajectory is changed by my content then it will all be worthwhile. Ranging from lessons on the most basic of Computer Science Principles to detailed examinations of some of the more popular open source frameworks and libraries, this site will have you making sites of your own in no time; it aims to be a resource that I myself yearned for when learning how to develop.
         </p>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-              <OstCard>
-                Word words words
-              </OstCard>
+        <div style={{
+          display: 'flex', 
+          flexDirection: 'row', 
+        }}>
+                <OstCard
+                  templateStyle={1}
+                  imageSrc={OstCompImg}
+                  style={{flex: 4, margin: 5}}
+                >
+                  Check out the Ostrich Component Library
+                </OstCard>
+                <OstCard
+                  templateStyle={1}
+                  imageSrc={OstCompImg}
+                  style={{flex: 4, margin: 5}}
+                >
+                  Word words words
+                </OstCard>
+                <OstCard
+                  templateStyle={1}
+                  imageSrc={OstCompImg}
+                  style={{flex: 4, margin: 5}}
+                >
+                  Word words words
+                </OstCard>
         </div>
      </div>
     </>
