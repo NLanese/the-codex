@@ -20,7 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@helpers/*": ["api/helpers/*"],
-      "@recoil/*": ["recoil/atoms.js"],  // Keep this without ".js" extension
+      "@recoil/*": ["recoil/*"],  
       "@prismaDB": ["prisma/prismaDB.js"],
       "@graphql/*": ["api/graphql/*"],
       "@Ostrich/*": ["OstrichComponents/*"],

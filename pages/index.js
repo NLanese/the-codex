@@ -37,7 +37,7 @@ export default function Landing() {
   }, [])
 
   return (
-    <>
+    <div style={{marginTop: 20}}>
      <div style={Styles.Fonts.pageTitle}>Welcome to The Codex</div>
       <div style={{...Styles.Sections.lessonContent, margin: "30px"}}>
         <p style={Styles.Fonts.basic}>
@@ -57,7 +57,9 @@ export default function Landing() {
         </p>
         <div style={{
           display: 'flex', 
-          flexDirection: 'row', 
+          flexDirection: 'row',
+          alignContent: 'space-evenly',
+          width: '100%',
         }}>
                 <OstCard
                   templateStyle={1}
@@ -86,6 +88,6 @@ export default function Landing() {
                 </OstCard>
         </div>
      </div>
-    </>
+    </div>
   );
 }

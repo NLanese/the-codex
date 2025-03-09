@@ -57,7 +57,24 @@ export const OstCard =({
     function determineReturn(){
         if (!templateStyle){
             return(
-                <div style={completeStyle()}>
+                <div style={completeStyle()}
+                onMouseDown={() => setIsPressed(true)}
+                onMouseUp={() => setIsPressed(false)}
+                onMouseLeave={() => {
+                    setIsPressed(false);
+                    setIsHovered(false);
+                }} 
+                onMouseEnter={() => {
+                    if (onClick){
+                        setIsHovered(true)
+                    }
+                }}
+                onClick={(details) => {
+                    if (onClick){
+                        setIsPressed(false); 
+                        onClick(details);
+                    }
+                }}>
                     {children}
                 </div>
             )
