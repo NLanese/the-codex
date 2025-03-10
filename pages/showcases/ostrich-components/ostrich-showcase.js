@@ -187,6 +187,40 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
                 </div>
+                <div style={{paddingTop: 10}}>
+                    <p style={Styles.Fonts.basic}>
+                        As you see, adding an <strong>onClick</strong> property automatically transfroms the entire component into a button.
+                        Additionally, you see that developers can still add their own custom styles to Ostrich Cards, while not removing the padding or shadow features the card has by default. 
+                    </p>
+                    <p style={Styles.Fonts.basic}>
+                        Ostrich Cards are also a great way to display pictures, as they take image inputs and have several different template options to help your image be 
+                        displayed exactly how you would like it to be
+                    </p>
+                    <p style={Styles.Fonts.basic}>
+                        Let's take a look at some Ostrich Cards that use Templates
+                    </p>
+                    <div style={{display: 'flex', 
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    }}>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={OstCompImg}
+                            style={{width: '30%', margin: 5}}
+                        >
+                            Template One
+                        </OstCard>
+                        <OstCard
+                            templateStyle={2}
+                            imageSrc={OstCompImg}
+                            style={{width: '30%', margin: 5}}
+                            details={{title: 'Template Two'}}
+                        >
+                            Inside wrapped content of Template Two.
+                            The 'Title' section is provided via the details prop
+                        </OstCard>
+                    </div>
+                </div>
             </div>
             
         </OstCard>
