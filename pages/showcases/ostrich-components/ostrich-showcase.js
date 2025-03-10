@@ -72,7 +72,7 @@ export default function OstrichShowcase() {
                     <OstCard
                     style={{width: 300, backgroundColor: 'blue', color: 'white', alignContent: 'center', textAlign: 'center'}}
                     >
-                        Custom Styled Card Button
+                        Custom Styled Card
                     </OstCard>
                 </div>
                 <div style={{display: 'flex', 
@@ -80,15 +80,15 @@ export default function OstrichShowcase() {
                 justifyContent: 'space-around',
                 }}>
                     <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={Styles.Code.code}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstCard</span>
                             <span style={Styles.Code.reg}>{">"}</span>
                         </p>
-                        <p style={Styles.Code.code}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={{...Styles.Code.reg, marginLeft: 10}}>Vanilla Ostrich Card</span>
                         </p>
-                        <p style={Styles.Code.code}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"</"}</span>
                             <span style={Styles.Code.keyword}>OstCard</span>
                             <span style={Styles.Code.reg}>{">"}</span>
@@ -96,11 +96,11 @@ export default function OstrichShowcase() {
                     </div>
 
                     <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={Styles.Code.code}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstCard</span>
                         </p>
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>onClick</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.str}>{"{"}</span>
@@ -108,7 +108,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.keyword}>{" => "}</span>
                             <span style={Styles.Code.reg}>{"{"}</span>
                         </p>
-                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>console</span>
                             <span style={Styles.Code.reg}>.</span>
                             <span style={Styles.Code.var}>log</span>
@@ -116,17 +116,17 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.str}>"Button Pressed"</span>
                             <span style={Styles.Code.reg}>)</span>
                         </p>
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.reg}>{"}"}</span>
                             <span style={Styles.Code.str}>{"}"}</span>
                         </p>
-                        <p style={{...Styles.Code.code}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"/>"}</span>
                         </p>
-                        <p style={Styles.Code.code}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={{...Styles.Code.reg, marginLeft: 10}}>Ostrich Card Button</span>
                         </p>
-                        <p style={Styles.Code.code}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"</"}</span>
                             <span style={Styles.Code.keyword}>OstCard</span>
                             <span style={Styles.Code.reg}>{">"}</span>
@@ -134,7 +134,57 @@ export default function OstrichShowcase() {
                     </div>
 
                     <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstCard</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>style</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.var}>{"{"}</span>
+                            <span style={Styles.Code.str}>{"{"}</span>
+                            <span style={Styles.Code.var}>width: </span>
+                            <span style={Styles.Code.reg}>300, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>backgroundColor</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>'blue'</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>color</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>'white'</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>alignContent</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>'center'</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>textAlign</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>'center'</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                            <span style={Styles.Code.str}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Custom Styled Card</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"</"}</span>
+                            <span style={Styles.Code.keyword}>OstCard</span>
+                            <span style={Styles.Code.reg}>{">"}</span>
+                        </p>
                     </div>
                 </div>
             </div>
