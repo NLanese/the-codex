@@ -32,24 +32,16 @@ export default function OstrichShowcase() {
     setDirectory(false)
   }, [])
 
-  return (
-    <div style={{marginTop: 20}}>
-     <div style={Styles.Fonts.pageTitle}>The Ostrich React Component Library</div>
-     <div style={{display: 'flex', flexDirection: 'row'}}>
-        <OstCard style={{margin: "30px", flex: 9}}>
-            <div style={Styles.Sections.lessonContent}>
-                <p style={Styles.Fonts.basic}>
-                This entire Site has been made using the Ostrich React Component Library and regular Vanilla React tags. 
-                This means no other frameworks were used and this means developers who import our Ostrich Component Library can easily create a well designed site 
-                of their own!
-                </p>
+  ////////////////
+  // Renderings //
+  ////////////////
 
-                <p style={Styles.Fonts.basic}>
-                Ostrich Components were made with the intent of heavily reducing the amount of time new developers have to spend on certain Front End aspects of development. 
-                Using a multitude of optional props for each component, developers can have everything from extremely high functionality components with minimal development to extremely simple and low level components that come already styled. 
-                </p>
-
-                <div style={Styles.Fonts.lessonHeader}>Ostrich Cards (OstCards)</div>
+  function renderOstrichCards(){
+    return(
+        <div style={{marginBottom: 30}}>
+            <div style={Styles.Fonts.lessonHeader}>Ostrich Cards (OstCards)</div>
+                
+                {/* Preamble */}
                 <p style={Styles.Fonts.basic}>
                 Ostrich Cards are the Ostrich Framework's take on a View. They have predetermined padding and a box shadow to add an elevated visual effect. They are meant to be 
                 versatile compoonents for a wide variety of uses, so by adding an 'onClick' function to an OstCard component you automatically make it behave and animate like a button. 
@@ -57,7 +49,6 @@ export default function OstrichShowcase() {
                 <p style={Styles.Fonts.basic}>
                 Let's look at some examples
                 </p>
-
 
                 {/* Ost Cards Example Row One */}
                 <div style={{display: 'flex', 
@@ -230,6 +221,7 @@ export default function OstrichShowcase() {
                             templateStyle={3}
                             imageSrc={OstCompImg}
                             style={{width: '30%', margin: 5}}
+                            onClick={() => {  console.log("Button Pressed") }}
                         >
                             Template Three
                         </OstCard>
@@ -335,11 +327,31 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>onClick</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>{"{"}</span>
+                            <span style={Styles.Code.reg}>()</span>
+                            <span style={Styles.Code.keyword}>{" => "}</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.keyword}>console</span>
+                            <span style={Styles.Code.reg}>.</span>
+                            <span style={Styles.Code.var}>log</span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.str}>"Button Pressed"</span>
+                            <span style={Styles.Code.reg}>)</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                            <span style={Styles.Code.str}>{"}"}</span>
+                        </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{">"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template One</span>
+                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template Three</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"</"}</span>
@@ -348,6 +360,28 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
                 </div>
+        </div>
+    )
+  }
+
+  return (
+    <div style={{marginTop: 20}}>
+     <div style={Styles.Fonts.pageTitle}>The Ostrich React Component Library</div>
+     <div style={{display: 'flex', flexDirection: 'row'}}>
+        <OstCard style={{margin: "30px", flex: 9}}>
+            <div style={Styles.Sections.lessonContent}>
+                <p style={Styles.Fonts.basic}>
+                This entire Site has been made using the Ostrich React Component Library and regular Vanilla React tags. 
+                This means no other frameworks were used and this means developers who import our Ostrich Component Library can easily create a well designed site 
+                of their own!
+                </p>
+
+                <p style={Styles.Fonts.basic}>
+                Ostrich Components were made with the intent of heavily reducing the amount of time new developers have to spend on certain Front End aspects of development. 
+                Using a multitude of optional props for each component, developers can have everything from extremely high functionality components with minimal development to extremely simple and low level components that come already styled. 
+                </p>
+
+                {renderOstrichCards()}                
             </div>
             
         </OstCard>
