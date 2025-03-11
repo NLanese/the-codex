@@ -271,7 +271,7 @@ export const OstCard =({
                     justifyContent: 'center', alignItems: 'row', 
                     }}>
                         <div style={{display: 'flex', flex: 8}}>
-                            <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: (details?.title ? "contain" : details?.caption ? "contain" : "cover")}} />
+                            <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: (details?.title ? "contain" : details?.caption ? "contain" : "contain")}} />
                         </div>
                         <div style={{ display: 'flex',
                         flex: 4, 
