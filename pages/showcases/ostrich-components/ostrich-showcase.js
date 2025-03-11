@@ -225,7 +225,7 @@ export default function OstrichShowcase() {
                             templateStyle={3}
                             imageSrc={OstCompImg}
                             style={{width: '30%', margin: 5}}
-                            details={{title: 'Template Two'}}
+                            details={{title: 'Template Three', caption: "Number 3"}}
                         >
                             Inside wrapped content of Template Three.
                             The 'Title' section is provided via the details prop
@@ -255,7 +255,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>imageSrc</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
+                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
@@ -288,7 +288,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>imageSrc</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
+                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
@@ -341,7 +341,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>imageSrc</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
+                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
@@ -349,9 +349,18 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.str}>{"{"}</span>
                             <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.var}>title</span>
                             <span style={Styles.Code.reg}>: </span>
                             <span style={Styles.Code.str}>"Template Three"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>caption</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Number 3"</span>
+
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.reg}>{"}"}</span>
                             <span style={Styles.Code.str}>{"}"}</span>
                         </p>
@@ -371,31 +380,16 @@ export default function OstrichShowcase() {
 
                 {/* Ost Cards Example Row Three */}
                 <div style={{paddingTop: 10}}>
-
-                    {/* Preamble */}
-                    <p style={Styles.Fonts.basic}>
-                        As you see, adding an <strong>onClick</strong> property automatically transfroms the entire component into a button.
-                        Additionally, you see that developers can still add their own custom styles to Ostrich Cards, while not removing the padding or shadow features the card has by default. 
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        Ostrich Cards are also a great way to display pictures, as they take image inputs and have several different template options to help your image be 
-                        displayed exactly how you would like it to be
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        Let's take a look at some Ostrich Cards that use Templates
-                    </p>
-
-
                     <div style={{display: 'flex', 
                     flexDirection: 'row',
                     justifyContent: 'space-around',
                     }}>
                         <OstCard
-                            templateStyle={1}
+                            templateStyle={3}
                             imageSrc={OstCompImg}
                             style={{width: '30%', margin: 5}}
                         >
-                            Template One
+                            Template Three with no 'details' prop
                         </OstCard>
                         <OstCard
                             templateStyle={2}
@@ -409,7 +403,7 @@ export default function OstrichShowcase() {
                             templateStyle={3}
                             imageSrc={OstCompImg}
                             style={{width: '30%', margin: 5}}
-                            details={{title: 'Template Two'}}
+                            details={{title: 'Template Three'}}
                         >
                             Inside wrapped content of Template Three.
                             The 'Title' section is provided via the details prop
@@ -422,7 +416,7 @@ export default function OstrichShowcase() {
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
-                    {/* Template One */}
+                    {/* Template Three no 'details' */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
@@ -432,21 +426,21 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>templateStyle</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{1}</span>
+                            <span style={Styles.Code.reg}>{3}</span>
                             <span style={Styles.Code.str}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>imageSrc</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
+                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{">"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template One</span>
+                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template Three with no 'details' prop</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"</"}</span>
@@ -472,7 +466,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>imageSrc</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
+                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
@@ -525,7 +519,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>imageSrc</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"../../ExampleImagePath"}</span>
+                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
