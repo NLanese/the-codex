@@ -85,6 +85,9 @@ export const OstCard =({
         else if (templateStyle === 2){
             return TemplateTwoRender()
         }
+        else if (templateStyle === 3){
+            return TemplateThreeRender()
+        }
     }
 
 
@@ -217,6 +220,59 @@ export const OstCard =({
                             {children}
                         </div>
                     </div>
+                        
+                </div>
+            )
+        }
+
+        // Tempkate Three
+        const TemplateThreeRender = () => {
+            return(
+                <div style={{
+                    ...completeStyle(true), 
+                    display: 'flex', flexDirection: 'column', 
+                    minHeight: 100, paddingBottom: 10,
+                    overflow: 'hidden',
+                }} 
+                onMouseDown={() =>{ 
+                    if (onClick){
+                        setIsPressed(true)
+                    }
+                }}
+                onMouseUp={() => setIsPressed(false)}
+                onMouseLeave={() => {
+                    setIsPressed(false);
+                    setIsHovered(false);
+                }} 
+                onMouseEnter={() => {
+                    if (onClick){
+                        setIsHovered(true)
+                    }
+                }}
+                onClick={(details) => {
+                    if (onClick){
+                        setIsPressed(false); 
+                        onClick(details);
+                    }
+                }}>
+                    {/* Content  */}
+                    <div style={{ display: 'flex',
+                        flex: 2, 
+                        paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
+                        justifyContent: 'center', 
+                        fontSize: (details?.titleStyle ? details?.titleStyle : 24)
+                    }}>
+                        {children}
+                    </div>
+
+                    {/* Picture */}
+                    <div style={{ display: 'flex',
+                        flex: 8, 
+                        justifyContent: 'center', alignItems: 'center', 
+                    }}>
+                        <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
+                    </div>
+
                         
                 </div>
             )
