@@ -392,13 +392,21 @@ export default function OstrichShowcase() {
                             Template Three with no 'details' prop
                         </OstCard>
                         <OstCard
-                            templateStyle={2}
-                            imageSrc={OstCompImg}
+                            templateStyle={4}
                             style={{width: '30%', margin: 5}}
-                            onClick={() => {  console.log("Button Pressed") }}   
-                        >
-                            Template Two
-                        </OstCard>
+                            onClick={() => {  console.log("Button Pressed") }} 
+                            details={{
+                                title: "Template Four",
+                                caption: "Number 4",
+                                columnRight: "Text or Component",
+                                columnLeft: (
+                                    <div style={{backgroundColor: 'pink', height: 40}}>
+                                        Text or Component
+                                    </div>
+                                )
+                            }}  
+                        />
+
                         <OstCard
                             templateStyle={3}
                             imageSrc={OstCompImg}
@@ -449,7 +457,7 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
 
-                    {/* Template Two */}
+                    {/* Template Four */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
@@ -459,46 +467,66 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>templateStyle</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{2}</span>
+                            <span style={Styles.Code.reg}>{4}</span>
                             <span style={Styles.Code.str}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>imageSrc</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
-                            <span style={Styles.Code.var}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>onClick</span>
+                            <span style={Styles.Code.var}>details</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>()</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
                             <span style={Styles.Code.reg}>{"{"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.keyword}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.var}>log</span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.str}>"Button Pressed"</span>
-                            <span style={Styles.Code.reg}>)</span>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Template Three"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>caption</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Number 3"</span>
                         </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>columnLeft</span>
+                            <span style={Styles.Code.reg}>: (</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>div </span>
+                            <span style={Styles.Code.var}>style</span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.str}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"pink"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>height</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.reg}>40</span>
                             <span style={Styles.Code.reg}>{"}"}</span>
                             <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{">"}</span>
                         </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template Two</span>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.reg}>{">"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Text or Component</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.reg}>),</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>columnRight</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Text or Component" </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.str}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
                         </p>
                     </div>
 
