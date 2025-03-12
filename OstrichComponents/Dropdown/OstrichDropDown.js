@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 export const OstrichDropDown = ({
     style,
     title="ADD TITLE OR OBJECT PROP",
-    titleStyle = {textAlign: 'center', fontSize: 14, fontWeight: 500},
 
     onClick=false,
     onMouseEnter=false,
@@ -51,12 +50,12 @@ export const OstrichDropDown = ({
     useEffect(() => {
 
         // Drawer Style Handler
-        if (!drawerStyle){
+        if (!boxStyle){
             if (!style){
-                drawerStyle = {...style}
+                boxStyle = {...style}
             }
             else{
-                drawerStyle = {width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"}
+                boxStyle = {width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"}
             }
         }
         finishBoxStyles()
@@ -89,25 +88,24 @@ export const OstrichDropDown = ({
     }
 
     function finishBoxStyles(){
-
         // Regular Box
-        if (!boxStyle.width){
+        if (!boxStyle?.width){
             boxStyle.width = "30%"
         }
-        if (!boxStyle.backgroundColor){
+        if (!boxStyle?.backgroundColor){
             boxStyle.backgroundColor = "#c6c7c8"
         }
-        if (!boxStyle.padding){
+        if (!boxStyle?.padding){
             boxStyle.padding = "1.5%"
         }
-        if (!boxStyle.minWidth){
+        if (!boxStyle?.minWidth){
             boxStyle.minWidth = 140
         }
-        if (!noBorder && !boxStyle.border && !boxStyle.borderRadius && !boxStyle.borderWidth){
+        if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
             boxStyle.border = "2px solid #E9F1FF"
             boxStyle.borderRadius = 10
         }
-        if (!noShadow && !boxStyle.boxShadow){
+        if (!noShadow && !boxStyle?.boxShadow){
             boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }
 
@@ -115,20 +113,20 @@ export const OstrichDropDown = ({
         if (!hoverBoxStyle){
             hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8"}
         }
-        if (!hoverBoxStyle.width){
+        if (!hoverBoxStyle?.width){
             hoverBoxStyle.width = boxStyle.width
         }
-        if (!hoverBoxStyle.padding){
+        if (!hoverBoxStyle?.padding){
             hoverBoxStyle.padding = boxStyle.padding
         }
-        if (!hoverBoxStyle.minWidth){
+        if (!hoverBoxStyle?.minWidth){
             hoverBoxStyle.minWidth = boxStyle.minWidth
         }
-        if (!hoverBoxStyle.border && !hoverBoxStyle.borderRadius && !hoverBoxStyle.borderWidth){
+        if (!hoverBoxStyle?.border && !hoverBoxStyle.borderRadius && !hoverBoxStyle.borderWidth){
             hoverBoxStyle.border = boxStyle.border
             hoverBoxStyle.borderRadius = boxStyle.borderRadius
         }
-        if (!hoverBoxStyle.boxShadow){
+        if (!hoverBoxStyle?.boxShadow){
             hoverBoxStyle.boxShadow = boxStyle.boxShadow
         }  
 
@@ -136,37 +134,29 @@ export const OstrichDropDown = ({
         if (!activeBoxStyle){
             activeBoxStyle = {...boxStyle, backgroundColor: "#c3e2fa"}
         }
-        if (!activeBoxStyle.width){
+        if (!activeBoxStyle?.width){
             activeBoxStyle.width = boxStyle.width
         }
-        if (!activeBoxStyle.padding){
+        if (!activeBoxStyle?.padding){
             activeBoxStyle.padding = boxStyle.padding
         }
-        if (!activeBoxStyle.minWidth){
+        if (!activeBoxStyle?.minWidth){
             activeBoxStyle.minWidth = boxStyle.minWidth
         }
-        if (!activeBoxStyle.border && !activeBoxStyle.borderRadius && !activeBoxStyle.borderWidth){
+        if (!activeBoxStyle?.border && !activeBoxStyle?.borderRadius && !activeBoxStyle?.borderWidth){
             activeBoxStyle.border = boxStyle.border
             activeBoxStyle.borderRadius = 0
         }
-        if (!activeBoxStyle.boxShadow){
+        if (!activeBoxStyle?.boxShadow){
             activeBoxStyle.boxShadow = boxStyle.boxShadow
         }
 
     }
 
-    function checkRegularDrawerStyle(){
-       
-    }
 
     ///////////////
     // Functions //
     ///////////////
-
-
-    function completeDrawerFunction(){
-        
-    }
 
     // Opens the dropdown (if not on hover), dires any function on press
     function handlePress(){
@@ -286,9 +276,7 @@ export const OstrichDropDown = ({
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                <div style={titleStyle}>
-                    {renderTitle()}
-                </div>
+                {renderTitle()}
             </div>
             <div style={{marginTop: 10}}/>
             {renderDrawerContainer()}
