@@ -41,8 +41,12 @@ export const OstrichDropDown = ({
 
     // Status
     const [isOpen, setIsOpen] = useState(open)
-    const [isHovered, setIsHovered] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [isHovered, setIsHovered] = useState(false)
+    const hoverRef = useRef(isHovered)
+    useEffect(() => {
+        hoverRef.current = isHovered
+    }, [isHovered])
 
 
 
@@ -53,16 +57,6 @@ export const OstrichDropDown = ({
     const [activeBoxStyleInput, setActiveBoxStyleInput] = useState(false)
     const [hoverBoxStyleInput, setHoverBoxStyleInput] = useState(false)
 
-
-    // Rendered Style State
-    const [boxStyleState, setBoxStyleState] = useState({})
-
-    const bStyleRef = useRef(boxStyleState)
-    useEffect(() => {
-        bStyleRef.current = boxStyleState
-    }, [boxStyleState])
-
-
     ///////////////
     // UseEffect //
     ///////////////
@@ -71,44 +65,19 @@ export const OstrichDropDown = ({
     useEffect(() => {
         // Drawer Style Handler
         if (!boxStyle){
-            boxStyle = {width: '99%', backgroundColor:"white", padding: 2, border: "1px solid black"}
+            boxStyle = {
+                width: '35%', 
+                backgroundColor:"#efefef", 
+                padding: 2, 
+                border: "1px solid black", borderRadius: 10,
+                justifyItems: 'center', textAlign: 'center'
+            }
             console.log("1")
             console.log(boxStyleInput)
         }
         finishBoxStyles()
     }, [])
 
-    // onHover Changes
-    useEffect(() => {
-        if (isOpen){
-            return
-        }
-        if (isHovered && !isOpen){
-            console.log("hover")
-            console.log(hoverBoxStyleInput)
-            setBoxStyleState(hoverBoxStyleInput)
-        }
-        else if (!isHovered && !isOpen){
-            console.log("normal")
-            console.log(boxStyleInput)
-            setBoxStyleState(boxStyleInput)
-        }
-    }, [isHovered])
-
-    // onHover Changes
-    useEffect(() => {
-        if (isOpen){
-            console.log("open")
-            console.log(activeBoxStyleInput)
-            setBoxStyleState(activeBoxStyleInput)
-        }
-        else if (!isOpen){
-            setIsHovered(false)
-            console.log("normal")
-            console.log(boxStyleInput)
-            setBoxStyleState(boxStyleInput)
-        }
-    }, [isOpen])
 
     /////////////////////
     // Style Functions //
@@ -208,6 +177,18 @@ export const OstrichDropDown = ({
         setIsLoading(false)
     }
 
+    function determineBoxStyle(){
+        if (isOpen){
+            return activeBoxStyleInput
+        }
+        else if (!isOpen && isHovered){
+            return hoverBoxStyleInput
+        }
+        else{
+            return boxStyleInput
+        }
+    }
+
 
     ///////////////
     // Functions //
@@ -224,6 +205,7 @@ export const OstrichDropDown = ({
         if (onClick){
             onClick(obj)
         }
+        setIsHovered(false)
     }
 
     // Determines which DrawerPress Function to pass
@@ -346,10 +328,9 @@ export const OstrichDropDown = ({
         return
     }
     else{
-        console.log(boxStyle)
         return(
             <div
-            style={{...bStyleRef.current}}
+            style={{...determineBoxStyle()}}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
