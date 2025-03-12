@@ -22,6 +22,7 @@ export const OstrichDropDown = ({
     open=false,
 
     drawerStyle,
+    drawerTitleStyle,
     activeDrawerStyle,
     hoverDrawerStyle,
 
@@ -29,6 +30,7 @@ export const OstrichDropDown = ({
     noBorder=false,
     noShadow=false,
     activeBoxStyle,
+    activeTitleStyle,
     hoverBoxStyle,
 
 }) => {
@@ -182,6 +184,9 @@ export const OstrichDropDown = ({
         }
         console.log("2c")
         console.log(activeBoxStyle)
+        console.log("Setting main style")
+        console.log(boxStyle)
+        setBoxStyleState(boxStyle)
         setIsLoading(false)
     }
 
@@ -250,7 +255,15 @@ export const OstrichDropDown = ({
             return {drawer: activeDrawerStyle, text: activeTitleStyle}
         }
         else{
-            return {drawer: drawerStyle, text: drawerTitleStyle}
+            return {
+                drawer: drawerStyle, 
+                text: drawerTitleStyle ? drawerTitleStyle : 
+                {
+                    fontFamily: drawerStyle?.fontFamily ? drawerStyle.fontFamily : null,
+                    fontSize: drawerStyle?.fontSize ? drawerStyle.fontSize : null,
+                    fontWeight: drawerStyle?.fontWeight ? drawerStyle.fontWeight : null
+                }
+            }
         }
     }
 
@@ -317,7 +330,7 @@ export const OstrichDropDown = ({
         console.log(boxStyle)
         return(
             <div
-            style={{...boxStyle}}
+            style={{...bStyleRef.current}}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
