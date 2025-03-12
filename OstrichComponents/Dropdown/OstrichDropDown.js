@@ -43,9 +43,18 @@ export const OstrichDropDown = ({
     const [isOpen, setIsOpen] = useState(open)
     const [isHovered, setIsHovered] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+
+
+
     const [activeDrawer, setActiveDrawer] = useState(false)
 
     // Styles
+    const [boxStyleInput, setBoxStyleInput] = useState(false)
+    const [activeBoxStyleInput, setActiveBoxStyleInput] = useState(false)
+    const [hoverBoxStyleInput, setHoverBoxStyleInput] = useState(false)
+
+
+    // Rendered Style State
     const [boxStyleState, setBoxStyleState] = useState({})
 
     const bStyleRef = useRef(boxStyleState)
@@ -64,17 +73,25 @@ export const OstrichDropDown = ({
         if (!boxStyle){
             boxStyle = {width: '99%', backgroundColor:"white", padding: 2, border: "1px solid black"}
             console.log("1")
-            console.log(boxStyle)
+            console.log(boxStyleInput)
         }
         finishBoxStyles()
     }, [])
 
     // onHover Changes
     useEffect(() => {
+        if (isOpen){
+            return
+        }
         if (isHovered && !isOpen){
             console.log("hover")
-            console.log(hoverBoxStyle)
-            setBoxStyleState(hoverBoxStyle)
+            console.log(hoverBoxStyleInput)
+            setBoxStyleState(hoverBoxStyleInput)
+        }
+        else if (!isHovered && !isOpen){
+            console.log("normal")
+            console.log(boxStyleInput)
+            setBoxStyleState(boxStyleInput)
         }
     }, [isHovered])
 
@@ -82,8 +99,14 @@ export const OstrichDropDown = ({
     useEffect(() => {
         if (isOpen){
             console.log("open")
-            console.log(activeBoxStyle)
-            setBoxStyleState(activeBoxStyle)
+            console.log(activeBoxStyleInput)
+            setBoxStyleState(activeBoxStyleInput)
+        }
+        else if (!isOpen){
+            setIsHovered(false)
+            console.log("normal")
+            console.log(boxStyleInput)
+            setBoxStyleState(boxStyleInput)
         }
     }, [isOpen])
 
@@ -134,8 +157,7 @@ export const OstrichDropDown = ({
         if (!noShadow && !boxStyle?.boxShadow){
             boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }
-        console.log("2")
-        console.log(boxStyle)
+       setBoxStyleInput(boxStyle)
 
         // Hover Box
         if (!hoverBoxStyle){
@@ -158,8 +180,7 @@ export const OstrichDropDown = ({
         if (!hoverBoxStyle?.boxShadow){
             hoverBoxStyle.boxShadow = boxStyle.boxShadow
         }  
-        console.log("2b")
-        console.log(hoverBoxStyle)
+        setHoverBoxStyleInput(hoverBoxStyle)
 
         // Active Box
         if (!activeBoxStyle){
@@ -182,11 +203,8 @@ export const OstrichDropDown = ({
         if (!activeBoxStyle?.boxShadow){
             activeBoxStyle.boxShadow = boxStyle.boxShadow
         }
-        console.log("2c")
-        console.log(activeBoxStyle)
-        console.log("Setting main style")
-        console.log(boxStyle)
-        setBoxStyleState(boxStyle)
+        setActiveBoxStyleInput(activeBoxStyle)
+      
         setIsLoading(false)
     }
 
@@ -244,6 +262,7 @@ export const OstrichDropDown = ({
         if (onMouseLeave){
             onMouseLeave(obj)
         }
+        setIsHovered(false)
     }
 
     // Determines the Style of the Drawer
@@ -301,7 +320,7 @@ export const OstrichDropDown = ({
                         onClick={() => handleDrawerPress(drawer)}
                         obj={drawerObject}
                         hoverStyleAdditions={hoverDrawerStyle}
-                        hoverTextStyleAdditions={hoverTitleStyle}
+                        // hoverTextStyleAdditions={hoverTitleStyle}
                     />
                 )
             })
