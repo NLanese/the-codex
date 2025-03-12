@@ -645,6 +645,7 @@ export default function OstrichShowcase() {
                 }}>
                     <OstrichDropDown
                         title="Vanilla Dropdown"
+                        drawers={[1, 2, 3]}
                     />
                 </div>
         </div>

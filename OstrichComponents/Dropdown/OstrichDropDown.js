@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, use } from 'react';
 import { DrawerItem } from './DrawerItem';
 import PropTypes from 'prop-types';
 
@@ -37,29 +37,53 @@ export const OstrichDropDown = ({
     // States //
     ////////////
 
+    // Status
     const [isOpen, setIsOpen] = useState(open)
     const [isHovered, setIsHovered] = useState(false)
-
+    const [isLoading, setIsLoading] = useState(true)
     const [activeDrawer, setActiveDrawer] = useState(false)
+
+    // Styles
+    const [boxStyleState, setBoxStyleState] = useState({})
+
+    const bStyleRef = useRef(boxStyleState)
+    useEffect(() => {
+        bStyleRef.current = boxStyleState
+    }, [boxStyleState])
 
 
     ///////////////
     // UseEffect //
     ///////////////
 
+    // Initial Style Checker
     useEffect(() => {
-
         // Drawer Style Handler
         if (!boxStyle){
-            if (!style){
-                boxStyle = {...style}
-            }
-            else{
-                boxStyle = {width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"}
-            }
+            boxStyle = {width: '99%', backgroundColor:"white", padding: 2, border: "1px solid black"}
+            console.log("1")
+            console.log(boxStyle)
         }
         finishBoxStyles()
     }, [])
+
+    // onHover Changes
+    useEffect(() => {
+        if (isHovered && !isOpen){
+            console.log("hover")
+            console.log(hoverBoxStyle)
+            setBoxStyleState(hoverBoxStyle)
+        }
+    }, [isHovered])
+
+    // onHover Changes
+    useEffect(() => {
+        if (isOpen){
+            console.log("open")
+            console.log(activeBoxStyle)
+            setBoxStyleState(activeBoxStyle)
+        }
+    }, [isOpen])
 
     /////////////////////
     // Style Functions //
@@ -102,16 +126,19 @@ export const OstrichDropDown = ({
             boxStyle.minWidth = 140
         }
         if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
-            boxStyle.border = "2px solid #E9F1FF"
+            boxStyle.border = "1px solid black"
             boxStyle.borderRadius = 10
         }
         if (!noShadow && !boxStyle?.boxShadow){
             boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }
+        console.log("2")
+        console.log(boxStyle)
 
         // Hover Box
         if (!hoverBoxStyle){
-            hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8"}
+            hoverBoxStyle = {...boxStyle}
+            hoverBoxStyle.backgroundColor ="#a5a8a8"
         }
         if (!hoverBoxStyle?.width){
             hoverBoxStyle.width = boxStyle.width
@@ -129,10 +156,13 @@ export const OstrichDropDown = ({
         if (!hoverBoxStyle?.boxShadow){
             hoverBoxStyle.boxShadow = boxStyle.boxShadow
         }  
+        console.log("2b")
+        console.log(hoverBoxStyle)
 
         // Active Box
         if (!activeBoxStyle){
-            activeBoxStyle = {...boxStyle, backgroundColor: "#c3e2fa"}
+            activeBoxStyle = {...boxStyle}
+            activeBoxStyle.backgroundColor = "#c3e2fa"
         }
         if (!activeBoxStyle?.width){
             activeBoxStyle.width = boxStyle.width
@@ -150,7 +180,9 @@ export const OstrichDropDown = ({
         if (!activeBoxStyle?.boxShadow){
             activeBoxStyle.boxShadow = boxStyle.boxShadow
         }
-
+        console.log("2c")
+        console.log(activeBoxStyle)
+        setIsLoading(false)
     }
 
 
@@ -161,7 +193,10 @@ export const OstrichDropDown = ({
     // Opens the dropdown (if not on hover), dires any function on press
     function handlePress(){
         if (!openOnHover && !manualOpen){
-            setIsOpen(!isOpen)
+            if (drawers.length > 0){
+                setIsOpen(!isOpen)
+            }
+            
         }
         if (onClick){
             onClick(obj)
@@ -184,7 +219,12 @@ export const OstrichDropDown = ({
     // If openOnHover, opens the Drop. Fires any hover functions
     function handleMouseEnter(){
         if (openOnHover){
-            setIsOpen(true)
+            if (drawers.length > 0){
+                setIsOpen(!isOpen)
+            }
+        }
+        else{
+            setIsHovered(true)
         }
         if (onMouseEnter){
             onMouseEnter(obj)
@@ -269,18 +309,24 @@ export const OstrichDropDown = ({
     ////////////////////
     // MAIN RENDERING //
     ////////////////////
-    return(
-        <div onMouseLeave={() => handleMouseLeave()}>
+    
+    if (isLoading){
+        return
+    }
+    else{
+        console.log(boxStyle)
+        return(
             <div
-            style={boxStyle}
+            style={{...boxStyle}}
+            onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
                 {renderTitle()}
+                <div style={{marginTop: 10}}/>
+                {renderDrawerContainer()}
             </div>
-            <div style={{marginTop: 10}}/>
-            {renderDrawerContainer()}
-        </div>
-
-    )
+    
+        )
+    }
 }
