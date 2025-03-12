@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 export const OstrichDropDown = ({
-    style={justifyContent: 'center', padding: 10, borderBottom: "2px solid black", borderRadius: 5, boxShadow:'-2px -2px -1px -1px rgba(-1, -1, -1, 0.1)' },
+    style,
     title="ADD TITLE OR OBJECT PROP",
     titleStyle = {textAlign: 'center', fontSize: 14, fontWeight: 500},
 
@@ -52,12 +52,14 @@ export const OstrichDropDown = ({
 
         // Drawer Style Handler
         if (!drawerStyle){
-            drawerStyle = {width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"}
+            if (!style){
+                drawerStyle = {...style}
+            }
+            else{
+                drawerStyle = {width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"}
+            }
         }
-        if (!hoverBoxStyle){
-
-        }
-        completeDrawerStyle()
+        finishBoxStyles()
     }, [])
 
     /////////////////////
@@ -106,7 +108,7 @@ export const OstrichDropDown = ({
             boxStyle.borderRadius = 10
         }
         if (!noShadow && !boxStyle.boxShadow){
-            boxStyle.border = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+            boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }
 
         // Hover Box
@@ -127,10 +129,30 @@ export const OstrichDropDown = ({
             hoverBoxStyle.borderRadius = boxStyle.borderRadius
         }
         if (!hoverBoxStyle.boxShadow){
-            hoverBoxStyle.border = boxStyle.boxShadow
+            hoverBoxStyle.boxShadow = boxStyle.boxShadow
         }  
 
-        if 
+        // Active Box
+        if (!activeBoxStyle){
+            activeBoxStyle = {...boxStyle, backgroundColor: "#c3e2fa"}
+        }
+        if (!activeBoxStyle.width){
+            activeBoxStyle.width = boxStyle.width
+        }
+        if (!activeBoxStyle.padding){
+            activeBoxStyle.padding = boxStyle.padding
+        }
+        if (!activeBoxStyle.minWidth){
+            activeBoxStyle.minWidth = boxStyle.minWidth
+        }
+        if (!activeBoxStyle.border && !activeBoxStyle.borderRadius && !activeBoxStyle.borderWidth){
+            activeBoxStyle.border = boxStyle.border
+            activeBoxStyle.borderRadius = 0
+        }
+        if (!activeBoxStyle.boxShadow){
+            activeBoxStyle.boxShadow = boxStyle.boxShadow
+        }
+
     }
 
     function checkRegularDrawerStyle(){
@@ -260,7 +282,7 @@ export const OstrichDropDown = ({
     return(
         <div onMouseLeave={() => handleMouseLeave()}>
             <div
-            style={style}
+            style={boxStyle}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
