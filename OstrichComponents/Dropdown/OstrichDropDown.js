@@ -22,13 +22,15 @@ export const OstrichDropDown = ({
     manualOpen=false,
     open=false,
 
-    drawerStyle={width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"},
-    drawerColor="white",
-    activeDrawerStyle={width: '100%', backgroundColor: "#E9F1FF",  padding: 2, borderBottom: "2px solid #E9F1FF"},
-    hoverDrawerStyle={width: '100%', backgroundColor: "#E9F1FF",  padding: 2, borderBottom: "2px solid #E9F1FF"},
-    drawerTitleStyle={textAlign: "center", fontSize: 16, fontWeight: 600, padding: 5},
-    activeTitleStyle={textAlign: "center", fontSize: 18, fontWeight: 700, padding: 5},
-    hoverTitleStyle={textAlign: "center", fontSize: 18, fontWeight: 700, padding: 5},
+    drawerStyle,
+    activeDrawerStyle,
+    hoverDrawerStyle,
+
+    boxStyle,
+    noBorder=false,
+    noShadow=false,
+    activeBoxStyle,
+    hoverBoxStyle,
 
 }) => {
 
@@ -37,14 +39,87 @@ export const OstrichDropDown = ({
     ////////////
 
     const [isOpen, setIsOpen] = useState(open)
+    const [isHovered, setIsHovered] = useState(false)
 
     const [activeDrawer, setActiveDrawer] = useState(false)
 
 
+    ///////////////
+    // UseEffect //
+    ///////////////
+
+    useEffect(() => {
+
+        // Drawer Style Handler
+        if (!drawerStyle){
+            drawerStyle = {width: '99%', backgroundColor:"white", padding: 2, borderBottom: "2px solid #E9F1FF"}
+        }
+        if (!hoverBoxStyle){
+
+        }
+        completeDrawerStyle()
+    }, [])
+
+    /////////////////////
+    // Style Functions //
+    /////////////////////
+
+    function finishDrawerStyle(){
+        if (!drawerStyle.width){
+            drawerStyle.width = '99%'
+        }
+        if (!drawerStyle.backgroundColor){
+            drawerStyle.backgroundColor = "#c6c7c8"
+        }
+        if (!drawerStyle.padding){
+            drawerStyle.padding = "1.5%"
+        }
+        if (!drawerStyle.minWidth){
+            drawerStyle.padding = "1.5%"
+        }
+        if (!noBorder && !drawerStyle.border && !drawerStyle.borderRadius && !drawerStyle.borderWidth){
+            drawerStyle.border = "2px solid #E9F1FF"
+            drawerStyle.borderRadius = 10
+        }
+        if (!noShadow && !drawerStyle.boxShadow){
+            drawerStyle.border = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+        }  
+    }
+
+    function finishBoxStyle(){
+        if (!boxStyle.width){
+            boxStyle.minWidth = 140
+        }
+        if (!boxStyle.backgroundColor){
+            boxStyle.backgroundColor = "#c6c7c8"
+        }
+        if (!boxStyle.padding){
+            boxStyle.padding = "1.5%"
+        }
+        if (!boxStyle.minWidth){
+            boxStyle.padding = "1.5%"
+        }
+        if (!noBorder && !boxStyle.border && !boxStyle.borderRadius && !boxStyle.borderWidth){
+            boxStyle.border = "2px solid #E9F1FF"
+            boxStyle.borderRadius = 10
+        }
+        if (!noShadow && !boxStyle.boxShadow){
+            boxStyle.border = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+        }  
+    }
+
+    function checkRegularDrawerStyle(){
+       
+    }
 
     ///////////////
     // Functions //
     ///////////////
+
+
+    function completeDrawerFunction(){
+        
+    }
 
     // Opens the dropdown (if not on hover), dires any function on press
     function handlePress(){
