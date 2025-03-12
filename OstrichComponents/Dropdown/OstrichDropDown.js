@@ -69,7 +69,7 @@ export const OstrichDropDown = ({
             drawerStyle.width = '99%'
         }
         if (!drawerStyle.backgroundColor){
-            drawerStyle.backgroundColor = "#c6c7c8"
+            drawerStyle.backgroundColor = "rgb(198 199 200)"
         }
         if (!drawerStyle.padding){
             drawerStyle.padding = "1.5%"
@@ -86,9 +86,11 @@ export const OstrichDropDown = ({
         }  
     }
 
-    function finishBoxStyle(){
+    function finishBoxStyles(){
+
+        // Regular Box
         if (!boxStyle.width){
-            boxStyle.minWidth = 140
+            boxStyle.width = "30%"
         }
         if (!boxStyle.backgroundColor){
             boxStyle.backgroundColor = "#c6c7c8"
@@ -97,7 +99,7 @@ export const OstrichDropDown = ({
             boxStyle.padding = "1.5%"
         }
         if (!boxStyle.minWidth){
-            boxStyle.padding = "1.5%"
+            boxStyle.minWidth = 140
         }
         if (!noBorder && !boxStyle.border && !boxStyle.borderRadius && !boxStyle.borderWidth){
             boxStyle.border = "2px solid #E9F1FF"
@@ -105,7 +107,30 @@ export const OstrichDropDown = ({
         }
         if (!noShadow && !boxStyle.boxShadow){
             boxStyle.border = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+        }
+
+        // Hover Box
+        if (!hoverBoxStyle){
+            hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8"}
+        }
+        if (!hoverBoxStyle.width){
+            hoverBoxStyle.width = boxStyle.width
+        }
+        if (!hoverBoxStyle.padding){
+            hoverBoxStyle.padding = boxStyle.padding
+        }
+        if (!hoverBoxStyle.minWidth){
+            hoverBoxStyle.minWidth = boxStyle.minWidth
+        }
+        if (!hoverBoxStyle.border && !hoverBoxStyle.borderRadius && !hoverBoxStyle.borderWidth){
+            hoverBoxStyle.border = boxStyle.border
+            hoverBoxStyle.borderRadius = boxStyle.borderRadius
+        }
+        if (!hoverBoxStyle.boxShadow){
+            hoverBoxStyle.border = boxStyle.boxShadow
         }  
+
+        if 
     }
 
     function checkRegularDrawerStyle(){
