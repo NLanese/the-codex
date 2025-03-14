@@ -72,8 +72,6 @@ export const OstrichDropDown = ({
                 border: "1px solid black", borderRadius: 10,
                 justifyItems: 'center', textAlign: 'center'
             }
-            console.log("1")
-            console.log(boxStyleInput)
         }
         finishBoxStyles()
     }, [])
@@ -189,6 +187,23 @@ export const OstrichDropDown = ({
         }
     }
 
+    function extractTextStyles(wrapStyle){
+        let rObj = {}
+        if (wrapStyle.fontSize){
+            rObj = {...rObj, fontSize: wrapStyle.fontSize}
+        }
+        if (wrapStyle.fontFamily){
+            rObj = {...rObj, fontFamily: wrapStyle.fontFamily}
+        }
+        if (wrapStyle.fontWeight){
+            rObj = {...rObj, fontWeight: wrapStyle.fontWeight}
+        }
+        if (wrapStyle.letterSpacing){
+            rObj = {...rObj, letterSpacing: wrapStyle.letterSpacing}
+        }
+        return rObj
+    }
+
 
     ///////////////
     // Functions //
@@ -288,8 +303,9 @@ export const OstrichDropDown = ({
         if (isOpen && drawers){
             return drawers.map((drawer, index) => {
                 let drawerObject = {}
-                if (typeof(drawer) === "string"){
-                    drawerObject = {title: drawer}
+                if (typeof(drawer) === "string" || typeof(drawer) === "number" || typeof(drawer) === "integer"){
+                    drawerObject = {title: `${drawer}`}
+                    console.log(drawerObject)
                 }
                 else{
                     drawerObject = drawer
@@ -313,7 +329,7 @@ export const OstrichDropDown = ({
     function renderDrawerContainer(){
         if (isOpen){
             return(
-                <div style={{border: "1px solid black", boxShadow: '2px 2px 1.5px rgba(0, 0, 0, 0.2)'}}>
+                <div style={{position: 'absolute', justifyContent: 'center', width: '90%', backgroundColor: 'red'}}>
                     {renderDrawers()}
                 </div> 
             )
@@ -330,12 +346,14 @@ export const OstrichDropDown = ({
     else{
         return(
             <div
-            style={{...determineBoxStyle()}}
+            style={{...determineBoxStyle(), position: 'relative'}}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                {renderTitle()}
+                <p style={{...extractTextStyles(determineBoxStyle())}}>
+                    {renderTitle()}
+                </p>
                 <div style={{marginTop: 10}}/>
                 {renderDrawerContainer()}
             </div>
