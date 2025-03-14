@@ -79,6 +79,8 @@ export const DrawerItem = ({
 
     const MAIN = () => {
 
+        console.log(determineStyle().drawer)
+        console.log(determineStyle().text)
         return(
             <div 
             onMouseEnter={() => handleMouseEnter()}
@@ -86,7 +88,7 @@ export const DrawerItem = ({
             onClick={() => handleOnPress(determineParameter)}
             style={determineStyle().drawer}
             >
-                <div style={determineStyle().text}>
+                <div style={{...determineStyle().text, backgroundColor: 'greenyellow'}}>
                     {determineTitle()}
                 </div>
             </div>

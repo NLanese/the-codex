@@ -72,7 +72,7 @@ export const OstrichDropDown = ({
             boxStyle = {
                 width: 'auto', 
                 backgroundColor:"#efefef", 
-                padding: 2, 
+                // padding: 2, 
                 border: "1px solid black", borderRadius: 10,
                 justifyItems: 'center', textAlign: 'center',
                 position: 'relative',
@@ -86,11 +86,14 @@ export const OstrichDropDown = ({
         // Drawer Style Handler
         if (!drawerStyle){
             drawerStyle = {
-                width: '100%', position: 'relative',
+                width: '100%', 
+                minHeight: 30,
+                textAlignVertical: 'center', textAlign: 'center',
+                position: 'relative',
                 backgroundColor:"#efefef", 
-                padding: 2, 
                 border: "1px solid black", borderRadius: 0,
-                justifyItems: 'center', textAlign: 'center',
+                justifyItems: 'center', 
+                alignItems: 'center,'
             }
         }
         finishDrawerStyles()
@@ -106,15 +109,16 @@ export const OstrichDropDown = ({
         // Regular Drawer
         if (!drawerStyle.width){
             drawerStyle.width = '99%'
+            drawerStyle.maxWidth = '100%'
         }
         if (!drawerStyle.backgroundColor){
             drawerStyle.backgroundColor = "lightgrey"
         }
-        if (!drawerStyle.padding){
-            drawerStyle.padding = "0.5%"
-        }
-        if (!drawerStyle.width){
-            drawerStyle.minWidth = "100%"
+        // if (!drawerStyle.padding){
+        //     drawerStyle.padding = "0.5%"
+        // }
+        if (!drawerStyle.minWidth){
+            // drawerStyle.minWidth = "50%"
         }
         if (!noBorder && !drawerStyle.border && !drawerStyle.borderRadius && !drawerStyle.borderWidth){
             drawerStyle.border = "2px solid #E9F1FF"
@@ -135,10 +139,10 @@ export const OstrichDropDown = ({
             hoverDrawerStyle.width = drawerStyle.width
         }
         if (!hoverDrawerStyle?.padding){
-            hoverDrawerStyle.padding = boxStyle.padding
+            hoverDrawerStyle.padding = drawerStyle.padding
         }
         if (!hoverDrawerStyle?.minWidth){
-            hoverDrawerStyle.minWidth = boxStyle.minWidth
+            hoverDrawerStyle.minWidth = drawerStyle.minWidth
         }
         if (!hoverDrawerStyle?.border && !hoverDrawerStyle.borderRadius && !hoverDrawerStyle.borderWidth){
             hoverDrawerStyle.border = drawerStyle.border
@@ -158,10 +162,10 @@ export const OstrichDropDown = ({
             activeDrawerStyle.width = drawerStyle.width
         }
         if (!activeDrawerStyle?.padding){
-            activeDrawerStyle.padding = boxStyle.padding
+            activeDrawerStyle.padding = drawerStyle.padding
         }
         if (!activeDrawerStyle?.minWidth){
-            activeDrawerStyle.minWidth = boxStyle.minWidth
+            activeDrawerStyle.minWidth = drawerStyle.minWidth
         }
         if (!activeDrawerStyle?.border && !activeDrawerStyle.borderRadius && !activeDrawerStyle.borderWidth){
             activeDrawerStyle.border = drawerStyle.border
@@ -377,7 +381,6 @@ export const OstrichDropDown = ({
                 let drawerObject = {}
                 if (typeof(drawer) === "string" || typeof(drawer) === "number" || typeof(drawer) === "integer"){
                     drawerObject = {title: `${drawer}`}
-                    console.log(drawerObject)
                 }
                 else{
                     drawerObject = drawer
@@ -401,8 +404,13 @@ export const OstrichDropDown = ({
     function renderDrawerContainer(){
         if (isOpen){
             return(
-                <div style={{position: 'absolute', backgroundColor: 'red', width: '100%', left: 0}}>
-                    {renderDrawers()}
+                <div style={{
+                    position: 'absolute',
+                    width: '100%'
+                }}>
+                    <div style={{position: 'relative', width: '100%', justifyItems: 'center'}}>
+                        {renderDrawers()}
+                    </div>
                 </div> 
             )
         }
@@ -427,7 +435,7 @@ export const OstrichDropDown = ({
                     {renderTitle()}
                 </p>
                 <div style={{marginTop: 10}}/>
-                <div style={{justifyContent: 'center'}}>
+                <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%', backgroundColor: 'chartreuse',}}>
                     {renderDrawerContainer()}
                 </div>
             </div>
