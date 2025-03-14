@@ -87,13 +87,16 @@ export const OstrichDropDown = ({
         if (!drawerStyle){
             drawerStyle = {
                 width: '100%', 
+                display: 'flex',
                 minHeight: 30,
                 textAlignVertical: 'center', textAlign: 'center',
                 position: 'relative',
                 backgroundColor:"#efefef", 
                 border: "1px solid black", borderRadius: 0,
-                justifyItems: 'center', 
-                alignItems: 'center,'
+                borderTopWidth: 0,
+                justifyContent: 'center', 
+                alignContent: 'center',
+                alignItems: 'center'
             }
         }
         finishDrawerStyles()
@@ -272,6 +275,7 @@ export const OstrichDropDown = ({
     }
 
     function extractTextStyles(wrapStyle){
+        // console.log(wrapStyle)
         let rObj = {}
         if (wrapStyle.fontSize){
             rObj = {...rObj, fontSize: wrapStyle.fontSize}
@@ -285,6 +289,28 @@ export const OstrichDropDown = ({
         if (wrapStyle.letterSpacing){
             rObj = {...rObj, letterSpacing: wrapStyle.letterSpacing}
         }
+        if (wrapStyle.textAlign){
+            rObj = {...rObj, textAlign: wrapStyle.textAlign}
+        }
+        if (wrapStyle.textAlignVertical){
+            rObj = {...rObj, textAlignVertical: wrapStyle.textAlignVertical}
+        }
+        if (wrapStyle.display){
+            rObj = {...rObj, display: wrapStyle.display}
+        }
+        if (wrapStyle.justifyContent){
+            rObj = {...rObj, justifyContent: wrapStyle.justifyContent}
+        }
+        if (wrapStyle.alignContent){
+            rObj = {...rObj, alignContent: wrapStyle.alignContent}
+        }
+        if (wrapStyle.justifyItems){
+            rObj = {...rObj, justifyItems: wrapStyle.justifyItems}
+        }
+        if (wrapStyle.alignItems){
+            rObj = {...rObj, alignItems: wrapStyle.alignItems}
+        }
+        // console.log(rObj)
         return rObj
     }
 
@@ -349,7 +375,10 @@ export const OstrichDropDown = ({
     // Determines the Style of the Drawer
     function determineDrawerStyle(drawer){
         if (activeDrawer === drawer){
-            return {drawer: activeDrawerBoxStyleInput, text: extractTextStyles(activeDrawerBoxStyleInput)}
+            return {
+                drawer: activeDrawerBoxStyleInput, 
+                text: extractTextStyles(activeDrawerBoxStyleInput)
+            }
         }
         else{
             return {
@@ -385,6 +414,8 @@ export const OstrichDropDown = ({
                 else{
                     drawerObject = drawer
                 }
+                console.log(determineDrawerStyle(drawer).drawer)
+                console.log(determineDrawerStyle(drawer).text)
                 return(
                     <DrawerItem 
                         key={index}

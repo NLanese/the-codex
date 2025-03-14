@@ -7,6 +7,7 @@ export const DrawerItem = ({
 
     title=false,
     obj,
+
     isActive=false,
     onClick,
 
@@ -26,19 +27,33 @@ export const DrawerItem = ({
     ///////////////
 
         // Determines the styles for Text and Drawers
-        function determineStyle() {
-            if (isActive) {
-            return {
-                drawer: isHovered ? { ...activeStyle, ...hoverStyleAdditions } : { ...activeStyle },
-                text: isHovered ? { ...activeStyle, ...hoverTextStyleAdditions } : { ...activeTextStyle },
-            };
-            } else {
-            return {
-                drawer: isHovered ? { ...style, ...hoverStyleAdditions } : { ...style },
-                text: isHovered ? { ...textStyle, ...hoverTextStyleAdditions } : { ...textStyle },
-            };
-            }
-        }
+        // function determineStyle() {
+        //     if (isActive) {
+        //     return {
+        //         // drawer: isHovered ? { ...activeStyle, ...hoverStyleAdditions } : 
+        //         // { ...
+        //             activeStyle
+        //         // }
+        //         ,
+        //         text: 
+        //         // isHovered ? { ...activeStyle, ...hoverTextStyleAdditions } : { ...
+        //             activeTextStyle
+        //         //  },
+        //     };
+        //     } else {
+        //     return {
+        //         drawer: 
+        //         // isHovered ? { ...style, ...hoverStyleAdditions } : { ...
+        //             style
+        //         //  }
+        //          ,
+        //         text: 
+        //         // isHovered ? { ...textStyle, ...hoverTextStyleAdditions } : { ...
+        //             textStyle
+        //         // },
+        //     };
+        //     }
+        // }
 
         // Determines whether tp send a string or an object as a parameter on Click
         function determineParameter(){
@@ -79,16 +94,16 @@ export const DrawerItem = ({
 
     const MAIN = () => {
 
-        console.log(determineStyle().drawer)
-        console.log(determineStyle().text)
+        console.log(style)
+        console.log(textStyle)
         return(
             <div 
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handleOnPress(determineParameter)}
-            style={determineStyle().drawer}
+            style={style}
             >
-                <div style={{...determineStyle().text, backgroundColor: 'greenyellow'}}>
+                <div style={{...textStyle, backgroundColor: "lime"}}>
                     {determineTitle()}
                 </div>
             </div>
