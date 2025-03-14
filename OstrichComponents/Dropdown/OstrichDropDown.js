@@ -57,20 +57,39 @@ export const OstrichDropDown = ({
     const [activeBoxStyleInput, setActiveBoxStyleInput] = useState(false)
     const [hoverBoxStyleInput, setHoverBoxStyleInput] = useState(false)
 
+    const [drawerStyleInput, setDrawerStyleInput] = useState(false)
+    const [activeDrawerBoxStyleInput, setActiveDrawerBoxStyleInput] = useState(false)
+    const [hoverDrawerBoxStyleInput, setHoverDrawerBoxStyleInput] = useState(false)
+
     ///////////////
     // UseEffect //
     ///////////////
 
-    // Initial Style Checker
+    // Initial BOX Style Checker
     useEffect(() => {
         // Drawer Style Handler
         if (!boxStyle){
             boxStyle = {
-                width: '35%', 
+                width: 'auto', 
                 backgroundColor:"#efefef", 
                 padding: 2, 
                 border: "1px solid black", borderRadius: 10,
-                justifyItems: 'center', textAlign: 'center'
+                justifyItems: 'center', textAlign: 'center',
+            }
+        }
+        finishBoxStyles()
+    }, [])
+
+    // Initial DRAWER Style Checker
+    useEffect(() => {
+        // Drawer Style Handler
+        if (!boxStyle){
+            boxStyle = {
+                width: 'auto', 
+                backgroundColor:"#efefef", 
+                padding: 2, 
+                border: "1px solid black", borderRadius: 10,
+                justifyItems: 'center', textAlign: 'center',
             }
         }
         finishBoxStyles()
@@ -86,21 +105,23 @@ export const OstrichDropDown = ({
             drawerStyle.width = '99%'
         }
         if (!drawerStyle.backgroundColor){
-            drawerStyle.backgroundColor = "rgb(198 199 200)"
+            drawerStyle.backgroundColor = "lightgrey"
         }
         if (!drawerStyle.padding){
-            drawerStyle.padding = "1.5%"
+            drawerStyle.padding = "0.5%"
         }
-        if (!drawerStyle.minWidth){
-            drawerStyle.padding = "1.5%"
+        if (!drawerStyle.width){
+            drawerStyle.minWidth = "100%"
         }
         if (!noBorder && !drawerStyle.border && !drawerStyle.borderRadius && !drawerStyle.borderWidth){
             drawerStyle.border = "2px solid #E9F1FF"
             drawerStyle.borderRadius = 10
         }
         if (!noShadow && !drawerStyle.boxShadow){
-            drawerStyle.border = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+            drawerStyle.boxShadowRight = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+            drawerStyle.boxShadowLeft = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }  
+        setDrawerStyleInput(drawerStyle)
     }
 
     function finishBoxStyles(){
@@ -329,7 +350,7 @@ export const OstrichDropDown = ({
     function renderDrawerContainer(){
         if (isOpen){
             return(
-                <div style={{position: 'absolute', justifyContent: 'center', width: '90%', backgroundColor: 'red'}}>
+                <div style={{position: 'absolute'}}>
                     {renderDrawers()}
                 </div> 
             )
@@ -355,7 +376,9 @@ export const OstrichDropDown = ({
                     {renderTitle()}
                 </p>
                 <div style={{marginTop: 10}}/>
-                {renderDrawerContainer()}
+                <div style={{justifyContent: 'center'}}>
+                    {renderDrawerContainer()}
+                </div>
             </div>
     
         )
