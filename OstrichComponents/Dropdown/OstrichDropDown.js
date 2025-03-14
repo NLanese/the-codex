@@ -147,6 +147,29 @@ export const OstrichDropDown = ({
             hoverDrawerStyle.boxShadow = drawerStyle.boxShadow
         }  
         setHoverBoxStyleInput(hoverDrawerStyle)
+
+        // Active Drawer
+        if (!activeDrawerStyle){
+            activeDrawerStyle = {...drawerStyle}
+            activeDrawerStyle.backgroundColor ="#a5a8a8"
+        }
+        if (!activeBoxStyle?.width){
+            activeDrawerStyle.width = drawerStyle.width
+        }
+        if (!activeDrawerStyle?.padding){
+            activeDrawerStyle.padding = boxStyle.padding
+        }
+        if (!activeDrawerStyle?.minWidth){
+            activeDrawerStyle.minWidth = boxStyle.minWidth
+        }
+        if (!activeDrawerStyle?.border && !activeDrawerStyle.borderRadius && !activeDrawerStyle.borderWidth){
+            activeDrawerStyle.border = drawerStyle.border
+            activeDrawerStyle.borderRadius = drawerStyle.borderRadius
+        }
+        if (!activeDrawerStyle?.boxShadow){
+            activeDrawerStyle.boxShadow = drawerStyle.boxShadow
+        }  
+        setActiveBoxStyleInput(activeDrawerStyle)
     }
 
     function finishBoxStyles(){
