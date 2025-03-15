@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 
 export const OstrichDropDown = ({
-    style,
     title="ADD TITLE OR OBJECT PROP",
 
     onClick=false,
@@ -22,15 +21,14 @@ export const OstrichDropDown = ({
     open=false,
 
     drawerStyle,
-    drawerTitleStyle,
     activeDrawerStyle,
+    hoverOnDrawers=true,
     hoverDrawerStyle,
 
     boxStyle,
     noBorder=false,
     noShadow=false,
     activeBoxStyle,
-    activeTitleStyle,
     hoverBoxStyle,
 
 }) => {
@@ -51,6 +49,7 @@ export const OstrichDropDown = ({
 
 
     const [activeDrawer, setActiveDrawer] = useState(false)
+    const [hoveredDrawer, setHoveredDrawer] = useState(false)
 
     // Styles
     const [boxStyleInput, setBoxStyleInput] = useState(false)
@@ -93,7 +92,7 @@ export const OstrichDropDown = ({
                 position: 'relative',
                 backgroundColor:"#efefef", 
                 border: "1px solid black", borderRadius: 0,
-                borderTopWidth: 0,
+                borderTopWidth: 0.5, borderBottomWidth: 0.5,
                 justifyContent: 'center', 
                 alignContent: 'center',
                 alignItems: 'center'
@@ -192,7 +191,7 @@ export const OstrichDropDown = ({
             boxStyle.backgroundColor = "#c6c7c8"
         }
         if (!boxStyle?.padding){
-            boxStyle.padding = "1.5%"
+            boxStyle.padding = 10
         }
         if (!boxStyle?.minWidth){
             boxStyle.minWidth = 140
@@ -275,7 +274,6 @@ export const OstrichDropDown = ({
     }
 
     function extractTextStyles(wrapStyle){
-        // console.log(wrapStyle)
         let rObj = {}
         if (wrapStyle.fontSize){
             rObj = {...rObj, fontSize: wrapStyle.fontSize}
@@ -310,7 +308,6 @@ export const OstrichDropDown = ({
         if (wrapStyle.alignItems){
             rObj = {...rObj, alignItems: wrapStyle.alignItems}
         }
-        // console.log(rObj)
         return rObj
     }
 
@@ -343,6 +340,17 @@ export const OstrichDropDown = ({
         }
         else{
             console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")
+        }
+        setActiveDrawer(drawer)
+    }
+
+    // If openOnHover, opens the Drop. Fires any hover functions
+    function handleDrawerHover(drawer, enter){
+        if (hoverOnDrawers && enter){
+            setHoveredDrawer(drawer)
+        }
+        else if (!enter){
+            setHoveredDrawer(false)
         }
     }
 
@@ -380,6 +388,12 @@ export const OstrichDropDown = ({
                 text: extractTextStyles(activeDrawerBoxStyleInput)
             }
         }
+        else if (hoveredDrawer === drawer){
+            return {
+                drawer: hoverDrawerBoxStyleInput, 
+                text: extractTextStyles(hoverDrawerBoxStyleInput)
+            }
+        }
         else{
             return {
                 drawer: drawerStyleInput, 
@@ -414,8 +428,6 @@ export const OstrichDropDown = ({
                 else{
                     drawerObject = drawer
                 }
-                console.log(determineDrawerStyle(drawer).drawer)
-                console.log(determineDrawerStyle(drawer).text)
                 return(
                     <DrawerItem 
                         key={index}
@@ -423,8 +435,7 @@ export const OstrichDropDown = ({
                         textStyle={{...determineDrawerStyle(drawer).text}}
                         onClick={() => handleDrawerPress(drawer)}
                         obj={drawerObject}
-                        hoverStyleAdditions={hoverDrawerStyle}
-                        // hoverTextStyleAdditions={hoverTitleStyle}
+                        handleDrawerHover={(input) => handleDrawerHover(drawer, input)}
                     />
                 )
             })
@@ -436,8 +447,8 @@ export const OstrichDropDown = ({
         if (isOpen){
             return(
                 <div style={{
-                    position: 'absolute',
-                    width: '100%'
+                    position: 'absolute', top: "100%",
+                    width: '102%',
                 }}>
                     <div style={{position: 'relative', width: '100%', justifyItems: 'center'}}>
                         {renderDrawers()}

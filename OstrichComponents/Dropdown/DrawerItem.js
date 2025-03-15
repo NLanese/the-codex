@@ -11,10 +11,8 @@ export const DrawerItem = ({
     isActive=false,
     onClick,
 
-    hoverStyleAdditions,
-    hoverTextStyleAdditions,
-    activeStyle,
-    activeTextStyle,
+    handleDrawerHover
+
 }) => {
     ////////////
     // States //
@@ -67,12 +65,12 @@ export const DrawerItem = ({
 
         // Hovered to True
         function handleMouseEnter(){
-            setIsHovered(true)
+            handleDrawerHover(true)
         }
 
         // Hovered to False
         function handleMouseLeave(){
-            setIsHovered(false)
+            handleDrawerHover(false)
         }
 
         // Determines which onClick function to use, general or specific.
@@ -93,9 +91,6 @@ export const DrawerItem = ({
     ////////////////
 
     const MAIN = () => {
-
-        console.log(style)
-        console.log(textStyle)
         return(
             <div 
             onMouseEnter={() => handleMouseEnter()}
@@ -103,7 +98,7 @@ export const DrawerItem = ({
             onClick={() => handleOnPress(determineParameter)}
             style={style}
             >
-                <div style={{...textStyle, backgroundColor: "lime"}}>
+                <div style={{...textStyle}}>
                     {determineTitle()}
                 </div>
             </div>
