@@ -98,6 +98,44 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.keyword}>OstCard</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>onClick</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>{"{"}</span>
+                            <span style={Styles.Code.reg}>()</span>
+                            <span style={Styles.Code.keyword}>{" => "}</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.keyword}>console</span>
+                            <span style={Styles.Code.reg}>.</span>
+                            <span style={Styles.Code.var}>log</span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.str}>"Button Pressed"</span>
+                            <span style={Styles.Code.reg}>)</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                            <span style={Styles.Code.str}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Ostrich Card Button</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"</"}</span>
+                            <span style={Styles.Code.keyword}>OstCard</span>
+                            <span style={Styles.Code.reg}>{">"}</span>
+                        </p>
+                    </div>
+
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstCard</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>style</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.var}>{"{"}</span>
@@ -138,44 +176,6 @@ export default function OstrichShowcase() {
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={{...Styles.Code.reg, marginLeft: 10}}>Custom Styled Card</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>onClick</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>()</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.keyword}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.var}>log</span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.str}>"Button Pressed"</span>
-                            <span style={Styles.Code.reg}>)</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Ostrich Card Button</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"</"}</span>
