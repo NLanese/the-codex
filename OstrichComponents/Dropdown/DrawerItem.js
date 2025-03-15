@@ -18,7 +18,7 @@ export const DrawerItem = ({
     // States //
     ////////////
 
-    const [isHovered, setIsHovered] = useState(false)
+    const [isExpanded, setIsExpanded] = useState(false)
 
     ///////////////
     // Functions //

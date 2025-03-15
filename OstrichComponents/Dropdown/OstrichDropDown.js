@@ -116,12 +116,6 @@ export const OstrichDropDown = ({
         if (!drawerStyle.backgroundColor){
             drawerStyle.backgroundColor = "lightgrey"
         }
-        // if (!drawerStyle.padding){
-        //     drawerStyle.padding = "0.5%"
-        // }
-        if (!drawerStyle.minWidth){
-            // drawerStyle.minWidth = "50%"
-        }
         if (!noBorder && !drawerStyle.border && !drawerStyle.borderRadius && !drawerStyle.borderWidth){
             drawerStyle.border = "2px solid #E9F1FF"
             drawerStyle.borderRadius = 0
@@ -158,7 +152,7 @@ export const OstrichDropDown = ({
         // Active Drawer
         if (!activeDrawerStyle){
             activeDrawerStyle = {...drawerStyle}
-            activeDrawerStyle.backgroundColor ="#a5a8a8"
+            activeDrawerStyle.backgroundColor = "#c3e2fa"
         }
         if (!activeBoxStyle?.width){
             activeDrawerStyle.width = drawerStyle.width
@@ -332,16 +326,24 @@ export const OstrichDropDown = ({
 
     // Determines which DrawerPress Function to pass
     function handleDrawerPress(drawer){
-        if (drawer.onClick){
+
+        if (drawer.onClick){                // Runs Object OnClick Function 
             return drawer.onClick(drawer)
-        }
-        else if (onDrawerClick){
+        }   
+        else if (onDrawerClick){            // Runs Params OnClick Function 
             return onDrawerClick(drawer)
         }
         else{
             console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")
         }
-        setActiveDrawer(drawer)
+
+        // Sets Drawer as Active, if already Active then Deactivates
+        if (activeDrawer === drawer){
+            setActiveDrawer(false)
+        }
+        else{
+            setActiveDrawer(drawer)
+        }
     }
 
     // If openOnHover, opens the Drop. Fires any hover functions
