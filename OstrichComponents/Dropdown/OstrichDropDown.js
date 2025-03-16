@@ -327,6 +327,14 @@ export const OstrichDropDown = ({
     // Determines which DrawerPress Function to pass
     function handleDrawerPress(drawer){
 
+        // Sets Drawer as Active, if already Active then Deactivates
+        if (activeDrawer === drawer){
+            setActiveDrawer(false)
+        }
+        else{
+            setActiveDrawer(drawer)
+        }
+
         if (drawer.onClick){                // Runs Object OnClick Function 
             return drawer.onClick(drawer)
         }   
@@ -335,14 +343,6 @@ export const OstrichDropDown = ({
         }
         else{
             console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")
-        }
-
-        // Sets Drawer as Active, if already Active then Deactivates
-        if (activeDrawer === drawer){
-            setActiveDrawer(false)
-        }
-        else{
-            setActiveDrawer(drawer)
         }
     }
 

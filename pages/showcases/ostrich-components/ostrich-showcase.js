@@ -25,6 +25,8 @@ export default function OstrichShowcase() {
 
   const [directory, setDirectory] = useRecoilState(directoryDataState)
 
+  const [titleForDrop3, setTitleForDrop3] = useState("Dynamic Title")
+
   ////////////////
   // UseEffects //
   ////////////////
@@ -649,6 +651,20 @@ export default function OstrichShowcase() {
                         title="Vanilla Dropdown"
                         drawers={[1, 2, 3]}
                     />
+
+                    {/* Click to Open Dropdown */}
+                    <OstrichDropDown
+                        title="Click to Open"
+                        openOnHover={false}
+                        drawers={[1, 2, 3]}
+                    />
+
+                    {/* Click to Open Dropdown */}
+                    <OstrichDropDown
+                        title={titleForDrop3}
+                        drawers={[1, 2, 3]}
+                        onDrawerClick={(drawer) => setTitleForDrop3(drawer)}
+                    />
             </div>
 
              {/* Ost Dropdown Code Row One */}
@@ -670,11 +686,96 @@ export default function OstrichShowcase() {
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>drawers</span>
                             <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
                             <span style={Styles.Code.keyword}>{"["}</span>
                             <span style={Styles.Code.reg}>1, 2, 3</span>
                             <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+
+                    {/* Click to Open Dropdown */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>"Click to Open"</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>1, 2, 3</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>openOnHover</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>false</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+
+                    {/* Dynamic Title  Dropdown */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
+                        <span style={Styles.Code.keyword}>const [</span>
+                        <span style={Styles.Code.var}>title</span>
+                        <span style={Styles.Code.reg}>,</span>
+                        <span style={Styles.Code.func}> setTitle</span>
+                        <span style={Styles.Code.keyword}>] </span>
+                        <span style={Styles.Code.reg}> = </span>
+                        <span style={Styles.Code.var}>useState</span>
+                        <span style={Styles.Code.keyword}>{"("}</span>
+                        <span style={Styles.Code.str}>"Dynamic Title"</span>
+                        <span style={Styles.Code.keyword}>{")"}</span>
+                    </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>1, 2, 3</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>onDrawerClick</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.str}>{"("}</span>
+                            <span style={Styles.Code.var}>input</span>
+                            <span style={Styles.Code.str}>{")"}</span>
+                            <span style={Styles.Code.keyword}>{" => {"}</span>
+                            <span style={Styles.Code.func}>setTitle(</span>
+                            <span style={Styles.Code.var}>input</span>
+                            <span style={Styles.Code.func}>{")"}</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"/>"}</span>

@@ -42,6 +42,7 @@ const Styles = {
         str: {color: "#f7e672", marginTop: 0, marginBottom: 0},
         bool: {color: "#3fa0a0", marginTop: 0, marginBottom: 0},
         comment: {color: "#41FF00", marginTop: 0, marginBottom: 0},
+        func: {color: "#fa6c61", marginTop: 0, marginBottom: 0},
 
         testCodeSegment: {
             backgroundColor: "black", 
