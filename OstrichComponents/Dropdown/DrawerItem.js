@@ -24,35 +24,6 @@ export const DrawerItem = ({
     // Functions //
     ///////////////
 
-        // Determines the styles for Text and Drawers
-        // function determineStyle() {
-        //     if (isActive) {
-        //     return {
-        //         // drawer: isHovered ? { ...activeStyle, ...hoverStyleAdditions } : 
-        //         // { ...
-        //             activeStyle
-        //         // }
-        //         ,
-        //         text: 
-        //         // isHovered ? { ...activeStyle, ...hoverTextStyleAdditions } : { ...
-        //             activeTextStyle
-        //         //  },
-        //     };
-        //     } else {
-        //     return {
-        //         drawer: 
-        //         // isHovered ? { ...style, ...hoverStyleAdditions } : { ...
-        //             style
-        //         //  }
-        //          ,
-        //         text: 
-        //         // isHovered ? { ...textStyle, ...hoverTextStyleAdditions } : { ...
-        //             textStyle
-        //         // },
-        //     };
-        //     }
-        // }
-
         // Determines whether tp send a string or an object as a parameter on Click
         function determineParameter(){
             return obj ? obj : title

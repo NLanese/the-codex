@@ -721,7 +721,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>openOnHover</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>false</span>
+                            <span style={Styles.Code.bool}>false</span>
                             <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
@@ -782,6 +782,17 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
             </div>
+
+            {/* Preamble */}
+            <p style={{...Styles.Fonts.basic, marginTop: 50}}>
+            Ostrich Components provide a means for consolidating many selections or a collection of information via the OstrichDropDown. Without any styling or advanced tuning needed, 
+            OstrichDropDowns simply take an object or an array representing some data and processes it into a well rendered dropdown, with its own onHover features and clickability.     
+            </p>
+            <p style={Styles.Fonts.basic}>
+            Let's check out some examples
+            </p>
+
+
         </div>
     )
   }
@@ -794,7 +805,7 @@ export default function OstrichShowcase() {
     <div style={{marginTop: 20}}>
      <div style={Styles.Fonts.pageTitle}>The Ostrich React Component Library</div>
      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <OstCard style={{margin: "30px", flex: 9}}>
+        <OstCard style={{margin: "30px", flex: 10}}>
             <div style={Styles.Sections.lessonContent}>
                 <p style={Styles.Fonts.basic}>
                 This entire Site has been made using the Ostrich React Component Library and regular Vanilla React tags. 
@@ -815,7 +826,7 @@ export default function OstrichShowcase() {
 
 
         {/* Side Menu */}
-        <OstCard style={{marginTop: 30, marginRight: 30, flex: 3}}>
+        <OstCard style={{marginTop: 30, marginRight: 30, flex: 2}}>
 
         </OstCard>
      </div>

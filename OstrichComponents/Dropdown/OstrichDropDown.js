@@ -71,10 +71,11 @@ export const OstrichDropDown = ({
             boxStyle = {
                 width: 'auto', 
                 backgroundColor:"#efefef", 
-                // padding: 2, 
                 border: "1px solid black", borderRadius: 10,
                 justifyItems: 'center', textAlign: 'center',
                 position: 'relative',
+                fontFamily: "Gilroy",
+                fontWeight: 600
             }
         }
         finishBoxStyles()
@@ -95,7 +96,9 @@ export const OstrichDropDown = ({
                 borderTopWidth: 0.5, borderBottomWidth: 0.5,
                 justifyContent: 'center', 
                 alignContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                fontFamily: "Gilroy",
+                fontWeight: 500
             }
         }
         finishDrawerStyles()
@@ -184,8 +187,9 @@ export const OstrichDropDown = ({
         if (!boxStyle?.backgroundColor){
             boxStyle.backgroundColor = "#c6c7c8"
         }
-        if (!boxStyle?.padding){
-            boxStyle.padding = 10
+        if (!boxStyle?.padding && !boxStyle?.paddingRight && !boxStyle?.paddingLeft){
+            boxStyle.paddingRight = 5
+            boxStyle.paddingLeft = 5
         }
         if (!boxStyle?.minWidth){
             boxStyle.minWidth = 140
