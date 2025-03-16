@@ -638,16 +638,49 @@ export default function OstrichShowcase() {
             Let's check out some examples
             </p>
 
-            {/* Ost Cards Example Row One */}
+            {/* Ost Dropdown Example Row One */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
+
+                    {/* Vanilla Dropdown */}
                     <OstrichDropDown
                         title="Vanilla Dropdown"
                         drawers={[1, 2, 3]}
                     />
-                </div>
+            </div>
+
+             {/* Ost Dropdown Code Row One */}
+             <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+                    {/* Template One */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>"Vanilla Dropdown"</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>1, 2, 3</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.str}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+            </div>
         </div>
     )
   }
