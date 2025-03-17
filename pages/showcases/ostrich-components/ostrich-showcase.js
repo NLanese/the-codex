@@ -26,6 +26,8 @@ export default function OstrichShowcase() {
   const [directory, setDirectory] = useRecoilState(directoryDataState)
 
   const [titleForDrop3, setTitleForDrop3] = useState("Dynamic Title")
+  const [titleForDrop4, setTitleForDrop4] = useState("Dropdown with Object")
+
 
   ////////////////
   // UseEffects //
@@ -791,6 +793,16 @@ export default function OstrichShowcase() {
             <p style={Styles.Fonts.basic}>
             Let's check out some examples
             </p>
+
+            {/* Ost Dropdown Example Row One */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+                    <OstrichDropDown 
+                        title={titleForDrop4}
+                    />
+            </div>
 
 
         </div>

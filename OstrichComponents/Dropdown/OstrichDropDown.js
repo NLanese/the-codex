@@ -20,9 +20,13 @@ export const OstrichDropDown = ({
     manualOpen=false,
     open=false,
 
+    boxHovers=true,
+    drawersHover=true,
+    boxActivates=true,
+    drawersActivate=true,
+
     drawerStyle,
     activeDrawerStyle,
-    hoverOnDrawers=true,
     hoverDrawerStyle,
 
     boxStyle,
@@ -260,10 +264,10 @@ export const OstrichDropDown = ({
     }
 
     function determineBoxStyle(){
-        if (isOpen){
+        if (isOpen && boxActivates){
             return activeBoxStyleInput
         }
-        else if (!isOpen && isHovered){
+        else if ((!isOpen || !boxActivates) && isHovered){
             return hoverBoxStyleInput
         }
         else{
@@ -336,14 +340,16 @@ export const OstrichDropDown = ({
             setActiveDrawer(false)
         }
         else{
-            setActiveDrawer(drawer)
+            if (drawersActivate){
+                setActiveDrawer(drawer)
+            }
         }
 
         if (drawer.onClick){                // Runs Object OnClick Function 
-            return drawer.onClick(drawer)
+            drawer.onClick(drawer)
         }   
-        else if (onDrawerClick){            // Runs Params OnClick Function 
-            return onDrawerClick(drawer)
+        if (onDrawerClick){            // Runs Params OnClick Function 
+            onDrawerClick(drawer)
         }
         else{
             console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")
@@ -352,7 +358,7 @@ export const OstrichDropDown = ({
 
     // If openOnHover, opens the Drop. Fires any hover functions
     function handleDrawerHover(drawer, enter){
-        if (hoverOnDrawers && enter){
+        if (drawersHover && enter){
             setHoveredDrawer(drawer)
         }
         else if (!enter){
@@ -368,7 +374,9 @@ export const OstrichDropDown = ({
             }
         }
         else{
-            setIsHovered(true)
+            if (boxHovers){
+                setIsHovered(true)
+            }
         }
         if (onMouseEnter){
             onMouseEnter(obj)
