@@ -800,7 +800,27 @@ export default function OstrichShowcase() {
                 justifyContent: 'space-around',
                 }}>
                     <OstrichDropDown 
-                        title={titleForDrop4}
+                        title={"Unique Drawer Styles"}
+                        drawers={[
+                            {
+                                title: "Red", 
+                                style: {color: 'red'}, 
+                                activeStyle: {backgroundColor: 'red', color: 'black'},
+                                hoverStyle: {backgroundColor: 'pink', color: 'black'}
+                            },
+                            {
+                                title: "Blue", 
+                                style: {color: 'blue'}, 
+                                activeStyle: {backgroundColor: 'blue', color: 'black'},
+                                hoverStyle: {backgroundColor: 'cyan', color: 'black'}
+                            },
+                            {
+                                title: "Green", 
+                                style: {color: 'green'}, 
+                                activeStyle: {backgroundColor: 'green', color: 'black'},
+                                hoverStyle: {backgroundColor: 'lime', color: 'black'}
+                            }
+                        ]}
                     />
             </div>
 

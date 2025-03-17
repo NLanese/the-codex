@@ -28,6 +28,7 @@ export const OstrichDropDown = ({
     drawerStyle,
     activeDrawerStyle,
     hoverDrawerStyle,
+    drawersInheritStyle,
 
     boxStyle,
     noBorder=false,
@@ -185,15 +186,14 @@ export const OstrichDropDown = ({
         if (!boxStyle?.position){
             boxStyle.position = "relative"
         }
-        if (!boxStyle?.width){
-            boxStyle.width = "30%"
-        }
         if (!boxStyle?.backgroundColor){
             boxStyle.backgroundColor = "#c6c7c8"
         }
-        if (!boxStyle?.padding && !boxStyle?.paddingRight && !boxStyle?.paddingLeft){
-            boxStyle.paddingRight = 5
-            boxStyle.paddingLeft = 5
+        if (!boxStyle?.paddingTop && !boxStyle?.paddingBottom && 
+            !boxStyle?.paddingLeft && !boxStyle?.paddingRight && !boxStyle.padding)
+        {
+            boxStyle.paddingRight = 10
+            boxStyle.paddingLeft = 10
         }
         if (!boxStyle?.minWidth){
             boxStyle.minWidth = 140
@@ -218,8 +218,14 @@ export const OstrichDropDown = ({
         if (!hoverBoxStyle?.width){
             hoverBoxStyle.width = boxStyle.width
         }
-        if (!hoverBoxStyle?.padding){
+        if (!hoverBoxStyle?.paddingTop && !hoverBoxStyle?.paddingBottom && 
+            !hoverBoxStyle?.paddingLeft && !hoverBoxStyle?.paddingRight && !hoverBoxStyle.padding)
+        {
             hoverBoxStyle.padding = boxStyle.padding
+            hoverBoxStyle.paddingLeft = boxStyle.paddingLeft
+            hoverBoxStyle.paddingRight = boxStyle.paddingRight
+            hoverBoxStyle.paddingTop = boxStyle.paddingTop
+            hoverBoxStyle.paddingBottom = boxStyle.paddingBottom
         }
         if (!hoverBoxStyle?.minWidth){
             hoverBoxStyle.minWidth = boxStyle.minWidth
@@ -245,8 +251,14 @@ export const OstrichDropDown = ({
         if (!activeBoxStyle?.width){
             activeBoxStyle.width = boxStyle.width
         }
-        if (!activeBoxStyle?.padding){
+        if (!activeBoxStyle?.paddingTop && !activeBoxStyle?.paddingBottom && 
+            !activeBoxStyle?.paddingLeft && !activeBoxStyle?.paddingRight && !activeBoxStyle.padding)
+        {
             activeBoxStyle.padding = boxStyle.padding
+            activeBoxStyle.paddingLeft = boxStyle.paddingLeft
+            activeBoxStyle.paddingRight = boxStyle.paddingRight
+            activeBoxStyle.paddingTop = boxStyle.paddingTop
+            activeBoxStyle.paddingBottom = boxStyle.paddingBottom
         }
         if (!activeBoxStyle?.minWidth){
             activeBoxStyle.minWidth = boxStyle.minWidth
@@ -271,6 +283,7 @@ export const OstrichDropDown = ({
             return hoverBoxStyleInput
         }
         else{
+            console.log(boxStyleInput)
             return boxStyleInput
         }
     }
@@ -327,7 +340,12 @@ export const OstrichDropDown = ({
             
         }
         if (onClick){
-            onClick(obj)
+            if (obj){
+                onClick(obj)
+            }
+            else{
+                onClick(drawers)
+            }
         }
         setIsHovered(false)
     }
@@ -396,19 +414,55 @@ export const OstrichDropDown = ({
 
     // Determines the Style of the Drawer
     function determineDrawerStyle(drawer){
+
+        // Active Drawer //
         if (activeDrawer === drawer){
-            return {
-                drawer: activeDrawerBoxStyleInput, 
-                text: extractTextStyles(activeDrawerBoxStyleInput)
+
+            // Uses Specific Drawer Style
+            if (drawer.activeStyle){        
+                return{
+                    drawer: {...drawerStyleInput, ...drawer.activeStyle},
+                    text: extractTextStyles({...drawerStyleInput, ...drawer.activeStyle})
+                }
+            }
+
+            // Uses General Drawer Style
+            else{
+                return {
+                    drawer:  activeDrawerBoxStyleInput, 
+                    text: extractTextStyles(activeDrawerBoxStyleInput)
+                }
             }
         }
+        
+        // Hover Drawer //
         else if (hoveredDrawer === drawer){
+
+            // Uses Specific Drawer Style
+            if (drawer.hoverStyle){        
+                return{
+                    drawer: {...drawerStyleInput, ...drawer.hoverStyle},
+                    text: extractTextStyles({...drawerStyleInput, ...drawer.hoverStyle})
+                }
+            }
+
             return {
                 drawer: hoverDrawerBoxStyleInput, 
                 text: extractTextStyles(hoverDrawerBoxStyleInput)
             }
         }
+
+        // Regular Drawer //
         else{
+
+            // Uses Specific Drawer Style
+            if (drawer.style){        
+                return{
+                    drawer: {...drawerStyleInput, ...drawer.style},
+                    text: extractTextStyles({...drawerStyleInput, ...drawer.style})
+                }
+            }
+
             return {
                 drawer: drawerStyleInput, 
                 text: extractTextStyles(drawerStyleInput)
@@ -442,6 +496,21 @@ export const OstrichDropDown = ({
                 else{
                     drawerObject = drawer
                 }
+                return(
+                    <DrawerItem 
+                        key={index}
+                        style={{...determineDrawerStyle(drawer).drawer}}
+                        textStyle={{...determineDrawerStyle(drawer).text}}
+                        onClick={() => handleDrawerPress(drawer)}
+                        obj={drawerObject}
+                        handleDrawerHover={(input) => handleDrawerHover(drawer, input)}
+                    />
+                )
+            })
+        }
+        else if (isOpen && obj.drawers){
+            let objDrawers = obj.drawers
+            return objDrawers.map((drawer, index) => {
                 return(
                     <DrawerItem 
                         key={index}
