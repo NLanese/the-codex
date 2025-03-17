@@ -71,43 +71,13 @@ export const OstrichDropDown = ({
 
     // Initial BOX Style Checker
     useEffect(() => {
-        // Drawer Style Handler
-        if (!boxStyle){
-            boxStyle = {
-                width: 'auto', 
-                backgroundColor:"#efefef", 
-                border: "1px solid black", borderRadius: 10,
-                justifyItems: 'center', textAlign: 'center',
-                position: 'relative',
-                fontFamily: "Gilroy",
-                fontWeight: 600
-            }
-        }
         finishBoxStyles()
-    }, [])
+    }, [boxStyle])
 
     // Initial DRAWER Style Checker
     useEffect(() => {
-        // Drawer Style Handler
-        if (!drawerStyle){
-            drawerStyle = {
-                width: '100%', 
-                display: 'flex',
-                minHeight: 30,
-                textAlignVertical: 'center', textAlign: 'center',
-                position: 'relative',
-                backgroundColor:"#efefef", 
-                border: "1px solid black", borderRadius: 0,
-                borderTopWidth: 0.5, borderBottomWidth: 0.5,
-                justifyContent: 'center', 
-                alignContent: 'center',
-                alignItems: 'center',
-                fontFamily: "Gilroy",
-                fontWeight: 500
-            }
-        }
         finishDrawerStyles()
-    }, [])
+    }, [drawerStyle])
 
 
     /////////////////////
@@ -115,6 +85,24 @@ export const OstrichDropDown = ({
     /////////////////////
 
     function finishDrawerStyles(){
+
+        let temp = drawerStyle = {
+            width: '100%', 
+            display: 'flex',
+            minHeight: 30,
+            textAlignVertical: 'center', textAlign: 'center',
+            position: 'relative',
+            backgroundColor:"#efefef", 
+            border: "1px solid black", borderRadius: 0,
+            borderTopWidth: 0.5, borderBottomWidth: 0.5,
+            justifyContent: 'center', 
+            alignContent: 'center',
+            alignItems: 'center',
+            fontFamily: "Gilroy",
+            fontWeight: 500
+        }
+
+        drawerStyle = {...temp, ...drawerStyle}
 
         // Regular Drawer
         if (!drawerStyle.width){
@@ -182,15 +170,29 @@ export const OstrichDropDown = ({
     }
 
     function finishBoxStyles(){
+
+        let temp = {
+            width: 'auto', 
+            backgroundColor:"#efefef", 
+            border: "1px solid black", borderRadius: 10,
+            justifyItems: 'center', textAlign: 'center',
+            position: 'relative',
+            fontFamily: "Gilroy",
+            fontWeight: 600
+        }
+
+        boxStyle = {...temp, ...boxStyle}
+
+
         // Regular Box
-        if (!boxStyle?.position){
+        if (!boxStyle.position){
             boxStyle.position = "relative"
         }
-        if (!boxStyle?.backgroundColor){
+        if (!boxStyle.backgroundColor){
             boxStyle.backgroundColor = "#c6c7c8"
         }
-        if (!boxStyle?.paddingTop && !boxStyle?.paddingBottom && 
-            !boxStyle?.paddingLeft && !boxStyle?.paddingRight && !boxStyle.padding)
+        if (!boxStyle.paddingTop && !boxStyle.paddingBottom && 
+            !boxStyle.paddingLeft && !boxStyle.paddingRight && !boxStyle.padding)
         {
             boxStyle.paddingRight = 10
             boxStyle.paddingLeft = 10
@@ -283,7 +285,6 @@ export const OstrichDropDown = ({
             return hoverBoxStyleInput
         }
         else{
-            console.log(boxStyleInput)
             return boxStyleInput
         }
     }

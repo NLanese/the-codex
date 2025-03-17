@@ -26,7 +26,7 @@ export default function OstrichShowcase() {
   const [directory, setDirectory] = useRecoilState(directoryDataState)
 
   const [titleForDrop3, setTitleForDrop3] = useState("Dynamic Title")
-  const [titleForDrop4, setTitleForDrop4] = useState("Dropdown with Object")
+  const [colorForDrop4, setColorForDrop4] = useState("white")
 
 
   ////////////////
@@ -801,6 +801,8 @@ export default function OstrichShowcase() {
                 }}>
                     <OstrichDropDown 
                         title={"Unique Drawer Styles"}
+                        boxStyle={{width: 350, backgroundColor: colorForDrop4}}
+                        onDrawerClick={(drawer) => setColorForDrop4(drawer.style.color)}
                         drawers={[
                             {
                                 title: "Red", 
