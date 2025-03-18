@@ -27,6 +27,7 @@ export default function OstrichShowcase() {
 
   const [titleForDrop3, setTitleForDrop3] = useState("Dynamic Title")
   const [colorForDrop4, setColorForDrop4] = useState("white")
+  const [totalForDrop5, setTotalForDrop5] = useState(0)
 
 
   ////////////////
@@ -675,7 +676,7 @@ export default function OstrichShowcase() {
                 justifyContent: 'space-around',
                 }}>
                     {/* Template One */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '33%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichDropDown</span>
@@ -732,7 +733,7 @@ export default function OstrichShowcase() {
                     </div>
 
                     {/* Dynamic Title  Dropdown */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '33%'}}>
                     <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
                         <span style={Styles.Code.keyword}>const [</span>
                         <span style={Styles.Code.var}>title</span>
@@ -825,6 +826,25 @@ export default function OstrichShowcase() {
                             }
                         ]}
                     />
+                    <OstrichDropDown 
+                        title={(`Total: ${totalForDrop5}`)}
+                        boxStyle={{width: 350}}
+                        drawersActivate={false}
+                        drawers={[
+                            {
+                                title: "Increase By One", 
+                                onClick: () => setTotalForDrop5(totalForDrop5 + 1)
+                            },
+                            {
+                                title: "Decrease By Two", 
+                                onClick: () => setTotalForDrop5(totalForDrop5 - 2)
+                            },
+                            {
+                                title: "Double the total", 
+                                onClick: () => setTotalForDrop5(totalForDrop5 * 2)
+                            }
+                        ]}
+                    />
             </div>
 
             {/* Ost Dropdown Code Row One */}
@@ -832,7 +852,7 @@ export default function OstrichShowcase() {
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
-                    {/* Template One */}
+                    {/* Unique Drawer Styles Code */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
                     <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
                         <span style={Styles.Code.keyword}>const [</span>
@@ -1036,7 +1056,7 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
 
-                    {/* Click to Open Dropdown */}
+                    {/* Unique Drawer onClicks */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
@@ -1045,24 +1065,100 @@ export default function OstrichShowcase() {
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>title</span>
                             <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>"Click to Open"</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>`</span>
+                            <span style={Styles.Code.str}>Total: </span>
+                            <span style={Styles.Code.keyword}>{"${"}</span>
+                            <span style={Styles.Code.var}>total</span>
+                            <span style={Styles.Code.keyword}>{"}`"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.var}>boxStyle</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>1, 2, 3</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>width: </span>
+                            <span style={Styles.Code.reg}>350 </span>
                             <span style={Styles.Code.reg}>{"}"}</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>openOnHover</span>
+                            <span style={Styles.Code.var}>drawersActivate</span>
                             <span style={Styles.Code.reg}>=</span>
                             <span style={Styles.Code.reg}>{"{"}</span>
                             <span style={Styles.Code.bool}>false</span>
                             <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
+                        
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>title: </span>
+                            <span style={Styles.Code.str}>"Increase By One"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>onClick: </span>
+                            <span style={Styles.Code.keyword}>{"() => "}</span>
+                            <span style={Styles.Code.func}>setTotal(</span>
+                            <span style={Styles.Code.var}>total</span>
+                            <span style={Styles.Code.reg}> + 1</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"},"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>title: </span>
+                            <span style={Styles.Code.str}>"Decrease By Two"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>onClick: </span>
+                            <span style={Styles.Code.keyword}>{"() => "}</span>
+                            <span style={Styles.Code.func}>setTotal(</span>
+                            <span style={Styles.Code.var}>total</span>
+                            <span style={Styles.Code.reg}> - 2</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"},"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>title: </span>
+                            <span style={Styles.Code.str}>"Double Total"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>onClick: </span>
+                            <span style={Styles.Code.keyword}>{"() => "}</span>
+                            <span style={Styles.Code.func}>setTotal(</span>
+                            <span style={Styles.Code.var}>total</span>
+                            <span style={Styles.Code.reg}> * 2</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"},"}</span>
+                        </p>
+
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"/>"}</span>
                         </p>

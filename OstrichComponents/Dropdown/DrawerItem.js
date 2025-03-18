@@ -46,14 +46,14 @@ export const DrawerItem = ({
 
         // Determines which onClick function to use, general or specific.
         function handleOnPress(param){
-            if (obj.onClick){
-                return obj.onClick(param)
+            if (onClick){
+                return onClick(param)
+            }
+            else if (obj.onClick){
+                obj.onClick(param)
             }
             else if (obj.onPress){
                 console.warn("Drawer Item ", obj.title ? obj.title : title , " has on 'onPress' prop supplied, when it should be an onClick.")
-            }
-            else if (!obj.onClick && onClick){
-                return onClick(param)
             }
         }
 

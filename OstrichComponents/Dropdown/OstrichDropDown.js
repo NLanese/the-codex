@@ -133,7 +133,8 @@ export const OstrichDropDown = ({
             paddingRight: 10,
             paddingLeft: 10,
             fontFamily: "Gilroy",
-            fontWeight: 600
+            fontWeight: 600,
+            minWidth: 130
         }
         boxStyle = {...temp, ...boxStyle}
         if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
@@ -233,8 +234,20 @@ export const OstrichDropDown = ({
     // Determines which DrawerPress Function to pass
     function handleDrawerPress(drawer){
 
+
         // Sets Drawer as Active, if already Active then Deactivates
-        if (activeDrawer === drawer){
+        let isActive = false
+        if (drawer.title){
+            if (activeDrawer.title == drawer.title){
+                isActive = true
+            }
+        }
+        else{
+            if (activeDrawer == drawer){
+                isActive = true
+            }
+        }
+        if (isActive){
             setActiveDrawer(false)
         }
         else{
