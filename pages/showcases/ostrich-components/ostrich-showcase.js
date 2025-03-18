@@ -669,8 +669,8 @@ export default function OstrichShowcase() {
                     />
             </div>
 
-             {/* Ost Dropdown Code Row One */}
-             <div style={{display: 'flex', 
+            {/* Ost Dropdown Code Row One */}
+            <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
@@ -802,6 +802,7 @@ export default function OstrichShowcase() {
                     <OstrichDropDown 
                         title={"Unique Drawer Styles"}
                         boxStyle={{width: 350, backgroundColor: colorForDrop4}}
+                        activeBoxStyle={{backgroundColor: colorForDrop4}}
                         onDrawerClick={(drawer) => setColorForDrop4(drawer.style.color)}
                         drawers={[
                             {
@@ -824,6 +825,249 @@ export default function OstrichShowcase() {
                             }
                         ]}
                     />
+            </div>
+
+            {/* Ost Dropdown Code Row One */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+                    {/* Template One */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
+                        <span style={Styles.Code.keyword}>const [</span>
+                        <span style={Styles.Code.var}>pickedColor</span>
+                        <span style={Styles.Code.reg}>,</span>
+                        <span style={Styles.Code.func}> setPickedColor</span>
+                        <span style={Styles.Code.keyword}>] </span>
+                        <span style={Styles.Code.reg}> = </span>
+                        <span style={Styles.Code.var}>useState</span>
+                        <span style={Styles.Code.keyword}>{"("}</span>
+                        <span style={Styles.Code.str}>"white"</span>
+                        <span style={Styles.Code.keyword}>{")"}</span>
+                    </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>"Unique Drawer Styles"</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>boxStyle</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>width: </span>
+                            <span style={Styles.Code.reg}>350, </span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.var}>pickedColor</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>activeBoxStyle</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.var}>pickedColor</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>onDrawerClick</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.str}>{"("}</span>
+                            <span style={Styles.Code.var}>drawer</span>
+                            <span style={Styles.Code.str}>{")"}</span>
+                            <span style={Styles.Code.keyword}>{" => {"}</span>
+                            <span style={Styles.Code.func}>setColor(</span>
+                            <span style={Styles.Code.var}>drawer.style.color</span>
+                            <span style={Styles.Code.func}>{")"}</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>title: </span>
+                            <span style={Styles.Code.str}>"Red"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>style: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"red"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>activeStyle: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.str}>"red"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"black"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>hoverStyle: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.str}>"pink"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"black"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"},"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>title: </span>
+                            <span style={Styles.Code.str}>"Blue"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>style: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"blue"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>activeStyle: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.str}>"blue"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"black"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>hoverStyle: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.str}>"cyan"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"black"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"},"}</span>
+                        </p>
+
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>title: </span>
+                            <span style={Styles.Code.str}>"Green"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>style: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"green"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>activeStyle: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.str}>"green"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"black"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>hoverStyle: </span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>backgroundColor: </span>
+                            <span style={Styles.Code.str}>"lime"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>color: </span>
+                            <span style={Styles.Code.str}>"black"</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+
+
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>{"]"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 0}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+
+                    {/* Click to Open Dropdown */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.str}>"Click to Open"</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>1, 2, 3</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>openOnHover</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.bool}>false</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+
             </div>
 
 

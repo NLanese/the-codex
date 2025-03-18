@@ -28,7 +28,6 @@ export const OstrichDropDown = ({
     drawerStyle,
     activeDrawerStyle,
     hoverDrawerStyle,
-    drawersInheritStyle,
 
     boxStyle,
     noBorder=false,
@@ -86,6 +85,7 @@ export const OstrichDropDown = ({
 
     function finishDrawerStyles(){
 
+        // Regular Drawer
         let temp = drawerStyle = {
             width: '100%', 
             display: 'flex',
@@ -101,17 +101,7 @@ export const OstrichDropDown = ({
             fontFamily: "Gilroy",
             fontWeight: 500
         }
-
         drawerStyle = {...temp, ...drawerStyle}
-
-        // Regular Drawer
-        if (!drawerStyle.width){
-            drawerStyle.width = '99%'
-            drawerStyle.maxWidth = '100%'
-        }
-        if (!drawerStyle.backgroundColor){
-            drawerStyle.backgroundColor = "lightgrey"
-        }
         if (!noBorder && !drawerStyle.border && !drawerStyle.borderRadius && !drawerStyle.borderWidth){
             drawerStyle.border = "2px solid #E9F1FF"
             drawerStyle.borderRadius = 0
@@ -123,26 +113,7 @@ export const OstrichDropDown = ({
         setDrawerStyleInput(drawerStyle)
 
         // Hover Drawer
-        if (!hoverDrawerStyle){
-            hoverDrawerStyle = {...drawerStyle}
-            hoverDrawerStyle.backgroundColor ="#a5a8a8"
-        }
-        if (!hoverBoxStyle?.width){
-            hoverDrawerStyle.width = drawerStyle.width
-        }
-        if (!hoverDrawerStyle?.padding){
-            hoverDrawerStyle.padding = drawerStyle.padding
-        }
-        if (!hoverDrawerStyle?.minWidth){
-            hoverDrawerStyle.minWidth = drawerStyle.minWidth
-        }
-        if (!hoverDrawerStyle?.border && !hoverDrawerStyle.borderRadius && !hoverDrawerStyle.borderWidth){
-            hoverDrawerStyle.border = drawerStyle.border
-            hoverDrawerStyle.borderRadius = drawerStyle.borderRadius
-        }
-        if (!hoverDrawerStyle?.boxShadow){
-            hoverDrawerStyle.boxShadow = drawerStyle.boxShadow
-        }  
+        hoverDrawerStyle = {...drawerStyle, backgroundColor: "#a5a8a8", ...hoverDrawerStyle}
         setHoverDrawerBoxStyleInput(hoverDrawerStyle)
 
         // Active Drawer
@@ -171,35 +142,19 @@ export const OstrichDropDown = ({
 
     function finishBoxStyles(){
 
+        // Regular Box
         let temp = {
             width: 'auto', 
-            backgroundColor:"#efefef", 
+            backgroundColor:"#c6c7c8",
             border: "1px solid black", borderRadius: 10,
             justifyItems: 'center', textAlign: 'center',
             position: 'relative',
+            paddingRight: 10,
+            paddingLeft: 10,
             fontFamily: "Gilroy",
             fontWeight: 600
         }
-
         boxStyle = {...temp, ...boxStyle}
-
-
-        // Regular Box
-        if (!boxStyle.position){
-            boxStyle.position = "relative"
-        }
-        if (!boxStyle.backgroundColor){
-            boxStyle.backgroundColor = "#c6c7c8"
-        }
-        if (!boxStyle.paddingTop && !boxStyle.paddingBottom && 
-            !boxStyle.paddingLeft && !boxStyle.paddingRight && !boxStyle.padding)
-        {
-            boxStyle.paddingRight = 10
-            boxStyle.paddingLeft = 10
-        }
-        if (!boxStyle?.minWidth){
-            boxStyle.minWidth = 140
-        }
         if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
             boxStyle.border = "1px solid black"
             boxStyle.borderRadius = 10
@@ -210,68 +165,11 @@ export const OstrichDropDown = ({
        setBoxStyleInput(boxStyle)
 
         // Hover Box
-        if (!hoverBoxStyle){
-            hoverBoxStyle = {...boxStyle}
-            hoverBoxStyle.backgroundColor ="#a5a8a8"
-        }
-        if (!hoverBoxStyle?.position){
-            hoverBoxStyle.position = "relative"
-        }
-        if (!hoverBoxStyle?.width){
-            hoverBoxStyle.width = boxStyle.width
-        }
-        if (!hoverBoxStyle?.paddingTop && !hoverBoxStyle?.paddingBottom && 
-            !hoverBoxStyle?.paddingLeft && !hoverBoxStyle?.paddingRight && !hoverBoxStyle.padding)
-        {
-            hoverBoxStyle.padding = boxStyle.padding
-            hoverBoxStyle.paddingLeft = boxStyle.paddingLeft
-            hoverBoxStyle.paddingRight = boxStyle.paddingRight
-            hoverBoxStyle.paddingTop = boxStyle.paddingTop
-            hoverBoxStyle.paddingBottom = boxStyle.paddingBottom
-        }
-        if (!hoverBoxStyle?.minWidth){
-            hoverBoxStyle.minWidth = boxStyle.minWidth
-        }
-        if (!hoverBoxStyle?.border && !hoverBoxStyle.borderRadius && !hoverBoxStyle.borderWidth){
-            hoverBoxStyle.border = boxStyle.border
-            hoverBoxStyle.borderRadius = boxStyle.borderRadius
-        }
-        if (!hoverBoxStyle?.boxShadow){
-            hoverBoxStyle.boxShadow = boxStyle.boxShadow
-        }  
+        hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8", ...hoverBoxStyle} 
         setHoverBoxStyleInput(hoverBoxStyle)
 
         // Active Box
-        if (!activeBoxStyle){
-            activeBoxStyle = {...boxStyle}
-            activeBoxStyle.backgroundColor = "#c3e2fa"
-            activeBoxStyle.borderRadius = 0
-        }
-        if (!activeBoxStyle?.position){
-            activeBoxStyle.position = "relative"
-        }
-        if (!activeBoxStyle?.width){
-            activeBoxStyle.width = boxStyle.width
-        }
-        if (!activeBoxStyle?.paddingTop && !activeBoxStyle?.paddingBottom && 
-            !activeBoxStyle?.paddingLeft && !activeBoxStyle?.paddingRight && !activeBoxStyle.padding)
-        {
-            activeBoxStyle.padding = boxStyle.padding
-            activeBoxStyle.paddingLeft = boxStyle.paddingLeft
-            activeBoxStyle.paddingRight = boxStyle.paddingRight
-            activeBoxStyle.paddingTop = boxStyle.paddingTop
-            activeBoxStyle.paddingBottom = boxStyle.paddingBottom
-        }
-        if (!activeBoxStyle?.minWidth){
-            activeBoxStyle.minWidth = boxStyle.minWidth
-        }
-        if (!activeBoxStyle?.border && !activeBoxStyle?.borderRadius && !activeBoxStyle?.borderWidth){
-            activeBoxStyle.border = boxStyle.border
-            activeBoxStyle.borderRadius = 0
-        }
-        if (!activeBoxStyle?.boxShadow){
-            activeBoxStyle.boxShadow = boxStyle.boxShadow
-        }
+        activeBoxStyle = {...boxStyle, backgroundColor: "#c3e2fa", borderRadius: 0, ...activeBoxStyle} 
         setActiveBoxStyleInput(activeBoxStyle)
       
         setIsLoading(false)
