@@ -117,26 +117,7 @@ export const OstrichDropDown = ({
         setHoverDrawerBoxStyleInput(hoverDrawerStyle)
 
         // Active Drawer
-        if (!activeDrawerStyle){
-            activeDrawerStyle = {...drawerStyle}
-            activeDrawerStyle.backgroundColor = "#c3e2fa"
-        }
-        if (!activeBoxStyle?.width){
-            activeDrawerStyle.width = drawerStyle.width
-        }
-        if (!activeDrawerStyle?.padding){
-            activeDrawerStyle.padding = drawerStyle.padding
-        }
-        if (!activeDrawerStyle?.minWidth){
-            activeDrawerStyle.minWidth = drawerStyle.minWidth
-        }
-        if (!activeDrawerStyle?.border && !activeDrawerStyle.borderRadius && !activeDrawerStyle.borderWidth){
-            activeDrawerStyle.border = drawerStyle.border
-            activeDrawerStyle.borderRadius = drawerStyle.borderRadius
-        }
-        if (!activeDrawerStyle?.boxShadow){
-            activeDrawerStyle.boxShadow = drawerStyle.boxShadow
-        }  
+        activeDrawerStyle = {...drawerStyle, backgroundColor: "#c3e2fa", ...activeDrawerStyle}
         setActiveDrawerBoxStyleInput(activeDrawerStyle)
     }
 
@@ -315,8 +296,18 @@ export const OstrichDropDown = ({
     function determineDrawerStyle(drawer){
 
         // Active Drawer //
-        if (activeDrawer === drawer){
-
+        let isActive = false
+        if (drawer.title){
+            if (activeDrawer.title == drawer.title){
+                isActive = true
+            }
+        }
+        else{
+            if (activeDrawer == drawer){
+                isActive = true
+            }
+        }
+        if (isActive){
             // Uses Specific Drawer Style
             if (drawer.activeStyle){        
                 return{
@@ -395,11 +386,12 @@ export const OstrichDropDown = ({
                 else{
                     drawerObject = drawer
                 }
+                const isActive = activeDrawer === drawer;
                 return(
                     <DrawerItem 
                         key={index}
-                        style={{...determineDrawerStyle(drawer).drawer}}
-                        textStyle={{...determineDrawerStyle(drawer).text}}
+                        style={isActive ? activeDrawerBoxStyleInput : {...determineDrawerStyle(drawer).drawer}}
+                        textStyle={isActive ? extractTextStyles(activeDrawerBoxStyleInput) : {...determineDrawerStyle(drawer).text}}
                         onClick={() => handleDrawerPress(drawer)}
                         obj={drawerObject}
                         handleDrawerHover={(input) => handleDrawerHover(drawer, input)}
