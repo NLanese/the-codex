@@ -788,8 +788,8 @@ export default function OstrichShowcase() {
 
             {/* Preamble */}
             <p style={{...Styles.Fonts.basic, marginTop: 50}}>
-            Ostrich Components provide a means for consolidating many selections or a collection of information via the OstrichDropDown. Without any styling or advanced tuning needed, 
-            OstrichDropDowns simply take an object or an array representing some data and processes it into a well rendered dropdown, with its own onHover features and clickability.     
+            As shown above, the <strong>Ostrich Dropdown menu</strong> can quickly and easily generate a dropdown menu for an array of items. They produce a sleak and responsive Drop menu as well as drawers, but that's not all you can do with OstrichDropDowns.
+            You can add unique styles or functionalities to individual drawers by adding properties to the `drawers` array's items. 
             </p>
             <p style={Styles.Fonts.basic}>
             Let's check out some examples
@@ -847,7 +847,7 @@ export default function OstrichShowcase() {
                     />
             </div>
 
-            {/* Ost Dropdown Code Row One */}
+            {/* Ost Dropdown Code Row Two */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-around',
@@ -1058,6 +1058,18 @@ export default function OstrichShowcase() {
 
                     {/* Unique Drawer onClicks */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
+                            <span style={Styles.Code.keyword}>const [</span>
+                            <span style={Styles.Code.var}>total</span>
+                            <span style={Styles.Code.reg}>,</span>
+                            <span style={Styles.Code.func}> setTotal</span>
+                            <span style={Styles.Code.keyword}>] </span>
+                            <span style={Styles.Code.reg}> = </span>
+                            <span style={Styles.Code.var}>useState</span>
+                            <span style={Styles.Code.keyword}>{"("}</span>
+                            <span style={Styles.Code.reg}>0</span>
+                            <span style={Styles.Code.keyword}>{")"}</span>
+                        </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichDropDown</span>
