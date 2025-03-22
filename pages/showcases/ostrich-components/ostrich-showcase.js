@@ -629,6 +629,23 @@ export default function OstrichShowcase() {
     )
   }
 
+  function renderOstrichButtons(){
+    return(
+        <div style={{marginBottom: 30}}>
+        <div style={Styles.Fonts.lessonHeader}>Ostrich Buttons (OstrichButton)</div>
+            
+            {/* Preamble */}
+            <p style={Styles.Fonts.basic}>
+            Ostrich Cards can work as buttons, but if you want an out-of-the-box componnt that in its Vanilla-most behavior acts as a button, then the <strong>OstrichButton</strong> component is for you. 
+            </p>
+        </div>
+    )
+  }
+
+  function renderOstrichToggles(){
+
+  }
+
   function renderOstrichDropDown(){
     return(
         <div style={{marginBottom: 30}}>
