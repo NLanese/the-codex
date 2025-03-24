@@ -34,14 +34,19 @@ export const OstrichTabBar = ({
     // State //
     ///////////
 
+        // Loading
         const [loading, setLoading] = useState(true)
 
+        // Tab States
         const [activeTab, setActiveTab] = useState(false)
+        const [hoveredTab, setHoveredTab] = useState(false)
 
+        // Text Styles
         const [titleStyleX, setTitleStyleX] = useState(false)
         const [activeTitleStyleX, setActiveTitleStyleX] = useState(false)
         const [hoverTitleStyleX, setHoverTitleStyleX] = useState(false)
 
+        // Tab Styles
         const [tabStyleX, setTabStyleX] = useState(false)
         const [activeTabStyleX, setActiveTabStyleX] = useState(false)
         const [hoverTabStyleX, setHoverTabStyleX] = useState(false)
@@ -70,7 +75,7 @@ export const OstrichTabBar = ({
             return false
         }
 
-        // STYLE CHECKERS //
+        // STYLE COMPLETORS //
 
             // Checks all Styles
             function checkAllStyles(){
@@ -128,6 +133,8 @@ export const OstrichTabBar = ({
                     ...hoverStyle
                 })
             }
+        
+        // PROP CHECKS //
 
             // Checks Valid Mandatory inputs
             function hasNeededValues(){
@@ -137,7 +144,7 @@ export const OstrichTabBar = ({
 
             }
 
-        // DETERMINATIONS //
+        // Handlers / Determinators //
 
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
@@ -146,6 +153,12 @@ export const OstrichTabBar = ({
                 }
                 if (onTabClick){
                     onTabClick(tab)
+                }
+            }
+
+            function handleMouseEnterTab(tab){
+                if (tab.onHover){
+                    tab.onHover(tab)
                 }
             }
 
@@ -170,9 +183,10 @@ export const OstrichTabBar = ({
                     <TabItem
                     key={i}
 
-                    title={tab.title}
+                    title={tab.title ? tab.title : tab}
                     tabObj={tab}
-                    index={i}       
+                    index={i}     
+
                     isActive={isActive(tab)}
                     setActiveTab={setActiveTab}
 
