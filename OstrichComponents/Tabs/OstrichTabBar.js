@@ -27,6 +27,8 @@ export const OstrichTabBar = ({
     onDrawerClick,                  // Default onClick for Drawers
     manualActiveTab=false,
 
+    showsHover = true,
+    onTabHover,
     
 }) => {
    
@@ -63,12 +65,27 @@ export const OstrichTabBar = ({
         // Determines if Tab is Active or not 
         function isActive(tab){
             if (activeTab.title){
-                if (activeTab === tab.title){
+                if (activeTab.title === tab.title){
                     return true
                 }
             }
             else{
                 if (activeTab === tab){
+                    return true
+                }
+            }
+            return false
+        }
+
+         // Determines if Tab is Hovered or not 
+         function isHovered(tab){
+            if (hoveredTab.title){
+                if (hoveredTab.title === tab.title){
+                    return true
+                }
+            }
+            else{
+                if (hoveredTab === tab){
                     return true
                 }
             }
@@ -125,12 +142,13 @@ export const OstrichTabBar = ({
                 })
             }
 
+            // Checks Default Imported Hover Styles
             function checkHoverStyle(){
                 setHoverTitleStyleX({...titleStyleX, hoverTitleStyle})
                 setHoverTabStyleX({
                     ...tabStyleX, 
                     backgroundColor: "#a5a8a8",
-                    ...hoverStyle
+                    ...hoverTabStyle
                 })
             }
         
@@ -156,10 +174,20 @@ export const OstrichTabBar = ({
                 }
             }
 
+            // Handles onHover Function(s) and Sets Active
             function handleMouseEnterTab(tab){
                 if (tab.onHover){
                     tab.onHover(tab)
                 }
+                if (onTabHover){
+                    onTabHover(tab)
+                }
+                setHoveredTab(tab)
+            }
+
+            // Sets Hovered Tab to false
+            function handleMouseLeaveTab(tab){
+                setHoveredTab(false)
             }
 
 
@@ -190,6 +218,10 @@ export const OstrichTabBar = ({
                     isActive={isActive(tab)}
                     setActiveTab={setActiveTab}
 
+                    showsHover={!tab.showsHover}
+                    isHovered={isHovered(tab)}
+                    setHoveredTab={setHoveredTab}
+
                     style={tabStyleX}
                     flex={tab.flex ? tab.flex : 1}
                     textStyle={titleStyleX}
@@ -207,6 +239,9 @@ export const OstrichTabBar = ({
 
                     onPress={(tab) => determineOnPress(tab)}
                     onDrawerClick={(tab => onDrawerClick(tab))}
+
+                    onMouseEnter={(tab) => handleMouseEnterTab(tab)}
+                    onMouseLeave={(tab) => handleMouseLeaveTab(tab)}
                     />
                 )
             })

@@ -4,28 +4,33 @@ import PropTypes from 'prop-types';
 
 
 export const TabItem = ({
-    title,              // Tab Title
-    tabObj,             // Tab Object (Optional) Can hold data like dropdowns and functions
-    index,              // The index of this item in the greater Tab Array
-    isActive,           // Is Active 
-    setActiveTab,       // Used to set the Active Tab in the greater Tab Bar
 
-    style,              // Style for the Component
-    flex,               // This is only used when in the TabBar Component
-    textStyle,          // The Style for the Tab Title
+    title,                  // Tab Title
+    tabObj,                 // Tab Object (Optional) Can hold data like dropdowns and functions
+    index,                  // The index of this item in the greater Tab Array
 
-    activeStyle,        // Style for Component when Active
-    activeTextStyle,    // Style for Componet Text when Active
+    isActive,               // Is Active 
+    setActiveTab,           // Used to set the Active Tab in the greater Tab Bar
 
-    hoverStyle,         // 
-    hoverTextStyle,     //
+    showsHover,
+    isHovered,
+    setHoveredTab,
 
-    dropdown=false,     //
-    onDrawerClick=false,
-    dropdownStyles=false,
-    drawerColor=false,
-    activeDrawerColor=false,
-    hoverDrawerColor=false,
+    style,                  // Style for the Component
+    flex,                   // This is only used when in the TabBar Component
+    textStyle,              // The Style for the Tab Title
+
+    activeStyle,            // Style for Component when Active
+    activeTextStyle,        // Style for Componet Text when Active
+
+    hoverStyle,             // 
+    hoverTextStyle,         //
+
+    dropdown=false,         // Determines whether this is a static Tab or a Dropdown Meni
+    onDrawerClick=false,    // Function that runs on ALL Drawer Clicks (Drodpowns)
+    dropdownStyles=false,   // Drawer Style (Dropdowns)
+    activeDrawerStyle=false,
+    hoverDrawerStyle=false,
 
     onPress,
 }) => {
@@ -34,7 +39,7 @@ export const TabItem = ({
     ////////////
 
         // Hovered Toggled
-        const [isHovered, setIsHovered] = useState(false)
+        // const [isHovered, setIsHovered] = useState(false)
         const hoverRef = useRef(isHovered)
         useEffect(() => {
             hoverRef.current = isHovered
