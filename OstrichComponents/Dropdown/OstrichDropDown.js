@@ -25,15 +25,17 @@ export const OstrichDropDown = ({
     boxActivates=true,
     drawersActivate=true,
 
+    titleStyle,
+
     drawerStyle,
     activeDrawerStyle,
     hoverDrawerStyle,
 
     boxStyle,
-    noBorder=false,
-    noShadow=false,
     activeBoxStyle,
     hoverBoxStyle,
+    noBorder=false,
+    noShadow=false,
 
 }) => {
 
@@ -460,7 +462,7 @@ export const OstrichDropDown = ({
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                <p style={{...extractTextStyles(determineBoxStyle())}}>
+                <p style={{...extractTextStyles(determineBoxStyle()), ...titleStyle}}>
                     {renderTitle()}
                 </p>
                 <div style={{marginTop: 10}}/>

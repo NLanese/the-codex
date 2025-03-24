@@ -4,27 +4,30 @@ import PropTypes from 'prop-types';
 import { TabItem } from './TabItem';
 
 export const OstrichTabBar = ({ 
-    startingTabByTitle = false,
-    tabs,                   // Array of Objects for Tab Information
+    startingTabByTitle = false,     // the Title of the Tab you want selected by default
+    startingTabByIndex = false,     // the Index of the Tab you want selected by default
 
-    style,                  // The Style of the Tab Bar itself
-    titleStyle,             // The text styles for each Tab Title
+    tabs,                           // Array of Objects for Tab Information
 
-    activeTitleStyle,       
-    hoverTitleStyle,
+    style,                          // The Style of the Tab Bar itself
 
-    tabStyle,
-    activeTabStyle,
-    hoverTabStyle,
+    titleStyle,                     // The text styles for each Tab Title
+    activeTitleStyle,               // The text styles for each Tab Title WHEN ACTIVE
+    hoverTitleStyle,                // The text styles for each Tab Title WHEN HOVERED
 
-    onTabClick,
-    onDrawerClick,
+    tabStyle,                       // The Style of each Tab in the TabBar 
+    activeTabStyle,                 // The Style of each Tab in the TabBar WHEN ACTIVE
+    hoverTabStyle,                  // The Style of each Tab in the TabBar WHEN HOVERED
+
+    drawerStyle,                    // The Style of each Drawer in a Dropdown Tab
+    activeDrawerStyle,              // The Style of each Drawer in a Dropdown Tab WHEN ACTIVE
+    hoverDrawerStyle,               // The Style of each Drawer in a Dropdown Tab WHEN HOVERED
+
+    onTabClick,                     // Default onClick for Tab Items
+    onDrawerClick,                  // Default onClick for Drawers
     manualActiveTab=false,
 
-    drawerStyle,
-    drawerColor, 
-    activeDrawerColor,
-    hoverDrawerColor,
+    
 }) => {
    
     ///////////
@@ -54,8 +57,15 @@ export const OstrichTabBar = ({
 
         // Determines if Tab is Active or not 
         function isActive(tab){
-            if (activeTab === tab.title){
-                return true
+            if (activeTab.title){
+                if (activeTab === tab.title){
+                    return true
+                }
+            }
+            else{
+                if (activeTab === tab){
+                    return true
+                }
             }
             return false
         }
@@ -70,8 +80,7 @@ export const OstrichTabBar = ({
 
             // Checks Default Imported Styles
             function checkTabStyle(){
-                if (!tabStyleX){
-                    setTabStyleX({
+                    let tempTabStyleX = {
                         justifyContent: 'center',
                         alignItems: 'center',
                         paddingTop: 10,
@@ -82,7 +91,8 @@ export const OstrichTabBar = ({
                         borderRight: "0.5px solid #E9F1FF",
                         backgroundColor: 'rgba(189, 236, 255, 0.35)',
                         color: 'black'
-                    })
+                    }
+                    setTabStyleX(...tempTabStyleX, tabStyle)
                 }
 
                 if (!titleStyleX){
@@ -93,7 +103,7 @@ export const OstrichTabBar = ({
                         color: "black"
                     })
                 }
-            }
+            
 
             // Checks Default Imported Active Styles
             function checkActiveStyle(){

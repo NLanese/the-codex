@@ -243,7 +243,10 @@ export const TabItem = ({
         function renderDropTab(){
             return(
                 <OstrichDropDown
-                style={{...determineStyle().tab}}
+                // style={{...determineStyle().tab}}
+                drawerStyle={style}
+                activeBoxStyle={activeStyle}
+                hoverBoxStyle={hoverStyle}
                 title={titleX}
                 titleStyle={{...determineStyle().text}}
 
