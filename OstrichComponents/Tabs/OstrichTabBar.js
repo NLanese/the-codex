@@ -36,15 +36,15 @@ export const OstrichTabBar = ({
 
         const [loading, setLoading] = useState(true)
 
-        const [activeTab, setActiveTab] = useState(startingTabByTitle ? startingTabByTitle : false)
+        const [activeTab, setActiveTab] = useState(false)
 
-        const [titleStyleX, setTitleStyleX] = useState(titleStyle ? titleStyle : false)
-        const [activeTitleStyleX, setActiveTitleStyleX] = useState(activeTitleStyle ? activeTitleStyle : false)
-        const [hoverTitleStyleX, setHoverTitleStyleX] = useState(hoverTitleStyle ? hoverTitleStyle : false)
+        const [titleStyleX, setTitleStyleX] = useState(false)
+        const [activeTitleStyleX, setActiveTitleStyleX] = useState(false)
+        const [hoverTitleStyleX, setHoverTitleStyleX] = useState(false)
 
-        const [tabStyleX, setTabStyleX] = useState(tabStyle ? tabStyle : false)
-        const [activeTabStyleX, setActiveTabStyleX] = useState(activeTabStyle ? activeTabStyle : false)
-        const [hoverTabStyleX, setHoverTabStyleX] = useState(hoverTabStyle ? hoverTabStyle : false)
+        const [tabStyleX, setTabStyleX] = useState(false)
+        const [activeTabStyleX, setActiveTabStyleX] = useState(false)
+        const [hoverTabStyleX, setHoverTabStyleX] = useState(false)
 
         useEffect(() => {
             checkAllStyles()
@@ -70,70 +70,63 @@ export const OstrichTabBar = ({
             return false
         }
 
-        // CHECKERS //
+        // STYLE CHECKERS //
 
             // Checks all Styles
             function checkAllStyles(){
                 checkTabStyle()
                 checkActiveStyle()
+                checkHoverStyle()
             }
 
             // Checks Default Imported Styles
             function checkTabStyle(){
-                    let tempTabStyleX = {
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        paddingTop: 10,
-                        paddingBottom: 10,
-                        marginTop: 6,
-                        marginBottom: 6, 
-                        borderLeft: "0.5px solid #E9F1FF",
-                        borderRight: "0.5px solid #E9F1FF",
-                        backgroundColor: 'rgba(189, 236, 255, 0.35)',
-                        color: 'black'
-                    }
-                    setTabStyleX(...tempTabStyleX, tabStyle)
+                let tempTabStyleX = {
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    marginTop: 6,
+                    marginBottom: 6, 
+                    borderLeft: "0.5px solid #E9F1FF",
+                    borderRight: "0.5px solid #E9F1FF",
+                    backgroundColor: 'rgba(189, 236, 255, 0.35)',
+                    color: 'black'
                 }
+                setTabStyleX(...tempTabStyleX, tabStyle)
 
-                if (!titleStyleX){
-                    setTitleStyleX({
+                let tempTitleStyle = {
                         textAlign: 'center',
                         fontSize: 14,
                         fontWeight: 500,
                         color: "black"
-                    })
                 }
+                setTitleStyleX({...tempTitleStyle, ...titleStyle})
+            }
             
-
             // Checks Default Imported Active Styles
             function checkActiveStyle(){
-                if (!activeTitleStyleX){
-                    setActiveTitleStyleX({
-                        textAlign: 'center',
-                        fontSize: 16,
-                        fontWeight: 600
-                    })
+                let tempActiveTitleStyle = {
+                    ...titleStyleX,
+                    fontSize: 16,
+                    fontWeight: 600
                 }
+                setActiveTitleStyleX({...tempActiveTitleStyle, activeTitleStyle})
 
-                if (!activeTabStyleX && style){
-                    setActiveTabStyleX({
-                        ...style,
-                        backgroundColor: 'rgba(49, 255, 73, 0.35)',
-                    })
-                }
-                else if (!activeTabStyle){
-                    setActiveTabStyleX({
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        paddingTop: 8,
-                        paddingBottom: 8,
-                        marginTop: 6,
-                        marginBottom: 6, 
-                        borderLeft: "0.5px solid #E9F1FF",
-                        borderRight: "0.5px solid #E9F1FF",
-                        backgroundColor: 'rgba(49, 255, 73, 0.45)'
-                    })
-                }
+                setActiveTabStyleX({
+                    ...tabStyleX,
+                    backgroundColor: "#c3e2fa",
+                    ...activeTabStyle
+                })
+            }
+
+            function checkHoverStyle(){
+                setHoverTitleStyleX({...titleStyleX, hoverTitleStyle})
+                setHoverTabStyleX({
+                    ...tabStyleX, 
+                    backgroundColor: "#a5a8a8",
+                    ...hoverStyle
+                })
             }
 
             // Checks Valid Mandatory inputs
@@ -149,10 +142,10 @@ export const OstrichTabBar = ({
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
                 if (tab.onClick){
-                    return tab.onClick
+                    tab.onClick(tab)
                 }
-                else if (onTabClick){
-                    return onTabClick
+                if (onTabClick){
+                    onTabClick(tab)
                 }
             }
 
@@ -194,13 +187,12 @@ export const OstrichTabBar = ({
                     hoverTextStyle={hoverTitleStyleX}
 
                     dropdown={tab.dropdown ? tab.dropdown : false}
-                    dropdownStyles={false}
-                    drawerColor={drawerColor}
-                    activeDrawerColor={activeDrawerColor}
-                    hoverDrawerColor={hoverDrawerColor}
+                    dropdownStyles={drawerStyle}
+                    activeDrawerStyle={activeDrawerStyle}
+                    hoverDrawerStyle={hoverDrawerStyle}
 
-                    onPress={determineOnPress(tab)}
-                    onDrawerClick={onDrawerClick}
+                    onPress={(tab) => determineOnPress(tab)}
+                    onDrawerClick={(tab => onDrawerClick(tab))}
                     />
                 )
             })
