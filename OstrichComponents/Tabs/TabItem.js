@@ -73,6 +73,34 @@ export const TabItem = ({
             }
         }
 
+        // Determines GENERAL or SPECIFIC Tab Style
+        function  determineBoxStyle(type, tab){
+            if (type === "regular"){
+                if (tab.style){
+                    return {...style, ...tab.style}
+                }
+                else{
+                    return drawerStyle
+                }
+            }
+            if (type === "active"){
+                if (tab.activeStyle){
+                    return {...activeStyle, ...tab.activeStyle}
+                }
+                else{
+                    return activeStyle
+                }
+            }
+            else if (type === "hover"){
+                if (tab.hoverStyle){
+                    return {...hoverStyle, ...tab.hoverStyle}
+                }
+                else{
+                    return hoverStyle
+                }
+            }
+        }
+
 
     ////////////////
     // Renderings //
@@ -120,9 +148,9 @@ export const TabItem = ({
                 activeDrawerStyle={determineDrawerStyle("active", dropdown)}
                 hoverDrawerStyle={determineDrawerStyle("hover", dropdown)}
 
-                boxStyle={style}
-                activeBoxStyle={{...activeStyle, ...activeTextStyle}}
-                hoverBoxStyle={hoverStyle}
+                boxStyle={determineBoxStyle("regular", tab)}
+                activeBoxStyle={determineBoxStyle("active", tab)}
+                hoverBoxStyle={determineBoxStyle("hover", tab)}
                 
                 titleStyle={{...determineStyle().text}}
 
