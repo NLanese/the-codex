@@ -45,6 +45,34 @@ export const TabItem = ({
     // Functions //
     ///////////////
 
+        // Determines GENERAL or SPECIFIC Drawer Style
+        function determineDrawerStyle(type, dropdown){
+            if (type === "regular"){
+                if (dropdown.drawerStyle){
+                    return {...drawerStyle, ...dropdown.drawerStyle}
+                }
+                else{
+                    return drawerStyle
+                }
+            }
+            if (type === "active"){
+                if (dropdown.activeDrawerStyle){
+                    return {...activeDrawerStyle, ...dropdown.activeDrawerStyle}
+                }
+                else{
+                    return activeDrawerStyle
+                }
+            }
+            else if (type === "hover"){
+                if (dropdown.hoverDrawerStyle){
+                    return {...hoverDrawerStyle, ...dropdown.hoverDrawerStyle}
+                }
+                else{
+                    return hoverDrawerStyle
+                }
+            }
+        }
+
 
     ////////////////
     // Renderings //
@@ -88,7 +116,9 @@ export const TabItem = ({
                 boxHovers={(showsHover || tabObj.showsHover)}
                 drawersHover={(dropdown.drawersShowHover === false) ? false : true}
 
-                drawerStyle={style}
+                drawerStyle={determineDrawerStyle("regular", dropdown)}
+                activeDrawerStyle={determineDrawerStyle("active", dropdown)}
+                hoverDrawerStyle={determineDrawerStyle("hover", dropdown)}
 
                 boxStyle={style}
                 activeBoxStyle={{...activeStyle, ...activeTextStyle}}
