@@ -45,13 +45,57 @@ export const TabItem = ({
     // Functions //
     ///////////////
 
+        // Extracts Text Styles and Applies to Drop Styles
+        function applyTextStyles(textStyle, rObj){
+            if (textStyle.fontSize){
+                rObj = {...rObj, fontSize: textStyle.fontSize}
+            }
+            if (textStyle.fontFamily){
+                rObj = {...rObj, fontFamily: textStyle.fontFamily}
+            }
+            if (textStyle.fontWeight){
+                rObj = {...rObj, fontWeight: textStyle.fontWeight}
+            }
+            if (textStyle.letterSpacing){
+                rObj = {...rObj, letterSpacing: textStyle.letterSpacing}
+            }
+            if (textStyle.textAlign){
+                rObj = {...rObj, textAlign: textStyle.textAlign}
+            }
+            if (textStyle.textAlignVertical){
+                rObj = {...rObj, textAlignVertical: textStyle.textAlignVertical}
+            }
+            if (textStyle.display){
+                rObj = {...rObj, display: textStyle.display}
+            }
+            if (textStyle.justifyContent){
+                rObj = {...rObj, justifyContent: textStyle.justifyContent}
+            }
+            if (textStyle.alignContent){
+                rObj = {...rObj, alignContent: textStyle.alignContent}
+            }
+            if (textStyle.justifyItems){
+                rObj = {...rObj, justifyItems: textStyle.justifyItems}
+            }
+            if (textStyle.alignItems){
+                rObj = {...rObj, alignItems: textStyle.alignItems}
+            }
+            if (textStyle.color){
+                rObj = {...rObj, color: textStyle.color}
+            }
+            return rObj
+        }
+
         // Determines GENERAL or SPECIFIC Drawer Style
         function determineDrawerStyle(type, dropdown){
             if (type === "regular"){
+                console.log("Sending DRAWER Style of")
                 if (dropdown.drawerStyle){
+                    console.log(dropdown.drawerStyle)
                     return {...drawerStyle, ...dropdown.drawerStyle}
                 }
                 else{
+                    console.log(drawerStyle)
                     return drawerStyle
                 }
             }
@@ -75,30 +119,42 @@ export const TabItem = ({
 
         // Determines GENERAL or SPECIFIC Tab Style
         function  determineBoxStyle(type, tab){
+            let rObj = {}
+
+            // Regular 
             if (type === "regular"){
                 if (tab.style){
-                    return {...style, ...tab.style}
+                    rObj = {...style, ...tab.style}
                 }
                 else{
-                    return style
+                    rObj = style
                 }
+                applyTextStyles(textStyle, rObj)
             }
+
+            // Active / Opened
             if (type === "active"){
                 if (tab.activeStyle){
-                    return {...activeStyle, ...tab.activeStyle}
+                    rObj = {...activeStyle, ...tab.activeStyle}
                 }
                 else{
-                    return activeStyle
+                    rObj = activeStyle
                 }
+                applyTextStyles(({...textStyle, activeTextStyle}), rObj)
             }
+
+            // Hovered (While Closed)
             else if (type === "hover"){
                 if (tab.hoverStyle){
-                    return {...hoverStyle, ...tab.hoverStyle}
+                    rObj = {...hoverStyle, ...tab.hoverStyle}
                 }
                 else{
-                    return hoverStyle
+                    rObj = hoverStyle
                 }
+                applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
             }
+
+            return rObj
         }
 
         // Determine the Drawer Press Handlers

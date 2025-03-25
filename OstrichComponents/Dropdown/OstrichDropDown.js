@@ -218,6 +218,9 @@ export const OstrichDropDown = ({
         if (wrapStyle.alignItems){
             rObj = {...rObj, alignItems: wrapStyle.alignItems}
         }
+        if (wrapStyle.color){
+            rObj = {...rObj, color: wrapStyle.color}
+        }
         return rObj
     }
 
@@ -467,6 +470,14 @@ export const OstrichDropDown = ({
         return
     }
     else{
+        console.log( ({...extractTextStyles(determineBoxStyle()), ...titleStyle})?.color)
+        if (
+            ({...extractTextStyles(determineBoxStyle()), ...titleStyle})
+                .backgroundColor === "lime"
+            ){
+                console.log(title)
+                console.log(obj)
+            }
         return(
             <div
             style={{...determineBoxStyle(), position: 'relative'}}

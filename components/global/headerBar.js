@@ -103,20 +103,20 @@ export const HeaderBar = ({
         
                 tabStyle={{
                     borderLeft: "1px solid white", borderRight: "1px solid white",
-                    borderRadius: 0,
-                    padding: 0
+                    backgroundColor: '#11013b', color: "#efefef",
+                    borderRadius: 0, padding: 0
                 }}
-
+                drawerStyle={{color: 'black'}}
                 activeTabStyle={{
-                    borderLeft: "1px solid green", borderRight: "1px solid green" 
+                    borderLeft: "3px solid lime", borderRight: "3px solid lime",
+                    color: 'lime', backgroundColor: '#11013b'
                 }}
                 hoverTabStyle={{
                     justifyContent: 'center', alignItems: 'center', 
+                    color: 'black', backgroundColor: '#baf2ff',
                     borderLeft: "1px solid white", borderRight: "1px solid white",  borderTop: "1px solid white", borderBottom: "1px solid white" 
                 }}
         
-                drawerColor="white"
-                drawerHoverColor=" #E9F1FF"
               />
             )
         }
