@@ -27,7 +27,7 @@ export const TabItem = ({
     hoverTextStyle,         //
 
     dropdown=false,         // Determines whether this is a static Tab or a Dropdown Meni
-    drawerStyle=false,   // Drawer Style (Dropdowns)
+    drawerStyle=false,      // Drawer Style (Dropdowns)
     activeDrawerStyle=false,
     hoverDrawerStyle=false,
 
@@ -40,6 +40,8 @@ export const TabItem = ({
     ////////////
     // States //
     ////////////
+
+    console.log(dropdown)
 
     ///////////////
     // Functions //
@@ -101,6 +103,20 @@ export const TabItem = ({
             }
         }
 
+        // Determine the Drawer Press Handlers
+        function determineDrawerPress(dropdown){
+            console.log(dropdown)
+            if (onDrawerClick){
+                console.log("Should run Tab Inherited onDrawerClick")
+                onDrawerClick(tabObj)
+            }
+            if (dropdown?.onDrawerClick){
+                console.log("Should run Tab Specific onDrawerClick")
+                dropdown.onDrawerClick(tabObj)
+            }
+
+        }
+
 
     ////////////////
     // Renderings //
@@ -136,7 +152,7 @@ export const TabItem = ({
 
                 obj={dropdown}
                 drawers={dropdown.drawers}
-                onDrawerClick={(tabObj => onDrawerClick(tabObj.dropdown))}
+                onDrawerClick={() => determineDrawerPress(dropdown)}
 
                 openOnHover={(dropdown.openOnHover === false ? false : true)}
                 closeOnLeave={(dropdown.closeOnLeave === false ? false : true)}
@@ -165,9 +181,9 @@ export const TabItem = ({
             if (dropdown){
                 return(
                     <div style={{flex: flex}}
-                    onClick={() => handlePress()}
-                    onMouseEnter={() => onMouseEnter()}
-                    onMouseLeave={() => onMouseLeave()}    
+                    onClick={(tabObj) => onPress(tabObj)}
+                    onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
+                    onMouseLeave={(tabObj) => onMouseLeave(tabObj)}    
                     >
                         {renderDropTab()}
                     </div>

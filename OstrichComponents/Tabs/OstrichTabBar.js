@@ -24,7 +24,7 @@ export const OstrichTabBar = ({
     hoverDrawerStyle,               // The Style of each Drawer in a Dropdown Tab WHEN HOVERED
 
     onTabClick,                     // Default onClick for Tab Items
-    onDrawerClick,                  // Default onClick for Drawers
+    onDrawerClick=false,            // Default onClick for Drawers
     manualActiveTab=false,
 
     showsHover = true,
@@ -64,7 +64,7 @@ export const OstrichTabBar = ({
 
         // Determines if Tab is Active or not 
         function isActive(tab){
-            if (activeTab.title){
+            if (activeTab?.title){
                 if (activeTab.title === tab.title){
                     return true
                 }
@@ -79,7 +79,7 @@ export const OstrichTabBar = ({
 
          // Determines if Tab is Hovered or not 
          function isHovered(tab){
-            if (hoveredTab.title){
+            if (hoveredTab?.title){
                 if (hoveredTab.title === tab.title){
                     return true
                 }
@@ -176,7 +176,6 @@ export const OstrichTabBar = ({
 
             // Handles onHover Function(s) and Sets Active
             function handleMouseEnterTab(tab){
-                console.log(tab)
                 if (tab?.onHover){
                     tab.onHover(tab)
                 }
@@ -208,6 +207,7 @@ export const OstrichTabBar = ({
         // Renders Each Tab Item
         function renderTabItems(){
             return tabs.map((tab, i) => {
+                console.log(tab)
                 return(
                     <TabItem
                     key={i}
@@ -239,7 +239,7 @@ export const OstrichTabBar = ({
                     hoverDrawerStyle={hoverDrawerStyle}
 
                     onPress={(tab) => determineOnPress(tab)}
-                    onDrawerClick={(tab => onDrawerClick(tab))}
+                    onDrawerClick={ onDrawerClick ? (tab => onDrawerClick(tab)) : null}
 
                     onMouseEnter={(tab) => handleMouseEnterTab(tab)}
                     onMouseLeave={(tab) => handleMouseLeaveTab(tab)}
