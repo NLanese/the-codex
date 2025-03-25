@@ -258,37 +258,37 @@ export const OstrichTabBar = ({
 // Prop Restrictions //
 ///////////////////////
 
-OstrichTabBar.propTypes = {
-    tabs: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            isActive: PropTypes.bool,
-            dropdown: PropTypes.shape({
-                style: PropTypes.object,
-                onMouseEnter: PropTypes.func,
-                onMouseLeave: PropTypes.func,
+// OstrichTabBar.propTypes = {
+//     tabs: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             title: PropTypes.string.isRequired,
+//             isActive: PropTypes.bool,
+//             dropdown: PropTypes.shape({
+//                 style: PropTypes.object,
+//                 onMouseEnter: PropTypes.func,
+//                 onMouseLeave: PropTypes.func,
 
-                openOnHover: PropTypes.bool,
-                manualOpen: PropTypes.bool,
-                open: PropTypes.bool,
+//                 openOnHover: PropTypes.bool,
+//                 manualOpen: PropTypes.bool,
+//                 open: PropTypes.bool,
 
-                obj: PropTypes.object,
-                drawers: PropTypes.array,
+//                 obj: PropTypes.object,
+//                 drawers: PropTypes.array,
                 
-                dr: PropTypes.string,
-                activeColor: PropTypes.string,
-                titleStyle: PropTypes.object,
-                activeTitleStyle: PropTypes.object,
-            })
-        })
-    ).isRequired,
-    style: PropTypes.object,
-    titleStyle: PropTypes.object,
-    activeTitleStyle: PropTypes.object,
-    hoverTitleStyle: PropTypes.object,
-    activeTabStyle: PropTypes.object,
+//                 dr: PropTypes.string,
+//                 activeColor: PropTypes.string,
+//                 titleStyle: PropTypes.object,
+//                 activeTitleStyle: PropTypes.object,
+//             })
+//         })
+//     ).isRequired,
+//     style: PropTypes.object,
+//     titleStyle: PropTypes.object,
+//     activeTitleStyle: PropTypes.object,
+//     hoverTitleStyle: PropTypes.object,
+//     activeTabStyle: PropTypes.object,
     
-    dropDownTextStyle: PropTypes.object,
-    dropDrawerColor: PropTypes.string,
-    activeDropDrawerColor: PropTypes.string
-};
+//     dropDownTextStyle: PropTypes.object,
+//     dropDrawerColor: PropTypes.string,
+//     activeDropDrawerColor: PropTypes.string
+// };

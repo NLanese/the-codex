@@ -182,7 +182,7 @@ export const TabItem = ({
                 onMouseLeave={(tabObj) => onMouseLeave(tabObj)}
                 >
                     <div 
-                    // style={{...determineStyle().text}}
+                    style={isActive ? activeTextStyle : textStyle}
                     >
                         {title}
                     </div>
@@ -239,17 +239,17 @@ export const TabItem = ({
                     </div>
                 )
             }
-            // else{
-            //     return(
-            //         <div style={{flex: flex}}
-            //         onClick={() => handlePress()}
-            //         onMouseEnter={() => handleMouseEnter()}
-            //         onMouseLeave={() => handleMouseLeave()}    
-            //         >
-            //             {renderTab()}
-            //         </div>
-            //     )
-            // }
+            else{
+                return(
+                    <div style={{flex: flex}}
+                    onClick={() => handlePress()}
+                    onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
+                    onMouseLeave={(tabObj) => onMouseLeave(tabObj)}    
+                    >
+                        {renderTab()}
+                    </div>
+                )
+            }
         }
     
     return MAIN()

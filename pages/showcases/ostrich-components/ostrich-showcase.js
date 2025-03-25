@@ -13,6 +13,7 @@ import { ODef } from "../../../OstrichComponents/Text/OstrichDefinition";
 import { ODefContnet } from "../../../constants/oDefContent";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
+import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 // Assets
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
@@ -1207,6 +1208,7 @@ export default function OstrichShowcase() {
         <div style={Styles.Fonts.lessonHeader}>Ostrich Tab Bars (OstrichTabBar)</div>
             
             {/* Preamble */}
+            <div>
             <p style={Styles.Fonts.basic}>
             Ostrich Dropdowns are also used as a part of another very dynamic and response Ostrich Component, the Ostrich Tab Bar. The Tab Bar that you see on the top of your screen right now 
             (if you're reading this on the Ostrich Codex Website) is made using this Tab Bar Component.
@@ -1220,6 +1222,22 @@ export default function OstrichShowcase() {
             <p style={Styles.Fonts.basic}>
             We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
             </p>
+            </div>
+
+            
+            {/* Ost TabBar Example Row One */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+
+                    {/* Vanilla Dropdown */}
+                    <OstrichTabBar
+                        tabs={[1, 2, 3]}
+                    />
+
+            </div>
+
         </div>
     )
   }
