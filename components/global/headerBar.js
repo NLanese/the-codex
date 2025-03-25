@@ -95,16 +95,25 @@ export const HeaderBar = ({
                 style={{
                     display: "flex",
                     height: 50, width: '99%', 
-                    backgroundColor: '#11013b', boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)', 
-                    alignItems: 'center', justifyContent: 'center',
+                    backgroundColor: '#11013b', boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)',
                 }}
                 titleStyle={{fontFamily: "Gilroy",  color: 'white',  fontWeight: 300, textAlign: 'center', textAlignVertical: 'center', fontSize: 24}}
                 activeTitleStyle={{color: '#15c97b',  fontWeight: 700}}
                 hoverTitleStyle={{color: '#15c97b',  fontWeight: 500}}
         
-                tabStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 5, marginBottom: 5, borderLeft: "1px solid white", borderRight: "1px solid white" }}
-                activeTabStyle={{borderLeft: "1px solid green", borderRight: "1px solid green" }}
-                hoverTabStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 3, marginBottom: 3, borderLeft: "1px solid white", borderRight: "1px solid white",  borderTop: "1px solid white", borderBottom: "1px solid white" }}
+                tabStyle={{
+                    borderLeft: "1px solid white", borderRight: "1px solid white",
+                    borderRadius: 0,
+                    padding: 0
+                }}
+
+                activeTabStyle={{
+                    borderLeft: "1px solid green", borderRight: "1px solid green" 
+                }}
+                hoverTabStyle={{
+                    justifyContent: 'center', alignItems: 'center', 
+                    borderLeft: "1px solid white", borderRight: "1px solid white",  borderTop: "1px solid white", borderBottom: "1px solid white" 
+                }}
         
                 drawerColor="white"
                 drawerHoverColor=" #E9F1FF"

@@ -105,6 +105,7 @@ export const OstrichDropDown = ({
             fontWeight: 500
         }
         drawerStyle = {...temp, ...drawerStyle}
+
         if (!noBorder && !drawerStyle.border && !drawerStyle.borderRadius && !drawerStyle.borderWidth){
             drawerStyle.border = "2px solid #E9F1FF"
             drawerStyle.borderRadius = 0
@@ -133,21 +134,31 @@ export const OstrichDropDown = ({
             border: "1px solid black", borderRadius: 10,
             justifyItems: 'center', textAlign: 'center',
             position: 'relative',
-            paddingRight: 10,
-            paddingLeft: 10,
             fontFamily: "Gilroy",
             fontWeight: 600,
             minWidth: 130
         }
         boxStyle = {...temp, ...boxStyle}
+
+        // Adds Padding If Needed
+        if (!boxStyle.padding && !boxStyle.paddingRight && !boxStyle.paddingLeft && !boxStyle.paddingTop && !boxStyle.paddingBottom){
+            boxStyle.paddingRight = 10
+            boxStyle.paddingLeft =  10
+        }
+
+        // Adds Border if Needed
         if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
             boxStyle.border = "1px solid black"
             boxStyle.borderRadius = 10
         }
+
+        // Adds Shadow if Needed
         if (!noShadow && !boxStyle?.boxShadow){
             boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }
-       setBoxStyleInput(boxStyle)
+
+        // Complete Regular Box Style
+        setBoxStyleInput(boxStyle)
 
         // Hover Box
         hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8", ...hoverBoxStyle} 

@@ -106,16 +106,11 @@ export const OstrichTabBar = ({
                 let tempTabStyleX = {
                     justifyContent: 'center',
                     alignItems: 'center',
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    marginTop: 6,
-                    marginBottom: 6, 
                     borderLeft: "0.5px solid #E9F1FF",
                     borderRight: "0.5px solid #E9F1FF",
-                    backgroundColor: 'rgba(189, 236, 255, 0.35)',
                     color: 'black'
                 }
-                setTabStyleX({...tempTabStyleX, tabStyle})
+                setTabStyleX({...tempTabStyleX, ...tabStyle})
 
                 let tempTitleStyle = {
                         textAlign: 'center',
@@ -207,7 +202,6 @@ export const OstrichTabBar = ({
         // Renders Each Tab Item
         function renderTabItems(){
             return tabs.map((tab, i) => {
-                console.log(tab)
                 return(
                     <TabItem
                     key={i}

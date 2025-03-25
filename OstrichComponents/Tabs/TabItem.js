@@ -41,8 +41,6 @@ export const TabItem = ({
     // States //
     ////////////
 
-    console.log(dropdown)
-
     ///////////////
     // Functions //
     ///////////////
@@ -82,7 +80,7 @@ export const TabItem = ({
                     return {...style, ...tab.style}
                 }
                 else{
-                    return drawerStyle
+                    return style
                 }
             }
             if (type === "active"){
@@ -105,14 +103,10 @@ export const TabItem = ({
 
         // Determine the Drawer Press Handlers
         function determineDrawerPress(drawer){
-            console.log(dropdown)
-            console.log("Pressed ", drawer)
             if (onDrawerClick){
-                console.log("Should run Tab Inherited onDrawerClick")
                 onDrawerClick(drawer)
             }
             if (dropdown?.onDrawerClick){
-                console.log("Should run Tab Specific onDrawerClick")
                 dropdown.onDrawerClick(drawer)
             }
 
