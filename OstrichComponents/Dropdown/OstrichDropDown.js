@@ -221,6 +221,9 @@ export const OstrichDropDown = ({
         if (wrapStyle.color){
             rObj = {...rObj, color: wrapStyle.color}
         }
+        else{
+            rObj = {...rObj, color: "black"}
+        }
         return rObj
     }
 
@@ -383,6 +386,7 @@ export const OstrichDropDown = ({
                 }
             }
 
+            console.log(title, " has drawer colors of ", extractTextStyles(drawerStyleInput)?.color)
             return {
                 drawer: drawerStyleInput, 
                 text: extractTextStyles(drawerStyleInput)
@@ -409,6 +413,7 @@ export const OstrichDropDown = ({
     function renderDrawers(){
         if (isOpen && drawers){
             return drawers.map((drawer, index) => {
+                console.log({...determineDrawerStyle(drawer).text})
                 let drawerObject = {}
                 if (typeof(drawer) === "string" || typeof(drawer) === "number" || typeof(drawer) === "integer"){
                     drawerObject = {title: `${drawer}`}
@@ -417,6 +422,12 @@ export const OstrichDropDown = ({
                     drawerObject = drawer
                 }
                 const isActive = activeDrawer === drawer;
+                if (isActive){
+                    console.log("Drawer is active for some reason")
+                }
+                if ({...determineDrawerStyle(drawer).text}?.color === "lime"){
+                    console.log("LIME FOUUND AS DRAWERS RENDER")
+                }
                 return(
                     <DrawerItem 
                         key={index}
@@ -432,6 +443,9 @@ export const OstrichDropDown = ({
         else if (isOpen && obj.drawers){
             let objDrawers = obj.drawers
             return objDrawers.map((drawer, index) => {
+                if ({...determineDrawerStyle(drawer).text}?.color === "lime"){
+                    console.log("LIME FOUUND AS DRAWERS RENDER")
+                }
                 return(
                     <DrawerItem 
                         key={index}
@@ -470,13 +484,14 @@ export const OstrichDropDown = ({
         return
     }
     else{
-        console.log( ({...extractTextStyles(determineBoxStyle()), ...titleStyle})?.color)
         if (
             ({...extractTextStyles(determineBoxStyle()), ...titleStyle})
-                .backgroundColor === "lime"
+                .color === "lime"
             ){
                 console.log(title)
                 console.log(obj)
+                console.log(drawerStyleInput)
+                console.log(activeDrawerBoxStyleInput)
             }
         return(
             <div
@@ -489,7 +504,7 @@ export const OstrichDropDown = ({
                     {renderTitle()}
                 </p>
                 <div style={{marginTop: 10}}/>
-                <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%', backgroundColor: 'chartreuse',}}>
+                <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%',}}>
                     {renderDrawerContainer()}
                 </div>
             </div>

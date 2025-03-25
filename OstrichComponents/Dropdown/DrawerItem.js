@@ -62,6 +62,9 @@ export const DrawerItem = ({
     ////////////////
 
     const MAIN = () => {
+        console.log("The color of ", determineTitle(), " should be ", style?.color)
+        console.log(textStyle)
+        console.log(textStyle?.color)
         return(
             <div 
             onMouseEnter={() => handleMouseEnter()}
