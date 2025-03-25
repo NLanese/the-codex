@@ -89,7 +89,6 @@ export const TabItem = ({
         // Determines GENERAL or SPECIFIC Drawer Style
         function determineDrawerStyle(type, dropdown){
             if (type === "regular"){
-                console.log("Sending DRAWER Style of")
                 if (dropdown.drawerStyle){
                     console.log(dropdown.drawerStyle)
                     return {...drawerStyle, ...dropdown.drawerStyle}

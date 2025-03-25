@@ -386,7 +386,6 @@ export const OstrichDropDown = ({
                 }
             }
 
-            console.log(title, " has drawer colors of ", extractTextStyles(drawerStyleInput)?.color)
             return {
                 drawer: drawerStyleInput, 
                 text: extractTextStyles(drawerStyleInput)
@@ -413,7 +412,6 @@ export const OstrichDropDown = ({
     function renderDrawers(){
         if (isOpen && drawers){
             return drawers.map((drawer, index) => {
-                console.log({...determineDrawerStyle(drawer).text})
                 let drawerObject = {}
                 if (typeof(drawer) === "string" || typeof(drawer) === "number" || typeof(drawer) === "integer"){
                     drawerObject = {title: `${drawer}`}
@@ -422,12 +420,6 @@ export const OstrichDropDown = ({
                     drawerObject = drawer
                 }
                 const isActive = activeDrawer === drawer;
-                if (isActive){
-                    console.log("Drawer is active for some reason")
-                }
-                if ({...determineDrawerStyle(drawer).text}?.color === "lime"){
-                    console.log("LIME FOUUND AS DRAWERS RENDER")
-                }
                 return(
                     <DrawerItem 
                         key={index}
@@ -443,14 +435,11 @@ export const OstrichDropDown = ({
         else if (isOpen && obj.drawers){
             let objDrawers = obj.drawers
             return objDrawers.map((drawer, index) => {
-                if ({...determineDrawerStyle(drawer).text}?.color === "lime"){
-                    console.log("LIME FOUUND AS DRAWERS RENDER")
-                }
                 return(
                     <DrawerItem 
                         key={index}
-                        style={{...determineDrawerStyle(drawer).drawer}}
-                        textStyle={{...determineDrawerStyle(drawer).text}}
+                        style={isActive ? activeDrawerBoxStyleInput : {...determineDrawerStyle(drawer).drawer}}
+                        textStyle={isActive ? extractTextStyles(activeDrawerBoxStyleInput) : {...determineDrawerStyle(drawer).text}}
                         onClick={() => handleDrawerPress(drawer)}
                         obj={drawerObject}
                         handleDrawerHover={(input) => handleDrawerHover(drawer, input)}
@@ -484,15 +473,6 @@ export const OstrichDropDown = ({
         return
     }
     else{
-        if (
-            ({...extractTextStyles(determineBoxStyle()), ...titleStyle})
-                .color === "lime"
-            ){
-                console.log(title)
-                console.log(obj)
-                console.log(drawerStyleInput)
-                console.log(activeDrawerBoxStyleInput)
-            }
         return(
             <div
             style={{...determineBoxStyle(), position: 'relative'}}
