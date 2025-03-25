@@ -104,15 +104,16 @@ export const TabItem = ({
         }
 
         // Determine the Drawer Press Handlers
-        function determineDrawerPress(dropdown){
+        function determineDrawerPress(drawer){
             console.log(dropdown)
+            console.log("Pressed ", drawer)
             if (onDrawerClick){
                 console.log("Should run Tab Inherited onDrawerClick")
-                onDrawerClick(tabObj)
+                onDrawerClick(drawer)
             }
             if (dropdown?.onDrawerClick){
                 console.log("Should run Tab Specific onDrawerClick")
-                dropdown.onDrawerClick(tabObj)
+                dropdown.onDrawerClick(drawer)
             }
 
         }
@@ -152,7 +153,7 @@ export const TabItem = ({
 
                 obj={dropdown}
                 drawers={dropdown.drawers}
-                onDrawerClick={() => determineDrawerPress(dropdown)}
+                onDrawerClick={(drawer) => determineDrawerPress(drawer)}
 
                 openOnHover={(dropdown.openOnHover === false ? false : true)}
                 closeOnLeave={(dropdown.closeOnLeave === false ? false : true)}
