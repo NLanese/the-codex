@@ -89,24 +89,33 @@ export const HeaderBar = ({
             return(
                 <OstrichTabBar 
                 startingTabByTitle={tabBar}
-
                 tabs={tabs}
-        
                 style={{
                     display: "flex",
                     height: 50, width: '99%', 
-                    backgroundColor: '#11013b', boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)',
+                    backgroundColor: '#11013b', 
+                    boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)',
                 }}
-                titleStyle={{fontFamily: "Gilroy",  color: 'white',  fontWeight: 300, textAlign: 'center', textAlignVertical: 'center', fontSize: 24}}
-                activeTitleStyle={{color: '#15c97b',  fontWeight: 700}}
-                hoverTitleStyle={{color: '#15c97b',  fontWeight: 500}}
+
+                titleStyle={{
+                    fontFamily: "Gilroy", fontWeight: 300, 
+                    fontSize: 24, color: 'white',
+                }}
+                activeTitleStyle={
+                    {color: '#15c97b',  fontWeight: 700}
+                }
+                hoverTitleStyle={
+                    {color: '#15c97b',  fontWeight: 500}
+                }
         
                 tabStyle={{
                     borderLeft: "1px solid white", borderRight: "1px solid white",
                     backgroundColor: '#11013b', color: "#efefef",
                     borderRadius: 0, padding: 0
                 }}
-                drawerStyle={{color: 'black'}}
+                drawerStyle={
+                    {color: 'black'}
+                }
                 activeTabStyle={{
                     borderLeft: "3px solid lime", borderRight: "3px solid lime",
                     color: 'lime', backgroundColor: '#11013b'

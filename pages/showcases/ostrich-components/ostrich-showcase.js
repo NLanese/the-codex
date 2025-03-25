@@ -629,6 +629,7 @@ export default function OstrichShowcase() {
     )
   }
 
+
   function renderOstrichButtons(){
     return(
         <div style={{marginBottom: 30}}>
@@ -1200,6 +1201,29 @@ export default function OstrichShowcase() {
     )
   }
 
+  function renderOstrichTabBar(){
+    return(
+        <div style={{marginBottom: 30}}>
+        <div style={Styles.Fonts.lessonHeader}>Ostrich Tab Bars (OstrichTabBar)</div>
+            
+            {/* Preamble */}
+            <p style={Styles.Fonts.basic}>
+            Ostrich Dropdowns are also used as a part of another very dynamic and response Ostrich Component, the Ostrich Tab Bar. The Tab Bar that you see on the top of your screen right now 
+            (if you're reading this on the Ostrich Codex Website) is made using this Tab Bar Component.
+            </p>
+            <p style={Styles.Fonts.basic}>
+            Just like Dropdowns and Cards, Ostrich Tab Bars even in their most basic uneditted form have multiple forms of responsiveness as well as in-the-box styling that enables you to 
+            quickly render comprehensive and clean Tab Bars without having to develop it yourself. This includes automatic width calculations based on the amount of Tabs; different regular, 
+            active and hover bacground colors and styles; as well as all the features that were present in the Dropdown, as you can make the Tab Bar be a row of Dropdowns without ever needing 
+            to render the Dropdown yourself.
+            </p>
+            <p style={Styles.Fonts.basic}>
+            We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
+            </p>
+        </div>
+    )
+  }
+
   /////////////////
   // Main Return //
   /////////////////
@@ -1222,7 +1246,8 @@ export default function OstrichShowcase() {
                 </p>
 
                 {renderOstrichCards()}  
-                {renderOstrichDropDown()}              
+                {renderOstrichDropDown()}            
+                {renderOstrichTabBar()}  
             </div>
             
         </OstCard>
