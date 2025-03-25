@@ -115,7 +115,7 @@ export const OstrichTabBar = ({
                     backgroundColor: 'rgba(189, 236, 255, 0.35)',
                     color: 'black'
                 }
-                setTabStyleX(...tempTabStyleX, tabStyle)
+                setTabStyleX({...tempTabStyleX, tabStyle})
 
                 let tempTitleStyle = {
                         textAlign: 'center',
@@ -233,7 +233,7 @@ export const OstrichTabBar = ({
                     hoverTextStyle={hoverTitleStyleX}
 
                     dropdown={tab.dropdown ? tab.dropdown : false}
-                    dropdownStyles={drawerStyle}
+                    drawerStyle={drawerStyle}
                     activeDrawerStyle={activeDrawerStyle}
                     hoverDrawerStyle={hoverDrawerStyle}
 

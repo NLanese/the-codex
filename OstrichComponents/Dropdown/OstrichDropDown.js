@@ -34,6 +34,7 @@ export const OstrichDropDown = ({
     boxStyle,
     activeBoxStyle,
     hoverBoxStyle,
+    
     noBorder=false,
     noShadow=false,
 

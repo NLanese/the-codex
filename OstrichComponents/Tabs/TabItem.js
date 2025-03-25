@@ -27,7 +27,7 @@ export const TabItem = ({
     hoverTextStyle,         //
 
     dropdown=false,         // Determines whether this is a static Tab or a Dropdown Meni
-    dropdownStyles=false,   // Drawer Style (Dropdowns)
+    drawerStyle=false,   // Drawer Style (Dropdowns)
     activeDrawerStyle=false,
     hoverDrawerStyle=false,
 
@@ -110,13 +110,15 @@ export const TabItem = ({
         function renderTab(){
             return(
                 <div
-                style={{...determineStyle().tab}}
+                style={determineBoxStyle("regular", tabObj)}
                 onClick={() => handlePress()}
                 onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
-                onMouseLeave={(tabObj) => handleMouseLeave(tabObj)}
+                onMouseLeave={(tabObj) => onMouseLeave(tabObj)}
                 >
-                    <div style={{...determineStyle().text}}>
-                        {titleX}
+                    <div 
+                    // style={{...determineStyle().text}}
+                    >
+                        {title}
                     </div>
                 </div>
             )
@@ -128,7 +130,7 @@ export const TabItem = ({
                 <OstrichDropDown
                 title={title}
 
-                onClick={activateTab}
+                onClick={(tab) => onPress(tab)}
                 onMouseEnter={(tabObj => onMouseEnter(tabObj))}
                 onMouseLeave={(tabObj => onMouseLeave(tabObj))}
 
@@ -148,12 +150,12 @@ export const TabItem = ({
                 activeDrawerStyle={determineDrawerStyle("active", dropdown)}
                 hoverDrawerStyle={determineDrawerStyle("hover", dropdown)}
 
-                boxStyle={determineBoxStyle("regular", tab)}
-                activeBoxStyle={determineBoxStyle("active", tab)}
-                hoverBoxStyle={determineBoxStyle("hover", tab)}
+                boxStyle={determineBoxStyle("regular", tabObj)}
+                activeBoxStyle={determineBoxStyle("active", tabObj)}
+                hoverBoxStyle={determineBoxStyle("hover", tabObj)}
                 
-                titleStyle={{...determineStyle().text}}
-
+                noBorder={(style.border || tabObj.style?.border) ? false : true}
+                noShadow={(style.boxShadow || tabObj.style?.boxShadow) ? false : true}
                 />
             )
         }
@@ -164,24 +166,24 @@ export const TabItem = ({
                 return(
                     <div style={{flex: flex}}
                     onClick={() => handlePress()}
-                    onMouseEnter={() => handleMouseEnter()}
-                    onMouseLeave={() => handleMouseLeave()}    
+                    onMouseEnter={() => onMouseEnter()}
+                    onMouseLeave={() => onMouseLeave()}    
                     >
                         {renderDropTab()}
                     </div>
                 )
             }
-            else{
-                return(
-                    <div style={{flex: flex}}
-                    onClick={() => handlePress()}
-                    onMouseEnter={() => handleMouseEnter()}
-                    onMouseLeave={() => handleMouseLeave()}    
-                    >
-                        {renderTab()}
-                    </div>
-                )
-            }
+            // else{
+            //     return(
+            //         <div style={{flex: flex}}
+            //         onClick={() => handlePress()}
+            //         onMouseEnter={() => handleMouseEnter()}
+            //         onMouseLeave={() => handleMouseLeave()}    
+            //         >
+            //             {renderTab()}
+            //         </div>
+            //     )
+            // }
         }
     
     return MAIN()
