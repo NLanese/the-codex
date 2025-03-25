@@ -176,7 +176,8 @@ export const OstrichTabBar = ({
 
             // Handles onHover Function(s) and Sets Active
             function handleMouseEnterTab(tab){
-                if (tab.onHover){
+                console.log(tab)
+                if (tab?.onHover){
                     tab.onHover(tab)
                 }
                 if (onTabHover){
