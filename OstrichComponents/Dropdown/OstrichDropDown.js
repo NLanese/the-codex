@@ -114,6 +114,7 @@ export const OstrichDropDown = ({
             drawerStyle.boxShadowRight = '2px 3px 3px rgba(0, 0, 0, 0.1)'
             drawerStyle.boxShadowLeft = '2px 3px 3px rgba(0, 0, 0, 0.1)'
         }  
+
         setDrawerStyleInput(drawerStyle)
 
         // Hover Drawer
@@ -480,7 +481,9 @@ export const OstrichDropDown = ({
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                <p style={{...extractTextStyles(determineBoxStyle()), ...titleStyle}}>
+                <p 
+                style={{...extractTextStyles(determineBoxStyle()), ...titleStyle}}
+                >
                     {renderTitle()}
                 </p>
                 <div style={{marginTop: 10}}/>

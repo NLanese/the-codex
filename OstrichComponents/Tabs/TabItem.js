@@ -151,7 +151,6 @@ export const TabItem = ({
                 rObj = applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
             }
 
-            console.log(rObj)
             return (rObj ? rObj : {})
         }
 
@@ -166,6 +165,25 @@ export const TabItem = ({
 
         }
 
+        function applyTabDefaultStyles(style){
+            let rObj = {
+                width: '100%', 
+                display: 'flex',
+                minHeight: 30,
+                textAlignVertical: 'center', textAlign: 'center',
+                position: 'relative',
+                backgroundColor:"#efefef", 
+                border: "1px solid black", borderRadius: 0,
+                borderTopWidth: 0.5, borderBottomWidth: 0.5,
+                justifyContent: 'center', 
+                alignContent: 'center',
+                alignItems: 'center',
+                fontFamily: "Gilroy",
+                fontWeight: 500
+            }
+            return {...rObj, ...style}
+        }
+
 
     ////////////////
     // Renderings //
@@ -175,7 +193,7 @@ export const TabItem = ({
         function renderTab(){
             return(
                 <div
-                style={determineBoxStyle("regular", tabObj)}
+                style={applyTabDefaultStyles(determineBoxStyle("regular", tabObj))}
                 onClick={(tabObj) => onPress(tabObj)}
                 onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
                 onMouseLeave={(tabObj) => onMouseLeave(tabObj)}
@@ -183,7 +201,9 @@ export const TabItem = ({
                     <div 
                     style={(isActive ? {...activeTextStyle} : {...textStyle})}
                     >
-                        {title}
+                        <p>
+                            {title}
+                        </p>
                     </div>
                 </div>
             )

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { TabItem } from './TabItem';
+import { title } from 'process';
 
 export const OstrichTabBar = ({ 
     startingTabByTitle = false,     // the Title of the Tab you want selected by default

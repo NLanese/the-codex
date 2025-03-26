@@ -95,17 +95,18 @@ export const HeaderBar = ({
                     height: 40, width: '99%', 
                     backgroundColor: '#11013b', 
                     boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)',
+        
                 }}
 
                 titleStyle={{
-                    fontFamily: "Gilroy", fontWeight: 300, 
+                    fontFamily: "Gilroy", fontWeight: 500, 
                     color: 'white',
                 }}
                 activeTitleStyle={
                     {color: '#15c97b',  fontWeight: 700}
                 }
                 hoverTitleStyle={
-                    {color: '#15c97b',  fontWeight: 500}
+                    {color: '#15c97b',  fontWeight: 600}
                 }
         
                 tabStyle={{
