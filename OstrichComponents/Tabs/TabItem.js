@@ -90,11 +90,9 @@ export const TabItem = ({
         function determineDrawerStyle(type, dropdown){
             if (type === "regular"){
                 if (dropdown.drawerStyle){
-                    console.log(dropdown.drawerStyle)
                     return {...drawerStyle, ...dropdown.drawerStyle}
                 }
                 else{
-                    console.log(drawerStyle)
                     return drawerStyle
                 }
             }
@@ -122,38 +120,39 @@ export const TabItem = ({
 
             // Regular 
             if (type === "regular"){
-                if (tab.style){
+                if (tab?.style){
                     rObj = {...style, ...tab.style}
                 }
                 else{
                     rObj = style
                 }
-                applyTextStyles(textStyle, rObj)
+                rObj = applyTextStyles(textStyle, rObj)
             }
 
             // Active / Opened
             if (type === "active"){
-                if (tab.activeStyle){
+                if (tab?.activeStyle){
                     rObj = {...activeStyle, ...tab.activeStyle}
                 }
                 else{
                     rObj = activeStyle
                 }
-                applyTextStyles(({...textStyle, activeTextStyle}), rObj)
+                rObj = applyTextStyles(({...textStyle, activeTextStyle}), rObj)
             }
 
             // Hovered (While Closed)
             else if (type === "hover"){
-                if (tab.hoverStyle){
+                if (tab?.hoverStyle){
                     rObj = {...hoverStyle, ...tab.hoverStyle}
                 }
                 else{
                     rObj = hoverStyle
                 }
-                applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
+                rObj = applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
             }
 
-            return rObj
+            console.log(rObj)
+            return (rObj ? rObj : {})
         }
 
         // Determine the Drawer Press Handlers
@@ -177,12 +176,12 @@ export const TabItem = ({
             return(
                 <div
                 style={determineBoxStyle("regular", tabObj)}
-                onClick={() => handlePress()}
+                onClick={(tabObj) => onPress(tabObj)}
                 onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
                 onMouseLeave={(tabObj) => onMouseLeave(tabObj)}
                 >
                     <div 
-                    style={isActive ? activeTextStyle : textStyle}
+                    style={(isActive ? {...activeTextStyle} : {...textStyle})}
                     >
                         {title}
                     </div>

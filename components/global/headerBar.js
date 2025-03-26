@@ -92,14 +92,14 @@ export const HeaderBar = ({
                 tabs={tabs}
                 style={{
                     display: "flex",
-                    height: 50, width: '99%', 
+                    height: 40, width: '99%', 
                     backgroundColor: '#11013b', 
                     boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)',
                 }}
 
                 titleStyle={{
                     fontFamily: "Gilroy", fontWeight: 300, 
-                    fontSize: 24, color: 'white',
+                    color: 'white',
                 }}
                 activeTitleStyle={
                     {color: '#15c97b',  fontWeight: 700}
