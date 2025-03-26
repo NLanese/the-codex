@@ -44,6 +44,9 @@ export const OstrichTabBar = ({
         const [activeTab, setActiveTab] = useState(false)
         const [hoveredTab, setHoveredTab] = useState(false)
 
+        // Bar Style
+        const [barStyle, setBarStyle] = useState(false)
+
         // Text Styles
         const [titleStyleX, setTitleStyleX] = useState(false)
         const [activeTitleStyleX, setActiveTitleStyleX] = useState(false)
@@ -100,6 +103,15 @@ export const OstrichTabBar = ({
                 checkTabStyle()
                 checkActiveStyle()
                 checkHoverStyle()
+                setDefaultBarStyles()
+            }
+
+            function setDefaultBarStyles(){
+                let tempBar = {
+                    width: '300px',
+                    height: '60px'
+                }
+                setBarStyle({...tempBar, ...style})
             }
 
             // Checks Default Imported Styles
@@ -248,7 +260,7 @@ export const OstrichTabBar = ({
     /////////////////
 
     return (
-        <div style={{ ...style, display: 'flex' }}>
+        <div style={{ ...barStyle, display: 'flex' }}>
            {renderTabRow()}
         </div>
     );

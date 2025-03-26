@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { OstrichDropDown } from '../Dropdown/OstrichDropDown';
 import PropTypes from 'prop-types';
+import { root } from 'postcss';
 
 
 export const TabItem = ({
@@ -167,7 +168,6 @@ export const TabItem = ({
 
         function applyTabDefaultStyles(style){
             let rObj = {
-                width: '100%', 
                 display: 'flex',
                 minHeight: 30,
                 textAlignVertical: 'center', textAlign: 'center',
@@ -179,7 +179,7 @@ export const TabItem = ({
                 alignContent: 'center',
                 alignItems: 'center',
                 fontFamily: "Gilroy",
-                fontWeight: 500
+                fontWeight: 500,
             }
             return {...rObj, ...style}
         }

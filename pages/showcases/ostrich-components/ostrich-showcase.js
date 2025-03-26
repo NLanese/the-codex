@@ -1226,7 +1226,7 @@ export default function OstrichShowcase() {
 
             
             {/* Ost TabBar Example Row One */}
-            {/* <div style={{display: 'flex', 
+            <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
@@ -1235,7 +1235,7 @@ export default function OstrichShowcase() {
                         tabs={[1, 2, 3]}
                     />
 
-            </div> */}
+            </div>
 
         </div>
     )
