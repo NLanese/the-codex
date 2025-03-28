@@ -119,8 +119,8 @@ export const OstrichTabBar = ({
                 let tempTabStyleX = {
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderLeft: "0.5px solid #E9F1FF",
-                    borderRight: "0.5px solid #E9F1FF",
+                    borderLeft: "0.5px solid black",
+                    borderRight: "0.5px solid black",
                     color: 'black'
                 }
                 setTabStyleX({...tempTabStyleX, ...tabStyle})
