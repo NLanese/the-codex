@@ -1235,6 +1235,18 @@ export default function OstrichShowcase() {
                         tabs={[1, 2, 3]}
                     />
 
+                    <OstrichTabBar
+                        tabs={[
+                            {
+                                title: "Dropdown Tab",
+                                dropdown: {
+                                    drawers: ["Drawer1", "Drawer2", "Drawer3"]
+                                }
+                            }, 
+                            2, 3
+                        ]}
+                    />
+
             </div>
 
         </div>

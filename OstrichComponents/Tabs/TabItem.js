@@ -128,6 +128,12 @@ export const TabItem = ({
                     rObj = style
                 }
                 rObj = applyTextStyles(textStyle, rObj)
+                if (!rObj.minWidth){
+                    rObj.minWidth = '0'
+                }
+                if (!rObj.borderRadius){
+                    rObj.borderRadius = '0'
+                }
             }
 
             // Active / Opened
