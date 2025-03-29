@@ -111,7 +111,10 @@ export const OstrichTabBar = ({
             function setDefaultBarStyles(){
                 let tempBar = {
                     width: '300px',
-                    height: '60px'
+                    height: '40px',
+                    overflow: 'hidden',
+                    borderRadius: 10,
+                    border: "1px solid black"
                 }
                 setBarStyle({...tempBar, ...style})
             }

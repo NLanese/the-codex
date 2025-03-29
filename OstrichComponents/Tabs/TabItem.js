@@ -152,7 +152,7 @@ export const TabItem = ({
                 rObj = applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
             }
 
-            return (rObj ? rObj : {})
+            return (rObj ? {...rObj, maxHeight: '100%', overflow: 'hidden'} : {})
         }
 
         // Determine the Drawer Press Handlers
@@ -180,6 +180,9 @@ export const TabItem = ({
                 alignItems: 'center',
                 fontFamily: "Gilroy",
                 fontWeight: 500,
+            }
+            if (!rObj.height){
+                rObj.height = "100%"
             }
             return {...rObj, ...style}
         }
@@ -268,7 +271,7 @@ export const TabItem = ({
             else{
                 return(
                     <div style={{flex: flex}}
-                    onClick={() => onPress()}
+                    onClick={() => onPress(tabObj)}
                     onMouseEnter={() => onMouseEnter(tabObj)}
                     onMouseLeave={() => onMouseLeave(tabObj)}    
                     >
