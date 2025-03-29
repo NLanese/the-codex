@@ -113,7 +113,6 @@ export const OstrichTabBar = ({
                     width: '300px',
                     height: '40px',
                     borderRadius: 10,
-                    // clipPath: 'inset(0 round 16px)',
                     border: "1px solid black"
                 }
                 setBarStyle({...tempBar, ...style})
