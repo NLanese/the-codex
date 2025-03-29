@@ -30,6 +30,8 @@ export const OstrichTabBar = ({
 
     showsHover = true,
     onTabHover,
+
+    showsActive = true
     
 }) => {
    
@@ -61,10 +63,6 @@ export const OstrichTabBar = ({
             checkAllStyles()
             hasNeededValues()
         }, [])
-
-        useEffect(() => {
-            console.log(hoveredTab)
-        }, [hoveredTab])
 
     ///////////////
     // Functions //
@@ -178,30 +176,33 @@ export const OstrichTabBar = ({
 
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
-                if (tab.onClick){
+                if (tab?.onClick){
                     tab.onClick(tab)
                 }
                 if (onTabClick){
                     onTabClick(tab)
                 }
+                if (showsActive){
+                    setActiveTab(tab)
+                }
             }
 
             // Handles onHover Function(s) and Sets Active
             function handleMouseEnterTab(tab){
-                console.log("Tab entered")
-                console.log(tab)
                 if (tab?.onHover){
                     tab.onHover(tab)
                 }
                 if (onTabHover){
                     onTabHover(tab)
                 }
-                console.log("Setting hovered Tab: ", tab)
-                setHoveredTab(tab)
+                if (showsHover){
+                    setHoveredTab(tab)
+                }
+                
             }
 
             // Sets Hovered Tab to false
-            function handleMouseLeaveTab(tab){
+            function handleMouseLeaveTab(){
                 setHoveredTab(false)
             }
 

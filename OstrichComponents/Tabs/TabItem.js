@@ -257,9 +257,9 @@ export const TabItem = ({
             if (dropdown){
                 return(
                     <div style={{flex: flex}}
-                    onClick={(tabObj) => onPress(tabObj)}
-                    onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
-                    onMouseLeave={(tabObj) => onMouseLeave(tabObj)}    
+                    onClick={() => onPress(tabObj)}
+                    onMouseEnter={() => onMouseEnter(tabObj)}
+                    onMouseLeave={() => onMouseLeave(tabObj)}    
                     >
                         {renderDropTab()}
                     </div>
@@ -268,9 +268,9 @@ export const TabItem = ({
             else{
                 return(
                     <div style={{flex: flex}}
-                    onClick={() => handlePress()}
-                    onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
-                    onMouseLeave={(tabObj) => onMouseLeave(tabObj)}    
+                    onClick={() => onPress()}
+                    onMouseEnter={() => onMouseEnter(tabObj)}
+                    onMouseLeave={() => onMouseLeave(tabObj)}    
                     >
                         {renderTab()}
                     </div>
