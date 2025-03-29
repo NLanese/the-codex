@@ -194,12 +194,9 @@ export const TabItem = ({
 
         // Renders a Button as a Tab
         function renderTab(){
-            let styleType
-            if (isHovered){
+            let styleType = (isActive ? "active" : "regular")
+            if (isHovered && ! isActive){
                 styleType = "hover"
-            }
-            else{
-                styleType = (isActive ? "active" : "regular")
             }
             return(
                 <div
