@@ -191,12 +191,19 @@ export const TabItem = ({
 
         // Renders a Button as a Tab
         function renderTab(){
+            let styleType
+            if (isHovered){
+                styleType = "hover"
+            }
+            else{
+                styleType = (isActive ? "active" : "regular")
+            }
             return(
                 <div
-                style={applyTabDefaultStyles(determineBoxStyle("regular", tabObj))}
+                style={applyTabDefaultStyles(determineBoxStyle(styleType, tabObj))}
                 onClick={(tabObj) => onPress(tabObj)}
-                onMouseEnter={(tabObj) => onMouseEnter(tabObj)}
-                onMouseLeave={(tabObj) => onMouseLeave(tabObj)}
+                onMouseEnter={() => onMouseEnter(tabObj)}
+                onMouseLeave={() => onMouseLeave(tabObj)}
                 >
                     <div 
                     style={(isActive ? {...activeTextStyle} : {...textStyle})}

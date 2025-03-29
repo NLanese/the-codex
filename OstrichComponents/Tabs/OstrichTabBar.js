@@ -62,6 +62,10 @@ export const OstrichTabBar = ({
             hasNeededValues()
         }, [])
 
+        useEffect(() => {
+            console.log(hoveredTab)
+        }, [hoveredTab])
+
     ///////////////
     // Functions //
     ///////////////
@@ -184,12 +188,15 @@ export const OstrichTabBar = ({
 
             // Handles onHover Function(s) and Sets Active
             function handleMouseEnterTab(tab){
+                console.log("Tab entered")
+                console.log(tab)
                 if (tab?.onHover){
                     tab.onHover(tab)
                 }
                 if (onTabHover){
                     onTabHover(tab)
                 }
+                console.log("Setting hovered Tab: ", tab)
                 setHoveredTab(tab)
             }
 
