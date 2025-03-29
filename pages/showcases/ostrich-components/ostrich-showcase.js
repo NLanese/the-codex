@@ -1236,6 +1236,7 @@ export default function OstrichShowcase() {
                     />
 
                     <OstrichTabBar
+                        style={{width: 350}}
                         tabs={[
                             {
                                 title: "Dropdown Tab",

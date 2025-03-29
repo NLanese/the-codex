@@ -131,7 +131,7 @@ export const OstrichDropDown = ({
         // Regular Box
         let temp = {
             width: 'auto', 
-            backgroundColor:"#c6c7c8",
+            backgroundColor:"#efefef", 
             border: "1px solid black", borderRadius: 10,
             justifyItems: 'center', textAlign: 'center',
             position: 'relative',

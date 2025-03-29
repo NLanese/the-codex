@@ -128,11 +128,11 @@ export const TabItem = ({
                     rObj = style
                 }
                 rObj = applyTextStyles(textStyle, rObj)
-                if (!rObj.minWidth){
-                    rObj.minWidth = '0'
+                if (!rObj?.minWidth){
+                    rObj = {...rObj, minWidth: '0'}
                 }
-                if (!rObj.borderRadius){
-                    rObj.borderRadius = '0'
+                if (!rObj?.borderRadius){
+                    rObj = {...rObj, borderRadius: '0'}
                 }
             }
 
@@ -158,7 +158,7 @@ export const TabItem = ({
                 rObj = applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
             }
 
-            return (rObj ? {...rObj, maxHeight: '100%', overflow: 'hidden'} : {})
+            return (rObj ? {...rObj, maxHeight: '100%'} : {})
         }
 
         // Determine the Drawer Press Handlers
