@@ -1244,10 +1244,105 @@ export default function OstrichShowcase() {
                                     drawers: ["Drawer1", "Drawer2", "Drawer3"]
                                 }
                             }, 
-                            2, 3
+                            2, 
+                            3
                         ]}
                     />
+            </div>
 
+
+            {/* Ost TabBar Code Row One */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+                    {/* Template One */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '33%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichTabBar</span>
+                        </p>
+                        
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>tabs</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>1, 2, 3</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+
+                    {/* Click to Open Dropdown */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '35%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>style</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>width</span>
+                            <span style={Styles.Code.reg}>: 350</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>tabs</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Dropdown Tab"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>dropdown</span>
+                            <span style={Styles.Code.reg}>{": {"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                            <span style={Styles.Code.var}>drawers</span>
+                            <span style={Styles.Code.reg}>{": ["}</span>
+                            <span style={Styles.Code.str}>"Drawer1"</span>
+                            <span style={Styles.Code.reg}>{","}</span>
+                            <span style={Styles.Code.str}>"Drawer2"</span>
+                            <span style={Styles.Code.reg}>{","}</span>
+                            <span style={Styles.Code.str}>"Drawer3"</span>
+                            <span style={Styles.Code.reg}>{"]"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.reg}>{"},"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.reg}>{"2,"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.reg}>{"3"}</span>
+                        </p>
+                        
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>{"]"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
             </div>
 
         </div>
