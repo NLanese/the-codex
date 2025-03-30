@@ -103,10 +103,10 @@ export const HeaderBar = ({
                     color: 'white',
                 }}
                 activeTitleStyle={
-                    {color: '#15c97b',  fontWeight: 700}
+                    {color: 'lime',  fontWeight: 700}
                 }
                 hoverTitleStyle={
-                    {color: '#15c97b',  fontWeight: 600}
+                    {color: 'lime',  fontWeight: 600}
                 }
         
                 tabStyle={{
@@ -114,18 +114,19 @@ export const HeaderBar = ({
                     backgroundColor: '#11013b', color: "#efefef",
                     borderRadius: 0, padding: 0
                 }}
-                drawerStyle={
-                    {color: 'black'}
-                }
+                hoverTabStyle={{
+                    backgroundColor: '#11013b', 
+                    color: 'lime'
+                }}
                 activeTabStyle={{
                     borderLeft: "3px solid lime", borderRight: "3px solid lime",
                     color: 'lime', backgroundColor: '#11013b'
                 }}
-                hoverTabStyle={{
-                    justifyContent: 'center', alignItems: 'center', 
-                    color: 'black', backgroundColor: '#baf2ff',
-                    borderLeft: "1px solid white", borderRight: "1px solid white",  borderTop: "1px solid white", borderBottom: "1px solid white" 
-                }}
+
+                drawerStyle={
+                    {color: 'black'}
+                }
+                
         
               />
             )

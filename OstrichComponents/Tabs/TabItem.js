@@ -149,6 +149,8 @@ export const TabItem = ({
 
             // Hovered (While Closed)
             else if (type === "hover"){
+                console.log("Tab Hovered")
+                console.log(hoverStyle)
                 if (tab?.hoverStyle){
                     rObj = {...hoverStyle, ...tab.hoverStyle}
                 }

@@ -157,11 +157,14 @@ export const OstrichTabBar = ({
             // Checks Default Imported Hover Styles
             function checkHoverStyle(){
                 setHoverTitleStyleX({...titleStyleX, hoverTitleStyle})
-                setHoverTabStyleX({
+                let temp = {
                     ...tabStyleX, 
-                    backgroundColor: "#a5a8a8",
                     ...hoverTabStyle
-                })
+                }
+                if (!temp.backgroundColor){
+                    temp = {...temp, backgroundColor: "#a5a8a8",}
+                }
+                setHoverTabStyleX(temp)
             }
         
         // PROP CHECKS //
