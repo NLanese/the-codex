@@ -474,22 +474,31 @@ export const OstrichDropDown = ({
         return
     }
     else{
+        if (title === "Concepts" && isOpen){
+            console.log("Inner style (<p>) ")
+            console.log({...extractTextStyles(determineBoxStyle()), ...titleStyle})
+            console.log("Outer style (<div>) ")
+            console.log({...determineBoxStyle(), position: 'relative'})
+        }
         return(
             <div
-            style={{...determineBoxStyle(), position: 'relative'}}
+            style={{...determineBoxStyle(), position: 'relative', boxSizing: 'border-box'}}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                <p 
-                style={{...extractTextStyles(determineBoxStyle()), ...titleStyle}}
+                <div 
+                style={{display: 'flex', alignItems: 'center', justifyItems: 'center', height: '100%', width: "100%", boxSizing: 'border-box'}}
+                // style={{...extractTextStyles(determineBoxStyle()), ...titleStyle, backgroundColor: 'purple'}}
                 >
-                    {renderTitle()}
-                </p>
-                <div style={{marginTop: 10}}/>
+                    <div style={{maxHeight: '100%', width: '100%', backgroundColor: 'yellow', boxSizing: 'border-box'}}>
+                    <p style={{maxHeight: '100%'}}>{renderTitle()}</p>
+                    </div>
+                </div>
+                {/* <div style={{marginTop: 10}}/>
                 <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%',}}>
                     {renderDrawerContainer()}
-                </div>
+                </div> */}
             </div>
         )
     }

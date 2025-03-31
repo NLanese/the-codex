@@ -144,20 +144,19 @@ export const TabItem = ({
                 else{
                     rObj = activeStyle
                 }
-                rObj = applyTextStyles(({...textStyle, activeTextStyle}), rObj)
+                rObj = applyTextStyles(({...textStyle, ...activeTextStyle}), rObj)
+                
             }
 
             // Hovered (While Closed)
             else if (type === "hover"){
-                console.log("Tab Hovered")
-                console.log(hoverStyle)
                 if (tab?.hoverStyle){
                     rObj = {...hoverStyle, ...tab.hoverStyle}
                 }
                 else{
                     rObj = hoverStyle
                 }
-                rObj = applyTextStyles(({...textStyle, hoverTextStyle}), rObj)
+                rObj = applyTextStyles(({...textStyle, ...hoverTextStyle}), rObj)
             }
 
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
@@ -245,6 +244,8 @@ export const TabItem = ({
 
                 boxHovers={(showsHover || tabObj.showsHover)}
                 drawersHover={(dropdown.drawersShowHover === false) ? false : true}
+
+                // titleStyle={}
 
                 drawerStyle={determineDrawerStyle("regular", dropdown)}
                 activeDrawerStyle={determineDrawerStyle("active", dropdown)}

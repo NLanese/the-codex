@@ -91,16 +91,15 @@ export const HeaderBar = ({
                 startingTabByTitle={tabBar}
                 tabs={tabs}
                 style={{
-                    display: "flex",
                     height: 40, width: '99%', 
                     backgroundColor: '#11013b', 
-                    boxShadow:'5px 10px 30px 5px rgba(40, 40, 40, 0.4)',
+                    boxShadow:'5px 10px 15px 5px rgba(40, 40, 40, 0.4)',
         
                 }}
 
                 titleStyle={{
                     fontFamily: "Gilroy", fontWeight: 500, 
-                    color: 'white',
+                    color: 'white', alignItems: 'center', 
                 }}
                 activeTitleStyle={
                     {color: 'lime',  fontWeight: 700}
@@ -112,7 +111,7 @@ export const HeaderBar = ({
                 tabStyle={{
                     borderLeft: "1px solid white", borderRight: "1px solid white",
                     backgroundColor: '#11013b', color: "#efefef",
-                    borderRadius: 0, padding: 0
+                    borderRadius: 0, padding: 0,
                 }}
                 hoverTabStyle={{
                     backgroundColor: '#11013b', 

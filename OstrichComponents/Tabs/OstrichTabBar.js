@@ -145,7 +145,7 @@ export const OstrichTabBar = ({
                     fontSize: 16,
                     fontWeight: 600
                 }
-                setActiveTitleStyleX({...tempActiveTitleStyle, activeTitleStyle})
+                setActiveTitleStyleX({...tempActiveTitleStyle, ...activeTitleStyle})
 
                 setActiveTabStyleX({
                     ...tabStyleX,
@@ -156,7 +156,7 @@ export const OstrichTabBar = ({
 
             // Checks Default Imported Hover Styles
             function checkHoverStyle(){
-                setHoverTitleStyleX({...titleStyleX, hoverTitleStyle})
+                setHoverTitleStyleX({...titleStyleX, ...hoverTitleStyle})
                 let temp = {
                     ...tabStyleX, 
                     ...hoverTabStyle

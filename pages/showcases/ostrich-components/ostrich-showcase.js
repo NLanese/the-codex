@@ -1236,7 +1236,7 @@ export default function OstrichShowcase() {
                     />
 
                     <OstrichTabBar
-                        style={{width: 350}}
+                        style={{width: 400}}
                         tabs={[
                             {
                                 title: "Dropdown Tab",
@@ -1342,6 +1342,134 @@ export default function OstrichShowcase() {
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"/>"}</span>
                         </p>
+                    </div>
+            </div>
+
+            <div>
+            <p style={Styles.Fonts.basic}>
+            Now we will go over more complicated Tab Bars; showing you exactly how the header bar for this site was coded. 
+            </p>
+            <p style={Styles.Fonts.basic}>
+            Just like Dropdowns and Cards, Ostrich Tab Bars even in their most basic uneditted form have multiple forms of responsiveness as well as in-the-box styling that enables you to 
+            quickly render comprehensive and clean Tab Bars without having to develop it yourself. This includes automatic width calculations based on the amount of Tabs; different regular, 
+            active and hover bacground colors and styles; as well as all the features that were present in the Dropdown, as you can make the Tab Bar be a row of Dropdowns without ever needing 
+            to render the Dropdown yourself.
+            </p>
+            <p style={Styles.Fonts.basic}>
+            We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
+            </p>
+            </div>
+
+             {/* Ost TabBar Code Row One */}
+             <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+                    {/* Template One */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '70%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichTabBar</span>
+                        </p>
+                        
+                        {/* style */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>style</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>height</span>
+                                <span style={Styles.Code.reg}>: 40, </span>
+                                <span style={Styles.Code.var}>width</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"99%"</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#11013b"</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>boxShadow</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"5px 10px 15px 5px rgba(40,40,40, 0.4)"</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+
+                        {/* titleStyle */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>titleStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+
+                                <span style={Styles.Code.var}>fontFamily</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Gilroy"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>fontWeight</span>
+                                <span style={Styles.Code.reg}>: 500,  </span>
+                                <span style={Styles.Code.var}> color</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"white"</span>
+
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+                        {/* activeTitleStyle */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>activeTitleStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+
+                                <span style={Styles.Code.var}>fontWeight</span>
+                                <span style={Styles.Code.reg}>: 700,  </span>
+                                <span style={Styles.Code.var}> color</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"lime"</span>
+
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+                         {/* hoverTitleStyle */}
+                         <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>hoverTitleStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+
+                                <span style={Styles.Code.var}>fontWeight</span>
+                                <span style={Styles.Code.reg}>: 600,  </span>
+                                <span style={Styles.Code.var}> color</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"lime"</span>
+
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                        
                     </div>
             </div>
 
