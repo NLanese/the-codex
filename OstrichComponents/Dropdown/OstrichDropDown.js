@@ -145,7 +145,6 @@ export const OstrichDropDown = ({
                 border: "1px solid black", borderRadius: 10,
                 justifyItems: 'center', 
                 position: 'relative',
-                minWidth: 130
             }
             boxStyle = {...temp, ...boxStyle}
             
@@ -165,6 +164,14 @@ export const OstrichDropDown = ({
             // Adds Shadow if Needed
             if (!noShadow && !boxStyle?.boxShadow){
                 boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+            }
+
+            if (!boxStyle.width){
+                boxStyle.minWidth = 130
+            }
+
+            if (!boxStyle.height){
+                boxStyle.minHeight = 40
             }
 
             // Complete Regular Box Style
@@ -210,18 +217,6 @@ export const OstrichDropDown = ({
         // Done. //
         ///////////
         setIsLoading(false)
-    }
-
-    function determineBoxStyle(){
-        if (isOpen && boxActivates){
-            return activeBoxStyleInput
-        }
-        else if ((!isOpen || !boxActivates) && isHovered){
-            return hoverBoxStyleInput
-        }
-        else{
-            return boxStyleInput
-        }
     }
 
     function extractTextStyles(wrapStyle){
@@ -434,6 +429,32 @@ export const OstrichDropDown = ({
         }
     }
 
+    // Determines Box Style
+    function determineBoxStyle(){
+        if (isOpen && boxActivates){
+            return activeBoxStyleInput
+        }
+        else if ((!isOpen || !boxActivates) && isHovered){
+            return hoverBoxStyleInput
+        }
+        else{
+            return boxStyleInput
+        }
+    }
+
+     // Determines Title Style
+     function determineTitleStyle(){
+        if (isOpen && boxActivates){
+            return activeTitleBoxStyleInput
+        }
+        else if ((!isOpen || !boxActivates) && isHovered){
+            return hoverTitleBoxStyleInput
+        }
+        else{
+            return boxTitleStyleInput
+        }
+    }
+
 
     ////////////////
     // Renderings //
@@ -527,15 +548,11 @@ export const OstrichDropDown = ({
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                {/* <div 
-                style={{display: 'flex', alignItems: 'center', justifyItems: 'center', height: '100%', width: "100%", boxSizing: 'border-box'}}
-                // style={{...extractTextStyles(determineBoxStyle()), ...titleStyle, backgroundColor: 'purple'}}
-                > */}
-                    <div style={{height: '100%', width: '100%',  boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
-                    <p style={{margin: 0, height: '100%', display: 'flex', alignItems: 'center'}}>{renderTitle()}</p>
-                    </div>
-                {/* </div> */}
-                {/* <div style={{marginTop: 10}}/> */}
+                <div style={{height: '100%', width: '100%',  boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
+                    <p style={{margin: 0, height: '100%', display: 'flex', alignItems: 'center', ...determineTitleStyle()}}>
+                        {renderTitle()}
+                    </p>
+                </div>
                 <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%',}}>
                     {renderDrawerContainer()}
                 </div>

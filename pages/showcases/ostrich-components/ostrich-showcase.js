@@ -1257,7 +1257,7 @@ export default function OstrichShowcase() {
                 justifyContent: 'space-around',
                 }}>
                     {/* Template One */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '33%'}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '40%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichTabBar</span>
@@ -1278,7 +1278,7 @@ export default function OstrichShowcase() {
                     </div>
 
                     {/* Click to Open Dropdown */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '35%'}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichDropDown</span>
@@ -1461,6 +1461,63 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"lime"</span>
 
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+                        {/* tabStyle */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>tabStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                    <span style={Styles.Code.var}>borderRight</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"1px solid white"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                    <span style={Styles.Code.var}>borderLeft</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"1px solid white"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                </p>
+                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                    <span style={Styles.Code.var}> backgroundColor</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"#11013b"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                    <span style={Styles.Code.var}> color</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"#efefef"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                </p>
+                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                    <span style={Styles.Code.var}>borderRadius</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.reg}>0, </span>
+                                    <span style={Styles.Code.var}> padding</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.reg}>0 </span>
+                                </p>
+                                
+
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+                        {/* hoverTabStyle */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>hoverTabStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#11013b"</span>
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                             </p>
