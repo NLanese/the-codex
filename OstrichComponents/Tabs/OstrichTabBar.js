@@ -112,7 +112,6 @@ export const OstrichTabBar = ({
                 let tempBar = {
                     width: '300px',
                     height: '40px',
-                    // borderRadius: 10,
                     border: "1px solid black"
                 }
                 setBarStyle({...tempBar, ...style})

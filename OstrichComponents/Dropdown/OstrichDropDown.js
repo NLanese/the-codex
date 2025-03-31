@@ -522,7 +522,7 @@ export const OstrichDropDown = ({
         }
         return(
             <div
-            style={{...determineBoxStyle(), position: 'relative', backgroundColor: 'cyan'}}
+            style={{...determineBoxStyle(), position: 'relative'}}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
@@ -531,7 +531,7 @@ export const OstrichDropDown = ({
                 style={{display: 'flex', alignItems: 'center', justifyItems: 'center', height: '100%', width: "100%", boxSizing: 'border-box'}}
                 // style={{...extractTextStyles(determineBoxStyle()), ...titleStyle, backgroundColor: 'purple'}}
                 > */}
-                    <div style={{height: '100%', width: '100%', backgroundColor: 'yellow', boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
+                    <div style={{height: '100%', width: '100%',  boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
                     <p style={{margin: 0, height: '100%', display: 'flex', alignItems: 'center'}}>{renderTitle()}</p>
                     </div>
                 {/* </div> */}
