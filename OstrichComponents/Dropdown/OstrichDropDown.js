@@ -26,6 +26,8 @@ export const OstrichDropDown = ({
     drawersActivate=true,
 
     titleStyle,
+    hoverTitleStyle,
+    activeTitleStyle,
 
     drawerStyle,
     activeDrawerStyle,
@@ -62,6 +64,10 @@ export const OstrichDropDown = ({
     const [boxStyleInput, setBoxStyleInput] = useState(false)
     const [activeBoxStyleInput, setActiveBoxStyleInput] = useState(false)
     const [hoverBoxStyleInput, setHoverBoxStyleInput] = useState(false)
+
+    const [boxTitleStyleInput, setBoxTitleStyleInput] = useState(false)
+    const [activeTitleBoxStyleInput, setActiveTitleBoxStyleInput] = useState(false)
+    const [hoverTitleBoxStyleInput, setHoverTitleBoxStyleInput] = useState(false)
 
     const [drawerStyleInput, setDrawerStyleInput] = useState(false)
     const [activeDrawerBoxStyleInput, setActiveDrawerBoxStyleInput] = useState(false)
@@ -128,47 +134,81 @@ export const OstrichDropDown = ({
 
     function finishBoxStyles(){
 
-        // Regular Box
-        let temp = {
-            width: 'auto', 
-            backgroundColor:"#efefef", 
-            border: "1px solid black", borderRadius: 10,
-            justifyItems: 'center', textAlign: 'center',
-            position: 'relative',
-            fontFamily: "Gilroy",
-            fontWeight: 600,
-            minWidth: 130
-        }
-        boxStyle = {...temp, ...boxStyle}
+        /////////////////
+        // Regular Box //
+        /////////////////
 
-        // Adds Padding If Needed
-        if (!boxStyle.padding && !boxStyle.paddingRight && !boxStyle.paddingLeft && !boxStyle.paddingTop && !boxStyle.paddingBottom){
-            boxStyle.paddingRight = 10
-            boxStyle.paddingLeft =  10
-        }
+            // Temporary Object
+            let temp = {
+                width: 'auto', 
+                backgroundColor:"#efefef", 
+                border: "1px solid black", borderRadius: 10,
+                justifyItems: 'center', 
+                position: 'relative',
+                minWidth: 130
+            }
+            boxStyle = {...temp, ...boxStyle}
+            
 
-        // Adds Border if Needed
-        if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
-            boxStyle.border = "1px solid black"
-            boxStyle.borderRadius = 10
-        }
+            // Adds Padding If Needed
+            if (!boxStyle.padding && !boxStyle.paddingRight && !boxStyle.paddingLeft && !boxStyle.paddingTop && !boxStyle.paddingBottom){
+                boxStyle.paddingRight = 10
+                boxStyle.paddingLeft =  10
+            }
 
-        // Adds Shadow if Needed
-        if (!noShadow && !boxStyle?.boxShadow){
-            boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
-        }
+            // Adds Border if Needed
+            if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
+                boxStyle.border = "1px solid black"
+                boxStyle.borderRadius = 10
+            }
 
-        // Complete Regular Box Style
-        setBoxStyleInput(boxStyle)
+            // Adds Shadow if Needed
+            if (!noShadow && !boxStyle?.boxShadow){
+                boxStyle.boxShadow = '2px 3px 3px rgba(0, 0, 0, 0.1)'
+            }
 
-        // Hover Box
-        hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8", ...hoverBoxStyle} 
-        setHoverBoxStyleInput(hoverBoxStyle)
+            // Complete Regular Box Style
+            setBoxStyleInput(boxStyle)
 
-        // Active Box
-        activeBoxStyle = {...boxStyle, backgroundColor: "#c3e2fa", borderRadius: 0, ...activeBoxStyle} 
-        setActiveBoxStyleInput(activeBoxStyle)
+            let tempText = {
+                fontFamily: "Gilroy",
+                fontWeight: 600,
+                textAlign: 'center',
+            }
+            tempText = {...tempText, ...titleStyle}
+            setBoxTitleStyleInput(tempText)
+
+
+
+        ///////////////
+        // Hover Box //
+        ///////////////
+
+            hoverBoxStyle = {...boxStyle, backgroundColor: "#a5a8a8", ...hoverBoxStyle} 
+            setHoverBoxStyleInput(hoverBoxStyle)
+
+            let tempHoverText = {
+                ...tempText,
+                ...hoverTitleStyle
+            }
+            setHoverTitleBoxStyleInput(tempHoverText)
+
+        ////////////////
+        // Active Box //
+        ////////////////
+
+            activeBoxStyle = {...boxStyle, backgroundColor: "#c3e2fa", borderRadius: 0, ...activeBoxStyle} 
+            setActiveBoxStyleInput(activeBoxStyle)
+
+            let tempActiveText = {
+                ...tempText,
+                ...activeTitleStyle
+            }
+            setActiveTitleBoxStyleInput(tempActiveText)            
       
+        ///////////
+        // Done. //
+        ///////////
         setIsLoading(false)
     }
 
@@ -482,23 +522,23 @@ export const OstrichDropDown = ({
         }
         return(
             <div
-            style={{...determineBoxStyle(), position: 'relative', boxSizing: 'border-box'}}
+            style={{...determineBoxStyle(), position: 'relative', backgroundColor: 'cyan'}}
             onMouseLeave={() => handleMouseLeave()}
             onClick={() => handlePress()}
             onMouseEnter={() => handleMouseEnter()}
             >
-                <div 
+                {/* <div 
                 style={{display: 'flex', alignItems: 'center', justifyItems: 'center', height: '100%', width: "100%", boxSizing: 'border-box'}}
                 // style={{...extractTextStyles(determineBoxStyle()), ...titleStyle, backgroundColor: 'purple'}}
-                >
-                    <div style={{maxHeight: '100%', width: '100%', backgroundColor: 'yellow', boxSizing: 'border-box'}}>
-                    <p style={{maxHeight: '100%'}}>{renderTitle()}</p>
+                > */}
+                    <div style={{height: '100%', width: '100%', backgroundColor: 'yellow', boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
+                    <p style={{margin: 0, height: '100%', display: 'flex', alignItems: 'center'}}>{renderTitle()}</p>
                     </div>
-                </div>
-                {/* <div style={{marginTop: 10}}/>
+                {/* </div> */}
+                {/* <div style={{marginTop: 10}}/> */}
                 <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%',}}>
                     {renderDrawerContainer()}
-                </div> */}
+                </div>
             </div>
         )
     }
