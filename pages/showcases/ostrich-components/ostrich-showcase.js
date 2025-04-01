@@ -1563,11 +1563,11 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.var}>drawers</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.keyword}>{"["}</span>
-                                <span style={Styles.Code.str}>"Basics"</span>
+                                <span style={Styles.Code.str}>"JavaScript"</span>
                                 <span style={Styles.Code.reg}>, </span>
-                                <span style={Styles.Code.str}>"Functions"</span>
+                                <span style={Styles.Code.str}>"Ruby"</span>
                                 <span style={Styles.Code.reg}>, </span>
-                                <span style={Styles.Code.str}>"Arrays and Lists"</span>
+                                <span style={Styles.Code.str}>"Python"</span>
                                 <span style={Styles.Code.reg}> . . . </span>
                                 <span style={Styles.Code.keyword}>{"]"}</span>
                             </p>
@@ -1583,7 +1583,7 @@ export default function OstrichShowcase() {
 
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
                                 <span style={Styles.Code.func}>handleDrawerClick(</span>
-                                <span style={Styles.Code.str}>'concepts'</span>
+                                <span style={Styles.Code.str}>'languages'</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>drawer</span>
                                 <span style={Styles.Code.reg}>, </span>
@@ -1611,15 +1611,79 @@ export default function OstrichShowcase() {
                             </p>
                         </div>
 
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>{"{"}</span>
+                            <span style={Styles.Code.reg}>{". . ."}</span>
+                            <span style={Styles.Code.var}>{"}"}</span>
+                        </p>
+
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
+                            <span style={Styles.Code.keyword}>{"]"}</span>
+                        </p>
 
                         <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.keyword}>{"]"}</span>
+                            <span style={Styles.Code.keyword}>function </span>
+                            <span style={Styles.Code.func}>handleDrawerClick(</span>
+                            <span style={Styles.Code.var}>type</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>drawer</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>router</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.var}>setTabBar</span>
+                            <span style={Styles.Code.func}>{"){"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>router</span>
+                            <span style={Styles.Code.reg}>.</span>
+                            <span style={Styles.Code.func}>replace(</span>
+                            <span style={Styles.Code.str}>`/</span>
+                            <span style={Styles.Code.keyword}>{"${"}</span>
+                            <span style={Styles.Code.var}>type</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.str}>/</span>
+                            <span style={Styles.Code.keyword}>{"${"}</span>
+                            <span style={Styles.Code.var}>drawer</span>
+                            <span style={Styles.Code.func}>.toLowerCase()</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.str}>/menu'</span>\
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>setTabBar(</span>
+                            <span style={Styles.Code.bool}>false</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
+                            <span style={Styles.Code.func}>{"}"}</span>
                         </p>
 
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichTabBar</span>
                         </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>startingTanByTitile</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.var}>tabBar</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>tabs</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.var}>tabs</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+
                         
                         {/* style */}
                         <div>
