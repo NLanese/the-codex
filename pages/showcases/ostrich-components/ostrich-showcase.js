@@ -1365,8 +1365,257 @@ export default function OstrichShowcase() {
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
-                    {/* Template One */}
+                    {/* Header Bar Code */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '70%'}}>
+                        
+                         {/* TABS CONST */}
+                         <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.keyword}>const </span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.var}>tabBar</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.func}>setTabBar</span>
+                            <span style={Styles.Code.keyword}>{"]"}</span>
+                            <span style={Styles.Code.reg}> = </span>
+                            <span style={Styles.Code.var}>useState</span>
+                            <span style={Styles.Code.reg}>{"("}</span>
+                            <span style={Styles.Code.bool}>false</span>
+                            <span style={Styles.Code.reg}>{")"}</span>
+                        </p>
+
+
+                        {/* TABS CONST */}
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.keyword}>const </span>
+                            <span style={Styles.Code.var}>tabs</span>
+                            <span style={Styles.Code.reg}> = </span>
+                            <span style={Styles.Code.keyword}>[</span>
+                        </p>
+                        
+
+                        {/* Tab one */}
+                        <div>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.comment}>// Concepts Tab</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>{"{"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Concepts"</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.func}>onClick</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.keyword}>{"() => {"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.func}>setTabBar(</span>
+                                <span style={Styles.Code.str}>"Concepts"</span>
+                                <span style={Styles.Code.func}>)</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>router</span>
+                                <span style={Styles.Code.reg}>.</span>
+                                <span style={Styles.Code.func}>replace</span>
+                                <span style={Styles.Code.func}>(</span>
+                                <span style={Styles.Code.str}>"/concepts/list"</span>
+                                <span style={Styles.Code.func}>)</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>dropdown</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>openOnHover</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.bool}>true</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>drawers</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.keyword}>{"["}</span>
+                                <span style={Styles.Code.str}>"Basics"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.str}>"Functions"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.str}>"Arrays and Lists"</span>
+                                <span style={Styles.Code.reg}> . . . </span>
+                                <span style={Styles.Code.keyword}>{"]"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.func}>onDrawerClick</span>
+                                <span style={Styles.Code.reg}>: (</span>
+                                <span style={Styles.Code.var}>drawer</span>
+                                <span style={Styles.Code.reg}>{") "}</span>
+                                <span style={Styles.Code.keyword}>{"=> "}</span>
+                                <span style={Styles.Code.var}>{"{ "}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                                <span style={Styles.Code.func}>handleDrawerClick(</span>
+                                <span style={Styles.Code.str}>'concepts'</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>drawer</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>router</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>setTabBar</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.str}>"menu"</span>
+                                <span style={Styles.Code.func}>{")"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>{"}"}</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{","}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{","}</span>
+                            </p>
+                        </div>
+
+                        {/* Tab two */}
+                        <div>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.comment}>// Languages Tab</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>{"{"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Languages"</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.func}>onClick</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.keyword}>{"() => {"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.func}>setTabBar(</span>
+                                <span style={Styles.Code.str}>"Languages"</span>
+                                <span style={Styles.Code.func}>)</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>router</span>
+                                <span style={Styles.Code.reg}>.</span>
+                                <span style={Styles.Code.func}>replace</span>
+                                <span style={Styles.Code.func}>(</span>
+                                <span style={Styles.Code.str}>"/languages/list"</span>
+                                <span style={Styles.Code.func}>)</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>dropdown</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>openOnHover</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.bool}>true</span>
+                                <span style={Styles.Code.reg}>,</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>drawers</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.keyword}>{"["}</span>
+                                <span style={Styles.Code.str}>"Basics"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.str}>"Functions"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.str}>"Arrays and Lists"</span>
+                                <span style={Styles.Code.reg}> . . . </span>
+                                <span style={Styles.Code.keyword}>{"]"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.func}>onDrawerClick</span>
+                                <span style={Styles.Code.reg}>: (</span>
+                                <span style={Styles.Code.var}>drawer</span>
+                                <span style={Styles.Code.reg}>{") "}</span>
+                                <span style={Styles.Code.keyword}>{"=> "}</span>
+                                <span style={Styles.Code.var}>{"{ "}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                                <span style={Styles.Code.func}>handleDrawerClick(</span>
+                                <span style={Styles.Code.str}>'concepts'</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>drawer</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>router</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>setTabBar</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.str}>"menu"</span>
+                                <span style={Styles.Code.func}>{")"}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>{"}"}</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{","}</span>
+                            </p>
+
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{","}</span>
+                            </p>
+                        </div>
+
+
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.keyword}>{"]"}</span>
+                        </p>
+
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichTabBar</span>
@@ -1518,6 +1767,38 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.var}> backgroundColor</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"#11013b"</span>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                        </div>
+
+                        {/* activeTabStyle */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>activeTabStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                    <span style={Styles.Code.var}>borderRight</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"3px solid lime"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                    <span style={Styles.Code.var}>borderLeft</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"3px solid lime"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                </p>
+                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                    <span style={Styles.Code.var}> backgroundColor</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"#11013b"</span>
+                                    <span style={Styles.Code.reg}>, </span>
+                                    <span style={Styles.Code.var}> color</span>
+                                    <span style={Styles.Code.reg}>: </span>
+                                    <span style={Styles.Code.str}>"lime"</span>
+                                    <span style={Styles.Code.reg}> </span>
+                                </p>
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                             </p>
