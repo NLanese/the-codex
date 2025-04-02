@@ -1368,6 +1368,14 @@ export default function OstrichShowcase() {
                     {/* Header Bar Code */}
                     <div style={{...Styles.Sections.simpleLessonCode, width: '70%'}}>
                         
+                        <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
+                            <span style={Styles.Code.keyword}>const </span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                            <span style={Styles.Code.var}>router</span>
+                            <span style={Styles.Code.reg}> = </span>
+                            <span style={Styles.Code.func}>useRouter()</span>
+                        </p>
+
                          {/* TABS CONST */}
                          <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.keyword}>const </span>
