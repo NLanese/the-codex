@@ -658,6 +658,7 @@ export default function OstrichShowcase() {
             Ostrich Components provide a means for consolidating many selections or a collection of information via the OstrichDropDown. Without any styling or advanced tuning needed, 
             OstrichDropDowns simply take an object or an array representing some data and processes it into a well rendered dropdown, with its own onHover features and clickability.     
             </p>
+
             <p style={Styles.Fonts.basic}>
             Let's check out some examples
             </p>
@@ -810,6 +811,7 @@ export default function OstrichShowcase() {
             As shown above, the <strong>Ostrich Dropdown menu</strong> can quickly and easily generate a dropdown menu for an array of items. They produce a sleak and responsive Drop menu as well as drawers, but that's not all you can do with OstrichDropDowns.
             You can add unique styles or functionalities to individual drawers by adding properties to the `drawers` array's items. 
             </p>
+
             <p style={Styles.Fonts.basic}>
             Let's check out some examples
             </p>
@@ -1533,19 +1535,32 @@ export default function OstrichShowcase() {
                 <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>noBorder</span>
+                            <span style={Styles.Fonts.h3}>boxActivates</span>
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            DEFAULTS TO FALSE. If true, then the default border rules will not be applied
+                          DEFAULTS TO TRUE. If false, clicking on a dropdown tab or hovering over it while openOnHover is true will not change its Style. 
                         </p>
                     </div>
                 </OstCard>
+
+                <OstCard style={Styles.Sections.propCardBool}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>drawersActivate</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                          DEFAULTS TO TRUE. If false, clicking on a dropdown drawer will not change its Style. 
+                        </p>
+                    </div>
+                </OstCard>
+
                
                 <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>boxHovers</span>
+                            <span style={Styles.Fonts.h3}>noShadow</span>
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
@@ -1564,6 +1579,18 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
+
+                <OstCard style={Styles.Sections.propCardBool}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>noBorder</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            DEFAULTS TO FALSE. If true, then the default border rules will not be applied
+                        </p>
+                    </div>
+                </OstCard>
 
                 <OstCard style={Styles.Sections.propCardBool}>
                     <div>
@@ -1590,6 +1617,47 @@ export default function OstrichShowcase() {
                 </OstCard>
                 
             </div>
+
+            {/* Props Row Ten */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 320,
+                gap: 15
+            }}>
+
+                <OstCard style={Styles.Sections.propCardBool}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>tabs</span>
+                            <span style={Styles.Fonts.h2}> - Array</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            This is the value that dictates not only what the value of the drawers are, but also how each drawer will operate or be sytled uniquely from the others. 
+                            There are several examples of different 'tabs' values in the showcase Dropdowns above.  
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            The 'tabs' value can simply be an array of strings or numbers; in which case the dropdown drawers will all inherit the styles and click functions that were provided to the Dropdown directly (through props like onClick, onMouseEnter, etc.)
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            Additionally, the 'tabs' value can be an array of objects, and each object will mirror the props of the dropdown. To be specific, acceptable object values are as follows...
+                        </p>
+                        <div style={{width: '10%', paddingLeft: '42.5%'}}>
+                            <ul style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                                <li>title</li>
+                                <li>style</li>
+                                <li>activeStyle</li>
+                                <li>hoverStyle</li>
+                                <li>onClick</li>
+                            </ul>
+                        </div>
+                            
+                    </div>
+                </OstCard>
+                
+            </div>
+
 
         </div>
     )
