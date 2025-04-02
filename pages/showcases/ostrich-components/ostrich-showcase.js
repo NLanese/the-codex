@@ -1383,7 +1383,99 @@ export default function OstrichShowcase() {
                 
             </div>
 
-             {/* Props Row Five */}
+            {/* Props Row Five */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>boxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided.
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverBoxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while hovered. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeBoxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while the drawers are opened. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+            {/* Props Row Six */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>drawerStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Drawers when not hovered and not active. If nothing is provided, then the default styles alone will apply. 
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverDrawerStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Drawers when not hovered and not active. If nothing is provided, then the default styles alone will apply. Only the differences between this and the drawerStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeDrawerStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Drawers when not hovered and not active. If nothing is provided, then the default styles alone will apply. Only the differences between this and the drawerStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+             {/* Props Row Seven */}
              <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -1394,7 +1486,7 @@ export default function OstrichShowcase() {
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>manualOpen</span>
+                            <span style={Styles.Fonts.h3}>drawerStyle</span>
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
@@ -1423,6 +1515,76 @@ export default function OstrichShowcase() {
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                           DEFAULTS TO TRUE. If false, hovering over a dropdown tab will not change its Style. This does not change anything if openOnHover is true, as Dropdowns display their aciveBoxStyle when opened.
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+            {/* Props Row Eight */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>noBorder</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            DEFAULTS TO FALSE. If true, then the default border rules will not be applied
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>boxHovers</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            DEFAULTS TO FALSE. If true, then the default boxShadow rules will not be applied
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+            {/* Props Row Nine */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>drawersHover</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            DEFAULTS TO TRUE. If false, then the Dropdown Drawers will not change style when hovered.
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>drawersHover</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            DEFAULTS TO TRUE. If false, then the Dropdown Drawers will not change style when activated / clicked.
                         </p>
                     </div>
                 </OstCard>
