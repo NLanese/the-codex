@@ -1,3 +1,12 @@
+const propCard = {
+    flex: 3, 
+    padding: 5, 
+    position: 'relative', 
+    overflow: 'scroll', 
+    paddingLeft: 3, 
+    paddingRight: 3
+}
+
 const Styles = {
 
     Fonts: {
@@ -116,7 +125,23 @@ const Styles = {
             padding: 15, borderRadius: 25,
             boxShadow:'1px 1px 2px 1px rgba(40, 40, 40, 0.1)',
             marginBottom: 15
-        }
+        },
+
+        propCardStr: {
+          ...propCard, backgroundColor: "#eef2e4"  
+        },
+
+        propCardObj: {
+            ...propCard, backgroundColor: "#cdfadd"  
+        },
+
+        propCardBool: {
+            ...propCard, backgroundColor: "#cdcdfa"  
+        },
+
+        propCardFunc: {
+            ...propCard, backgroundColor: "#fad7cd"  
+        },
     }
 
 }

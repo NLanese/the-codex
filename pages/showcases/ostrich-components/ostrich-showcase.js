@@ -1208,7 +1208,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardStr}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>title</span>
@@ -1220,7 +1220,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardFunc}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>onClick</span>
@@ -1232,7 +1232,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardFunc}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>onMouseEnter</span>
@@ -1253,7 +1253,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardFunc}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>onMouseLeave</span>
@@ -1265,7 +1265,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>openOnHover</span>
@@ -1277,7 +1277,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>closeOnLeave</span>
@@ -1299,7 +1299,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>boxStyle</span>
@@ -1311,7 +1311,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>hoverBoxStyle</span>
@@ -1323,7 +1323,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>activeBoxStyle</span>
@@ -1345,7 +1345,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>titleStyle</span>
@@ -1357,7 +1357,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>hoverTitleStyle</span>
@@ -1369,7 +1369,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>activeBoxStyle</span>
@@ -1391,7 +1391,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>boxStyle</span>
@@ -1403,7 +1403,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>hoverBoxStyle</span>
@@ -1415,7 +1415,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>activeBoxStyle</span>
@@ -1437,7 +1437,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>drawerStyle</span>
@@ -1449,7 +1449,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>hoverDrawerStyle</span>
@@ -1461,7 +1461,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardObj}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>activeDrawerStyle</span>
@@ -1483,7 +1483,7 @@ export default function OstrichShowcase() {
                 height: 140,
                 gap: 15
             }}>
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>drawerStyle</span>
@@ -1495,7 +1495,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>open</span>
@@ -1507,7 +1507,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>boxHovers</span>
@@ -1530,7 +1530,7 @@ export default function OstrichShowcase() {
                 gap: 15
             }}>
 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>noBorder</span>
@@ -1542,7 +1542,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>boxHovers</span>
@@ -1565,7 +1565,7 @@ export default function OstrichShowcase() {
                 gap: 15
             }}>
 
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>drawersHover</span>
@@ -1577,7 +1577,7 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
                
-                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                <OstCard style={Styles.Sections.propCardBool}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>drawersHover</span>
