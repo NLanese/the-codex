@@ -1206,6 +1206,7 @@ export default function OstrichShowcase() {
                 justifyContent: 'space-between',
                 marginTop: 15,
                 height: 140,
+                gap: 15
             }}>
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
@@ -1218,8 +1219,7 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
                 </OstCard>
-                <div style={{flex: 1}}>
-                </div>
+               
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
@@ -1227,12 +1227,11 @@ export default function OstrichShowcase() {
                             <span style={Styles.Fonts.h2}> - Function</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                           (Optional) A function that fires every time the Dropdown Tab is clicked
+                            <span style={{fontWeight: 600}}>(Optional)</span> A function that fires every time the Dropdown Tab is clicked
                         </p>
                     </div>
                 </OstCard>
-                <div style={{flex: 1}}>
-                </div>
+                
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
@@ -1240,7 +1239,7 @@ export default function OstrichShowcase() {
                             <span style={Styles.Fonts.h2}> - Function</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            (Optional) A function that fires every time the user's cursor enters the Dropdown Tab's dimensions
+                            <span style={{fontWeight: 600}}>(Optional)</span> A function that fires every time the user's cursor enters the Dropdown Tab's dimensions
                         </p>
                     </div>
                 </OstCard>
@@ -1252,6 +1251,7 @@ export default function OstrichShowcase() {
                 justifyContent: 'space-between',
                 marginTop: 15,
                 height: 140,
+                gap: 15
             }}>
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
@@ -1260,12 +1260,11 @@ export default function OstrichShowcase() {
                             <span style={Styles.Fonts.h2}> - Function</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            (Optional) A function that fires every time the user's cursor leaves the Dropdown Tab's dimensions
+                            <span style={{fontWeight: 600}}>(Optional)</span> A function that fires every time the user's cursor leaves the Dropdown Tab's dimensions
                         </p>
                     </div>
                 </OstCard>
-                <div style={{flex: 1}}>
-                </div>
+                
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
@@ -1277,8 +1276,7 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
                 </OstCard>
-                <div style={{flex: 1}}>
-                </div>
+                
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
@@ -1293,12 +1291,105 @@ export default function OstrichShowcase() {
                 
             </div>
 
-             {/* Props Row Two */}
+            {/* Props Row Three */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>boxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided.
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverBoxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while hovered. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeBoxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while the drawers are opened. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+            {/* Props Row Four */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>titleStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the text in the Dropdown Tab itself. If nothing is provided, then the default styles alone will apply. 
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverTitleStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the text in the Dropdown Tab itself while hovered. If nothing is provided, then the default styles alone will apply. Only the differences between this and the titleStyle will need to be includes, as this will inherit
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeBoxStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while the drawers are opened. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided.
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+             {/* Props Row Five */}
              <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 marginTop: 15,
                 height: 140,
+                gap: 15
             }}>
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
@@ -1311,8 +1402,7 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
                 </OstCard>
-                <div style={{flex: 1}}>
-                </div>
+                
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
@@ -1320,12 +1410,11 @@ export default function OstrichShowcase() {
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            (Optional) If this value is 'true' then the drawers will be open. If this value is false AND 'manualOpen' is true, then the drawers will be closed. If this value is not provided, the Dropdown will behave normally, opening on hover unless openOnHover is false; in which case users will have to click the Dropdown Tab to open it
+                            <span style={{fontWeight: 600}}>(Optional)</span> If this value is 'true' then the drawers will be open. If this value is false AND 'manualOpen' is true, then the drawers will be closed. If this value is not provided, the Dropdown will behave normally, opening on hover unless openOnHover is false; in which case users will have to click the Dropdown Tab to open it
                         </p>
                     </div>
                 </OstCard>
-                <div style={{flex: 1}}>
-                </div>
+               
                 <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
