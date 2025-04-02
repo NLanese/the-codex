@@ -1203,22 +1203,141 @@ export default function OstrichShowcase() {
             {/* Props Row One */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
-                justifyContent: 'space-around',
+                justifyContent: 'space-between',
                 marginTop: 15,
-                height: 100
+                height: 140,
             }}>
-                <OstCard style={{width: '33%', height: '100%', paddingTop: 5}}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
                     <div>
-                        <h1>Title</h1>
-                        <h2>(String)</h2>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>title</span>
+                            <span style={Styles.Fonts.h2}> - String</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            A string value that will be shown on the dropdown tab itself
+                        </p>
                     </div>
                 </OstCard>
-                <OstCard style={{width: '33%', height: '100%'}}>
-
+                <div style={{flex: 1}}>
+                </div>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>onClick</span>
+                            <span style={Styles.Fonts.h2}> - Function</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                           (Optional) A function that fires every time the Dropdown Tab is clicked
+                        </p>
+                    </div>
                 </OstCard>
-                <OstCard style={{width: '33%', height: '100%'}}>
-
+                <div style={{flex: 1}}>
+                </div>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>onMouseEnter</span>
+                            <span style={Styles.Fonts.h2}> - Function</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            (Optional) A function that fires every time the user's cursor enters the Dropdown Tab's dimensions
+                        </p>
+                    </div>
                 </OstCard>
+            </div>
+
+            {/* Props Row Two */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+            }}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>onMouseLeave</span>
+                            <span style={Styles.Fonts.h2}> - Function</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            (Optional) A function that fires every time the user's cursor leaves the Dropdown Tab's dimensions
+                        </p>
+                    </div>
+                </OstCard>
+                <div style={{flex: 1}}>
+                </div>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>openOnHover</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                          DEFAULTS TO TRUE. If true, the Dropdown Tab will open its drawers as soon as the user's cursor enters its dimensions
+                        </p>
+                    </div>
+                </OstCard>
+                <div style={{flex: 1}}>
+                </div>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>closeOnLeave</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                          DEFAULTS TO TRUE. If true, the Dropdown Tab will close its drawers as soon as the user's cursor leaves the dimensions of both the Dropdown tab as well as its drawers.
+                        </p>
+                    </div>
+                </OstCard>
+                
+            </div>
+
+             {/* Props Row Two */}
+             <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+            }}>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>manualOpen</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                          DEFAULTS TO FALSE. If true, the Dropdown Tab will ONLY open when the 'open' prop is set to true. This means hovering over it and clicking it will not open it unless otherwise specified through the appropriate props. 
+                        </p>
+                    </div>
+                </OstCard>
+                <div style={{flex: 1}}>
+                </div>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>open</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            (Optional) If this value is 'true' then the drawers will be open. If this value is false AND 'manualOpen' is true, then the drawers will be closed. If this value is not provided, the Dropdown will behave normally, opening on hover unless openOnHover is false; in which case users will have to click the Dropdown Tab to open it
+                        </p>
+                    </div>
+                </OstCard>
+                <div style={{flex: 1}}>
+                </div>
+                <OstCard style={{flex: 3, padding: 5, position: 'relative', overflow: 'scroll', paddingLeft: 3, paddingRight: 3}}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>boxHovers</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                          DEFAULTS TO TRUE. If false, hovering over a dropdown tab will not change its Style. This does not change anything if openOnHover is true, as Dropdowns display their aciveBoxStyle when opened.
+                        </p>
+                    </div>
+                </OstCard>
+                
             </div>
 
         </div>
