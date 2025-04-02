@@ -20,20 +20,16 @@ export const OstCard =({
     // This takes imported Styles and Applies Ostrich Effects to it. 
     function completeStyle(use = true){
         let completeStyle
+        let tempStyle = {
+            borderRadius: 15, 
+            padding: 10, 
+            boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'
+        }
         if (!style || !use){
-            completeStyle = {borderRadius: 15, padding: 10, boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'}
+            completeStyle = {...tempStyle}
         }
         else{
-            completeStyle = {...style}
-            if (!style.borderRadius){
-                completeStyle = {...completeStyle, borderRadius: 15}
-            }
-            if (!style.padding){
-                completeStyle = {...completeStyle, padding: 10}
-            }
-            if (!style.boxShadow){
-                completeStyle = {...completeStyle, boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'}
-            }
+            completeStyle = {...tempStyle, ...style}
         }
         if (onClick){
             completeStyle = {

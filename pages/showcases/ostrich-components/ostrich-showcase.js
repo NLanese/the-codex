@@ -1197,6 +1197,29 @@ export default function OstrichShowcase() {
 
             </div>
 
+            {/* Props Header */}
+            <div style={Styles.Fonts.lessonSubHeader}>OstrichDropDown Props</div>
+
+            {/* Props Row One */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: 15,
+                height: 100
+            }}>
+                <OstCard style={{width: '33%', height: '100%', paddingTop: 5}}>
+                    <div>
+                        <h1>Title</h1>
+                        <h2>(String)</h2>
+                    </div>
+                </OstCard>
+                <OstCard style={{width: '33%', height: '100%'}}>
+
+                </OstCard>
+                <OstCard style={{width: '33%', height: '100%'}}>
+
+                </OstCard>
+            </div>
 
         </div>
     )
@@ -1347,20 +1370,11 @@ export default function OstrichShowcase() {
 
             <div>
             <p style={Styles.Fonts.basic}>
-            Now we will go over more complicated Tab Bars; showing you exactly how the header bar for this site was coded. 
-            </p>
-            <p style={Styles.Fonts.basic}>
-            Just like Dropdowns and Cards, Ostrich Tab Bars even in their most basic uneditted form have multiple forms of responsiveness as well as in-the-box styling that enables you to 
-            quickly render comprehensive and clean Tab Bars without having to develop it yourself. This includes automatic width calculations based on the amount of Tabs; different regular, 
-            active and hover bacground colors and styles; as well as all the features that were present in the Dropdown, as you can make the Tab Bar be a row of Dropdowns without ever needing 
-            to render the Dropdown yourself.
-            </p>
-            <p style={Styles.Fonts.basic}>
-            We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
+            Now we will go over more complicated a more complicated tab Bars; showing you exactly how the header bar for this site was coded. 
             </p>
             </div>
 
-             {/* Ost TabBar Code Row One */}
+             {/* Header Tab Code */}
              <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-around',
@@ -1851,26 +1865,28 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.reg}>=</span>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.keyword}>{"{"}</span>
-                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                                    <span style={Styles.Code.var}>borderRight</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"3px solid lime"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                    <span style={Styles.Code.var}>borderLeft</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"3px solid lime"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                </p>
-                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                                    <span style={Styles.Code.var}> backgroundColor</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"#11013b"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                    <span style={Styles.Code.var}> color</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"lime"</span>
-                                    <span style={Styles.Code.reg}> </span>
-                                </p>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>borderRight</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"3px solid lime"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>borderLeft</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"3px solid lime"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#11013b"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}> color</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"lime"</span>
+                                <span style={Styles.Code.reg}> </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                             </p>
@@ -1882,6 +1898,8 @@ export default function OstrichShowcase() {
                         
                     </div>
             </div>
+
+            <div style={Styles.Fonts.lessonSubHeader}>OstrichTabBar Props)</div>
 
         </div>
     )
