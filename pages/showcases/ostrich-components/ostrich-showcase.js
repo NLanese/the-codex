@@ -1628,10 +1628,11 @@ export default function OstrichShowcase() {
             {/* Props Row Ten */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-around',
                 marginTop: 15,
                 height: 320,
-                gap: 15
+                width: '60%',
+                paddingLeft: '20%'
             }}>
 
                 <OstCard style={{...Styles.Sections.propCardArr, paddingRight: 15, paddingLeft: 15}}>
@@ -1659,6 +1660,11 @@ export default function OstrichShowcase() {
                                 <li>onClick</li>
                             </ul>
                         </div>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            While the above values are all the values that the Ostrich Components are built to expect and utilize, that does not mean you cannot add more properties to the objects in the 'tabs' array.
+                            The functions that may fire, 'OnMouseEnter', 'OnMouseLeave', and 'OnClick' all expect the tab object itself as an optional input parameter. This means the entire object and all its properties are available for developers
+                            to use in the functions that are passed through as props. For example, {"'OnMouseEnter: (tab) => {console.log(tab.customKeyValue)}'"} would allow you to access any custom key value pair you put into a tab object.
+                        </p>
                             
                     </div>
                 </OstCard>
@@ -1882,7 +1888,19 @@ export default function OstrichShowcase() {
                 }}>
 
                     {/* Click to Open Dropdown */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: 500}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
+                            <span style={Styles.Code.keyword}>const [</span>
+                            <span style={Styles.Code.var}>total</span>
+                            <span style={Styles.Code.reg}>,</span>
+                            <span style={Styles.Code.func}> setTotal</span>
+                            <span style={Styles.Code.keyword}>] </span>
+                            <span style={Styles.Code.reg}> = </span>
+                            <span style={Styles.Code.var}>useState</span>
+                            <span style={Styles.Code.keyword}>{"("}</span>
+                            <span style={Styles.Code.reg}>0</span>
+                            <span style={Styles.Code.keyword}>{")"}</span>
+                        </p>
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichDropDown</span>
@@ -1898,8 +1916,8 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>onClick</span>
-                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>onTabClick</span>
+                            <span style={Styles.Code.reg}>{": {"}</span>
                             <span style={Styles.Code.keyword}>{"("}</span>
                             <span style={Styles.Code.var}>tab</span>
                             <span style={Styles.Code.keyword}>{") => {"}</span>
@@ -1912,7 +1930,8 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.func}>)</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.keyword}>{"},"}</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"},"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>tabs</span>
@@ -2000,11 +2019,17 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.str}>{"`"}</span>
                                 <span style={Styles.Code.reg}>, </span>
-                            </p><p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
                                 <span style={Styles.Code.var}>showsHover</span>
-                                <span style={Styles.Code.reg}>{": {"}</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.bool}>false</span>
-                                <span style={Styles.Code.reg}>{"}, "}</span>
+                                <span style={Styles.Code.reg}>{", "}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>clickable</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
+                                <span style={Styles.Code.bool}>false</span>
                             </p>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                                 <span style={Styles.Code.reg}>{"},"}</span>
@@ -2087,9 +2112,6 @@ export default function OstrichShowcase() {
                         </p>
                     </div>
             </div>
-
-
-
 
 
             {/* Header Tab Code */}
@@ -2615,7 +2637,7 @@ export default function OstrichShowcase() {
                     </div>
             </div>
 
-            <div style={Styles.Fonts.lessonSubHeader}>OstrichTabBar Props)</div>
+            <div style={Styles.Fonts.lessonSubHeader}>OstrichTabBar Props</div>
 
         </div>
     )
