@@ -30,6 +30,8 @@ export default function OstrichShowcase() {
   const [colorForDrop4, setColorForDrop4] = useState("white")
   const [totalForDrop5, setTotalForDrop5] = useState(0)
 
+  const [totalForTab3, setTotalForTab3] = useState(0)
+
 
   ////////////////
   // UseEffects //
@@ -43,6 +45,8 @@ export default function OstrichShowcase() {
   // Renderings //
   ////////////////
 
+
+  // OSTRICH CARD SECTION
   function renderOstrichCards(){
     return(
         <div style={{marginBottom: 30}}>
@@ -631,6 +635,7 @@ export default function OstrichShowcase() {
   }
 
 
+  // OSTRICH BUTTON SECTION
   function renderOstrichButtons(){
     return(
         <div style={{marginBottom: 30}}>
@@ -644,10 +649,12 @@ export default function OstrichShowcase() {
     )
   }
 
+  // OSTRICH TOGGLE BUTTON SECTION
   function renderOstrichToggles(){
 
   }
 
+  // OSTRICH DROPDOWN SECTION
   function renderOstrichDropDown(){
     return(
         <div style={{marginBottom: 30}}>
@@ -1630,7 +1637,7 @@ export default function OstrichShowcase() {
                 <OstCard style={{...Styles.Sections.propCardArr, paddingRight: 15, paddingLeft: 15}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>tabs</span>
+                            <span style={Styles.Fonts.h3}>drawers</span>
                             <span style={Styles.Fonts.h2}> - Array</span>
                         </p>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
@@ -1663,6 +1670,7 @@ export default function OstrichShowcase() {
     )
   }
 
+  // OSTRICH TAB BAR SECTION
   function renderOstrichTabBar(){
     return(
         <div style={{marginBottom: 30}}>
@@ -1711,8 +1719,6 @@ export default function OstrichShowcase() {
                         ]}
                     />
             </div>
-
-
             {/* Ost TabBar Code Row One */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
@@ -1809,11 +1815,281 @@ export default function OstrichShowcase() {
                     </div>
             </div>
 
+            {/* Preamble II */}
             <div>
-            <p style={Styles.Fonts.basic}>
-            Now we will go over more complicated a more complicated tab Bars; showing you exactly how the header bar for this site was coded. 
-            </p>
+                <p style={Styles.Fonts.basic}>
+                    Now that we've seen some minimalistic Ostrich Tab Bars, let's check out some more complex examples. Below, we will explore two examples with a relatively compex degree of functionality for each tab. You will see that most of the configuration for TabBars can often end up within the 'tabs' prop as opposed to formal props of their own. Observe the examples below and you will see how you can program each tab individually from the 'tabs' prop 
+                </p>
             </div>
+
+            {/* Ost TabBar Example Row Two */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+
+                    <OstrichTabBar
+                        style={{width: 500}}
+                        showsActive={false}
+                        onTabClick={ ((tab) => {setTotalForTab3((totalForTab3 + tab.value))})}
+                        tabs={[
+                            {
+                                title: "Add 1",
+                                hoverStyle: {backgroundColor: "#d1ffdc"},
+                                value: 1
+                            },
+                            {
+                                title: "Add 5",
+                                hoverStyle: {backgroundColor: "#d1ffdc"},
+                                value: 5
+                            },
+                            {
+                                title: (`Total: ${totalForTab3}`),
+                                showsHover: false
+                            },
+                            {
+                                title: "Subtract 1",
+                                hoverStyle: {backgroundColor: "#ffdbd1"},
+                                value: -1
+                            },
+                            {
+                                title: "Subtract 5",
+                                hoverStyle: {backgroundColor: "#ffdbd1"},
+                                value: -5
+                            },
+                        ]}
+                    />
+
+                    <OstrichTabBar
+                        style={{width: 400}}
+                        tabs={[
+                            {
+                                title: "Dropdown Tab",
+                                dropdown: {
+                                    drawers: ["Drawer1", "Drawer2", "Drawer3"]
+                                }
+                            }, 
+                            "Tab 2", 
+                            "Tab 3"
+                        ]}
+                    />
+            </div>
+            {/* Ost TabBar Code Row Two */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                }}>
+
+                    {/* Click to Open Dropdown */}
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"<"}</span>
+                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>style</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                            <span style={Styles.Code.var}>width</span>
+                            <span style={Styles.Code.reg}>: 500</span>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>onClick</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.keyword}>{"("}</span>
+                            <span style={Styles.Code.var}>tab</span>
+                            <span style={Styles.Code.keyword}>{") => {"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.func}>setTotal(</span>
+                            <span style={Styles.Code.var}>total </span>
+                            <span style={Styles.Code.reg}>+ </span>
+                            <span style={Styles.Code.var}>tab.value</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>{"},"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>tabs</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.keyword}>{"["}</span>
+                        </p>
+
+
+                        {/* Tab One */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Add 1"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p><p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.reg}>1</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>hoverStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#d1ffdc"</span>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"},"}</span>
+                            </p>
+                        </div>
+                       
+                        {/* Tab Two */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Add 5"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p><p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.reg}>5</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>hoverStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#d1ffdc"</span>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"},"}</span>
+                            </p>
+                        </div>
+
+                        {/* Tab Two */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>{"`Total: "}</span>
+                                <span style={Styles.Code.keyword}>{"${"}</span>
+                                <span style={Styles.Code.var}>total</span>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.str}>{"`"}</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p><p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>showsHover</span>
+                                <span style={Styles.Code.reg}>{": {"}</span>
+                                <span style={Styles.Code.bool}>false</span>
+                                <span style={Styles.Code.reg}>{"}, "}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"},"}</span>
+                            </p>
+                        </div>
+
+
+                        {/* Tab Four */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Subtract 1"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p><p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.reg}>-1</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>hoverStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#ffdbd1"</span>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"},"}</span>
+                            </p>
+                        </div>
+
+                        {/* Tab Five */}
+                        <div>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"Subtract 5"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p><p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.reg}>-5</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>hoverStyle</span>
+                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>{"{"}</span>
+                                <span style={Styles.Code.keyword}>{"{"}</span>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#ffdbd1"</span>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                <span style={Styles.Code.reg}>{"}"}</span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.reg}>{"},"}</span>
+                            </p>
+                        </div>
+
+                      
+                        
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>{"]"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18}}>
+                            <span style={Styles.Code.reg}>{"/>"}</span>
+                        </p>
+                    </div>
+            </div>
+
+
+
+
 
             {/* Header Tab Code */}
             <div style={{display: 'flex', 

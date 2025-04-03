@@ -103,7 +103,10 @@ export const TabItem = ({
             }
 
             // Hovered (While Closed)
-            else if (type === "hover"){
+            else if (type === "hover" && showsHover){
+                if (tab.showsHover === false){
+                    return determineBoxStyle('regular', tab)
+                }
                 if (tab?.hoverStyle){
                     rObj = {...hoverStyle, ...tab.hoverStyle}
                 }
