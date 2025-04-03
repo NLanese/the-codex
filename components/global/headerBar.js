@@ -91,14 +91,14 @@ export const HeaderBar = ({
                 startingTabByTitle={tabBar}
                 tabs={tabs}
                 style={{
-                    height: 40, width: '99%', 
+                    height: 55, width: '100%', 
                     backgroundColor: '#11013b', 
                     boxShadow:'5px 10px 15px 5px rgba(40, 40, 40, 0.4)',
         
                 }}
 
                 titleStyle={{
-                    fontFamily: "Gilroy", fontWeight: 500, 
+                    fontFamily: "Gilroy", fontWeight: 500, fontSize: 20,
                     color: 'white', alignItems: 'center', 
                 }}
                 activeTitleStyle={
