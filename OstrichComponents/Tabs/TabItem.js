@@ -164,7 +164,7 @@ export const TabItem = ({
             return(
                 <div
                 style={applyTabDefaultStyles(determineBoxStyle(styleType, tabObj))}
-                onClick={(tabObj) => onPress(tabObj)}
+                onClick={() => onPress(tabObj)}
                 onMouseEnter={() => onMouseEnter(tabObj)}
                 onMouseLeave={() => onMouseLeave(tabObj)}
                 >

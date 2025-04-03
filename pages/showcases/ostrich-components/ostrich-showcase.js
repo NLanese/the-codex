@@ -1845,7 +1845,8 @@ export default function OstrichShowcase() {
                             },
                             {
                                 title: (`Total: ${totalForTab3}`),
-                                showsHover: false
+                                showsHover: false,
+                                clickable: false,
                             },
                             {
                                 title: "Subtract 1",

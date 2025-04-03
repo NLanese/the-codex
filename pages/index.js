@@ -66,7 +66,6 @@ export default function Landing() {
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
-                    console.log("Pressed")
                     router.replace("/showcases/ostrich-components/ostrich-showcase")
                   }}
                 >

@@ -181,20 +181,30 @@ export const OstrichTabBar = ({
 
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
-                if (tab?.onClick){
-                    tab.onClick(tab)
+
+                console.log(tab)
+
+                if (tab.clickable === false){
+                    console.log("Not clickable")
+                    return
                 }
-                if (onTabClick){
-                    onTabClick(tab)
-                }
-                if (showsActive){
-                    if (tabDeactivatesOnClickAgain){
-                        if (isActive(tab)){
-                            setActiveTab(false)
-                            return
-                        }
+                else{
+                    console.log("Clickable")
+                    if (tab?.onClick){
+                        tab.onClick(tab)
                     }
-                    setActiveTab(tab)
+                    if (onTabClick){
+                        onTabClick(tab)
+                    }
+                    if (showsActive){
+                        if (tabDeactivatesOnClickAgain){
+                            if (isActive(tab)){
+                                setActiveTab(false)
+                                return
+                            }
+                        }
+                        setActiveTab(tab)
+                    }
                 }
             }
 

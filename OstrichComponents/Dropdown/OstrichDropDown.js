@@ -215,8 +215,6 @@ export const OstrichDropDown = ({
                 ...commpleteTempText,
                 ...activeTitleStyle
             }
-            console.log(commpleteTempText)
-            console.log(tempActiveText)
             setActiveTitleBoxStyleInput(tempActiveText)            
       
         ///////////
