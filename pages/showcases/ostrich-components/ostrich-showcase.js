@@ -2184,7 +2184,7 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.var}>fontWeight</span>
                                 <span style={Styles.Code.reg}>: 500,  </span>
                                 <span style={Styles.Code.var}>fontSize</span>
-                                <span style={Styles.Code.reg}>: 20,  </span>
+                                <span style={Styles.Code.reg}>: 17,  </span>
                                 <span style={Styles.Code.var}> color</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"white"</span>
@@ -2207,6 +2207,9 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.var}> color</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"lime"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>fontSize</span>
+                                <span style={Styles.Code.reg}>: 18,  </span>
 
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
@@ -2226,6 +2229,9 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.var}> color</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"lime"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>fontSize</span>
+                                <span style={Styles.Code.reg}>: 18,  </span>
 
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
