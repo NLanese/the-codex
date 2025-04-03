@@ -142,7 +142,6 @@ export const OstrichTabBar = ({
             function checkActiveStyle(){
                 let tempActiveTitleStyle = {
                     ...titleStyleX,
-                    fontSize: 16,
                     fontWeight: 600
                 }
                 setActiveTitleStyleX({...tempActiveTitleStyle, ...activeTitleStyle})

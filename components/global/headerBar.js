@@ -98,14 +98,14 @@ export const HeaderBar = ({
                 }}
 
                 titleStyle={{
-                    fontFamily: "Gilroy", fontWeight: 500, fontSize: 18,
+                    fontFamily: "Gilroy", fontWeight: 500, fontSize: 17,
                     color: 'white', alignItems: 'center', 
                 }}
                 activeTitleStyle={
-                    {color: 'lime',  fontWeight: 700}
+                    {color: 'lime',  fontWeight: 700, fontSize: 18,}
                 }
                 hoverTitleStyle={
-                    {color: 'lime',  fontWeight: 600}
+                    {color: 'lime',  fontWeight: 600, fontSize: 18,}
                 }
         
                 tabStyle={{

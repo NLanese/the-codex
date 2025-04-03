@@ -46,47 +46,6 @@ export const TabItem = ({
     // Functions //
     ///////////////
 
-        // Extracts Text Styles and Applies to Drop Styles
-        function applyTextStyles(textStyle, rObj){
-            if (textStyle.fontSize){
-                rObj = {...rObj, fontSize: textStyle.fontSize}
-            }
-            if (textStyle.fontFamily){
-                rObj = {...rObj, fontFamily: textStyle.fontFamily}
-            }
-            if (textStyle.fontWeight){
-                rObj = {...rObj, fontWeight: textStyle.fontWeight}
-            }
-            if (textStyle.letterSpacing){
-                rObj = {...rObj, letterSpacing: textStyle.letterSpacing}
-            }
-            if (textStyle.textAlign){
-                rObj = {...rObj, textAlign: textStyle.textAlign}
-            }
-            if (textStyle.textAlignVertical){
-                rObj = {...rObj, textAlignVertical: textStyle.textAlignVertical}
-            }
-            if (textStyle.display){
-                rObj = {...rObj, display: textStyle.display}
-            }
-            if (textStyle.justifyContent){
-                rObj = {...rObj, justifyContent: textStyle.justifyContent}
-            }
-            if (textStyle.alignContent){
-                rObj = {...rObj, alignContent: textStyle.alignContent}
-            }
-            if (textStyle.justifyItems){
-                rObj = {...rObj, justifyItems: textStyle.justifyItems}
-            }
-            if (textStyle.alignItems){
-                rObj = {...rObj, alignItems: textStyle.alignItems}
-            }
-            if (textStyle.color){
-                rObj = {...rObj, color: textStyle.color}
-            }
-            return rObj
-        }
-
         // Determines GENERAL or SPECIFIC Drawer Style
         function determineDrawerStyle(type, dropdown){
             if (type === "regular"){
