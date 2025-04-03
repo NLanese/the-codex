@@ -98,7 +98,7 @@ export const HeaderBar = ({
                 }}
 
                 titleStyle={{
-                    fontFamily: "Gilroy", fontWeight: 500, fontSize: 20,
+                    fontFamily: "Gilroy", fontWeight: 500, fontSize: 18,
                     color: 'white', alignItems: 'center', 
                 }}
                 activeTitleStyle={

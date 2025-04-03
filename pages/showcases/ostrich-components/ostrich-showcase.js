@@ -1670,19 +1670,20 @@ export default function OstrichShowcase() {
             
             {/* Preamble */}
             <div>
-            <p style={Styles.Fonts.basic}>
-            Ostrich Dropdowns are also used as a part of another very dynamic and response Ostrich Component, the Ostrich Tab Bar. The Tab Bar that you see on the top of your screen right now 
-            (if you're reading this on the Ostrich Codex Website) is made using this Tab Bar Component.
-            </p>
-            <p style={Styles.Fonts.basic}>
-            Just like Dropdowns and Cards, Ostrich Tab Bars even in their most basic uneditted form have multiple forms of responsiveness as well as in-the-box styling that enables you to 
-            quickly render comprehensive and clean Tab Bars without having to develop it yourself. This includes automatic width calculations based on the amount of Tabs; different regular, 
-            active and hover bacground colors and styles; as well as all the features that were present in the Dropdown, as you can make the Tab Bar be a row of Dropdowns without ever needing 
-            to render the Dropdown yourself.
-            </p>
-            <p style={Styles.Fonts.basic}>
-            We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
-            </p>
+                <p style={Styles.Fonts.basic}>
+                    Ostrich Dropdowns are also used as a part of another very dynamic and response Ostrich Component, the Ostrich Tab Bar. The Tab Bar that you see on the top of your screen right now 
+                    (if you're reading this on the Ostrich Codex Website) is made using this Tab Bar Component.
+                </p>
+
+                <p style={Styles.Fonts.basic}>
+                    Just like Dropdowns and Cards, Ostrich Tab Bars even in their most basic uneditted form have multiple forms of responsiveness as well as in-the-box styling that enables you to 
+                    quickly render comprehensive and clean Tab Bars without having to develop it yourself. This includes automatic width calculations based on the amount of Tabs; different regular, 
+                    active and hover bacground colors and styles; as well as all the features that were present in the Dropdown, as you can make the Tab Bar be a row of Dropdowns without ever needing 
+                    to render the Dropdown yourself.
+                </p>
+                <p style={Styles.Fonts.basic}>
+                    We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
+                </p>
             </div>
 
             
@@ -1812,8 +1813,8 @@ export default function OstrichShowcase() {
             </p>
             </div>
 
-             {/* Header Tab Code */}
-             <div style={{display: 'flex', 
+            {/* Header Tab Code */}
+            <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 }}>
@@ -2076,12 +2077,9 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.reg}>{". . ."}</span>
                             <span style={Styles.Code.var}>{"}"}</span>
                         </p>
-
-
                         <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
                             <span style={Styles.Code.keyword}>{"]"}</span>
                         </p>
-
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.keyword}>function </span>
                             <span style={Styles.Code.func}>handleDrawerClick(</span>
@@ -2094,7 +2092,6 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>setTabBar</span>
                             <span style={Styles.Code.func}>{"){"}</span>
                         </p>
-
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>router</span>
                             <span style={Styles.Code.reg}>.</span>
@@ -2111,23 +2108,18 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.str}>/menu'</span>\
                             <span style={Styles.Code.func}>)</span>
                         </p>
-
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.func}>setTabBar(</span>
                             <span style={Styles.Code.bool}>false</span>
                             <span style={Styles.Code.func}>)</span>
                         </p>
-
-
                         <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
                             <span style={Styles.Code.func}>{"}"}</span>
                         </p>
-
                         <p style={{...Styles.Code.code, fontSize: 18}}>
                             <span style={Styles.Code.reg}>{"<"}</span>
                             <span style={Styles.Code.keyword}>OstrichTabBar</span>
                         </p>
-
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>startingTanByTitile</span>
                             <span style={Styles.Code.reg}>=</span>
@@ -2135,7 +2127,6 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>tabBar</span>
                             <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
-
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>tabs</span>
                             <span style={Styles.Code.reg}>=</span>
@@ -2155,7 +2146,7 @@ export default function OstrichShowcase() {
                             </p>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                                 <span style={Styles.Code.var}>height</span>
-                                <span style={Styles.Code.reg}>: 40, </span>
+                                <span style={Styles.Code.reg}>: 50, </span>
                                 <span style={Styles.Code.var}>width</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"99%"</span>
@@ -2192,6 +2183,8 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>fontWeight</span>
                                 <span style={Styles.Code.reg}>: 500,  </span>
+                                <span style={Styles.Code.var}>fontSize</span>
+                                <span style={Styles.Code.reg}>: 20,  </span>
                                 <span style={Styles.Code.var}> color</span>
                                 <span style={Styles.Code.reg}>: </span>
                                 <span style={Styles.Code.str}>"white"</span>
@@ -2221,7 +2214,7 @@ export default function OstrichShowcase() {
                         </div>
 
                          {/* hoverTitleStyle */}
-                         <div>
+                        <div>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                                 <span style={Styles.Code.var}>hoverTitleStyle</span>
                                 <span style={Styles.Code.reg}>=</span>
@@ -2246,36 +2239,36 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.reg}>=</span>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.keyword}>{"{"}</span>
-                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                                    <span style={Styles.Code.var}>borderRight</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"1px solid white"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                    <span style={Styles.Code.var}>borderLeft</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"1px solid white"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                </p>
-                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                                    <span style={Styles.Code.var}> backgroundColor</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"#11013b"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                    <span style={Styles.Code.var}> color</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.str}>"#efefef"</span>
-                                    <span style={Styles.Code.reg}>, </span>
-                                </p>
-                                <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                                    <span style={Styles.Code.var}>borderRadius</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.reg}>0, </span>
-                                    <span style={Styles.Code.var}> padding</span>
-                                    <span style={Styles.Code.reg}>: </span>
-                                    <span style={Styles.Code.reg}>0 </span>
-                                </p>
-                                
-
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>borderRight</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"1px solid white"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}>borderLeft</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"1px solid white"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}> backgroundColor</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#11013b"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                                <span style={Styles.Code.var}> color</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.str}>"#efefef"</span>
+                                <span style={Styles.Code.reg}>, </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                                <span style={Styles.Code.var}>borderRadius</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.reg}>0, </span>
+                                <span style={Styles.Code.var}> padding</span>
+                                <span style={Styles.Code.reg}>: </span>
+                                <span style={Styles.Code.reg}>0 </span>
+                            </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                                 <span style={Styles.Code.keyword}>{"}"}</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                             </p>

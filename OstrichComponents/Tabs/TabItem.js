@@ -127,7 +127,6 @@ export const TabItem = ({
                 else{
                     rObj = style
                 }
-                rObj = applyTextStyles(textStyle, rObj)
                 if (!rObj?.minWidth){
                     rObj = {...rObj, minWidth: '0'}
                 }
@@ -143,9 +142,7 @@ export const TabItem = ({
                 }
                 else{
                     rObj = activeStyle
-                }
-                rObj = applyTextStyles(({...textStyle, ...activeTextStyle}), rObj)
-                
+                }                
             }
 
             // Hovered (While Closed)
@@ -156,7 +153,6 @@ export const TabItem = ({
                 else{
                     rObj = hoverStyle
                 }
-                rObj = applyTextStyles(({...textStyle, ...hoverTextStyle}), rObj)
             }
 
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
@@ -245,7 +241,9 @@ export const TabItem = ({
                 boxHovers={(showsHover || tabObj.showsHover)}
                 drawersHover={(dropdown.drawersShowHover === false) ? false : true}
 
-                // titleStyle={}
+                titleStyle={textStyle}
+                hoverTitleStyle={hoverTextStyle}
+                activeTitleStyle={activeTextStyle}
 
                 drawerStyle={determineDrawerStyle("regular", dropdown)}
                 activeDrawerStyle={determineDrawerStyle("active", dropdown)}

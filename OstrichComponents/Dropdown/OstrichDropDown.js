@@ -182,8 +182,8 @@ export const OstrichDropDown = ({
                 fontWeight: 600,
                 textAlign: 'center',
             }
-            tempText = {...tempText, ...titleStyle}
-            setBoxTitleStyleInput(tempText)
+            let commpleteTempText = {...tempText, ...titleStyle}
+            setBoxTitleStyleInput(commpleteTempText)
 
 
 
@@ -195,7 +195,7 @@ export const OstrichDropDown = ({
             setHoverBoxStyleInput(hoverBoxStyle)
 
             let tempHoverText = {
-                ...tempText,
+                ...commpleteTempText,
                 ...hoverTitleStyle
             }
             setHoverTitleBoxStyleInput(tempHoverText)
@@ -208,9 +208,11 @@ export const OstrichDropDown = ({
             setActiveBoxStyleInput(activeBoxStyle)
 
             let tempActiveText = {
-                ...tempText,
+                ...commpleteTempText,
                 ...activeTitleStyle
             }
+            console.log(commpleteTempText)
+            console.log(tempActiveText)
             setActiveTitleBoxStyleInput(tempActiveText)            
       
         ///////////
@@ -535,12 +537,6 @@ export const OstrichDropDown = ({
         return
     }
     else{
-        if (title === "Concepts" && isOpen){
-            console.log("Inner style (<p>) ")
-            console.log({...extractTextStyles(determineBoxStyle()), ...titleStyle})
-            console.log("Outer style (<div>) ")
-            console.log({...determineBoxStyle(), position: 'relative'})
-        }
         return(
             <div
             style={{...determineBoxStyle(), position: 'relative'}}
