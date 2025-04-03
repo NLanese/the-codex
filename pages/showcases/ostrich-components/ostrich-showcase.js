@@ -1627,7 +1627,7 @@ export default function OstrichShowcase() {
                 gap: 15
             }}>
 
-                <OstCard style={Styles.Sections.propCardBool}>
+                <OstCard style={Styles.Sections.propCardArr}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>tabs</span>

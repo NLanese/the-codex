@@ -142,6 +142,10 @@ const Styles = {
         propCardFunc: {
             ...propCard, backgroundColor: "#fad7cd"  
         },
+
+        propCardArr: {
+            ...propCard, backgroundColor: "#efc321"  
+        },
     }
 
 }
