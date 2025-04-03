@@ -40,6 +40,8 @@ export const OstrichDropDown = ({
     noBorder=false,
     noShadow=false,
 
+    isTabItem=false,
+    isActiveTab
 }) => {
 
     ////////////
@@ -140,7 +142,6 @@ export const OstrichDropDown = ({
 
             // Temporary Object
             let temp = {
-                width: 'auto', 
                 backgroundColor:"#efefef", 
                 border: "1px solid black", borderRadius: 10,
                 justifyItems: 'center', 
@@ -148,9 +149,12 @@ export const OstrichDropDown = ({
             }
             boxStyle = {...temp, ...boxStyle}
             
+            if (!boxStyle.width && !boxStyle.minWidth && !boxStyle.flex && !isTabItem){
+                boxStyle.minWidth = 100
+            }
 
             // Adds Padding If Needed
-            if (!boxStyle.padding && !boxStyle.paddingRight && !boxStyle.paddingLeft && !boxStyle.paddingTop && !boxStyle.paddingBottom){
+            if (!boxStyle.padding && !boxStyle.paddingRight && !boxStyle.paddingLeft && !boxStyle.paddingTop && !boxStyle.paddingBottom && !isTabItem){
                 boxStyle.paddingRight = 10
                 boxStyle.paddingLeft =  10
             }
@@ -436,6 +440,9 @@ export const OstrichDropDown = ({
         if (isOpen && boxActivates){
             return activeBoxStyleInput
         }
+        else if (isTabItem && isActiveTab){
+            return activeBoxStyleInput
+        }
         else if ((!isOpen || !boxActivates) && isHovered){
             return hoverBoxStyleInput
         }
@@ -447,6 +454,9 @@ export const OstrichDropDown = ({
      // Determines Title Style
      function determineTitleStyle(){
         if (isOpen && boxActivates){
+            return activeTitleBoxStyleInput
+        }
+        else if (isTabItem && isActiveTab){
             return activeTitleBoxStyleInput
         }
         else if ((!isOpen || !boxActivates) && isHovered){

@@ -11,11 +11,9 @@ export const TabItem = ({
     index,                  // The index of this item in the greater Tab Array
 
     isActive,               // Is Active 
-    setActiveTab,           // Used to set the Active Tab in the greater Tab Bar
 
     showsHover,
     isHovered,
-    setHoveredTab,
 
     style,                  // Style for the Component
     flex,                   // This is only used when in the TabBar Component
@@ -214,6 +212,9 @@ export const TabItem = ({
                 
                 noBorder={(style.border || tabObj.style?.border) ? false : true}
                 noShadow={(style.boxShadow || tabObj.style?.boxShadow) ? false : true}
+
+                isTabItem={true}
+                isActiveTab={isActive}
                 />
             )
         }

@@ -1706,8 +1706,8 @@ export default function OstrichShowcase() {
                                     drawers: ["Drawer1", "Drawer2", "Drawer3"]
                                 }
                             }, 
-                            2, 
-                            3
+                            "Tab 2", 
+                            "Tab 3"
                         ]}
                     />
             </div>
@@ -1791,10 +1791,12 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.reg}>{"},"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.reg}>{"2,"}</span>
+                            <span style={Styles.Code.str}>"Tab 2"</span>
+                            <span style={Styles.Code.reg}>,</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.reg}>{"3"}</span>
+                            <span style={Styles.Code.str}>"Tab 3"</span>
+                            <span style={Styles.Code.reg}>,</span>
                         </p>
                         
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>

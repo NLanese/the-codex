@@ -78,11 +78,12 @@ const CodeSnippet = ({
             overflow: 'hidden'
             }}>
                 <OstrichTabBar
-                style={{height: "105%"}} 
+                style={{height: "105%", width: '100%', overflow: 'hidden'}} 
                 titleStyle={Styles.Code.codeSnippetTab}
                 activeTitleStyle={Styles.Code.codeSnippetTabACTIVE}
                 hoverTitleStyle={Styles.Code.codeSnippetTabHOVER}
                 startingTabByTitle={"JavaScript"}
+                noShadow={true}
                 tabs={
                     [
                         {title: "JavaScript"},

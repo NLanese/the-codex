@@ -236,11 +236,9 @@ export const OstrichTabBar = ({
                     index={i}     
 
                     isActive={isActive(tab)}
-                    setActiveTab={setActiveTab}
 
                     showsHover={!tab.showsHover}
                     isHovered={isHovered(tab)}
-                    setHoveredTab={setHoveredTab}
 
                     style={tabStyleX}
                     flex={tab.flex ? tab.flex : 1}
