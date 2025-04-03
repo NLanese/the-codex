@@ -32,6 +32,8 @@ class MyApp extends App {
 
     // If the user uses a keyboard then override the no outline styling
     window.addEventListener("keydown", this._handleKeydown);
+
+    document.body.style.setProperty('margin', '0', 'important');
   }
 
   _handleKeydown(e) {
@@ -46,8 +48,8 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <>
-        <Head>
+      <div style={{margin: 0}}>
+        <Head style={{margin: 0}}>
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width, maximum-scale=5.0"
@@ -55,14 +57,13 @@ class MyApp extends App {
           />
         </Head>
 
-        <>
-          <DefaultSeo title="Welcome" titleTemplate="%s  | The Codex" />
-
-          <RecoilRoot>
+        <div style={{margin: 0}}>
+          <DefaultSeo title="Welcome" titleTemplate="%s  | The Codex" tyle={{margin: 0}}/>
+          <RecoilRoot style={{margin: 0}}>
             <ApolloProvider client={client}>
               {/* <Layout> */}
-              <div style={{position: 'relative'}}>
-                <div style={{zIndex: 10, margin: 0, padding: 0, position: 'relative'}}>
+              <div style={{position: 'relative', backgroundColor: 'lime', margin: 0}}>
+                <div style={{zIndex: 10, margin: 0, padding: 0, position: 'sticky', top: 0, left: 0, backgroundColor: 'red', width: '100vw'}}>
                   <HeaderBar />
                 </div>
                 <div style={{zIndex: 1, position: 'relative'}}>
@@ -72,8 +73,8 @@ class MyApp extends App {
               {/* </Layout> */}
             </ApolloProvider>
           </RecoilRoot>
-        </>
-      </>
+        </div>
+      </div>
     );
   }
 }

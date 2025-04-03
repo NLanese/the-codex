@@ -36,7 +36,7 @@ export default function OstrichShowcase() {
   ////////////////
 
   useEffect(() => {
-    setDirectory(false)
+    // setDirectory(false)
   }, [])
 
   ////////////////
@@ -1627,7 +1627,7 @@ export default function OstrichShowcase() {
                 gap: 15
             }}>
 
-                <OstCard style={Styles.Sections.propCardArr}>
+                <OstCard style={{...Styles.Sections.propCardArr, paddingRight: 15, paddingLeft: 15}}>
                     <div>
                         <p style={{textAlign: 'center'}}>
                             <span style={Styles.Fonts.h3}>tabs</span>
