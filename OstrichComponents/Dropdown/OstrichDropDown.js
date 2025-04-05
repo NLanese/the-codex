@@ -147,7 +147,7 @@ export const OstrichDropDown = ({
                 justifyItems: 'center', 
                 position: 'relative',
             }
-            boxStyle = {...temp, ...boxStyle}
+            boxStyle = {...temp, ...boxStyle, ...obj?.style}
             
             if (!boxStyle.width && !boxStyle.minWidth && !boxStyle.flex && !isTabItem){
                 boxStyle.minWidth = 100
@@ -186,7 +186,7 @@ export const OstrichDropDown = ({
                 fontWeight: 600,
                 textAlign: 'center',
             }
-            let commpleteTempText = {...tempText, ...titleStyle}
+            let commpleteTempText = {...tempText, ...titleStyle, ...obj?.titleStyle}
             setBoxTitleStyleInput(commpleteTempText)
 
 

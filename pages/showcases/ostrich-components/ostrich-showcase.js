@@ -31,6 +31,7 @@ export default function OstrichShowcase() {
   const [totalForDrop5, setTotalForDrop5] = useState(0)
 
   const [totalForTab3, setTotalForTab3] = useState(0)
+  const [styleForTab4, setStyleForTab4] = useState({})
 
 
   ////////////////
@@ -1868,16 +1869,37 @@ export default function OstrichShowcase() {
                     />
 
                     <OstrichTabBar
-                        style={{width: 400}}
+                        style={{width: 500}}
+                        showsActive={false}
+                        onTabClick={ ((tab) => {setTotalForTab3((totalForTab3 + tab.value))})}
                         tabs={[
                             {
-                                title: "Dropdown Tab",
+                                title: "Set Color",
                                 dropdown: {
-                                    drawers: ["Drawer1", "Drawer2", "Drawer3"]
+                                    drawers: [
+                                        {title: "Red", type: "backgroundColor", value: "#ffdbd1"},
+                                        {title: "Green", type: "backgroundColor", value: "#d1ffdc"},
+                                        {title: "White", type: "backgroundColor", value: "#fff"}
+                                    ]
                                 }
-                            }, 
-                            "Tab 2", 
-                            "Tab 3"
+                            },
+                            {
+                                title: "Dynamic Styles!",
+                                showsHover: false,
+                                clickable: false,
+                                style: {styleForTab4},
+                                titleStyle: {styleForTab4}
+                            },
+                            {
+                                title: "Set Font Size",
+                                dropdown: {
+                                    drawers: [
+                                        {title: "Small Font", type: "fontSize", value: 12},
+                                        {title: "Medium Font", type: "fontSize", value: 16},
+                                        {title: "Big Font", type: "fontSize", value: 20}
+                                    ]
+                                }
+                            },
                         ]}
                     />
             </div>
