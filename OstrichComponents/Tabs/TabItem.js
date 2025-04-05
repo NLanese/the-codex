@@ -114,7 +114,10 @@ export const TabItem = ({
                     rObj = hoverStyle
                 }
             }
-
+            if (tabObj.title === "Dynamic Styles!"){
+                console.log(rObj)
+                console.log(tab.style)
+            }
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
         }
 
@@ -169,7 +172,7 @@ export const TabItem = ({
                 onMouseLeave={() => onMouseLeave(tabObj)}
                 >
                     <div 
-                    style={(isActive ? {...activeTextStyle} : {...textStyle})}
+                    style={(isActive ? {...activeTextStyle, ...tabObj?.activeTitleStyle} : {...textStyle, ...tabObj?.titleStyle})}
                     >
                         <p>
                             {title}

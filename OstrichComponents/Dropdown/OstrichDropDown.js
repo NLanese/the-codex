@@ -319,8 +319,13 @@ export const OstrichDropDown = ({
         if (drawer.onClick){                // Runs Object OnClick Function 
             drawer.onClick(drawer)
         }   
-        if (onDrawerClick){            // Runs Params OnClick Function 
-            onDrawerClick(drawer)
+        if (onDrawerClick){                 // Runs Params OnClick Function 
+            if (drawer?.manualOnClick){
+                return
+            }
+            else{
+                onDrawerClick(drawer)
+            }
         }
         else{
             console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")

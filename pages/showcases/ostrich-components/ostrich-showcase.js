@@ -33,6 +33,10 @@ export default function OstrichShowcase() {
   const [totalForTab3, setTotalForTab3] = useState(0)
   const [styleForTab4, setStyleForTab4] = useState({})
 
+  useEffect(() => {
+    console.log(styleForTab4)
+  }, [styleForTab4])
+
 
   ////////////////
   // UseEffects //
@@ -1871,7 +1875,10 @@ export default function OstrichShowcase() {
                     <OstrichTabBar
                         style={{width: 500}}
                         showsActive={false}
-                        onTabClick={ ((tab) => {setTotalForTab3((totalForTab3 + tab.value))})}
+                        onDrawerClick={(drawer) => {
+                            console.log(drawer.title, " clicked.")
+                            setStyleForTab4({...styleForTab4, [drawer.type]: drawer.value})
+                        }}
                         tabs={[
                             {
                                 title: "Set Color",
@@ -1887,8 +1894,8 @@ export default function OstrichShowcase() {
                                 title: "Dynamic Styles!",
                                 showsHover: false,
                                 clickable: false,
-                                style: {styleForTab4},
-                                titleStyle: {styleForTab4}
+                                style: {...styleForTab4},
+                                titleStyle: {...styleForTab4, backgroundColor: 'rgba (0,0,0,0)'}
                             },
                             {
                                 title: "Set Font Size",

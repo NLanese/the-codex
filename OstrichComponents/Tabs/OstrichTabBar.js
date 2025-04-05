@@ -181,15 +181,10 @@ export const OstrichTabBar = ({
 
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
-
-                console.log(tab)
-
                 if (tab.clickable === false){
-                    console.log("Not clickable")
                     return
                 }
                 else{
-                    console.log("Clickable")
                     if (tab?.onClick){
                         tab.onClick(tab)
                     }
