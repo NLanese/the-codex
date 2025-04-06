@@ -1898,7 +1898,8 @@ export default function OstrichShowcase() {
                                 showsHover: false,
                                 clickable: false,
                                 style: {...styleForTab4},
-                                titleStyle: {...styleForTab4, backgroundColor: 'rgba (0,0,0,0)'}
+                                titleStyle: {...styleForTab4, backgroundColor: 'rgba (0,0,0,0)'},
+                                flex: 6
                             },
                             {
                                 title: "Set Font Size",
@@ -1920,7 +1921,7 @@ export default function OstrichShowcase() {
                 }}>
 
                     {/* Tab 3 */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: 535}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '48.5%'}}>
                         <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
                             <span style={Styles.Code.keyword}>const [</span>
                             <span style={Styles.Code.var}>total</span>
@@ -2145,7 +2146,7 @@ export default function OstrichShowcase() {
                     </div>
 
                     {/* Tab 4 */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: 535}}>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: '48.5%'}}>
 
                         {/* UseState Style */}
                         <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 20}}>
@@ -2240,12 +2241,15 @@ export default function OstrichShowcase() {
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"Red"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>type</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"backgroundColor"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"#ffdbd1"</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                                 <span style={Styles.Code.reg}>, </span>
@@ -2253,12 +2257,15 @@ export default function OstrichShowcase() {
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"Green"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>type</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"backgroundColor"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"#d1ffdc"</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                                 <span style={Styles.Code.reg}>, </span>
@@ -2266,12 +2273,15 @@ export default function OstrichShowcase() {
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"White"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>type</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"backgroundColor"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"#fff"</span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                             </p>
@@ -2338,6 +2348,11 @@ export default function OstrichShowcase() {
                                 <span style={Styles.Code.str}>"rgba (0,0,0,0)"</span>
                                 <span style={Styles.Code.bool}>{"}"}</span>
                             </p>
+                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                                <span style={Styles.Code.var}>flex</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
+                                <span style={Styles.Code.reg}>6</span>
+                            </p>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                                 <span style={Styles.Code.reg}>{"},"}</span>
                             </p>
@@ -2371,12 +2386,15 @@ export default function OstrichShowcase() {
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"Small Font"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>type</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"fontSize"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.reg}>12 </span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                                 <span style={Styles.Code.reg}>, </span>
@@ -2384,12 +2402,15 @@ export default function OstrichShowcase() {
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"Medium Font"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>type</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"fontSize"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.reg}>16 </span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                                 <span style={Styles.Code.reg}>, </span>
@@ -2397,12 +2418,15 @@ export default function OstrichShowcase() {
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.var}>title</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"Big Font"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>type</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.str}>"fontSize"</span>
                                 <span style={Styles.Code.reg}>, </span>
                                 <span style={Styles.Code.var}>value</span>
+                                <span style={Styles.Code.reg}>{": "}</span>
                                 <span style={Styles.Code.reg}>20 </span>
                                 <span style={Styles.Code.reg}>{"}"}</span>
                             </p>
