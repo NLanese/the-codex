@@ -9,8 +9,6 @@ import { tokenState, tabBarState, directoryDataState } from "../../../recoil/ato
 import Styles from "../../../styles/styles";
 
 // Ostrich
-import { ODef } from "../../../OstrichComponents/Text/OstrichDefinition";
-import { ODefContnet } from "../../../constants/oDefContent";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
@@ -2486,11 +2484,9 @@ export default function OstrichShowcase() {
                     Below, you will see the same tab bar as the one on top of your screen. We'll go over the code for that as well!
                 </p>
             </div>
-
-                <div style={{marginLeft: '20%', width: '60%'}}>
-                    <HeaderBar />
-                </div>
-
+            <div style={{marginLeft: '20%', width: '60%'}}>
+                <HeaderBar />
+            </div>
             {/* Header Tab Code */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
@@ -3009,7 +3005,152 @@ export default function OstrichShowcase() {
                     </div>
             </div>
 
+            {/* Props */}
             <div style={Styles.Fonts.lessonSubHeader}>OstrichTabBar Props</div>
+
+            {/* Props Row One */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>tabStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each tab bar when not active, hovered, or overriden by individual tab style
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeTabStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each tab bar when active, unless overriden by an individual tab activeStyle
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverTabStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each tab bar when hovered (and not opened or active), unless overriden by an individual tab hoverStyle
+                        </p>
+                    </div>
+                </OstCard>
+            </div>
+
+            {/* Props Row Two */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>drawerStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each dropdown drawer (if any) when not active, hovered, or overriden by individual drawer style or dropdown drawerStyle
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeDrawerStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each dropdown drawer when active, unless overriden by an individual drawer activeStyle or dropdown activeDrawerStyle
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverDrawerStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each dropdown drawer when hovered, unless overriden by an individual drawer hoverStyle or dropdown hoverDrawerStyle
+                        </p>
+                    </div>
+                </OstCard>
+            </div>
+
+            {/* Props Row Three */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>titleStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each Tab Title when not active or hovered, unless overriden by an individual tab titleStyle
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={Styles.Sections.propCardObj}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>activeTitleStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each Tab Title when active, unless overriden by an individual tab activeTitleStyle
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={Styles.Sections.propCardObj}>
+                <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>hoverTitleStyle</span>
+                            <span style={Styles.Fonts.h2}> - Object</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            An object that will style each Tab Title when hovered, unless overriden by an individual tab hoverTitleStyle
+                        </p>
+                    </div>
+                </OstCard>
+            </div>
 
         </div>
     )

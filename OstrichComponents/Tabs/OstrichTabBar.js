@@ -12,17 +12,17 @@ export const OstrichTabBar = ({
 
     style,                          // The Style of the Tab Bar itself
 
-    titleStyle,                     // The text styles for each Tab Title
-    activeTitleStyle,               // The text styles for each Tab Title WHEN ACTIVE
-    hoverTitleStyle,                // The text styles for each Tab Title WHEN HOVERED
+    titleStyle,                     //- The text styles for each Tab Title
+    activeTitleStyle,               //- The text styles for each Tab Title WHEN ACTIVE
+    hoverTitleStyle,                //- The text styles for each Tab Title WHEN HOVERED
 
-    tabStyle,                       // The Style of each Tab in the TabBar 
-    activeTabStyle,                 // The Style of each Tab in the TabBar WHEN ACTIVE
-    hoverTabStyle,                  // The Style of each Tab in the TabBar WHEN HOVERED
+    tabStyle,                       //- The Style of each Tab in the TabBar 
+    activeTabStyle,                 //- The Style of each Tab in the TabBar WHEN ACTIVE
+    hoverTabStyle,                  //- The Style of each Tab in the TabBar WHEN HOVERED
 
-    drawerStyle,                    // The Style of each Drawer in a Dropdown Tab
-    activeDrawerStyle,              // The Style of each Drawer in a Dropdown Tab WHEN ACTIVE
-    hoverDrawerStyle,               // The Style of each Drawer in a Dropdown Tab WHEN HOVERED
+    drawerStyle,                    //- The Style of each Drawer in a Dropdown Tab
+    activeDrawerStyle,              //- The Style of each Drawer in a Dropdown Tab WHEN ACTIVE
+    hoverDrawerStyle,               //- The Style of each Drawer in a Dropdown Tab WHEN HOVERED
 
     onTabClick,                         // Default onClick for Tab Items
     tabDeactivatesOnClickAgain=false,   // If true, clicking on an already active tab will deactivate it. If false, you can only deactivate tabs by switching to a new one      
