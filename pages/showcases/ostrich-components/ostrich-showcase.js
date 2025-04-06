@@ -3204,6 +3204,54 @@ export default function OstrichShowcase() {
                 </OstCard>
             </div>
 
+            {/* Props Row Four */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={Styles.Sections.propCardBool}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>tabDeactivates</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>DEFAULTS TO FALSE </span> 
+                            If true, this allows tabs to go from 'active' to 'inactive' by clicking an already active tab. If this is false, the only way to deactivate a tab is by clicking another.
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={Styles.Sections.propCardBool}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>showsHover</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>DEFAULTS TO TRUE </span> 
+                            If false, Tabs and their text will not change styles when hovered
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={Styles.Sections.propCardBool}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>showsActive</span>
+                            <span style={Styles.Fonts.h2}> - Boolean</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <span style={{fontWeight: 600}}>DEFAULTS TO TRUE </span> 
+                            If false, Tabs and their text will not change styles when active / opened
+                        </p>
+                    </div>
+                </OstCard>
+            </div>
+
 
         </div>
     )
