@@ -14,6 +14,7 @@ import { ODefContnet } from "../../../constants/oDefContent";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
+import { HeaderBar } from "../../../components/Global/headerBar";
 
 // Assets
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
@@ -2457,7 +2458,7 @@ export default function OstrichShowcase() {
                     </div>
             </div>
 
-            {/* Preamble II */}
+            {/* Preamble III */}
             <div>
                 <p style={Styles.Fonts.basic}>
                     Let's go over what we saw above a bit more. Starting with the Tab Bar on the left; you will notice that the <strong>onTabClick </strong>
@@ -2475,6 +2476,20 @@ export default function OstrichShowcase() {
                     This param depth furthers with the example on the right. Here you will see that there are two tabs with dropdowns; and you will notice the 'drawers' value in the 'dropdown' object in each 'tab' matches how 'drawers' look in OstrichDropDowns!
                 </p>
             </div>
+
+            {/* Preamble IV */}
+            <div style={{marginTop: 20}}>
+                <p style={Styles.Fonts.basic}>
+                    Now, let's check out a complicated (and styled) Tab Bar in use. 
+                </p>
+                <p style={Styles.Fonts.basic}>
+                    Below, you will see the same tab bar as the one on top of your screen. We'll go over the code for that as well!
+                </p>
+            </div>
+
+                <div style={{marginLeft: '20%', width: '60%'}}>
+                    <HeaderBar />
+                </div>
 
             {/* Header Tab Code */}
             <div style={{display: 'flex', 

@@ -93,7 +93,7 @@ export const HeaderBar = ({
                 style={{
                     height: 55, width: '100%', 
                     boxShadow:'5px 10px 15px 5px rgba(40, 40, 40, 0.4)',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box', position: 'sticky'
         
                 }}
 
