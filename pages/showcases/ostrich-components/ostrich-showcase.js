@@ -1829,7 +1829,10 @@ export default function OstrichShowcase() {
             {/* Preamble II */}
             <div>
                 <p style={Styles.Fonts.basic}>
-                    Now that we've seen some minimalistic Ostrich Tab Bars, let's check out some more complex examples. Below, we will explore two examples with a relatively compex degree of functionality for each tab. You will see that most of the configuration for TabBars can often end up within the 'tabs' prop as opposed to formal props of their own. Observe the examples below and you will see how you can program each tab individually from the 'tabs' prop 
+                    Now that we've seen some minimalistic Ostrich Tab Bars, let's check out some more complex examples. Below, we will explore two 
+                    examples with a relatively compex degree of functionality for each tab.
+                    You will see that most of the configuration for TabBars can often end up within the 'tabs' prop as opposed to formal props of their own. 
+                    Observe the examples below and you will see how you can program each tab individually from the 'tabs' prop.
                 </p>
             </div>
 
@@ -2430,6 +2433,24 @@ export default function OstrichShowcase() {
                     </div>
             </div>
 
+            {/* Preamble II */}
+            <div>
+                <p style={Styles.Fonts.basic}>
+                    Let's go over what we saw above a bit more. Starting with the Tab Bar on the left; you will notice that the <strong>onTabClick </strong>
+                    function takes a parameter called 'tab.' This input value will always be the value of the the 'tab' that you press. 
+                    If your 'tabs' are json objects, then the parameter will be the entire json; if your tab is just a string or an int, the value would be that. 
+                    In this example, the 'total' state is changed by the 'value' of the clicked tab. 
+                </p>
+                <p style={Styles.Fonts.basic}>
+                    You will also notice that each tab has its own unique 'hoverStyle.' 
+                    When using json objects to represent tabs, consider that the expected key/value key names match the props for OstrichDropDowns. 
+                    This essentially means that a 'tab' json object optionally expects any of the properties you can provide an OstrichDropDown; including
+                    onClick, onMouseEnter, onMouseLeave, style, titleStyle, hoverStyle, hoverTitleStyle, activeStyle, activeTitleStyle, and more.
+                </p>
+                <p style={Styles.Fonts.basic}>
+                    This param depth furthers with the example on the right. Here you will see that there are two tabs with dropdowns; and you will notice the 'drawers' value in the 'dropdown' object in each 'tab' matches how 'drawers' look in OstrichDropDowns!
+                </p>
+            </div>
 
             {/* Header Tab Code */}
             <div style={{display: 'flex', 
