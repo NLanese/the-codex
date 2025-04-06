@@ -24,15 +24,15 @@ export const OstrichTabBar = ({
     activeDrawerStyle,              //- The Style of each Drawer in a Dropdown Tab WHEN ACTIVE
     hoverDrawerStyle,               //- The Style of each Drawer in a Dropdown Tab WHEN HOVERED
 
-    onTabClick,                         //- Default onClick for Tab Items
-    tabDeactivatesOnClickAgain=false,   // If true, clicking on an already active tab will deactivate it. If false, you can only deactivate tabs by switching to a new one      
-    onDrawerClick=false,                //- Default onClick for Drawers
+    onTabClick,                     //- Default onClick for Tab Items
+    tabDeactivates=false,           //- If true, clicking on an already active tab will deactivate it. If false, you can only deactivate tabs by switching to a new one      
+    onDrawerClick=false,            //- Default onClick for Drawers
     manualActiveTab=false,
 
-    showsHover = true,
-    onTabHover,                         //- Runs on Tab Hover
+    showsHover = true,              //- If false, Tabs do not change style on hover
+    onTabHover,                     //- Runs on Tab Hover
 
-    showsActive = true
+    showsActive = true              //- If false, Tabs do not change style on open / active
     
 }) => {
    
@@ -192,7 +192,7 @@ export const OstrichTabBar = ({
                         onTabClick(tab)
                     }
                     if (showsActive){
-                        if (tabDeactivatesOnClickAgain){
+                        if (tabDeactivates){
                             if (isActive(tab)){
                                 setActiveTab(false)
                                 return

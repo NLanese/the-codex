@@ -1950,6 +1950,13 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>showsActive</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.bool}> false</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
                             <span style={Styles.Code.var}>onTabClick</span>
                             <span style={Styles.Code.reg}>{": {"}</span>
                             <span style={Styles.Code.keyword}>{"("}</span>
@@ -1993,7 +2000,7 @@ export default function OstrichShowcase() {
                             </p>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
                                 <span style={Styles.Code.var}>hoverStyle</span>
-                                <span style={Styles.Code.reg}>=</span>
+                                <span style={Styles.Code.reg}>:</span>
                                 <span style={Styles.Code.reg}>{"{"}</span>
                                 <span style={Styles.Code.keyword}>{"{"}</span>
                                 <span style={Styles.Code.var}> backgroundColor</span>
@@ -2177,6 +2184,15 @@ export default function OstrichShowcase() {
                             <span style={Styles.Code.var}>width</span>
                             <span style={Styles.Code.reg}>: 500</span>
                             <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{"}"}</span>
+                        </p>
+
+                        {/* showsActive */}
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>showsActive</span>
+                            <span style={Styles.Code.reg}>=</span>
+                            <span style={Styles.Code.reg}>{"{"}</span>
+                            <span style={Styles.Code.bool}> false</span>
                             <span style={Styles.Code.reg}>{"}"}</span>
                         </p>
 
@@ -3204,7 +3220,7 @@ export default function OstrichShowcase() {
                 </OstCard>
             </div>
 
-            {/* Props Row Four */}
+            {/* Props Row Five */}
             <div style={{display: 'flex', 
                 flexDirection: 'row',
                 justifyContent: 'space-between',
