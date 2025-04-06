@@ -2785,16 +2785,11 @@ export default function OstrichShowcase() {
                             </p>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                                 <span style={Styles.Code.var}>height</span>
-                                <span style={Styles.Code.reg}>: 50, </span>
+                                <span style={Styles.Code.reg}>: 55, </span>
                                 <span style={Styles.Code.var}>width</span>
                                 <span style={Styles.Code.reg}>: </span>
-                                <span style={Styles.Code.str}>"99%"</span>
+                                <span style={Styles.Code.str}>"100%"</span>
                                 <span style={Styles.Code.reg}>,</span>
-                            </p>
-                            <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                                <span style={Styles.Code.var}>backgroundColor</span>
-                                <span style={Styles.Code.reg}>: </span>
-                                <span style={Styles.Code.str}>"#11013b"</span>
                             </p>
                             <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                                 <span style={Styles.Code.var}>boxShadow</span>

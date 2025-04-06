@@ -92,8 +92,8 @@ export const HeaderBar = ({
                 tabs={tabs}
                 style={{
                     height: 55, width: '100%', 
-                    backgroundColor: '#11013b', 
                     boxShadow:'5px 10px 15px 5px rgba(40, 40, 40, 0.4)',
+                    boxSizing: 'border-box'
         
                 }}
 
