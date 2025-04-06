@@ -1211,7 +1211,9 @@ export default function OstrichShowcase() {
             </div>
 
             {/* Props Header */}
-            <div style={Styles.Fonts.lessonSubHeader}>OstrichDropDown Props</div>
+            <div style={{...Styles.Fonts.lessonSubHeader, marginTop: 60}}>
+                OstrichDropDown Props
+            </div>
 
             {/* Props Row One */}
             <div style={{display: 'flex', 
@@ -2476,7 +2478,7 @@ export default function OstrichShowcase() {
             </div>
 
             {/* Preamble IV */}
-            <div style={{marginTop: 20}}>
+            <div style={{marginTop: 60}}>
                 <p style={Styles.Fonts.basic}>
                     Now, let's check out a complicated (and styled) Tab Bar in use. 
                 </p>
@@ -3006,7 +3008,9 @@ export default function OstrichShowcase() {
             </div>
 
             {/* Props */}
-            <div style={Styles.Fonts.lessonSubHeader}>OstrichTabBar Props</div>
+            <div style={{...Styles.Fonts.lessonSubHeader, marginTop: 60}}>
+                OstrichTabBar Props
+            </div>
 
             {/* Props Row One */}
             <div style={{display: 'flex', 
@@ -3151,6 +3155,55 @@ export default function OstrichShowcase() {
                     </div>
                 </OstCard>
             </div>
+
+            {/* Props Row Four */}
+            <div style={{display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 15,
+                height: 140,
+                gap: 15
+            }}>
+                <OstCard style={Styles.Sections.propCardFunc}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>onTabClick</span>
+                            <span style={Styles.Fonts.h2}> - Function</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            A function (that takes the entire Tab JSON or value as a param) that runs whenever a Tab in the Tab Bar is clicked
+                        </p>
+                    </div>
+                </OstCard>
+               
+                <OstCard style={Styles.Sections.propCardFunc}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>onTabHover</span>
+                            <span style={Styles.Fonts.h2}> - Function</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            A function (that takes the entire Tab JSON or value as a param) that runs whenever a Tab in the Tab Bar is hovered
+                        </p>
+                    </div>
+                </OstCard>
+                
+                <OstCard style={Styles.Sections.propCardFunc}>
+                    <div>
+                        <p style={{textAlign: 'center'}}>
+                            <span style={Styles.Fonts.h3}>onDrawerClick</span>
+                            <span style={Styles.Fonts.h2}> - Function</span>
+                        </p>
+                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                            <span style={{fontWeight: 600}}>(Optional) </span> 
+                            A function (that takes the entire Drawer JSON or value as a param) that runs whenever a Drawer in a Drop Tab's Dropdown menu is clicked
+                        </p>
+                    </div>
+                </OstCard>
+            </div>
+
 
         </div>
     )
