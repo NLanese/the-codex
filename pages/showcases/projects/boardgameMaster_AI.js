@@ -19,19 +19,23 @@ export default function BoardGameMasterAIProjectPage() {
 
 return (
     <div style={{marginTop: 20}}>
-     <div style={Styles.Fonts.pageTitle}>The Ostrich React Component Library</div>
+     <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
      <div style={{display: 'flex', flexDirection: 'row'}}>
         <OstCard style={{margin: "30px", flex: 10}}>
             <div style={Styles.Sections.lessonContent}>
                 <p style={Styles.Fonts.basic}>
-                This entire Site has been made using the Ostrich React Component Library and regular Vanilla React tags. 
-                This means no other frameworks were used and this means developers who import our Ostrich Component Library can easily create a well designed site 
-                of their own!
+                Below is a Chat Bot designed to answer your questions about any of the board games we have listed! 
+                Simply select a board game from the dropdown menu and enter your question in the text field. 
+                Once complete, press submit and wait for the Board Game Master to give you a response!
                 </p>
 
                 <p style={Styles.Fonts.basic}>
-                Ostrich Components were made with the intent of heavily reducing the amount of time new developers have to spend on certain Front End aspects of development. 
-                Using a multitude of optional props for each component, developers can have everything from extremely high functionality components with minimal development to extremely simple and low level components that come already styled. 
+                This bot was deisgned using Amazon Bedrock. Its knowledge base was compiled by Nick Lanese but all the content was 
+                information from the respecitve board games' official rules (when applicable).
+                </p>
+
+                <p style={Styles.Fonts.basic}>
+                The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
                 </p>
             </div>
             
