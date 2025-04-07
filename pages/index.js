@@ -75,6 +75,9 @@ export default function Landing() {
                   templateStyle={1}
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
+                  onClick={() => {
+                    router.replace("/showcases/projects/boardgameMaster_AI")
+                  }}
                 >
                   Current Projects by Nick
                 </OstCard>

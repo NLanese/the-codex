@@ -16,12 +16,22 @@ import { HeaderBar } from "../../../components/Global/headerBar";
 
 export default function BoardGameMasterAIProjectPage() {
 
+    // Selected Game
+    const [selGame, setSelGame] = useState(false)
+
+    ///////////////
+    // Functions //
+    ///////////////
+
+    function determineDropTitle(){
+        return (selGame ? selGame : "No Game Selected")
+    }
 
 return (
     <div style={{marginTop: 20}}>
      <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <OstCard style={{margin: "30px", flex: 10}}>
+        <OstCard style={{margin: "30px", flex: 12}}>
             <div style={Styles.Sections.lessonContent}>
                 <p style={Styles.Fonts.basic}>
                 Below is a Chat Bot designed to answer your questions about any of the board games we have listed! 
@@ -38,13 +48,20 @@ return (
                 The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
                 </p>
             </div>
+
+            <div style={{...Styles.Sections.lessonContent, justifyContent: 'center', display: 'flex'}}>
+                <OstrichDropDown 
+                    boxStyle={{width: 400}}
+                    title={determineDropTitle()}
+                    drawers={[
+                        "Checkers",
+                        "Chess",
+                        "Splendor",
+                        "Robo Quest Arena"
+                    ]}
+                />
+            </div>
             
-        </OstCard>
-
-
-        {/* Side Menu */}
-        <OstCard style={{marginTop: 30, marginRight: 30, flex: 2}}>
-
         </OstCard>
      </div>
     </div>

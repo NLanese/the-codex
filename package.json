@@ -12,6 +12,7 @@
     "@apollo/client": "^3.9.3",
     "@apollo/server": "^4.10.0",
     "@as-integrations/next": "^3.0.0",
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.782.0",
     "@prisma/client": "^5.9.1",
     "apollo-link-context": "^1.0.20",
     "apollo-server-core": "^3.13.0",
