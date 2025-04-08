@@ -36,6 +36,7 @@ export default function BoardGameMasterAIProjectPage() {
         // Empties Messages When Game Changes
         useEffect(() => {
             setMessages([])
+            setCurrent("")
         }, [selGame])
 
     ///////////////
@@ -112,12 +113,14 @@ return (
                 </div>
                 
                 <OstCard style={{marginTop: 50, height: '45vw', width: '85%'}}>
-                    <OstCard style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed'}}>
+                    <OstCard 
+                        style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed', overflow: 'scroll'}}>
 
                     </OstCard>
                     <textarea 
                         type="textarea" 
-                        onChange={(event) => console.log(event.target.value)} 
+                        onChange={(event) => setCurrent(event.target.value)} 
+                        value={current}
                         style={{
                             marginTop: '3%', 
                             height: '14%', 
@@ -133,7 +136,7 @@ return (
                         }}
                     />
                     <OstCard
-                        style={{alignSelf: 'flex-end', backgroundColor: 'white', marginLeft: '87.5%', marginTop: '-5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22}}
+                        style={{alignSelf: 'flex-end', backgroundColor: '#fff', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22}}
                         onClick={() => sendMessage()}
                     >
                         Send
