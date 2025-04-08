@@ -43,42 +43,67 @@ export default function BoardGameMasterAIProjectPage() {
     // Functions //
     ///////////////
 
-    function determineDropTitle(){
-        return (selGame ? selGame : "No Game Selected")
-    }
-
-    function sendMessage(){
-        let newMessage = {
-            from: "User",
-            content: current
+        function determineDropTitle(){
+            return (selGame ? selGame : "No Game Selected")
         }
-        let fullMessage = `In the game ${selGame}, ${current}`
-        setMessages(prev => [...prev, newMessage]);
-        handleRequestToAPI(fullMessage)
-    }
 
-    async function handleRequestToAPI(fullMessage){
-        fetch("/api/boardGameWizard", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: fullMessage }),
-        })
-        .then(async (res) => {
-            const text = await res.text(); 
-            console.log("Raw API response:", text);
-            try {
-                const json = JSON.parse(text);
-                console.log("Parsed JSON:", json);
-            } 
-            catch (err) {
-                console.error("BEDROCK ERROR:", JSON.stringify(err, null, 2));
-                res.status(500).json({ message: "Internal server error" });
+        function sendMessage(){
+            let newMessage = {
+                from: "User",
+                content: current
             }
-        })
-        .catch((err) => {
-            console.error("API call failed:", err);
-        });
-    }
+            let fullMessage = current
+            if (messages.length === 0){
+                fullMessage = `In the game ${selGame}, ${current}`
+            }
+            setCurrent("")
+            setMessages(prev => [...prev, newMessage]);
+            handleRequestToAPI(fullMessage)
+        }
+
+        async function handleRequestToAPI(fullMessage){
+            fetch("/api/boardGameWizard", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: fullMessage }),
+            })
+            .then(async (res) => {
+                const text = await res.text(); 
+                console.log("Raw API response:", text);
+                try {
+                    const json = JSON.parse(text);
+                    console.log("Parsed JSON:", json);
+                    let newMessage = {
+                        from: "AI",
+                        content: json.reply
+                    }
+                    setMessages(prev => [...prev, newMessage])
+                } 
+                catch (err) {
+                    console.error("BEDROCK ERROR:", JSON.stringify(err, null, 2));
+                    res.status(500).json({ message: "Internal server error" });
+                }
+            })
+            .catch((err) => {
+                console.error("API call failed:", err);
+            });
+        }
+    
+    ////////////////
+    // Renderings //
+    ////////////////
+
+        function renderMessages(){
+            return messages.map(msg => {
+                return (
+                    <div style={{width: '100%', display: 'flex', marginTop: 15, flexDirection:( msg.from === "User" ? 'row-reverse' : 'row')}}>
+                        <OstCard style={{maxWidth: '60%', backgroundColor: ( msg.from === "User" ? 'cyan' : 'white')}}>
+                            {msg.content}
+                        </OstCard>
+                    </div>
+                )
+            })
+        }
 
 return (
     <div style={{marginTop: 20}}>
@@ -126,8 +151,9 @@ return (
                 
                 <OstCard style={{marginTop: 50, height: '45vw', width: '85%'}}>
                     <OstCard 
-                        style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed', overflow: 'scroll'}}>
-
+                    style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed', overflow: 'scroll'}}
+                    >
+                        {renderMessages()}
                     </OstCard>
                     <textarea 
                         type="textarea" 
