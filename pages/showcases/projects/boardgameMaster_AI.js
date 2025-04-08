@@ -16,8 +16,27 @@ import { HeaderBar } from "../../../components/Global/headerBar";
 
 export default function BoardGameMasterAIProjectPage() {
 
-    // Selected Game
-    const [selGame, setSelGame] = useState(false)
+    ///////////
+    // State //
+    ///////////
+
+        // Selected Game
+        const [selGame, setSelGame] = useState(false)
+
+        // Current Question
+        const [current, setCurrent] = useState("")
+
+        // Messages
+        const [messages, setMessages] = useState([])
+
+    ///////////////
+    // UseEffect //
+    ///////////////
+
+        // Empties Messages When Game Changes
+        useEffect(() => {
+            setMessages([])
+        }, [selGame])
 
     ///////////////
     // Functions //
