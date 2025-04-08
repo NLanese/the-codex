@@ -46,6 +46,27 @@ export default function BoardGameMasterAIProjectPage() {
         return (selGame ? selGame : "No Game Selected")
     }
 
+    function sendMessage(){
+        let newMessage = {
+            from: "User",
+            content: current
+        }
+        let fullMessage = `In the game ${selGame}, ${current}`
+        setMessages([...messages, newMessage])
+        handleRequestToAPI(fullMessage)
+    }
+
+    async function handleRequestToAPI(message){
+        const res = await fetch("/api/boardGameWizard", {
+            method: "POST",
+            body: JSON.stringify({ message }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          console.log(data)
+          return data.reply;
+    }
+
 return (
     <div style={{marginTop: 20}}>
         <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
@@ -82,7 +103,10 @@ return (
                             "Checkers",
                             "Chess",
                             "Splendor",
-                            "Robo Quest Arena"
+                            "Robo Quest Arena",
+                            "5 Minute Mystery",
+                            "Jenga",
+                            "Monopoly"
                         ]}
                     />
                 </div>
@@ -93,7 +117,7 @@ return (
                     </OstCard>
                     <textarea 
                         type="textarea" 
-                        onChange={(event) => console.log(event.target)} 
+                        onChange={(event) => console.log(event.target.value)} 
                         style={{
                             marginTop: '3%', 
                             height: '14%', 
@@ -108,6 +132,12 @@ return (
                             fontFamily: 'Gilroy'
                         }}
                     />
+                    <OstCard
+                        style={{alignSelf: 'flex-end', backgroundColor: 'white', marginLeft: '87.5%', marginTop: '-5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22}}
+                        onClick={() => sendMessage()}
+                    >
+                        Send
+                    </OstCard>
                 </OstCard>
             </div>
     </div>
