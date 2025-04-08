@@ -53,19 +53,31 @@ export default function BoardGameMasterAIProjectPage() {
             content: current
         }
         let fullMessage = `In the game ${selGame}, ${current}`
-        setMessages([...messages, newMessage])
+        setMessages(prev => [...prev, newMessage]);
         handleRequestToAPI(fullMessage)
     }
 
-    async function handleRequestToAPI(message){
-        const res = await fetch("/api/boardGameWizard", {
+    async function handleRequestToAPI(fullMessage){
+        fetch("/api/boardGameWizard", {
             method: "POST",
-            body: JSON.stringify({ message }),
             headers: { "Content-Type": "application/json" },
-          });
-          const data = await res.json();
-          console.log(data)
-          return data.reply;
+            body: JSON.stringify({ message: fullMessage }),
+        })
+        .then(async (res) => {
+            const text = await res.text(); 
+            console.log("Raw API response:", text);
+            try {
+                const json = JSON.parse(text);
+                console.log("Parsed JSON:", json);
+            } 
+            catch (err) {
+                console.error("BEDROCK ERROR:", JSON.stringify(err, null, 2));
+                res.status(500).json({ message: "Internal server error" });
+            }
+        })
+        .catch((err) => {
+            console.error("API call failed:", err);
+        });
     }
 
 return (
@@ -136,7 +148,7 @@ return (
                         }}
                     />
                     <OstCard
-                        style={{alignSelf: 'flex-end', backgroundColor: '#fff', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22}}
+                        style={{alignSelf: 'flex-end', backgroundColor: '#fff', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22, borderRadius: 0}}
                         onClick={() => sendMessage()}
                     >
                         Send
