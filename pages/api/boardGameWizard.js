@@ -18,24 +18,40 @@ export default async function handler(req, res) {
 
     const command = new RetrieveAndGenerateCommand({
       input: { text: message },
-      retrieveAndGenerateConfiguration: {
-        type: "KNOWLEDGE_BASE", // Keep this as needed
-        knowledgeBaseConfiguration: {
-          knowledgeBaseId: process.env.BEDROCK_KB_ID,
-          modelArn: process.env.BEDROCK_MODEL_ARN,
-          generationConfiguration: {
-            promptTemplate: {
-              textPromptTemplate: "Please provide a detailed explanation for the user's board game rule question."
+      "retrieveAndGenerateConfiguration": {
+        "type": "KNOWLEDGE_BASE",
+        "knowledgeBaseConfiguration": {
+          "knowledgeBaseId": "FCKMBNCFEW",
+          "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-text-premier-v1:0",
+          "retrievalConfiguration": {
+            "vectorSearchConfiguration": {
+              "numberOfResults": 5
             }
           },
-          orchestrationConfiguration: {
-            promptTemplate: {
-              textPromptTemplate: "Please break down the user's question and clarify any ambiguous parts."
-            },
+          "generationConfiguration": {
+            "inferenceConfig": {
+              "textInferenceConfig": {
+                "temperature": 0,
+                "topP": 0.9,
+                "maxTokens": 512,
+                "stopSequences": []
+              }
+            }
           },
-        },
-      },
+          "orchestrationConfiguration": {
+            "inferenceConfig": {
+              "textInferenceConfig": {
+                "temperature": 0,
+                "topP": 0.9,
+                "maxTokens": 512,
+                "stopSequences": []
+              }
+            }
+          }
+        }
+      }
     });
+    
     
     
     
