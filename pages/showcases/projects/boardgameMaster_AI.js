@@ -53,9 +53,9 @@ export default function BoardGameMasterAIProjectPage() {
                 content: current
             }
             let fullMessage = current
-            if (messages.length === 0){
-                fullMessage = `In the game ${selGame}, ${current}`
-            }
+            // if (messages.length === 0){
+                fullMessage = `(This question is for the game ${selGame}, ${current})`
+            // }
             setCurrent("")
             setMessages(prev => [...prev, newMessage]);
             handleRequestToAPI(fullMessage)
