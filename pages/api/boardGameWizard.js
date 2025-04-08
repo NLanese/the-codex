@@ -19,13 +19,26 @@ export default async function handler(req, res) {
     const command = new RetrieveAndGenerateCommand({
       input: { text: message },
       retrieveAndGenerateConfiguration: {
-        type: "KNOWLEDGE_BASE",
+        type: "KNOWLEDGE_BASE", // Keep this as needed
         knowledgeBaseConfiguration: {
           knowledgeBaseId: process.env.BEDROCK_KB_ID,
           modelArn: process.env.BEDROCK_MODEL_ARN,
+          generationConfiguration: {
+            promptTemplate: {
+              textPromptTemplate: "Please provide a detailed explanation for the user's board game rule question."
+            }
+          },
+          orchestrationConfiguration: {
+            promptTemplate: {
+              textPromptTemplate: "Please break down the user's question and clarify any ambiguous parts."
+            },
+          },
         },
       },
     });
+    
+    
+    
 
     const response = await client.send(command);
 
