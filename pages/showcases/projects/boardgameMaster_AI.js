@@ -98,7 +98,9 @@ export default function BoardGameMasterAIProjectPage() {
                 return (
                     <div style={{width: '100%', display: 'flex', marginTop: 15, flexDirection:( msg.from === "User" ? 'row-reverse' : 'row')}}>
                         <OstCard style={{maxWidth: '60%', backgroundColor: ( msg.from === "User" ? 'cyan' : 'white')}}>
-                            {msg.content}
+                            <p style={Styles.Fonts.basic}> 
+                                {msg.content}
+                            </p>
                         </OstCard>
                     </div>
                 )
