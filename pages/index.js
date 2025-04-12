@@ -76,7 +76,7 @@ export default function Landing() {
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
-                    router.replace("/showcases/projects/boardgameMaster_AI")
+                    router.replace("/showcases/projects/menu")
                   }}
                 >
                   Current Projects by Nick

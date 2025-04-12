@@ -75,17 +75,42 @@ export const OstCard =({
                 </div>
             )
         }
-        else if (templateStyle === 1){
-            return TemplateOneRender()
-        }
-        else if (templateStyle === 2){
-            return TemplateTwoRender()
-        }
-        else if (templateStyle === 3){
-            return TemplateThreeRender()
-        }
-        else if (templateStyle === 4){
-            return TemplateFourRender()
+        else {
+            let renderMethod
+            if (templateStyle === 1){
+                renderMethod = TemplateOneRender()
+            }
+            else if (templateStyle === 2){
+                renderMethod =  TemplateTwoRender()
+            }
+            else if (templateStyle === 3){
+                renderMethod =  TemplateThreeRender()
+            }
+            else if (templateStyle === 4){
+                renderMethod =  TemplateFourRender()
+            }
+            return(
+                <div style={completeStyle()}
+                onMouseDown={() => setIsPressed(true)}
+                onMouseUp={() => setIsPressed(false)}
+                onMouseLeave={() => {
+                    setIsPressed(false);
+                    setIsHovered(false);
+                }} 
+                onMouseEnter={() => {
+                    if (onClick){
+                        setIsHovered(true)
+                    }
+                }}
+                onClick={(details) => {
+                    if (onClick){
+                        setIsPressed(false); 
+                        onClick(details);
+                    }
+                }}>
+                    {renderMethod}
+                </div>
+            )
         }
     }
 
@@ -94,71 +119,23 @@ export const OstCard =({
 
         // Template One
         const TemplateOneRender = () => {
-            if (!onClick){
-                return(
-                    <div style={{
-                        ...completeStyle(true), 
-                        display: 'flex', flexDirection: 'column', 
-                        minHeight: 100, paddingBottom: 10,
-                        overflow: 'hidden',
+            return(
+                <div style={{display: 'flex', flexDirection: "column", height: '100%', width: '100%'}}>
+                    <div style={{ display: 'flex',flex: 8, 
+                        justifyContent: 'center', alignItems: 'center', overflow: 'hidden'
                     }}>
-                        <div style={{ display: 'flex',
-                            flex: 8, 
-                            justifyContent: 'center', alignItems: 'center', 
-                        }}>
-                            <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
-                        </div>
-                        <div style={{ display: 'flex',
-                            flex: 2, 
-                            paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
-                            justifyContent: 'center', 
-                            fontSize: (details?.titleStyle ? details?.titleStyle : 24)
-                        }}>
-                            {children}
-                        </div>
+                        <img src={imageSrc} style={{maxWidth: (details?.imgMaxWidth ? details.imgMaxWidth : '100%'), maxHeight: '100%', objectFit: "contain"}} />
                     </div>
-                )
-            }
-            else{
-                return(
-                    <div style={{
-                        ...completeStyle(true), 
-                        display: 'flex', flexDirection: 'column', 
-                        minHeight: 100, paddingBottom: 10,
-                        overflow: 'hidden',
-                    }} 
-                    onMouseDown={() => setIsPressed(true)}
-                    onMouseUp={() => setIsPressed(false)}
-                    onMouseLeave={() => {
-                        setIsPressed(false);
-                        setIsHovered(false);
-                    }} 
-                    onMouseEnter={() => {
-                        if (onClick){
-                            setIsHovered(true)
-                        }
-                    }}
-                    onClick={(details) => {
-                        setIsPressed(false); 
-                        onClick(details);
+                    <div style={{ display: 'flex',
+                        flex: 2, 
+                        paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
+                        justifyContent: 'center', alignItems: 'center',
+                        fontSize: (details?.titleStyle ? details?.titleStyle : 24)
                     }}>
-                        <div style={{ display: 'flex',
-                            flex: 8, 
-                            justifyContent: 'center', alignItems: 'center', 
-                        }}>
-                            <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
-                        </div>
-                        <div style={{ display: 'flex',
-                            flex: 2, 
-                            paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
-                            justifyContent: 'center', 
-                            fontSize: (details?.titleStyle ? details?.titleStyle : 24)
-                        }}>
-                            {children}
-                        </div>
+                        {children}
                     </div>
-                )
-            }
+                </div>
+            )
         }
 
         // Tempkate Two
