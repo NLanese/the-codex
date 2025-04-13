@@ -6,7 +6,7 @@ function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
     setTabBar(false)
 }
 
-function handleOstrichComponentsDrawer(folder, drawer){
+function handleOstrichComponentsDrawer(folder, drawer, router){
     router.replace(`/showcases/${folder}/${drawer.toLowerCase().replace(" ", "")}`)
 }
 
@@ -27,7 +27,7 @@ export const portfolioTabs = (setTabBar, router) => {
         dropdown: {
             openOnHover: true,
             drawers: ["Showcase"],
-            onDrawerClick: (drawer) => { handleOstrichComponentsDrawer("ostrich-components", drawer) }
+            onDrawerClick: (drawer) => { handleOstrichComponentsDrawer("ostrich-components", drawer, router) }
         }
     },
     {
@@ -38,7 +38,7 @@ export const portfolioTabs = (setTabBar, router) => {
         dropdown: {
             openOnHover: true,
             drawers: ["Board Game Master AI"],
-            onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer) }
+            onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer, router) }
         }
     },
     {
