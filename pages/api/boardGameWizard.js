@@ -21,8 +21,8 @@ export default async function handler(req, res) {
       "retrieveAndGenerateConfiguration": {
         "type": "KNOWLEDGE_BASE",
         "knowledgeBaseConfiguration": {
-          "knowledgeBaseId": "FCKMBNCFEW",
-          "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-text-premier-v1:0",
+          "knowledgeBaseId": process.env.BEDROCK_KB_ID,
+          "modelArn": process.env.BEDROCK_MODEL_ARN,
           "retrievalConfiguration": {
             "vectorSearchConfiguration": {
               "numberOfResults": 5

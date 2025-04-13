@@ -208,6 +208,12 @@ export default function BoardGameMasterAIProjectPage() {
                         <span style={Styles.Code.reg}>{": "}</span>
                         <span style={Styles.Code.keyword}>{"{ "}</span>
                     </p>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.str}>"type"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.str}>"KNOWLEDGE_BASE"</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
 
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.func}>{"}"}</span>
