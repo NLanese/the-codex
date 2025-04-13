@@ -7,13 +7,13 @@ function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
 }
 
 function handleOstrichComponentsDrawer(folder, drawer, router){
-    router.replace(`/showcases/${folder}/${drawer.toLowerCase().replace(" ", "")}`)
+    router.replace(`/showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
 }
 
 
 // Fires on specific Lesson drawer type clicks
 function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
-    router.replace((`/${type}/${unit}/${LTL}/${finalPath}`).toLowerCase().replace(" ", "_"))
+    router.replace((`/${type}/${unit}/${LTL}/${finalPath}`).toLowerCase().replaceAll(" ", "_"))
 }
 
 // Portfolio
@@ -37,7 +37,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: ["Board Game Master AI"],
+            drawers: ["Boardgame Master AI"],
             onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer, router) }
         }
     },

@@ -26,6 +26,9 @@ export default function Landing() {
   ///////////
 
   const [directory, setDirectory] = useRecoilState(directoryDataState)
+
+  const [tabBar, setTabBar] = useRecoilState(tabBarState)
+
   const router = useRouter()
 
   ////////////////
@@ -66,6 +69,7 @@ export default function Landing() {
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
+                    setTabBar("Ostrich Components")
                     router.replace("/showcases/ostrich-components/showcase")
                   }}
                 >
@@ -76,6 +80,7 @@ export default function Landing() {
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
+                    setTabBar("Ongoing Projects")
                     router.replace("/showcases/projects/menu")
                   }}
                 >

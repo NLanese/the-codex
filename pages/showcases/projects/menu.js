@@ -64,7 +64,7 @@ export default function ProjectsMenu() {
                         imageSrc={OstCompImg}
                         style={{flex: 4, margin: 5}}
                         onClick={() => {
-                        router.replace("/showcases/projects/boardgameMaster_AI")
+                        router.replace("/showcases/projects/boardgame_master_ai")
                         }}
                     >
                         Current Projects by Nick
