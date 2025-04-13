@@ -269,6 +269,34 @@ export default function BoardGameMasterAIProjectPage() {
                         <span style={Styles.Code.reg}>{": "}</span>
                         <span style={Styles.Code.var}>{"{ "}</span>
                     </p>
+                    <p style={{...Styles.Code.code, marginLeft: 120}}>
+                        <span style={Styles.Code.str}>"temperature"</span>
+                        <span style={Styles.Code.reg}>{": 0.05,"}</span>
+                        <span style={Styles.Code.comment}>{"     // 0 - 1.0, Higher Values stray further from given data"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 120}}>
+                        <span style={Styles.Code.str}>"topP"</span>
+                        <span style={Styles.Code.reg}>{": 0.93,"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 120}}>
+                        <span style={Styles.Code.str}>"maxTokens"</span>
+                        <span style={Styles.Code.reg}>{": 256,"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 120}}>
+                        <span style={Styles.Code.str}>"stopSequences"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.func}>{"[]"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 100}}>
+                        <span style={Styles.Code.var}>{"}"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 80}}>
+                        <span style={Styles.Code.keyword}>{"}"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 60}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
 
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.func}>{"}"}</span>

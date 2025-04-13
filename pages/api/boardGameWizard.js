@@ -31,8 +31,8 @@ export default async function handler(req, res) {
           "generationConfiguration": {
             "inferenceConfig": {
               "textInferenceConfig": {
-                "temperature": 0,
-                "topP": 0.9,
+                "temperature": 0.5,
+                "topP": 0.8,
                 "maxTokens": 512,
                 "stopSequences": []
               }
