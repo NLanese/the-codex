@@ -214,6 +214,61 @@ export default function BoardGameMasterAIProjectPage() {
                         <span style={Styles.Code.str}>"KNOWLEDGE_BASE"</span>
                         <span style={Styles.Code.reg}>{","}</span>
                     </p>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.str}>"knowledgeBaseConfiguration"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.bool}>{"{ "}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 60}}>
+                        <span style={Styles.Code.str}>"knowledgeBaseId"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.var}>process.env.BEDROCK_KB_ID</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 60}}>
+                        <span style={Styles.Code.str}>"modelArn"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.var}>process.env.BEDROCK_MODEL_ARN</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 60}}>
+                        <span style={Styles.Code.str}>"retrievalConfiguration"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.func}>{"{ "}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 80}}>
+                        <span style={Styles.Code.str}>"vectorSearchConfiguration"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.keyword}>{"{ "}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 100}}>
+                        <span style={Styles.Code.str}>"numberOfResults"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.reg}>3</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 80}}>
+                        <span style={Styles.Code.keyword}>{"}"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 60}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                        <span style={Styles.Code.reg}>{", "}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 60}}>
+                        <span style={Styles.Code.str}>"generationConfiguration"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.func}>{"{ "}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 80}}>
+                        <span style={Styles.Code.str}>"inferenceConfig"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.keyword}>{"{ "}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 100}}>
+                        <span style={Styles.Code.str}>"textInferenceConfig"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.var}>{"{ "}</span>
+                    </p>
 
                     <p style={Styles.Code.code}>
                         <span style={Styles.Code.func}>{"}"}</span>
