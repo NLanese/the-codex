@@ -59,7 +59,7 @@ export default function BoardGameMasterAIProjectPage() {
                 content: current
             }
             let fullMessage = current
-            fullMessage = `(This question is for the game ${selGame}, ${current})`
+            fullMessage = `(This question is for the game ${selGame}. Give the user a a complete answer and but try to word it simply and plainly. Explain terms they may not know. Question: ${current})`
             setCurrent("")
             setMessages(prev => [...prev, newMessage]);
             handleRequestToAPI(fullMessage)
@@ -404,13 +404,14 @@ return (
                     titleStyle={{fontSize: 20}}
                     onDrawerClick={(drawer) => setSelGame(drawer)}
                     drawers={[
+                        "5 Minute Mystery",
                         "Checkers",
                         "Chess",
-                        "Splendor",
-                        "Robo Quest Arena",
-                        "5 Minute Mystery",
                         "Jenga",
-                        "Monopoly"
+                        "Monopoly",
+                        "Poker",
+                        "Robo Quest Arena",
+                        "Splendor",
                     ]}
                 />
             </div>

@@ -31,8 +31,8 @@ export default async function handler(req, res) {
           "generationConfiguration": {
             "inferenceConfig": {
               "textInferenceConfig": {
-                "temperature": 0.25,
-                "topP": 0.8,
+                "temperature": 0.65,
+                "topP": 0.7,
                 "maxTokens": 512,
                 "stopSequences": []
               }
@@ -41,8 +41,8 @@ export default async function handler(req, res) {
           "orchestrationConfiguration": {
             "inferenceConfig": {
               "textInferenceConfig": {
-                "temperature": 0.65,
-                "topP": 0.5,
+                "temperature": 0.45,
+                "topP": 0.7,
                 "maxTokens": 512,
                 "stopSequences": []
               }
