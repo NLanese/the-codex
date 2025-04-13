@@ -34,7 +34,7 @@ export default function ProjectsMenu() {
       ////////////////
     
       useEffect(() => {
-        // setDirectory("Portfolio")            // TO DO
+        setDirectory("Portfolio")            
       }, [])
 
     return(

@@ -29,3 +29,9 @@ export const directoryDataState = atom({
 	key: "directoryDataState",
 	default: false
 })
+
+// Determines what Main Directory you are in
+export const activeTabDataState = atom({
+	key: "activeTabDataState",
+	default: false
+})

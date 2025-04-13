@@ -6,9 +6,61 @@ function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
     setTabBar(false)
 }
 
+function handleOstrichComponentsDrawer(folder, drawer){
+    router.replace(`/showcases/${folder}/${drawer.toLowerCase().replace(" ", "")}`)
+}
+
+
 // Fires on specific Lesson drawer type clicks
 function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
     router.replace((`/${type}/${unit}/${LTL}/${finalPath}`).toLowerCase().replace(" ", "_"))
+}
+
+// Portfolio
+export const portfolioTabs = (setTabBar, router) => { 
+    return ([
+        {
+        title: "Ostrich Components", 
+        onClick: () => {
+            router.replace("/showcases/ostrich-components/menu")
+        },
+        dropdown: {
+            openOnHover: true,
+            drawers: ["Showcase"],
+            onDrawerClick: (drawer) => { handleOstrichComponentsDrawer("ostrich-components", drawer) }
+        }
+    },
+    {
+        title: "Ongoing Projects", 
+        onClick: () => {
+            router.replace("/showcases/projects/menu")
+        },
+        dropdown: {
+            openOnHover: true,
+            drawers: ["Board Game Master AI"],
+            onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer) }
+        }
+    },
+    {
+        title: "Official Works", 
+        onClick: () => {
+            // setTabBar("Frameworks")
+            // router.replace("/frameworks/list")
+        },
+        dropdown: {
+            // openOnHover: true,
+            // drawers: frameworksList,
+            // onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router,  setTabBar, "menu")}
+        }
+    },
+    {
+        title: "Return Home", 
+        onClick: () => {
+            setTabBar(false)
+            router.replace("/")
+        },
+    },
+    ])
 }
 
 // Guest
@@ -160,4 +212,6 @@ export const basicsTabs = (setTabBar, router) => {
     }
     ])
 }
+
+
 

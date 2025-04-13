@@ -32,18 +32,15 @@ export default function OstrichShowcase() {
   const [totalForTab3, setTotalForTab3] = useState(0)
   const [styleForTab4, setStyleForTab4] = useState({})
 
-  useEffect(() => {
-    console.log(styleForTab4)
-  }, [styleForTab4])
-
 
   ////////////////
   // UseEffects //
   ////////////////
 
-  useEffect(() => {
-    // setDirectory(false)
-  }, [])
+    // Sets Directory
+    useEffect(() => {
+        setDirectory("Portfolio")            
+    }, [])
 
   ////////////////
   // Renderings //

@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { OstrichTabBar } from "@Ostrich/Tabs/OstrichTabBar";
 
 // Constants
-import { guestTabs, userTabs, basicsTabs } from "../../constants/tabBars";
+import { guestTabs, userTabs, basicsTabs, portfolioTabs } from "../../constants/tabBars";
 
 export const HeaderBar = ({
     // directory
@@ -65,7 +65,10 @@ export const HeaderBar = ({
 
     // Determines which set of Tabs should render on the TabBar
     function determineTabs(){
-        if (directory === "Basics"){
+        if (directory === "Portfolio"){
+            return portfolioTabs(setTabBar, router)
+        }
+        else if (directory === "Basics"){
             return basicsTabs(setTabBar, router)
         }
         else if (token){

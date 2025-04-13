@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 
 // Recoil
 import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { directoryDataState } from "../../../recoil/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
@@ -11,8 +11,6 @@ import Styles from "../../../styles/styles";
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
-import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-import { HeaderBar } from "../../../components/Global/headerBar";
 
 export default function BoardGameMasterAIProjectPage() {
 
@@ -29,9 +27,17 @@ export default function BoardGameMasterAIProjectPage() {
         // Messages
         const [messages, setMessages] = useState([])
 
+        // Directory
+        const [directory, setDirectory] = useRecoilState(directoryDataState)
+
     ///////////////
     // UseEffect //
     ///////////////
+
+        // Sets Directory
+        useEffect(() => {
+            setDirectory("Portfolio")            
+        }, [])
 
         // Empties Messages When Game Changes
         useEffect(() => {
