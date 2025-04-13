@@ -111,6 +111,112 @@ export default function BoardGameMasterAIProjectPage() {
             })
         }
 
+        function renderBackendRequestCode(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '60%'}}>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.bool}>async </span>
+                            <span style={Styles.Code.keyword}>function </span>
+                            <span style={Styles.Code.func}>handleRequestToBackend</span>
+                            <span style={Styles.Code.keyword}>{"("}</span>
+                            <span style={Styles.Code.var}>message</span>
+                            <span style={Styles.Code.keyword}>{"){"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>fetch( </span>
+                            <span style={Styles.Code.str}>"api/boardGameWizard" </span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.func}>{" {"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>method</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"POST"</span>
+                            <span style={Styles.Code.reg}>,</span>
+                        </p>
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>headers</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.keyword}>{" { "}</span>
+                            <span style={Styles.Code.str}>"Content-Type"</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"application/json"</span>
+                        </p>
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.var}>body</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>JSON</span>
+                            <span style={Styles.Code.reg}>.</span>
+                            <span style={Styles.Code.func}>stringify</span>
+                            <span style={Styles.Code.keyword}>{"("}</span>
+                            <span style={Styles.Code.bool}>{"{"}</span>
+                            <span style={Styles.Code.var}>message</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>messaage</span>
+                            <span style={Styles.Code.bool}>{"}"}</span>
+                            <span style={Styles.Code.keyword}>{")"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, marginLeft: 0}}>
+                            <span style={Styles.Code.bool}>{"}"}</span>
+                            <span style={Styles.Code.func}>{")"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, marginLeft: 0}}>
+                            <span style={Styles.Code.reg}>{"."}</span>
+                            <span style={Styles.Code.keyword}>{"then("}</span>
+                            <span style={Styles.Code.comment}>{"/* the rest */"}</span>
+                            <span style={Styles.Code.keyword}>{")"}</span>
+                        </p>
+                </div>
+            )
+        }
+
+        function renderAWSRequestCode(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '60%'}}>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>const </span>
+                        <span style={Styles.Code.var}>message</span>
+                        <span style={Styles.Code.reg}>{" = "}</span>
+                        <span style={Styles.Code.var}>req</span>
+                        <span style={Styles.Code.reg}>.</span>
+                        <span style={Styles.Code.var}>body</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>const </span>
+                        <span style={Styles.Code.var}>command</span>
+                        <span style={Styles.Code.reg}>{" = "}</span>
+                        <span style={Styles.Code.keyword}>new </span>
+                        <span style={Styles.Code.func}>RetrieveAndGenerateCommand</span>
+                        <span style={Styles.Code.bool}>{"("}</span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.var}>input</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.keyword}>{"{ "}</span>
+                        <span style={Styles.Code.var}>text</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.var}>message </span>
+                        <span style={Styles.Code.keyword}>{"}"}</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.str}>"retrieveAndGenerateConfiguration"</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.keyword}>{"{ "}</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                        <span style={Styles.Code.bool}>{")"}</span>
+                    </p>
+                </div>
+            )
+        }
+
 return (
     <div style={{marginTop: 20}}>
         <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
@@ -203,65 +309,21 @@ return (
                     This makes the process of sending the initial request to the backend where the API request is compiled much simpler
                     </p>
 
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '60%'}}>
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.bool}>async </span>
-                            <span style={Styles.Code.keyword}>function </span>
-                            <span style={Styles.Code.func}>handleRequestToBackend</span>
-                            <span style={Styles.Code.keyword}>{"("}</span>
-                            <span style={Styles.Code.var}>message</span>
-                            <span style={Styles.Code.keyword}>{"){"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>fetch( </span>
-                            <span style={Styles.Code.str}>"api/boardGameWizard" </span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.func}>{" {"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>method</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"POST"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>headers</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.keyword}>{" { "}</span>
-                            <span style={Styles.Code.str}>"Content-Type"</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"application/json"</span>
-                        </p>
-                        <p style={{...Styles.Code.code, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>body</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>JSON</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.func}>stringify</span>
-                            <span style={Styles.Code.keyword}>{"("}</span>
-                            <span style={Styles.Code.bool}>{"{"}</span>
-                            <span style={Styles.Code.var}>message</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>messaage</span>
-                            <span style={Styles.Code.bool}>{"}"}</span>
-                            <span style={Styles.Code.keyword}>{")"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, marginLeft: 0}}>
-                            <span style={Styles.Code.bool}>{"}"}</span>
-                            <span style={Styles.Code.func}>{")"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, marginLeft: 0}}>
-                            <span style={Styles.Code.reg}>{"."}</span>
-                            <span style={Styles.Code.keyword}>{"then("}</span>
-                            <span style={Styles.Code.comment}>{"/* the rest */"}</span>
-                            <span style={Styles.Code.keyword}>{")"}</span>
-                        </p>
-                    </div>
+                    {renderBackendRequestCode()}                   
                     
                     <p style={Styles.Fonts.basic}>
                     From there, the user Message is taken, packaged up in a request and sent to this project's `ppages/api/boardGameWizard.js' file, where the 
                     brunt of the request content lies. There, we compile the request to my specific Amazon Bedrock Bnowledge Base API
-                    </p>`
+                    </p>
+
+                    <p style={Styles.Fonts.basic}>
+                    Thankfully, AWS makes sending the request pretty simple. They have a default option to copy and paste from, but
+                    it is recommended you adjust some of the values and structure youself. The adjustments depend on what model you are using 
+                    for Text Generation. This does NOT have anything to do with the model you have selected for Text Embedding and Processing. 
+                    </p>
+
+                    {renderAWSRequestCode()}
+
                 </div>
             </OstCard>
         </div>
