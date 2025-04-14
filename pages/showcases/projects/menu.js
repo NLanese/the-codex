@@ -17,6 +17,9 @@ import { HeaderBar } from "../../../components/Global/headerBar";
 
 // Assets
 const BoardGameAI = "../../../assets/icons/big/BoardGameWizardIcon.jpeg";
+const BetBotImg = "../../../assets/icons/big/BetBot.jpeg";
+const DDAImg = "../../../assets/icons/big/DDAImg.jpeg";
+const DDScreen = "../../../assets/icons/big/DDScreen.png";
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 
 
@@ -40,6 +43,7 @@ export default function ProjectsMenu() {
     return(
         <div style={{marginTop: 20}}>
             <div style={Styles.Fonts.pageTitle}>Nick Lanese's Ongoing Projects</div>
+
             <div style={{...Styles.Sections.lessonContent, margin: "30px"}}>
                 <div style={{
                     display: 'flex', 
@@ -47,12 +51,13 @@ export default function ProjectsMenu() {
                     alignContent: 'space-evenly',
                     width: '90%',
                     marginLeft: '5%',
-                    height: 300
+                    height: 300,
+                    gap: 20
                 }}>
                     <OstCard
                         templateStyle={1}
                         imageSrc={BoardGameAI}
-                        style={{flex: 4, margin: 5}}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
                         router.replace("/showcases/projects/boardgameMasterAI")
                         }}
@@ -61,21 +66,77 @@ export default function ProjectsMenu() {
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={OstCompImg}
-                        style={{flex: 4, margin: 5}}
+                        imageSrc={BetBotImg}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/projects/boardgame_master_ai")
+                        router.replace("/showcases/projects/betbot")
                         }}
                     >
-                        Current Projects by Nick
+                        NBA BetBot AI
+                    </OstCard>
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={DDAImg}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                    >
+                        Dungeons, Dragons, and AI
                     </OstCard>
                     <OstCard
                         templateStyle={1}
                         imageSrc={OstCompImg}
-                        style={{flex: 4, margin: 5}}
-
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        onClick={() => {
+                        router.replace("/showcases/ostrich-components/showcase")
+                        }}
                     >
-                        Nick's Portfolio
+                        The Ostrich Component Library 
+                    </OstCard>
+                </div>
+            </div>
+
+            <div style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b", paddingTop: 30}}>
+                <div style={{
+                    display: 'flex', 
+                    flexDirection: 'row',
+                    alignContent: 'space-evenly',
+                    width: '90%',
+                    marginLeft: '5%',
+                    height: 300,
+                    gap: 20
+                }}>
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={DDScreen}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        onClick={() => {
+                        router.replace("/showcases/projects/boardgameMasterAI")
+                        }}
+                    >
+                        Dungeon Dash (Unity Project)
+                    </OstCard>
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={BetBotImg}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        onClick={() => {
+                        router.replace("/showcases/projects/betbot")
+                        }}
+                    >
+                        NBA BetBot
+                    </OstCard>
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={DDAImg}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                    >
+                        Dungeons, Dragons, and AI
+                    </OstCard>
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={OstCompImg}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                    >
+                        The Ostrich Codex (This Site!)
                     </OstCard>
                 </div>
             </div>
