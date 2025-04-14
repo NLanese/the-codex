@@ -19,4 +19,19 @@ const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 
 export default function OstrichShowcaseMenu() {
 
+///////////
+// State //
+///////////
+
+    const [directory, setDirectory] = useRecoilState(directoryDataState)
+
+  ////////////////
+  // UseEffects //
+  ////////////////
+
+    // Sets Directory
+    useEffect(() => {
+        setDirectory("Portfolio")            
+    }, [])
+
 }
