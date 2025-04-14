@@ -1,46 +1,54 @@
-import axios from 'axios'
-
-// FanDuel's internal JSON URL for NBA bets
-const FAN_DUEL_JSON_URL = 'https://sportsbook.fanduel.com/cache/psmg/PROD/en/US/sportsbook/20674.3.json'
+import axios from 'axios';
 
 export default async function handler(req, res) {
-  try {
-    const response = await axios.get(FAN_DUEL_JSON_URL, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0',
-      },
-    })
 
-    const data = response.data
-
-    // Grab all NBA events (games)
-    const events = data?.events || []
-
-    const allPlayerProps = []
-
-    for (const event of events) {
-      const gameName = event?.name || ''
-      const markets = event?.displayGroups?.flatMap(group => group.markets) || []
-
-      for (const market of markets) {
-        // Look for player stat lines (e.g., "Player Points", "Player Rebounds")
-        if (!market.marketType.includes('Player')) continue
-
-        for (const outcome of market.outcomes || []) {
-          allPlayerProps.push({
-            game: gameName,
-            statType: market.marketType,
-            player: outcome.label,
-            odds: outcome.price,
-          })
-        }
-      }
+    function handlePriceToOdds(price){
+        let divvie = (1.0 / price)
+        return divvie * 100
     }
 
-    res.status(200).json({ bets: allPlayerProps })
+    function findBookmakerByTitle(bookmakers, title) {
+        let rBook = bookmakers.find(bookmaker => bookmaker.title === title);
+        let markets = rBook.markets
+        let h2hOdds = {}
+        let spreadOdds = {}
+        revisedOdds = markets.map(market => {
+            if (market.key === "h2h"){
 
-  } catch (err) {
-    console.error('Error scraping FanDuel:', err.message)
-    res.status(500).json({ error: 'Failed to fetch FanDuel NBA props' })
-  }
+            }
+        })
+      }
+
+    // The Odds API key (replace with your actual API key)
+    const API_KEY = process.env.ODDS_API_KEY;
+
+    try {
+        // Make request to the Odds API
+        const response = await axios.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds', {
+            params: {
+            apiKey: API_KEY,      // Replace with your API key
+            regions: 'us,us2',
+            markets: 'spreads,h2h'
+            },
+        });
+
+        // Filter NBA-related bets, just in case you want to narrow it down more
+        let nbaBets = response.data.filter(bet => bet.sport_key === 'basketball_nba');
+        console.log(nbaBets)
+        nbaBets = nbaBets.map(bet => {
+            return {
+                away: bet.away_team,
+                home: bet.home_team,
+                odds: {
+                    bet: findBookmakerByTitle(bet.bookmakers, "fanduel")
+                }
+            }
+        })
+
+        // Send the response to the client
+        res.status(200).json(nbaBets);
+    } catch (error) {
+        console.error('Error fetching NBA odds:', error);
+        res.status(500).json({ error: 'Error fetching NBA odds' });
+    }
 }
