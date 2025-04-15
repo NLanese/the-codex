@@ -60,7 +60,7 @@ export default function ProjectsMenu() {
                         imageSrc={BoardGameAI}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/projects/boardgameMasterAI")
+                        router.replace("/showcases/projects/boardgame_master_ai")
                         }}
                     >
                         The Board Game Wizard AI

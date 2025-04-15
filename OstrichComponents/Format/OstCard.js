@@ -141,52 +141,21 @@ export const OstCard =({
         // Tempkate Two
         const TemplateTwoRender = () => {
             return(
-                <div style={{
-                    ...completeStyle(true), 
-                    display: 'flex', flexDirection: 'column', 
-                    minHeight: 100, paddingBottom: 10,
-                    overflow: 'hidden',
-                }} 
-                onMouseDown={() =>{ 
-                    if (onClick){
-                        setIsPressed(true)
-                    }
-                }}
-                onMouseUp={() => setIsPressed(false)}
-                onMouseLeave={() => {
-                    setIsPressed(false);
-                    setIsHovered(false);
-                }} 
-                onMouseEnter={() => {
-                    if (onClick){
-                        setIsHovered(true)
-                    }
-                }}
-                onClick={(details) => {
-                    if (onClick){
-                        setIsPressed(false); 
-                        onClick(details);
-                    }
-                }}>
-                    {/* Content  */}
+                <div style={{display: 'flex', flexDirection: "column", height: '100%', width: '100%',}}>
                     <div style={{ display: 'flex',
                         flex: 2, 
                         paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
-                        justifyContent: 'center', 
+                        justifyContent: 'center', alignItems: 'center',
                         fontSize: (details?.titleStyle ? details?.titleStyle : 24)
                     }}>
                         {children}
                     </div>
-
-                    {/* Picture */}
-                    <div style={{ display: 'flex',
-                        flex: 8, 
-                        justifyContent: 'center', alignItems: 'center', 
+                    <div style={{ 
+                        display: 'flex',flex: 8, 
+                        justifyContent: 'center', alignItems: 'center', overflow: 'hidden'
                     }}>
-                        <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: "contain"}} />
+                        <img src={imageSrc} style={{maxWidth: (details?.imgMaxWidth ? details.imgMaxWidth : '100%'), maxHeight: '100%', objectFit: "contain"}} />
                     </div>
-
-                        
                 </div>
             )
         }
