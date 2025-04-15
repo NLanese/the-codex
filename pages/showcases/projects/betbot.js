@@ -74,29 +74,30 @@ export default function BetBotProjectPage() {
     // Renderings //
     ////////////////
 
+    function renderIntro(){
+        return(
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{...Styles.Sections.lessonContent, width: '70%', marginLeft: '15%', marginTop: 45}}>
+                    <p style={Styles.Fonts.basic}>
+                    Here I have created a system that uses two seperate webscrapers combined with some AI to find all of today's
+                    NBA Bets from FanDuel, gets all relevant stats from the NBA API, sends the Data to an AI and determines how good 
+                    or bad a bet may be. 
+                    </p>
+
+                    <p style={Styles.Fonts.basic}>
+                    I'm pretty sure I have to say something about responsible gambling here... so gamble responsibly, I'm not endorsing gambling. You get it.  
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
 
 return (
     <div style={{marginTop: 20}}>
         <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
-
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-            <div style={{...Styles.Sections.lessonContent, width: '70%', marginLeft: '15%', marginTop: 45}}>
-                <p style={Styles.Fonts.basic}>
-                Below is a Chat Bot designed to answer your questions about any of the board games we have listed! 
-                Simply select a board game from the dropdown menu and enter your question in the text field. 
-                Once complete, press submit and wait for the Board Game Master to give you a response!
-                </p>
-
-                <p style={Styles.Fonts.basic}>
-                This bot was deisgned using Amazon Bedrock. Its knowledge base was compiled by Nick Lanese but all the content was 
-                information from the respecitve board games' official rules (when applicable).
-                </p>
-
-                <p style={Styles.Fonts.basic}>
-                The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
-                </p>
-            </div>
-        </div>
+        {renderIntro()}
+        
     </div>
   );
 }
