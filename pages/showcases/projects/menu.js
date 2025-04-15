@@ -21,6 +21,7 @@ const BetBotImg = "../../../assets/icons/big/BetBot.jpeg";
 const DDAImg = "../../../assets/icons/big/DDAImg.jpeg";
 const DDScreen = "../../../assets/icons/big/DDScreen.png";
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
+const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
 
 
 export default function ProjectsMenu() {
@@ -77,7 +78,7 @@ export default function ProjectsMenu() {
                     <OstCard
                         templateStyle={1}
                         imageSrc={DDAImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                     >
                         Dungeons, Dragons, and AI
                     </OstCard>
@@ -116,27 +117,27 @@ export default function ProjectsMenu() {
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={BetBotImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.replace("/showcases/projects/betbot")
-                        }}
+                        imageSrc={WandererImg}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
+                        // onClick={() => {
+                        // router.replace("/showcases/projects/betbot")
+                        // }}
                     >
-                        NBA BetBot
+                        Wanderer
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={DDAImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        imageSrc={"moop"}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                     >
-                        Dungeons, Dragons, and AI
+                        To Be Announced
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={OstCompImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        imageSrc={"moop"}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                     >
-                        The Ostrich Codex (This Site!)
+                        To Be Announced
                     </OstCard>
                 </div>
             </div>
