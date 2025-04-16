@@ -103,16 +103,19 @@ export default function BetBotProjectPage() {
         let row = []
         let i = 0
         bets.forEach((betCard) => {
-            console.log(betCard)
-            const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : "No Moneyline"
-            const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : "No Moneyline"
+            const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
+            const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
 
-            const awayDiff = betCard?.bet?.moneyline?.[betCard.away]?.diff ? betCard?.bet?.moneyline?.[betCard.away]?.diff : "No Spread"
-            const homeDiff = betCard?.bet?.moneyline?.[betCard.home]?.diff ? betCard?.bet?.moneyline?.[betCard.home]?.diff : "No Spread"
+            const awayDiff = betCard?.bet?.moneyline?.[betCard.away]?.diff ? betCard?.bet?.moneyline?.[betCard.away]?.diff : false
+            const homeDiff = betCard?.bet?.moneyline?.[betCard.home]?.diff ? betCard?.bet?.moneyline?.[betCard.home]?.diff : false
 
             const awaySpreadOdds = betCard?.bet?.moneyline?.[betCard.away]?.odds ? betCard?.bet?.moneyline?.[betCard.away]?.odds : "No Spread Betting"
             const homeSpreadOdds = betCard?.bet?.moneyline?.[betCard.home]?.odds ? betCard?.bet?.moneyline?.[betCard.home]?.odds : "No Spread Betting"
 
+            if (!awayLine && !awayDiff){
+                console.log(betCard)
+                return false
+            }
 
             row = [
                 ...row, 
@@ -128,14 +131,14 @@ export default function BetBotProjectPage() {
                                 {betCard.away}
                             </p>
                             <p>
-                            {awayLine}
+                                {awayLine ? awayLine : "No Moneyline"}
                             </p>
                             <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
                                 <p>
-                                    {awayDiff}
+                                    {awayDiff ? awayDiff : "No Spread Betting"}
                                 </p>
                                 <p>
-                                    {awaySpreadOdds}
+                                    {awayDiff ? awaySpreadOdds : null}
                                 </p>
                             </div>
                         </OstCard>
@@ -144,14 +147,14 @@ export default function BetBotProjectPage() {
                                 {betCard.home}
                             </p>
                             <p>
-                            {homeLine}
+                                {homeLine ? homeLine : "No Moneyline"}
                             </p>
                             <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
                                 <p>
-                                    {homeDiff}
+                                    {homeDiff ? homeDiff : "No Spread Betting"}
                                 </p>
                                 <p>
-                                    {homeSpreadOdds}
+                                    {homeDiff ? homeSpreadOdds : null}
                                 </p>
                             </div>
                         </OstCard>
