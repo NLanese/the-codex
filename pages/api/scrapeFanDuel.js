@@ -46,31 +46,38 @@ export default async function handler(req, res) {
     // The Odds API key (replace with your actual API key)
     const API_KEY = process.env.ODDS_API_KEY;
 
+    // Make request to the Odds API
     try {
-        // Make request to the Odds API
-        axios.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds', {
+        const response = await axios.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds', {
             params: {
-            apiKey: API_KEY,      
-            regions: 'us,us2',
-            markets: 'spreads,h2h'
+                apiKey: API_KEY,
+                regions: 'us,us2',
+                markets: 'spreads,h2h'
             },
-        }).then( async (response) => {
-            let nbaBets = await response.data.filter(bet => bet.sport_key === 'basketball_nba');
-            nbaBets = nbaBets.map(bet => {
-                return {
-                    away: bet.away_team,
-                    home: bet.home_team,
-                    bet: findBookmakerByTitle(bet.bookmakers, "fanduel")
-                }
-            })
-            res.status(200).json(nbaBets);
-        }).catch(err => {
-            res.status(500).json({error: err})
-        })
+        });
 
-       
-    } catch (error) {
-        console.error('Error fetching NBA odds:', error);
-        res.status(500).json({ error: 'Error fetching NBA odds' });
+        const nbaBets = response.data
+            .filter(bet => bet.sport_key === 'basketball_nba')
+            .map(bet => ({
+                away: bet.away_team,
+                home: bet.home_team,
+                bet: findBookmakerByTitle(bet.bookmakers, "fanduel")
+            }));
+
+        res.status(200).json(nbaBets);
+
+    } catch (err) {
+        const statusCode = err?.response?.status;
+        const apiMessage = err?.response?.data?.error_code || 'No message';
+
+        console.log('\n////////////////////////');
+        console.log('// Error fetching odds //');
+        console.log('////////////////////////\n');
+        console.log('Status Code:', statusCode);
+        console.log('API Message:', apiMessage);
+
+        if (apiMessage === "OUT_OF_USAGE_CREDITS"){
+            res.status(200).json({ERROR: "OUT OF CREDITS"})
+        }
     }
 }

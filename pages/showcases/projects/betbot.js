@@ -28,6 +28,11 @@ export default function BetBotProjectPage() {
         // All Scraped Bets
         const [bets, setBets] = useState(false)
 
+
+
+        // Credits Error Message
+        const [outOfCredits, setOutOfCredits] = useState(false)
+
     ///////////////
     // UseEffect //
     ///////////////
@@ -43,11 +48,6 @@ export default function BetBotProjectPage() {
     // Functions //
     ///////////////
 
-        function determineDropTitle(){
-            return (selGame ? selGame : "No Game Selected")
-        }
-
-
         async function handleRequestToAPI(){
             fetch("/api/scrapeFanDuel", {
                 method: "POST",
@@ -60,8 +60,15 @@ export default function BetBotProjectPage() {
                     const json = JSON.parse(text);
                     console.log("Setting bets as ")
                     console.log(json)
-                    setBets(json)
-                    setLoading(false)        
+                    if (json.ERROR){
+                        if (json.ERROR === "OUT OF CREDITS"){
+                            setOutOfCredits(true)
+                        }
+                    }
+                    else{
+                        setBets(json)
+                        setLoading(false)      
+                    }  
                 } 
                 catch (err) {
                     console.error("BEDROCK ERROR:", JSON.stringify(err, null, 2));
@@ -99,12 +106,13 @@ export default function BetBotProjectPage() {
     }
 
     function renderBetCards(){
-        if (!bets){
+        if (!bets || bets.length < 1){
             return
         }
         let fullRenderList = []
         let row = []
         let i = 0
+        console.log(bets)
         bets.forEach((betCard) => {
             const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
             const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
@@ -186,7 +194,14 @@ export default function BetBotProjectPage() {
     }
 
     function renderBetCardArea(){
-        if (loading){
+        if (outOfCredits){
+            return(
+                <OstCard style={{backgroundColor: 'red', width: '60%', marginLeft: '20%', ...Styles.Fonts.h2, fontSize: 42}}>
+                    Sorry! We've run out of credits for the month and cannot access the OneBet API until those Credits refill next month!
+                </OstCard>
+            )
+        }
+        else if (loading){
             return(
                 <OstCard>
                 </OstCard>
