@@ -16,9 +16,14 @@ export default async function handler(req, res) {
       }
 
     function findBookmakerByTitle(bookmakers, title) {
+        console.log("/////////////\n// Bookmakers //\n///////////////")
         console.log(bookmakers)
         let rBook = bookmakers.find(bookmaker => bookmaker.key === title);
+        console.log("\n/////////////\n// Fanduel //\n///////////////")
         console.log(rBook)
+        if (!rBook){
+            return
+        }
         let markets = rBook.markets
         let revisedOdds = {}
         markets.forEach(market => {
@@ -43,27 +48,27 @@ export default async function handler(req, res) {
 
     try {
         // Make request to the Odds API
-        const response = await axios.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds', {
+        axios.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds', {
             params: {
-            apiKey: API_KEY,      // Replace with your API key
+            apiKey: API_KEY,      
             regions: 'us,us2',
             markets: 'spreads,h2h'
             },
-        });
-
-        // Filter NBA-related bets, just in case you want to narrow it down more
-        let nbaBets = response.data.filter(bet => bet.sport_key === 'basketball_nba');
-        nbaBets = nbaBets.map(bet => {
-            console.log(bet)
-            return {
-                away: bet.away_team,
-                home: bet.home_team,
-                bet: findBookmakerByTitle(bet.bookmakers, "fanduel")
-            }
+        }).then( async (response) => {
+            let nbaBets = await response.data.filter(bet => bet.sport_key === 'basketball_nba');
+            nbaBets = nbaBets.map(bet => {
+                return {
+                    away: bet.away_team,
+                    home: bet.home_team,
+                    bet: findBookmakerByTitle(bet.bookmakers, "fanduel")
+                }
+            })
+            res.status(200).json(nbaBets);
+        }).catch(err => {
+            res.status(500).json({error: err})
         })
 
-        // Send the response to the client
-        res.status(200).json(nbaBets);
+       
     } catch (error) {
         console.error('Error fetching NBA odds:', error);
         res.status(500).json({ error: 'Error fetching NBA odds' });
