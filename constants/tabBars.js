@@ -37,7 +37,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: ["Boardgame Master AI"],
+            drawers: ["Boardgame Master AI", "BetBot"],
             onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer, router) }
         }
     },

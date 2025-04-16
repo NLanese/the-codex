@@ -99,6 +99,9 @@ export default function BetBotProjectPage() {
     }
 
     function renderBetCards(){
+        if (!bets){
+            return
+        }
         let fullRenderList = []
         let row = []
         let i = 0
@@ -179,7 +182,6 @@ export default function BetBotProjectPage() {
                 i = 0
             }
         })
-        console.log(fullRenderList)
         return fullRenderList  
     }
 
