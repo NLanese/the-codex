@@ -103,13 +103,35 @@ export default function BetBotProjectPage() {
         let i = 0
         bets.forEach((betCard) => {
             console.log("Bet Card mapping")
+            console.log(betCard.away)
+            console.log(betCard)
+            const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : "No Moneyline"
+            const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : "No Moneyline"
             row = [
                 ...row, 
-                (<OstCard style={{display: 'flex', justifyContent: 'center', flex: 4}}>
+                (<OstCard style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}>
                     <div style={{borderRadius: 15, paddingBottom: 0, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
                         <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 0.6}}>
                             {betCard.away} @ {betCard.home}
                         </p>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 10}}>
+                        <OstCard style={{flex: 5}}>
+                            <p>
+                            {betCard.away}
+                            </p>
+                            <p>
+                            {awayLine}
+                            </p>
+                        </OstCard>
+                        <OstCard style={{flex: 5}}>
+                            <p>
+                            {betCard.home}
+                            </p>
+                            <p>
+                            {homeLine}
+                            </p>
+                        </OstCard>
                     </div>
                 </OstCard>)
             ]
