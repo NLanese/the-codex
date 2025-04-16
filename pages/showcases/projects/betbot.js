@@ -11,6 +11,7 @@ import Styles from "../../../styles/styles";
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
+import { ST } from "next/dist/shared/lib/utils";
 
 export default function BetBotProjectPage() {
 
@@ -102,11 +103,17 @@ export default function BetBotProjectPage() {
         let row = []
         let i = 0
         bets.forEach((betCard) => {
-            console.log("Bet Card mapping")
-            console.log(betCard.away)
             console.log(betCard)
             const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : "No Moneyline"
             const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : "No Moneyline"
+
+            const awayDiff = betCard?.bet?.moneyline?.[betCard.away]?.diff ? betCard?.bet?.moneyline?.[betCard.away]?.diff : "No Spread"
+            const homeDiff = betCard?.bet?.moneyline?.[betCard.home]?.diff ? betCard?.bet?.moneyline?.[betCard.home]?.diff : "No Spread"
+
+            const awaySpreadOdds = betCard?.bet?.moneyline?.[betCard.away]?.odds ? betCard?.bet?.moneyline?.[betCard.away]?.odds : "No Spread Betting"
+            const homeSpreadOdds = betCard?.bet?.moneyline?.[betCard.home]?.odds ? betCard?.bet?.moneyline?.[betCard.home]?.odds : "No Spread Betting"
+
+
             row = [
                 ...row, 
                 (<OstCard style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}>
@@ -117,20 +124,36 @@ export default function BetBotProjectPage() {
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 10}}>
                         <OstCard style={{flex: 5}}>
-                            <p>
-                            {betCard.away}
+                            <p style={Styles.Fonts.h2}>
+                                {betCard.away}
                             </p>
                             <p>
                             {awayLine}
                             </p>
+                            <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
+                                <p>
+                                    {awayDiff}
+                                </p>
+                                <p>
+                                    {awaySpreadOdds}
+                                </p>
+                            </div>
                         </OstCard>
                         <OstCard style={{flex: 5}}>
-                            <p>
-                            {betCard.home}
+                            <p style={Styles.Fonts.h2}>
+                                {betCard.home}
                             </p>
                             <p>
                             {homeLine}
                             </p>
+                            <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
+                                <p>
+                                    {homeDiff}
+                                </p>
+                                <p>
+                                    {homeSpreadOdds}
+                                </p>
+                            </div>
                         </OstCard>
                     </div>
                 </OstCard>)
@@ -142,7 +165,7 @@ export default function BetBotProjectPage() {
                     (
                         <div style={{
                             display: 'flex', flexDirection: 'row', gap: 33,
-                            width: '90%', marginLeft: '10%', 
+                            width: '95%', marginLeft: '2.5%', 
                             borderTop: "4px solid #11013b", marginBottom: 20, paddingTop: 20
                         }}>
                             {row}
