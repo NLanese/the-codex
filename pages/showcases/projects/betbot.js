@@ -117,11 +117,11 @@ export default function BetBotProjectPage() {
             const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
             const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
 
-            const awayDiff = betCard?.bet?.moneyline?.[betCard.away]?.diff ? betCard?.bet?.moneyline?.[betCard.away]?.diff : false
-            const homeDiff = betCard?.bet?.moneyline?.[betCard.home]?.diff ? betCard?.bet?.moneyline?.[betCard.home]?.diff : false
+            const awayDiff = betCard?.bet?.spread?.[betCard.away]?.diff ? betCard?.bet?.spread?.[betCard.away]?.diff : false
+            const homeDiff = betCard?.bet?.spread?.[betCard.home]?.diff ? betCard?.bet?.spread?.[betCard.home]?.diff : false
 
-            const awaySpreadOdds = betCard?.bet?.moneyline?.[betCard.away]?.odds ? betCard?.bet?.moneyline?.[betCard.away]?.odds : "No Spread Betting"
-            const homeSpreadOdds = betCard?.bet?.moneyline?.[betCard.home]?.odds ? betCard?.bet?.moneyline?.[betCard.home]?.odds : "No Spread Betting"
+            const awaySpreadOdds = betCard?.bet?.spread?.[betCard.away]?.odds ? betCard?.bet?.spread?.[betCard.away]?.odds : "No Spread Betting"
+            const homeSpreadOdds = betCard?.bet?.spread?.[betCard.home]?.odds ? betCard?.bet?.spread?.[betCard.home]?.odds : "No Spread Betting"
 
             if (!awayLine && !awayDiff){
                 console.log(betCard)
@@ -130,47 +130,19 @@ export default function BetBotProjectPage() {
 
             row = [
                 ...row, 
-                (<OstCard style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}>
+                (
+                <OstCard style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}>
                     <div style={{borderRadius: 15, paddingBottom: 0, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
                         <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 0.6}}>
                             {betCard.away} @ {betCard.home}
                         </p>
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-                        <OstCard style={{flex: 5}}>
-                            <p style={Styles.Fonts.h2}>
-                                {betCard.away}
-                            </p>
-                            <p>
-                                {awayLine ? awayLine : "No Moneyline"}
-                            </p>
-                            <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
-                                <p>
-                                    {awayDiff ? awayDiff : "No Spread Betting"}
-                                </p>
-                                <p>
-                                    {awayDiff ? awaySpreadOdds : null}
-                                </p>
-                            </div>
-                        </OstCard>
-                        <OstCard style={{flex: 5}}>
-                            <p style={Styles.Fonts.h2}>
-                                {betCard.home}
-                            </p>
-                            <p>
-                                {homeLine ? homeLine : "No Moneyline"}
-                            </p>
-                            <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
-                                <p>
-                                    {homeDiff ? homeDiff : "No Spread Betting"}
-                                </p>
-                                <p>
-                                    {homeDiff ? homeSpreadOdds : null}
-                                </p>
-                            </div>
-                        </OstCard>
+                        {renderTeamBetCard(betCard.away, awayLine, awayDiff, awaySpreadOdds)}
+                        {renderTeamBetCard(betCard.home, homeLine, homeDiff, homeSpreadOdds)}
                     </div>
-                </OstCard>)
+                </OstCard>
+                )
             ]
             i = i + 1
             if (i == 3 || i >= bets.length){
@@ -191,6 +163,31 @@ export default function BetBotProjectPage() {
             }
         })
         return fullRenderList  
+    }
+
+    function renderTeamBetCard(team, line, points, spreadLine){
+        console.log(team)
+        console.log(line)
+        console.log(points)
+        console.log(spreadLine)
+        return(
+            <OstCard style={{flex: 5, height: 230}}>
+                <p style={{...Styles.Fonts.h2, fontSize: 28, paddingBottom: 10, height: 40}}>
+                    {team}
+                </p>
+                <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
+                    Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{line ? line : "No Moneyline"}</span>
+                </p>
+                <div>
+                    <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center', margin: 0, padding: 0}}>
+                        {points ? ("Spread: " + points + " ") : "No Spread Betting"}
+                    </p>
+                    <p style={{color: 'darkgrey', fontWeight: 500, fontSize: 20,  margin: 0, padding: 0, textAlign: 'center'}}>
+                        {points ? spreadLine : null}
+                    </p>
+                </div>
+            </OstCard>
+        )
     }
 
     function renderBetCardArea(){
