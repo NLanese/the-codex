@@ -97,6 +97,21 @@ export default function BetBotProjectPage() {
                     </p>
 
                     <p style={Styles.Fonts.basic}>
+                    As mentioned, all bets below are FanDuel odds pulled using the Odds API. Once bets are selected, all of the relevant
+                    infromation is scraped from the NBA API. This includes things like each player's full season game log, the team stats, and
+                    the specific head to head matchup stats between each team. 
+                    Once all of this information is scraped and collected, the backend server compiles a JSON document using this information
+                    and sends it up to the AWS Bedrock API. This API is also conencted to a knowledge base which holds details like Playoff Schedule and 
+                    significant player / general team analysis. 
+                    </p>
+
+                    <p style={Styles.Fonts.basic}>
+                    Using all of the information given the AWS Model with the knowledge base then determines the odds of your bet coming to fruition. 
+                    If the AI's odds look better than what FanDuel has, it will return to you that it is a good value bet. If the AI determines
+                    the odds of your bet hitting are above 50%, it will return to you that it is a secure bet. 
+                    </p>
+
+                    <p style={Styles.Fonts.basic}>
                     I'm pretty sure I have to say something about responsible gambling here... so gamble responsibly, I'm not endorsing gambling. You get it.  
                     </p>
                 </div>
