@@ -16,11 +16,11 @@ export default async function handler(req, res) {
       }
 
     function findBookmakerByTitle(bookmakers, title) {
-        console.log("/////////////\n// Bookmakers //\n///////////////")
-        console.log(bookmakers)
+        // console.log("/////////////\n// Bookmakers //\n///////////////")
+        // console.log(bookmakers)
         let rBook = bookmakers.find(bookmaker => bookmaker.key === title);
-        console.log("\n/////////////\n// Fanduel //\n///////////////")
-        console.log(rBook)
+        // console.log("\n/////////////\n// Fanduel //\n///////////////")
+        // console.log(rBook)
         if (!rBook){
             return
         }
@@ -55,13 +55,14 @@ export default async function handler(req, res) {
                 markets: 'spreads,h2h'
             },
         });
-
+        console.log(response.data)
         const nbaBets = response.data
             .filter(bet => bet.sport_key === 'basketball_nba')
             .map(bet => ({
                 away: bet.away_team,
                 home: bet.home_team,
-                bet: findBookmakerByTitle(bet.bookmakers, "fanduel")
+                bet: findBookmakerByTitle(bet.bookmakers, "fanduel"),
+                tipoff: bet.commence_time
             }));
 
         res.status(200).json(nbaBets);

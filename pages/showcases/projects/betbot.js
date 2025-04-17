@@ -48,18 +48,16 @@ export default function BetBotProjectPage() {
     // Functions //
     ///////////////
 
+        // Grabs Bets from Odds API
         async function handleRequestToAPI(){
             fetch("/api/scrapeFanDuel", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                // body: JSON.stringify({ message: "fullMessage" }),
             })
             .then(async (res) => {
                 const text = await res.text(); 
                 try {
                     const json = JSON.parse(text);
-                    console.log("Setting bets as ")
-                    console.log(json)
                     if (json.ERROR){
                         if (json.ERROR === "OUT OF CREDITS"){
                             setOutOfCredits(true)
@@ -86,6 +84,7 @@ export default function BetBotProjectPage() {
     // Renderings //
     ////////////////
 
+    // Render Text Preamble
     function renderIntro(){
         return(
             <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -120,6 +119,7 @@ export default function BetBotProjectPage() {
         )
     }
 
+    // Renders all FanDuel Bets as individual Cards
     function renderBetCards(){
         if (!bets || bets.length < 1){
             return
@@ -127,7 +127,6 @@ export default function BetBotProjectPage() {
         let fullRenderList = []
         let row = []
         let i = 0
-        console.log(bets)
         bets.forEach((betCard) => {
             const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
             const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
@@ -138,8 +137,9 @@ export default function BetBotProjectPage() {
             const awaySpreadOdds = betCard?.bet?.spread?.[betCard.away]?.odds ? betCard?.bet?.spread?.[betCard.away]?.odds : "No Spread Betting"
             const homeSpreadOdds = betCard?.bet?.spread?.[betCard.home]?.odds ? betCard?.bet?.spread?.[betCard.home]?.odds : "No Spread Betting"
 
+            const tipoff = betCard.tipoff
+
             if (!awayLine && !awayDiff){
-                console.log(betCard)
                 return false
             }
 
@@ -148,12 +148,15 @@ export default function BetBotProjectPage() {
                 (
                 <OstCard style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}>
                     <div style={{borderRadius: 15, paddingBottom: 0, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
-                        <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 0.6}}>
+                        <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 1, margin: 2, padding: 2, fontSize: 24}}>
                             {betCard.away} @ {betCard.home}
+                        </p>
+                        <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 1, margin: 2, padding: 2, paddingTop: 5}}>
+                            {renderDate(betCard.tipoff)}
                         </p>
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-                        {renderTeamBetCard(betCard.away, awayLine, awayDiff, awaySpreadOdds)}
+                        {renderTeamBetCard(betCard.away, awayLine, awayDiff, awaySpreadOdds, tipoff)}
                         {renderTeamBetCard(betCard.home, homeLine, homeDiff, homeSpreadOdds)}
                     </div>
                 </OstCard>
@@ -180,11 +183,26 @@ export default function BetBotProjectPage() {
         return fullRenderList  
     }
 
+    function renderDate(dateTime){
+        let dateArray = dateTime.split("-")
+        let time = dateArray[2].split("T")[1]
+        dateArray[2] = dateArray[2].split("T")[0]
+        dateArray = [...dateArray, time]
+        return `${dateArray[1]}-${dateArray[2]} ${dateArray[0]} at ${renderTime(dateArray[3])}`
+    }
+
+    function renderTime(time){
+        let ampm = "am"
+        let hour = parseInt(time.split(":")[0], 10)
+        if (hour > 12){
+            hour - hour - 12
+            ampm = "pm"
+        }
+        return `${hour}:${time.split(":")[1]}${ampm}`
+    }
+
+    // Renders a single Moneyline / Spread Sheet
     function renderTeamBetCard(team, line, points, spreadLine){
-        console.log(team)
-        console.log(line)
-        console.log(points)
-        console.log(spreadLine)
         return(
             <OstCard style={{flex: 5, height: 230}}>
                 <p style={{...Styles.Fonts.h2, fontSize: 28, paddingBottom: 10, height: 40}}>
@@ -205,6 +223,7 @@ export default function BetBotProjectPage() {
         )
     }
 
+    // Main Render for Betting Area
     function renderBetCardArea(){
         if (outOfCredits){
             return(
