@@ -11,7 +11,6 @@ import Styles from "../../../styles/styles";
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
-import { ST } from "next/dist/shared/lib/utils";
 
 export default function BetBotProjectPage() {
 
@@ -44,7 +43,7 @@ export default function BetBotProjectPage() {
         }, [])
 
         useEffect(() => {
-            console.log(bets)
+            // console.log(bets)
         }, [bets])
 
     ///////////////
@@ -151,9 +150,8 @@ export default function BetBotProjectPage() {
                 (
                 <OstCard 
                 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}
-                onClick={(betCard) => {}}
                 >
-                    <div style={{borderRadius: 15, paddingBottom: 0, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
+                    <div style={{borderRadius: 15, paddingBottom: 0, marginBottom: 15, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
                         <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 1, margin: 2, padding: 2, fontSize: 24}}>
                             {betCard.away} @ {betCard.home}
                         </p>
@@ -189,20 +187,25 @@ export default function BetBotProjectPage() {
         return fullRenderList  
     }
 
+    // Takes UTC Date String and Returns it Legibly
     function renderDate(dateTime){
         let dateArray = dateTime.split("-")
         let time = dateArray[2].split("T")[1]
         dateArray[2] = dateArray[2].split("T")[0]
         dateArray = [...dateArray, time]
-        return `${dateArray[1]}-${dateArray[2]} ${dateArray[0]} at ${renderTime(dateArray[3])}`
+        return `${dateArray[1]}-${dateArray[2]} at ${renderTime(dateArray[3])}`
     }
 
+    // Takes Military Time and Converts it 
     function renderTime(time){
         let ampm = "am"
         let hour = parseInt(time.split(":")[0], 10)
         if (hour > 12){
-            hour - hour - 12
+            hour = hour - 12
             ampm = "pm"
+        }
+        if (hour == 0){
+            hour = 12
         }
         return `${hour}:${time.split(":")[1]}${ampm}`
     }
@@ -210,7 +213,12 @@ export default function BetBotProjectPage() {
     // Renders a single Moneyline / Spread Sheet
     function renderTeamBetCard(team, line, points, spreadLine){
         return(
-            <OstCard style={{flex: 5, height: 230}}>
+            <OstCard 
+            style={{flex: 5, height: 230}}
+            onClick={(team, line, points, spread) => {
+
+            }}
+            >
                 <p style={{...Styles.Fonts.h2, fontSize: 28, paddingBottom: 10, height: 40}}>
                     {team}
                 </p>
@@ -255,11 +263,14 @@ export default function BetBotProjectPage() {
     }
 
 
-return (
-    <div style={{marginTop: 20}}>
-        <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
-        {renderIntro()}
-        {renderBetCardArea()}
-    </div>
-  );
+    /////////////////
+    // Main Render //
+    /////////////////
+    return (
+        <div style={{marginTop: 20}}>
+            <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
+            {renderIntro()}
+            {renderBetCardArea()}
+        </div>
+    );
 }
