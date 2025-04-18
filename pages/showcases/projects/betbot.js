@@ -43,6 +43,9 @@ export default function BetBotProjectPage() {
             handleRequestToAPI()
         }, [])
 
+        useEffect(() => {
+            console.log(bets)
+        }, [bets])
 
     ///////////////
     // Functions //
@@ -127,7 +130,7 @@ export default function BetBotProjectPage() {
         let fullRenderList = []
         let row = []
         let i = 0
-        bets.forEach((betCard) => {
+        bets.forEach((betCard, index) => {
             const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
             const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
 
@@ -139,14 +142,17 @@ export default function BetBotProjectPage() {
 
             const tipoff = betCard.tipoff
 
-            if (!awayLine && !awayDiff){
-                return false
-            }
+            // if (!awayLine && !awayDiff){
+            //     return false
+            // }
 
             row = [
                 ...row, 
                 (
-                <OstCard style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}>
+                <OstCard 
+                style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}
+                onClick={(betCard) => {}}
+                >
                     <div style={{borderRadius: 15, paddingBottom: 0, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
                         <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 1, margin: 2, padding: 2, fontSize: 24}}>
                             {betCard.away} @ {betCard.home}
@@ -163,7 +169,7 @@ export default function BetBotProjectPage() {
                 )
             ]
             i = i + 1
-            if (i == 3 || i >= bets.length){
+            if (i == 3 || index >= bets.length - 1){
                 fullRenderList = [
                     ...fullRenderList,
                     (
