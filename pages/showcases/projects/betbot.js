@@ -471,9 +471,12 @@ export default function BetBotProjectPage() {
                                     <h2 style={{color: "#11013b", paddingTop: 0, fontFamily: "Gilroy", marginTop: 0}}>{stagedBetSheet.team}</h2>
                                 </div>
                                 <div style={{flex: 3, display: 'flex', flexDirection: 'row-reverse'}}>
-                                        <p style={{fontFamily: "Gilroy", fontSize: 40, color: 'red', margin: 0, padding: 10, paddingTop:8, border: "3px solid red", aspectRatio: 1, textAlign: 'center', width: 35, height:35, fontWeight: 700}}>
+                                        <OstCard 
+                                        style={{fontFamily: "Gilroy", fontSize: 40, color: 'red', margin: 0, padding: 10, paddingTop:8, border: "3px solid red", aspectRatio: 1, textAlign: 'center', width: 35, height:35, fontWeight: 700}}
+                                        onClick={() => setAddBetModal(false)}
+                                        >
                                             X
-                                        </p>
+                                        </OstCard>
                                 </div>
                             </div>
                             
