@@ -457,30 +457,49 @@ export default function BetBotProjectPage() {
                     },
                     content: {
                         backgroundColor: 'white',
-                        width: '50%', marginLeft: '25%',
-                        height: '50%', marginTop: '20%',
+                        width: '30%', marginLeft: '35%',
+                        height: '30%', marginTop: '20%',
                         borderRadius: 20
                     }   
                     }}
                     >
                         <div
                         >
-                            <h2>Selected Team: {stagedBetSheet.team}</h2>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <OstCard>
+                                <div style={{flex: 9}}>
+                                    <h2 style={{...Styles.Fonts.h1, fontSize: 32, marginBottom: 0}}>Selected Team:</h2>
+                                    <h2 style={{color: "#11013b", paddingTop: 0, fontFamily: "Gilroy", marginTop: 0}}>{stagedBetSheet.team}</h2>
+                                </div>
+                                <div style={{flex: 3, display: 'flex', flexDirection: 'row-reverse'}}>
+                                        <p style={{fontFamily: "Gilroy", fontSize: 40, color: 'red', margin: 0, padding: 10, paddingTop:8, border: "3px solid red", aspectRatio: 1, textAlign: 'center', width: 35, height:35, fontWeight: 700}}>
+                                            X
+                                        </p>
+                                </div>
+                            </div>
+                            
+                            <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-around", gap: '7%'}}>
+                                <OstCard style={{flex: 5}}>
                                     <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
-                                    Take Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}</span>
+                                    Take Moneyline:
+                                    </p>
+                                    <p style={Styles.Fonts.h2}>
+                                        {stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}
                                     </p>
                                 </OstCard>
-                                <OstCard>
-                                    <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center', margin: 0, padding: 0}}>
-                                        {stagedBetSheet.points ? ("Take Spread: " + stagedBetSheet.points + " ") : "No Spread Betting"}
+                                <OstCard style={{flex: 5}}>
+                                    <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
+                                        Take Spread: ({stagedBetSheet.points})
                                     </p>
-                                    <p style={{color: 'darkgrey', fontWeight: 500, fontSize: 20,  margin: 0, padding: 0, textAlign: 'center'}}>
-                                        {stagedBetSheet.points ? stagedBetSheet.spreadLine : null}
+                                    <p style={Styles.Fonts.h2}>
+                                        {stagedBetSheet.points ? stagedBetSheet.spread : "No Spread"} 
                                     </p>
                                 </OstCard>
                             </div>
+                            <OstCard style={{marginTop: '6%', height: '8%', backgroundColor: '#efefef'}}>
+                            <p style={{...Styles.Fonts.h2, padding: 0, margin: 0}}>
+                                Compare
+                            </p>
+                            </OstCard>
                         </div>
                     </ReactModal>
                 )
