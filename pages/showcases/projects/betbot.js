@@ -25,11 +25,18 @@ export default function BetBotProjectPage() {
         // Loading
         const [loading, setLoading] = useState(true)
 
-        // All Scraped Bets
-        const [bets, setBets] = useState(false)
 
-        // Current Staged Bet Sheet
-        const [stagedBetSheet, setStagedBetSheet] = useState(false)
+            //
+            //// Bet States
+
+            // All Scraped Bets
+            const [bets, setBets] = useState(false)
+
+            // Current Staged Bet Sheet
+            const [stagedBetSheet, setStagedBetSheet] = useState(false)
+
+            // All Added Bets for Checking
+            const [selectedBets, setSelectedBets] = useState(false)
 
         // Trigger for Add Bet Modal
         const [addBetModal, setAddBetModal] = useState(false)
@@ -256,6 +263,14 @@ export default function BetBotProjectPage() {
                 setLoading(false)        
             });
         }
+
+        
+
+
+        // Adds a specific bet to the Bet Sheet
+        function selectBet(teamBetSheet){
+            console.log(teamBetSheet)
+        }
     
     ////////////////
     // Renderings //
@@ -364,8 +379,8 @@ export default function BetBotProjectPage() {
                                 </p>
                             </div>
                             <div style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-                                {renderTeamBetCard(betCard.away, awayLine, awayDiff, awaySpreadOdds, tipoff)}
-                                {renderTeamBetCard(betCard.home, homeLine, homeDiff, homeSpreadOdds)}
+                                {renderTeamBetCard(betCard.away, awayLine, awayDiff, awaySpreadOdds, betCard.home, tipoff)}
+                                {renderTeamBetCard(betCard.home, homeLine, homeDiff, homeSpreadOdds, betCard.away, tipoff)}
                             </div>
                         </OstCard>
                         )
@@ -415,12 +430,12 @@ export default function BetBotProjectPage() {
             }
 
             // Renders a single Moneyline / Spread Sheet
-            function renderTeamBetCard(team, line, points, spreadLine){
+            function renderTeamBetCard(team, line, points, spreadLine, opp, date){
                 return(
                     <OstCard 
                     style={{flex: 5, height: 230}}
                     onClick={() => {
-                        setStagedBetSheet({team:team, line:line, points:points, spread:spreadLine})
+                        setStagedBetSheet({team:team, line:line, points:points, spread:spreadLine, opp:opp, date:date})
                         setAddBetModal(true)
                     }}
                     >
@@ -467,12 +482,12 @@ export default function BetBotProjectPage() {
                         >
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div style={{flex: 9}}>
-                                    <h2 style={{...Styles.Fonts.h1, fontSize: 32, marginBottom: 0}}>Selected Team:</h2>
+                                    <h2 style={{...Styles.Fonts.h1, fontSize: 32, marginBottom: 0, marginTop: 10}}>Selected Team:</h2>
                                     <h2 style={{color: "#11013b", paddingTop: 0, fontFamily: "Gilroy", marginTop: 0}}>{stagedBetSheet.team}</h2>
                                 </div>
                                 <div style={{flex: 3, display: 'flex', flexDirection: 'row-reverse'}}>
                                         <OstCard 
-                                        style={{fontFamily: "Gilroy", fontSize: 40, color: 'red', margin: 0, padding: 10, paddingTop:8, border: "3px solid red", aspectRatio: 1, textAlign: 'center', width: 35, height:35, fontWeight: 700}}
+                                        style={{fontFamily: "Gilroy", fontSize: 40, color: 'red', marginTop: 10, padding: 10, paddingTop:6, border: "3px solid red", aspectRatio: 1, textAlign: 'center', width: 35, height:35, fontWeight: 700}}
                                         onClick={() => setAddBetModal(false)}
                                         >
                                             X
@@ -481,7 +496,7 @@ export default function BetBotProjectPage() {
                             </div>
                             
                             <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-around", gap: '7%'}}>
-                                <OstCard style={{flex: 5}}>
+                                <OstCard style={{flex: 5}} onClick={() => selectBet(stagedBetSheet, "moneyline")}>
                                     <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
                                     Take Moneyline:
                                     </p>
@@ -489,7 +504,7 @@ export default function BetBotProjectPage() {
                                         {stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}
                                     </p>
                                 </OstCard>
-                                <OstCard style={{flex: 5}}>
+                                <OstCard style={{flex: 5}} onClick={() => selectBet(stagedBetSheet, "spread")}>
                                     <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
                                         Take Spread: ({stagedBetSheet.points})
                                     </p>
@@ -507,6 +522,7 @@ export default function BetBotProjectPage() {
                     </ReactModal>
                 )
             }
+
 
 
     /////////////////
