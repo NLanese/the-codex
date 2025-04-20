@@ -455,15 +455,15 @@ export default function BetBotProjectPage() {
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <OstCard>
                                     <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
-                                       Take Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{line ? line : "No Moneyline"}</span>
+                                       Take Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}</span>
                                     </p>
                                 </OstCard>
                                 <OstCard>
                                     <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center', margin: 0, padding: 0}}>
-                                        {points ? ("Take Spread: " + points + " ") : "No Spread Betting"}
+                                        {stagedBetSheet.points ? ("Take Spread: " + stagedBetSheet.points + " ") : "No Spread Betting"}
                                     </p>
                                     <p style={{color: 'darkgrey', fontWeight: 500, fontSize: 20,  margin: 0, padding: 0, textAlign: 'center'}}>
-                                        {points ? spreadLine : null}
+                                        {stagedBetSheet.points ? stagedBetSheet.spreadLine : null}
                                     </p>
                                 </OstCard>
                             </div>
@@ -480,6 +480,7 @@ export default function BetBotProjectPage() {
         <div style={{marginTop: 20}}>
             <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
             {renderIntro()}
+            {renderAddbetModal()}
             {renderBetCardArea()}
         </div>
     );
