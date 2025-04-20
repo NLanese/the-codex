@@ -419,8 +419,9 @@ export default function BetBotProjectPage() {
                 return(
                     <OstCard 
                     style={{flex: 5, height: 230}}
-                    onClick={(team, line, points, spread) => {
-                        setStagedBetSheet({team:team, line:line, points:points, spread:spread})
+                    onClick={() => {
+                        setStagedBetSheet({team:team, line:line, points:points, spread:spreadLine})
+                        setAddBetModal(true)
                     }}
                     >
                         <p style={{...Styles.Fonts.h2, fontSize: 28, paddingBottom: 10, height: 40}}>
@@ -449,13 +450,26 @@ export default function BetBotProjectPage() {
                 return (
                     <ReactModal
                     isOpen={addBetModal}
+                    style={{
+                    overlay: {
+                        zIndex: 9999,
+                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                    },
+                    content: {
+                        backgroundColor: 'white',
+                        width: '50%', marginLeft: '25%',
+                        height: '50%', marginTop: '20%',
+                        borderRadius: 20
+                    }   
+                    }}
                     >
-                        <div>
+                        <div
+                        >
                             <h2>Selected Team: {stagedBetSheet.team}</h2>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <OstCard>
                                     <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
-                                       Take Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}</span>
+                                    Take Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}</span>
                                     </p>
                                 </OstCard>
                                 <OstCard>
@@ -479,9 +493,11 @@ export default function BetBotProjectPage() {
     return (
         <div style={{marginTop: 20}}>
             <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
-            {renderIntro()}
-            {renderAddbetModal()}
-            {renderBetCardArea()}
+            <div>
+                {renderAddbetModal()}
+                {renderIntro()}
+                {renderBetCardArea()}
+            </div>
         </div>
     );
 }
