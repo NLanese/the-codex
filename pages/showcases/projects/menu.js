@@ -22,6 +22,7 @@ const DDAImg = "../../../assets/icons/big/DDAImg.jpeg";
 const DDScreen = "../../../assets/icons/big/DDScreen.png";
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
+const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
 
 
 export default function ProjectsMenu() {
@@ -127,10 +128,10 @@ export default function ProjectsMenu() {
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={"moop"}
+                        imageSrc={BudgetBotImg}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                     >
-                        To Be Announced
+                        Budget Guard (AWS)
                     </OstCard>
                     <OstCard
                         templateStyle={1}

@@ -472,8 +472,8 @@ export default function BetBotProjectPage() {
                     },
                     content: {
                         backgroundColor: 'white',
-                        width: '30%', marginLeft: '35%',
-                        height: '30%', marginTop: '20%',
+                        width: '30%', marginLeft: '35%', minWidth: 300,
+                        height: '30%', marginTop: '20%', minHeight: 220,
                         borderRadius: 20
                     }   
                     }}
