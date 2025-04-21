@@ -1661,6 +1661,8 @@ export default function OstrichShowcase() {
                                 <li>activeStyle</li>
                                 <li>hoverStyle</li>
                                 <li>onClick</li>
+                                <li>clickable</li>
+                                <li>manualOnClick</li>
                             </ul>
                         </div>
                         <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>

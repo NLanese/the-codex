@@ -294,6 +294,9 @@ export const OstrichDropDown = ({
     // Determines which DrawerPress Function to pass
     function handleDrawerPress(drawer){
 
+        if (drawer.clickable === false){
+            return
+        }
 
         // Sets Drawer as Active, if already Active then Deactivates
         let isActive = false

@@ -138,7 +138,7 @@ export default function ProjectsMenu() {
                         imageSrc={"moop"}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                     >
-                        To Be Announced
+                        Ostrich Pass Kit
                     </OstCard>
                 </div>
             </div>
