@@ -439,14 +439,14 @@ export default function BetBotProjectPage() {
                         setAddBetModal(true)
                     }}
                     >
-                        <p style={{...Styles.Fonts.h2, fontSize: 28, paddingBottom: 10, height: 40}}>
+                        <p style={{...Styles.Fonts.h2, fontSize: 23, paddingBottom: 10, height: 35}}>
                             {team}
                         </p>
-                        <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
+                        <p style={{...Styles.Fonts.basic, fontSize: 18, textAlign: 'center'}}>
                             Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{line ? line : "No Moneyline"}</span>
                         </p>
                         <div>
-                            <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center', margin: 0, padding: 0}}>
+                            <p style={{...Styles.Fonts.basic, fontSize: 18, textAlign: 'center', margin: 0, padding: 0}}>
                                 {points ? ("Spread: " + points + " ") : "No Spread Betting"}
                             </p>
                             <p style={{color: 'darkgrey', fontWeight: 500, fontSize: 20,  margin: 0, padding: 0, textAlign: 'center'}}>
