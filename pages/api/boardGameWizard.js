@@ -32,7 +32,7 @@ export default async function handler(req, res) {
             "inferenceConfig": {
               "textInferenceConfig": {
                 "temperature": 0.65,
-                "topP": 0.7,
+                "topP": 0.25,
                 "maxTokens": 512,
                 "stopSequences": []
               }
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
             "inferenceConfig": {
               "textInferenceConfig": {
                 "temperature": 0.45,
-                "topP": 0.7,
+                "topP": 0.35,
                 "maxTokens": 512,
                 "stopSequences": []
               }

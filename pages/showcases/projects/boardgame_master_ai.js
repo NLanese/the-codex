@@ -272,12 +272,12 @@ export default function BoardGameMasterAIProjectPage() {
                     </p>
                     <p style={{...Styles.Code.code, marginLeft: 120}}>
                         <span style={Styles.Code.str}>"temperature"</span>
-                        <span style={Styles.Code.reg}>{": 0.25,"}</span>
+                        <span style={Styles.Code.reg}>{": 0.65,"}</span>
                         <span style={Styles.Code.comment}>{"\t// 0 - 1.0, Higher Values stray further from given data"}</span>
                     </p>
                     <p style={{...Styles.Code.code, marginLeft: 120}}>
                         <span style={Styles.Code.str}>"topP"</span>
-                        <span style={Styles.Code.reg}>{": 0.7,"}</span>
+                        <span style={Styles.Code.reg}>{": 0.25,"}</span>
                         <span style={Styles.Code.comment}>{"\t// 0 - 1.0, Higher Values need less confidence"}</span>
                     </p>
                     <p style={{...Styles.Code.code, marginLeft: 120}}>
@@ -322,7 +322,7 @@ export default function BoardGameMasterAIProjectPage() {
                     </p>
                     <p style={{...Styles.Code.code, marginLeft: 120}}>
                         <span style={Styles.Code.str}>"topP"</span>
-                        <span style={Styles.Code.reg}>{": 0.5,"}</span>
+                        <span style={Styles.Code.reg}>{": 0.35,"}</span>
                         <span style={Styles.Code.comment}>{"\t// 0 - 1.0, Higher Values need less confidence"}</span>
                     </p>
                     <p style={{...Styles.Code.code, marginLeft: 120}}>
