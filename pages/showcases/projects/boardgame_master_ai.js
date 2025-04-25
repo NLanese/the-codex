@@ -476,6 +476,14 @@ return (
 
                     {renderAWSRequestCode()}
 
+                    <p style={Styles.Fonts.basic}>
+                    As you may see, we make the API call using the 'send' function from a client variable; as opposed to using Axios or some other generic HTTP Request function. This is because 
+                    we need to make the request through a logged in client instance of AWS. We must configure the client using our AWS Region, I_AM Access ID, and our Knowledge Base's Secrey Key. 
+                    You can find all of these in your AWS Console, and we will cover how to find those further along in this page. However, immediately below you will see the proper syntax for creating
+                    and AWS client object
+                    </p>
+
+
                 </div>
             </OstCard>
         </div>
