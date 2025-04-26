@@ -51,11 +51,11 @@ export const portfolioTabs = (setTabBar, router) => {
             // setTabBar("Frameworks")
             // router.replace("/frameworks/list")
         },
-        dropdown: {
+        // dropdown: {
             // openOnHover: true,
             // drawers: frameworksList,
             // onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router,  setTabBar, "menu")}
-        }
+        // }
     },
     {
         title: "Return Home", 

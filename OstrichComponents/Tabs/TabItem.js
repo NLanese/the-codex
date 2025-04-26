@@ -161,8 +161,12 @@ export const TabItem = ({
         // Renders a Button as a Tab
         function renderTab(){
             let styleType = (isActive ? "active" : "regular")
-            if (isHovered && ! isActive){
+            if (isHovered && !isActive){
                 styleType = "hover"
+            }
+            console.log(tabObj)
+            if(tabObj.title === "Offical Works"){
+                console.log(styleType)
             }
             return(
                 <div
@@ -172,7 +176,7 @@ export const TabItem = ({
                 onMouseLeave={() => onMouseLeave(tabObj)}
                 >
                     <div 
-                    style={(isActive ? {...activeTextStyle, ...tabObj?.activeTitleStyle} : {...textStyle, ...tabObj?.titleStyle})}
+                    style={determineBoxStyle(style, tabObj)}
                     >
                         <p>
                             {title}
@@ -189,8 +193,8 @@ export const TabItem = ({
                 title={title}
 
                 onClick={(tab) => onPress(tab)}
-                onMouseEnter={(tabObj => onMouseEnter(tabObj))}
-                onMouseLeave={(tabObj => onMouseLeave(tabObj))}
+                onMouseEnter={() => onMouseEnter(tabObj)}
+                onMouseLeave={() => onMouseLeave(tabObj)}
 
                 obj={dropdown}
                 drawers={dropdown.drawers}
