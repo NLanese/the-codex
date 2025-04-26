@@ -6,11 +6,10 @@ import { useRouter } from "next/router";
 
 // Recoil
 import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../recoil/atoms";
+import { tokenState, tabBarState, directoryDataState, userState } from "../../recoil/atoms";
 
 // Styles 
 import Styles from "../../styles/styles";
-import { userState } from "../../recoil/atoms";
 
 export default function AccountMenu() {
 
@@ -34,6 +33,7 @@ export default function AccountMenu() {
     // Directory Set
     useEffect(() => {
         setDirectory(false)
+        setTabBar("Account")
     }, [])
 
     // Determines If User is Logged In Already
@@ -44,8 +44,6 @@ export default function AccountMenu() {
         }
        }
     }, [token])
-
-
 
     /////////////////
     // Main Return //
