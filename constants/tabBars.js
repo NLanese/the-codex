@@ -26,7 +26,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: ["Showcase"],
+            drawers: ["Showcase", "OstCards", "TabBars"],
             onDrawerClick: (drawer) => { handleOstrichComponentsDrawer("ostrich-components", drawer, router) }
         }
     },

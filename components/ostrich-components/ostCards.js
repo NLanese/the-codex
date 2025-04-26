@@ -11,7 +11,6 @@ import { OstCard } from "../../OstrichComponents/Format/OstCard";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 
 export default function OstCardShowcase(){
-
     return(
         <div style={{marginBottom: 30}}>
             <div style={Styles.Fonts.lessonHeader}>Ostrich Cards (OstCards)</div>
