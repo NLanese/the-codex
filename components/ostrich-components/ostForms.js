@@ -5,7 +5,11 @@ import { OstrichForm } from "../../OstrichComponents/Forms/OstrichForm";
 
 export default function OstFormsShowcase(){
 
+    ///////////
+    // State //
+    ///////////
 
+    const [text1, setText1] = useState("")
 
     /////////////////
     // Main Return //
@@ -25,6 +29,18 @@ export default function OstFormsShowcase(){
             <p style={Styles.Fonts.basic}>
                 Lets start by going over some very simple and basic examples, before moving on to more complex instances of Ostrich Forms
             </p>
+
+            <OstrichForm 
+                title="Example Form"
+                fields={[{
+                    title: "Email",
+                    caption: "(Optional)",
+                    placeholder: "example@email.com",
+                    type: "text",
+                    onChange: ((value) => setText1(value)),
+                    value: text1,
+                  }]}
+            />
 
         </div>
     )
