@@ -520,7 +520,10 @@ export const OstrichDropDown = ({
                         key={index}
                         style={isActive ? activeDrawerBoxStyleInput : {...determineDrawerStyle(drawer).drawer}}
                         textStyle={isActive ? extractTextStyles(activeDrawerBoxStyleInput) : {...determineDrawerStyle(drawer).text}}
-                        onClick={() => handleDrawerPress(drawer)}
+                        onClick={(event) => {
+                            event.stopPropagation()
+                            handleDrawerPress(drawer)
+                        }}
                         obj={drawerObject}
                         handleDrawerHover={(input) => handleDrawerHover(drawer, input)}
                     />
