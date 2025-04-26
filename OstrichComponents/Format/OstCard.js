@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-const tinycolor = require("tinycolor2"); // Requires tinycolor2 library
+import darkenColor from "../Functions/darkenColor";
 
 
 export const OstCard =({
@@ -24,7 +24,8 @@ export const OstCard =({
         let tempStyle = {
             borderRadius: 15, 
             padding: 10, 
-            boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)'
+            boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
+            fontFamily: "Gilroy"
         }
         if (!style || !use){
             completeStyle = {...tempStyle}
@@ -44,23 +45,6 @@ export const OstCard =({
         return completeStyle
     }
 
-    function darkenColor(color, amount = 20) {
-        if (!color){
-            return "#acafb0"
-        }
-    
-        let parsedColor = tinycolor(color);
-        if (!parsedColor.isValid()) {
-            throw new Error("Invalid color format");
-        }
-    
-        let darkenedColor = parsedColor.darken(amount);
-    
-        return color.startsWith("#") ? darkenedColor.toHexString() : 
-               color.startsWith("rgb") ? darkenedColor.toRgbString() :
-               color.startsWith("hsl") ? darkenedColor.toHslString() :
-               darkenedColor.toHexString(); // Default to hex
-    }
 
     ///////////////
     // Rendrings //
@@ -181,33 +165,7 @@ export const OstCard =({
         // Template Three
         const TemplateThreeRender = () => {
             return(
-                <div style={{
-                    ...completeStyle(true), 
-                    display: 'flex', flexDirection: 'column', 
-                    minHeight: 100, paddingBottom: 10,
-                    overflow: 'hidden',
-                }} 
-                onMouseDown={() =>{ 
-                    if (onClick){
-                        setIsPressed(true)
-                    }
-                }}
-                onMouseUp={() => setIsPressed(false)}
-                onMouseLeave={() => {
-                    setIsPressed(false);
-                    setIsHovered(false);
-                }} 
-                onMouseEnter={() => {
-                    if (onClick){
-                        setIsHovered(true)
-                    }
-                }}
-                onClick={(details) => {
-                    if (onClick){
-                        setIsPressed(false); 
-                        onClick(details);
-                    }
-                }}>
+                <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                     {/* Title  */}
                     {details?.title ? 
                         (
