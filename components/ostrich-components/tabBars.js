@@ -210,7 +210,6 @@ export default function TabBarsShowcase(){
                         style={{width: 500}}
                         showsActive={false}
                         onDrawerClick={(drawer) => {
-                            console.log(drawer.title, " clicked.")
                             setStyleForTab4({...styleForTab4, [drawer.type]: drawer.value})
                         }}
                         tabs={[

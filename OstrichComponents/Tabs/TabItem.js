@@ -114,10 +114,6 @@ export const TabItem = ({
                     rObj = hoverStyle
                 }
             }
-            if (tabObj.title === "Dynamic Styles!"){
-                console.log(rObj)
-                console.log(tab.style)
-            }
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
         }
 
@@ -163,10 +159,6 @@ export const TabItem = ({
             let styleType = (isActive ? "active" : "regular")
             if (isHovered && !isActive){
                 styleType = "hover"
-            }
-            console.log(tabObj)
-            if(tabObj.title === "Offical Works"){
-                console.log(styleType)
             }
             return(
                 <div

@@ -16,11 +16,7 @@ export default async function handler(req, res) {
       }
 
     function findBookmakerByTitle(bookmakers, title) {
-        // console.log("/////////////\n// Bookmakers //\n///////////////")
-        // console.log(bookmakers)
         let rBook = bookmakers.find(bookmaker => bookmaker.key === title);
-        // console.log("\n/////////////\n// Fanduel //\n///////////////")
-        // console.log(rBook)
         if (!rBook){
             return
         }
@@ -55,7 +51,6 @@ export default async function handler(req, res) {
                 markets: 'spreads,h2h'
             },
         });
-        console.log(response.data)
         const nbaBets = response.data
             .filter(bet => bet.sport_key === 'basketball_nba')
             .map(bet => ({
@@ -71,11 +66,11 @@ export default async function handler(req, res) {
         const statusCode = err?.response?.status;
         const apiMessage = err?.response?.data?.error_code || 'No message';
 
-        console.log('\n////////////////////////');
-        console.log('// Error fetching odds //');
-        console.log('////////////////////////\n');
-        console.log('Status Code:', statusCode);
-        console.log('API Message:', apiMessage);
+        console.warn('/////////////////////////');
+        console.warn('// Error fetching odds //');
+        console.warn('/////////////////////////');
+        console.warn('Status Code:', statusCode);
+        console.warn('API Message:', apiMessage);
 
         if (apiMessage === "OUT_OF_USAGE_CREDITS"){
             res.status(200).json({ERROR: "OUT OF CREDITS"})
