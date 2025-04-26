@@ -224,33 +224,7 @@ export const OstCard =({
         // Template Four
         const TemplateFourRender = () => {
             return(
-                <div style={{
-                    ...completeStyle(true), 
-                    display: 'flex', flexDirection: 'column', 
-                    minHeight: 100, paddingBottom: 10,
-                    overflow: 'hidden',
-                }} 
-                onMouseDown={() =>{ 
-                    if (onClick){
-                        setIsPressed(true)
-                    }
-                }}
-                onMouseUp={() => setIsPressed(false)}
-                onMouseLeave={() => {
-                    setIsPressed(false);
-                    setIsHovered(false);
-                }} 
-                onMouseEnter={() => {
-                    if (onClick){
-                        setIsHovered(true)
-                    }
-                }}
-                onClick={(details) => {
-                    if (onClick){
-                        setIsPressed(false); 
-                        onClick(details);
-                    }
-                }}>
+                <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                     {/* Title  */}
                     {details?.title ? (
                         <div style={{ 
