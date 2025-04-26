@@ -368,6 +368,33 @@ export default function BoardGameMasterAIProjectPage() {
             )
         }
 
+        function renderAWSClientCode(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '65%'}}>
+                     <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>import </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                        <span style={Styles.Code.var}>BedrockAgentRuntimeClient</span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                        <span style={Styles.Code.var}>RetrieveAndGenerateCommand</span>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                        <span style={Styles.Code.keyword}> from </span>
+                        <span style={Styles.Code.str}>"@aws-sdk/client-bedrock-agent-runtime" </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>const </span>
+                        <span style={Styles.Code.var}>client</span>
+                        <span style={Styles.Code.reg}>{" = "}</span>
+                        <span style={Styles.Code.bool}>new </span>
+                        <span style={Styles.Code.keyword}>BedrockAgentRuntimeClient</span>
+                        <span style={Styles.Code.func}>{"("}</span>
+                        <span style={Styles.Code.reg}>{"{"}</span>
+                    </p>
+
+                </div>
+            )
+        }
+
 return (
     <div style={{marginTop: 20}}>
         <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
@@ -442,7 +469,7 @@ return (
                     }}
                 />
                 <OstCard
-                    style={{alignSelf: 'flex-end', backgroundColor: '#fff', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22, borderRadius: 0}}
+                    style={{alignSelf: 'flex-end', backgroundColor: 'white', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22, borderRadius: 0}}
                     onClick={() => sendMessage()}
                 >
                     Send
@@ -483,6 +510,7 @@ return (
                     and AWS client object
                     </p>
 
+                    {renderAWSClientCode()}
 
                 </div>
             </OstCard>
