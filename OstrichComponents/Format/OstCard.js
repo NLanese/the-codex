@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+const tinycolor = require("tinycolor2"); // Requires tinycolor2 library
 
 
 export const OstCard =({
@@ -36,13 +37,30 @@ export const OstCard =({
                 ...completeStyle, 
                 transform: isPressed ? 'scale(0.95)' : 'scale(1)',
                 transition: 'transform 0.1s ease-out',
-                background: isHovered ? 'rgba(0, 0, 0, 0.15)' : 'transparent',
+                background: isHovered ? darkenColor(completeStyle.backgroundColor) : completeStyle.backgroundColor ? completeStyle.backgroundColor : "white",
                 cursor: onClick ? 'pointer' : "none"
             }
         }
         return completeStyle
     }
 
+    function darkenColor(color, amount = 20) {
+        if (!color){
+            return "#acafb0"
+        }
+    
+        let parsedColor = tinycolor(color);
+        if (!parsedColor.isValid()) {
+            throw new Error("Invalid color format");
+        }
+    
+        let darkenedColor = parsedColor.darken(amount);
+    
+        return color.startsWith("#") ? darkenedColor.toHexString() : 
+               color.startsWith("rgb") ? darkenedColor.toRgbString() :
+               color.startsWith("hsl") ? darkenedColor.toHslString() :
+               darkenedColor.toHexString(); // Default to hex
+    }
 
     ///////////////
     // Rendrings //

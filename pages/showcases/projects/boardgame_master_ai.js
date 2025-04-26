@@ -390,7 +390,34 @@ export default function BoardGameMasterAIProjectPage() {
                         <span style={Styles.Code.func}>{"("}</span>
                         <span style={Styles.Code.reg}>{"{"}</span>
                     </p>
-
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.var}>region </span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.var}>process.env.AWS_REGION </span>
+                        <span style={Styles.Code.reg}>, </span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.var}>credentials </span>
+                        <span style={Styles.Code.reg}>{": {"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.var}>accessKeyId</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.var}>process.env.AWS_ACCESS_ID </span>
+                        <span style={Styles.Code.reg}>{","}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.var}>secretAccessKey</span>
+                        <span style={Styles.Code.reg}>{": "}</span>
+                        <span style={Styles.Code.var}>process.env.AWS_SECRET_ACCESS_KEY </span>
+                    </p>
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.reg}>{"}"}</span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.reg}>{"}"}</span>
+                        <span style={Styles.Code.func}>{")"}</span>
+                    </p>
                 </div>
             )
         }
@@ -512,6 +539,9 @@ return (
 
                     {renderAWSClientCode()}
 
+                    <p style={Styles.Fonts.basic}>
+                    And that is as much coding as we will need for creating this Chat Bot! The rest of the work is done in the AWS Console
+                    </p>
                 </div>
             </OstCard>
         </div>
