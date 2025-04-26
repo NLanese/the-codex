@@ -6,10 +6,11 @@ function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
     setTabBar(false)
 }
 
+// Handles Clicks in Ostrich Components
 function handleOstrichComponentsDrawer(folder, drawer, router){
+    console.log(`Should route to /showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
     router.replace(`/showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
 }
-
 
 // Fires on specific Lesson drawer type clicks
 function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
@@ -39,7 +40,7 @@ export const portfolioTabs = (setTabBar, router) => {
             openOnHover: true,
             drawers: [
                 "Boardgame Master AI", 
-                "BetBot", 
+                "BetBot",
                 {title: "Ostrich Component Library", onClick: () => router.replace("/showcases/ostrich-components/menu"), manualOnClick: true},
             ],
             onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer, router) }

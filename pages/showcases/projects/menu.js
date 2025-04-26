@@ -91,7 +91,7 @@ export default function ProjectsMenu() {
                         router.replace("/showcases/ostrich-components/showcase")
                         }}
                     >
-                        The Ostrich Component Library 
+                        The Ostrich Component Assistant AI 
                     </OstCard>
                 </div>
             </div>

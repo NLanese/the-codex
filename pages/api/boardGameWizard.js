@@ -52,15 +52,11 @@ export default async function handler(req, res) {
       }
     });
     
-    
-    
-    
-
     const response = await client.send(command);
-
     res.status(200).json({ reply: response.output?.text || "No response" });
-  } catch (err) {
-    console.error(err);
+  } 
+  catch (err) {
+    console.error("Error connecting to One Bet API -- ", err);
     res.status(500).json({ message: "Internal server error" });
   }
 }
