@@ -110,12 +110,12 @@ export const OstrichForm = ({
     //////////////////
 
         // Double Fires Style Changes after submission
-        useEffect(() => {
-            console.log("Fields State after submit detected")
-            console.log(fieldsState)
-            // console.log("Re-Setting the fields after submission")
-            // setFieldsState(fieldsState)
-        }, [submitted])
+        // useEffect(() => {
+        //     console.log("Fields State after submit detected")
+        //     console.log(fieldsState)
+        //     // console.log("Re-Setting the fields after submission")
+        //     // setFieldsState(fieldsState)
+        // }, [submitted])
 
     ////////////////
     // Renderings //
@@ -157,7 +157,7 @@ export const OstrichForm = ({
                         key={fieldObj.id}
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyleState}
-                        captionStyle={captionTextStyle}
+                        // captionStyle={{captionTextStyle}}
                         onChange={handleFormChange}
                         fieldID={fieldObj.id}
                     />

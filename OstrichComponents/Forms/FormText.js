@@ -108,16 +108,16 @@ export const FormText = ({
 ///////////////////////
 // Prop Restrictions //
 ///////////////////////
-FormText.propTypes = {
-    fieldObj: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        onChange: PropTypes.func,
-        value: PropTypes.any.isRequired,
-        fieldHidden: PropTypes.bool,
-        style: PropTypes.object,
-        placeholder: PropTypes.string
-    }).isRequired,
-    onChange: PropTypes.func.isRequired,
-    titleStyle: PropTypes.object,
-};
+// FormText.propTypes = {
+//     fieldObj: PropTypes.shape({
+//         title: PropTypes.string.isRequired,
+//         type: PropTypes.string.isRequired,
+//         onChange: PropTypes.func,
+//         value: PropTypes.any.isRequired,
+//         fieldHidden: PropTypes.bool,
+//         style: PropTypes.object,
+//         placeholder: PropTypes.string
+//     }).isRequired,
+//     onChange: PropTypes.func.isRequired,
+//     titleStyle: PropTypes.object,
+// };
