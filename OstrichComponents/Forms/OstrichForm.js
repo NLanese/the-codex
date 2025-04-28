@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormText } from './FormText';
 import { FormMultipleChoice } from './FormMultipleChoice';
 import { OstrichButton } from '../Buttons/OstrichButton';
+import { OstCard } from "../Format/OstCard"
 
 export const OstrichForm = ({
     title,                              // Form Title
@@ -508,13 +509,13 @@ export const OstrichForm = ({
         return null
     }
     return(
-        <div style={{...styleState}}>
+        <OstCard style={{...styleState}}>
             {renderTitle()}
             <div style={{...fieldsBoxStyleState}}>
                 {renderFields(fieldsState)}
             </div>
             {renderSubmit()}
-        </div>
+        </OstCard>
     )
 }
 
