@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 
 export const FormText = ({
@@ -8,9 +8,41 @@ export const FormText = ({
     onChange,
 }) => {
 
+    ///////////
+    // State //
+    ///////////
+
+    const [titleStyleFinal, setTitleStyleFinal] = useState({})
+    const [captionStyleFinal, setCaptionStyleFinal] = useState({})
+
+    ////////////////
+    // UseEffects //
+    ////////////////
+
+    useEffect(() => {
+        finalizeStyles()
+    }, [])
+
     ///////////////
     // Functions //
     ///////////////
+
+        function finalizeStyles(){
+            let temp = {
+                fontSize: 22,
+                fontWeight: 600,
+                fontFamily: "Gilroy",
+                paddingBottom: 1,
+                marginBottom: 1
+            }
+            let final = {...temp, ...titleStyle}
+            setTitleStyleFinal(final)
+            temp.fontSize = 18
+            temp.fontWeight = 500
+            temp.color = 'blue'
+            final = {...temp, ...captionStyle}
+            setCaptionStyleFinal(final)
+        }
 
         // Handles any changes in text field
         function handleInput(event){
@@ -44,9 +76,9 @@ export const FormText = ({
         function renderCaption(){
             if (fieldObj.caption){
                 return(
-                    <div style={{...captionStyle}}>
+                    <span style={{...captionStyle}}>
                         {fieldObj.caption}
-                    </div>
+                    </span>
                 )
             }
         }
@@ -57,10 +89,9 @@ export const FormText = ({
 
         return(
             <div>
-                <div style={{...titleStyle}}>
-                    {fieldObj.title}
-                </div>
-                {renderCaption()}
+                <p style={{...titleStyle}}>
+                    {fieldObj.title} {renderCaption()}
+                </p>
                 <div>
                     <input 
                     type={fieldObj.type}
