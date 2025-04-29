@@ -277,8 +277,13 @@ export const OstrichForm = ({
         // Checks if Title Text Style is provided
         function checkTitleTextStyle(){
             let temp = {
-                fontWeight: 700,
-                fontSize: 32,
+                fontSize: 24,
+                fontWeight: 600,
+                fontFamily: "Gilroy",
+                paddingBottom: 1,
+                marginBottom: 5,
+                marginTop: 0,
+                paddingTop: 5,
                 textAlign: 'center',
             }
             let final = {...temp, ...titleBoxStyle}

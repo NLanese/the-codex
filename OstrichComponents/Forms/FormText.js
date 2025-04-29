@@ -30,7 +30,7 @@ export const FormText = ({
 
         function finalizeStyles(){
             let temp = {
-                fontSize: 22,
+                fontSize: 24,
                 fontWeight: 600,
                 fontFamily: "Gilroy",
                 paddingBottom: 1,
@@ -77,7 +77,7 @@ export const FormText = ({
         function renderCaption(){
             if (fieldObj.caption){
                 return(
-                    <span style={{...captionStyle}}>
+                    <span style={{...captionStyleFinal}}>
                         {fieldObj.caption}
                     </span>
                 )
@@ -90,7 +90,7 @@ export const FormText = ({
 
         return(
             <div>
-                <p style={{...titleStyle}}>
+                <p style={{...titleStyleFinal}}>
                     {fieldObj.title} {renderCaption()}
                 </p>
                 <div>
