@@ -34,7 +34,8 @@ export const OstrichForm = ({
 
     submitButtonStyle,
     submitButtonIncativeStyle,
-    submitButtonTextStyle
+    submitButtonTextStyle,
+    submitText = "Submit"
 }) => {
 
     ////////////
@@ -54,6 +55,9 @@ export const OstrichForm = ({
         const [styleFinal, setStyleFinal] = useState(false)
         const [titleStyleFinal, setTitleStyleFinal] = useState(false)
         const [titleTextStyleFinal, setTitleTextStyleFinal] = useState(false)
+
+        const [submitButtonStyleFinal, setSubmitButtonStyleFinal] = useState(false)
+        const [submitButtonTextStyleFinal, setSubmitButtonTextStyleFinal] = useState(false)
         
 
     /////////////
@@ -118,8 +122,8 @@ export const OstrichForm = ({
         // Renders the Form Title
         function renderTitle(){
             return(
-                <div style={{...titleBoxStyleState}}>
-                    <p style={{...titleTextStyleState}}>
+                <div style={{...titleStyleFinal}}>
+                    <p style={{...titleTextStyleFinal}}>
                         {title}
                     </p>
                 </div>
@@ -184,7 +188,7 @@ export const OstrichForm = ({
                             title={submitButtonTitle}
                             activeColor={"rgba(73, 148, 244, 1)"}
                             inactiveColor={"rgba(215, 216, 218, 1)"}
-                            titleStyle={submitText}
+                            titleStyle={submitButtonTextStyle}
                             isActive={canSubmit}
                             onSubmit={submitForm}
                         />
@@ -216,6 +220,7 @@ export const OstrichForm = ({
         function checkInputs(){
             checkTitle()
             checkFields()
+            finalizeStyles()
         }
 
         // Checks if Title prop is supplied (Needed)
@@ -236,6 +241,12 @@ export const OstrichForm = ({
     // Style Checks //
     //////////////////
 
+        function finalizeStyles(){
+            checkStyle()
+            checkTitleBoxStyle()
+            checkTitleTextStyle()
+        }
+
         // Checks Style prop
         function checkStyle(){
             let temp = {
@@ -251,24 +262,24 @@ export const OstrichForm = ({
 
         // Checks if Title Box Style is provided 
         function checkTitleBoxStyle(){
-            if (!titleBoxStyleState){
-                setTitleBoxStyleState({
-                    alignItems: 'center',
-                    paddingBottom: 10,
-                    paddingTop: 10,
-                })
+            let temp = {
+                alignItems: 'center',
+                paddingBottom: 10,
+                paddingTop: 10,
             }
+            let final = {...temp, ...titleBoxStyle}
+            setTitleStyleFinal(final)
         }
 
         // Checks if Title Text Style is provided
         function checkTitleTextStyle(){
-            if (!titleTextStyleState){
-                setTitleTextStyleState({
-                    fontWeight: 700,
-                    fontSize: 32,
-                    textAlign: 'center',
-                })
+            let temp = {
+                fontWeight: 700,
+                fontSize: 32,
+                textAlign: 'center',
             }
+            let final = {...temp, ...titleBoxStyle}
+            setTitleTextStyleFinal(final)
         }
 
         // Checks if Title Box Style is provided 
@@ -345,10 +356,10 @@ export const OstrichForm = ({
         // Determines the Style of the Submit Button (Active or Not)
         function determineSubmitStyle(){
             if (allowSubmit){
-                return submitStyle
+                return submitButtonStyle
             }
             else {
-                return inactiveSubmitStyle
+                return submitButtonIncativeStyle
             }
         }
     
@@ -498,9 +509,9 @@ export const OstrichForm = ({
     return(
         <OstCard style={{...styleFinal}}>
             {renderTitle()}
-            <div style={{...fieldsBoxStyleState}}>
+            {/* <div style={{...fieldsBoxStyle}}> */}
                 {renderFields(fieldsState)}
-            </div>
+            {/* </div> */}
             {renderSubmit()}
         </OstCard>
     )
