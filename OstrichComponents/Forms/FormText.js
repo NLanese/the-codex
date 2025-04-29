@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 
 export const FormText = ({
+    boxStyle,
     fieldObj,
     titleStyle,
     captionStyle,
