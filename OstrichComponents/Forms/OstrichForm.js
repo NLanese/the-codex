@@ -33,7 +33,7 @@ export const OstrichForm = ({
     captionTextStyle,
 
     submitButtonStyle,
-    submitButtonIncativeStyle,
+    submitButtonInactiveStyle,
     submitButtonTextStyle,
     submitText = "Submit"
 }) => {
@@ -56,7 +56,9 @@ export const OstrichForm = ({
         const [titleStyleFinal, setTitleStyleFinal] = useState(false)
         const [titleTextStyleFinal, setTitleTextStyleFinal] = useState(false)
 
+        // Button Style States
         const [submitButtonStyleFinal, setSubmitButtonStyleFinal] = useState(false)
+        const [submitButtonInactiveStyleFinal, setSubmitButtonInactiveStyleFinal] = useState(false)
         const [submitButtonTextStyleFinal, setSubmitButtonTextStyleFinal] = useState(false)
         
 
@@ -186,8 +188,8 @@ export const OstrichForm = ({
                         <OstrichButton 
                             style={determineSubmitStyle()}
                             title={submitButtonTitle}
-                            activeColor={"rgba(73, 148, 244, 1)"}
-                            inactiveColor={"rgba(215, 216, 218, 1)"}
+                            activeColor={submitButtonStyle.backgroundColor}
+                            inactiveColor={submitButtonInactiveStyle.backgroundColor}
                             titleStyle={submitButtonTextStyle}
                             isActive={canSubmit}
                             onSubmit={submitForm}
@@ -203,8 +205,8 @@ export const OstrichForm = ({
                 <OstrichButton 
                  style={determineSubmitStyle()}
                  title={submitButtonTitle}
-                 activeColor={"rgba(73, 148, 244, 1)"}
-                 inactiveColor={"rgba(215, 216, 218, 1)"}
+                 activeColor={submitButtonStyleFinal.backgroundColor}
+                 inactiveColor={submitButtonInactiveStyleFinal.backgroundColor}
                  titleStyle={submitText}
                  isActive={canSubmit}
                  onSubmit={submitForm}
@@ -245,6 +247,7 @@ export const OstrichForm = ({
             checkStyle()
             checkTitleBoxStyle()
             checkTitleTextStyle()
+            checkSubmitStyles()
         }
 
         // Checks Style prop
@@ -306,27 +309,34 @@ export const OstrichForm = ({
 
         // Checks Submission Button Style
         function checkSubmitStyles(){
-            if (!submitStyle){
-                setSubmitStyle({
-                    border: "2px solid #E9F1FF",
-                    borderRadius: 20,
-                    backgroundColor: 'grey',
-                    width: 140,
-                    height: 55,
-                    boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: 10,
-                    marginBottom: 20
-                })
+            let temp = {
+                border: "2px solid black",
+                borderRadius: 20,
+                width: 140,
+                height: 55,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 10,
+                marginBottom: 20
             }
+            let final = {...temp, backgroundColor: 'blue', submitButtonStyle}
+            setSubmitButtonStyleFinal(final)
+            final = {...temp, backgroundColor: 'grey', ...submitButtonInactiveStyle}
+            setSubmitButtonInactiveStyleFinal(final)
+
+
         }
 
         // Checks Inactice Submit Button
         function checkInactiveSubmitStyle(){
+            let temp = {
+                ...sub
+            }
+            let final = {...temp, submitButtonStyle}
+            setSubmitButtonStyleFinal(final)
             if (!inactiveSubmitStyle){
                 setInactiveSubmitStyle({
-                    border: "2px solid #E9F1FF",
+                    border: "2px solid black",
                     borderRadius: 20,
                     backgroundColor: 'grey',
                     width: 140,
@@ -359,7 +369,12 @@ export const OstrichForm = ({
                 return submitButtonStyle
             }
             else {
-                return submitButtonIncativeStyle
+                if (submitButtonInactiveStyle === "None"){
+                    return null
+                }
+                else{
+                    return submitButtonInactiveStyle
+                }
             }
         }
     
