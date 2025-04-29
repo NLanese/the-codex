@@ -537,7 +537,7 @@ export const OstrichDropDown = ({
         if (isOpen){
             return(
                 <div style={{
-                    position: 'absolute', top: "100%",
+                    position: 'absolute', top: "102%",
                     width: '102%',
                 }}>
                     <div style={{position: 'relative', width: '100%', justifyItems: 'center'}}>

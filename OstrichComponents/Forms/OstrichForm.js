@@ -29,12 +29,12 @@ export const OstrichForm = ({
     titleTextStyle = {fontSize: 24, padding: 5, fontWeight: 600},
 
     fieldsBoxStyle,
-    fieldsTitleStyle = {fontSize: 24, padding: 5, fontWeight: 600},
-    captionTextStyle = {fontSize: 18, padding: 3, fontWeight: 400},
+    fieldsTitleStyle,
+    captionTextStyle,
 
     submitButtonStyle,
     submitButtonIncativeStyle,
-    submitTextStyle
+    submitButtonTextStyle
 }) => {
 
     ////////////
@@ -45,21 +45,15 @@ export const OstrichForm = ({
         const [loading, setLoading] = useState(true)
         const [submitted, setSubmitted] = useState(false)
 
-        // Style States //
-        const [styleState, setStyleState] = useState(style)
-        const [titleBoxStyleState, setTitleBoxStyleState] = useState(titleBoxStyle)
-        const [titleTextStyleState, setTitleTextStyleState] = useState(titleTextStyle)
-        const [fieldsBoxStyleState, setFieldsBoxStyleState] = useState(fieldsBoxStyle)
-        const [fieldsTitleStyleState, setFieldsTitleStyleState] = useState(fieldsTitleStyle)
-        const [inactiveSubmitStyle, setInactiveSubmitStyle] = useState(submitButtonIncativeStyle)
-        const [submitStyle, setSubmitStyle] = useState(submitButtonStyle)
-        const [submitText, setSubmitText] = useState(submitTextStyle)
-
-
         // Data States
         const [fieldsState, setFieldsState] = useState(fields)
         const [formData, setFormData] = useState({})
         const [canSubmit, setCanSubmit] = useState( (!allFieldsRequired && allowSubmit) ? true : false )
+
+        // Style States
+        const [styleFinal, setStyleFinal] = useState(false)
+        const [titleStyleFinal, setTitleStyleFinal] = useState(false)
+        const [titleTextStyleFinal, setTitleTextStyleFinal] = useState(false)
         
 
     /////////////
@@ -125,15 +119,15 @@ export const OstrichForm = ({
         function renderTitle(){
             return(
                 <div style={{...titleBoxStyleState}}>
-                    <div style={{...titleTextStyleState}}>
+                    <p style={{...titleTextStyleState}}>
                         {title}
-                    </div>
+                    </p>
                 </div>
             )
         }
 
         // Renders All Fields
-        function renderFields(fields){
+        function renderFields(){
             let fieldsKeys = Object.keys(fieldsState)
             return fieldsKeys.map( (fieldKey, index) => {
                 let field = fieldsState[fieldKey]
@@ -155,9 +149,10 @@ export const OstrichForm = ({
                 return(
                     <FormText 
                         key={fieldObj.id}
+                        boxStyle={fieldsBoxStyle}
                         fieldObj={fieldObj}
-                        titleStyle={fieldsTitleStyleState}
-                        // captionStyle={{captionTextStyle}}
+                        titleStyle={fieldsTitleStyle}
+                        captionStyle={{captionTextStyle}}
                         onChange={handleFormChange}
                         fieldID={fieldObj.id}
                     />
@@ -168,7 +163,7 @@ export const OstrichForm = ({
                     <FormMultipleChoice 
                         key={fieldObj.id}
                         fieldObj={fieldObj}
-                        titleStyle={fieldsTitleStyleState}
+                        titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
                         onChange={handleFormChange}
                         options={fieldObj.options}
@@ -219,22 +214,14 @@ export const OstrichForm = ({
 
         // Checks all Input Props
         function checkInputs(){
-            checkStyle()
             checkTitle()
             checkFields()
-            checkTitleBoxStyle()
-            checkTitleTextStyle()
-            checkFieldsBoxStyle()
-            checkFieldTitleStyle()
-            checkSubmitStyles()
-            checkInactiveSubmitStyle()
-            checkSubmitTextStyle()
         }
 
         // Checks if Title prop is supplied (Needed)
         function checkTitle(){
             if (!title){
-                throw new Error("Ostrich Form Components need a 'title' prop!")
+                console.warn("Ostrich Form Component was not supplied a 'title' prop. Ignore this warning if this was done intentiionally.")
             }
         }
 
@@ -251,15 +238,15 @@ export const OstrichForm = ({
 
         // Checks Style prop
         function checkStyle(){
-            if (!styleState){
-                setStyleState({
-                    border: "2px solid #E9F1FF",
-                    borderRadius: 20,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    box: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                })
+            let temp = {
+                border: "2px solid black",
+                borderRadius: 20,
+                paddingLeft: 20,
+                paddingRight: 20,
+                box: '2px 3px 3px rgba(0, 0, 0, 0.1)',
             }
+            let final = {...temp, ...style}
+            setStyleFinal(final)
         }
 
         // Checks if Title Box Style is provided 
@@ -509,7 +496,7 @@ export const OstrichForm = ({
         return null
     }
     return(
-        <OstCard style={{...styleState}}>
+        <OstCard style={{...styleFinal}}>
             {renderTitle()}
             <div style={{...fieldsBoxStyleState}}>
                 {renderFields(fieldsState)}
