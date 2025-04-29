@@ -190,7 +190,7 @@ export const OstrichForm = ({
                             title={submitButtonTitle}
                             activeColor={submitButtonStyle.backgroundColor}
                             inactiveColor={submitButtonInactiveStyle.backgroundColor}
-                            titleStyle={submitButtonTextStyle}
+                            titleStyle={submitButtonTextStyleFinal}
                             isActive={canSubmit}
                             onSubmit={submitForm}
                         />
@@ -207,7 +207,7 @@ export const OstrichForm = ({
                  title={submitButtonTitle}
                  activeColor={submitButtonStyleFinal.backgroundColor}
                  inactiveColor={submitButtonInactiveStyleFinal.backgroundColor}
-                 titleStyle={submitText}
+                 titleStyle={submitButtonTextStyleFinal}
                  isActive={canSubmit}
                  onSubmit={submitForm}
                 />
@@ -324,30 +324,14 @@ export const OstrichForm = ({
             final = {...temp, backgroundColor: 'grey', ...submitButtonInactiveStyle}
             setSubmitButtonInactiveStyleFinal(final)
 
-
-        }
-
-        // Checks Inactice Submit Button
-        function checkInactiveSubmitStyle(){
-            let temp = {
-                ...sub
+            let tempText = {
+                fontWeight: 700,
+                fontSize: 22,
+                textAlign: 'center',
+                textAlign: 'center',
+                paddingTop: 12
             }
-            let final = {...temp, submitButtonStyle}
-            setSubmitButtonStyleFinal(final)
-            if (!inactiveSubmitStyle){
-                setInactiveSubmitStyle({
-                    border: "2px solid black",
-                    borderRadius: 20,
-                    backgroundColor: 'grey',
-                    width: 140,
-                    height: 55,
-                    boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: 10,
-                    marginBottom: 20
-                })
-            }
+            setSubmitButtonTextStyleFinal({...tempText, submitButtonTextStyle})
         }
 
         // Checks Submission Text Style
