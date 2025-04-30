@@ -32,6 +32,7 @@ export default function OstFormsShowcase(){
 
             <OstrichForm 
                 title="Example Form"
+                style={{width: '70%', marginLeft: '15%'}}
                 fields={[{
                     title: "Email",
                     caption: "(Optional)",

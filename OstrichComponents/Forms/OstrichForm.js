@@ -55,6 +55,7 @@ export const OstrichForm = ({
         const [styleFinal, setStyleFinal] = useState(false)
         const [titleStyleFinal, setTitleStyleFinal] = useState(false)
         const [titleTextStyleFinal, setTitleTextStyleFinal] = useState(false)
+        const [fieldsBoxStyleFinal, setFieldsBoxStyleFinal] = useState(false)
 
         // Button Style States
         const [submitButtonStyleFinal, setSubmitButtonStyleFinal] = useState(false)
@@ -247,6 +248,7 @@ export const OstrichForm = ({
             checkStyle()
             checkTitleBoxStyle()
             checkTitleTextStyle()
+            checkFieldsBoxStyle()
             checkSubmitStyles()
         }
 
@@ -292,13 +294,16 @@ export const OstrichForm = ({
 
         // Checks if Title Box Style is provided 
         function checkFieldsBoxStyle(){
-            if (!fieldsBoxStyleState){
-                setFieldsBoxStyleState({
-                    alignItems: 'center',
-                    paddingBottom: 10,
-                    paddingTop: 10,
-                })
+            let temp = {
+                alignItems: 'center',
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderTop: "2px solid black",
+                width: '90%',
+                marginLeft: '5%'
             }
+            let final = {...temp, ...fieldsBoxStyle}
+            setFieldsBoxStyleFinal(final)
         }
 
         // Checks if Title Text Style is provided
@@ -513,9 +518,9 @@ export const OstrichForm = ({
     return(
         <OstCard style={{...styleFinal}}>
             {renderTitle()}
-            {/* <div style={{...fieldsBoxStyle}}> */}
+            <div style={{...fieldsBoxStyleFinal}}>
                 {renderFields(fieldsState)}
-            {/* </div> */}
+            </div>
             {renderSubmit()}
         </OstCard>
     )
