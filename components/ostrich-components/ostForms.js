@@ -42,7 +42,6 @@ export default function OstFormsShowcase(){
                         placeholder: "example@email.com",
                         type: "text",
                         onChange: ((value) => {
-                            full = 
                             setText1(value)
                         }),
                         value: text1,
@@ -53,14 +52,14 @@ export default function OstFormsShowcase(){
                         moreText: "A username that will be displayed to other accounts instead of your email",
                         placeholder: "Stephen_B_Smith",
                         type: "text",
-                        onChange: (() => setText2(value)),
+                        onChange: ((value) => setText2(value)),
                         value: text2,
-                        required: 'false',
+                        required: false,
                     },
                     {
                         title: "Password",
                         type: "password",
-                        onChange: (() => setText3(value)),
+                        onChange: ((value) => setText3(value)),
                         value: text3,
                     },
 

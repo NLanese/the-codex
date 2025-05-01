@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { OstCard } from "../Format/OstCard";
 import PropTypes from 'prop-types';
 
@@ -48,9 +48,16 @@ export const FormText = ({
         }
     }, [])
 
+    const prevValueRef = useRef();
     useEffect(() => {
-        fieldObj.value = value
-    }, [value])
+        if (prevValueRef.current !== value) {
+            fieldObj.value = value;
+            prevValueRef.current = value;
+            if (onChange) {
+                onChange(fieldObj);
+            }
+        }
+    }, [value]);
 
     ///////////////
     // Functions //
@@ -132,9 +139,6 @@ export const FormText = ({
             if (fieldObj.onChange){
                 fieldObj.onChange(event.target.value, fieldObj)
             }
-            if (onChange){
-                onChange(event.target.value, fieldObj)
-            }   
             setValue(event.target.value)
         }
 

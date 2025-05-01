@@ -69,8 +69,6 @@ export const OstrichForm = ({
         // Sets Form for Entry
         useEffect(() => {
             checkInputs()
-            console.log(fieldsState)
-            setLoading(false)
         }, [])
 
         
@@ -80,21 +78,14 @@ export const OstrichForm = ({
 
         // Determines if Submit is allowed or not
         useEffect(() => {
-            if (Object.keys(formData).length === Object.keys(fieldsState).length){
-                if (submitted){
-                    if (allowResubmission){
-                        setCanSubmit(true)
-                    }
-                    else{
-                        setCanSubmit(false)
-                    }
+            if (fieldsState){
+                if (Object.keys(fieldsState > 0)){
+                    console.log(fieldsState)
+                    setCanSubmit(determineCanSubmit())
+                    setLoading(false)
                 }
-                
             }
-            else{
-                setCanSubmit(false)
-            }
-        }, [formData])
+        }, [fieldsState])
         
     //////////////////
     // After Submit //
@@ -121,6 +112,9 @@ export const OstrichForm = ({
             let fieldsKeys = Object.keys(fieldsState)
             return fieldsKeys.map( (fieldKey, index) => {
                 let field = fieldsState[fieldKey]
+                if (fieldKey === 'undefined'){
+                    return
+                }
                 return (
                     // <div key={index} style={{
                     //     borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" :  (field.isWrong ? "#d6111b" : "#E9F1FF")),
@@ -141,9 +135,9 @@ export const OstrichForm = ({
                         key={fieldObj.id ? fieldObj.id : index}
                         boxStyle={fieldsBoxStyle}
                         fieldObj={fieldObj}
+                        onChange={handleSetFieldsState}
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
-                        onChange={handleFormChange}
                         fieldID={fieldObj.id}
                     />
                 )
@@ -183,11 +177,13 @@ export const OstrichForm = ({
     ////////////////////
 
         // Checks all Input Props
-        function checkInputs(){
-            checkTitle()
-            checkFields()
-            finalizeStyles()
-            finalizeFieldsState()
+        async function checkInputs() {
+            checkTitle();
+            checkFields();
+            finalizeStyles();
+        
+            const res = await finalizeFieldsState();
+            setFieldsState({ ...res }); 
         }
 
         // Checks if Title prop is supplied (Needed)
@@ -205,13 +201,16 @@ export const OstrichForm = ({
         }
 
         // Converts Fields into Object
-        function finalizeFieldsState(){
+        async function finalizeFieldsState(){
             let temp = {}
-            fields.map((field, index) => {
-                let id = field.id ? field.id : index
-                temp[id] = {...field, isCorrect: false, isWrong: false}
+            await fields.map((field, index) => {
+                let id = field.id ? field.id : (index + 1)
+                console.log(id)
+                if (id){
+                    temp[id] = {...field, id: id, isCorrect: false, isWrong: false}
+                }
             })
-            setFieldsState(temp)
+            return (temp)
         }
 
     //////////////////
@@ -328,6 +327,15 @@ export const OstrichForm = ({
     // Handlers //
     //////////////
 
+        // Changes the Form FieldsState whenever an individual field is changed
+        function handleSetFieldsState(singleFieldObj){
+            console.log(singleFieldObj)
+            let newFields = {...fieldsState}
+            console.log(newFields)
+            newFields[singleFieldObj.id] = singleFieldObj
+            setFieldsState({...newFields})
+        }
+
         // Fires on every Form Change (All User Input on Forms)
         function handleFormChange(value, fieldObj=false){
             determineOnChange(value, fieldObj)
@@ -376,6 +384,28 @@ export const OstrichForm = ({
     /////////////////////////
     // Submission Handlers //
     /////////////////////////
+
+        function determineCanSubmit(){
+            let canSubmit = true 
+            // fields.map(fieldItem => {
+            //     let field = fieldsState[fieldItem.id]
+            //     if (field?.required !== false){
+            //         if (field?.value){
+            //             if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){
+            //                 if (field.value === "" && field.length <= 0){
+            //                     console.log("Cannot Submit. ", field.id , " does not have text provided")
+            //                     canSubmit = false
+            //                 }
+            //             }
+            //         }
+            //         else{
+            //             console.log("Cannot Submit. ", field.id , " does not have any value")
+            //             canSubmit = false
+            //         }
+            //     }
+            // })
+            return canSubmit
+        }
 
         // Handles the Submission of the Form
         async function submitForm(){
