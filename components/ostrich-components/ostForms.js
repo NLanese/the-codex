@@ -55,6 +55,7 @@ export default function OstFormsShowcase(){
                         type: "text",
                         onChange: (() => setText2(value)),
                         value: text2,
+                        required: 'false',
                     },
                     {
                         title: "Password",

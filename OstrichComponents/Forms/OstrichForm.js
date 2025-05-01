@@ -13,7 +13,6 @@ export const OstrichForm = ({
     formLocked=false,                   // If the form had previously been completed and is not allowed for resubmit, this locks it and displays pastAnswerData if possible
     pastAnswerData={},                  // Previous Answer Data to be displayed if form is locked
 
-    correctResponse=false,
     showWrongAnswers=false,             // WIP -- Would show the correct answer if the user got the answer incorrect and submitted the form
     allowResubmission=false,            // Allows form resubmission. If False, form is locked.
 
@@ -47,7 +46,7 @@ export const OstrichForm = ({
         const [submitted, setSubmitted] = useState(false)
 
         // Data States
-        const [fieldsState, setFieldsState] = useState(fields)
+        const [fieldsState, setFieldsState] = useState(false)
         const [formData, setFormData] = useState({})
         const [canSubmit, setCanSubmit] = useState( (!allFieldsRequired && allowSubmit) ? true : false )
 
@@ -70,20 +69,11 @@ export const OstrichForm = ({
         // Sets Form for Entry
         useEffect(() => {
             checkInputs()
+            console.log(fieldsState)
             setLoading(false)
         }, [])
 
-        // Populates Form with Inputted Data
-        // useEffect(() => {
-        //     let fieldsAsObject = {}
-        //     if (Array.isArray(fieldsState)){
-        //         fieldsState.forEach(field => {
-        //             fieldsAsObject[field.id] = field
-        //         })
-        //     }
-        //     setFieldsState(fieldsAsObject)
-        // }, [])
-
+        
     ///////////////////////////////////
     // After Every Form Value Change //
     ///////////////////////////////////
@@ -110,13 +100,6 @@ export const OstrichForm = ({
     // After Submit //
     //////////////////
 
-        // Double Fires Style Changes after submission
-        // useEffect(() => {
-        //     console.log("Fields State after submit detected")
-        //     console.log(fieldsState)
-        //     // console.log("Re-Setting the fields after submission")
-        //     // setFieldsState(fieldsState)
-        // }, [submitted])
 
     ////////////////
     // Renderings //
@@ -204,6 +187,7 @@ export const OstrichForm = ({
             checkTitle()
             checkFields()
             finalizeStyles()
+            finalizeFieldsState()
         }
 
         // Checks if Title prop is supplied (Needed)
@@ -218,6 +202,16 @@ export const OstrichForm = ({
             if (!fields){
                 throw new Error("Ostrich Form Components need a 'fields' prop supplied!")
             }
+        }
+
+        // Converts Fields into Object
+        function finalizeFieldsState(){
+            let temp = {}
+            fields.map((field, index) => {
+                let id = field.id ? field.id : index
+                temp[id] = {...field, isCorrect: false, isWrong: false}
+            })
+            setFieldsState(temp)
         }
 
     //////////////////
@@ -286,23 +280,12 @@ export const OstrichForm = ({
             setFieldsBoxStyleFinal(final)
         }
 
-        // Checks if Title Text Style is provided
-        function checkFieldTitleStyle(){
-            if (!fieldsTitleStyleState){
-                setFieldsTitleStyleState({
-                    fontWeight: 500,
-                    fontSize: 20,
-                    textAlign: 'left',
-                })
-            }
-        }
-
         // Checks Submission Button Style
         function checkSubmitStyles(){
             let temp = {
                 border: "0.5px solid black",
                 borderRadius: 20,
-                height: 50, width: '35%',
+                height: 50, width: '25%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -315,7 +298,7 @@ export const OstrichForm = ({
             setSubmitButtonInactiveStyleFinal(final)
 
             let tempText = {
-                fontWeight: 500,
+                fontWeight: 600,
                 justifyContent: 'center',
                 display: 'flex',
                 fontSize: 22,
@@ -402,61 +385,61 @@ export const OstrichForm = ({
             if (clearOnSubmit){
                 setFormData({})
             }
-            else if (correctResponse){
-                checkAgainstAllAnswers().then( async (checkedAns) => {
-                    return checkedAns
-                }).then(checkedAns => {
-                    return updateFieldsWithAnswerCheck(checkedAns)
-                }).then( async (tempFields) => {
-                    setFieldsState(tempFields)
-                })
-            }
+            // else if (correctResponse){
+            //     checkAgainstAllAnswers().then( async (checkedAns) => {
+            //         return checkedAns
+            //     }).then(checkedAns => {
+            //         return updateFieldsWithAnswerCheck(checkedAns)
+            //     }).then( async (tempFields) => {
+            //         setFieldsState(tempFields)
+            //     })
+            // }
             setSubmitted(true)
         }
 
         // If correctResponse, checks all submitted values against the correct answers
         async function checkAgainstAllAnswers(){
-            let answerKeys = Object.keys(correctResponse)
-            let checkedAnswers = {}
-            answerKeys.forEach(answerKey => {
-                if (checkSingleAnswer(answerKey)){
-                    checkedAnswers[answerKey] = "Correct"
-                }
-                else{
-                    checkedAnswers[answerKey] = "Incorrect"
-                }
-            })
-            return checkedAnswers
+            // let answerKeys = Object.keys(correctResponse)
+            // let checkedAnswers = {}
+            // answerKeys.forEach(answerKey => {
+            //     if (checkSingleAnswer(answerKey)){
+            //         checkedAnswers[answerKey] = "Correct"
+            //     }
+            //     else{
+            //         checkedAnswers[answerKey] = "Incorrect"
+            //     }
+            // })
+            // return checkedAnswers
         }
 
         // Checks if a single answer'd question matches the values of the correct answer
         function checkSingleAnswer(key){
-            let isCorrect = true
-            let isWrong = false
-            if (formData[key]){
-                if (correctResponse[key]){
-                    correctResponse[key].forEach((correctAns) => {
-                        if (!formData[key].includes(correctAns)){
-                            isCorrect = false
-                            isWrong = true
-                        }
-                    })
-                    formData[key].forEach(inputAnswer => {
-                        if (!correctResponse[key].includes(inputAnswer)){
-                            isCorrect = false
-                            isWrong = true
-                        }
-                    })
-                }
-                else{
-                    isCorrect = false
-                }
-            }
-            else {
-                isCorrect = false
-            }
+            // let isCorrect = true
+            // let isWrong = false
+            // if (formData[key]){
+            //     if (correctResponse[key]){
+            //         correctResponse[key].forEach((correctAns) => {
+            //             if (!formData[key].includes(correctAns)){
+            //                 isCorrect = false
+            //                 isWrong = true
+            //             }
+            //         })
+            //         formData[key].forEach(inputAnswer => {
+            //             if (!correctResponse[key].includes(inputAnswer)){
+            //                 isCorrect = false
+            //                 isWrong = true
+            //             }
+            //         })
+            //     }
+            //     else{
+            //         isCorrect = false
+            //     }
+            // }
+            // else {
+            //     isCorrect = false
+            // }
 
-            return isCorrect
+            // return isCorrect
         }
 
         // Updates the existing fields with "Correct" or "Incorrect" properties to dictate green or red border
