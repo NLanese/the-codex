@@ -9,6 +9,9 @@ export const FormText = ({
     titleStyle,
     captionStyle,
     onChange,
+    correctDisplay = "border", // or "bubble" or "fieldBubble"
+    correctResponse,
+    validResponse
 }) => {
 
     ///////////
@@ -122,6 +125,12 @@ export const FormText = ({
                 borderRight: '1 solid black',
                 paddingBottom: 15
 
+            }
+            if (fieldObj.isCorrect && correctDisplay === "border"){
+                tempBox.boxShadow = '0px 0px 2px 0px rgba(62, 250, 141, 0.2)'
+            }
+            if (fieldObj.isWrong && correctDisplay === "border"){
+                tempBox.boxShadow = '0px 0px 2px 0px rgba(212, 59, 59 0.2)'
             }
             final = {...tempBox, ...boxStyle}
             setBoxStyleFinal(final)

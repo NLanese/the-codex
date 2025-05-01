@@ -12,6 +12,27 @@ export default function OstFormsShowcase(){
     const [text1, setText1] = useState("")
     const [text2, setText2] = useState("")
     const [text3, setText3] = useState("")
+    const [validText, setValidText] = useState(null)
+
+    useEffect(() => {
+        determinePassword(text3)
+    }, [text3])
+
+    ///////////////
+    // Functions //
+    ///////////////
+
+    function determinePassword(input){
+        if (input.length < 4){
+            return null
+        }
+        const hasUppercase = /[A-Z]/.test(input);
+        const hasLowercase = /[a-z]/.test(input);
+        const hasNumber    = /[0-9]/.test(input);
+        const hasSpecial   = /[^A-Za-z0-9]/.test(input); 
+
+        setValidText(hasUppercase && hasLowercase && hasNumber && hasSpecial);
+    }
 
 
     /////////////////
@@ -61,6 +82,7 @@ export default function OstFormsShowcase(){
                         type: "password",
                         onChange: ((value) => setText3(value)),
                         value: text3,
+                        correctResponse: determinePassword
                     },
 
                 ]}

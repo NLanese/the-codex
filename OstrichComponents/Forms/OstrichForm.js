@@ -205,7 +205,6 @@ export const OstrichForm = ({
             let temp = {}
             await fields.map((field, index) => {
                 let id = field.id ? field.id : (index + 1)
-                console.log(id)
                 if (id){
                     temp[id] = {...field, id: id, isCorrect: false, isWrong: false}
                 }
@@ -282,7 +281,7 @@ export const OstrichForm = ({
         // Checks Submission Button Style
         function checkSubmitStyles(){
             let temp = {
-                border: "0.5px solid black",
+                border: "0.0px solid black",
                 borderRadius: 20,
                 height: 50, width: '25%',
                 display: 'flex',
@@ -291,9 +290,9 @@ export const OstrichForm = ({
                 padding: 0, margin: 0,
                 marginTop: 20, marginLeft: '5%'
             }
-            let final = {...temp, backgroundColor: 'blue', ...submitButtonStyle}
+            let final = {...temp, backgroundColor: '#8ebbfa', ...submitButtonStyle}
             setSubmitButtonStyleFinal(final)
-            final = {...temp, backgroundColor: '#9d9e9e', ...submitButtonInactiveStyle}
+            final = {...temp, backgroundColor: '#9d9e9e',  border: "0.5px solid black", ...submitButtonInactiveStyle}
             setSubmitButtonInactiveStyleFinal(final)
 
             let tempText = {
@@ -329,9 +328,7 @@ export const OstrichForm = ({
 
         // Changes the Form FieldsState whenever an individual field is changed
         function handleSetFieldsState(singleFieldObj){
-            console.log(singleFieldObj)
             let newFields = {...fieldsState}
-            console.log(newFields)
             newFields[singleFieldObj.id] = singleFieldObj
             setFieldsState({...newFields})
         }
