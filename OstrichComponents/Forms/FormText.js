@@ -19,6 +19,10 @@ export const FormText = ({
     const [captionStyleFinal, setCaptionStyleFinal] = useState(false)
 
     const [inputStyleFinal, setInputStyleFinal] = useState(false)
+    const [inputFocused, setInputFocused] = useState(false)
+
+    const handleFocus = (val) => setInputFocused(val);
+
 
     ////////////////
     // UseEffects //
@@ -32,6 +36,7 @@ export const FormText = ({
     // Functions //
     ///////////////
 
+        // Finalizes all User Input Styles to Apply Defaults
         function finalizeStyles(){
             let temp = {
                 fontSize: 24,
@@ -50,7 +55,7 @@ export const FormText = ({
             setCaptionStyleFinal(final)
 
             let tempInput = {
-                marginTop: 10, marginRight: '3%',
+                marginTop: 10, marginRight: '3%', paddingLeft: 10,
                 height: 30, width: '97%',
                 fontSize: 18,
                 borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
@@ -60,6 +65,13 @@ export const FormText = ({
                 final = {...final, ...fieldObj.style}
             }
             setInputStyleFinal(final)
+        }
+
+        function determineInputStyle(){
+            return {
+                ...inputStyleFinal,
+                ...(inputFocused ? { borderColor: 'blue', borderBottom: 0, outline: 'none', boxShadow: '0 0 0 2px rgba(0, 0, 255, 0.3)' } : {})
+            }
         }
 
         // Handles any changes in text field
@@ -98,7 +110,9 @@ export const FormText = ({
                     type={fieldObj.type}
                     value={fieldObj.value}
                     onChange={(event) => handleInput(event)}
-                    style={fieldObj.formHidden ? { display: 'none' } : {...inputStyleFinal}}
+                    onFocus={() => handleFocus(true)}
+                    onBlur={() => handleFocus(false)}
+                    style={fieldObj.formHidden ? { display: 'none' } : determineInputStyle()}
                     placeholder={fieldObj.placeholder? fieldObj.placeholder : ""}
                 />
             </OstCard>
