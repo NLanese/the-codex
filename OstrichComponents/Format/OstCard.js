@@ -128,14 +128,18 @@ export const OstCard =({
                     }}>
                         <img src={imageSrc} style={{maxWidth: (details?.imgMaxWidth ? details.imgMaxWidth : '100%'), maxHeight: '100%', objectFit: "contain"}} />
                     </div>
-                    <div style={{ display: 'flex',
-                        flex: 2, 
-                        paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
-                        justifyContent: 'center', alignItems: 'center',
-                        fontSize: (details?.titleStyle ? details?.titleStyle : 24)
-                    }}>
-                        {children}
-                    </div>
+                    {children ? 
+                        (<div style={{ display: 'flex',
+                            flex: 2, 
+                            paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
+                            justifyContent: 'center', alignItems: 'center',
+                            fontSize: (details?.titleStyle ? details?.titleStyle : 24)
+                        }}>
+                            {children}
+                        </div>)
+                        :
+                        null
+                    }
                 </div>
             )
         }

@@ -10,6 +10,9 @@ export default function OstFormsShowcase(){
     ///////////
 
     const [text1, setText1] = useState("")
+    const [text2, setText2] = useState("")
+    const [text3, setText3] = useState("")
+
 
     /////////////////
     // Main Return //
@@ -33,14 +36,34 @@ export default function OstFormsShowcase(){
             <OstrichForm 
                 title="Example Form"
                 style={{width: '70%', marginLeft: '15%'}}
-                fields={[{
-                    title: "Email",
-                    caption: "(Optional)",
-                    placeholder: "example@email.com",
-                    type: "text",
-                    onChange: ((value) => setText1(value)),
-                    value: text1,
-                  }]}
+                fields={[
+                    {
+                        title: "Email",
+                        placeholder: "example@email.com",
+                        type: "text",
+                        onChange: ((value) => {
+                            full = 
+                            setText1(value)
+                        }),
+                        value: text1,
+                    },
+                    {
+                        title: "Account Alias",
+                        caption: "(Optional)",
+                        moreText: "A username that will be displayed to other accounts instead of your email",
+                        placeholder: "Stephen_B_Smith",
+                        type: "text",
+                        onChange: (() => setText2(value)),
+                        value: text2,
+                    },
+                    {
+                        title: "Password",
+                        type: "password",
+                        onChange: (() => setText3(value)),
+                        value: text3,
+                    },
+
+                ]}
             />
 
         </div>

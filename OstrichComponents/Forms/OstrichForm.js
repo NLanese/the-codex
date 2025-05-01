@@ -124,7 +124,6 @@ export const OstrichForm = ({
 
         // Renders the Form Title
         function renderTitle(){
-            console.log(titleStyleFinal)
             return(
                 <div style={{...titleStyleFinal}}>
                     <p style={{...titleTextStyleFinal}}>
@@ -156,11 +155,11 @@ export const OstrichForm = ({
             if (fieldObj.type === "text" || fieldObj.type === "password" || fieldObj.type === "tel"){
                 return(
                     <FormText 
-                        key={fieldObj.id}
+                        key={fieldObj.id ? fieldObj.id : index}
                         boxStyle={fieldsBoxStyle}
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyle}
-                        captionStyle={{captionTextStyle}}
+                        captionStyle={captionTextStyle}
                         onChange={handleFormChange}
                         fieldID={fieldObj.id}
                     />
@@ -183,26 +182,6 @@ export const OstrichForm = ({
 
         // Renders the Form Submission Button
         function renderSubmit(){
-            if (submitted && reviewOnSubmit){
-                return(
-                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                        <div style={{flex: 5}}>
-                        <OstrichButton 
-                            style={determineSubmitStyle()}
-                            title={submitButtonTitle}
-                            activeColor={submitButtonStyle.backgroundColor}
-                            inactiveColor={submitButtonInactiveStyle.backgroundColor}
-                            titleStyle={submitButtonTextStyleFinal}
-                            isActive={canSubmit}
-                            onSubmit={submitForm}
-                        />
-                        </div>
-                        <div style={{flex: 7}}>
-
-                        </div>
-                    </div>
-                )
-            }
             return(
                 <OstrichButton 
                  style={determineSubmitStyle()}
@@ -321,47 +300,36 @@ export const OstrichForm = ({
         // Checks Submission Button Style
         function checkSubmitStyles(){
             let temp = {
-                border: "2px solid black",
+                border: "0.5px solid black",
                 borderRadius: 20,
-                width: 140,
-                height: 55,
+                height: 50, width: '35%',
+                display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 10,
-                marginBottom: 20
+                padding: 0, margin: 0,
+                marginTop: 20, marginLeft: '5%'
             }
-            let final = {...temp, backgroundColor: 'blue', submitButtonStyle}
+            let final = {...temp, backgroundColor: 'blue', ...submitButtonStyle}
             setSubmitButtonStyleFinal(final)
-            final = {...temp, backgroundColor: 'grey', ...submitButtonInactiveStyle}
+            final = {...temp, backgroundColor: '#9d9e9e', ...submitButtonInactiveStyle}
             setSubmitButtonInactiveStyleFinal(final)
 
             let tempText = {
-                fontWeight: 700,
+                fontWeight: 500,
+                justifyContent: 'center',
+                display: 'flex',
                 fontSize: 22,
                 textAlign: 'center',
                 textAlign: 'center',
-                paddingTop: 12
+                padding: 5,
             }
-            setSubmitButtonTextStyleFinal({...tempText, submitButtonTextStyle})
-        }
-
-        // Checks Submission Text Style
-        function checkSubmitTextStyle(){
-            if (!submitText){
-                setSubmitText({
-                    fontWeight: 700,
-                    fontSize: 22,
-                    textAlign: 'center',
-                    textAlign: 'center',
-                    paddingTop: 12
-                })
-            }
+            setSubmitButtonTextStyleFinal({...tempText, ...submitButtonTextStyle})
         }
 
         // Determines the Style of the Submit Button (Active or Not)
         function determineSubmitStyle(){
             if (allowSubmit){
-                return submitButtonStyle
+                return submitButtonStyleFinal
             }
             else {
                 if (submitButtonInactiveStyle === "None"){
@@ -395,6 +363,7 @@ export const OstrichForm = ({
 
             // If no OnChange Function was Provided
             const defaultOnChange = (value, field) => {return}
+            
             if (!onChange){
                 defaultOnChange(value, field)
             }
@@ -502,7 +471,7 @@ export const OstrichForm = ({
                 return tempFields
             }
             else{
-                console.log("Missing either fieldsState or CheckedAnswerData")
+                console.warn("Missing either fieldsState or CheckedAnswerData")
                 return {}
             }
         }
@@ -528,26 +497,26 @@ export const OstrichForm = ({
 }
 
 
-OstrichForm.propTypes = {
-    title: PropTypes.string.isRequired,         // Title (String)
-    titleBoxStyle: PropTypes.object,            // Title Container Style 
-    titleTextStyle: PropTypes.object,           // Title Text Style
+// OstrichForm.propTypes = {
+//     title: PropTypes.string.isRequired,         // Title (String)
+//     titleBoxStyle: PropTypes.object,            // Title Container Style 
+//     titleTextStyle: PropTypes.object,           // Title Text Style
 
-    fieldsBoxStyle: PropTypes.object,           // Form Fields' Container Style
-    fieldTitleStyle: PropTypes.object,          // Form Fields' Title Style
-    fields: PropTypes.arrayOf(                  // Fields- Each Field is an Input
-        PropTypes.shape({
-          title: PropTypes.string.isRequired,   // Field title
-          caption: PropTypes.string,            // Field Description / Caption
-          type: PropTypes.string.isRequired,    // Text, MC, True or False
-          onChange: PropTypes.func.isRequired,  // OnChange Function
-          value: PropTypes.any.isRequired,      // Value of Input
-          fieldHidden: PropTypes.bool,
-          style: PropTypes.object,
-          placeholder: PropTypes.string,
-          possibleResponses: PropTypes.arrayOf(PropTypes.string),
-        })
-    ).isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    submitButtonStyle: PropTypes.object,
-};
+//     fieldsBoxStyle: PropTypes.object,           // Form Fields' Container Style
+//     fieldTitleStyle: PropTypes.object,          // Form Fields' Title Style
+//     fields: PropTypes.arrayOf(                  // Fields- Each Field is an Input
+//         PropTypes.shape({
+//           title: PropTypes.string.isRequired,   // Field title
+//           caption: PropTypes.string,            // Field Description / Caption
+//           type: PropTypes.string.isRequired,    // Text, MC, True or False
+//           onChange: PropTypes.func.isRequired,  // OnChange Function
+//           value: PropTypes.any.isRequired,      // Value of Input
+//           fieldHidden: PropTypes.bool,
+//           style: PropTypes.object,
+//           placeholder: PropTypes.string,
+//           possibleResponses: PropTypes.arrayOf(PropTypes.string),
+//         })
+//     ).isRequired,
+//     onSubmit: PropTypes.func.isRequired,
+//     submitButtonStyle: PropTypes.object,
+// };

@@ -15,13 +15,25 @@ export const FormText = ({
     // State //
     ///////////
 
+    // Text Style
     const [titleStyleFinal, setTitleStyleFinal] = useState(false)
     const [captionStyleFinal, setCaptionStyleFinal] = useState(false)
+    const [moreTextStyleFinal, setMoreTextStyleFinal] = useState(false)
 
+    // Container Style
+    const [boxStyleFinal, setBoxStyleFinal] = useState(false)
     const [inputStyleFinal, setInputStyleFinal] = useState(false)
-    const [inputFocused, setInputFocused] = useState(false)
 
+    // Status 
+    const [inputFocused, setInputFocused] = useState(false)
     const handleFocus = (val) => setInputFocused(val);
+
+    const [isLoading, setIsLoading] = useState(true)
+
+
+    // Value
+    const [value, setValue] = useState("")
+
 
 
     ////////////////
@@ -30,7 +42,15 @@ export const FormText = ({
 
     useEffect(() => {
         finalizeStyles()
+        setIsLoading(false)
+        if (fieldObj.value){
+            setValue(fieldObj.value)
+        }
     }, [])
+
+    useEffect(() => {
+        fieldObj.value = value
+    }, [value])
 
     ///////////////
     // Functions //
@@ -38,22 +58,41 @@ export const FormText = ({
 
         // Finalizes all User Input Styles to Apply Defaults
         function finalizeStyles(){
+
+            // Sets Title, Caption and MoreText
             let temp = {
                 fontSize: 24,
                 fontWeight: 600,
                 fontFamily: "Gilroy",
                 margin: 3,
                 paddingBottom: 1,
-                marginBottom: 9
+                marginBottom: 0,
             }
             let final = {...temp, ...titleStyle}
             setTitleStyleFinal(final)
             temp.fontSize = 16
             temp.fontWeight = 600
             temp.color = 'grey'
+            temp.marginTop = 0
+            temp.paddingTop = 0
+            temp.marginBottom = 0
+            temp.paddingBottom = 0
             final = {...temp, ...captionStyle}
             setCaptionStyleFinal(final)
+            temp.fontSize = 14
+            temp.marginBottom = 10
+            temp.fontWeight = 500
+            temp.color = '#3d3d3d'
+            if (fieldObj.moreTextStyle){
+                final = {...temp, ...fieldObj.moreTextStyle}
+            }
+            else{
+                final = {...temp, ...final}
+            }
+            setMoreTextStyleFinal(final)
 
+
+            // Sets Input Box
             let tempInput = {
                 marginTop: 10, marginRight: '3%', paddingLeft: 10,
                 height: 30, width: '97%',
@@ -65,6 +104,20 @@ export const FormText = ({
                 final = {...final, ...fieldObj.style}
             }
             setInputStyleFinal(final)
+
+
+            // Sets Individual Field Box
+            let tempBox = {
+                boxShadow: '0px 0px 2px 0px rgba(0, 0, 0, 0.2)',
+                borderRadius: 0,
+                border: '0',
+                borderLeft: '1 solid black',
+                borderRight: '1 solid black',
+                paddingBottom: 15
+
+            }
+            final = {...tempBox, ...boxStyle}
+            setBoxStyleFinal(final)
         }
 
         function determineInputStyle(){
@@ -79,7 +132,10 @@ export const FormText = ({
             if (fieldObj.onChange){
                 fieldObj.onChange(event.target.value, fieldObj)
             }
-            onChange(event.target.value, fieldObj)
+            if (onChange){
+                onChange(event.target.value, fieldObj)
+            }   
+            setValue(event.target.value)
         }
 
     ////////////////
@@ -97,24 +153,65 @@ export const FormText = ({
             }
         }
 
+        // Renders Additional Text or Field Image
+        function renderMoreDetails(){
+            if (fieldObj.img){
+                return(
+                    <OstCard
+                        style={{justifySelf: 'center'}}
+                        imageSrc={img} 
+                    />
+                )
+            }
+            else if (fieldObj.moreText){
+                return(
+                    <p 
+                    style={moreTextStyleFinal}
+                    >
+                        {fieldObj.moreText}
+                    </p>
+                )
+            }
+        }
+
+        function MAIN(){
+            if (isLoading){
+                return null
+            }
+            else{
+                // console.log(fieldObj.value)
+                return(
+                    <>
+                        <p style={{...titleStyleFinal}}>
+                            {fieldObj.title} {renderCaption()}
+                        </p>
+                        <div style={{display: 'flex'}}>
+                            {renderMoreDetails()}
+                        </div>
+                        <input 
+                            type={fieldObj.type}
+                            value={value}
+                            onChange={(event) => handleInput(event)}
+                            onFocus={() => handleFocus(true)}
+                            onBlur={() => handleFocus(false)}
+                            style={fieldObj.formHidden ? { display: 'none' } : determineInputStyle()}
+                            placeholder={fieldObj.placeholder? fieldObj.placeholder : ""}
+                        />
+                    </>
+                )
+            }
+        }
+
     /////////////////
     // Main Return //
     /////////////////
 
+
         return(
-            <OstCard style={boxStyle}>
-                <p style={{...titleStyleFinal}}>
-                    {fieldObj.title} {renderCaption()}
-                </p>
-                <input 
-                    type={fieldObj.type}
-                    value={fieldObj.value}
-                    onChange={(event) => handleInput(event)}
-                    onFocus={() => handleFocus(true)}
-                    onBlur={() => handleFocus(false)}
-                    style={fieldObj.formHidden ? { display: 'none' } : determineInputStyle()}
-                    placeholder={fieldObj.placeholder? fieldObj.placeholder : ""}
-                />
+            <OstCard 
+            style={boxStyleFinal}
+            >
+                {MAIN()}
             </OstCard>
         )
 }
