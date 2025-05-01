@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
+import { OstCard } from "../Format/OstCard";
 import PropTypes from 'prop-types';
 
 export const FormText = ({
     boxStyle,
+    inputSyle,
     fieldObj,
     titleStyle,
     captionStyle,
@@ -13,8 +15,10 @@ export const FormText = ({
     // State //
     ///////////
 
-    const [titleStyleFinal, setTitleStyleFinal] = useState({})
-    const [captionStyleFinal, setCaptionStyleFinal] = useState({})
+    const [titleStyleFinal, setTitleStyleFinal] = useState(false)
+    const [captionStyleFinal, setCaptionStyleFinal] = useState(false)
+
+    const [inputStyleFinal, setInputStyleFinal] = useState(false)
 
     ////////////////
     // UseEffects //
@@ -33,16 +37,29 @@ export const FormText = ({
                 fontSize: 24,
                 fontWeight: 600,
                 fontFamily: "Gilroy",
+                margin: 3,
                 paddingBottom: 1,
-                marginBottom: 1
+                marginBottom: 9
             }
             let final = {...temp, ...titleStyle}
             setTitleStyleFinal(final)
-            temp.fontSize = 18
-            temp.fontWeight = 500
-            temp.color = 'blue'
+            temp.fontSize = 16
+            temp.fontWeight = 600
+            temp.color = 'grey'
             final = {...temp, ...captionStyle}
             setCaptionStyleFinal(final)
+
+            let tempInput = {
+                marginTop: 10, marginRight: '3%',
+                height: 30, width: '97%',
+                fontSize: 18,
+                borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
+            }
+            final = {...tempInput, ...inputStyleFinal }
+            if (fieldObj.style){
+                final = {...final, ...fieldObj.style}
+            }
+            setInputStyleFinal(final)
         }
 
         // Handles any changes in text field
@@ -51,22 +68,6 @@ export const FormText = ({
                 fieldObj.onChange(event.target.value, fieldObj)
             }
             onChange(event.target.value, fieldObj)
-        }
-
-        // Determines the Input Style based on inputs or lackthereof
-        function handleStyle(){
-            let returnStyle;
-            if (!fieldObj.style){
-                returnStyle = {
-                    marginTop: 10, marginLeft: '3%', marginRight: '3%',
-                    height: 30, width: '94%',
-                    fontSize: 18,
-                    borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
-                }
-            }
-            else{
-                returnStyle =  fieldObj.style
-            }
         }
 
     ////////////////
@@ -89,20 +90,18 @@ export const FormText = ({
     /////////////////
 
         return(
-            <div>
+            <OstCard style={boxStyle}>
                 <p style={{...titleStyleFinal}}>
                     {fieldObj.title} {renderCaption()}
                 </p>
-                <div>
-                    <input 
+                <input 
                     type={fieldObj.type}
                     value={fieldObj.value}
                     onChange={(event) => handleInput(event)}
-                    style={fieldObj.formHidden ? { display: 'none' } : {...handleStyle()}}
+                    style={fieldObj.formHidden ? { display: 'none' } : {...inputStyleFinal}}
                     placeholder={fieldObj.placeholder? fieldObj.placeholder : ""}
-                    />
-                </div>
-            </div>
+                />
+            </OstCard>
         )
 }
 

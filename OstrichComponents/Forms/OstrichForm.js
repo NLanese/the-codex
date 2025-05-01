@@ -26,7 +26,7 @@ export const OstrichForm = ({
     style,
 
     titleBoxStyle,
-    titleTextStyle = {fontSize: 24, padding: 5, fontWeight: 600},
+    titleTextStyle,
 
     fieldsBoxStyle,
     fieldsTitleStyle,
@@ -74,15 +74,15 @@ export const OstrichForm = ({
         }, [])
 
         // Populates Form with Inputted Data
-        useEffect(() => {
-            let fieldsAsObject = {}
-            if (Array.isArray(fieldsState)){
-                fieldsState.forEach(field => {
-                    fieldsAsObject[field.id] = field
-                })
-            }
-            setFieldsState(fieldsAsObject)
-        }, [])
+        // useEffect(() => {
+        //     let fieldsAsObject = {}
+        //     if (Array.isArray(fieldsState)){
+        //         fieldsState.forEach(field => {
+        //             fieldsAsObject[field.id] = field
+        //         })
+        //     }
+        //     setFieldsState(fieldsAsObject)
+        // }, [])
 
     ///////////////////////////////////
     // After Every Form Value Change //
@@ -124,6 +124,7 @@ export const OstrichForm = ({
 
         // Renders the Form Title
         function renderTitle(){
+            console.log(titleStyleFinal)
             return(
                 <div style={{...titleStyleFinal}}>
                     <p style={{...titleTextStyleFinal}}>
@@ -139,13 +140,13 @@ export const OstrichForm = ({
             return fieldsKeys.map( (fieldKey, index) => {
                 let field = fieldsState[fieldKey]
                 return (
-                    <div key={index} style={{
-                        borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" :  (field.isWrong ? "#d6111b" : "#E9F1FF")),
-                        marginBottom: 8, padding: 8,
-                        boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                    }}>
-                        {renderSingleField(field, index, fieldsTitleStyle)}
-                    </div>
+                    // <div key={index} style={{
+                    //     borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" :  (field.isWrong ? "#d6111b" : "#E9F1FF")),
+                    //     marginBottom: 8, padding: 8,
+                    //     boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
+                    // }}>
+                        renderSingleField(field, index, fieldsTitleStyle)
+                    // </div>
                 )
             })
         }
@@ -288,7 +289,7 @@ export const OstrichForm = ({
                 paddingTop: 5,
                 textAlign: 'center',
             }
-            let final = {...temp, ...titleBoxStyle}
+            let final = {...temp, ...titleTextStyle}
             setTitleTextStyleFinal(final)
         }
 
