@@ -12,6 +12,10 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 
+// Images
+const  S3Strcuture = '../../../assets/showcase_images/boardGameWizard/S3Structure.png'
+
+
 export default function BoardGameMasterAIProjectPage() {
 
     ///////////
@@ -542,6 +546,18 @@ return (
                     <p style={Styles.Fonts.basic}>
                     And that is as much coding as we will need for creating this Chat Bot! The rest of the work is done in the AWS Console
                     </p>
+
+                    <p style={Styles.Fonts.basic}>
+                    The first thing to do is generate a document (or up to 10 documents) that hold the information you want your Chat Bot to reference. 
+                    For now, all of my Board Game Rules are stored in a single text document, since they can be a massive size. However, upon adding more rules,
+                    I may be forced to split the master document up into smaller sections. Regardless, we have to upload this document to an S3 Bucket
+                    </p>
+
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={S3Strcuture}
+                    />
+
                 </div>
             </OstCard>
         </div>

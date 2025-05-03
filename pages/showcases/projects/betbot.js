@@ -233,7 +233,7 @@ export default function BetBotProjectPage() {
 
         // Grabs Bets from Odds API
         async function handleRequestToAPI(){
-            fetch("/api/scrapeFanDuel", {
+            fetch("/api/betBot/scrapeFanDuel", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
             })
