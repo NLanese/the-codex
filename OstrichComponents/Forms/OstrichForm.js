@@ -34,7 +34,6 @@ export const OstrichForm = ({
     submitButtonStyle,
     submitButtonInactiveStyle,
     submitButtonTextStyle,
-    submitText = "Submit"
 }) => {
 
     ////////////

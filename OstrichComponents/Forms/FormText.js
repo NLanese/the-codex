@@ -9,7 +9,7 @@ export const FormText = ({
     titleStyle,
     captionStyle,
     onChange,
-    correctDisplay = "border", // or "bubble" or "fieldBubble"
+    correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
     validResponse
 }) => {
@@ -154,6 +154,23 @@ export const FormText = ({
             setValue(event.target.value)
         }
 
+        function determineIfAnswerValid(){
+            if (typeof validResponse === "function"){
+                if (validResponse(value)){
+                    return true
+                }
+            }
+            else if (typeof validResponse === "String" || typeof validResponse === "string"){
+                if (value === validResponse){
+                    return true
+                }
+            }
+            else{
+                console.log(typeof validResponse)
+                return false
+            }
+        }
+
     ////////////////
     // Renderings //
     ////////////////
@@ -190,17 +207,41 @@ export const FormText = ({
             }
         }
 
+        function renderBubbleValidOrCorrect(){
+            if ((!validResponse && !correctResponse) || (correctDisplay !== "bubble")){
+                return
+            }
+            let borderColor = '#bdbdbd'
+            let borderFill = '#efefef'
+            if ((validResponse && determineIfAnswerValid()) && !correctResponse){
+                borderColor = '#57a5f2'
+                borderFill = '#9cc6f0'
+            }
+            else if (correctResponse){
+                borderColor = '#57f25f'
+                borderFill = '#a8ffad'
+            }
+            return(
+                <div style={{marginLeft: 'auto'}}>
+                    <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                    </div>
+                </div>
+            )
+        }
+
         function MAIN(){
             if (isLoading){
                 return null
             }
             else{
-                // console.log(fieldObj.value)
                 return(
-                    <>
-                        <p style={{...titleStyleFinal}}>
-                            {fieldObj.title} {renderCaption()}
-                        </p>
+                    <div style={{width: '95%', height: 'auto'}}>
+                        <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
+                            <p style={{...titleStyleFinal}}>
+                                {fieldObj.title} {renderCaption()} 
+                            </p>
+                            {renderBubbleValidOrCorrect()}
+                        </div>  
                         <div style={{display: 'flex'}}>
                             {renderMoreDetails()}
                         </div>
@@ -213,7 +254,7 @@ export const FormText = ({
                             style={fieldObj.formHidden ? { display: 'none' } : determineInputStyle()}
                             placeholder={fieldObj.placeholder? fieldObj.placeholder : ""}
                         />
-                    </>
+                    </div>
                 )
             }
         }
