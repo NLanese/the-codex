@@ -386,23 +386,25 @@ export const OstrichForm = ({
 
         function determineCanSubmit(){
             let canSubmit = true 
-            // fields.map(fieldItem => {
-            //     let field = fieldsState[fieldItem.id]
-            //     if (field?.required !== false){
-            //         if (field?.value){
-            //             if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){
-            //                 if (field.value === "" && field.length <= 0){
-            //                     console.log("Cannot Submit. ", field.id , " does not have text provided")
-            //                     canSubmit = false
-            //                 }
-            //             }
-            //         }
-            //         else{
-            //             console.log("Cannot Submit. ", field.id , " does not have any value")
-            //             canSubmit = false
-            //         }
-            //     }
-            // })
+            let fieldsKeys = Object.keys(fieldsState)
+            fieldsKeys.map(fieldID => {
+                let field = fieldsState[fieldID]
+                console.log(field)
+                if (field?.required !== false){
+                    if (field?.value){
+                        if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){
+                            if (field.value === "" && field.length <= 0){
+                                console.log("Cannot Submit. ", field.id , " does not have text provided")
+                                canSubmit = false
+                            }
+                        }
+                    }
+                    else{
+                        console.log("Cannot Submit. ", field.id , " does not have any value")
+                        canSubmit = false
+                    }
+                }
+            })
             return canSubmit
         }
 
