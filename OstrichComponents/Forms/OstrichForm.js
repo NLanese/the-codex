@@ -139,6 +139,8 @@ export const OstrichForm = ({
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
                         fieldID={fieldObj.id}
+                        correctResponse={fieldObj.correctResponse ? fieldObj.correctResponse : false}
+                        validResponse={fieldObj.validResponse ? fieldObj.validResponse : false}
                     />
                 )
             }

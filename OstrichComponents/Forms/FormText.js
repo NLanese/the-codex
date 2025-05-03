@@ -33,6 +33,9 @@ export const FormText = ({
 
     const [isLoading, setIsLoading] = useState(true)
 
+    const [isCorrect, setIsCorrect] = useState(null)
+    const [isWrong, setIsWrong] = useState(null)
+    const [isValid, setIsValid] = useState(null)
 
     // Value
     const [value, setValue] = useState("")

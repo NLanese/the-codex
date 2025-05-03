@@ -82,7 +82,7 @@ export default function OstFormsShowcase(){
                         type: "password",
                         onChange: ((value) => setText3(value)),
                         value: text3,
-                        correctResponse: determinePassword
+                        validResponse: determinePassword
                     },
 
                 ]}
