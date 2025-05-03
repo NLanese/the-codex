@@ -264,12 +264,10 @@ export default function BetBotProjectPage() {
             });
         }
 
-        
-
 
         // Adds a specific bet to the Bet Sheet
         function selectBet(teamBetSheet){
-            console.log(teamBetSheet)
+            setSelectedBets
         }
     
     ////////////////
@@ -473,7 +471,7 @@ export default function BetBotProjectPage() {
                     content: {
                         backgroundColor: 'white',
                         width: '30%', marginLeft: '35%', minWidth: 300,
-                        height: '30%', marginTop: '20%', minHeight: 220,
+                        height: '36%', marginTop: '20%', minHeight: 220,
                         borderRadius: 20
                     }   
                     }}
@@ -513,10 +511,12 @@ export default function BetBotProjectPage() {
                                     </p>
                                 </OstCard>
                             </div>
-                            <OstCard style={{marginTop: '6%', height: '8%', backgroundColor: '#efefef'}}>
-                            <p style={{...Styles.Fonts.h2, padding: 0, margin: 0}}>
-                                Compare
-                            </p>
+                            <OstCard style={{marginTop: '6%', height: '8%', backgroundColor: '#efefef'}} onClick={() => {
+                                console.log(stagedBetSheet)
+                            }}>
+                                <p style={{...Styles.Fonts.h2, padding: 0, margin: 0}}>
+                                    Compare 
+                                </p>
                             </OstCard>
                         </div>
                     </ReactModal>

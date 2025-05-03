@@ -134,7 +134,8 @@ export const OstrichForm = ({
                         key={fieldObj.id ? fieldObj.id : index}
                         boxStyle={fieldsBoxStyle}
                         fieldObj={fieldObj}
-                        onChange={handleSetFieldsState}
+                        onChange={onFieldChange}
+                        setNewFieldValue={handleSetFieldsState}
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
                         fieldID={fieldObj.id}
@@ -334,6 +335,11 @@ export const OstrichForm = ({
             setFieldsState({...newFields})
         }
 
+        function onFieldChange(singleFieldObj){
+            handleSetFieldsState(singleFieldObj)
+            onChange(singleFieldObj)
+        }
+
         // Fires on every Form Change (All User Input on Forms)
         function handleFormChange(value, fieldObj=false){
             determineOnChange(value, fieldObj)
@@ -388,7 +394,6 @@ export const OstrichForm = ({
             let fieldsKeys = Object.keys(fieldsState)
             fieldsKeys.map(fieldID => {
                 let field = fieldsState[fieldID]
-                console.log(field)
                 if (field?.required !== false){
                     if (field?.value){
                         if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){

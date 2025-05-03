@@ -9,6 +9,7 @@ export const FormText = ({
     titleStyle,
     captionStyle,
     onChange,
+    setNewFieldValue,
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
     validResponse
@@ -157,11 +158,13 @@ export const FormText = ({
         function determineIfAnswerValid(){
             if (typeof validResponse === "function"){
                 if (validResponse(value)){
+                    setNewFieldValue({...fieldObj, isValid: true})
                     return true
                 }
             }
             else if (typeof validResponse === "String" || typeof validResponse === "string"){
                 if (value === validResponse){
+                    setNewFieldValue({...fieldObj, isValid: true})
                     return true
                 }
             }
