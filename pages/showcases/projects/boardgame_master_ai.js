@@ -66,10 +66,10 @@ export default function BoardGameMasterAIProjectPage() {
             fullMessage = `(This question is for the game ${selGame}. Give the user a a complete answer and but try to word it simply and plainly. Explain terms they may not know. Question: ${current})`
             setCurrent("")
             setMessages(prev => [...prev, newMessage]);
-            handleRequestToAPI(fullMessage)
+            handleRequestToScrapeFanDuel(fullMessage)
         }
 
-        async function handleRequestToAPI(fullMessage){
+        async function handleRequestToScrapeFanDuel(fullMessage){
             fetch("/api/boardGameWizard", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
