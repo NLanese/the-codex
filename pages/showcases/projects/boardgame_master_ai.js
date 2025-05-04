@@ -14,6 +14,9 @@ import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDrop
 
 // Images
 const  S3Strcuture = '../../../assets/showcase_images/boardGameWizard/S3Structure.png'
+const  BedrockKB = '../../../assets/showcase_images/boardGameWizard/BedrockKB.png'
+const  KB_Dash = '../../../assets/showcase_images/boardGameWizard/KB_Dashboard.png'
+
 
 
 export default function BoardGameMasterAIProjectPage() {
@@ -556,6 +559,28 @@ return (
                     <OstCard
                         templateStyle={1}
                         imageSrc={S3Strcuture}
+                    />
+
+                    <p style={Styles.Fonts.basic}>
+                    From here, you will want to navigae to the AWS Bedrock Dashboard. Once there, you will be able to do a few different actions, but for now we are
+                    focused on the Knowledge Bases. Clicking Knowledge Bases from the left menu will bring you to the 
+                    desired dashboard
+                    </p>
+
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={BedrockKB}
+                    />
+
+                    <p style={Styles.Fonts.basic}>
+                    You then get brought to the AWS Bedrock Knowledge Bases Dashboard, you will want to select onw of your Knowledge Bases. If you have none, none 
+                    will be shown and you will be prompted to create one. Once you have created one or clicked on an existing one, you will be brought to the Knowledge Base Actions Dashboard. 
+                    From here you have a lot of different customization options as well as an ability to test different LLMs against your knowledge base
+                    </p>
+
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={KB_Dash}
                     />
 
                 </div>
