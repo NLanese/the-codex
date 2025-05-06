@@ -337,7 +337,9 @@ export const OstrichForm = ({
 
         function onFieldChange(singleFieldObj){
             handleSetFieldsState(singleFieldObj)
-            onChange(singleFieldObj)
+            if (onChange){
+                onChange(singleFieldObj)
+            }       
         }
 
         // Fires on every Form Change (All User Input on Forms)
