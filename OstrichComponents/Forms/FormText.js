@@ -63,6 +63,7 @@ export const FormText = ({
             if (onChange) {
                 onChange(fieldObj);
             }
+            determineIfAnswerValid()
         }
     }, [value]);
 
@@ -156,10 +157,18 @@ export const FormText = ({
         }
 
         function determineIfAnswerValid(){
+            console.log(typeof validResponse)
             if (typeof validResponse === "function"){
+                console.log("checking function")
                 if (validResponse(value)){
+                    console.log("Making field ", fieldObj.title, " true")
                     setNewFieldValue({...fieldObj, isValid: true})
+                    setIsValid(true)
                     return true
+                }
+                else{
+                    console.log(validResponse(value), " is false")
+                    setIsValid(false)
                 }
             }
             else if (typeof validResponse === "String" || typeof validResponse === "string"){
@@ -216,11 +225,11 @@ export const FormText = ({
             }
             let borderColor = '#bdbdbd'
             let borderFill = '#efefef'
-            if ((validResponse && determineIfAnswerValid()) && !correctResponse){
+            if ((validResponse && isValid) && !correctResponse){
                 borderColor = '#57a5f2'
                 borderFill = '#9cc6f0'
             }
-            else if (correctResponse){
+            else if (correctResponse && isCorrect){
                 borderColor = '#57f25f'
                 borderFill = '#a8ffad'
             }
