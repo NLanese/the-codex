@@ -160,16 +160,19 @@ export const FormText = ({
             console.log(typeof validResponse)
             if (typeof validResponse === "function"){
                 console.log("checking function")
-                if (validResponse(value)){
-                    console.log("Making field ", fieldObj.title, " true")
-                    setNewFieldValue({...fieldObj, isValid: true})
-                    setIsValid(true)
-                    return true
-                }
-                else{
-                    console.log(validResponse(value), " is false")
-                    setIsValid(false)
-                }
+                checkValid(value).then(resp =>{
+                    if (resp){
+                        console.log("Making field ", fieldObj.title, " true")
+                        setNewFieldValue({...fieldObj, isValid: true})
+                        setIsValid(true)
+                        return true
+                    }
+                    else{
+                        console.log(resp, " is false")
+                        setIsValid(false)
+                    }
+                })
+                
             }
             else if (typeof validResponse === "String" || typeof validResponse === "string"){
                 if (value === validResponse){
@@ -181,6 +184,10 @@ export const FormText = ({
                 console.log(typeof validResponse)
                 return false
             }
+        }
+
+        async function checkValid(val){
+            return await validResponse(val)
         }
 
     ////////////////

@@ -33,9 +33,11 @@ export default function OstFormsShowcase(){
 
         console.log(hasUppercase, " ", hasLowercase, " ", hasNumber, " ", hasSpecial)
         if (hasUppercase && hasLowercase && hasNumber && hasSpecial){
+            console.log("Returning true")
             return true
         }
         else{ 
+            console.log("Returning False")
             return false
         }
     }
