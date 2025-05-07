@@ -400,13 +400,13 @@ export const OstrichForm = ({
                     if (field?.value){
                         if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){
                             if (field.value === "" && field.length <= 0){
-                                console.log("Cannot Submit. ", field.id , " does not have text provided")
+                                // console.log("Cannot Submit. ", field.id , " does not have text provided")
                                 canSubmit = false
                             }
                         }
                     }
                     else{
-                        console.log("Cannot Submit. ", field.id , " does not have any value")
+                        // console.log("Cannot Submit. ", field.id , " does not have any value")
                         canSubmit = false
                     }
                 }
@@ -422,15 +422,6 @@ export const OstrichForm = ({
             if (clearOnSubmit){
                 setFormData({})
             }
-            // else if (correctResponse){
-            //     checkAgainstAllAnswers().then( async (checkedAns) => {
-            //         return checkedAns
-            //     }).then(checkedAns => {
-            //         return updateFieldsWithAnswerCheck(checkedAns)
-            //     }).then( async (tempFields) => {
-            //         setFieldsState(tempFields)
-            //     })
-            // }
             setSubmitted(true)
         }
 
