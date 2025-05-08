@@ -74,6 +74,14 @@ export default function OstFormsShowcase(){
                             setText1(value)
                         }),
                         value: text1,
+                        validResponse: (value) => {
+                            if (value.includes("@") && value.includes(".")){
+                                return true
+                            }
+                            else{
+                                return false
+                            }
+                        }
                     },
                     {
                         title: "Account Alias",
