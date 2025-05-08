@@ -76,7 +76,7 @@ export const FormText = ({
 
             // Sets Title, Caption and MoreText
             let temp = {
-                fontSize: 24,
+                fontSize: 22,
                 fontWeight: 600,
                 fontFamily: "Gilroy",
                 margin: 3,
@@ -96,15 +96,15 @@ export const FormText = ({
             setCaptionStyleFinal(final)
             temp.fontSize = 14
             temp.marginBottom = 10
-            temp.fontWeight = 500
+            temp.fontWeight = 300
             temp.color = '#3d3d3d'
             if (fieldObj.moreTextStyle){
                 final = {...temp, ...fieldObj.moreTextStyle}
             }
             else{
-                final = {...temp, ...final}
+                final = {...final, ...temp}
             }
-            setMoreTextStyleFinal(final)
+            setMoreTextStyleFinal({...final})
 
 
             // Sets Input Box
