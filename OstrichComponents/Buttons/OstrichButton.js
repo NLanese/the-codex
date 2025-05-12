@@ -20,6 +20,18 @@ export const OstrichButton = ({
     ////////////
 
         const [isHovered, setIsHovered] = useState(false)
+        const [isPressed, setIsPressed] = useState(false)
+
+        const [styleFinal, setStyleFinal] = useState(false)
+        const [inactiveStyleFinal, setInactiveStyleFinal] = useState(false)
+
+    ////////////////
+    // UseEffects //
+    ////////////////
+
+    useEffect(() => {
+        finalizeStyle()
+    }, [])
 
     ///////////////
     // Functions //
@@ -27,28 +39,41 @@ export const OstrichButton = ({
 
         // STYLES AND COLORS //
 
-            // Determines ALL Style Rules(non-text) to Apply
-            function determineStyle(){
+            function finalizeStyle(){
+                let temp = {
+                    transform: isPressed ? 'scale(0.95)' : 'scale(1)',
+                    transition: 'transform 0.1s ease-out',
+                    backgroundColor: determineBackgroundColor(),
+                    cursor: isActive ? 'pointer' : "none",
+                    borderRadius: 15, 
+                    padding: 10, 
+                    boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
+                    fontFamily: "Gilroy"
+                }
+                setStyleFinal({...temp, style})
                 if (!inactiveStyle){
                     inactiveStyle = style
                 }
-                if (isActive){
-                    return {...style, backgroundColor: determineBackgroundColor()}
-                }
-                else{
-                    return {...inactiveStyle, backgroundColor: determineBackgroundColor()}
-                }
+                setInactiveStyleFinal({...temp, inactiveStyle})
+
+            }
+
+            // Determines ALL Style Rules(non-text) to Apply
+            function determineStyle(){
+                return {...styleFinal, backgroundColor: determineBackgroundColor()}
             }
 
             // Determines the backgrouundColor of the Button
             function determineBackgroundColor(){
                 if (isActive){
                     if (isHovered){
+                        console.log("Is hovered")
                         return isRGBA(activeColor)
-                        ? darkenRGBA(activeColor, 10) // Adjust the darkness level as needed
-                        : darkenColor(activeColor, 10);
+                        ? darkenRGBA(activeColor, 20) // Adjust the darkness level as needed
+                        : darkenColor(activeColor, 20);
                     }
                     else{
+                        console.log("Is not hovered")
                         return activeColor
                     }
                 }
@@ -68,10 +93,27 @@ export const OstrichButton = ({
             // Darkens HexColor
             function darkenColor(color, percent) {
                 const darkenValue = percent / 100;
-                const [r, g, b] = color.match(/\d+/g);
+                let r, g, b;
+            
+                if (color.startsWith('#')) {
+                    // Convert hex to RGB
+                    color = color.slice(1);
+                    if (color.length === 3) {
+                        color = color.split('').map(c => c + c).join('');
+                    }
+                    const int = parseInt(color, 16);
+                    r = (int >> 16) & 255;
+                    g = (int >> 8) & 255;
+                    b = int & 255;
+                } else {
+                    // Parse rgb(x, y, z)
+                    [r, g, b] = color.match(/\d+/g).map(Number);
+                }
+            
                 const darkenedR = Math.round(r * (1 - darkenValue));
                 const darkenedG = Math.round(g * (1 - darkenValue));
                 const darkenedB = Math.round(b * (1 - darkenValue));
+            
                 return `rgb(${darkenedR}, ${darkenedG}, ${darkenedB})`;
             }
 
