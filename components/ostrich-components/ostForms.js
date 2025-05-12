@@ -92,6 +92,7 @@ export default function OstFormsShowcase(){
                         onChange: ((value) => setText2(value)),
                         value: text2,
                         required: false,
+                        validResponse: () => true
                     },
                     {
                         title: "Password",
@@ -103,6 +104,124 @@ export default function OstFormsShowcase(){
 
                 ]}
             />
+
+                <div style={{...Styles.Sections.simpleLessonCode, width: '72%', marginLeft: '15%'}}>
+                    <p style={{...Styles.Code.code, fontSize: 18}}>
+                        <span style={Styles.Code.reg}>{"<"}</span>
+                        <span style={Styles.Code.keyword}>OstrichForm</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                        <span style={Styles.Code.var}>title</span>
+                        <span style={Styles.Code.reg}>=</span>
+                        <span style={Styles.Code.str}>"Example Form"</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                        <span style={Styles.Code.var}>style</span>
+                        <span style={Styles.Code.reg}>=</span>
+                        <span style={Styles.Code.var}>{"{"}</span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                        <span style={Styles.Code.var}>width</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.str}>"70%"</span>
+                        <span style={Styles.Code.reg}>, </span>
+                        <span style={Styles.Code.var}>marginLeft</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.str}>"15%"</span>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                        <span style={Styles.Code.var}>{"}"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                        <span style={Styles.Code.var}>fields</span>
+                        <span style={Styles.Code.reg}>=</span>
+                        <span style={Styles.Code.var}>{"{"}</span>
+                        <span style={Styles.Code.func}>{"["}</span>
+                    </p>
+
+                    {/* Field One */}
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                        <span style={Styles.Code.keyword}>{"{"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.var}>title</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.str}>"Email"</span>
+                        <span style={Styles.Code.reg}>, </span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.var}>placeholder</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.str}>"example@gmail.com"</span>
+                        <span style={Styles.Code.reg}>, </span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.var}>type</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.str}>"text"</span>
+                        <span style={Styles.Code.reg}>, </span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.func}>onChange</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.var}>{"("}</span>
+                        <span style={Styles.Code.func}>{"("}</span>
+                        <span style={Styles.Code.var}>value</span>
+                        <span style={Styles.Code.func}>{")"}</span>
+                        <span style={Styles.Code.keyword}>{" => "}</span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                        <span style={Styles.Code.func}>setText1</span>
+                        <span style={Styles.Code.keyword}>{"("}</span>
+                        <span style={Styles.Code.var}>value</span>
+                        <span style={Styles.Code.keyword}>{")"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                        <span style={Styles.Code.var}>{")"}</span>
+                        <span style={Styles.Code.reg}>, </span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.var}>value</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.var}>text1</span>
+                        <span style={Styles.Code.reg}>, </span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.func}>validResponse</span>
+                        <span style={Styles.Code.reg}>: </span>
+                        <span style={Styles.Code.var}>{"("}</span>
+                        <span style={Styles.Code.var}>value</span>
+                        <span style={Styles.Code.var}>{")"}</span>
+                        <span style={Styles.Code.keyword}>{" => "}</span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.func}>{"("}</span>
+                        <span style={Styles.Code.var}>value</span>
+                        <span style={Styles.Code.reg}>.</span>
+                        <span style={Styles.Code.var}>includes</span>
+                        <span style={Styles.Code.keyword}>{"("}</span>
+                        <span style={Styles.Code.str}>"@"</span>
+                        <span style={Styles.Code.keyword}>{")"}</span>
+                        <span style={Styles.Code.reg}> && </span>
+                        <span style={Styles.Code.var}>value</span>
+                        <span style={Styles.Code.reg}>.</span>
+                        <span style={Styles.Code.var}>includes</span>
+                        <span style={Styles.Code.keyword}>{"("}</span>
+                        <span style={Styles.Code.str}>"."</span>
+                        <span style={Styles.Code.keyword}>{")"}</span>
+                        <span style={Styles.Code.func}>{")"}</span>
+                        <span style={Styles.Code.func}>{" {"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 100}}>
+                        <span style={Styles.Code.keyword}>return</span>
+                        <span style={Styles.Code.bool}> true</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
+                </div>
 
         </div>
     )

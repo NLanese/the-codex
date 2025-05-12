@@ -7,7 +7,7 @@ export const OstrichButton = ({
     title,
     caption=false,
     activeColor,
-    inactiveColor,
+    inactiveColor="grey",
     titleStyle,
     captionStyle,
 
@@ -39,12 +39,13 @@ export const OstrichButton = ({
 
         // STYLES AND COLORS //
 
+            // Completes Input Styles with Defaults
             function finalizeStyle(){
                 let temp = {
                     transform: isPressed ? 'scale(0.95)' : 'scale(1)',
                     transition: 'transform 0.1s ease-out',
                     backgroundColor: determineBackgroundColor(),
-                    cursor: isActive ? 'pointer' : "none",
+                    cursor: 'pointer',
                     borderRadius: 15, 
                     padding: 10, 
                     boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
@@ -170,8 +171,13 @@ export const OstrichButton = ({
         <div 
         style={{...determineStyle()}}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={() => {
+            setIsPressed(false)
+            setIsHovered(false)
+        }}
         onClick={() => handlePress()}
+        onMouseDown={() => setIsPressed(true)}
+        onMouseUp={() => setIsPressed(false)}
         >
             {renderButtonText()}
         </div>
