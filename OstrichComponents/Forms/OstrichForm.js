@@ -404,8 +404,6 @@ export const OstrichForm = ({
                                         canSubmit = true
                                     }
                                     else{
-                                        console.log("Cannot Submit. ", field.id , " does not pass validation")
-                                        console.log(field)
                                         canSubmit = false
                                     }
                                 }
@@ -420,8 +418,6 @@ export const OstrichForm = ({
                                     canSubmit = true
                                 }
                                 else{
-                                    console.log("Cannot Submit. ", field.id , " does not pass validation")
-                                    console.log(field)
                                     canSubmit = false
                                 }
                             }
@@ -431,14 +427,10 @@ export const OstrichForm = ({
                         }
                     }
                     else{
-                        console.log("Cannot Submit. ", field.id , " does not have a value")
-                        console.log(field)
                         canSubmit = false
                     }
                 }
             })
-            console.log(fieldsState)
-            console.log(canSubmit)
             return canSubmit
         }
 
