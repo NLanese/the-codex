@@ -10,13 +10,12 @@ import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
-import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 // Showcase Elements
 import TabBarsShowcase from "../../../components/ostrich-components/tabBars";
 import OstCardShowcase from "../../../components/ostrich-components/ostCards";
-import DropdownShowcase from "../../../components/ostrich-components/dropdowns";
+import DropdownShowcase from "../../../components/ostrich-components/dropdowns";  
+import OstFormsShowcase from "../../../components/ostrich-components/ostForms";
 
 export default function OstrichShowcase() {
 
@@ -105,6 +104,7 @@ export default function OstrichShowcase() {
                 {renderOstrichCards()}  
                 {renderOstrichDropDown()}            
                 {renderOstrichTabBar()}  
+                <OstFormsShowcase />
             </div>
             
         </OstCard>
