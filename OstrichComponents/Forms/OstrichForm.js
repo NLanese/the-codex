@@ -397,7 +397,7 @@ export const OstrichForm = ({
                 let field = fieldsState[fieldID]
                 if (field?.required !== false){
                     if (field?.value){
-                        if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){
+                        if (field?.type === "text" || field?.type === "tel"){
                             if (field.value === "" && field.length <= 0){
                                 if (field.validResponse){
                                     if (field.isValid){
@@ -413,15 +413,25 @@ export const OstrichForm = ({
                                     canSubmit = true
                                 }
                             }
+                        }
+                        else if (field.type === 'password'){
+                            if (field.validResponse){
+                                if (field.isValid){
+                                    canSubmit = true
+                                }
+                                else{
+                                    console.log("Cannot Submit. ", field.id , " does not pass validation")
+                                    console.log(field)
+                                    canSubmit = false
+                                }
+                            }
                             else{
-                                console.log("Cannot Submit. ", field.id , " does not have any value")
-                                console.log(field)
-                                canSubmit = false
+                                canSubmit = true
                             }
                         }
                     }
                     else{
-                        console.log("Cannot Submit. ", field.id , " does not have any value")
+                        console.log("Cannot Submit. ", field.id , " does not have a value")
                         console.log(field)
                         canSubmit = false
                     }
