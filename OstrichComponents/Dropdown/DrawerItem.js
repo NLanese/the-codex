@@ -45,7 +45,8 @@ export const DrawerItem = ({
         }
 
         // Determines which onClick function to use, general or specific.
-        function handleOnPress(param){
+        function handleOnPress(param, event){
+            event.stopPropagation()
             if (onClick){
                 return onClick(param)
             }
@@ -66,7 +67,7 @@ export const DrawerItem = ({
             <div 
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onClick={() => handleOnPress(determineParameter)}
+            onClick={(event) => handleOnPress(determineParameter, event)}
             style={style}
             >
                 <div style={{...textStyle}}>

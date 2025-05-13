@@ -241,6 +241,90 @@ export default function OstFormsShowcase(){
                             <span style={Styles.Code.reg}>{","}</span>
                         </p>
                     </div>
+
+                    {/* Field Two */}
+                    <div>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Account Alias"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>caption</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"(Optional)"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>moreText</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"A username that will be displayed to other accounts instead of your email"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>placeholder</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Stephen_B_Smith"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>type</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"text"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.func}>onChange</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>{"("}</span>
+                            <span style={Styles.Code.func}>{"("}</span>
+                            <span style={Styles.Code.var}>value</span>
+                            <span style={Styles.Code.func}>{")"}</span>
+                            <span style={Styles.Code.keyword}>{" => "}</span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
+                            <span style={Styles.Code.func}>setText2</span>
+                            <span style={Styles.Code.keyword}>{"("}</span>
+                            <span style={Styles.Code.var}>value</span>
+                            <span style={Styles.Code.keyword}>{")"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                            <span style={Styles.Code.var}>{")"}</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>value</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>text2</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>required</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.bool}>false</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.func}>validResponse</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>{"("}</span>
+                            <span style={Styles.Code.var}>value</span>
+                            <span style={Styles.Code.var}>{")"}</span>
+                            <span style={Styles.Code.keyword}>{" => "}</span>
+                            <span style={Styles.Code.keyword}>return</span>
+                            <span style={Styles.Code.bool}> true</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
+                            <span style={Styles.Code.reg}>{","}</span>
+                        </p>
+                    </div>
                     
                     
                 </div>
