@@ -71,9 +71,9 @@ export default function OstFormsShowcase(){
                         title: "Email",
                         placeholder: "example@email.com",
                         type: "text",
-                        onChange: ((value) => {
-                            setText1(value)
-                        }),
+                        // onChange: ((value) => {
+                        //     setText1(value)
+                        // }),
                         value: text1,
                         validResponse: (value) => {
                             if (value.includes("@") && value.includes(".")){
@@ -91,8 +91,8 @@ export default function OstFormsShowcase(){
                         moreText: "A username that will be displayed to other accounts instead of your email",
                         placeholder: "Stephen_B_Smith",
                         type: "text",
-                        onChange: ((value) => setText2(value)),
-                        value: text2,
+                        // onChange: ((value) => setText2(value)),
+                        // value: text2,
                         required: false,
                         validResponse: () => true
                     },
@@ -100,8 +100,8 @@ export default function OstFormsShowcase(){
                         id: "Password",
                         title: "Password",
                         type: "password",
-                        onChange: ((value) => setText3(value)),
-                        value: text3,
+                        // onChange: ((value) => setText3(value)),
+                        // value: text3,
                         validResponse: determinePassword
                     },
 
@@ -141,7 +141,7 @@ export default function OstFormsShowcase(){
                     </p>
 
                     {/* Field One */}
-                    <div>
+                    <div style={{marginTop: 10}}>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>{"{"}</span>
                         </p>
@@ -167,33 +167,6 @@ export default function OstFormsShowcase(){
                             <span style={Styles.Code.var}>type</span>
                             <span style={Styles.Code.reg}>: </span>
                             <span style={Styles.Code.str}>"text"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>onChange</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>{"("}</span>
-                            <span style={Styles.Code.func}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.func}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.func}>setText1</span>
-                            <span style={Styles.Code.keyword}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.keyword}>{")"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                            <span style={Styles.Code.var}>{")"}</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>text1</span>
                             <span style={Styles.Code.reg}>, </span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
@@ -252,7 +225,7 @@ export default function OstFormsShowcase(){
                     </div>
 
                     {/* Field Two */}
-                    <div>
+                    <div style={{marginTop: 10}}>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>{"{"}</span>
                         </p>
@@ -293,33 +266,6 @@ export default function OstFormsShowcase(){
                             <span style={Styles.Code.reg}>, </span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>onChange</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>{"("}</span>
-                            <span style={Styles.Code.func}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.func}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.func}>setText2</span>
-                            <span style={Styles.Code.keyword}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.keyword}>{")"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                            <span style={Styles.Code.var}>{")"}</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>text2</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
                             <span style={Styles.Code.var}>required</span>
                             <span style={Styles.Code.reg}>: </span>
                             <span style={Styles.Code.bool}>false</span>
@@ -342,7 +288,7 @@ export default function OstFormsShowcase(){
                     </div>                
                     
                     {/* Field Three */}
-                    <div>
+                    <div style={{marginTop: 10}}>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>{"{"}</span>
                         </p>
@@ -365,47 +311,24 @@ export default function OstFormsShowcase(){
                             <span style={Styles.Code.reg}>, </span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>onChange</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>{"("}</span>
-                            <span style={Styles.Code.func}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.func}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.func}>setText3</span>
-                            <span style={Styles.Code.keyword}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.keyword}>{")"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                            <span style={Styles.Code.var}>{")"}</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>text3</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
                             <span style={Styles.Code.func}>validResponse</span>
                             <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.var}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.keyword}>return</span>
-                            <span style={Styles.Code.bool}> true</span>
+                            <span style={Styles.Code.func}>determinePassword</span>
                         </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>{"}"}</span>
                             <span style={Styles.Code.reg}>{","}</span>
                         </p>
                     </div>
+
+                    <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
+                        <span style={Styles.Code.func}>{"]"}</span>
+                        <span style={Styles.Code.var}>{"}"}</span>
+                    </p>
+                    <p style={{...Styles.Code.code, fontSize: 18}}>
+                        <span style={Styles.Code.reg}>{"/>"}</span>
+                    </p>
+
                 </div>
 
         </div>
