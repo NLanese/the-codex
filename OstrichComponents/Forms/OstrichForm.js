@@ -79,7 +79,6 @@ export const OstrichForm = ({
         useEffect(() => {
             if (fieldsState){
                 if (Object.keys(fieldsState > 0)){
-                    console.log(fieldsState)
                     setCanSubmit(determineCanSubmit())
                     setLoading(false)
                 }
@@ -400,17 +399,36 @@ export const OstrichForm = ({
                     if (field?.value){
                         if (field?.type === "text" || field?.type === "password" || field?.type === "tel"){
                             if (field.value === "" && field.length <= 0){
-                                // console.log("Cannot Submit. ", field.id , " does not have text provided")
+                                if (field.validResponse){
+                                    if (field.isValid){
+                                        canSubmit = true
+                                    }
+                                    else{
+                                        console.log("Cannot Submit. ", field.id , " does not pass validation")
+                                        console.log(field)
+                                        canSubmit = false
+                                    }
+                                }
+                                else{
+                                    canSubmit = true
+                                }
+                            }
+                            else{
+                                console.log("Cannot Submit. ", field.id , " does not have any value")
+                                console.log(field)
                                 canSubmit = false
                             }
                         }
                     }
                     else{
-                        // console.log("Cannot Submit. ", field.id , " does not have any value")
+                        console.log("Cannot Submit. ", field.id , " does not have any value")
+                        console.log(field)
                         canSubmit = false
                     }
                 }
             })
+            console.log(fieldsState)
+            console.log(canSubmit)
             return canSubmit
         }
 

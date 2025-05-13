@@ -157,18 +157,14 @@ export const FormText = ({
         }
 
         function determineIfAnswerValid(){
-            console.log(typeof validResponse)
             if (typeof validResponse === "function"){
-                console.log("checking function")
                 checkValid(value).then(resp =>{
                     if (resp){
-                        console.log("Making field ", fieldObj.title, " true")
                         setNewFieldValue({...fieldObj, isValid: true})
                         setIsValid(true)
                         return true
                     }
                     else{
-                        console.log(resp, " is false")
                         setIsValid(false)
                     }
                 })
@@ -181,7 +177,7 @@ export const FormText = ({
                 }
             }
             else{
-                console.log(typeof validResponse)
+                setNewFieldValue({...fieldObj, isValid: false})
                 return false
             }
         }
