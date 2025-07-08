@@ -66,14 +66,13 @@ export default function OstFormsShowcase(){
                 title="Example Form"
                 style={{width: '70%', marginLeft: '15%'}}
                 fields={[
+
+                    // Email Field
                     {
                         id: "Email",
                         title: "Email",
                         placeholder: "example@email.com",
                         type: "text",
-                        // onChange: ((value) => {
-                        //     setText1(value)
-                        // }),
                         value: text1,
                         validResponse: (value) => {
                             if (value.includes("@") && value.includes(".")){
@@ -84,26 +83,35 @@ export default function OstFormsShowcase(){
                             }
                         }
                     },
+
+                    // Account Alias Field
                     {
                         id: "Account Alias",
                         title: "Account Alias",
-                        caption: "(Optional)",
-                        moreText: "A username that will be displayed to other accounts instead of your email",
+                        caption: "A username that will be displayed to other accounts instead of your email",
                         placeholder: "Stephen_B_Smith",
                         type: "text",
-                        // onChange: ((value) => setText2(value)),
-                        // value: text2,
                         required: false,
-                        validResponse: () => true
                     },
+
+                    // Password Field
                     {
                         id: "Password",
                         title: "Password",
                         type: "password",
-                        // onChange: ((value) => setText3(value)),
-                        // value: text3,
                         validResponse: determinePassword
                     },
+
+                    // Account Type
+                    {
+                        id: "Type",
+                        title: "Account Type",
+                        caption: "What kind of Account will you be signing up with?",
+                        moreText: "This cannot be changed later on",
+                        placeholder: "Stephen_B_Smith",
+                        type: "MC",
+                        options: ["Personal", "Business", "Government"]
+                    }
 
                 ]}
             />

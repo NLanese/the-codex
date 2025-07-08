@@ -1,22 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
+import { OstCard } from '../Format/OstCard';
 
 export const FormMultipleChoice = ({
+    boxStyle,
     fieldObj,               // If coming from a form, this object will represent the properties needed to fill this component
     titleStyle,             // Style of the Title for the Multiple Choice Question
-    fieldStyle,             // 
-    captionStyle = {fontSize: 18, padding: 5, fontWeight: 400},           //
+    captionStyle,
+    
     onChange,               // Function to fire whenever a value is selected or unselected
     type="Bubble",          // 
+
+    setNewFieldValue,
+    correctDisplay = "bubble", // or "bubble" or "fieldBubble"
+    correctResponse,
+    validResponse,
+
     options,                // Selection Options
     singleOption = true,    // One Answer or Multiple
-    limit = false           // If Multiple Answers, the limit to how many
+    limit = false,          // If Multiple Answers, the limit to how many
+    min = false             // If Multiple Answers, the limit to how little
 }) => {
     
     ////////////
     // States //
     ////////////
+
+        // Text Style
+        const [titleStyleFinal, setTitleStyleFinal] = useState(false)
+        const [captionStyleFinal, setCaptionStyleFinal] = useState(false)
+        const [moreTextStyleFinal, setMoreTextStyleFinal] = useState(false)
+    
+        // Container Style
+        const [boxStyleFinal, setBoxStyleFinal] = useState(false)
+        const [inputStyleFinal, setInputStyleFinal] = useState(false)
+
+
 
     const [selectedAnswer, setSelectedAnswer] = useState([])
 
@@ -27,7 +47,10 @@ export const FormMultipleChoice = ({
     // UseEffects //
     ////////////////
 
+
+
     // Sets options to Field Options if empty
+    // Also Sets Styles
     useEffect(() => {
         if (!options){
             if (!fieldObj.options){
@@ -35,12 +58,86 @@ export const FormMultipleChoice = ({
             }
             options = fieldObj.options
         }
+        finalizeStyles()
+        if (fieldObj.value){
+            setSelectedAnswer(fieldObj.value)
+        }
         setLoading(false)
     }, [])
 
     ///////////////
     // Functions //
     ///////////////
+
+        // Finalizes all User Input Styles to Apply Defaults
+        function finalizeStyles(){
+
+            // Sets Title, Caption and MoreText
+            let temp = {
+                fontSize: 22,
+                fontWeight: 600,
+                fontFamily: "Gilroy",
+                margin: 3,
+                paddingBottom: 1,
+                marginBottom: 0,
+            }
+            let final = {...temp, ...titleStyle}
+            setTitleStyleFinal(final)
+            temp.fontSize = 16
+            temp.fontWeight = 600
+            temp.color = 'grey'
+            temp.marginTop = 0
+            temp.paddingTop = 0
+            temp.marginBottom = 0
+            temp.paddingBottom = 0
+            final = {...temp, ...captionStyle}
+            setCaptionStyleFinal(final)
+            temp.fontSize = 14
+            temp.marginBottom = 10
+            temp.fontWeight = 300
+            temp.color = '#3d3d3d'
+            if (fieldObj.moreTextStyle){
+                final = {...temp, ...fieldObj.moreTextStyle}
+            }
+            else{
+                final = {...final, ...temp}
+            }
+            setMoreTextStyleFinal({...final})
+
+
+            // Sets Input Box
+            let tempInput = {
+                marginTop: 10, marginRight: '3%', paddingLeft: 10,
+                height: 30, width: '97%',
+                fontSize: 18,
+                borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
+            }
+            final = {...tempInput, ...inputStyleFinal }
+            if (fieldObj.style){
+                final = {...final, ...fieldObj.style}
+            }
+            setInputStyleFinal(final)
+
+
+            // Sets Individual Field Box
+            let tempBox = {
+                boxShadow: '0px 0px 2px 0px rgba(0, 0, 0, 0.2)',
+                borderRadius: 0,
+                border: '0',
+                borderLeft: '1 solid black',
+                borderRight: '1 solid black',
+                paddingBottom: 15
+
+            }
+            if (fieldObj.isCorrect && correctDisplay === "border"){
+                tempBox.boxShadow = '0px 0px 2px 0px rgba(62, 250, 141, 0.2)'
+            }
+            if (fieldObj.isWrong && correctDisplay === "border"){
+                tempBox.boxShadow = '0px 0px 2px 0px rgba(212, 59, 59 0.2)'
+            }
+            final = {...tempBox, ...boxStyle}
+            setBoxStyleFinal(final)
+        }
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
@@ -79,21 +176,7 @@ export const FormMultipleChoice = ({
             
         }
 
-        // Determines the Input Style based on inputs or lackthereof
-        function handleStyle(){
-            if (!fieldObj.style){
-                return {
-                    marginTop: 10, marginLeft: '3%', marginRight: '3%',
-                    height: 30, width: '94%',
-                    fontSize: 18,
-                    borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
-                }
-            }
-            else{
-                return fieldObj.style
-            }
-        }
-
+        // Determines on an indiivdual level whether an answer is selected
         function isTagSelected(option){
             if (selectedAnswer.includes(option)){
                 return true
@@ -107,13 +190,35 @@ export const FormMultipleChoice = ({
     // Renderings //
     ////////////////
 
+
         // Renders the Field's Description / Caption
-        function renderCaptionOrCustom(){
+        function renderCaption(){
             if (fieldObj.caption){
                 return(
-                    <div style={{captionStyle}}>
+                    <span style={captionStyleFinal}>
                         {fieldObj.caption}
-                    </div>
+                    </span>
+                )
+            }
+        }
+
+        // Renders Additional Text or Field Image
+        function renderMoreDetails(){
+            if (fieldObj.img){
+                return(
+                    <OstCard
+                        style={{justifySelf: 'center'}}
+                        imageSrc={img} 
+                    />
+                )
+            }
+            else if (fieldObj.moreText){
+                return(
+                    <p 
+                    style={moreTextStyleFinal}
+                    >
+                        {fieldObj.moreText}
+                    </p>
                 )
             }
             else if (fieldObj.render){
@@ -121,6 +226,44 @@ export const FormMultipleChoice = ({
             }
         }
 
+        // Renders the Bubble Version of Correct or Valid
+        function renderBubbleValidOrCorrect(){
+            if ((!validResponse && !correctResponse && (fieldObj.required === false)) || (correctDisplay !== "bubble")){
+                return
+            }
+            let borderColor = '#bdbdbd'
+            let borderFill = '#efefef'
+            if ((validResponse && isValid) && !correctResponse){
+                borderColor = '#57a5f2'
+                borderFill = '#9cc6f0'
+            }
+            else if (!(fieldObj.required === false)){
+                if (selectedAnswer.length > 0){
+                    if (min){
+                        if (selectedAnswer.length >= min){
+                            borderColor = '#57a5f2'
+                            borderFill = '#9cc6f0'
+                        }
+                    }
+                    else{
+                        borderColor = '#57a5f2'
+                        borderFill = '#9cc6f0'
+                    }
+                }
+            }
+            else if (correctResponse && isCorrect){
+                borderColor = '#57f25f'
+                borderFill = '#a8ffad'
+            }
+            return(
+                <div style={{marginLeft: 'auto'}}>
+                    <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                    </div>
+                </div>
+            )
+        }
+
+        // Renders Options
         function renderOptions(){
             if (loading){
                 return
@@ -134,6 +277,7 @@ export const FormMultipleChoice = ({
             }
         }
 
+        // Renders Row to contain options
         function renderOptionsRow(rowOptions){
             return rowOptions.map( (opt, index) => {
                 return(
@@ -149,30 +293,44 @@ export const FormMultipleChoice = ({
             })
         }
 
-        function determineFieldStyle(){
-            if (fieldObj.style){
-                return fieldObj.style;
-            }
-            else{
-                return fieldStyle;
-            }
-        }
-
     /////////////////
     // Main Return //
     /////////////////
 
+        function MAIN(){
+            if (loading){
+                return
+            }
+            else{
+                return(
+                    <div style={{width: '95%', height: 'auto'}}>
+                        <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
+                            <p style={{...titleStyleFinal}}>
+                                {fieldObj.title} 
+                            </p>
+                            {renderBubbleValidOrCorrect()}
+                        </div>  
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            {renderCaption()} 
+                            {renderMoreDetails()}
+                        </div>
+                        <div style={{padding: 5, paddingTop: 15}}>
+                            {renderOptions()}
+                        </div>
+                    </div>
+                )
+            }
+        }
+
         return(
-            <div style={determineFieldStyle()}>
-                <div style={{...titleStyle}}>
-                    {fieldObj.title}
-                </div>
-                {renderCaptionOrCustom()}
-                <div style={{padding: 5, paddingTop: 15}}>
-                    {renderOptions()}
-                </div>
-            </div>
+            <OstCard 
+            style={boxStyleFinal}
+            >
+                {MAIN()}
+            </OstCard>
         )
+
+        
 }
 
 ///////////////////////

@@ -8,6 +8,7 @@ export const FormText = ({
     fieldObj,
     titleStyle,
     captionStyle,
+
     onChange,
     setNewFieldValue,
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
@@ -194,7 +195,7 @@ export const FormText = ({
         function renderCaption(){
             if (fieldObj.caption){
                 return(
-                    <span style={{...captionStyleFinal}}>
+                    <span style={captionStyleFinal}>
                         {fieldObj.caption}
                     </span>
                 )
@@ -222,6 +223,7 @@ export const FormText = ({
             }
         }
 
+        // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
             if ((!validResponse && !correctResponse) || (correctDisplay !== "bubble")){
                 return
@@ -253,11 +255,12 @@ export const FormText = ({
                     <div style={{width: '95%', height: 'auto'}}>
                         <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
                             <p style={{...titleStyleFinal}}>
-                                {fieldObj.title} {renderCaption()} 
+                                {fieldObj.title}
                             </p>
                             {renderBubbleValidOrCorrect()}
                         </div>  
-                        <div style={{display: 'flex'}}>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            {renderCaption()} 
                             {renderMoreDetails()}
                         </div>
                         <input 
