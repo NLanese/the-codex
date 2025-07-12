@@ -108,7 +108,6 @@ export default function OstFormsShowcase(){
                         title: "Account Type",
                         caption: "What kind of Account will you be signing up with?",
                         moreText: "This cannot be changed later on",
-                        placeholder: "Stephen_B_Smith",
                         type: "MC",
                         options: ["Personal", "Business", "Government"]
                     }
@@ -279,16 +278,6 @@ export default function OstFormsShowcase(){
                             <span style={Styles.Code.bool}>false</span>
                             <span style={Styles.Code.reg}>, </span>
                         </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.func}>validResponse</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>{"("}</span>
-                            <span style={Styles.Code.var}>value</span>
-                            <span style={Styles.Code.var}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.keyword}>return</span>
-                            <span style={Styles.Code.bool}> true</span>
-                        </p>
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>{"}"}</span>
                             <span style={Styles.Code.reg}>{","}</span>
@@ -326,6 +315,57 @@ export default function OstFormsShowcase(){
                         <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
                             <span style={Styles.Code.keyword}>{"}"}</span>
                             <span style={Styles.Code.reg}>{","}</span>
+                        </p>
+                    </div>
+
+                    {/* Field Four */}
+                    <div style={{marginTop: 10}}>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.keyword}>{"{"}</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>id</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Type"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>title</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"Account Type"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>caption</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"What kind of Account will you be signing up with?"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>moreText</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"This cannot be changed later on"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>type</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.str}>"MC"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
+                            <span style={Styles.Code.var}>options</span>
+                            <span style={Styles.Code.reg}>: </span>
+                            <span style={Styles.Code.var}>[</span>
+                            <span style={Styles.Code.str}>"Personal"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.str}>"Business"</span>
+                            <span style={Styles.Code.reg}>, </span>
+                            <span style={Styles.Code.str}>"Government"</span>
+                            <span style={Styles.Code.var}>]</span>
+                        </p>
+                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
+                            <span style={Styles.Code.keyword}>{"}"}</span>
                         </p>
                     </div>
 
