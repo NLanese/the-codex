@@ -11,6 +11,12 @@ export const OstrichSelectionBox = ({
 
     titleStyle,
 
+    optionType = "bubble",
+    optionStyle,
+    selectedOptionStyle,
+    incorrectOptionStyle, 
+    correctOptionStyle,
+
     circleStyle = {border: "2px solid black", borderRadius: 32, height: 32, width: 32},
     boxStyle = {border: "2px solid black", borderRadius: 15, height: 55, minWidth: 100},
 
@@ -36,6 +42,14 @@ export const OstrichSelectionBox = ({
     // States //
     ////////////
 
+
+        // Style States
+        const [titleStyleFinal, setTitleStyleFinal] = useState({})
+        const [optionStyleFinal, setOptionStyleFinal] = useState({})
+        const [incorrectStyleFinal, setIncorrectStyleFinal] = useState({})
+        const [correctStyleFinal, setCorrectStyleFinal] = useState({})
+        const [selectedStyleFinal, setSelectedStyleFinal] = useState({})
+        
         // Hovered Toggled
         const [isHovered, setIsHovered] = useState(false)
         const hoverRef = useRef(isHovered)
@@ -43,6 +57,18 @@ export const OstrichSelectionBox = ({
         useEffect(() => {
             hoverRef.current = isHovered
         }, [isHovered])
+
+        // Loading
+        const [loading, setLoading] = useState(true)
+
+    /////////////////
+    // Use Effects //
+    /////////////////
+
+    useEffect(() => {
+        handleInititalState()
+        setLoading(false)
+    }, [])
 
     ///////////////
     // Functions //
@@ -60,6 +86,25 @@ export const OstrichSelectionBox = ({
             }
         };
 
+        const handleInititalState = () => {
+            let temp = {
+                border: "2px solid #efefef", borderRadius: 32, height: 32, width: 32, backgroundColor: '#bdbdbd'
+            }
+            temp = {...optionStyle, ...temp}
+            if (optionType === "bubble" || optionType === "Bubble" || optionType === "Circle" || optionType === "circle"){
+                temp.borderRadius = temp.width 
+            }
+            else if (optionType === "box" || optionType === "Box"){
+                temp.width = 50
+                temp.height = 50
+            }
+            setOptionStyleFinal(temp)
+            setIncorrectStyleFinal({...temp, borderColor: '#57a5f2', backgroundColor: '#9cc6f0', incorrectOptionStyle})
+            setSelectedStyleFinal({...temp, borderColor: '#57a5f2', backgroundColor: '#9cc6f0', selectedOptionStyle})
+            setCorrectStyleFinal({...temp, borderColor: '#57f25f', backgroundColor: '#a8ffad', selectedOptionStyle})
+
+        }
+
         const handleSelectionClick = (tag) => {
             onSelect(tag)
             if (fieldObj && fieldObj.onChange){          // If there is a Field Obj and Field Obj Function  
@@ -72,46 +117,36 @@ export const OstrichSelectionBox = ({
     ////////////////
 
         // Determines Whether Selected or Default Style for BUBBLE
-        function determineCircleStyle(){
+        function determineOptionStype(){
             if (correct){
-
+                return correctStyleFinal
             }
             else if (incorrect){
-
+                return incorrectStyleFinal
             }
             else if (selected){
-                return selectedCircleStyle;
+                return selectedStyleFinal;
             }
             else{
                 return circleStyle;
             }
         }
 
-        // Determines Whether Selected or Default Style for BOX
-        function determineBoxStyle(){
-            if (selected){
-                return selectedBoxStyle;
-            }
-            else{
-                return boxStyle;
-            }
-        }
-
         // Renders the Selection Circle
-        function renderCircle(){
+        function renderOption(){
             return(
                 <button
-                    style={determineCircleStyle()}
+                    style={determineOptionStype()}
                     onClick={() => handleSelectionClick(tag)}
                 ></button>
             )
         }
 
         // Renders For BUBBLE
-        function renderCircleAndValue(){
+        function renderOptionBox(){
             return(
                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                   {renderCircle()}
+                   {renderOption()}
                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%", paddingLeft: 10, ...optionsTextStlye}}>
                         {tag}
                     </div>
@@ -119,29 +154,10 @@ export const OstrichSelectionBox = ({
             )
         }
 
-        // Renders the Tag in Selectable BOX
-        function renderBoxAndValue(){
-            <div
-            style={determineBoxStyle()}
-            onClick={onSelect(tag)}
-            >
-                <div>{tag}</div>
-            </div>
-        }
-
-        // Determines whether to Render Box or Bubble
-        function determineType(){
-            if (type === "Bubble" || type === "bubble" || type === "circle" || type === "Circle"){
-                return renderCircleAndValue()
-            }
-            else{
-                return renderBoxAndValue()
-            }
-        }
 
     /////////////////
     // Main Return //
     /////////////////
-    return determineType()
+    return renderOptionBox()
     
 }
