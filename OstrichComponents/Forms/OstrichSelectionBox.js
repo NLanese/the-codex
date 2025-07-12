@@ -103,6 +103,15 @@ export const OstrichSelectionBox = ({
             setSelectedStyleFinal({...temp, borderColor: '#57a5f2', backgroundColor: '#9cc6f0', selectedOptionStyle})
             setCorrectStyleFinal({...temp, borderColor: '#57f25f', backgroundColor: '#a8ffad', selectedOptionStyle})
 
+            let tempTitle = {
+                fontSize: 18,
+                fontWeight: 600,
+                fontFamily: "Gilroy",
+                margin: 3,
+                paddingBottom: 1,
+                marginBottom: 0,
+            }
+            setTitleStyleFinal({...tempTitle, titleStyle})
         }
 
         const handleSelectionClick = (tag) => {
@@ -147,8 +156,10 @@ export const OstrichSelectionBox = ({
             return(
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                    {renderOption()}
-                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%", paddingLeft: 10, ...optionsTextStlye}}>
-                        {tag}
+                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%", paddingLeft: 10}}>
+                        <p style={titleStyleFinal}>
+                            {tag}
+                        </p>
                     </div>
                 </div>
             )
