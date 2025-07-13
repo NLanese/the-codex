@@ -414,6 +414,7 @@ export const OstrichForm = ({
                                         canSubmit = true
                                     }
                                     else{
+                                        console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                                         canSubmit = false
                                     }
                                 }
@@ -432,6 +433,7 @@ export const OstrichForm = ({
                                     canSubmit = true
                                 }
                                 else{
+                                    console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                                     canSubmit = false
                                 }
                             }
@@ -443,10 +445,12 @@ export const OstrichForm = ({
 
                     // If the Field has no value and is required...
                     else{
+                        console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                         canSubmit = false
                     }
                 }
             })
+            console.log("Returning " + canSubmit)
             return canSubmit
         }
 
