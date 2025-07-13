@@ -394,11 +394,21 @@ export const OstrichForm = ({
             let canSubmit = true 
             let fieldsKeys = Object.keys(fieldsState)
             fieldsKeys.map(fieldID => {
+
+                // Creates Variable 
                 let field = fieldsState[fieldID]
+
+                // If the Field is Required...
                 if (field?.required !== false){
+
+                    // If the Field has a value...
                     if (field?.value){
+
+                        //  For Validating Text Fields
                         if (field?.type === "text" || field?.type === "tel"){
                             if (field.value === "" && field.length <= 0){
+
+                                // If the Field has a possible valid response...
                                 if (field.validResponse){
                                     if (field.isValid){
                                         canSubmit = true
@@ -407,11 +417,15 @@ export const OstrichForm = ({
                                         canSubmit = false
                                     }
                                 }
+
+                                // If the Field just needs any answer...
                                 else{
                                     canSubmit = true
                                 }
                             }
                         }
+
+                        // For Validating Password Fields
                         else if (field.type === 'password'){
                             if (field.validResponse){
                                 if (field.isValid){
@@ -426,6 +440,8 @@ export const OstrichForm = ({
                             }
                         }
                     }
+
+                    // If the Field has no value and is required...
                     else{
                         canSubmit = false
                     }
