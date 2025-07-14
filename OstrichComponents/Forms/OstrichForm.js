@@ -150,7 +150,7 @@ export const OstrichForm = ({
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
-                        onChange={handleFormChange}
+                        onChange={onFieldChange}
                         options={fieldObj.options}
                         fieldID={fieldObj.id}
                     />
@@ -342,17 +342,17 @@ export const OstrichForm = ({
         }
 
         // Fires on every Form Change (All User Input on Forms)
-        function handleFormChange(value, fieldObj=false){
-            determineOnChange(value, fieldObj)
-            if (fieldObj && fieldObj.type === "text"){
-                setFormData(previous => ({...previous, 
-                    [fieldObj.id]: value
-                }))
-            }
-            else if (fieldObj && fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
-                handleMultiChoiceChange(value, fieldObj)
-            }
-        }
+        // function handleFormChange(value, fieldObj=false){
+        //     determineOnChange(value, fieldObj)
+        //     if (fieldObj && fieldObj.type === "text"){
+        //         setFormData(previous => ({...previous, 
+        //             [fieldObj.id]: value
+        //         }))
+        //     }
+        //     else if (fieldObj && fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
+        //         handleMultiChoiceChange(value, fieldObj)
+        //     }
+        // }
 
         // Determines whether or not to fire a custom or default 'onChange' function
         function determineOnChange(value, field){
