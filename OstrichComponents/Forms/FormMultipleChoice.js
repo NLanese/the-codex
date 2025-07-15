@@ -141,12 +141,18 @@ export const FormMultipleChoice = ({
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
+
+            if(setNewFieldValue){
+                setNewFieldValue({...fieldObj, value: tag})
+            }
             if (fieldObj.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
             if (tag){                               // Fires local onChange function
                 onChange(tag, fieldObj)
             } 
+
+
             if (singleOption){                      // Single Answer Questions
                 if (selectedAnswer === tag){
                     setSelectedAnswer([])           // Removing Previous Answer
@@ -268,7 +274,7 @@ export const FormMultipleChoice = ({
             if (loading){
                 return
             }
-            if (fieldObj.options.length < 5){
+            if (fieldObj.options.length < 4){
                 return(
                     <div style={{display:'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
                         {renderOptionsRow(options)}

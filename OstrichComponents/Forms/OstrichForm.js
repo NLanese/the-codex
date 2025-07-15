@@ -152,6 +152,7 @@ export const OstrichForm = ({
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
                         onChange={onFieldChange}
+                        setNewFieldValue={handleSetFieldsState}
                         options={fieldObj.options}
                         fieldID={fieldObj.id}
                     />
