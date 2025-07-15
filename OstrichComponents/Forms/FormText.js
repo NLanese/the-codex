@@ -11,6 +11,7 @@ export const FormText = ({
 
     onChange,
     setNewFieldValue,
+
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
     validResponse
@@ -48,6 +49,9 @@ export const FormText = ({
     // UseEffects //
     ////////////////
 
+
+    // Runs on Init
+    // Sets Styles and Applies Starting Field Values
     useEffect(() => {
         finalizeStyles()
         setIsLoading(false)
@@ -56,7 +60,7 @@ export const FormText = ({
         }
     }, [])
 
-    const prevValueRef = useRef();
+    const prevValueRef = useRef(value);
     useEffect(() => {
         if (prevValueRef.current !== value) {
             fieldObj.value = value;

@@ -10,9 +10,11 @@ export const FormMultipleChoice = ({
     captionStyle,
     
     onChange,               // Function to fire whenever a value is selected or unselected
+    setNewFieldValue,
+
     type="Bubble",          // 
 
-    setNewFieldValue,
+    
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
     validResponse,
@@ -38,16 +40,26 @@ export const FormMultipleChoice = ({
 
 
 
-    const [selectedAnswer, setSelectedAnswer] = useState([])
+        const [value, setvalue] = useState([])
 
-    const [loading, setLoading] = useState(true)
+        const [loading, setLoading] = useState(true)
 
 
     ////////////////
     // UseEffects //
     ////////////////
 
-
+        const prevValueRef = useRef();
+        useEffect(() => {
+            if (prevValueRef.current !== value) {
+                fieldObj.value = value;
+                prevValueRef.current = value;
+                if (onChange) {
+                    onChange(fieldObj);
+                }
+                determineIfAnswerValid()
+            }
+        }, [value]);
 
     // Sets options to Field Options if empty
     // Also Sets Styles
@@ -60,7 +72,7 @@ export const FormMultipleChoice = ({
         }
         finalizeStyles()
         if (fieldObj.value){
-            setSelectedAnswer(fieldObj.value)
+            setvalue(fieldObj.value)
         }
         setLoading(false)
     }, [])
@@ -154,29 +166,29 @@ export const FormMultipleChoice = ({
 
 
             if (singleOption){                      // Single Answer Questions
-                if (selectedAnswer === tag){
-                    setSelectedAnswer([])           // Removing Previous Answer
+                if (value === tag){
+                    setvalue([])           // Removing Previous Answer
                 }
                 else{
-                    setSelectedAnswer(tag)          // Changing / Selecting Answer
+                    setvalue(tag)          // Changing / Selecting Answer
                 }
             }
 
 
             else{                                   // Multiple Answers
-                if (limit && limit <= selectedAnswer.answer){
-                    if (selectedAnswer.includes(tag)){
-                        let newSelected = selectedAnswer
+                if (limit && limit <= value.answer){
+                    if (value.includes(tag)){
+                        let newSelected = value
                         newSelected = newSelected.filter(sel => {
                             if (sel !== tag){
                                 return sel
                             }
                         })
                     }
-                    setSelectedAnswer(newSelected)
+                    setvalue(newSelected)
                 }
                 else{
-                    setSelectedAnswer([...selectedAnswer, tag])
+                    setvalue([...value, tag])
                 }
             }
             
@@ -184,7 +196,7 @@ export const FormMultipleChoice = ({
 
         // Determines on an indiivdual level whether an answer is selected
         function isTagSelected(option){
-            if (selectedAnswer.includes(option)){
+            if (value.includes(option)){
                 return true
             }
             else{
@@ -244,9 +256,9 @@ export const FormMultipleChoice = ({
                 borderFill = '#9cc6f0'
             }
             else if (!(fieldObj.required === false)){
-                if (selectedAnswer.length > 0){
+                if (value.length > 0){
                     if (min){
-                        if (selectedAnswer.length >= min){
+                        if (value.length >= min){
                             borderColor = '#57a5f2'
                             borderFill = '#9cc6f0'
                         }
