@@ -79,6 +79,7 @@ export const OstrichForm = ({
         useEffect(() => {
             if (fieldsState){
                 if (Object.keys(fieldsState > 0)){
+                    console.log(fieldsState)
                     setCanSubmit(determineCanSubmit())
                     setLoading(false)
                 }
