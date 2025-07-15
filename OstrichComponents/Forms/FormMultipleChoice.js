@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 import { OstCard } from '../Format/OstCard';
@@ -10,7 +10,6 @@ export const FormMultipleChoice = ({
     captionStyle,
     
     onChange,               // Function to fire whenever a value is selected or unselected
-    setNewFieldValue,
 
     type="Bubble",          // 
 
@@ -49,33 +48,35 @@ export const FormMultipleChoice = ({
     // UseEffects //
     ////////////////
 
-        const prevValueRef = useRef();
+        // When this Field has its value changed, the change is conveyed to the Greater Form
+        const prevValueRef = useRef(value);
         useEffect(() => {
             if (prevValueRef.current !== value) {
                 fieldObj.value = value;
                 prevValueRef.current = value;
                 if (onChange) {
+                    console.log("CHANGING WITH FOLLOWING OBJECT")
+                    console.log(fieldObj)
                     onChange(fieldObj);
                 }
-                determineIfAnswerValid()
             }
         }, [value]);
 
-    // Sets options to Field Options if empty
-    // Also Sets Styles
-    useEffect(() => {
-        if (!options){
-            if (!fieldObj.options){
-                console.warn("[Ostrich Component Error] -- No Options provided in FormMultipleChoice Component. If <OstrichForm>, make sure that al of your FieldObjects that are of type 'MultipleChoice', 'MC', or 'mc' also have an 'options' property. This property should be an array of strings. If using a <FormMultipleChoice> component alone... for some reason... make sure you provide the options property, which is an array of strings.")
+        // Sets options to Field Options if empty
+        // Also Sets Styles
+        useEffect(() => {
+            if (!options){
+                if (!fieldObj.options){
+                    console.warn("[Ostrich Component Error] -- No Options provided in FormMultipleChoice Component. If <OstrichForm>, make sure that al of your FieldObjects that are of type 'MultipleChoice', 'MC', or 'mc' also have an 'options' property. This property should be an array of strings. If using a <FormMultipleChoice> component alone... for some reason... make sure you provide the options property, which is an array of strings.")
+                }
+                options = fieldObj.options
             }
-            options = fieldObj.options
-        }
-        finalizeStyles()
-        if (fieldObj.value){
-            setvalue(fieldObj.value)
-        }
-        setLoading(false)
-    }, [])
+            finalizeStyles()
+            if (fieldObj.value){
+                setvalue(fieldObj.value)
+            }
+            setLoading(false)
+        }, [])
 
     ///////////////
     // Functions //
@@ -154,9 +155,7 @@ export const FormMultipleChoice = ({
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
 
-            if(setNewFieldValue){
-                setNewFieldValue({...fieldObj, value: tag})
-            }
+            
             if (fieldObj.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
