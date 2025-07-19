@@ -68,13 +68,11 @@ export const OstrichButton = ({
             function determineBackgroundColor(){
                 if (isActive){
                     if (isHovered){
-                        console.log("Is hovered")
                         return isRGBA(activeColor)
                         ? darkenRGBA(activeColor, 20) // Adjust the darkness level as needed
                         : darkenColor(activeColor, 20);
                     }
                     else{
-                        console.log("Is not hovered")
                         return activeColor
                     }
                 }

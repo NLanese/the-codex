@@ -79,7 +79,6 @@ export const OstrichForm = ({
         useEffect(() => {
             if (fieldsState){
                 if (Object.keys(fieldsState > 0)){
-                    console.log(fieldsState)
                     setCanSubmit(determineCanSubmit())
                     setLoading(false)
                 }
@@ -370,13 +369,10 @@ export const OstrichForm = ({
                                 if (field.validResponse){
                                     if (field.isValid){
                                         canSubmit = true
-                                        console.log("Returning " + canSubmit)
                                         return canSubmit
                                     }
                                     else{
-                                        console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                                         canSubmit = false
-                                        console.log("Returning " + canSubmit)
                                         return canSubmit
                                     }
                                 }
@@ -384,7 +380,6 @@ export const OstrichForm = ({
                                 // If the Field just needs any answer...
                                 else{
                                     canSubmit = true
-                                    console.log("Returning " + canSubmit)
                                     return canSubmit
                                 }
                             }
@@ -395,19 +390,15 @@ export const OstrichForm = ({
                             if (field.validResponse){
                                 if (field.isValid){
                                     canSubmit = true
-                                    console.log("Returning " + canSubmit)
                                     return canSubmit
                                 }
                                 else{
-                                    console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                                     canSubmit = false
-                                    console.log("Returning " + canSubmit)
                                     return canSubmit
                                 }
                             }
                             else{
                                 canSubmit = true
-                                console.log("Returning " + canSubmit)
                                 return canSubmit
                             }
                         }
@@ -415,9 +406,7 @@ export const OstrichForm = ({
 
                     // If the Field has no value and is required...
                     else{
-                        console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                         canSubmit = false
-                        console.log("Returning " + canSubmit)
                         return canSubmit
                     }
                 }
