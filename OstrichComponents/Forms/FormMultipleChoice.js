@@ -55,8 +55,6 @@ export const FormMultipleChoice = ({
                 fieldObj.value = value;
                 prevValueRef.current = value;
                 if (onChange) {
-                    console.log("CHANGING WITH FOLLOWING OBJECT")
-                    console.log(fieldObj)
                     onChange(fieldObj);
                 }
             }
@@ -154,27 +152,24 @@ export const FormMultipleChoice = ({
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
-
-            
+   
             if (fieldObj.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
-            if (tag){                               // Fires local onChange function
-                onChange(tag, fieldObj)
-            } 
-
-
-            if (singleOption){                      // Single Answer Questions
+            
+            // Single Answer
+            if (singleOption){                      
                 if (value === tag){
                     setvalue([])           // Removing Previous Answer
                 }
                 else{
-                    setvalue(tag)          // Changing / Selecting Answer
+                    setvalue(tag)           // Changing / Selecting Answer
                 }
             }
 
 
-            else{                                   // Multiple Answers
+            // Multiple Answers
+            else{                                   
                 if (limit && limit <= value.answer){
                     if (value.includes(tag)){
                         let newSelected = value

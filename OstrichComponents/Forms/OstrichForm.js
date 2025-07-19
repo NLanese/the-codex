@@ -343,50 +343,6 @@ export const OstrichForm = ({
             }       
         }
 
-        // Fires on every Form Change (All User Input on Forms)
-        // function handleFormChange(value, fieldObj=false){
-        //     determineOnChange(value, fieldObj)
-        //     if (fieldObj && fieldObj.type === "text"){
-        //         setFormData(previous => ({...previous, 
-        //             [fieldObj.id]: value
-        //         }))
-        //     }
-        //     else if (fieldObj && fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
-        //         handleMultiChoiceChange(value, fieldObj)
-        //     }
-        // }
-
-        // Determines whether or not to fire a custom or default 'onChange' function
-        function determineOnChange(value, field){
-
-            // If no OnChange Function was Provided
-            const defaultOnChange = (value, field) => {return}
-            
-            if (!onChange){
-                defaultOnChange(value, field)
-            }
-
-            // If an OnChange Function was Provided
-            else{
-                onChange(value, field)
-            }
-        }
-
-        // Handles Changes to the Form when the Field Changed is of type Multiple Choice
-        function handleMultiChoiceChange(value, fieldObj){
-            if (fieldObj.multiAnswer && formData[fieldObj.id]){              // If Multiple Answers Accepted
-                if (formData[fieldObj.id]){      // If Field exists already in FormData Object
-                    setFormData(previous => ({...previous, 
-                        [fieldObj.id]: [...formData[fieldObj.id], value]
-                    }))
-                }
-            }
-            else{                               // If the field is not yet present in FormData Object
-                setFormData(previous => ({...previous, 
-                    [fieldObj.id]: [value]
-                }))
-            }
-        }
 
     /////////////////////////
     // Submission Handlers //
@@ -414,16 +370,22 @@ export const OstrichForm = ({
                                 if (field.validResponse){
                                     if (field.isValid){
                                         canSubmit = true
+                                        console.log("Returning " + canSubmit)
+                                        return canSubmit
                                     }
                                     else{
                                         console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                                         canSubmit = false
+                                        console.log("Returning " + canSubmit)
+                                        return canSubmit
                                     }
                                 }
 
                                 // If the Field just needs any answer...
                                 else{
                                     canSubmit = true
+                                    console.log("Returning " + canSubmit)
+                                    return canSubmit
                                 }
                             }
                         }
@@ -433,14 +395,20 @@ export const OstrichForm = ({
                             if (field.validResponse){
                                 if (field.isValid){
                                     canSubmit = true
+                                    console.log("Returning " + canSubmit)
+                                    return canSubmit
                                 }
                                 else{
                                     console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                                     canSubmit = false
+                                    console.log("Returning " + canSubmit)
+                                    return canSubmit
                                 }
                             }
                             else{
                                 canSubmit = true
+                                console.log("Returning " + canSubmit)
+                                return canSubmit
                             }
                         }
                     }
@@ -449,11 +417,11 @@ export const OstrichForm = ({
                     else{
                         console.log("Cannot submit form because field " + fieldID + " is invalid. Has value of " + field.value)
                         canSubmit = false
+                        console.log("Returning " + canSubmit)
+                        return canSubmit
                     }
                 }
             })
-            console.log("Returning " + canSubmit)
-            return canSubmit
         }
 
         // Handles the Submission of the Form
