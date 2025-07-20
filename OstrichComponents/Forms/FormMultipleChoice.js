@@ -53,6 +53,7 @@ export const FormMultipleChoice = ({
         useEffect(() => {
             if (prevValueRef.current !== value) {
                 fieldObj.value = value;
+                fieldObj.isValid = true
                 prevValueRef.current = value;
                 if (onChange) {
                     onChange(fieldObj);

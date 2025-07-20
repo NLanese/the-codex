@@ -349,25 +349,16 @@ export const OstrichForm = ({
     /////////////////////////
 
         function determineCanSubmit(){
-            let canSubmit = false 
+            let canSubmit = true 
             console.log(fieldsState)
             let fieldsKeys = Object.keys(fieldsState)
             fieldsKeys.forEach(fieldID => {
-                if(!fieldsState[fieldID].required === false){
-                    console.log(fieldsState[fieldID].id, " is required")
-                    console.log(fieldsState[fieldID].id, " has value of ",fieldsState[fieldID].value )
-                    if (fieldsState[fieldID].value && fieldsState[fieldID].value.length < 1){
-                        canSubmit = true
-                    }
-                    if (fieldsState[fieldID].validResponse){
-                        if (fieldsState[fieldID].validResponse(fieldsState[fieldID].value)){
-                            canSubmit = true
-                        }
+                if (fieldsState[fieldID].required){
+                    if (!fieldsState[fieldID].isValid){
+                        canSubmit = false
                     }
                 }
             })
-            console.log("Returning ", canSubmit)
-            return canSubmit
         }
 
         // Handles the Submission of the Form
