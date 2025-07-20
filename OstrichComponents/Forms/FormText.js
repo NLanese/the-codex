@@ -12,9 +12,10 @@ export const FormText = ({
     onChange,
     setNewFieldValue,
 
+    renderCorrect=true,
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
-    validResponse
+    hasValidResponse
 }) => {
 
     ///////////
@@ -146,6 +147,7 @@ export const FormText = ({
             setBoxStyleFinal(final)
         }
 
+        // Runs during above function. Determines Input style (Active or not)
         function determineInputStyle(){
             return {
                 ...inputStyleFinal,
@@ -161,8 +163,9 @@ export const FormText = ({
             setValue(event.target.value)
         }
 
+        // Takes FieldObj ValidResponse and determines if True
         function determineIfAnswerValid(){
-            if (typeof validResponse === "function"){
+            if (typeof fieldObj.validResponse === "function"){
                 checkValid(value).then(resp =>{
                     if (resp){
                         setNewFieldValue({...fieldObj, isValid: true})
@@ -229,12 +232,13 @@ export const FormText = ({
 
         // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
-            if ((!validResponse && !correctResponse) || (correctDisplay !== "bubble")){
+            if (!hasValidResponse)
+            if ((!fieldObj.validResponse && !correctResponse) || (correctDisplay !== "bubble")){
                 return
             }
             let borderColor = '#bdbdbd'
             let borderFill = '#efefef'
-            if ((validResponse && isValid) && !correctResponse){
+            if ((!fieldObj.validResponse && isValid) && !correctResponse){
                 borderColor = '#57a5f2'
                 borderFill = '#9cc6f0'
             }

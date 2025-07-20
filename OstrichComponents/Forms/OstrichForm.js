@@ -348,6 +348,7 @@ export const OstrichForm = ({
     // Submission Handlers //
     /////////////////////////
 
+        // Determines whether or not the Form can be submitted. Runs on UseEffect
         function determineCanSubmit(){
             let canSubmit = true 
             console.log(fieldsState)
@@ -363,7 +364,12 @@ export const OstrichForm = ({
 
         // Handles the Submission of the Form
         async function submitForm(){
-           
+            if (onSubmit){
+                onSubmit(formData)
+            }
+            if (clearOnSubmit){
+                setFormData({})
+            }
             setSubmitted(true)
         }
 
