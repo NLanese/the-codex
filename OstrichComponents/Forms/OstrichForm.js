@@ -46,8 +46,7 @@ export const OstrichForm = ({
 
         // Data States
         const [fieldsState, setFieldsState] = useState(false)
-        const [formData, setFormData] = useState({})
-        const [canSubmit, setCanSubmit] = useState( (!allFieldsRequired && allowSubmit) ? true : false )
+        const [canSubmit, setCanSubmit] = useState(false)
 
         // Style States
         const [styleFinal, setStyleFinal] = useState(false)
@@ -77,6 +76,8 @@ export const OstrichForm = ({
 
         // Determines if Submit is allowed or not
         useEffect(() => {
+            console.log("Fields State")
+            console.log(fieldsState)
             if (fieldsState){
                 if (Object.keys(fieldsState > 0)){
                     setCanSubmit(determineCanSubmit())
@@ -348,126 +349,33 @@ export const OstrichForm = ({
     /////////////////////////
 
         function determineCanSubmit(){
-            let canSubmit = true 
+            let canSubmit = false 
+            console.log(fieldsState)
             let fieldsKeys = Object.keys(fieldsState)
-            fieldsKeys.map(fieldID => {
-
-                // Creates Variable 
-                let field = fieldsState[fieldID]
-
-                // If the Field is Required...
-                if (field?.required !== false){
-
-                    // If the Field has a value...
-                    if (field?.value){
-
-                        //  For Validating Text Fields
-                        if (field?.type === "text" || field?.type === "tel"){
-                            if (field.value === "" && field.length <= 0){
-
-                                // If the Field has a possible valid response...
-                                if (field.validResponse){
-                                    if (field.isValid){
-                                        canSubmit = true
-                                        return canSubmit
-                                    }
-                                    else{
-                                        canSubmit = false
-                                        return canSubmit
-                                    }
-                                }
-
-                                // If the Field just needs any answer...
-                                else{
-                                    canSubmit = true
-                                    return canSubmit
-                                }
-                            }
-                        }
-
-                        // For Validating Password Fields
-                        else if (field.type === 'password'){
-                            if (field.validResponse){
-                                if (field.isValid){
-                                    canSubmit = true
-                                    return canSubmit
-                                }
-                                else{
-                                    canSubmit = false
-                                    return canSubmit
-                                }
-                            }
-                            else{
-                                canSubmit = true
-                                return canSubmit
-                            }
-                        }
+            fieldsKeys.forEach(fieldID => {
+                if(!fieldsState[fieldID].required === false){
+                    console.log(fieldsState[fieldID].id, " is required")
+                    console.log(fieldsState[fieldID].id, " has value of ",fieldsState[fieldID].value )
+                    if (fieldsState[fieldID].value && fieldsState[fieldID].value.length < 1){
+                        canSubmit = true
                     }
-
-                    // If the Field has no value and is required...
-                    else{
-                        canSubmit = false
-                        return canSubmit
+                    if (fieldsState[fieldID].validResponse){
+                        if (fieldsState[fieldID].validResponse(fieldsState[fieldID].value)){
+                            canSubmit = true
+                        }
                     }
                 }
             })
+            console.log("Returning ", canSubmit)
+            return canSubmit
         }
 
         // Handles the Submission of the Form
         async function submitForm(){
-            if (onSubmit){
-                onSubmit(formData)
-            }
-            if (clearOnSubmit){
-                setFormData({})
-            }
+           
             setSubmitted(true)
         }
 
-        // If correctResponse, checks all submitted values against the correct answers
-        async function checkAgainstAllAnswers(){
-            // let answerKeys = Object.keys(correctResponse)
-            // let checkedAnswers = {}
-            // answerKeys.forEach(answerKey => {
-            //     if (checkSingleAnswer(answerKey)){
-            //         checkedAnswers[answerKey] = "Correct"
-            //     }
-            //     else{
-            //         checkedAnswers[answerKey] = "Incorrect"
-            //     }
-            // })
-            // return checkedAnswers
-        }
-
-        // Checks if a single answer'd question matches the values of the correct answer
-        function checkSingleAnswer(key){
-            // let isCorrect = true
-            // let isWrong = false
-            // if (formData[key]){
-            //     if (correctResponse[key]){
-            //         correctResponse[key].forEach((correctAns) => {
-            //             if (!formData[key].includes(correctAns)){
-            //                 isCorrect = false
-            //                 isWrong = true
-            //             }
-            //         })
-            //         formData[key].forEach(inputAnswer => {
-            //             if (!correctResponse[key].includes(inputAnswer)){
-            //                 isCorrect = false
-            //                 isWrong = true
-            //             }
-            //         })
-            //     }
-            //     else{
-            //         isCorrect = false
-            //     }
-            // }
-            // else {
-            //     isCorrect = false
-            // }
-
-            // return isCorrect
-        }
 
         // Updates the existing fields with "Correct" or "Incorrect" properties to dictate green or red border
         async function updateFieldsWithAnswerCheck(checkedAns){
