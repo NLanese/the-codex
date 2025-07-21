@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { FormText } from './FormText';
+import { OstCard } from '../Format/OstCard';
 
 export const FormMultipleText = ({
     boxStyle,
@@ -24,6 +25,10 @@ export const FormMultipleText = ({
     // Renderings //
     ////////////////
 
+    function renderSubmittedAnswers(){
+
+    }
+
     function MAIN(){
         if (isLoading){
             return null
@@ -31,14 +36,25 @@ export const FormMultipleText = ({
         else{
             return(
                 <div style={{width: '95%', height: 'auto'}}>
-                    <FormText 
-                        inputSyle={inputSyle}
-                        fieldObj={fieldObj}
-                        titleStyle={titleStyle}
-                        captionStyle={captionStyle}
-                        onChange={onChange}
-                        setNewFieldValue={setNewFieldValue}
-                    />
+                    <div style= {{display: 'flex', flexDirection: 'row'}}>
+                        <FormText 
+                            boxStyle={{flex: 8}}
+                            inputSyle={inputSyle}
+                            fieldObj={fieldObj}
+                            titleStyle={titleStyle}
+                            captionStyle={captionStyle}
+                            onChange={onChange}
+                            setNewFieldValue={setNewFieldValue}
+                            hasValidResponse={false}
+                            correctDisplay={correctDisplay}
+                        />
+                        <OstCard style={{flex: 4}}>
+                            Submit 
+                        </OstCard>
+                    <div>
+                        {renderSubmittedAnswers()}
+                    </div>
+                </div>
                 </div>
             )
         }

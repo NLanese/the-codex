@@ -12,7 +12,6 @@ export const FormText = ({
     onChange,
     setNewFieldValue,
 
-    renderCorrect=true,
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
     hasValidResponse
@@ -232,7 +231,9 @@ export const FormText = ({
 
         // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
-            if (!hasValidResponse)
+            if (!hasValidResponse){
+                return
+            }
             if ((!fieldObj.validResponse && !correctResponse) || (correctDisplay !== "bubble")){
                 return
             }

@@ -4,6 +4,7 @@ import { FormText } from './FormText';
 import { FormMultipleChoice } from './FormMultipleChoice';
 import { OstrichButton } from '../Buttons/OstrichButton';
 import { OstCard } from "../Format/OstCard"
+import { FormMultipleText } from './FormMultipleText';
 
 export const OstrichForm = ({
     title,                              // Form Title
@@ -156,6 +157,22 @@ export const OstrichForm = ({
                         setNewFieldValue={handleSetFieldsState}
                         options={fieldObj.options}
                         fieldID={fieldObj.id}
+                    />
+                )
+            }
+            else if (fieldObj.type === "MultiText" || fieldObj.type === "Multiple Text" || fieldObj.type === "Multi Text"){
+                return(
+                    <FormMultipleText 
+                        key={fieldObj.id ? fieldObj.id : index}
+                        boxStyle={fieldsBoxStyle}
+                        fieldObj={fieldObj}
+                        onChange={onFieldChange}
+                        setNewFieldValue={handleSetFieldsState}
+                        titleStyle={fieldsTitleStyle}
+                        captionStyle={captionTextStyle}
+                        fieldID={fieldObj.id}
+                        correctResponse={fieldObj.correctResponse ? fieldObj.correctResponse : false}
+                        validResponse={fieldObj.validResponse ? fieldObj.validResponse : false}
                     />
                 )
             }
