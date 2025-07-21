@@ -79,7 +79,8 @@ export const OstrichForm = ({
             console.log("Fields State")
             console.log(fieldsState)
             if (fieldsState){
-                if (Object.keys(fieldsState > 0)){
+                if (Object.keys(fieldsState).length > 0) {
+                    console.log(determineCanSubmit())
                     setCanSubmit(determineCanSubmit())
                     setLoading(false)
                 }
@@ -162,6 +163,7 @@ export const OstrichForm = ({
 
         // Renders the Form Submission Button
         function renderSubmit(){
+            console.log(canSubmit)
             return(
                 <OstrichButton 
                  style={determineSubmitStyle()}
@@ -350,16 +352,17 @@ export const OstrichForm = ({
 
         // Determines whether or not the Form can be submitted. Runs on UseEffect
         function determineCanSubmit(){
-            let canSubmit = true 
-            console.log(fieldsState)
+            let submit = true 
             let fieldsKeys = Object.keys(fieldsState)
             fieldsKeys.forEach(fieldID => {
-                if (fieldsState[fieldID].required){
+                if (fieldsState[fieldID].required !== false){
                     if (!fieldsState[fieldID].isValid){
-                        canSubmit = false
+                        submit = false
                     }
                 }
             })
+            console.log("Setting Can Submit -- ", submit)
+            return canSubmit
         }
 
         // Handles the Submission of the Form
@@ -411,27 +414,3 @@ export const OstrichForm = ({
     )
 }
 
-
-// OstrichForm.propTypes = {
-//     title: PropTypes.string.isRequired,         // Title (String)
-//     titleBoxStyle: PropTypes.object,            // Title Container Style 
-//     titleTextStyle: PropTypes.object,           // Title Text Style
-
-//     fieldsBoxStyle: PropTypes.object,           // Form Fields' Container Style
-//     fieldTitleStyle: PropTypes.object,          // Form Fields' Title Style
-//     fields: PropTypes.arrayOf(                  // Fields- Each Field is an Input
-//         PropTypes.shape({
-//           title: PropTypes.string.isRequired,   // Field title
-//           caption: PropTypes.string,            // Field Description / Caption
-//           type: PropTypes.string.isRequired,    // Text, MC, True or False
-//           onChange: PropTypes.func.isRequired,  // OnChange Function
-//           value: PropTypes.any.isRequired,      // Value of Input
-//           fieldHidden: PropTypes.bool,
-//           style: PropTypes.object,
-//           placeholder: PropTypes.string,
-//           possibleResponses: PropTypes.arrayOf(PropTypes.string),
-//         })
-//     ).isRequired,
-//     onSubmit: PropTypes.func.isRequired,
-//     submitButtonStyle: PropTypes.object,
-// };
