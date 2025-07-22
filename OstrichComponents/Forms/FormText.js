@@ -14,7 +14,7 @@ export const FormText = ({
 
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
-    hasValidResponse
+    hasValidResponse = true
 }) => {
 
     ///////////

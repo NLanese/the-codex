@@ -107,6 +107,13 @@ export default function OstFormsShowcase(){
                         moreText: "This cannot be changed later on",
                         type: "MC",
                         options: ["Personal", "Business", "Government"]
+                    },
+
+                    {
+                        id: "Interests",
+                        title: "Interests",
+                        caption: "Enter up to 5 Interests",
+                        type: "MultiText"
                     }
 
                 ]}

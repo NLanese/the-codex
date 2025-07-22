@@ -161,6 +161,7 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MultiText" || fieldObj.type === "Multiple Text" || fieldObj.type === "Multi Text"){
+                console.log("Should render Multi Text")
                 return(
                     <FormMultipleText 
                         key={fieldObj.id ? fieldObj.id : index}

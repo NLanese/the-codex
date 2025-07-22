@@ -12,7 +12,6 @@ export const FormMultipleChoice = ({
     onChange,               // Function to fire whenever a value is selected or unselected
 
     type="Bubble",          // 
-
     
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
