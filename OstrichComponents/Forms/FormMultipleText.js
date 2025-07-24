@@ -41,6 +41,10 @@ export const FormMultipleText = ({
         const [isWrong, setIsWrong] = useState(null)
         const [isValid, setIsValid] = useState(null)
 
+        // Value
+        const [value, setValue] = useState([])
+        const [currentInput, setCurrentInput] = useState("")
+
     ////////////////
     // UseEffects //
     ////////////////
@@ -55,6 +59,19 @@ export const FormMultipleText = ({
             setValue(fieldObj.value)
         }
     }, [])
+
+    // When this Field has its value changed, the change is conveyed to the Greater Form
+    const prevValueRef = useRef(value);
+    useEffect(() => {
+        if (prevValueRef.current !== value) {
+            fieldObj.value = value;
+            fieldObj.isValid = true
+            prevValueRef.current = value;
+            if (onChange) {
+                onChange(fieldObj);
+            }
+        }
+    }, [value]);
         
 
     ///////////////
@@ -131,6 +148,11 @@ export const FormMultipleText = ({
             setBoxStyleFinal(final)
         }
 
+        // Runs when Text is Entered in Input
+        function onTextInput(target){
+            setCurrentInput(target.value)
+        }
+
 
 
     ////////////////
@@ -179,7 +201,7 @@ export const FormMultipleText = ({
                             fieldObj={fieldObj}
                             titleStyle={titleStyle}
                             captionStyle={captionStyle}
-                            onChange={onChange}
+                            onChange={onTextInput}
                             setNewFieldValue={setNewFieldValue}
                             hasValidResponse={true}
                             correctDisplay={correctDisplay}
@@ -193,8 +215,8 @@ export const FormMultipleText = ({
                         justifyContent: 'flex-end' 
                         }}>
 
-                            {/* {renderBubbleValidOrCorrect()} */}
-                                <OstCard style={{ 
+                                <OstCard 
+                                style={{ 
                                     height: '25%' , 
                                     textAlign: 'center', 
                                     display: 'flex', 
@@ -202,9 +224,13 @@ export const FormMultipleText = ({
                                     alignItems: 'center',
                                     margin: 0, 
                                     backgroundColor: '#9cc6f0',
-                                    width: "100%",
+                                    width: "90%",
+                                    marginLeft:'5%',
+                                    marginRight: '5%',
                                     fontSize: 18,
-                                }}>
+                                }}
+                                onClick={() => console.log(fieldObj)}
+                                >
                                     Submit
                                 </OstCard>
                         </div>

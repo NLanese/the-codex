@@ -16,7 +16,9 @@ export const FormText = ({
     correctResponse,
 
     hasValidResponse = true,
-    validResponse
+    validResponse,
+
+    inMultiTextField    
 }) => {
 
     ///////////
@@ -238,10 +240,8 @@ export const FormText = ({
 
         // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
-            if (!hasValidResponse){
-                return
-            }
-            if ((!fieldObj.validResponse && !correctResponse) || (correctDisplay !== "bubble")){
+            if ((!fieldObj.validResponse && !correctResponse && !hasValidResponse)){
+                console.warn("No valid field, no correct field, or correct display is not bubble in ", fieldObj.id)
                 return
             }
             let borderColor = '#bdbdbd'
@@ -253,6 +253,14 @@ export const FormText = ({
             else if (correctResponse && isCorrect){
                 borderColor = '#57f25f'
                 borderFill = '#a8ffad'
+            }
+            if (inMultiTextField){
+                return(
+                <div style={{marginLeft: 'auto', marginRight: '-29%'}}>
+                    <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                    </div>
+                </div>
+                )
             }
             return(
                 <div style={{marginLeft: 'auto'}}>

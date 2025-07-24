@@ -77,11 +77,8 @@ export const OstrichForm = ({
 
         // Determines if Submit is allowed or not
         useEffect(() => {
-            console.log("Fields State")
-            console.log(fieldsState)
             if (fieldsState){
                 if (Object.keys(fieldsState).length > 0) {
-                    console.log(determineCanSubmit())
                     setCanSubmit(determineCanSubmit())
                     setLoading(false)
                 }
@@ -161,7 +158,6 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MultiText" || fieldObj.type === "Multiple Text" || fieldObj.type === "Multi Text"){
-                console.log("Should render Multi Text")
                 return(
                     <FormMultipleText 
                         key={fieldObj.id ? fieldObj.id : index}
@@ -181,7 +177,6 @@ export const OstrichForm = ({
 
         // Renders the Form Submission Button
         function renderSubmit(){
-            console.log(canSubmit)
             return(
                 <OstrichButton 
                  style={determineSubmitStyle()}
@@ -379,7 +374,6 @@ export const OstrichForm = ({
                     }
                 }
             })
-            console.log("Setting Can Submit -- ", submit)
             return canSubmit
         }
 
