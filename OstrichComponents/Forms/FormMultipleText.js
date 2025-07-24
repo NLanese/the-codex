@@ -13,6 +13,7 @@ export const FormMultipleText = ({
     setNewFieldValue,
 
     limit,
+    minLength,
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
     validResponse,
@@ -140,31 +141,29 @@ export const FormMultipleText = ({
 
     }
 
-    // Renders the Bubble Version of Correct or Valid
-    function renderBubbleValidOrCorrect(){
-        if (!hasValidResponse){
-            return
-        }
-        if ((!fieldObj.validResponse && !correctResponse) || (correctDisplay !== "bubble")){
-            return
-        }
-        let borderColor = '#bdbdbd'
-        let borderFill = '#efefef'
-        if ((!fieldObj.validResponse && isValid) && !correctResponse){
-            borderColor = '#57a5f2'
-            borderFill = '#9cc6f0'
-        }
-        else if (correctResponse && isCorrect){
-            borderColor = '#57f25f'
-            borderFill = '#a8ffad'
-        }
-        return(
-            <div style={{marginLeft: 'auto'}}>
-                <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
-                </div>
-            </div>
-        )
-    }
+    // // Renders the Bubble Version of Correct or Valid
+    // function renderBubbleValidOrCorrect(){
+    //     if ((!fieldObj.validResponse && !correctResponse && !hasValidResponse)){
+    //         console.log("No valid field, no correct field, or correct display is not bubble in ", fieldObj.id)
+    //         return
+    //     }
+    //     let borderColor = '#bdbdbd'
+    //     let borderFill = '#efefef'
+    //     if ((!fieldObj.validResponse && isValid) && !correctResponse){
+    //         borderColor = '#57a5f2'
+    //         borderFill = '#9cc6f0'
+    //     }
+    //     else if (correctResponse && isCorrect){
+    //         borderColor = '#57f25f'
+    //         borderFill = '#a8ffad'
+    //     }
+    //     return(
+    //         <div style={{flex: 6}}>
+    //             <div style={{height: '70%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
     function MAIN(){
         if (isLoading){
@@ -182,8 +181,10 @@ export const FormMultipleText = ({
                             captionStyle={captionStyle}
                             onChange={onChange}
                             setNewFieldValue={setNewFieldValue}
-                            hasValidResponse={false}
+                            hasValidResponse={true}
                             correctDisplay={correctDisplay}
+                            validResponse={ () => {if (isValid) return true}}
+                            inMultiTextField={true}
                         />
                         <div style={{ 
                         flex: 2, 
@@ -191,20 +192,21 @@ export const FormMultipleText = ({
                         flexDirection: 'column', 
                         justifyContent: 'flex-end' 
                         }}>
-                            <OstCard style={{ 
-                                height: '30%' , 
-                                textAlign: 'center', 
-                                display: 'flex', 
-                                justifyContent: 'center', 
-                                alignItems: 'center',
-                                margin: 0, 
-                                backgroundColor: '#9cc6f0',
-                                width: "100%",
-                                fontSize: 18
-                            }}>
-                                Submit
-                            </OstCard>
-                            {renderBubbleValidOrCorrect()}
+
+                            {/* {renderBubbleValidOrCorrect()} */}
+                                <OstCard style={{ 
+                                    height: '25%' , 
+                                    textAlign: 'center', 
+                                    display: 'flex', 
+                                    justifyContent: 'center', 
+                                    alignItems: 'center',
+                                    margin: 0, 
+                                    backgroundColor: '#9cc6f0',
+                                    width: "100%",
+                                    fontSize: 18,
+                                }}>
+                                    Submit
+                                </OstCard>
                         </div>
                     <div>
                         {renderSubmittedAnswers()}

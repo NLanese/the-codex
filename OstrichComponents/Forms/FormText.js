@@ -14,7 +14,9 @@ export const FormText = ({
 
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
-    hasValidResponse = true
+
+    hasValidResponse = true,
+    validResponse
 }) => {
 
     ///////////
@@ -170,6 +172,11 @@ export const FormText = ({
                         setNewFieldValue({...fieldObj, isValid: true})
                         setIsValid(true)
                         return true
+                    }
+                    else if (typeof validResponse === 'function'){
+                        if (validResponse(fieldObj)){
+                            return true
+                        }
                     }
                     else{
                         setIsValid(false)
