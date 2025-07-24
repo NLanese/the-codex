@@ -161,7 +161,7 @@ export const FormMultipleText = ({
                         flexDirection: 'column', 
                         justifyContent: 'flex-end' 
                         }}>
-                            <OstCard style={{ height: '30%' , textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+                            <OstCard style={{ height: '30%' , textAlign: 'center', display: 'flex', justifyContent: 'center', margin: 0, width: "100%"}}>
                                 Submit
                             </OstCard>
                         </div>
