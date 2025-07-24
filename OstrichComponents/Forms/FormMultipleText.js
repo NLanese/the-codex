@@ -17,7 +17,7 @@ export const FormMultipleText = ({
     correctResponse,
     validResponse,
     hasValidResponse = true
-    
+
 }) => {
     ///////////
     // State //
@@ -198,7 +198,9 @@ export const FormMultipleText = ({
                                 justifyContent: 'center', 
                                 alignItems: 'center',
                                 margin: 0, 
-                                width: "100%"
+                                backgroundColor: '#9cc6f0',
+                                width: "100%",
+                                fontSize: 18
                             }}>
                                 Submit
                             </OstCard>

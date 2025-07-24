@@ -150,7 +150,7 @@ export const FormText = ({
         function determineInputStyle(){
             return {
                 ...inputStyleFinal,
-                ...(inputFocused ? { borderColor: 'blue', borderBottom: 0, borderRadius: 15, outline: 'none', boxShadow: '0 0 0 2px rgba(0, 0, 255, 0.3)' } : {})
+                ...(inputFocused ? { borderColor: ' c', borderBottom: 0, borderRadius: 15, outline: 'none', boxShadow: '0 0 0 2px rgba(0, 0, 255, 0.3)' } : {})
             }
         }
 
