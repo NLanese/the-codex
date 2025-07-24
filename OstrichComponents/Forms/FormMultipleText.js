@@ -15,7 +15,9 @@ export const FormMultipleText = ({
     limit,
     correctDisplay = "bubble", // or "bubble" or "fieldBubble"
     correctResponse,
-    validResponse
+    validResponse,
+    hasValidResponse = true
+    
 }) => {
     ///////////
     // State //
@@ -128,12 +130,40 @@ export const FormMultipleText = ({
             setBoxStyleFinal(final)
         }
 
+
+
     ////////////////
     // Renderings //
     ////////////////
 
     function renderSubmittedAnswers(){
 
+    }
+
+    // Renders the Bubble Version of Correct or Valid
+    function renderBubbleValidOrCorrect(){
+        if (!hasValidResponse){
+            return
+        }
+        if ((!fieldObj.validResponse && !correctResponse) || (correctDisplay !== "bubble")){
+            return
+        }
+        let borderColor = '#bdbdbd'
+        let borderFill = '#efefef'
+        if ((!fieldObj.validResponse && isValid) && !correctResponse){
+            borderColor = '#57a5f2'
+            borderFill = '#9cc6f0'
+        }
+        else if (correctResponse && isCorrect){
+            borderColor = '#57f25f'
+            borderFill = '#a8ffad'
+        }
+        return(
+            <div style={{marginLeft: 'auto'}}>
+                <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                </div>
+            </div>
+        )
     }
 
     function MAIN(){
@@ -161,9 +191,18 @@ export const FormMultipleText = ({
                         flexDirection: 'column', 
                         justifyContent: 'flex-end' 
                         }}>
-                            <OstCard style={{ height: '30%' , textAlign: 'center', display: 'flex', justifyContent: 'center', margin: 0, width: "100%"}}>
+                            <OstCard style={{ 
+                                height: '30%' , 
+                                textAlign: 'center', 
+                                display: 'flex', 
+                                justifyContent: 'center', 
+                                alignItems: 'center',
+                                margin: 0, 
+                                width: "100%"
+                            }}>
                                 Submit
                             </OstCard>
+                            {renderBubbleValidOrCorrect()}
                         </div>
                     <div>
                         {renderSubmittedAnswers()}
