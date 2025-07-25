@@ -71,6 +71,7 @@ export const FormMultipleText = ({
                 onChange(fieldObj);
             }
         }
+        console.log("Value changed to ", value)
     }, [value]);
         
 
@@ -153,39 +154,64 @@ export const FormMultipleText = ({
             setCurrentInput(target.value)
         }
 
+        function handleAddEntry(){
+            setValue(val => [...val, currentInput])
+            setCurrentInput("")
+        }
 
 
     ////////////////
     // Renderings //
     ////////////////
 
-    function renderSubmittedAnswers(){
-
+    function renderInputSpace(){
+        return(
+            <FormText 
+                boxStyle={{flex: 10}}
+                inputSyle={inputSyle}
+                fieldObj={fieldObj}
+                titleStyle={titleStyle}
+                captionStyle={captionStyle}
+                onChange={onTextInput}
+                setNewFieldValue={setNewFieldValue}
+                hasValidResponse={true}
+                correctDisplay={correctDisplay}
+                validResponse={ () => {if (isValid) return true}}
+                inMultiTextField={true}
+                currentValue={currentInput}
+            />
+        )
     }
 
-    // // Renders the Bubble Version of Correct or Valid
-    // function renderBubbleValidOrCorrect(){
-    //     if ((!fieldObj.validResponse && !correctResponse && !hasValidResponse)){
-    //         console.log("No valid field, no correct field, or correct display is not bubble in ", fieldObj.id)
-    //         return
-    //     }
-    //     let borderColor = '#bdbdbd'
-    //     let borderFill = '#efefef'
-    //     if ((!fieldObj.validResponse && isValid) && !correctResponse){
-    //         borderColor = '#57a5f2'
-    //         borderFill = '#9cc6f0'
-    //     }
-    //     else if (correctResponse && isCorrect){
-    //         borderColor = '#57f25f'
-    //         borderFill = '#a8ffad'
-    //     }
-    //     return(
-    //         <div style={{flex: 6}}>
-    //             <div style={{height: '70%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
-    //             </div>
-    //         </div>
-    //     )
-    // }
+    function renderAddEntry(){
+        return(
+            <div style={{ flex: 2, display: 'flex',  flexDirection: 'column',  justifyContent: 'flex-end'}}>
+                <OstCard 
+                style={{ 
+                    height: '25%', textAlign: 'center', 
+                    display: 'flex', justifyContent: 'center', alignItems: 'center',
+                    margin: 0, width: "90%", marginLeft:'5%', marginRight: '5%',
+                    backgroundColor: '#9cc6f0', fontSize: 18,
+                }}
+                onClick={() => handleAddEntry()}
+                >
+                    Submit
+                </OstCard>
+            </div>
+        )
+    }
+
+    function renderSubmittedAnswers(){
+        return value.map(val => {
+            return(
+                <OstCard>
+                    {val}
+                </OstCard>
+            )
+        })
+    }
+
+
 
     function MAIN(){
         if (isLoading){
@@ -193,51 +219,14 @@ export const FormMultipleText = ({
         }
         else{
             return(
-                <div style={{width: '95%', height: 'auto'}}>
+                <div style={{width: '95%', height: 'auto', display: 'flex', flexDirection: 'column'}}>
                     <div style= {{display: 'flex', flexDirection: 'row'}}>
-                        <FormText 
-                            boxStyle={{flex: 10}}
-                            inputSyle={inputSyle}
-                            fieldObj={fieldObj}
-                            titleStyle={titleStyle}
-                            captionStyle={captionStyle}
-                            onChange={onTextInput}
-                            setNewFieldValue={setNewFieldValue}
-                            hasValidResponse={true}
-                            correctDisplay={correctDisplay}
-                            validResponse={ () => {if (isValid) return true}}
-                            inMultiTextField={true}
-                        />
-                        <div style={{ 
-                        flex: 2, 
-                        display: 'flex', 
-                        flexDirection: 'column', 
-                        justifyContent: 'flex-end' 
-                        }}>
-
-                                <OstCard 
-                                style={{ 
-                                    height: '25%' , 
-                                    textAlign: 'center', 
-                                    display: 'flex', 
-                                    justifyContent: 'center', 
-                                    alignItems: 'center',
-                                    margin: 0, 
-                                    backgroundColor: '#9cc6f0',
-                                    width: "90%",
-                                    marginLeft:'5%',
-                                    marginRight: '5%',
-                                    fontSize: 18,
-                                }}
-                                onClick={() => console.log(fieldObj)}
-                                >
-                                    Submit
-                                </OstCard>
-                        </div>
+                        {renderInputSpace()}
+                        {renderAddEntry()}
+                    </div>
                     <div>
                         {renderSubmittedAnswers()}
                     </div>
-                </div>
                 </div>
             )
         }

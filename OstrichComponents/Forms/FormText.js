@@ -8,6 +8,7 @@ export const FormText = ({
     fieldObj,
     titleStyle,
     captionStyle,
+    currentValue=false,
 
     onChange,
     setNewFieldValue,
@@ -52,6 +53,12 @@ export const FormText = ({
     ////////////////
     // UseEffects //
     ////////////////
+
+    useEffect(() => {
+        if (currentValue !== false){
+            setValue(currentValue)
+        }
+    }, [currentValue])
 
 
     // Runs on Init
