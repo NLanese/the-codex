@@ -235,8 +235,11 @@ export const FormMultipleText = ({
         )
     }
 
-    function renderSubmittedAnswers(){
-        return value.map(val => {
+    function renderSubmissionRow(arr){
+        return arr.map(val => {
+            if (!val){
+                return
+            }
             return(
                 <OstCard 
                     style={answerBoxStyleFinal}
@@ -246,6 +249,33 @@ export const FormMultipleText = ({
                 </OstCard>
             )
         })
+    }
+
+    function renderSubmittedAnswers(){
+        if (value.length < 4){
+            return (
+                <div style={{marginTop: 10, display: 'flex', flexDirection: 'row'}}>
+                    {renderSubmissionRow(value)}
+                </div>
+            )
+        }
+        else{
+            let i = 0
+            let rArr = []
+            while (i < value.length){
+                let tempArr = [value[i], value[i + 1] ? value[i + 1] : null, value[i + 2] ? value[i + 2] : null]
+                rArr = [...rArr, tempArr]
+                i = i + 3
+            }
+            let renderBlock = rArr.map(arr => {
+                return(
+                    <div style={{marginTop: 10, display: 'flex', flexDirection: 'row'}}>
+                        {renderSubmissionRow(arr)}
+                    </div>
+                )
+            })
+            return renderBlock
+        }
     }
 
 
@@ -261,9 +291,7 @@ export const FormMultipleText = ({
                         {renderInputSpace()}
                         {renderAddEntry()}
                     </div>
-                    <div style={{marginTop: 10, display: 'flex', flexDirection: 'row'}}>
-                        {renderSubmittedAnswers()}
-                    </div>
+                    {renderSubmittedAnswers()}
                 </div>
             )
         }
