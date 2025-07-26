@@ -17,6 +17,8 @@ const  S3Strcuture = '../../../assets/showcase_images/boardGameWizard/S3Structur
 const  BedrockKB = '../../../assets/showcase_images/boardGameWizard/BedrockKB.png'
 const  KB_Dash = '../../../assets/showcase_images/boardGameWizard/KB_Dashboard.png'
 
+import fullRequest from "../../../constants/projects/boardgame_master_ai/fullRequest";
+
 
 
 export default function BoardGameMasterAIProjectPage() {
@@ -66,7 +68,9 @@ export default function BoardGameMasterAIProjectPage() {
                 content: current
             }
             let fullMessage = current
-            fullMessage = `(This question is for the game ${selGame}. Give the user a a complete answer and but try to word it simply and plainly. Explain terms they may not know. Question: ${current})`
+            let makeRequest = fullRequest
+            fullMessage = makeRequest(selGame, current)
+            // fullMessage = `(This question is for the game ${selGame}. Give the user a a complete answer and but try to word it simply and plainly. Explain terms they may not know. Question: ${current})`
             setCurrent("")
             setMessages(prev => [...prev, newMessage]);
             handleRequestToScrapeFanDuel(fullMessage)
