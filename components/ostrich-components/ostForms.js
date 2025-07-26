@@ -112,8 +112,10 @@ export default function OstFormsShowcase(){
                     {
                         id: "Interests",
                         title: "Interests",
-                        caption: "Enter up to 5 Interests",
-                        type: "MultiText"
+                        caption: "Enter up to 5 Interests, at least 2",
+                        type: "MultiText",
+                        minLength: 2,
+                        limit: 5
                     }
 
                 ]}

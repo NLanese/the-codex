@@ -170,6 +170,8 @@ export const OstrichForm = ({
                         fieldID={fieldObj.id}
                         correctResponse={fieldObj.correctResponse ? fieldObj.correctResponse : false}
                         validResponse={fieldObj.validResponse ? fieldObj.validResponse : false}
+                        limit={fieldObj.limit}
+                        minLength={fieldObj.minLength}
                     />
                 )
             }

@@ -71,9 +71,18 @@ export const FormMultipleText = ({
             if (onChange) {
                 onChange(fieldObj);
             }
+            if (minLength){
+                if (value.length >= minLength){
+                    setIsValid(true)
+                }
+            }
         }
         console.log("Value changed to ", value)
     }, [value]);
+
+    useEffect(() => {
+        console.log(isValid)
+    }, [isValid])
         
 
     ///////////////
@@ -85,12 +94,12 @@ export const FormMultipleText = ({
 
             // Finalizes all User Input Styles to Apply Defaults
             function finalizeStyles(){
-                finalizeTexttyles()
+                finalizeTextStyles()
                 finalizeInputStyles()
                 finalizeContainerStyles()
             }
 
-            function finalizeTexttyles(){
+            function finalizeTextStyles(){
                 // Sets Title, Caption and MoreText
                 let temp = {
                     fontSize: 22,
@@ -201,7 +210,7 @@ export const FormMultipleText = ({
     function renderInputSpace(){
         return(
             <FormText 
-                boxStyle={{flex: 10}}
+                boxStyle={{flex: 10, borderRight: 0}}
                 inputSyle={inputStyleFinal}
                 fieldObj={fieldObj}
                 titleStyle={titleStyleFinal}
