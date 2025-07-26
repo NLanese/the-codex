@@ -32,6 +32,7 @@ export const FormMultipleText = ({
         // Container Style
         const [boxStyleFinal, setBoxStyleFinal] = useState(false)
         const [inputStyleFinal, setInputStyleFinal] = useState(false)
+        const [answerBoxStyleFinal, setAnswerBoxStyleFinal] = useState(false)
 
         // Loading
         const [isLoading, setIsLoading] = useState(true)
@@ -79,86 +80,119 @@ export const FormMultipleText = ({
     // Functions //
     ///////////////
 
-        // Finalizes all User Input Styles to Apply Defaults
-        function finalizeStyles(){
+        ////////////
+        // STYLES //
 
-            // Sets Title, Caption and MoreText
-            let temp = {
-                fontSize: 22,
-                fontWeight: 600,
-                fontFamily: "Gilroy",
-                margin: 3,
-                paddingBottom: 1,
-                marginBottom: 0,
+            // Finalizes all User Input Styles to Apply Defaults
+            function finalizeStyles(){
+                finalizeTexttyles()
+                finalizeInputStyles()
+                finalizeContainerStyles()
             }
-            let final = {...temp, ...titleStyle}
-            setTitleStyleFinal(final)
-            temp.fontSize = 16
-            temp.fontWeight = 600
-            temp.color = 'grey'
-            temp.marginTop = 0
-            temp.paddingTop = 0
-            temp.marginBottom = 0
-            temp.paddingBottom = 0
-            final = {...temp, ...captionStyle}
-            setCaptionStyleFinal(final)
-            temp.fontSize = 14
-            temp.marginBottom = 10
-            temp.fontWeight = 300
-            temp.color = '#3d3d3d'
-            if (fieldObj.moreTextStyle){
-                final = {...temp, ...fieldObj.moreTextStyle}
-            }
-            else{
-                final = {...final, ...temp}
-            }
-            setMoreTextStyleFinal({...final})
 
+            function finalizeTexttyles(){
+                // Sets Title, Caption and MoreText
+                let temp = {
+                    fontSize: 22,
+                    fontWeight: 600,
+                    fontFamily: "Gilroy",
+                    margin: 3,
+                    paddingBottom: 1,
+                    marginBottom: 0,
+                }
+                let final = {...temp, ...titleStyle}
+                setTitleStyleFinal(final)
+                temp.fontSize = 16
+                temp.fontWeight = 600
+                temp.color = 'grey'
+                temp.marginTop = 0
+                temp.paddingTop = 0
+                temp.marginBottom = 0
+                temp.paddingBottom = 0
+                final = {...temp, ...captionStyle}
+                setCaptionStyleFinal(final)
+                temp.fontSize = 14
+                temp.marginBottom = 10
+                temp.fontWeight = 300
+                temp.color = '#3d3d3d'
+                if (fieldObj.moreTextStyle){
+                    final = {...temp, ...fieldObj.moreTextStyle}
+                }
+                else{
+                    final = {...final, ...temp}
+                }
+                setMoreTextStyleFinal({...final})
+            }
 
-            // Sets Input Box
-            let tempInput = {
-                marginTop: 10, marginRight: '3%', paddingLeft: 10,
-                height: 30, width: '97%',
-                fontSize: 18,
-                borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
+            function finalizeInputStyles(){
+                // Sets Input Box
+                let tempInput = {
+                    marginTop: 10, marginRight: '3%', paddingLeft: 10,
+                    height: 30, width: '97%',
+                    fontSize: 18,
+                    borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
+                }
+                let final = {...tempInput, ...inputStyleFinal }
+                if (fieldObj.style){
+                    final = {...final, ...fieldObj.style}
+                }
+                setInputStyleFinal(final)
             }
-            final = {...tempInput, ...inputStyleFinal }
-            if (fieldObj.style){
-                final = {...final, ...fieldObj.style}
-            }
-            setInputStyleFinal(final)
 
+            function finalizeContainerStyles(){
+                let tempBox = {
+                    boxShadow: '0px 0px 2px 0px rgba(0, 0, 0, 0.2)',
+                    borderRadius: 0,
+                    border: '0',
+                    borderLeft: '1 solid black',
+                    borderRight: '1 solid black',
+                    paddingBottom: 15
 
-            // Sets Individual Field Box
-            let tempBox = {
-                boxShadow: '0px 0px 2px 0px rgba(0, 0, 0, 0.2)',
-                borderRadius: 0,
-                border: '0',
-                borderLeft: '1 solid black',
-                borderRight: '1 solid black',
-                paddingBottom: 15
+                }
+                if (fieldObj.isCorrect && correctDisplay === "border"){
+                    tempBox.boxShadow = '0px 0px 2px 0px rgba(62, 250, 141, 0.2)'
+                }
+                if (fieldObj.isWrong && correctDisplay === "border"){
+                    tempBox.boxShadow = '0px 0px 2px 0px rgba(212, 59, 59 0.2)'
+                }
+                let final = {...tempBox, ...boxStyle}
+                setBoxStyleFinal(final)
 
+                tempBox.flex = 4
+                tempBox.marginRight = '1.5%'
+                tempBox.marginLeft = '1.5%'
+                tempBox.width = '100%'
+                tempBox.boxShadow ='2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
+                tempBox.borderRadius =  10,
+                tempBox.border = "1px solid rgb(182, 117, 117)",
+                tempBox.justifyContent = 'center'
+                tempBox.textAlign = 'center'
+                final = {...tempBox, answerBoxStyle}
+                setAnswerBoxStyleFinal(final)
             }
-            if (fieldObj.isCorrect && correctDisplay === "border"){
-                tempBox.boxShadow = '0px 0px 2px 0px rgba(62, 250, 141, 0.2)'
-            }
-            if (fieldObj.isWrong && correctDisplay === "border"){
-                tempBox.boxShadow = '0px 0px 2px 0px rgba(212, 59, 59 0.2)'
-            }
-            final = {...tempBox, ...boxStyle}
-            setBoxStyleFinal(final)
-        }
+
+        //////////////
+        // HANDLERS //
 
         // Runs when Text is Entered in Input
         function onTextInput(target){
             setCurrentInput(target.value)
         }
 
+        // Handles Current Text Submission
         function handleAddEntry(){
             setValue(val => [...val, currentInput])
             setCurrentInput("")
         }
 
+        function handleRemoveEntry(val){
+            let temp = [...value].filter((thisVal) => {
+                if (val !== thisVal){
+                    return thisVal
+                }
+            })
+            setValue(temp)
+        }
 
     ////////////////
     // Renderings //
@@ -168,10 +202,10 @@ export const FormMultipleText = ({
         return(
             <FormText 
                 boxStyle={{flex: 10}}
-                inputSyle={inputSyle}
+                inputSyle={inputStyleFinal}
                 fieldObj={fieldObj}
-                titleStyle={titleStyle}
-                captionStyle={captionStyle}
+                titleStyle={titleStyleFinal}
+                captionStyle={captionStyleFinal}
                 onChange={onTextInput}
                 setNewFieldValue={setNewFieldValue}
                 hasValidResponse={true}
@@ -204,7 +238,10 @@ export const FormMultipleText = ({
     function renderSubmittedAnswers(){
         return value.map(val => {
             return(
-                <OstCard>
+                <OstCard 
+                    style={answerBoxStyleFinal}
+                    onClick={() => handleRemoveEntry(val)}
+                >
                     {val}
                 </OstCard>
             )
@@ -224,7 +261,7 @@ export const FormMultipleText = ({
                         {renderInputSpace()}
                         {renderAddEntry()}
                     </div>
-                    <div>
+                    <div style={{marginTop: 10, display: 'flex', flexDirection: 'row'}}>
                         {renderSubmittedAnswers()}
                     </div>
                 </div>
