@@ -722,8 +722,28 @@ const DataTypesLesson = ({}) => {
             return(
                 <div>
                     <div style={Styles.Fonts.lessonHeader}>More on Mixing Data Types and using Operators</div>
-                    <div style={Styles.Sections.lessonContent}>
-                    </div>
+                        <div style={Styles.Sections.lessonContent}>
+                            <p style={Styles.Fonts.basic}>
+                                There are times when two or more variables of different data types may be compared against one another, and not just added to one another like in the examples above. 
+                                This means sometimes you may need to add an <strong>integer</strong> with a <strong>string</strong>, and sometimes you may need to see if a date (saved as a number) is before or after a date saved as a string. 
+                                Other times, you will need to change the data type of one variable entirely in order to make it interact with another. Let's cover some of those cases, as well as some of the examples shown above, in more detail.
+                            </p> 
+
+                            <p style={Styles.Fonts.basic}>
+                                First, we will cover simple operations between two different data types. As shown in the example above, nearly all languages can easily handle adding a string and a number together.
+                                Newer and higher complexity languages like <strong>JavaScript and Python</strong> can automatically handle these differences in data types, whereas older and languages like <storng>C and Java</storng> are unable to do this, and require
+                                developers to tell the machine what variable's type to change and what to change it to. This is done through a process called 
+                                <ODef 
+                                text="casting" 
+                                modalContent={
+                                <ODefContnet 
+                                    color="#a3fc2d"
+                                    word="Casting" 
+                                    definition= "The process of manually telling the compiler to change the data type of a variable to a different one. For example, one could cast an integter x = 4 to be a string which = '4'"
+                                />} 
+                                />  
+                            </p> 
+                        </div>
                     </div>
             )
         }

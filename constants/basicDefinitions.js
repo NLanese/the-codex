@@ -90,6 +90,14 @@ const BasicDefinitionsList = [
     },
 
     {
+        title: "Casting",
+        definition: "The process of manually telling the compiler to change the data type of a variable to a different one. For example, one could cast an integter x = 4 to be a string which = '4'",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#a3fc2d"
+    },
+
+    {
         title: "Declaring a Variable",
         definition: "Creating a variable in Computer Science is referred to as 'Declaring.' If I wanted to create and use a new variable, x, I would first have to declare it. In most languages, there will be a keyword immediately proceeding the variable name. For instance, in JavaScript, if I wanted to declare an empty variable x, I could do so by entering 'let x' or 'var x', as 'let' and 'var' are keywords for creating variables in JavaScript.",
         titleStyle: Styles.Fonts.h2,
