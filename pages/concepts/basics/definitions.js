@@ -10,6 +10,7 @@ import DefinitionList from "../../../OstrichComponents/DefinitionsList/Definitio
 
 // Varibales Definitions 
 import BasicDefinitionsList from "../../../constants/basicDefinitions";
+import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 
 
 const VariableDefinitions = ({}) => {
@@ -32,13 +33,16 @@ const VariableDefinitions = ({}) => {
 // Main Return //
 /////////////////
 return(
-    <DefinitionList    
+    <OstCard style={{margin: '10%', marginTop: 0}}>
+        <DefinitionList    
         title="Basic Terminology"
         definitionsList={BasicDefinitionsList}
         titleBoxStyle={{flex: 2,  display: "flex", justifyContent: 'center', alignItems: 'center', borderRight: "1px solid black"}}
         definitionBoxStyle={{flex: 7}}
         definitionRowStyle={{border: "1px solid black", borderRadius: 5, marginTop: 5}}
-    />
+        />
+    </OstCard>
+    
 )
 }
 
