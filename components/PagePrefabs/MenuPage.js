@@ -40,7 +40,10 @@ export const MenuPage = ({
 
     function renderLessonsList(){
         return(
-            <div style={{flex: 1}}>
+            <div style={{
+                display: 'flex', flexDirection: 'column', flex: 1, 
+                justifyContent: 'flex-start', alignItems: 'center', 
+            }}>
                 <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
@@ -57,7 +60,7 @@ export const MenuPage = ({
 
     function renderDefinitions(){
         return(
-            <div style={{flex: 3, maxHeight: '650px', overflow: 'scroll', marginTop:30, margin: 15}}>
+            <div style={{flex: 3, overflow: 'scroll', marginTop:30, margin: 15}}>
                 <DefinitionList
                     title={"Unit Terms"}
                     definitionsList={BasicDefinitionsList}
@@ -105,7 +108,7 @@ export const MenuPage = ({
     /////////////////
 
     return(
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row', maxHeight: '90vh'}}>
             {renderLessonsList()}
             {renderDefinitions()}
             {renderLabsAndTests()}
