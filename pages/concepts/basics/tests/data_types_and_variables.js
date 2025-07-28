@@ -98,10 +98,42 @@ const DataTypesTest = ({}) => {
                         <span style={Styles.Code.keyword}>let </span>
                         <span style={Styles.Code.var}>result </span>
                         <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>x </span>
+                        <span style={Styles.Code.var}>numberValue </span>
                         <span style={Styles.Code.reg}>+ </span>
-                        <span style={Styles.Code.var}>y </span>
-                        
+                        <span style={Styles.Code.var}>stringValue</span>
+                    </p>
+                </div>
+            )
+        }
+
+        function renderForQ2(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '80%'}}>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}># C# </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>numberValue </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>100; </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>string </span>
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.str}>"5" </span>
+                        <span style={Styles.Code.reg}>; </span>
+                    </p>
+                    <br></br>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>result </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>numberValue </span>
+                        <span style={Styles.Code.reg}>+ </span>
+                        <span style={Styles.Code.var}>stringValue</span>
+                        <span style={Styles.Code.reg}>; </span>
                     </p>
                 </div>
             )
@@ -117,7 +149,7 @@ const DataTypesTest = ({}) => {
                 title: "1. What is the data type of the following",
                 type: "MC",
                 caption: "x = 'Bender Rodreguez'",
-                options: ["String", "Integer", "Double", "Name"],
+                options: ["String", "Integer", "Double"],
                 correctValue: 'String'
             },
 
@@ -126,7 +158,7 @@ const DataTypesTest = ({}) => {
                 title: "2. What is the data type of the following",
                 type: "MC",
                 caption: "age = 5",
-                options: ["String", "Integer", "Double", "Name"],
+                options: ["String", "Integer", "Double"],
                 correctValue: 'Integer'
             },
 
@@ -135,7 +167,7 @@ const DataTypesTest = ({}) => {
                 title: "3. What is the data type of the following",
                 type: "MC",
                 caption: "gpa = 3.5",
-                options: ["String", "Integer", "Double", "Name"],
+                options: ["String", "Integer", "Double"],
                 correctValue: 'Double'
             },
 
@@ -144,7 +176,7 @@ const DataTypesTest = ({}) => {
                 title: "4. What is the data type of the following",
                 type: "MC",
                 caption: "year = '2024'",
-                options: ["String", "Integer", "Double", "Name"],
+                options: ["String", "Integer", "Double"],
                 correctValue: 'String'
             },
 
@@ -172,7 +204,17 @@ const DataTypesTest = ({}) => {
                 title: "7. What is the value of 'result?'",
                 type: "MC",
                 render: renderForQ1,
-                options: ["54", "'54'", "9", "'9'"]
+                options: ["54", "'54'", "9", "'9'", "This would be an Error"],
+                correctValue: "'54'"
+            },
+
+            {
+                id: "8",
+                title: "8. What is the value of 'result?'",
+                type: "MC",
+                render: renderForQ2,
+                options: ["1004", "104", "This would be an Error", "'1004'", "'104"],
+                correctValue: "This would be an Error"
             }
         ]
 
