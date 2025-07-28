@@ -524,36 +524,59 @@ const DataTypesLesson = ({}) => {
             return(
                 <div>
                     <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>let </span>
-                        <span style={Styles.Code.var}>num </span>
-                        <span style={Styles.Code.reg}>= 4</span>
-                        </p>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>num </span>
+                    <span style={Styles.Code.reg}>= 4</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>let </span>
-                        <span style={Styles.Code.var}>boolValue </span>
-                        <span style={Styles.Code.bool}>= true</span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>boolValue </span>
+                    <span style={Styles.Code.bool}>= true</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>let </span>
-                        <span style={Styles.Code.var}>boolAndNumber </span>
-                        <span style={Styles.Code.reg}>= </span> 
-                        <span style={Styles.Code.var}>num </span>
-                        <span style={Styles.Code.reg}>+ </span> 
-                        <span style={Styles.Code.var}>boolValue </span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>boolAndNumber </span>
+                    <span style={Styles.Code.reg}>= </span> 
+                    <span style={Styles.Code.var}>num </span>
+                    <span style={Styles.Code.reg}>+ </span> 
+                    <span style={Styles.Code.var}>boolValue </span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.comment}>// The value of boolAndNumber would be 5 </span> 
-                        </p>
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.comment}>// This is because true is 1 when converted to a number </span>
-                        </p>
-                        <p style={Styles.Code.code}>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The value of boolAndNumber would be 5 </span> 
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// This is because true is 1 when converted to a number </span>
+                    </p>
+                    <p style={Styles.Code.code}>
                         <span style={Styles.Code.comment}>// false would become 0 </span>
-                        </p>
+                    </p>
 
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>stringValue </span>
+                    <span style={Styles.Code.bool}>= "true"</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>boolAndString </span>
+                    <span style={Styles.Code.reg}>= </span> 
+                    <span style={Styles.Code.var}>boolValue </span>
+                    <span style={Styles.Code.reg}>+ </span> 
+                    <span style={Styles.Code.var}>stringValue </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// The value of boolAndString would be "truetrue" </span> 
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// This is because JavaScript converts easily to Strings </span>
+                    </p>
                 </div>
             )
         }
@@ -576,10 +599,48 @@ const DataTypesLesson = ({}) => {
                         </p>
 
                         <p style={Styles.Code.code}>
-                            <span style={Styles.Code.comment}>// Any attempt to combine these values without casting </span> 
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>boolAndNumber </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>+ </span> 
+                        <span style={Styles.Code.var}>boolValue </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The value of boolAndNumber would be 5 </span> 
                         </p>
                         <p style={Styles.Code.code}>
-                            <span style={Styles.Code.comment}>// would result in an error </span>
+                            <span style={Styles.Code.comment}>// This is because true is 1 when converted to a number </span>
+                        </p>
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// false would become 0 </span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>string </span>
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.str}>= "true"</span>
+                        <span style={Styles.Code.reg}>; </span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>boolAndString </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.var}>boolValue </span>
+                        <span style={Styles.Code.reg}>+ </span> 
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.reg}>; </span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// This would throw an error </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// This is because Java cannot easily convert to Strings </span>
                         </p>
                 </div>
             )
@@ -602,10 +663,48 @@ const DataTypesLesson = ({}) => {
                         </p>
 
                         <p style={Styles.Code.code}>
-                            <span style={Styles.Code.comment}>// Any attempt to combine these values without casting </span> 
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>boolAndNumber </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>+ </span> 
+                        <span style={Styles.Code.var}>boolValue </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># The value of boolAndNumber would be 5 </span> 
                         </p>
                         <p style={Styles.Code.code}>
-                            <span style={Styles.Code.comment}>// would result in an error </span>
+                            <span style={Styles.Code.comment}># This is because true is 1 when converted to a number </span>
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># false would become 0 </span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>string </span>
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.str}>= "true"</span>
+                        <span style={Styles.Code.reg}>; </span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>boolAndString </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.var}>boolValue </span>
+                        <span style={Styles.Code.reg}>+ </span> 
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.reg}>; </span> 
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># This would throw an error </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}># This is because C# cannot easily convert to Strings </span>
                         </p>
                 </div>
             )
@@ -983,22 +1082,23 @@ const DataTypesLesson = ({}) => {
                                     </div>
                                 </div>
 
-                                <p>
-                                Some data types are easier to convert to than others. For example, Higher Level Languages generally assume you want combined types to be strings. 
-                                As such, when combining any variable with a string or char will likely result in a string. There are some exceptions. 
-                                We will go over some of the weirder examples below
-                                </p>
+                                
 
                                 <div>
-                                <CodeSnippet 
-                                    js={renderJavaScriptTypes()}
-                                    java={renderJavaTypes()}
-                                    cs={renderCTypes()}
-                                    py={renderPython()}
-                                />
                             </div>
-                            </div>
+                        </div>
 
+                        <p style={Styles.Fonts.basic}>
+                            Some data types are easier to convert to than others. For example, Higher Level Languages generally assume you want combined types to be strings. 
+                            As such, when combining any variable with a string or char will likely result in a string. There are some exceptions. 
+                            We will go over some of the weirder examples below
+                        </p>
+                        <CodeSnippet 
+                            js={renderJavaScriptTypes()}
+                            java={renderJavaTypes()}
+                            cs={renderCTypes()}
+                            py={renderPython()}
+                        />
                         </div>
                     </div>
             )

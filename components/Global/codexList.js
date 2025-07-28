@@ -63,11 +63,11 @@ export default function CodexList({
             let height = 130
             if (size === "medium" || size === "med" || size === "md"){
                 width = 300
-                height = 54
+                height = 50
             }
             else if (size === "small" || size === "sm"){
                 width = 180
-                height = 50
+                height = 40
             }
             else if (size === "auto"){
                 width = "auto"
@@ -80,11 +80,11 @@ export default function CodexList({
             let fontWeight = 500
             if (size === "medium" || size === "med"|| size === "md"){
                 fontWeight = 400
-                fontSize = 24
+                fontSize = 20
             }
             else if (size === "small" || size === "sm"){
                 fontWeight = 400
-                fontSize = 20
+                fontSize = 16
             }
             return {fontFamily: 'Gilroy', fontWeight: fontWeight, fontSize: fontSize, textAlign: 'center', padding: 5}
         }
