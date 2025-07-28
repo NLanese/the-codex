@@ -282,7 +282,7 @@ export const FormMultipleChoice = ({
             for (let i = 0; i < fieldObj.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
                 rows.push(
-                    <div key={i} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 10 }}>
+                    <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', }}>
                         {renderOptionsRow(rowItems)}
                     </div>
                 );
@@ -302,6 +302,7 @@ export const FormMultipleChoice = ({
                     key={index}
                     type={type}
                     fieldObj={fieldObj}
+                    containerStyle={{width: 'calc(23.33%)', marginRight: '10%'}}
                     />
                 )
             })

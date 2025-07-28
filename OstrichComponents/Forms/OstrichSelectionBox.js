@@ -19,6 +19,8 @@ export const OstrichSelectionBox = ({
 
     circleStyle = {border: "2px solid black", borderRadius: 32, height: 32, width: 32},
 
+    containerStyle,
+
     correct = false,
     incorrect = false,
     
@@ -35,6 +37,7 @@ export const OstrichSelectionBox = ({
         const [incorrectStyleFinal, setIncorrectStyleFinal] = useState({})
         const [correctStyleFinal, setCorrectStyleFinal] = useState({})
         const [selectedStyleFinal, setSelectedStyleFinal] = useState({})
+        const [containerStyleFinal, setContainerStyleFinal] = useState({})
         
         // Hovered Toggled
         const [isHovered, setIsHovered] = useState(false)
@@ -74,16 +77,19 @@ export const OstrichSelectionBox = ({
 
         const handleInititalState = () => {
             let temp = {
-                border: "2px solid #efefef", borderRadius: 32, height: 32, width: 32, backgroundColor: '#bdbdbd'
+                border: "2px solid #efefef", borderRadius: 32, height: 32, width: 32, minHeight: 32, minWidth: 32, backgroundColor: '#bdbdbd'
             }
+
             temp = {...optionStyle, ...temp}
             if (optionType === "bubble" || optionType === "Bubble" || optionType === "Circle" || optionType === "circle"){
                 temp.borderRadius = temp.width 
             }
+
             else if (optionType === "box" || optionType === "Box"){
                 temp.width = 50
                 temp.height = 50
             }
+
             setOptionStyleFinal(temp)
             setIncorrectStyleFinal({...temp, borderColor: '#57a5f2', backgroundColor: '#9cc6f0', incorrectOptionStyle})
             setSelectedStyleFinal({...temp, borderColor: '#57a5f2', backgroundColor: '#9cc6f0', selectedOptionStyle})
@@ -98,6 +104,9 @@ export const OstrichSelectionBox = ({
                 marginBottom: 0,
             }
             setTitleStyleFinal({...tempTitle, titleStyle})
+
+            let tempContainer = {display: 'flex', flexDirection: 'row', ...containerStyle}
+            setContainerStyleFinal(tempContainer)
         }
 
         const handleSelectionClick = (tag) => {
@@ -139,8 +148,9 @@ export const OstrichSelectionBox = ({
 
         // Renders For BUBBLE
         function renderOptionBox(){
+            console.log(containerStyleFinal)
             return(
-                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={containerStyleFinal}>
                    {renderOption()}
                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%", paddingLeft: 10}}>
                         <p style={titleStyleFinal}>
