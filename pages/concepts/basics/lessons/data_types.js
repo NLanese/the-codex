@@ -745,10 +745,10 @@ const DataTypesLesson = ({}) => {
                             </p> 
 
                             <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                                For the Higher Level Programing Languages, the computer will be able to figure out when we add a number to a string, that it wants
-                                the new value to be a string. As shown above and again below, in both Python and JavaScript, 5 + "4" would be "54"
+                            For the <strong>Higher Level Programing Languages,</strong> the computer will be able to figure out when we add a number to a string, that it wants
+                            the new value to be a string. Python and JavaScript are also higher level langauages that do not rely on type declarations, so you do not need to adjust your syntax for Data Type Conversions
                                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 5, marginLeft: 10}}>
+                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
                                         <p style={Styles.Code.code}>
                                             <span style={Styles.Code.comment}>// JavaScript </span>
                                         </p>
@@ -775,7 +775,7 @@ const DataTypesLesson = ({}) => {
                                             
                                         </p>
                                     </div>
-                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 5, marginLeft: 10}}>
+                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
                                         <p style={Styles.Code.code}>
                                             <span style={Styles.Code.comment}># Python </span>
                                         </p>
@@ -800,8 +800,100 @@ const DataTypesLesson = ({}) => {
                                         </p>
                                     </div>
                                 </div>
-                                
                             </div>
+
+                            <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                                <p>
+                                For the <strong>Higher Level Programing Languages,</strong>, the computer does not do as much assuming as it does in the lower levels. As such, if you as a developer attempt to combine a String and an integer or some other numeric data type, 
+                                you will either be faced with an error. In C for example, "5" + 4 would return either an error or some long gibberish text.
+                                </p>
+
+                                <p>
+                                Luckily, we are not working in any low level languages wherein that will be an issue. While both Java and C# are lower level when compared to Python and JavaScript, they do have 
+                                some modern advancements that allow implicit conversions. They do, however, rely on the developer to tell the computer what daya type the resulting variable will be. For exampke, 
+                                when combining "5" and 4, we would want the result to be a string; since turning a number into a string is far easier than the other way around. 
+                                </p>
+
+                                <div style={{display: 'flex', flexDirection: 'row'}}>
+                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.comment}>// JavaScript </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>int </span>
+                                            <span style={Styles.Code.var}>numberValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.reg}>5 </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>string </span>
+                                            <span style={Styles.Code.var}>stringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.str}>"4" </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                        <br></br>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>string </span>
+                                            <span style={Styles.Code.var}>combinedStringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.var}>x </span>
+                                            <span style={Styles.Code.reg}>+ </span>
+                                            <span style={Styles.Code.var}>y </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>int </span>
+                                            <span style={Styles.Code.var}>unexpectedResult </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.var}>x </span>
+                                            <span style={Styles.Code.reg}>+ </span>
+                                            <span style={Styles.Code.var}>y </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                    </div>
+                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.comment}># C# </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>int </span>
+                                            <span style={Styles.Code.var}>numberValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.reg}>5 </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>string </span>
+                                            <span style={Styles.Code.var}>stringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.str}>"4" </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                        <br></br>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>string </span>
+                                            <span style={Styles.Code.var}>combinedStringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.var}>x </span>
+                                            <span style={Styles.Code.reg}>+ </span>
+                                            <span style={Styles.Code.var}>y </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>int </span>
+                                            <span style={Styles.Code.var}>thisWouldThrowAnError </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.var}>x </span>
+                                            <span style={Styles.Code.reg}>+ </span>
+                                            <span style={Styles.Code.var}>y </span>
+                                            <span style={Styles.Code.reg}>; </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
             )
