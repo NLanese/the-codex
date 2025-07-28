@@ -743,6 +743,65 @@ const DataTypesLesson = ({}) => {
                                 />} 
                                 />  
                             </p> 
+
+                            <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                                For the Higher Level Programing Languages, the computer will be able to figure out when we add a number to a string, that it wants
+                                the new value to be a string. As shown above and again below, in both Python and JavaScript, 5 + "4" would be "54"
+                                <div style={{display: 'flex', flexDirection: 'row'}}>
+                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 5, marginLeft: 10}}>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.comment}>// JavaScript </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>let </span>
+                                            <span style={Styles.Code.var}>numberValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.reg}>5 </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>let </span>
+                                            <span style={Styles.Code.var}>stringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.str}>"4" </span>
+                                        </p>
+                                        <br></br>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.keyword}>let </span>
+                                            <span style={Styles.Code.var}>combinedStringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.var}>x </span>
+                                            <span style={Styles.Code.reg}>+ </span>
+                                            <span style={Styles.Code.var}>y </span>
+                                            
+                                        </p>
+                                    </div>
+                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 5, marginLeft: 10}}>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.comment}># Python </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.var}>numberValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.reg}>5 </span>
+                                        </p>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.var}>stringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.str}>"4" </span>
+                                        </p>
+                                        <br></br>
+                                        <p style={Styles.Code.code}>
+                                            <span style={Styles.Code.var}>combinedStringValue </span>
+                                            <span style={Styles.Code.reg}>= </span>
+                                            <span style={Styles.Code.var}>x </span>
+                                            <span style={Styles.Code.reg}>+ </span>
+                                            <span style={Styles.Code.var}>y </span>
+                                            
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
             )
