@@ -7,6 +7,7 @@ import Colors from "../../styles/colors";
 
 // Components
 import CodexList from "../Global/codexList";
+import ListPage from "../Global/codexList"
 
 export const TestTemplatePage = ({
     children,
@@ -34,20 +35,20 @@ export const TestTemplatePage = ({
     // Renders the List of Lessons on the Side Menu
     function renderLessonsList(){
         return(
-            <div style={{
-                display: 'flex', flexDirection: 'column', flex: 1, 
-                justifyContent: 'flex-start', alignItems: 'center', 
-            }}>
+            <div>
                 <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                        Lessons
+                    Lessons
                     </div>
-                    <CodexList 
+                    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                    <ListPage 
                         items={lessons}
                         onClick={onLessonClick}
-                        size="sm"
+                        size="md"
                     />
+                    </div>
                 </div>
+
             </div>
         )
     }
@@ -55,31 +56,31 @@ export const TestTemplatePage = ({
     // Renders the List of Labs and Tests on the Side Menu
     function renderLabsAndTests(){
         return(
-            <div style={{
-                display: 'flex', flexDirection: 'column', flex: 1, 
-                justifyContent: 'flex-start', alignItems: 'center', 
-            }}>
+            <div>
                 <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                        Labs
+                    Labs
                     </div>
-                    <CodexList 
+                    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                    <ListPage 
                         items={labs}
                         onClick={onLabsClick}
-                        size="sm"
+                        size="md"
                     />
+                    </div>
                 </div>
 
                 <div style={Styles.Sections.subContentBubble}>
                     <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Tests
                     </div>
-                    <CodexList 
+                    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                    <ListPage 
                         items={tests}
                         onClick={onTestsClick}
-                        size="sm"
-                        selected={current}
+                        size="md"
                     />
+                    </div>
                 </div>
             </div>
         )
@@ -103,11 +104,11 @@ export const TestTemplatePage = ({
     return(
         <div style={{display: 'flex', flexDirection: 'row'}}>
             <div style={{
-                padding: 10, paddingRight: 45, flex: 4,
+                padding: 10, flex: 10,
             }}>
                 {children}
             </div>
-            <div style={{flex: 1}}>
+            <div style={{flex: 2, display: 'flex', justifyContent: 'center'}}>
                 {renderSideMenu()}
             </div>
         </div>
