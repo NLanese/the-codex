@@ -77,7 +77,7 @@ export const OstrichSelectionBox = ({
 
         const handleInititalState = () => {
             let temp = {
-                border: "2px solid #efefef", borderRadius: 32, height: 32, width: 32, minHeight: 32, minWidth: 32, backgroundColor: '#bdbdbd'
+                border: "2px solid black", borderRadius: 32, height: 32, width: 32, minHeight: 32, minWidth: 32, backgroundColor: '#bdbdbd'
             }
 
             temp = {...optionStyle, ...temp}

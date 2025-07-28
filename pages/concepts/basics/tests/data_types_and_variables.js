@@ -17,6 +17,7 @@ import { OstrichForm } from "../../../../OstrichComponents/Forms/OstrichForm";
 
 // Local
 import Colors from "../../../../styles/colors";
+import Styles from "../../../../styles/styles";
 
 
 const DataTypesTest = ({}) => {
@@ -67,6 +68,43 @@ const DataTypesTest = ({}) => {
 
         function handleLabsClick(lab){
             router.replace(`/concepts/basics/labs/${lab.toLowerCase().replace(" ", "_")}`)
+        }
+
+        
+    /////////////
+    // Renders //
+    /////////////
+
+        function renderForQ1(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '80%'}}>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// JavaScript </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>numberValue </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>5 </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.str}>"4" </span>
+                    </p>
+                    <br></br>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>result </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>x </span>
+                        <span style={Styles.Code.reg}>+ </span>
+                        <span style={Styles.Code.var}>y </span>
+                        
+                    </p>
+                </div>
+            )
         }
  
     /////////////////
@@ -128,6 +166,14 @@ const DataTypesTest = ({}) => {
                 options: ["Boolean", "String", "Double", "Integer"],
                 correctValue: 'Double'
             },
+
+            {
+                id: "7",
+                title: "7. What is the value of 'result?'",
+                type: "MC",
+                render: renderForQ1,
+                options: ["54", "'54'", "9", "'9'"]
+            }
         ]
 
         const correctAnswers = {

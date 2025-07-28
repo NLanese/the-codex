@@ -963,7 +963,6 @@ const DataTypesLesson = ({}) => {
                                             <span style={Styles.Code.var}>x </span>
                                             <span style={Styles.Code.reg}>+ </span>
                                             <span style={Styles.Code.var}>y </span>
-                                            
                                         </p>
                                     </div>
                                     <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
