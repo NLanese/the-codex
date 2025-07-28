@@ -61,29 +61,32 @@ export default function CodexList({
         function determineStyle(itm){
             let width = 500
             let height = 130
-            if (size === "medium" || size === "med"){
+            if (size === "medium" || size === "med" || size === "md"){
                 width = 300
-                height = 62
+                height = 54
             }
             else if (size === "small" || size === "sm"){
                 width = 180
                 height = 50
             }
-            return {backgroundColor: determineColor(itm), width: width, height: height, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
+            else if (size === "auto"){
+                width = "auto"
+            }
+            return {backgroundColor: determineColor(itm), width: width, minHeight: height, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
         }
 
         function determineFont(){
             let fontSize = 36
             let fontWeight = 500
-            if (size === "medium" || size === "med"){
+            if (size === "medium" || size === "med"|| size === "md"){
                 fontWeight = 400
-                fontSize = 28
+                fontSize = 24
             }
             else if (size === "small" || size === "sm"){
                 fontWeight = 400
                 fontSize = 20
             }
-            return {fontFamily: 'Gilroy', fontWeight: fontWeight, fontSize: fontSize}
+            return {fontFamily: 'Gilroy', fontWeight: fontWeight, fontSize: fontSize, textAlign: 'center', padding: 5}
         }
 
         // Handles PRessing the option Button

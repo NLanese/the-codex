@@ -1,4 +1,4 @@
-import { conceptsList, languagesList, frameworksList, basicsLessons } from "./lessonLists"
+import { conceptsList, languagesList, frameworksList, basicsLessons, basicsTests, basicsLabs } from "./lessonLists"
 
 // Fires on specific drawer type clicks
 function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
@@ -203,7 +203,7 @@ export const basicsTabs = (setTabBar, router) => {
         title: "Tests",
         dropdown: {
             openOnHover: true,
-            drawers: ["Data Types", "Operators", "Functions Test",]
+            drawers: basicsTests
         }
     },
     {

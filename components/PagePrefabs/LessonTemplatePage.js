@@ -34,10 +34,11 @@ export const LessonTemplatePage = ({
         function renderLessonsList(){
             return(
                 <div style={{
-                    display: 'flex', flexDirection: 'column', flex: 1, 
-                    justifyContent: 'flex-start', alignItems: 'center', 
+                    // display: 'flex', flexDirection: 'column', flex: 1, 
+                    // justifyContent: 'flex-start', alignItems: 'center', width: '80%',
+                    // left: '10%',
                 }}>
-                    <div style={Styles.Sections.subContentBubble}>
+                    {/* <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                             Lessons
                         </div>
@@ -48,7 +49,20 @@ export const LessonTemplatePage = ({
                             selected={current}
                             
                         />
+                    </div> */}
+                    <div style={Styles.Sections.subContentBubble}>
+                        <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
+                        Lessons
+                        </div>
+                        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                        <ListPage 
+                            items={lessons}
+                            onClick={onLessonClick}
+                            size="md"
+                        />
+                        </div>
                     </div>
+
                 </div>
             )
         }
@@ -56,36 +70,32 @@ export const LessonTemplatePage = ({
         function renderLabsAndTests(){
             return(
                 <div style={{
-                    display: 'flex', flexDirection: 'column', flex: 1, 
-                    justifyContent: 'flex-start', alignItems: 'center', 
+                    
                 }}>
                     <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                            Labs
+                        Labs
                         </div>
+                        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
                         <ListPage 
                             items={labs}
                             onClick={onLabsClick}
-                            size="sm"
+                            size="md"
                         />
+                        </div>
                     </div>
 
-                    <div style={{ 
-                        marginTop: 45,
-                        padding: 15,
-                        justifyContent: 'center', 
-                        borderRadius: 12,
-                        backgroundColor: Colors.offWhite, 
-                        boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
-                    }}>
+                    <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                             Tests
                         </div>
+                        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
                         <ListPage 
                             items={tests}
                             onClick={onTestsClick}
-                            size="sm"
+                            size="md"
                         />
+                        </div>
                     </div>
                 </div>
             )
