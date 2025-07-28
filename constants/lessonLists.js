@@ -6,7 +6,7 @@ const languagesList = ["JavaScript", "Ruby", "Python", "C++", "Swift", "HTML"]
 const frameworksList = ["React JS", "React Native", "Angular", "Ionic"]
 
 
-const basicsLessons = ["Variables", "Operators", "Data Types", "Conditionals", "Functions", "Objects + Classes"]
+const basicsLessons = ["Variables", "Operators", "Data Types", "Conditionals", "Functions", "Arrays and Lists", "Objects + Classes"]
 const basicsLabs = ["Basics Mastery Lab",]
 const basicsTests = ["Data Types and Variables", "Advanced Operations and Conditions", "Basics Mastery",]
 

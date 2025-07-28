@@ -519,6 +519,98 @@ const DataTypesLesson = ({}) => {
             )
         }
 
+        // First Code Snippet // 
+        function renderJavaScriptTypes(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>= 4</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>boolValue </span>
+                        <span style={Styles.Code.bool}>= true</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>boolAndNumber </span>
+                        <span style={Styles.Code.reg}>= </span> 
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>+ </span> 
+                        <span style={Styles.Code.var}>boolValue </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// The value of boolAndNumber would be 5 </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// This is because true is 1 when converted to a number </span>
+                        </p>
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}>// false would become 0 </span>
+                        </p>
+
+                </div>
+            )
+        }
+
+        function renderJavaTypes(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>= 4</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>bool </span>
+                        <span style={Styles.Code.var}>boolValue </span>
+                        <span style={Styles.Code.bool}>= true</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// Any attempt to combine these values without casting </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// would result in an error </span>
+                        </p>
+                </div>
+            )
+        }
+
+        function renderCTypes(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.reg}>= 4;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>bool </span>
+                        <span style={Styles.Code.var}>boolValue </span>
+                        <span style={Styles.Code.bool}>= true</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// Any attempt to combine these values without casting </span> 
+                        </p>
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.comment}>// would result in an error </span>
+                        </p>
+                </div>
+            )
+        }
+
 
     //////////////////////
     // Lesson Rendering //
@@ -800,11 +892,9 @@ const DataTypesLesson = ({}) => {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                                 <p>
-                                For the <strong>Higher Level Programing Languages,</strong>, the computer does not do as much assuming as it does in the lower levels. As such, if you as a developer attempt to combine a String and an integer or some other numeric data type, 
+                                For the <strong>Lower Level Programing Languages,</strong>, the computer does not do as much assuming as it does in the lower levels. As such, if you as a developer attempt to combine a String and an integer or some other numeric data type, 
                                 you will either be faced with an error. In C for example, "5" + 4 would return either an error or some long gibberish text.
                                 </p>
 
@@ -892,6 +982,21 @@ const DataTypesLesson = ({}) => {
                                         </p>
                                     </div>
                                 </div>
+
+                                <p>
+                                Some data types are easier to convert to than others. For example, Higher Level Languages generally assume you want combined types to be strings. 
+                                As such, when combining any variable with a string or char will likely result in a string. There are some exceptions. 
+                                We will go over some of the weirder examples below
+                                </p>
+
+                                <div>
+                                <CodeSnippet 
+                                    js={renderJavaScriptTypes()}
+                                    java={renderJavaTypes()}
+                                    cs={renderCTypes()}
+                                    py={renderPython()}
+                                />
+                            </div>
                             </div>
 
                         </div>
