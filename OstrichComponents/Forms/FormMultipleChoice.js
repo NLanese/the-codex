@@ -275,18 +275,20 @@ export const FormMultipleChoice = ({
             )
         }
 
-        // Renders Options
-        function renderOptions(){
-            if (loading){
-                return
-            }
-            if (fieldObj.options.length < 4){
-                return(
-                    <div style={{display:'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                        {renderOptionsRow(options)}
+        function renderOptions() {
+            if (loading) return;
+        
+            const rows = [];
+            for (let i = 0; i < fieldObj.options.length; i += 3) {
+                const rowItems = fieldObj.options.slice(i, i + 3);
+                rows.push(
+                    <div key={i} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 10 }}>
+                        {renderOptionsRow(rowItems)}
                     </div>
-                )
+                );
             }
+        
+            return <>{rows}</>;
         }
 
         // Renders Row to contain options

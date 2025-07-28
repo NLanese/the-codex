@@ -144,6 +144,7 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
+                console.log(fieldObj.options)
                 return(
                     <FormMultipleChoice 
                         key={fieldObj.id}
