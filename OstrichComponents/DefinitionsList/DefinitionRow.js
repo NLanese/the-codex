@@ -3,7 +3,7 @@
 
 const DefinitionRow = ({
     definitionObject,
-    definitionRowStyle = {display: "flex", flexDirection: 'row'},
+    definitionRowStyle = {display: "flex", flexDirection: 'row', padding: 10},
     titleBoxStyle,
     definitionBoxStyle,
 }) => {

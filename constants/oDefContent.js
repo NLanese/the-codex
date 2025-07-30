@@ -8,7 +8,7 @@ export const ODefContnet = ({
 }) => {
 
     return(
-        <div style={{padding: 10}}>
+        <div style={{padding: 15}}>
             <DefinitionRow 
                 definitionObject={
                     {
@@ -20,7 +20,11 @@ export const ODefContnet = ({
                     }
                 }
                 definitionRowStyle={{border: "1px solid black", borderRadius: 5, marginTop: 5}}
-                titleBoxStyle={{flex: 2,  display: "flex", justifyContent: 'center', alignItems: 'center', borderRight: "1px solid black"}}
+                titleBoxStyle={{
+                    flex: 3,  display: "flex", 
+                    justifyContent: 'center', alignItems: 'center', 
+                    borderRight: "1px solid black"
+                }}
                 definitionBoxStyle={{flex: 7}}
             />
         </div>

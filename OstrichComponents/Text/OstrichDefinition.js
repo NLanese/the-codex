@@ -87,7 +87,7 @@ export const ODef = ({
             <div
             style={{  position: 'absolute', zIndex: 500,
                       top: (top - 120), left: left,
-                      maxWidth: 500, height: 'auto',
+                      maxWidth: 600, height: 'auto',
                       backgroundColor: 'lightgrey',
                       borderRadius: 15,
                       boxShadow:'10px 4px 10px 4px rgba(00, 00, 00, 0.3)',
