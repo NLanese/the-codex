@@ -84,11 +84,11 @@ const ConditionalsLesson = ({}) => {
                 <div>
                         <p style={Styles.Code.code}>
                         <span style={Styles.Code.keyword}>let </span>
-                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.var}>count </span>
                         </p>
 
                         <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.var}>count </span>
                         <span style={Styles.Code.reg}>= </span>
                         <span style={Styles.Code.var}>userInput </span>
                         </p>
@@ -99,7 +99,7 @@ const ConditionalsLesson = ({}) => {
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>if </span>
                             <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.var}>count </span>
                             <span style={Styles.Code.reg}>% 2 </span>
                             <span style={Styles.Code.reg}>== 0)</span>
                             <span style={Styles.Code.func}>{"{"}</span>
@@ -140,12 +140,12 @@ const ConditionalsLesson = ({}) => {
                 <div>
                         <p style={Styles.Code.code}>
                         <span style={Styles.Code.keyword}>int </span>
-                        <span style={Styles.Code.var}>num</span>
+                        <span style={Styles.Code.var}>count</span>
                         <span style={Styles.Code.reg}>;</span>
                         </p>
 
                         <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.var}>count </span>
                         <span style={Styles.Code.reg}>= </span>
                         <span style={Styles.Code.var}>userInput</span>
                         <span style={Styles.Code.reg}>;</span>
@@ -157,7 +157,7 @@ const ConditionalsLesson = ({}) => {
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>if </span>
                             <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.var}>count </span>
                             <span style={Styles.Code.reg}>% 2 </span>
                             <span style={Styles.Code.reg}>== 0)</span>
                             <span style={Styles.Code.func}>{"{"}</span>
@@ -200,12 +200,12 @@ const ConditionalsLesson = ({}) => {
                 <div>
                         <p style={Styles.Code.code}>
                         <span style={Styles.Code.keyword}>int </span>
-                        <span style={Styles.Code.var}>num</span>
+                        <span style={Styles.Code.var}>count</span>
                         <span style={Styles.Code.reg}>;</span>
                         </p>
 
                         <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.var}>count </span>
                         <span style={Styles.Code.reg}>= </span>
                         <span style={Styles.Code.var}>userInput</span>
                         <span style={Styles.Code.reg}>;</span>
@@ -217,7 +217,7 @@ const ConditionalsLesson = ({}) => {
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>if </span>
                             <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.var}>count </span>
                             <span style={Styles.Code.reg}>% 2 </span>
                             <span style={Styles.Code.reg}>== 0)</span>
                             <span style={Styles.Code.func}>{"{"}</span>
@@ -255,7 +255,7 @@ const ConditionalsLesson = ({}) => {
             return(
                 <div>
                         <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>num </span>
+                        <span style={Styles.Code.var}>count </span>
                         <span style={Styles.Code.reg}>= </span>
                         <span style={Styles.Code.var}>userInput </span>
                         </p>
@@ -266,7 +266,7 @@ const ConditionalsLesson = ({}) => {
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>if </span>
                             <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>num </span>
+                            <span style={Styles.Code.var}>count </span>
                             <span style={Styles.Code.reg}>% 2 </span>
                             <span style={Styles.Code.reg}>== 0)</span>
                             <span style={Styles.Code.func}>{"{"}</span>
@@ -368,6 +368,49 @@ const ConditionalsLesson = ({}) => {
                             cs={renderCs()}
                             py={renderPython()}
                         />
+
+                        <p style={Styles.Fonts.basic}>
+                            In addition to the <strong>conditional</strong> in the code, there were a few new things in this code. Let's go over everything we see above
+                            before we cover everything accomplished in the small code snippet above.
+                        </p>
+
+                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                            <strong>First, lets go over 'printing'</strong>. Printing is one of the best tools available to developers, as it is the most basic but often
+                            most crucial line of defense against errors. What printing does is it takes any variable 
+                            and prints its value to your terminal at any given time. This allows developers to see where
+                            and when values are changing in their code, which helps us pin down where any errors may be. 
+
+                            <p>
+                            In JavaScript and Java, you accomplish this by calling (typing) 
+                            <strong> console.log()</strong> with the variable who's value you want printed placed inside the parethesis. 
+                            </p>
+
+                            <p>
+                            In C# and Python, you accomplish this by calling (typing) 
+                            <strong> print()</strong> with the variable who's value you want printed placed inside the parethesis. 
+                            </p>
+
+                            <p>
+                            If you are developing in an IDE like Eclipse or Visual Studio Code, the terminal will be on the bottom of 
+                            your screen. This is where any errors or printed statements will appear. However, you can also have websites print statements. 
+                            To clarify, this is <strong>a far different process than rendering things on the screen.</strong> Everything you see here is 
+                            rendered on the webpage, none of this content is printed. 
+                            </p>
+
+                            <p>
+                            To test this, please right click on your screen and select the option "Inspect" if you are on Google Chrome and "Inspect Element"
+                            on Internet Explorer windows. <strong>if this is not working for you, click this <a href="https://zapier.com/blog/inspect-element-tutorial/">here</a></strong>
+                            </p>
+
+                            Once you are able to Inspect, switch the new tab (which will be on the left of your screen on Google and the bottom on Explorer) switch to the 'console' tab. 
+                            Now, you are able to hit the button below and see the console fill up with printed statements!
+
+                            <OstCard
+                                onClick={() => console.log("Good job! Noow look at these printed statements!")}
+                            >
+                                Click me to Test Printing
+                            </OstCard>
+                        </div>
 
                     </div>
                 </div>
