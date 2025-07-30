@@ -742,7 +742,17 @@ const ConditionalsLesson = ({}) => {
                             />  
                         </p>
                         <p style={Styles.Fonts.basic}> 
-                            <strong>Let's go over some basic Data Types</strong>
+                            <strong>Let's go over some basic conditionals.</strong> Here we will also learn a bit about 
+                            <ODef 
+                            text="pseudocode" 
+                            modalContent={
+                            <ODefContnet 
+                                color="#88fccc" 
+                                word="Pseudocode" 
+                                definition="Code is written in specific computer langauges with specific operational syntax. If a word or character is wrong, the code will not work. When working with complicated workflows or porjects that have a lot of different operations going on, it is greatly beneficial to write out what exactly the code does and how it should do it in plain English. This plain writing is called Pseudocode."
+                                />
+                            } 
+                            />.  
                         </p>
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
                             <li>

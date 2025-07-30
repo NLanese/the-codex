@@ -122,6 +122,14 @@ const BasicDefinitionsList = [
     },
 
     {
+        title: "Pseudocode",
+        definition: "Code is written in specific computer langauges with specific operational syntax. If a word or character is wrong, the code will not work. When working with complicated workflows or porjects that have a lot of different operations going on, it is greatly beneficial to write out what exactly the code does and how it should do it in plain English. This plain writing is called Pseudocode.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#81afeb"
+    },
+
+    {
         title: "Object Oriented Programming (OOP)",
         definition: "There are many standard practices of coding, but the newest and most widely used is Object Oriented Programming. This methodology of coding states that the best way to develop a program is to simulate real world objects and events through quantifiable data. Social Media Apps will create Classes to mimic these real world phenomena. There will be a Class for Posts, a Class for Users. a Class for Comments, and so on. These Classes will interact with each other just as people and 'posts' would on a real life media board. Other methodologies include Functional Programming, Data Oriented Programing, and Procedural Oriented Programing.",
         titleStyle: Styles.Fonts.h2,
