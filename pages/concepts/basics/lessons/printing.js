@@ -25,7 +25,7 @@ import { OstCard } from "../../../../OstrichComponents/Format/OstCard";
 // Images
 const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";
 
-const ConditionalsLesson = ({}) => {
+const PrintingLesson = ({}) => {
 
     ///////////
     // State //
@@ -306,115 +306,52 @@ const ConditionalsLesson = ({}) => {
             return(
                 <div>
 
-                    <div style={Styles.Fonts.lessonHeader}>What are Condtionals?</div>
+                    <div style={Styles.Fonts.lessonHeader}>What is Printing?</div>
                     <div style={Styles.Sections.lessonContent}>
+                    <div style={{...Styles.Fonts.basic}}>
 
-                        <p style={Styles.Fonts.basic}>
-                            Computer Science and Software Development is often times trying to recreate real life objects or situations but in a virutal space. Online markets
-                            for exmaple will simulate a 'cart' and allow users to put 'objects in it.' Obviously you do not have a real cart nor are you moving the real items you are considering 
-                            purchasing into anything, but we simulate this on a website because it is an intuitive and familiarexperience for the user. As such, we often times
-                            need to apply logic in what we create. IF us a user clicks an obejct, it goes to the cart. IF there are objects in the cart, their individual prices 
-                            are added to display a total. IF the user selects express shipping, the extra price is applied and the item is marked for faster shipping.
+                        <p>
+                        <strong>First, lets go over 'printing'</strong>. Printing is one of the best tools available to developers, as it is the most basic but often
+                        most crucial line of defense against errors. What printing does is it takes any variable 
+                        and prints its value to your terminal at any given time. This allows developers to see where
+                        and when values are changing in their code, which helps us pin down where any errors may be. 
+                        </p>
+                        
+
+                        <p>
+                        In JavaScript and Java, you accomplish this by calling (typing) 
+                        <strong> console.log()</strong> with the variable who's value you want printed placed inside the parethesis. 
                         </p>
 
-                        <p style={Styles.Fonts.basic}>
-                        Applying this logic in Software Development requires the use of 
-                            <ODef 
-                            text="conditionals" 
-                            modalContent={
-                            <ODefContnet 
-                                color="#88fccc" 
-                                word="Conditionals" 
-                                definition="Conditionals are logic gates that can split off into two or more paths depending on a value. Conditionals are most easily thought as 'if statements' although that definition is a little reductive, as there are other forms of Conditionals. If statements are the most common however"
-                                />
-                            } 
-                            />  
+                        <p>
+                        In C# and Python, you accomplish this by calling (typing) 
+                        <strong> print()</strong> with the variable who's value you want printed placed inside the parethesis. 
                         </p>
 
-                        <p style={Styles.Fonts.basic}> 
-                            <strong>Let's go over some basic conditionals.</strong> Here we will also learn a bit about 
-                            <ODef 
-                            text="pseudocode" 
-                            modalContent={
-                            <ODefContnet 
-                                color="#88fccc" 
-                                word="Pseudocode" 
-                                definition="Code is written in specific computer langauges with specific operational syntax. If a word or character is wrong, the code will not work. When working with complicated workflows or porjects that have a lot of different operations going on, it is greatly beneficial to write out what exactly the code does and how it should do it in plain English. This plain writing is called Pseudocode."
-                                />
-                            } 
-                            />.  
+                        <p>
+                        If you are developing in an IDE like Eclipse or Visual Studio Code, the terminal will be on the bottom of 
+                        your screen. This is where any errors or printed statements will appear. However, you can also have websites print statements. 
+                        To clarify, this is <strong>a far different process than rendering things on the screen.</strong> Everything you see here is 
+                        rendered on the webpage, none of this content is printed. 
                         </p>
+
+                        <p>
+                        To test this, please right click on your screen and select the option "Inspect" if you are on Google Chrome and "Inspect Element"
+                        on Internet Explorer windows. <strong>if this is not working for you, click this <a href="https://zapier.com/blog/inspect-element-tutorial/">here</a></strong>
+                        </p>
+
+                        Once you are able to Inspect, switch the new tab (which will be on the left of your screen on Google and the bottom on Explorer) switch to the 'console' tab. 
+                        Now, you are able to hit the button below and see the console fill up with printed statements!
 
                         <OstCard
-                        templateStyle={1}
-                        imageSrc={pseudoImage}
-                        style={{backgroundColor: "#ebf4ff"}}
+                            style={{marginLeft: '30%', marginRight: '30%', marginTop: 30}}
+                            onClick={() => console.log("Good job! Noow look at these printed statements!")}
                         >
-                            <p style={{marginLeft: '15%', marginRight: '15%'}}>
-                            This is some very simple pseudocode that depicts a program that
-                            creates a number, accepts a value, and then informs the user whether 
-                            that value is even or odd. 
+                            <p style={{textAlign: 'center'}}>
+                            Click me to Test Printing
                             </p>
                         </OstCard>
-
-                        <p style={Styles.Fonts.basic}>
-                            Now, we'll take the pseduocode above and convert it into REAL code using the four 
-                            programming languages that we have been using thus far; Java, JavaScript, C# and Python.
-                        </p>
-
-                        <CodeSnippet 
-                            js={renderJavaScript()}
-                            java={renderJava()}
-                            cs={renderCs()}
-                            py={renderPython()}
-                        />
-
-                        <p style={Styles.Fonts.basic}>
-                            In addition to the <strong>conditional</strong> in the code, there were a few new things in this code. Let's go over everything we see above
-                            before we cover everything accomplished in the small code snippet above.
-                        </p>
-
-                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <strong>First, lets go over 'printing'</strong>. Printing is one of the best tools available to developers, as it is the most basic but often
-                            most crucial line of defense against errors. What printing does is it takes any variable 
-                            and prints its value to your terminal at any given time. This allows developers to see where
-                            and when values are changing in their code, which helps us pin down where any errors may be. 
-
-                            <p>
-                            In JavaScript and Java, you accomplish this by calling (typing) 
-                            <strong> console.log()</strong> with the variable who's value you want printed placed inside the parethesis. 
-                            </p>
-
-                            <p>
-                            In C# and Python, you accomplish this by calling (typing) 
-                            <strong> print()</strong> with the variable who's value you want printed placed inside the parethesis. 
-                            </p>
-
-                            <p>
-                            If you are developing in an IDE like Eclipse or Visual Studio Code, the terminal will be on the bottom of 
-                            your screen. This is where any errors or printed statements will appear. However, you can also have websites print statements. 
-                            To clarify, this is <strong>a far different process than rendering things on the screen.</strong> Everything you see here is 
-                            rendered on the webpage, none of this content is printed. 
-                            </p>
-
-                            <p>
-                            To test this, please right click on your screen and select the option "Inspect" if you are on Google Chrome and "Inspect Element"
-                            on Internet Explorer windows. <strong>if this is not working for you, click this <a href="https://zapier.com/blog/inspect-element-tutorial/">here</a></strong>
-                            </p>
-
-                            Once you are able to Inspect, switch the new tab (which will be on the left of your screen on Google and the bottom on Explorer) switch to the 'console' tab. 
-                            Now, you are able to hit the button below and see the console fill up with printed statements!
-
-                            <OstCard
-                                style={{marginLeft: '30%', marginRight: '30%', marginTop: 30}}
-                                onClick={() => console.log("Good job! Noow look at these printed statements!")}
-                            >
-                                <p style={{textAlign: 'center'}}>
-                                Click me to Test Printing
-                                </p>
-                            </OstCard>
-                        </div>
-
+                    </div>
                     </div>
                 </div>
             )
@@ -450,4 +387,4 @@ const ConditionalsLesson = ({}) => {
 
 }
 
-export default ConditionalsLesson
+export default PrintingLesson
