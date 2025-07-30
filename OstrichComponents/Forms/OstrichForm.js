@@ -30,7 +30,13 @@ export const OstrichForm = ({
 
     fieldsBoxStyle,
     fieldsTitleStyle,
+
     captionTextStyle,
+    moreTextStyle,
+
+    fieldButtonStyles,
+    fieldOptionStyles,
+    fieldTextOptions,
 
     submitButtonStyle,
     submitButtonInactiveStyle,
