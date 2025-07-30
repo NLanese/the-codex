@@ -20,7 +20,10 @@ import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/le
 
 // Next JS
 import { useRouter } from "next/router";
+import { OstCard } from "../../../../OstrichComponents/Format/OstCard";
 
+// Images
+const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";
 
 const ConditionalsLesson = ({}) => {
 
@@ -754,31 +757,17 @@ const ConditionalsLesson = ({}) => {
                             } 
                             />.  
                         </p>
-                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <li>
-                                <strong>Integer (int) -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum  (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,647. This makes the Integer, or int; the smallest numeric data type in terms of memory it takes up. 
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Double (double) -- </strong> A Double is a variable that functions much like an Integer but takes up an increased amount of memory in storage. As such, its range is larger and it is able to be used with decimal point numbers, unlike the int. A double is one of the largest numeric datatypes, taking up 64 bits of storage per variable of this type.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Float (float) -- </strong> A Float is a variable that functions much like a Double but takes up less storage, operating at only 32 bits. This means you can still have decimal numbers represented as a Float data type, but when handling massive numbers or searching for percsion to the 15th decimal, you may be better off using the Double data type. 
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Character (char) -- </strong> A single typed character. This could be a letter, a symbol (such as + - * ! etc.) or even a number. However the char data type cannot be manipulated the same way as a numeric data type. This means to say that 5(int) and '5'(char) will behave differently. 
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>String (String) -- </strong> A series of connected characters. A String in computer science is essentially how all text is recorded. A string does have a few different behaviors than a character, despite them being very similar. We will go over more on this later on.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Boolean (bool) -- </strong> A true or false value. Takes up minimal computer memory and can be used to quickly identify if conditions are met. More on this later as well!
-                            </li>
-                        </div>
+                        <OstCard
+                        templateStyle={1}
+                        imageSrc={pseudoImage}
+                        style={{backgroundColor: "#ebf4ff"}}
+                        >
+                            <p style={{marginLeft: '15%', marginRight: '15%'}}>
+                            This is some very simple pseudocode that depicts a program that
+                            creates a number, accepts a value, and then informs the user whether 
+                            that value is even or odd. 
+                            </p>
+                        </OstCard>
                     </div>
                     
                     <div style={Styles.Fonts.lessonHeader}>Why are Data Types Important?</div>
@@ -924,201 +913,6 @@ const ConditionalsLesson = ({}) => {
                 </div>
             )
         }
-
-        function renderSecond(){
-            return(
-                <div>
-                    <div style={Styles.Fonts.lessonHeader}>More on Mixing Data Types and using Operators</div>
-                        <div style={Styles.Sections.lessonContent}>
-                            <p style={Styles.Fonts.basic}>
-                                There are times when two or more variables of different data types may be compared against one another, and not just added to one another like in the examples above. 
-                                This means sometimes you may need to add an <strong>integer</strong> with a <strong>string</strong>, and sometimes you may need to see if a date (saved as a number) is before or after a date saved as a string. 
-                                Other times, you will need to change the data type of one variable entirely in order to make it interact with another. Let's cover some of those cases, as well as some of the examples shown above, in more detail.
-                            </p> 
-
-                            <p style={Styles.Fonts.basic}>
-                                First, we will cover simple operations between two different data types. As shown in the example above, nearly all languages can easily handle adding a string and a number together.
-                                Newer and higher complexity languages like <strong>JavaScript and Python</strong> can automatically handle these differences in data types, whereas older and languages like <storng>C and Java</storng> are unable to do this, and require
-                                developers to tell the machine what variable's type to change and what to change it to. This is done through a process called 
-                                <ODef 
-                                text="casting" 
-                                modalContent={
-                                <ODefContnet 
-                                    color="#a3fc2d"
-                                    word="Casting" 
-                                    definition= "The process of manually telling the compiler to change the data type of a variable to a different one. For example, one could cast an integter x = 4 to be a string which = '4'"
-                                />} 
-                                />  
-                            </p> 
-
-                            <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            For the <strong>Higher Level Programing Languages,</strong> the computer will be able to figure out when we add a number to a string, that it wants
-                            the new value to be a string. Python and JavaScript are also higher level langauages that do not rely on type declarations, so you do not need to adjust your syntax for Data Type Conversions
-                                <div style={{display: 'flex', flexDirection: 'row'}}>
-                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.comment}>// JavaScript </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>let </span>
-                                            <span style={Styles.Code.var}>numberValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.reg}>5 </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>let </span>
-                                            <span style={Styles.Code.var}>stringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.str}>"4" </span>
-                                        </p>
-                                        <br></br>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>let </span>
-                                            <span style={Styles.Code.var}>combinedStringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.var}>x </span>
-                                            <span style={Styles.Code.reg}>+ </span>
-                                            <span style={Styles.Code.var}>y </span>
-                                        </p>
-                                    </div>
-                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.comment}># Python </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.var}>numberValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.reg}>5 </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.var}>stringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.str}>"4" </span>
-                                        </p>
-                                        <br></br>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.var}>combinedStringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.var}>x </span>
-                                            <span style={Styles.Code.reg}>+ </span>
-                                            <span style={Styles.Code.var}>y </span>
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p>
-                                For the <strong>Lower Level Programing Languages,</strong>, the computer does not do as much assuming as it does in the lower levels. As such, if you as a developer attempt to combine a String and an integer or some other numeric data type, 
-                                you will either be faced with an error. In C for example, "5" + 4 would return either an error or some long gibberish text.
-                                </p>
-
-                                <p>
-                                Luckily, we are not working in any low level languages wherein that will be an issue. While both Java and C# are lower level when compared to Python and JavaScript, they do have 
-                                some modern advancements that allow implicit conversions. They do, however, rely on the developer to tell the computer what daya type the resulting variable will be. For exampke, 
-                                when combining "5" and 4, we would want the result to be a string; since turning a number into a string is far easier than the other way around. 
-                                </p>
-
-                                <div style={{display: 'flex', flexDirection: 'row'}}>
-                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.comment}>// JavaScript </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>int </span>
-                                            <span style={Styles.Code.var}>numberValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.reg}>5 </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>string </span>
-                                            <span style={Styles.Code.var}>stringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.str}>"4" </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                        <br></br>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>string </span>
-                                            <span style={Styles.Code.var}>combinedStringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.var}>x </span>
-                                            <span style={Styles.Code.reg}>+ </span>
-                                            <span style={Styles.Code.var}>y </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>int </span>
-                                            <span style={Styles.Code.var}>unexpectedResult </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.var}>x </span>
-                                            <span style={Styles.Code.reg}>+ </span>
-                                            <span style={Styles.Code.var}>y </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                    </div>
-                                    <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.comment}># C# </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>int </span>
-                                            <span style={Styles.Code.var}>numberValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.reg}>5 </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>string </span>
-                                            <span style={Styles.Code.var}>stringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.str}>"4" </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                        <br></br>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>string </span>
-                                            <span style={Styles.Code.var}>combinedStringValue </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.var}>x </span>
-                                            <span style={Styles.Code.reg}>+ </span>
-                                            <span style={Styles.Code.var}>y </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                        <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.keyword}>int </span>
-                                            <span style={Styles.Code.var}>thisWouldThrowAnError </span>
-                                            <span style={Styles.Code.reg}>= </span>
-                                            <span style={Styles.Code.var}>x </span>
-                                            <span style={Styles.Code.reg}>+ </span>
-                                            <span style={Styles.Code.var}>y </span>
-                                            <span style={Styles.Code.reg}>; </span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                
-
-                                <div>
-                            </div>
-                        </div>
-
-                        <p style={Styles.Fonts.basic}>
-                            Some data types are easier to convert to than others. For example, Higher Level Languages generally assume you want combined types to be strings. 
-                            As such, when combining any variable with a string or char will likely result in a string. There are some exceptions. 
-                            We will go over some of the weirder examples below
-                        </p>
-                        <CodeSnippet 
-                            js={renderJavaScriptTypes()}
-                            java={renderJavaTypes()}
-                            cs={renderCTypes()}
-                            py={renderPython()}
-                        />
-                        </div>
-                    </div>
-            )
-        }
-
         
     /////////////////
     // Main Return //
@@ -1129,7 +923,7 @@ const ConditionalsLesson = ({}) => {
             <div style={{marginTop: '-3.2%'}}>
                 {renderTitle("Conditionals")}
                 {renderFirst()}
-                {renderSecond()}
+                {/* {renderSecond()} */}
             </div>
         )
     }
