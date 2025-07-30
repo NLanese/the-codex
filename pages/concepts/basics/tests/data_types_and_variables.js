@@ -138,6 +138,87 @@ const DataTypesTest = ({}) => {
                 </div>
             )
         }
+
+        function renderForQ3(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '80%'}}>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}># Python </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>x </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>100</span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>y </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>50 </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>z </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>25 </span>
+                    </p>
+                    <br></br>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>a </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>x </span>
+                        <span style={Styles.Code.reg}>+ </span>
+                        <span style={Styles.Code.var}>y </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>a </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>a </span>
+                        <span style={Styles.Code.reg}>+ </span>
+                        <span style={Styles.Code.var}>z </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>c </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>a </span>
+                    </p>
+                </div>
+            )
+        }
+
+        function renderForQ4(){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '80%'}}>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.comment}># Python </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>x </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>100</span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>y </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.reg}>50 </span>
+                    </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.str}>"Leela" </span>
+                    </p>
+                    <br></br>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>result </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>stringValue </span>
+                        <span style={Styles.Code.reg}>+ (</span>
+                        <span style={Styles.Code.var}>z </span>
+                        <span style={Styles.Code.reg}>+ </span>
+                        <span style={Styles.Code.var}>x </span>
+                        <span style={Styles.Code.reg}>)</span>
+                    </p>
+                </div>
+            )
+        }
  
     /////////////////
     // Form Object //
@@ -215,6 +296,24 @@ const DataTypesTest = ({}) => {
                 render: renderForQ2,
                 options: ["1004", "104", "This would be an Error", "'1004'", "'104"],
                 correctValue: "This would be an Error"
+            },
+
+            {
+                id: "9",
+                title: "9. What is the value of 'c?'",
+                type: "MC",
+                render: renderForQ3,
+                options: ["125", "75", "200", "175", "300", "75", "25", "50", "This would be an Error"],
+                correctValue: "175"
+            },
+
+            {
+                id: "10",
+                title: "10. What is the value of 'result?'",
+                type: "MC",
+                render: renderForQ4,
+                options: ["'Leela50+100'", "'Leela150'", "'Leela10050'", "This would be an Error", "Apples"],
+                correctValue: "Leela150"
             }
         ]
 
