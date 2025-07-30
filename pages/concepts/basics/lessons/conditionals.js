@@ -725,23 +725,21 @@ const ConditionalsLesson = ({}) => {
                             Computer Science and Software Development is often times trying to recreate real life objects or situations but in a virutal space. Online markets
                             for exmaple will simulate a 'cart' and allow users to put 'objects in it.' Obviously you do not have a real cart nor are you moving the real items you are considering 
                             purchasing into anything, but we simulate this on a website because it is an intuitive and familiarexperience for the user. As such, we often times
-                            need to apply logic in what we create. IF us a user clicks an obejct, it goes to the cart. WHEN there are objects in the cart, their individual prices 
-                            are added to display a total. 
-
-                            <p style={Styles.Fonts.basic}>
-                            Aoolying this logic in Software Development requires the use of conditionals. 
-                            </p>
+                            need to apply logic in what we create. IF us a user clicks an obejct, it goes to the cart. IF there are objects in the cart, their individual prices 
+                            are added to display a total. IF the user selects express shipping, the extra price is applied and the item is marked for faster shipping.
+                        </p>
+                        <p style={Styles.Fonts.basic}>
+                        Applying this logic in Software Development requires the use of 
                             <ODef 
-                            text="programming languages" 
+                            text="conditionals" 
                             modalContent={
                             <ODefContnet 
                                 color="#88fccc" 
-                                word="Programming Language" 
-                                definition= "Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we have created systems of 'syntax' to form a bridge between human comprehension and computer binary code. This means we created 'languages' with their own syntax, or 'grammer' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in rela life, each language will have its own quirks, its own rules words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#."
-                                />} 
+                                word="Conditionals" 
+                                definition="Conditionals are logic gates that can split off into two or more paths depending on a value. Conditionals are most easily thought as 'if statements' although that definition is a little reductive, as there are other forms of Conditionals. If statements are the most common however"
+                                />
+                            } 
                             />  
-                            than it does in others. For example, in <strong>Java and C#</strong>, variables of different data types cannot interact with each other at all unless the developer makes some changes in order to change one or more of their data types so that they match. 
-                            For example, in Java, if we try to add x which has a value of 2 (which has the datatype 'integer') to y, which has a value of 2.5 (which is of the data type 'double') the compiler will throw an error.
                         </p>
                         <p style={Styles.Fonts.basic}> 
                             <strong>Let's go over some basic Data Types</strong>

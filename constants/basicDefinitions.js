@@ -114,6 +114,14 @@ const BasicDefinitionsList = [
     },
 
     {
+        title: "Conditionals",
+        definition: "Conditionals are logic gates that can split off into two or more paths depending on a value. Conditionals are most easily thought as 'if statements' although that definition is a little reductive, as there are other forms of Conditionals. If statements are the most common however",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#76fcde"
+    },
+
+    {
         title: "Object Oriented Programming (OOP)",
         definition: "There are many standard practices of coding, but the newest and most widely used is Object Oriented Programming. This methodology of coding states that the best way to develop a program is to simulate real world objects and events through quantifiable data. Social Media Apps will create Classes to mimic these real world phenomena. There will be a Class for Posts, a Class for Users. a Class for Comments, and so on. These Classes will interact with each other just as people and 'posts' would on a real life media board. Other methodologies include Functional Programming, Data Oriented Programing, and Procedural Oriented Programing.",
         titleStyle: Styles.Fonts.h2,
