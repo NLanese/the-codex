@@ -1,4 +1,4 @@
-import ListPage from "../../../components/global/codexList";
+import ListPage from "../../components/Global/codexList";
 
 export default function FrameworksList({}){
 
