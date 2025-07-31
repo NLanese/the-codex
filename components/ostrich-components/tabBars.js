@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Styles from "../../styles/styles";
 
-import { HeaderBar } from "../Global/headerBar.js";
+import { HeaderBar } from "../Global/HeaderBar.js";
  
 
 // Ostrich
