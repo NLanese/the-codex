@@ -6,7 +6,7 @@ import Styles from "../../styles/styles";
 import Colors from "../../styles/colors";
 
 // Components
-import ListPage from "../Global/codexList";
+import ListPage from "../global/codexList";
 
 export const LessonTemplatePage = ({
     children,

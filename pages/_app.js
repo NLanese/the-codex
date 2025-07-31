@@ -14,7 +14,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "@graphql/Apollo/apolloClient";
 
 // Local Components
-import { HeaderBar } from "@/components/Global/headerBar";
+import { HeaderBar } from "@/components/global/headerBar";
 import "../styles/fonts.css"
 
 ////////////////

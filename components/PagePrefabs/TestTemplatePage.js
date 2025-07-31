@@ -6,8 +6,8 @@ import Styles from "../../styles/styles";
 import Colors from "../../styles/colors";
 
 // Components
-import CodexList from "../Global/codexList";
-import ListPage from "../Global/codexList"
+import CodexList from "../global/codexList";
+import ListPage from "../global/codexList"
 
 export const TestTemplatePage = ({
     children,

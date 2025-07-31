@@ -1,4 +1,4 @@
-import CodexList from "../../components/Global/codexList";
+import CodexList from "../../components/global/codexList";
 import { conceptsList } from "../../constants/lessonLists";
 
 export default function ConceptsList({}){
