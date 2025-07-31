@@ -15,6 +15,7 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 // import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 // import { HeaderBar } from "../../../components/Global/headerBar";
 
+
 // Assets
 const BoardGameAI = "../../../assets/icons/big/BoardGameWizardIcon.jpeg";
 const BetBotImg = "../../../assets/icons/big/BetBot.jpeg";
