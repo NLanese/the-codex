@@ -1,0 +1,381 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DEV_DATABASE_URL")
+  relationMode = "prisma"
+}
+
+////////////
+// MODELS //
+////////////
+
+model User {
+  id                   Int      @id @default(autoincrement())
+  role                 String   @default("PLAYER")
+  isGuest              Boolean
+  email                String?  @unique
+  phoneNumber          String?  @unique
+  password             String?
+  subscriptionStatus   String   @default("none")
+  subscriptionStatusID String?
+  memberSince          DateTime @default(now())
+
+  arenaAlias   String  @unique
+  expToNextLvl Int     @default(300)
+  level        Int     @default(1)
+  firstName    String?
+  lastName     String?
+
+  firebaseToken        String?
+  wantsPromotionalInfo Boolean @default(true)
+  wantsEmailedStats    Boolean @default(true)
+  wantsTextUpdates     Boolean @default(true)
+  holoBucks            Int     @default(0)
+
+  provideVestFeedback Boolean              @default(true)
+  colorBlindMode      COLOR_BLIND_SETTINGS @default(DEFAULT)
+
+  allTimePoints        Int   @default(0)
+  allTimePointsPerGame Float @default(0)
+  allTimeDamage        Int   @default(0)
+  allTimeDamagePerGame        Float @default(0)
+
+  allTimeKills   Int   @default(0)
+  allTimeDeaths  Int   @default(0)
+  allTimeAssists Int   @default(0)
+  allTimeKD      Float @default(0.0)
+
+  allTimeFlagCaptures Int    @default(0)
+  allTimeFlagDistance String @default("0m")
+  allTimeFlagSecures  Int    @default(0)
+  allTimeFlagReturns  Int    @default(0)
+
+  allTimeZoneCaptures Int @default(0)
+  allTimeZoneDefends  Int @default(0)
+
+  loadouts        Loadout[]
+  armory          Gun[]
+  badges          Badge[]
+  avatars         Avatar[]
+  userUnlockables UserUnlockables[]
+  userGameStats   UserGameStats[]
+  gunUnlockables  GunUnlockables[]
+  authTokens      AuthToken[]
+  leagues         LeagueUser[]
+  leagueStats     LeagueUserGameStats[]
+}
+
+model UserGameStats {
+  id     Int   @id @default(autoincrement())
+  teamID Int
+  team   Team @relation(fields: [teamID], references: [id])
+  userID Int
+  user   User @relation(fields: [userID], references: [id])
+
+  points Int @default(0)
+  damage Int @default(0)
+
+  kills   Int   @default(0)
+  deaths  Int   @default(0)
+  assists Int   @default(0)
+  kd      Float @default(0.0)
+
+  flagCaptures Int    @default(0)
+  flagDistance String @default("0m")
+  flagSecures  Int    @default(0)
+  flagReturns  Int    @default(0)
+
+  zoneCaptures Int @default(0)
+  zoneDefends  Int @default(0)
+  timeInZones  String @default("0 min")
+}
+
+model UserUnlockables {
+  id     Int  @id @default(autoincrement())
+  userID Int
+  user   User @relation(fields: [userID], references: [id])
+
+  blueGunCamo      Boolean @default(false)
+  redGunCamo       Boolean @default(false)
+  greenGunCamo     Boolean @default(false)
+  silverGunCamo    Boolean @default(false)
+  goldGunCamo      Boolean @default(false)
+  diamondGunCamo   Boolean @default(false)
+  celestialGunCamo Boolean @default(false)
+
+  lightingSpawn Boolean @default(false)
+  hellfireSpawn Boolean @default(false)
+  tundraSpawn   Boolean @default(false)
+}
+
+model GunUnlockables {
+  id      Int         @id @default(autoincrement())
+  userID  Int
+  user    User        @relation(fields: [userID], references: [id])
+  gunName WEAPON_BASE
+
+  redDotSight      Boolean @default(false)
+  tracerDot        Boolean @default(false)
+  smartScope       Boolean @default(false)
+  tracerSmartScope Boolean @default(false)
+
+  quickReload      Boolean @default(false)
+  extendedCapacity Boolean @default(false)
+  increaseSpare    Boolean @default(false)
+}
+
+model LeagueUser {
+  id           Int      @id @default(autoincrement())
+  userID       Int
+  user         User     @relation(fields: [userID], references: [id])
+  fireTeamName String
+  leagueType   String
+  fireTeamID   Int
+  fireteam     FireTeam @relation(fields: [fireTeamID], references: [id])
+  leagueUserStats LeagueUserGameStats[]
+}
+
+model LeagueUserGameStats {
+  id     Int   @id @default(autoincrement())
+  team   Team[]
+  leagueUserID Int
+  leagueUser   LeagueUser? @relation(fields: [leagueUserID], references: [id])
+  userID  Int
+  user    User        @relation(fields: [userID], references: [id])
+
+  points Int @default(0)
+
+  kills   Int   @default(0)
+  deaths  Int   @default(0)
+  assists Int   @default(0)
+  kd      Float @default(0.0)
+
+  flagCaptures Int    @default(0)
+  flagDistance String @default("0m")
+  flagSecures  Int    @default(0)
+  flagReturns  Int    @default(0)
+
+  zoneCaptures Int @default(0)
+  zoneDefends  Int @default(0)
+}
+
+model FireTeam {
+  id       Int          @id @default(autoincrement())
+  name     String
+  players  LeagueUser[]
+  leagueID Int
+  league   League       @relation(fields: [leagueID], references: [id])
+}
+
+model League {
+  id         Int        @id @default(autoincrement())
+  leagueType String
+  name       String
+  fireteams  FireTeam[]
+  Game       Game[]
+}
+
+model Game {
+  id Int @id @default(autoincrement())
+
+  dateStart   DateTime
+  matchType   MATCH_TYPE
+  matchLength String?
+  teams       Team[]
+  leagueID    Int?
+  league      League?     @relation(fields: [leagueID], references: [id])
+  team1Score  Int         @default(0)
+  team2Score  Int         @default(0)
+}
+
+model Team {
+  id        Int             @id @default(autoincrement())
+  teamColor TEAM_COLOR
+  players   UserGameStats[]
+  leaguePlayers LeagueUserGameStats[]
+  gameID    Int
+  game      Game            @relation(fields: [gameID], references: [id])
+  points  Int   @default(0)
+  kills   Int   @default(0)
+  deaths  Int   @default(0)
+  assists Int   @default(0)
+  kd      Float @default(0.0)
+
+  flagCaptures Int    @default(0)
+  flagDistance String @default("0m")
+  flagSecures  Int    @default(0)
+  flagReturns  Int    @default(0)
+
+  zoneCaptures Int @default(0)
+  zoneDefends  Int @default(0)
+}
+
+model Loadout {
+  id     Int  @id @default(autoincrement())
+  userID Int
+  user   User @relation(fields: [userID], references: [id])
+
+  mainGunID Int?
+  sideArmID Int?
+  weapons   Gun[]
+}
+
+model Gun {
+  id Int @id @default(autoincrement())
+
+  type     WEAPON_VARIETY @default(MAIN)
+  fireType FIRE_TYPE      @default(PHYSICAL)
+  base     WEAPON_BASE    @default(HAMM3R_FULL_AUTO_RIFLE)
+
+  displayName String @default("HAMM3R Rifle")
+  description String @default("A standard Rifle, optimal in medium range combat, but no stranger to close or far range firefights.")
+
+  scope      SCOPE       @default(DEFAULT)
+  magazine   MAGAZINE    @default(DEFAULT)
+  camo       GUN_CAMO    @default(DEFAULT)
+  killEffect KILL_EFFECT @default(DEFAULT)
+
+  dam          Int     @default(18)
+  shieldMod    Float   @default(0.85)
+  headshotMod  Float   @default(2.50)
+  recoilMod    Float   @default(1.10)
+  range        Float   @default(20)
+  fallOffRate  Float   @default(0.92)
+  maxRange     Float   @default(50)
+  fullAuto     Boolean @default(true)
+  charged      Boolean @default(false)
+  shotCooldown Float   @default(0.25)
+  baseMagAmmo  Int     @default(28)
+  spareAmmoMax Int     @default(84)
+
+  userID  Int
+  user    User      @relation(fields: [userID], references: [id])
+  loadout Loadout[]
+}
+
+model Badge {
+  id         Int      @id @default(autoincrement())
+  name       String
+  dateEarned DateTime
+  userID     Int
+  user       User     @relation(fields: [userID], references: [id])
+}
+
+model Avatar {
+  id            Int            @id @default(autoincrement())
+  headAccessory HEAD_ACCESSORY @default(DEFAULT)
+  bodySkin      BODY_SKIN      @default(DEFAULT)
+  spawnEffect   SPAWN_EFFECT   @default(DEFAULT)
+  userID        Int
+  user          User           @relation(fields: [userID], references: [id])
+}
+
+////////////////
+// AUTH TOKEN //
+////////////////
+
+model AuthToken {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  token     String
+  userID    Int
+  user      User    @relation(fields: [userID], references: [id])
+  active    Boolean  @default(true)
+}
+
+///////////
+// ENUMS //
+///////////
+
+enum COLOR_BLIND_SETTINGS {
+  DEFAULT
+}
+
+enum WEAPON_VARIETY {
+  MAIN
+  SECONDARY
+}
+
+enum FIRE_TYPE {
+  PHYSICAL
+  ENERGY
+}
+
+enum WEAPON_BASE {
+  HAMM3R_FULL_AUTO_RIFLE
+  VIP3R_SEMI_AUTO_RIFLE
+
+  RAILGUN_CHARGE_RIFLE
+  CYGNUS_PARTICLE_BEAM
+
+  BULLDOG_SMG
+  TOMMY_LASER_SMG
+
+  RH1N0_SHOTGUN
+  SCATTER_RAY_SHOTGUN
+
+  RASCAL_SIDEARM
+  BB_BEAM_SIDEARM
+}
+
+enum SCOPE {
+  DEFAULT
+  RED_DOT
+  TRACER_DOT
+  SMART_SCOPE
+  TRACER_SMART_SCOPE
+}
+
+enum MAGAZINE {
+  DEFAULT
+  QUICK_RELOAD
+  EXTENDED_CAPACITY
+  INCREASE_SPARE_AMMO
+}
+
+enum GUN_CAMO {
+  DEFAULT
+  BLUE
+  RED
+  GREEN
+  SILVER
+  GOLD
+  DIAMOND
+  CELESTIAL
+}
+
+enum KILL_EFFECT {
+  DEFAULT
+}
+
+enum SPAWN_EFFECT {
+  DEFAULT
+  LIGHTNING
+  HELLFIRE
+  TUNDRA
+}
+
+enum BODY_SKIN {
+  DEFAULT
+}
+
+enum HEAD_ACCESSORY {
+  DEFAULT
+}
+
+enum TEAM_COLOR {
+  PURPLE
+  GREEN
+}
+
+enum MATCH_TYPE {
+  SLAYER
+  HEADHUNTER
+  ATTRITION
+  CTF
+  KOTH
+  DOMINATION
+}
