@@ -1014,10 +1014,32 @@ const ConditionalsLesson = ({}) => {
                         fields={[
                             {
                                 id: '1',
-                                title: "1. If the User Input had a worker with a review score of 3.9 and an hourly rate of 38$ and hour, what would this code print?",
+                                title: "1. If the User Input had a worker with a review score of 3.9 and an hourly rate of 38$ an hour, what would this code print?",
                                 type: "MC",
-                                options: ["He is hired", "He is not hired", "An Error is thrown"]
-                            }
+                                options: ["He is hired", "He is not hired", "An Error is thrown"],
+                                correctValue: "He is not hired"
+                            },
+                            {
+                                id: '2',
+                                title: "2. If the User Input had a worker with a review score of 4.7 and an hourly rate of 49$ an hour, what would this code print?",
+                                type: "MC",
+                                options: ["He is hired", "He is not hired", "An Error is thrown"],
+                                correctValue: "He is hired"
+                            },
+                            {
+                                id: '3',
+                                title: "3. If the User Input had a worker with a review score of 4.5 and an hourly rate of 63$ and hour, what would this code print?",
+                                type: "MC",
+                                options: ["He is hired", "He is not hired", "An Error is thrown"],
+                                correctValue: "He is not hired"
+                            },
+                            {
+                                id: '4',
+                                title: "4. If the User Input had a worker with a review score of 4.5 and an hourly rate of 63$ an hour, what would this code print?",
+                                type: "MC",
+                                options: ["He is hired", "He is not hired", "An Error is thrown"],
+                                correctValue: "He is not hired"
+                            },
                         ]}
                     />
                 </div>
