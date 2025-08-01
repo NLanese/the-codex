@@ -305,7 +305,6 @@ const PrintingLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-
                     <div style={Styles.Fonts.lessonHeader}>What is Printing?</div>
                     <div style={Styles.Sections.lessonContent}>
                     <div style={{...Styles.Fonts.basic}}>
@@ -356,6 +355,43 @@ const PrintingLesson = ({}) => {
                 </div>
             )
         }
+
+        function renderSecond(){
+            return(
+                <div>
+                    <div style={Styles.Fonts.lessonHeader}>How do we USE printing?</div>
+                    <div style={Styles.Sections.lessonContent}>
+                        <div style={{...Styles.Fonts.basic}}>
+                            <p>
+                            Many times in development, you will run into some unexpected issues. Maybe a simple function will error out, claiming that you are trying to 
+                            access a variable that doesnt exist. Other times the varibale may exist but not have the value you are expecting. These issues will cause your 
+                            application to function improperly. Let's look at the code snippet below and explore this concept.
+                            </p>
+                        </div>
+                        <div style={Styles.Sections.simpleLessonCode}>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>x </span>
+                            <span style={Styles.Code.reg}>= 5</span>
+                            </p>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>y </span>
+                            <span style={Styles.Code.reg}>= "5"</span>
+                            </p>
+                            <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>let </span>
+                            <span style={Styles.Code.var}>z </span>
+                            <span style={Styles.Code.reg}>= 50</span>
+                            </p>
+
+                            <br></br>
+                            
+                        </div>
+                    </div>
+                </div>
+            )
+        }
         
     /////////////////
     // Main Return //
@@ -364,7 +400,7 @@ const PrintingLesson = ({}) => {
     function MAIN(){
         return (
             <div style={{marginTop: '-3.2%'}}>
-                {renderTitle("Conditionals")}
+                {renderTitle("Printing and Debugging")}
                 {renderFirst()}
                 {/* {renderSecond()} */}
             </div>

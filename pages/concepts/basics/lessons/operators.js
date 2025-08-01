@@ -248,27 +248,26 @@ const OperatorsLesson = ({}) => {
                             </p>
 
                             <div style={Styles.Sections.simpleLessonCode}>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>var </span>
-                                    <span style={Styles.Code.var}>x </span>
-                                    <span style={Styles.Code.reg}>= 5</span>
-                                    </p>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>= 5</span>
+                                </p>
 
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>var </span>
-                                    <span style={Styles.Code.var}>y </span>
-                                    <span style={Styles.Code.reg}>= 13</span>
-                                    </p>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>= 13</span>
+                                </p>
 
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>var </span>
-                                    <span style={Styles.Code.var}>modulo </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.var}>y </span>
-                                    <span style={Styles.Code.reg}>% </span>
-                                    <span style={Styles.Code.var}>x </span>
-                                    </p>
-
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>modulo </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>y </span>
+                                <span style={Styles.Code.reg}>% </span>
+                                <span style={Styles.Code.var}>x </span>
+                                </p>
                             </div>
 
                             <p style={Styles.Fonts.basic}>
