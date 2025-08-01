@@ -130,6 +130,10 @@ const ConditionalsLesson = ({}) => {
                             <span style={Styles.Code.func}>)</span>
                         </p>
 
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
                 </div>
             )
         }
@@ -190,6 +194,10 @@ const ConditionalsLesson = ({}) => {
                             <span style={Styles.Code.reg}>;</span>
                         </p>
 
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
                 </div>
             )
         }
@@ -246,6 +254,10 @@ const ConditionalsLesson = ({}) => {
                             <span style={Styles.Code.reg}>;</span>
                         </p>
 
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
                 </div>
             )
         }
@@ -269,7 +281,6 @@ const ConditionalsLesson = ({}) => {
                             <span style={Styles.Code.var}>count </span>
                             <span style={Styles.Code.reg}>% 2 </span>
                             <span style={Styles.Code.reg}>== 0)</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
                         </p>
 
                         <p style={{...Styles.Code.code, marginLeft: 20}}>
@@ -278,13 +289,9 @@ const ConditionalsLesson = ({}) => {
                             <span style={Styles.Code.func}>)</span>
                         </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
 
                         <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>else </span>
-                            <span style={Styles.Code.func}>{"{"}</span>
                         </p>
 
                         <p style={{...Styles.Code.code, marginLeft: 20}}>
@@ -292,6 +299,7 @@ const ConditionalsLesson = ({}) => {
                             <span style={Styles.Code.str}>"Number is Odd"</span>
                             <span style={Styles.Code.func}>)</span>
                         </p>
+
 
                 </div>
             )
@@ -375,44 +383,31 @@ const ConditionalsLesson = ({}) => {
                         </p>
 
                         <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <strong>First, lets go over 'printing'</strong>. Printing is one of the best tools available to developers, as it is the most basic but often
-                            most crucial line of defense against errors. What printing does is it takes any variable 
-                            and prints its value to your terminal at any given time. This allows developers to see where
-                            and when values are changing in their code, which helps us pin down where any errors may be. 
-
-                            <p>
-                            In JavaScript and Java, you accomplish this by calling (typing) 
-                            <strong> console.log()</strong> with the variable who's value you want printed placed inside the parethesis. 
+                            <p style={{marginBottom: 0, paddingBottom: 0}}>
+                            First, let's go over <strong>printing</strong>
+                            </p>
+                            <p style={{marginTop: 0, paddingTop: 0, marginBottom: 0, paddingBottom: 0}}>
+                            Printing, which we will go over in more depth later, is the act of displaying a value (or a variable's value)
+                            inside your computer terminal. This way you will be able to see the value of variables along the progression of 
+                            your code's processes. <strong>Simply put, printing lets developers see how their variables are changing and helps to detect 
+                            where any issues may have arisen.</strong>
+                            </p>
+                            <p style={{marginTop: 0, paddingTop: 0}}>
+                            In the code above, you see us printing using <strong>console.log</strong> (for Java and JavaScript) and
+                            <strong> print</strong> (in Python and C#)
                             </p>
 
-                            <p>
-                            In C# and Python, you accomplish this by calling (typing) 
-                            <strong> print()</strong> with the variable who's value you want printed placed inside the parethesis. 
+
+                            <p style={{marginBottom: 0, paddingBottom: 0}}>
+                            Next, a quick reminder on the <strong>modulo operator</strong>
                             </p>
-
-                            <p>
-                            If you are developing in an IDE like Eclipse or Visual Studio Code, the terminal will be on the bottom of 
-                            your screen. This is where any errors or printed statements will appear. However, you can also have websites print statements. 
-                            To clarify, this is <strong>a far different process than rendering things on the screen.</strong> Everything you see here is 
-                            rendered on the webpage, none of this content is printed. 
+                            <p style={{marginTop: 0, paddingTop: 0, marginBottom: 0, paddingBottom: 0}}>
+                            Remember the modulo <strong>returns only the remainder</strong>. This means 4 % 2 would be 0, as 4 divided by 2 is 2 with a remainder of 0. 
+                            5 % 2 would return 1, as 2 goes into 5 twice with a remainder of 1.
                             </p>
-
-                            <p>
-                            To test this, please right click on your screen and select the option "Inspect" if you are on Google Chrome and "Inspect Element"
-                            on Internet Explorer windows. <strong>if this is not working for you, click this <a href="https://zapier.com/blog/inspect-element-tutorial/">here</a></strong>
+                            <p style={{marginTop: 0, paddingTop: 0}}>
+                            In the code above, we are determining whether 'count' is even by checking if there is a remainder when dividing by 2
                             </p>
-
-                            Once you are able to Inspect, switch the new tab (which will be on the left of your screen on Google and the bottom on Explorer) switch to the 'console' tab. 
-                            Now, you are able to hit the button below and see the console fill up with printed statements!
-
-                            <OstCard
-                                style={{marginLeft: '30%', marginRight: '30%', marginTop: 30}}
-                                onClick={() => console.log("Good job! Noow look at these printed statements!")}
-                            >
-                                <p style={{textAlign: 'center'}}>
-                                Click me to Test Printing
-                                </p>
-                            </OstCard>
                         </div>
 
                     </div>
