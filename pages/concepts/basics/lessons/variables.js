@@ -160,7 +160,6 @@ const VariablesLesson = ({}) => {
             return(
                 <div>
                     <div style={Styles.Fonts.lessonHeader}>What is a Variable</div>
-                    <div style={Styles.Sections.lessonContent}>
                         <p style={Styles.Fonts.basic}>
                             Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
                         </p>
@@ -195,10 +194,9 @@ const VariablesLesson = ({}) => {
                             <li>
                                 <strong>Variables will have their Data referenced -- </strong> What's the point in storing data if you don't use it? In most previous examples, the variable we mention ends up being referenced when it is displayed to the user. The score is displayed, the amount of items in a cart is displayed, and so is a username. However, they can be referenced by the code itself. For example, a game will know to end when a score reaches a certain number. In a pickup game for example, if you play to 21 points, the app would check every time a team scores to see if their score is 21. If the score is 21 the game ends. <strong>We will go into this deeper in the future when we learn about conditionals</strong>
                             </li>
-                        </div>
                     </div>
                     <div style={Styles.Fonts.lessonHeader}>How to use a Variable</div>
-                    <div style={Styles.Sections.lessonContent}>
+                    <div>
                     <p style={Styles.Fonts.basic}>
                         Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece.
                     </p>
@@ -293,7 +291,6 @@ const VariablesLesson = ({}) => {
         function renderSecond(){
             return(
                 <div>
-                    <div style={Styles.Sections.lessonContent}>
                     <p style={Styles.Fonts.basic}>
                     Above, you saw that most languages are a bit different from each other in how the <strong>declare and assign</strong> a variable, but they all have the same basic pattern and premise. 
                     </p>
@@ -315,9 +312,8 @@ const VariablesLesson = ({}) => {
                         </p>
 
                     </div>
-                    </div>
                     <div style={Styles.Fonts.lessonHeader}>Changing a Variable's Value</div>
-                    <div style={Styles.Sections.lessonContent}>
+                    <div>
                         <p style={Styles.Fonts.basic}>
                             Most times, a variable will be intended to have its value changed. In previous examples, we have mentioned Variables that hold values like a score or a cart total. Lets go over how we would make some of those changes
                         </p>
@@ -355,7 +351,7 @@ const VariablesLesson = ({}) => {
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Variables")}
                 {renderFirst()}
                 <CodeSnippet

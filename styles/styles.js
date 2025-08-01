@@ -108,8 +108,8 @@ const Styles = {
         },
 
         lessonContent: {
-            paddingRight: 25,
-            paddingLeft: 25,
+            paddingRight:'10%',
+            paddingLeft: '10%',
         },
 
         simpleLessonCode: {

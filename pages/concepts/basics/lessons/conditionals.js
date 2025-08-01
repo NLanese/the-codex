@@ -24,7 +24,7 @@ import { OstCard } from "../../../../OstrichComponents/Format/OstCard";
 
 // Images
 const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";
-const pseudoImage2 = "/assets/lesson_images/conditionals/pseduo2.png";
+const pseudoImage2 = "/assets/lesson_images/conditionals/pseudo2.png";
 
 
 const ConditionalsLesson = ({}) => {
@@ -835,9 +835,7 @@ const ConditionalsLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-
                     <div style={Styles.Fonts.lessonHeader}>What are Condtionals?</div>
-                    <div style={Styles.Sections.lessonContent}>
 
                         <p style={Styles.Fonts.basic}>
                             Computer Science and Software Development is often times trying to recreate real life objects or situations but in a virutal space. Online markets
@@ -898,7 +896,6 @@ const ConditionalsLesson = ({}) => {
                             cs={renderCs()}
                             py={renderPython()}
                         />
-                    </div>
                 </div>
             )
         }
@@ -906,93 +903,104 @@ const ConditionalsLesson = ({}) => {
         function renderSecond(){
             return(
                 <div>
-                        <p style={Styles.Fonts.basic}>
-                            In addition to the <strong>conditional</strong> in the code, there were a few new things in this code. Let's go over everything we see above
-                            before we cover everything accomplished in the small code snippet above.
+                    <p style={Styles.Fonts.basic}>
+                        In addition to the <strong>conditional</strong> in the code, there were a few new things in this code. Let's go over everything we see above
+                        before we cover everything accomplished in the small code snippet above.
+                    </p>
+
+                    <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
+                        <p style={{marginBottom: 0, paddingBottom: 0}}>
+                        First, let's go over <strong>printing</strong>
+                        </p>
+                        <p style={{marginTop: 0, paddingTop: 0, marginBottom: 0, paddingBottom: 0}}>
+                        Printing, which we will go over in more depth later, is the act of displaying a value (or a variable's value)
+                        inside your computer terminal. This way you will be able to see the value of variables along the progression of 
+                        your code's processes. <strong>Simply put, printing lets developers see how their variables are changing and helps to detect 
+                        where any issues may have arisen.</strong>
+                        </p>
+                        <p style={{marginTop: 0, paddingTop: 0}}>
+                        In the code above, you see us printing using <strong>console.log</strong> (for Java and JavaScript) and
+                        <strong> print</strong> (in Python and C#)
                         </p>
 
-                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <p style={{marginBottom: 0, paddingBottom: 0}}>
-                            First, let's go over <strong>printing</strong>
-                            </p>
-                            <p style={{marginTop: 0, paddingTop: 0, marginBottom: 0, paddingBottom: 0}}>
-                            Printing, which we will go over in more depth later, is the act of displaying a value (or a variable's value)
-                            inside your computer terminal. This way you will be able to see the value of variables along the progression of 
-                            your code's processes. <strong>Simply put, printing lets developers see how their variables are changing and helps to detect 
-                            where any issues may have arisen.</strong>
-                            </p>
-                            <p style={{marginTop: 0, paddingTop: 0}}>
-                            In the code above, you see us printing using <strong>console.log</strong> (for Java and JavaScript) and
-                            <strong> print</strong> (in Python and C#)
-                            </p>
 
+                        <p style={{marginBottom: 0, paddingBottom: 0}}>
+                        Next, a quick reminder on the <strong>modulo operator</strong>
+                        </p>
+                        <p style={{marginTop: 0, paddingTop: 0, marginBottom: 0, paddingBottom: 0}}>
+                        Remember the modulo <strong>returns only the remainder</strong>. This means 4 % 2 would be 0, as 4 divided by 2 is 2 with a remainder of 0. 
+                        5 % 2 would return 1, as 2 goes into 5 twice with a remainder of 1.
+                        </p>
+                        <p style={{marginTop: 0, paddingTop: 0}}>
+                        In the code above, we are determining whether 'count' is even by checking if there is a remainder when dividing by 2
+                        </p>
+                    </div>
 
-                            <p style={{marginBottom: 0, paddingBottom: 0}}>
-                            Next, a quick reminder on the <strong>modulo operator</strong>
-                            </p>
-                            <p style={{marginTop: 0, paddingTop: 0, marginBottom: 0, paddingBottom: 0}}>
-                            Remember the modulo <strong>returns only the remainder</strong>. This means 4 % 2 would be 0, as 4 divided by 2 is 2 with a remainder of 0. 
-                            5 % 2 would return 1, as 2 goes into 5 twice with a remainder of 1.
-                            </p>
-                            <p style={{marginTop: 0, paddingTop: 0}}>
-                            In the code above, we are determining whether 'count' is even by checking if there is a remainder when dividing by 2
-                            </p>
-                        </div>
+                    <p style={Styles.Fonts.basic}>
+                        Now, back to covering the conditional. As you see above, there are two possible print statements in the code. 
+                        Using if statements and the 'count' variable, we can dictate which print statement gets called. 
+                        IF the 'count' variable is even, the code will print that the value was even. ELSE, the code will print 
+                        that the value is even. 
+                    </p>
 
+                    <p style={Styles.Fonts.basic}>
+                        Let's say 'userInput' has a value of 6. This means that now count will also have a value of 6.
+                        Then the computer arrives at the if statement, and evaluates the equation "count % 2". The return of that is 0, and as you 
+                        see, IF the value of count % 2 is 0, then the code undernearh the 'if statement' will be run, and all "else" or "if else" options will be ignored.
+                        In this case where userInput is 6, the else statement will not even be read by the computer.
+                    </p>
+
+                    <p style={Styles.Fonts.basic}>
+                        Let's take a look at a more complicated example now
+                    </p>
+
+                    <CodeSnippet 
+                        js={renderJavaScript2()}
+                        java={renderJava2()}
+                        cs={renderCs2()}
+                        py={renderPython2()}
+                    />
+
+                    <div style={{...Styles.Sections.importantNote, marginTop: 30}}>
                         <p style={Styles.Fonts.basic}>
-                            Now, back to covering the conditional. As you see above, there are two possible print statements in the code. 
-                            Using if statements and the 'count' variable, we can dictate which print statement gets called. 
-                            IF the 'count' variable is even, the code will print that the value was even. ELSE, the code will print 
-                            that the value is even. 
+                        We will go over the code you see above in a moment, but before taking a look at the pseudocode see if you can try to figure out 
+                        how this workflow operates. Try to determine what the end results of this code can be, depending on what the userInput values are. 
                         </p>
 
                         <p style={Styles.Fonts.basic}>
-                            Let's say 'userInput' has a value of 6. This means that now count will also have a value of 6.
-                            Then the computer arrives at the if statement, and evaluates the equation "count % 2". The return of that is 0, and as you 
-                            see, IF the value of count % 2 is 0, then the code undernearh the 'if statement' will be run, and all "else" or "if else" options will be ignored.
-                            In this case where userInput is 6, the else statement will not even be read by the computer.
+                        For example, imagine if the UserInput values had an employee with 4.4 stars who had a going rate of 55 dollars an hour. 
+                        What would this code do, given this information?
                         </p>
+                    </div>
 
-                        <p style={Styles.Fonts.basic}>
-                            Let's take a look at a more complicated example now
+                    <p style={Styles.Fonts.basic}>
+                    Hopefully you've run through this logic on your own. Now let's see this same code but displayed as 
+                    pseudocode. This may add some clarity to the logic being used, and now try again to follow the workflow, and see 
+                    what different results would happen based on different userInputs
+                    </p>
+
+                    <OstCard
+                    templateStyle={1}
+                    imageSrc={pseudoImage2}
+                    style={{backgroundColor: "#ebf4ff"}}
+                    >
+                        <p style={{marginLeft: '15%', marginRight: '15%'}}>
+                        This is some very simple pseudocode that depicts a program that
+                        creates a number, accepts a value, and then informs the user whether 
+                        that value is even or odd. 
                         </p>
+                    </OstCard>
+                </div>
+            )
+        }
 
-                        <CodeSnippet 
-                            js={renderJavaScript2()}
-                            java={renderJava2()}
-                            cs={renderCs2()}
-                            py={renderPython2()}
-                        />
-
-                        <div style={{...Styles.Sections.importantNote, marginTop: 30}}>
-                            <p style={Styles.Fonts.basic}>
-                            We will go over the code you see above in a moment, but before taking a look at the pseudocode see if you can try to figure out 
-                            how this workflow operates. Try to determine what the end results of this code can be, depending on what the userInput values are. 
-                            </p>
-
-                            <p style={Styles.Fonts.basic}>
-                            For example, imagine if the UserInput values had an employee with 4.4 stars who had a going rate of 55 dollars an hour. 
-                            What would this code do, given this information?
-                            </p>
-                        </div>
-
-                        <p style={Styles.Fonts.basic}>
-                        Hopefully you've run through this logic on your own. Now let's see this same code but displayed as 
-                        pseudocode. This may add some clarity to the logic being used, and now try again to follow the workflow, and see 
-                        what different results would happen based on different userInputs
-                        </p>
-
-                        <OstCard
-                        templateStyle={1}
-                        imageSrc={pseudoImage2}
-                        style={{backgroundColor: "#ebf4ff"}}
-                        >
-                            <p style={{marginLeft: '15%', marginRight: '15%'}}>
-                            This is some very simple pseudocode that depicts a program that
-                            creates a number, accepts a value, and then informs the user whether 
-                            that value is even or odd. 
-                            </p>
-                        </OstCard>
+        function renderThird(){
+            return(
+                <div>
+                    <p style={Styles.Fonts.basic}>
+                        Now, using the code and pseudocode above, try answering the following questions to demonstrate your understanding of conditional logic!
+                        Below will be a short quiz, listing potential 'UserInput' values we will ask you to determine what the result of the code would be
+                    </p>
                 </div>
             )
         }
@@ -1003,10 +1011,11 @@ const ConditionalsLesson = ({}) => {
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Conditionals")}
                 {renderFirst()}
                 {renderSecond()}
+                {renderThird()}
             </div>
         )
     }
