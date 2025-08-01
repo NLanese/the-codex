@@ -305,6 +305,303 @@ const ConditionalsLesson = ({}) => {
             )
         }
 
+        // Second Code Snippet // 
+        function renderJavaScript2(){
+            return(
+                <div>
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>userInput </span>
+                        <span style={Styles.Code.comment}> // For now, assume we grab input from a user before we actually code it </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>workerReviewScore </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>userInput.review </span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>let </span>
+                        <span style={Styles.Code.var}>workerPriceAnHour </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>userInput.price </span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>if </span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>workerReviewScore </span>
+                            <span style={Styles.Code.reg}>{"> 4.5)"} </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>if </span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>workerPriceAnHour </span>
+                            <span style={Styles.Code.reg}>{"< 63)"} </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.comment}>{"// Hire this worker"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>else </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.comment}>{"// Pass on this worker"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={{...Styles.Code.code}}>
+                            <span style={Styles.Code.keyword}>else if</span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>workerReviewScore </span>
+                            <span style={Styles.Code.reg}>{"> 4.0)"} </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>if </span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>workerPriceAnHour </span>
+                            <span style={Styles.Code.reg}>{"< 50)"} </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.comment}>{"// Hire this worker"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.keyword}>else </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+
+                        <p style={{...Styles.Code.code, marginLeft: 40}}>
+                            <span style={Styles.Code.comment}>{"// Pass on this worker"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <br></br>
+
+                        <p style={{...Styles.Code.code}}>
+                            <span style={Styles.Code.keyword}>else </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.comment}>{"// Pass on this worker"}</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                </div>
+            )
+        }
+
+        // Second Code Snippet // 
+        function renderJava2(){
+            return(
+                <div>
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>count</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>count </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>userInput</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>if </span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>count </span>
+                            <span style={Styles.Code.reg}>% 2 </span>
+                            <span style={Styles.Code.reg}>== 0)</span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>console</span>
+                            <span style={Styles.Code.reg}>.</span>
+                            <span style={Styles.Code.func}>log(</span>
+                            <span style={Styles.Code.str}>"Number is Even"</span>
+                            <span style={Styles.Code.func}>)</span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>else </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.var}>console</span>
+                            <span style={Styles.Code.reg}>.</span>
+                            <span style={Styles.Code.func}>log(</span>
+                            <span style={Styles.Code.str}>"Number is Odd"</span>
+                            <span style={Styles.Code.func}>)</span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                </div>
+            )
+        }
+
+        // Second Code Snippet // 
+        function renderCs2(){
+            return(
+                <div>
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>int </span>
+                        <span style={Styles.Code.var}>count</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>count </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>userInput</span>
+                        <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>if </span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>count </span>
+                            <span style={Styles.Code.reg}>% 2 </span>
+                            <span style={Styles.Code.reg}>== 0)</span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>print(</span>
+                            <span style={Styles.Code.str}>"Number is Even"</span>
+                            <span style={Styles.Code.func}>)</span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>else </span>
+                            <span style={Styles.Code.func}>{"{"}</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>print(</span>
+                            <span style={Styles.Code.str}>"Number is Odd"</span>
+                            <span style={Styles.Code.func}>)</span>
+                            <span style={Styles.Code.reg}>;</span>
+                        </p>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.func}>{"}"}</span>
+                        </p>
+
+                </div>
+            )
+        }
+
+        // Second Code Snippet // 
+        function renderPython2(){
+            return(
+                <div>
+                        <p style={Styles.Code.code}>
+                        <span style={Styles.Code.var}>count </span>
+                        <span style={Styles.Code.reg}>= </span>
+                        <span style={Styles.Code.var}>userInput </span>
+                        </p>
+
+
+                        <br></br>
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>if </span>
+                            <span style={Styles.Code.reg}>(</span>
+                            <span style={Styles.Code.var}>count </span>
+                            <span style={Styles.Code.reg}>% 2 </span>
+                            <span style={Styles.Code.reg}>== 0)</span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>print(</span>
+                            <span style={Styles.Code.str}>"Number is Even"</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+
+
+                        <p style={Styles.Code.code}>
+                            <span style={Styles.Code.keyword}>else </span>
+                        </p>
+
+                        <p style={{...Styles.Code.code, marginLeft: 20}}>
+                            <span style={Styles.Code.func}>print(</span>
+                            <span style={Styles.Code.str}>"Number is Odd"</span>
+                            <span style={Styles.Code.func}>)</span>
+                        </p>
+
+
+                </div>
+            )
+        }
 
     //////////////////////
     // Lesson Rendering //
@@ -409,6 +706,31 @@ const ConditionalsLesson = ({}) => {
                             In the code above, we are determining whether 'count' is even by checking if there is a remainder when dividing by 2
                             </p>
                         </div>
+
+                        <p style={Styles.Fonts.basic}>
+                            Now, back to covering the conditional. As you see above, there are two possible print statements in the code. 
+                            Using if statements and the 'count' variable, we can dictate which print statement gets called. 
+                            IF the 'count' variable is even, the code will print that the value was even. ELSE, the code will print 
+                            that the value is even. 
+                        </p>
+
+                        <p style={Styles.Fonts.basic}>
+                            Let's say 'userInput' has a value of 6. This means that now count will also have a value of 6.
+                            Then the computer arrives at the if statement, and evaluates the equation "count % 2". The return of that is 0, and as you 
+                            see, IF the value of count % 2 is 0, then the code undernearh the 'if statement' will be run, and all "else" or "if else" options will be ignored.
+                            In this case where userInput is 6, the else statement will not even be read by the computer.
+                        </p>
+
+                        <p style={Styles.Fonts.basic}>
+                            Let's take a look at a more complicated example now
+                        </p>
+
+                        <CodeSnippet 
+                            js={renderJavaScript2()}
+                            java={renderJava()}
+                            cs={renderCs()}
+                            py={renderPython()}
+                        />
 
                     </div>
                 </div>
