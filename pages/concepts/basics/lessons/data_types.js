@@ -718,9 +718,8 @@ const DataTypesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-
                     <div style={Styles.Fonts.lessonHeader}>What are Data Types?</div>
-                    <div style={Styles.Sections.lessonContent}>
+                    <div>
                         <p style={Styles.Fonts.basic}>
                             As briefly covered in the <strong>Variables Lesson</strong> every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some 
                             <ODef 
@@ -766,7 +765,7 @@ const DataTypesLesson = ({}) => {
                     </div>
                     
                     <div style={Styles.Fonts.lessonHeader}>Why are Data Types Important?</div>
-                    <div style={Styles.Sections.lessonContent}>
+                    <div>
 
                         <p style={Styles.Fonts.basic}> 
                             Data types help segment different kinds of variables and minimize storage. Their importance depends on the langauage, as some languages like <strong>Java and C</strong> require a data type be provided the moment a variable is declared; whereas the compilers in languages like <strong>JavaScript and Ruby</strong> can determine the data type based on the value provided during initalization. In these languages the data type can also change, whereas in older languages once a data type is set it cannot be easily altered.
@@ -913,7 +912,7 @@ const DataTypesLesson = ({}) => {
             return(
                 <div>
                     <div style={Styles.Fonts.lessonHeader}>More on Mixing Data Types and using Operators</div>
-                        <div style={Styles.Sections.lessonContent}>
+                        <div>
                             <p style={Styles.Fonts.basic}>
                                 There are times when two or more variables of different data types may be compared against one another, and not just added to one another like in the examples above. 
                                 This means sometimes you may need to add an <strong>integer</strong> with a <strong>string</strong>, and sometimes you may need to see if a date (saved as a number) is before or after a date saved as a string. 
@@ -1005,7 +1004,7 @@ const DataTypesLesson = ({}) => {
                                 <div style={{display: 'flex', flexDirection: 'row'}}>
                                     <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
                                         <p style={Styles.Code.code}>
-                                            <span style={Styles.Code.comment}>// JavaScript </span>
+                                            <span style={Styles.Code.comment}>// Java </span>
                                         </p>
                                         <p style={Styles.Code.code}>
                                             <span style={Styles.Code.keyword}>int </span>
@@ -1110,7 +1109,7 @@ const DataTypesLesson = ({}) => {
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Data Types")}
                 {renderFirst()}
                 {renderSecond()}

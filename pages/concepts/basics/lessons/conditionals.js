@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 
 // Styles
 import Styles from "../../../../styles/styles";
+import Colors from "../../../../styles/colors";
 
 // Ostrich
 import {ODef} from "../../../../OstrichComponents/Text/OstrichDefinition";
@@ -17,6 +18,7 @@ import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
+import { OstrichForm } from "../../../../OstrichComponents/Forms/OstrichForm";
 
 // Next JS
 import { useRouter } from "next/router";
@@ -999,11 +1001,29 @@ const ConditionalsLesson = ({}) => {
                 <div>
                     <p style={Styles.Fonts.basic}>
                         Now, using the code and pseudocode above, try answering the following questions to demonstrate your understanding of conditional logic!
-                        Below will be a short quiz, listing potential 'UserInput' values we will ask you to determine what the result of the code would be
+                        Below will be a short quiz, listing potential 'UserInput' values we will ask you to determine what the result of the code would be. 
                     </p>
+
+                    <OstrichForm
+                        style={{
+                            backgroundColor: Colors.offWhiteContent, 
+                            boxShadow:'2px 2px 10px 2px rgba(20, 20, 15, 0.1)',
+                            borderRadius: 15
+                        }}
+                        title={"Test your Conditonals Knowledge!"}
+                        fields={[
+                            {
+                                id: '1',
+                                title: "1. If the User Input had a worker with a review score of 3.9 and an hourly rate of 38$ and hour, what would this code print?",
+                                type: "MC",
+                                options: ["He is hired", "He is not hired", "An Error is thrown"]
+                            }
+                        ]}
+                    />
                 </div>
             )
         }
+
         
     /////////////////
     // Main Return //

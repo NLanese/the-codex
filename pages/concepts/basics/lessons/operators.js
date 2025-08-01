@@ -14,7 +14,6 @@ import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
-import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
@@ -157,7 +156,7 @@ const OperatorsLesson = ({}) => {
             return(
                 <div>
                     <div style={Styles.Fonts.lessonHeader}>What are Operators</div>
-                    <div style={Styles.Sections.lessonContent}>
+                    <div>
                         <p style={Styles.Fonts.basic}>
                             <strong>Operators are symbols </strong> {"(primarily +, -, *, /, >, <, and %)"} <strong>that are used to convey some sort of action or comparison between two or more variables or values.</strong> More simply put, we use them to express certain actions; we would use + to convey the fact that we wish to add two values together. 
                         </p>
@@ -440,15 +439,9 @@ const OperatorsLesson = ({}) => {
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Operators")}
                 {renderFirst()}
-                {/* <CodeSnippet
-                    js={renderVariablesJS()}
-                    java={renderVariableJavaAndC()}
-                    cs={renderVariableJavaAndC()}
-                    py={renderVariablesPython()}
-                /> */}
             </div>
         )
     }

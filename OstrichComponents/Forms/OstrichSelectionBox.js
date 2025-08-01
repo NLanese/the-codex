@@ -77,7 +77,10 @@ export const OstrichSelectionBox = ({
 
         const handleInititalState = () => {
             let temp = {
-                border: "2px solid black", borderRadius: 32, height: 32, width: 32, minHeight: 32, minWidth: 32, backgroundColor: '#bdbdbd'
+                border: "2px solid black", borderRadius: 32, 
+                height: 32, width: 32, minHeight: 32, minWidth: 32, 
+                justifySelf: 'center',
+                backgroundColor: '#bdbdbd'
             }
 
             temp = {...optionStyle, ...temp}
@@ -102,10 +105,11 @@ export const OstrichSelectionBox = ({
                 margin: 3,
                 paddingBottom: 1,
                 marginBottom: 0,
+                textAlignVertical: 'center',
             }
             setTitleStyleFinal({...tempTitle, titleStyle})
 
-            let tempContainer = {display: 'flex', flexDirection: 'row', ...containerStyle}
+            let tempContainer = {display: 'flex', flexDirection: 'row', justifyContent: 'center', ...containerStyle}
             setContainerStyleFinal(tempContainer)
         }
 
@@ -139,16 +143,18 @@ export const OstrichSelectionBox = ({
         // Renders the Selection Circle
         function renderOption(){
             return(
-                <button
-                    style={determineOptionStype()}
-                    onClick={() => handleSelectionClick(tag)}
-                ></button>
+                <div style={{height: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+                    <button
+                        style={determineOptionStype()}
+                        onClick={() => handleSelectionClick(tag)}
+                    ></button>
+                </div>
+               
             )
         }
 
         // Renders For BUBBLE
         function renderOptionBox(){
-            console.log(containerStyleFinal)
             return(
                 <div style={containerStyleFinal}>
                    {renderOption()}
