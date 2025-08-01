@@ -319,7 +319,7 @@ const ConditionalsLesson = ({}) => {
                         <span style={Styles.Code.keyword}>let </span>
                         <span style={Styles.Code.var}>workerReviewScore </span>
                         <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput.review </span>
+                        <span style={Styles.Code.var}>userInput.score </span>
                         </p>
 
                         <p style={Styles.Code.code}>
@@ -443,13 +443,15 @@ const ConditionalsLesson = ({}) => {
 
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>double </span>
-                    <span style={Styles.Code.var}>userInputScore </span>
+                    <span style={Styles.Code.var}>userInputScore</span>
+                    <span style={Styles.Code.reg}>; </span>
                     <span style={Styles.Code.comment}> // For now, assume we grab input from a user before we actually code it </span>
                     </p>
 
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>userInputPrice </span>
+                    <span style={Styles.Code.var}>userInputPrice</span>
+                    <span style={Styles.Code.reg}>; </span>
                     <span style={Styles.Code.comment}> // For now, assume we grab input from a user before we actually code it </span>
                     </p>
 
@@ -580,57 +582,139 @@ const ConditionalsLesson = ({}) => {
         function renderCs2(){
             return(
                 <div>
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>int </span>
-                        <span style={Styles.Code.var}>count</span>
-                        <span style={Styles.Code.reg}>;</span>
-                        </p>
 
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>count </span>
-                        <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput</span>
-                        <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>double </span>
+                    <span style={Styles.Code.var}>userInputScore</span>
+                    <span style={Styles.Code.reg}>; </span>
+                    <span style={Styles.Code.comment}> # For now, assume we grab input from a user before we actually code it </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>userInputPrice</span>
+                    <span style={Styles.Code.reg}>; </span>
+                    <span style={Styles.Code.comment}> # For now, assume we grab input from a user before we actually code it </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>double </span>
+                    <span style={Styles.Code.var}>workerReviewScore </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>userInputScore</span>
+                    <span style={Styles.Code.reg}>; </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>workerPriceAnHour </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>userInputPrice</span>
+                    <span style={Styles.Code.reg}>; </span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerReviewScore </span>
+                        <span style={Styles.Code.reg}>{"> 4.5)"} </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerPriceAnHour </span>
+                        <span style={Styles.Code.reg}>{"< 63)"} </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Hire this worker"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>else </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
 
 
-                        <br></br>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Pass on this worker"}</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>if </span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>count </span>
-                            <span style={Styles.Code.reg}>% 2 </span>
-                            <span style={Styles.Code.reg}>== 0)</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
 
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Even"</span>
-                            <span style={Styles.Code.func}>)</span>
-                            <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
+                    <br></br>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>else </span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
+                    <p style={{...Styles.Code.code}}>
+                        <span style={Styles.Code.keyword}>else if</span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerReviewScore </span>
+                        <span style={Styles.Code.reg}>{"> 4.0)"} </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
 
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Odd"</span>
-                            <span style={Styles.Code.func}>)</span>
-                            <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerPriceAnHour </span>
+                        <span style={Styles.Code.reg}>{"< 50)"} </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Hire this worker"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>else </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+
+
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Pass on this worker"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                        <span style={Styles.Code.keyword}>else </span>
+                        <span style={Styles.Code.func}>{"{"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.comment}>{"// Pass on this worker"}</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.func}>{"}"}</span>
+                    </p>
 
                 </div>
             )
@@ -640,40 +724,103 @@ const ConditionalsLesson = ({}) => {
         function renderPython2(){
             return(
                 <div>
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>count </span>
-                        <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput </span>
-                        </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>userInput</span>
+                    <span style={Styles.Code.comment}> # For now, assume we grab input from a user before we actually code it </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>workerReviewScore </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>userInput.score</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>workerPriceAnHour </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>userInput.price</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerReviewScore </span>
+                        <span style={Styles.Code.reg}>{"> 4.5)"} </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerPriceAnHour </span>
+                        <span style={Styles.Code.reg}>{"< 63)"} </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Hire this worker"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>else </span>
+                    </p>
 
 
-                        <br></br>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Pass on this worker"}</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>if </span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>count </span>
-                            <span style={Styles.Code.reg}>% 2 </span>
-                            <span style={Styles.Code.reg}>== 0)</span>
-                        </p>
+                    <br></br>
 
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Even"</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
+                    <p style={{...Styles.Code.code}}>
+                        <span style={Styles.Code.keyword}>else if</span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerReviewScore </span>
+                        <span style={Styles.Code.reg}>{"> 4.0)"} </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>if </span>
+                        <span style={Styles.Code.reg}>(</span>
+                        <span style={Styles.Code.var}>workerPriceAnHour </span>
+                        <span style={Styles.Code.reg}>{"< 50)"} </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Hire this worker"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.keyword}>else </span>
+                    </p>
 
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>else </span>
-                        </p>
+                    <p style={{...Styles.Code.code, marginLeft: 40}}>
+                        <span style={Styles.Code.comment}>{"# Pass on this worker"}</span>
+                    </p>
 
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Odd"</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                    </p>
 
+                    <p style={Styles.Code.code}>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                        <span style={Styles.Code.keyword}>else </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                        <span style={Styles.Code.comment}>{"# Pass on this worker"}</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    </p>
 
                 </div>
             )
@@ -804,8 +951,8 @@ const ConditionalsLesson = ({}) => {
                         <CodeSnippet 
                             js={renderJavaScript2()}
                             java={renderJava2()}
-                            cs={renderCs()}
-                            py={renderPython()}
+                            cs={renderCs2()}
+                            py={renderPython2()}
                         />
 
                     </div>
