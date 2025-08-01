@@ -1053,6 +1053,19 @@ const ConditionalsLesson = ({}) => {
             )
         }
 
+        function renderFourth(){
+            return(
+                <div>
+                    <p style={Styles.Fonts.basic}>
+                        There's one more kind of <strong>if statement</strong>, and its called the <strong>else if</strong> or <strong>elif</strong>. This 
+                        statement allows you to add multiple possible results to a conditional. As seen in the two examples above, there were only 2 possible 
+                        results of each if statement. Either it was true or it wasn't. Recall that when the condition of an 'if' statement is NOT true, it will
+                        automatically run the code beneath the else statement. 
+                    </p>
+                </div>
+            )
+        }
+
         
     /////////////////
     // Main Return //
@@ -1065,6 +1078,7 @@ const ConditionalsLesson = ({}) => {
                 {renderFirst()}
                 {renderSecond()}
                 {renderThird()}
+                {renderFourth()}
             </div>
         )
     }
