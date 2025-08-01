@@ -24,6 +24,8 @@ import { OstCard } from "../../../../OstrichComponents/Format/OstCard";
 
 // Images
 const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";
+const pseudoImage2 = "/assets/lesson_images/conditionals/pseduo2.png";
+
 
 const ConditionalsLesson = ({}) => {
 
@@ -896,7 +898,14 @@ const ConditionalsLesson = ({}) => {
                             cs={renderCs()}
                             py={renderPython()}
                         />
+                    </div>
+                </div>
+            )
+        }
 
+        function renderSecond(){
+            return(
+                <div>
                         <p style={Styles.Fonts.basic}>
                             In addition to the <strong>conditional</strong> in the code, there were a few new things in this code. Let's go over everything we see above
                             before we cover everything accomplished in the small code snippet above.
@@ -955,7 +964,35 @@ const ConditionalsLesson = ({}) => {
                             py={renderPython2()}
                         />
 
-                    </div>
+                        <div style={{...Styles.Sections.importantNote, marginTop: 30}}>
+                            <p style={Styles.Fonts.basic}>
+                            We will go over the code you see above in a moment, but before taking a look at the pseudocode see if you can try to figure out 
+                            how this workflow operates. Try to determine what the end results of this code can be, depending on what the userInput values are. 
+                            </p>
+
+                            <p style={Styles.Fonts.basic}>
+                            For example, imagine if the UserInput values had an employee with 4.4 stars who had a going rate of 55 dollars an hour. 
+                            What would this code do, given this information?
+                            </p>
+                        </div>
+
+                        <p style={Styles.Fonts.basic}>
+                        Hopefully you've run through this logic on your own. Now let's see this same code but displayed as 
+                        pseudocode. This may add some clarity to the logic being used, and now try again to follow the workflow, and see 
+                        what different results would happen based on different userInputs
+                        </p>
+
+                        <OstCard
+                        templateStyle={1}
+                        imageSrc={pseudoImage2}
+                        style={{backgroundColor: "#ebf4ff"}}
+                        >
+                            <p style={{marginLeft: '15%', marginRight: '15%'}}>
+                            This is some very simple pseudocode that depicts a program that
+                            creates a number, accepts a value, and then informs the user whether 
+                            that value is even or odd. 
+                            </p>
+                        </OstCard>
                 </div>
             )
         }
@@ -969,7 +1006,7 @@ const ConditionalsLesson = ({}) => {
             <div style={{marginTop: '-3.2%'}}>
                 {renderTitle("Conditionals")}
                 {renderFirst()}
-                {/* {renderSecond()} */}
+                {renderSecond()}
             </div>
         )
     }
