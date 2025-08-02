@@ -72,7 +72,13 @@ export default function CodexList({
             else if (size === "auto"){
                 width = "auto"
             }
-            return {backgroundColor: determineColor(itm), width: width, minHeight: height, justifyContent: 'center', alignItems: 'center', borderRadius: 15, borderColor: 'black', borderWidth: 1, display: 'flex', marginTop: 10}
+            return {
+                backgroundColor: determineColor(itm), 
+                width: width, minHeight: height, borderColor: 'black', 
+                display: 'flex', flexDirection: 'column',
+                justifyContent: 'center', alignItems: 'center', 
+                borderRadius: 15, borderWidth: 1, marginTop: 10
+            }
         }
 
         function determineFont(){
@@ -105,19 +111,25 @@ export default function CodexList({
     // Main Return //
     /////////////////
 
-    return items.map( (itm, i) => {
+   
         return(
-            <div
-            key={i}
-            onMouseEnter={() => handleMouseEnter(itm)}
-            onMouseLeave={() => handleMouseLeave()}
-            style={{...determineStyle(itm)}}
-            onClick={() => {handleClick(itm)}}
-            >
-                <div style={determineFont()}>
-                    {itm}
-                </div>
-            </div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',       // or 'row' if horizontal
+                justifyContent: 'center',      // centers along the main axis
+                alignItems: 'center',          // centers along the cross axis
+              }}>
+                {items.map((itm, i) => (
+                  <div
+                    key={i}
+                    style={{ ...determineStyle(itm) }}
+                    onMouseEnter={() => handleMouseEnter(itm)}
+                    onMouseLeave={() => handleMouseLeave()}
+                    onClick={() => handleClick(itm)}
+                  >
+                    <div style={{ ...determineFont(), textAlign: 'center' }}>{itm}</div>
+                  </div>
+                ))}
+              </div>
         )
-    })
 }

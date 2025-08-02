@@ -33,7 +33,7 @@ export const LessonTemplatePage = ({
 
         function renderLessonsList(){
             return(
-                <div>
+                <div style={{height: '100vh', alignContent: 'center'}}>
                     <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
@@ -53,9 +53,7 @@ export const LessonTemplatePage = ({
 
         function renderLabsAndTests(){
             return(
-                <div style={{
-                    
-                }}>
+                <div style={{height: '100vh', alignContent: 'center'}}>
                     <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Labs
@@ -89,6 +87,13 @@ export const LessonTemplatePage = ({
             return(
                 <div style={Styles.Sections.sideMenu}>
                     {renderLessonsList()}
+                </div>
+            )
+        }
+
+        function renderOtherSideMenu(){
+            return(
+                <div style={Styles.Sections.sideMenu}>
                     {renderLabsAndTests()}
                 </div>
             )
@@ -99,16 +104,43 @@ export const LessonTemplatePage = ({
     /////////////////
 
     return(
-        <div style={{display: 'flex', flexDirection: 'row', paddingBottom: 10}}>
-            <div style={{
-            padding: 10, marginRight: 26, flex: 4, 
-            boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)' }}
-            >
-                {children}
-            </div>
-            <div style={{flex: 1}}>
-                {renderSideMenu()}
-            </div>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+        {/* Left Sticky Sidebar */}
+        <div style={{
+            position: 'sticky',
+            top: 0,
+            height: '100vh',
+            width: '200px',
+            backgroundColor: '#f0f0f0',
+            padding: 20,
+            overflowY: 'auto',
+            flex: 2.5
+        }}>
+            {renderOtherSideMenu()}
         </div>
+
+        {/* Main Scrollable Content */}
+        <div style={{
+            flex: 7,
+            padding: 30,
+            overflowY: 'auto',
+        }}>
+            {children}
+        </div>
+
+        {/* Right Sticky Sidebar */}
+        <div style={{
+            position: 'sticky',
+            top: 0,
+            height: '100vh',
+            width: '200px',
+            backgroundColor: '#f0f0f0',
+            padding: 20,
+            overflowY: 'auto',
+            flex: 2.5
+        }}>
+            {renderSideMenu()}
+        </div>
+    </div>
     )
 }

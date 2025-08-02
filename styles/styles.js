@@ -13,7 +13,7 @@ const Styles = {
 
         basic: {
             fontFamily: "Gilroy", 
-            fontSize: 18.5, fontWeight: 400, 
+            fontSize: 16.5, fontWeight: 400, 
         },
 
         pageTitle: {
@@ -100,7 +100,7 @@ const Styles = {
         sideMenu: {position: 'sticky', top: 10},
         subContentBubble: {
             marginTop: 45,
-            padding: 15,
+            padding: 5,
             justifyContent: 'center', 
             borderRadius: 12,
             backgroundColor: "#ebf4ff",
@@ -108,8 +108,8 @@ const Styles = {
         },
 
         lessonContent: {
-            paddingRight:'10%',
-            paddingLeft: '10%',
+            paddingRight:'3.5%',
+            paddingLeft: '3.5%',
         },
 
         simpleLessonCode: {
