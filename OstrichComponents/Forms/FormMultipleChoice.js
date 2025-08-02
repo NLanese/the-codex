@@ -268,8 +268,8 @@ export const FormMultipleChoice = ({
                 borderFill = '#a8ffad'
             }
             return(
-                <div style={{marginLeft: 'auto'}}>
-                    <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%', flex: 2}}>
+                    <div style={{height: 35, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
                     </div>
                 </div>
             )
@@ -320,7 +320,7 @@ export const FormMultipleChoice = ({
                 return(
                     <div style={{width: '95%', height: 'auto'}}>
                         <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
-                            <p style={{...titleStyleFinal}}>
+                            <p style={{...titleStyleFinal, flex: 11}}>
                                 {fieldObj.title} 
                             </p>
                             {renderBubbleValidOrCorrect()}

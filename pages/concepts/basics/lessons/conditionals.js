@@ -986,11 +986,24 @@ const ConditionalsLesson = ({}) => {
                     imageSrc={pseudoImage2}
                     style={{backgroundColor: "#ebf4ff"}}
                     >
-                        <p style={{marginLeft: '15%', marginRight: '15%'}}>
-                        This is some very simple pseudocode that depicts a program that
-                        creates a number, accepts a value, and then informs the user whether 
-                        that value is even or odd. 
+                        <div style={{marginLeft: '10%', marginRight: '10%'}}>
+                        <p>
+                        This is a more complicated 'if / else' chain that also introduces a new 'if' statement, the <strong>else if</strong> 
+                        (sometimes 'elif' in some languages like Python)
                         </p>
+
+                        <p>
+                        This statement allows you to add multiple possible results to a conditional. As seen in the first examples shown, there were only 2 possible 
+                        results of each if statement. Either it was true or it wasn't. Recall that when the condition of an 'if' statement is NOT true, it will
+                        automatically run the code beneath the else statement. 
+                        </p>
+
+                        <p>
+                        As you see via this pseudocode, there are 3 possible top-level conditionals. First we check to see if the worker rating is above 4.5 stars, 
+                        IF IT IS NOT, we then check to see if the rating is above a 4.0. IF IT IS NOT, then it runs the 'else' statement which is an immediate pass
+                        on the worker in question. 
+                        </p>
+                        </div>
                     </OstCard>
                 </div>
             )
@@ -1053,18 +1066,6 @@ const ConditionalsLesson = ({}) => {
             )
         }
 
-        function renderFourth(){
-            return(
-                <div>
-                    <p style={Styles.Fonts.basic}>
-                        There's one more kind of <strong>if statement</strong>, and its called the <strong>else if</strong> or <strong>elif</strong>. This 
-                        statement allows you to add multiple possible results to a conditional. As seen in the two examples above, there were only 2 possible 
-                        results of each if statement. Either it was true or it wasn't. Recall that when the condition of an 'if' statement is NOT true, it will
-                        automatically run the code beneath the else statement. 
-                    </p>
-                </div>
-            )
-        }
 
         
     /////////////////
@@ -1078,7 +1079,6 @@ const ConditionalsLesson = ({}) => {
                 {renderFirst()}
                 {renderSecond()}
                 {renderThird()}
-                {renderFourth()}
             </div>
         )
     }
