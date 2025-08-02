@@ -457,26 +457,34 @@ const VariablesLesson = ({}) => {
 
         function renderFirst(){
             return(
-                <div>
-                    <p>
+                <div style={Styles.Sections.lessonContent}>
+                    <p style={Styles.Fonts.basic}>
                         Functions are just as essential in Software Development as Variables are. As we know, <strong>variables hold data that can be changed, used, or displayed. If is often functions that do this changing, displaying, or using.</strong> 
                         A good way to think about this relationship between variables and functions is to think of them as nouns and verbs in a sentence. Computer Science is essentially you telling the computer what to do, and the Programming Langauges you are using 
                         is simply the langauge the computers understand. 
                     </p>
-                    <p>
+                    <p style={Styles.Fonts.basic}>
                         <strong>A function is a set of instructions to be run by the computer or the compiler. It can take variables in as inputs, manipulate them, and send them back out as outputs. </strong> 
                     </p>
-                    <div>
+                    <div style={Styles.Fonts.basic}>
                         <li>
-                            When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or "Hossenpheffer" your account will se set to display whatever is stored under the 'name' variable
+                            When you have a name attached to any online account, that name is a variable. Whether your name is "John", "Dave", or 
+                            "Hossenpheffer" your account will be set to display whatever is stored under the 'name' variable. You may use a 
+                            function that takes any 'name' variable and then uses that to create a render of that name. 
                         </li>
                         <br></br>
                         <li>
-                            When you login to a website, both your username and password are stored in the computer as variables. They will begin as just empty values, but as you type into the 'username' or 'email' text bar, the 'login' variable will be changed to match what you type. When you press the login button, the computer will use what you entered into the 'login' variable and check it against all other known usernames.
+                            When you login to a website, both your username and password are stored in the computer as variables. They will begin 
+                            as just empty values, but as you type into the 'username' or 'email' text bar, the 'login' variable will be changed to 
+                            match what you type. When you press the login button, the computer run a function using the username/email and password 
+                            you provided to see if there is any username that matches what you entered that ALSO matches the password you entered.
                         </li>
                         <br></br>
                         <li>
-                            In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something like max_ammo_count.
+                            In a shooter video game, each gun will have a different maximum ammo count. This number would be saved under a variable named something 
+                            like max_ammo_count. You would also have a variabled named current_ammo_in_magazine. Whenever you shoot that gun, a function would run to 
+                            reduce the value of current_ammo_in_magazine by 1. Whenever you reload, a reload_weapon function would run to reset current_ammo_in_magazine to 
+                            be equal to max_ammo_count.
                         </li>
                     </div>
 
