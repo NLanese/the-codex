@@ -109,7 +109,7 @@ export const OstrichSelectionBox = ({
             }
             setTitleStyleFinal({...tempTitle, titleStyle})
 
-            let tempContainer = {display: 'flex', flexDirection: 'row', justifyContent: 'center', ...containerStyle}
+            let tempContainer = {display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', ...containerStyle}
             setContainerStyleFinal(tempContainer)
         }
 
@@ -158,7 +158,7 @@ export const OstrichSelectionBox = ({
             return(
                 <div style={containerStyleFinal}>
                    {renderOption()}
-                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%", paddingLeft: 10}}>
+                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%",}}>
                         <p style={titleStyleFinal}>
                             {tag}
                         </p>
