@@ -79,6 +79,10 @@ const VariablesLesson = ({}) => {
             return(
                 <div>
                     <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// Declare the Function </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>function </span>
                     <span style={Styles.Code.func}>increaseValueByOne</span>
                     <span style={Styles.Code.keyword}>{"("}</span>
@@ -104,6 +108,10 @@ const VariablesLesson = ({}) => {
 
                     <br></br>
 
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// Create a test variable to use as a parameter</span>
+                    </p>
+
                     <p style={{...Styles.Code.code}}>
                     <span style={Styles.Code.keyword}>let </span>
                     <span style={Styles.Code.var}>testValue </span>
@@ -112,6 +120,10 @@ const VariablesLesson = ({}) => {
                     </p>
 
                     <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// Create a variable whose value will be the return value of this function  </span>
+                    </p>
 
                     <p style={{...Styles.Code.code}}>
                     <span style={Styles.Code.keyword}>let </span>
@@ -138,9 +150,13 @@ const VariablesLesson = ({}) => {
             )
         }
 
-        function renderJavaAndCs(){
+        function renderJava(){
             return(
                 <div>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// Declare the Function, in Java it needs to also declare the Return Value's data type </span>
+                    </p>
+
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>public int </span>
                     <span style={Styles.Code.func}>increaseValueByOne</span>
@@ -165,6 +181,123 @@ const VariablesLesson = ({}) => {
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>{"}"}</span>
                     </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// Create a test variable to use as a parameter</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>testValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.reg}> 1;</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// Create a variable whose value will be the return value of this function  </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>functionReturnValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.func}>increaseValueByOne</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>num</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.var}>conosle</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.func}>log</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>functionReturnValue</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
+                </div>
+            )
+        }
+
+        function renderCs(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># Declare the Function, in Java it needs to also declare the Return Value's data type </span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>public int </span>
+                    <span style={Styles.Code.func}>increaseValueByOne</span>
+                    <span style={Styles.Code.keyword}>{"(int "}</span>
+                    <span style={Styles.Code.var}>num</span>
+                    <span style={Styles.Code.keyword}>{") {"}</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                    <span style={Styles.Code.var}>num </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.var}>num </span>
+                    <span style={Styles.Code.reg}>+ 1;</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code, marginLeft: 20}}>
+                    <span style={Styles.Code.keyword}>return </span>
+                    <span style={Styles.Code.var}>num</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>{"}"}</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># Create a test variable to use as a parameter</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>testValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.reg}> 1;</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># Create a variable whose value will be the return value of this function  </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>functionReturnValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.func}>increaseValueByOne</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>num</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.func}>print</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>functionReturnValue</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
                 </div>
             )
         }
@@ -172,6 +305,11 @@ const VariablesLesson = ({}) => {
         function renderPython(){
             return(
                 <div>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># Declare the Function </span>
+                    </p>
+
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>def </span>
                     <span style={Styles.Code.func}>increaseValueByOne</span>
@@ -190,6 +328,44 @@ const VariablesLesson = ({}) => {
                     <p style={{...Styles.Code.code, marginLeft: 20}}>
                     <span style={Styles.Code.keyword}>return </span>
                     <span style={Styles.Code.var}>num</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># Create a test variable to use as a parameter</span>
+                    </p>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.var}>testValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.reg}> 1</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># Create a variable whose value will be the return value of this function  </span>
+                    </p>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.var}>functionReturnValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.func}>increaseValueByOne</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>num</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.var}>conosle</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.func}>log</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>functionReturnValue</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
                     </p>
                 </div>
             )
@@ -239,7 +415,7 @@ const VariablesLesson = ({}) => {
                         the "Labs", "Tests", and "Lessons" are all variables. The 'Lessons' variables are strings that equal "Variables", "Operators", "Data Types", etc. 
                         Whenever you click one of these buttons, a function fires that tells this website to redirect the user to the page of the variable they clicked on. 
                         When you click The Data Types Button, a function called "navigateToLesson()" fires and uses the variable value "Data Type" as a paremeter to determine 
-                        which page to go to.
+                        which page to go to. 
                     </p>
 
                     <p style={Styles.Fonts.basic}>
@@ -263,6 +439,7 @@ const VariablesLesson = ({}) => {
                             definition="Just like variables, functions need to be declared before they can be used or referenced. UNLIKE variables, functions need to be intiizlized and declared at the same time and CANNOT be changed later on. This means when you declare a function, you are naming the function as well as composing the contents of the function at the same time."
                         />} 
                         /> is different between different programming languagaes. This means to say that declaring a function in JavaScript is different than declaring a function in Python or C#.
+                        Using, or <strong>running</strong> functions is usually done the same way across most languagaes, however.
                     </p>
                     <div style={Styles.Sections.importantNote}>
                         {/* JS */}
@@ -346,8 +523,8 @@ const VariablesLesson = ({}) => {
                 {renderFirst()}
                 <CodeSnippet
                     js={renderJS()}
-                    java={renderJavaAndCs()}
-                    cs={renderJavaAndCs()}
+                    java={renderJava()}
+                    cs={renderCs()}
                     py={renderPython()}
                 />
                 {renderSecond()}
