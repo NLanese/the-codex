@@ -8,14 +8,14 @@ import Styles from "../../../../styles/styles";
 import { useRecoilState } from "recoil";
 import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
 
-// Images
-// import imageA from "@lessonAssets/variables/codeExample.png"
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
+import { ODef } from "../../../../OstrichComponents/Text/OstrichDefinition";
+import { ODefContnet } from "../../../../constants/oDefContent";
 
 // Next JS
 import { useRouter } from "next/router";
@@ -101,6 +101,39 @@ const VariablesLesson = ({}) => {
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>{"}"}</span>
                     </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>testValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.reg}> 1</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>functionReturnValue </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.func}>increaseValueByOne</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>num</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    </p>
+
+                    <br></br>
+
+                    <p style={{...Styles.Code.code}}>
+                    <span style={Styles.Code.var}>conosle</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.func}>log</span>
+                    <span style={Styles.Code.keyword}>{"("}</span>
+                    <span style={Styles.Code.var}>functionReturnValue</span>
+                    <span style={Styles.Code.keyword}>{")"}</span>
+                    </p>
+
                 </div>
             )
         }
@@ -218,27 +251,54 @@ const VariablesLesson = ({}) => {
 
         function renderSecond(){
             return(
-                <div>
+                <div style={{...Styles.Sections.lessonContent, ...Styles.Fonts.basic}}>
                     <p>
-                        Above, you saw that most languages are a bit different from each other in how the <strong>declare</strong> a variable, but they all have the same basic pattern and premise. Usually, there is a keyword (Like in JavaScript, there is <strong>the keyword let</strong> or in C# and Java the <strong>keyword is instead the data type of the variable</strong>)
+                        As you see above, function declaration has some differences in different programming languages. Again, 
+                        <ODef 
+                        text="declaration" 
+                        modalContent={
+                        <ODefContnet 
+                            color="#88fc23" 
+                            word="Declaration" 
+                            definition="Just like variables, functions need to be declared before they can be used or referenced. UNLIKE variables, functions need to be intiizlized and declared at the same time and CANNOT be changed later on. This means when you declare a function, you are naming the function as well as composing the contents of the function at the same time."
+                        />} 
+                        /> is different between different programming languagaes. This means to say that declaring a function in JavaScript is different than declaring a function in Python or C#.
                     </p>
-                    <p>
-                        Most languages treat variables the same once they have been declared, meaning that interacting with variables across different languages usually stays the same. Adding two number variables in JavaScript will work the same way as it does in Python. However, as we will cover <strong>under the Datatypes lesson</strong> you cannot just go mixing two different kinds of variables, and these constraints vary based on the language. Lets go over some basic examples for right now...
-                    </p>
-                    <div>
-                        <li>
-                            In some Computer Languages, a whole number cannot be mixed with a decimal point number. This means adding 2 and 2.4 would not work in every language.
-                        </li>
-                        <br></br>
-                        <li>
-                            In most Computer Languages, variables that contain letters or words cannot interact with variables that hold numeric values. This means I could not make x and y interact with one another if x = "Hank Hill" and y = 6
-                        </li>
-                    </div>
-                    <p>
-                        Lets go through some examples of valid operations with variables!
-                    </p>
+                    <div style={Styles.Sections.importantNote}>
+                        {/* JS */}
+                        <div style={{
+                            padding: 15, 
+                            border: "1px solid black", borderRadius: 15, 
+                            margin: "5%", width: '90%'
+                        }}>
+                            JavaScript, as a higher level programming language has a simple function declaration structure. 
+                            In the majority functions are declared simply with the keyword <strong>function</strong>, and 
+                            the data type of the value the function returns does not need to be stated. Similarly, all of the
+                            <ODef 
+                            text="parameters" 
+                            modalContent={
+                            <ODefContnet 
+                                color= "#11Df9f"
+                                word="Declaration" 
+                                definition= "Functions are responsible for changing the value of variables that are at your disposal. Generally, when you execute or 'do' a function, you as the developer will need to tell the function which variables it will be changing or working with. These provided variables are the parameters"                            />} 
+                            />
+                        </div>
 
+                        {/* Python */}
+                        <div style={{
+                            padding: 15,
+                            border: "1px solid black", borderRadius: 15, 
+                            margin: 20
+                        }}>
+
+                        </div>
+
+                        {/* Java and C# */}
+                        <div style={{flex: 6, padding: 10, paddingLeft: 15, paddingRight: 15}}>
+
+                        </div>
                 </div>
+            </div>
             )
         }
 

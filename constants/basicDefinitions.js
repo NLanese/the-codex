@@ -114,11 +114,11 @@ const BasicDefinitionsList = [
     },
 
     {
-        title: "Conditionals",
-        definition: "Conditionals are logic gates that can split off into two or more paths depending on a value. Conditionals are most easily thought as 'if statements' although that definition is a little reductive, as there are other forms of Conditionals. If statements are the most common however",
+        title: "Declaring a Function",
+        definition: "Just like variables, functions need to be declared before they can be used or referenced. UNLIKE variables, functions need to be intiizlized and declared at the same time and CANNOT be changed later on. This means when you declare a function, you are naming the function as well as composing the contents of the function at the same time.",
         titleStyle: Styles.Fonts.h2,
         definitionStyle: Styles.Fonts.definition,
-        color: "#76fcde"
+        color: "#88fccc"
     },
 
     {
@@ -126,7 +126,31 @@ const BasicDefinitionsList = [
         definition: "Code is written in specific computer langauges with specific operational syntax. If a word or character is wrong, the code will not work. When working with complicated workflows or porjects that have a lot of different operations going on, it is greatly beneficial to write out what exactly the code does and how it should do it in plain English. This plain writing is called Pseudocode.",
         titleStyle: Styles.Fonts.h2,
         definitionStyle: Styles.Fonts.definition,
-        color: "#81afeb"
+        color: "#11Dfeb"
+    },
+
+    {
+        title: "Conditionals",
+        definition: "Conditionals are logic gates that can split off into two or more paths depending on a value. Conditionals are most easily thought as 'if statements' although that definition is a little reductive, as there are other forms of Conditionals. If statements are the most common however",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#11Dfeb"
+    },
+
+    {
+        title: "Functions",
+        definition: "Functions are blueprints of code created by a developer that can execute actions in a program. Simply put, functions are instructions we create as developers, and these instructions dictate how variables, classes, and other objects interact with each other in a program. Functions can exist on multiple levels, they can belong to and be unique to specific classes, or they could be global and be accessed anytime within a program.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#11Df9f"
+    },
+
+    {
+        title: "Parameters",
+        definition: "Functions are responsible for changing the value of variables that are at your disposal. Generally, when you execute or 'do' a function, you as the developer will need to tell the function which variables it will be changing or working with. These provided variables are the parameters",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#11Df9f"
     },
 
     {
@@ -140,14 +164,6 @@ const BasicDefinitionsList = [
     {
         title: "Classes",
         definition: "Classes are advanced Datatypes that are created by a developer in order to simulate a real life item or concept. For example, social media sites have Classes for Posts. Every post will have a caption (String Datatype), an amount of likes (Integer), and date posted (String). Classes can have many different values assigned to different key names. Post.caption would return a post's caption.",
-        titleStyle: Styles.Fonts.h2,
-        definitionStyle: Styles.Fonts.definition,
-        color: "#96c4ff"
-    },
-
-    {
-        title: "Functions",
-        definition: "Functions are blueprints of code created by a developer that can execute actions in a program. Simply put, functions are instructions we create as developers, and these instructions dictate how variables, classes, and other objects interact with each other in a program. Functions can exist on multiple levels, they can belong to and be unique to specific classes, or they could be global and be accessed anytime within a program.",
         titleStyle: Styles.Fonts.h2,
         definitionStyle: Styles.Fonts.definition,
         color: "#96c4ff"
