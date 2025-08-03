@@ -62,7 +62,7 @@ export default function CodexList({
             let width = 500
             let height = 130
             if (size === "medium" || size === "med" || size === "md"){
-                width = 300
+                width = 270
                 height = 50
             }
             else if (size === "small" || size === "sm"){
