@@ -65,6 +65,15 @@ export const OstrichTabBar = ({
             hasNeededValues()
         }, [])
 
+        // Sets Starting Tab
+        useEffect(() => {
+            if (startingTabByIndex){
+                setActiveTab(tabs[startingTabByIndex])
+            }
+            else if (startingTabByTitle){
+            }
+        }, [])
+
     ///////////////
     // Functions //
     ///////////////
@@ -109,6 +118,7 @@ export const OstrichTabBar = ({
                 setDefaultBarStyles()
             }
 
+            // Bar Style Defaults
             function setDefaultBarStyles(){
                 let tempBar = {
                     width: '300px',

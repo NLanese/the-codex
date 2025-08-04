@@ -130,6 +130,7 @@ export default function CandyBox3() {
                     <OstrichTabBar
                         style={{width: '100%'}}
                         tabs={screenTabs}
+                        startingTabByIndex={1}
                     />
                 )
             }
