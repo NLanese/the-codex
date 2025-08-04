@@ -110,10 +110,10 @@ export default function ProjectsMenu() {
                     <OstCard
                         templateStyle={1}
                         imageSrc={DDScreen}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.replace("/showcases/projects/boardgameMasterAI")
-                        }}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
+                        // onClick={() => {
+                        // router.replace("/showcases/projects/boardgameMasterAI")
+                        // }}
                     >
                         Dungeon Dash (Unity Project)
                     </OstCard>
@@ -137,9 +137,12 @@ export default function ProjectsMenu() {
                     <OstCard
                         templateStyle={1}
                         imageSrc={"moop"}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        onClick={() => {
+                        router.replace("/showcases/projects/candybox3")
+                        }}
                     >
-                        Ostrich Pass Kit
+                        Candy Box 3
                     </OstCard>
                 </div>
             </div>
