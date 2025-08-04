@@ -11,7 +11,9 @@ import NewOldsville from "./maps/newOldsville";
 
 export default function Map({
     selectedMap, 
-    setSelectedMap
+    setSelectedMap,
+    inventory,
+    setInventory
 }) {
 
     ///////////
@@ -26,7 +28,13 @@ export default function Map({
 
     function renderThisMap(){
         if (thisMap === "New Oldsville"){
-            return <NewOldsville />
+            return( 
+                <NewOldsville 
+                    inventory={inventory}
+                    setInventory={setInventory}
+                    setSelectedMap={setSelectedMap}
+                />
+            )
         }
     }
 

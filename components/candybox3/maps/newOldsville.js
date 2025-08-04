@@ -9,8 +9,54 @@ import {candyBoxStyles} from "../const/styles"
 
 
 export default function NewOldsville({
-
+    inventory,
+    setInventory,
+    setSelectedMap
 }){
+
+    ///////////
+    // State //
+    ///////////
+
+        const [yourInventory, setYourInventory] = useState([...inventory])
+
+        const [house1, setHouse1] = useState({
+            onClick: (() => {
+                if (yourInventory.includes("Your House Key")){
+                    setSelectedMap("Your House")
+                }
+                else{
+                    setHouse1Msg(true)
+                }
+            }),
+            message: "This is your house. You lost your key when you fed to a crocodile."
+        })
+        const [house1Msg, setHouse1Msg] = useState(false)
+
+        const [house2, setHouse2] = useState({
+            onClick: (() => {
+                if (yourInventory.includes("Your House Key")){
+                    setSelectedMap("Your House")
+                }
+                else{
+                    setHouse1Msg(true)
+                }
+            }),
+            message: "This is your house. You lost your key when you fed to a crocodile."
+        })
+        const [house2Msg, setHouse2Msg] = useState(false)
+
+    ///////////////
+    // Constants //
+    ///////////////
+
+    ///////////////
+    // Functions //
+    ///////////////
+
+        function clearAllMessages(){
+            setHouse1Msg(false)
+        }
 
     ///////////////
     // Renderers //
@@ -44,7 +90,7 @@ export default function NewOldsville({
         )
     }
 
-    function renderHouse(){
+    function renderHouse(houseObj, show){
         return(
             <div>
             <p style={candyBoxStyles.mapStyle}>         ____         </p>
@@ -56,12 +102,36 @@ export default function NewOldsville({
             <p style={candyBoxStyles.mapStyle}>   |--------------|   </p>
             <p style={candyBoxStyles.mapStyle}>   |              |    8</p>
             <p style={candyBoxStyles.mapStyle}>   |  []      []  |   888</p>
-            <p style={candyBoxStyles.mapStyle}>   |              |  8888</p>
-            <p style={candyBoxStyles.mapStyle}>   |      ____    | 888888</p>
-            <p style={candyBoxStyles.mapStyle}>   |      |  |    |   ||</p>
-            <p style={candyBoxStyles.mapStyle}>   |######| '|####|   ||</p>
+            <p style={candyBoxStyles.mapStyle}>   |      {renderHouseMessage(houseObj, show)}        |  8888</p>
+            <p style={candyBoxStyles.mapStyle}>   |      <span onClick={() => houseObj.onClick()}>____</span>    | 888888</p>
+            <p style={candyBoxStyles.mapStyle}>   |      <span onClick={() => houseObj.onClick()}>|  |</span>    |   ||</p>
+            <p style={candyBoxStyles.mapStyle}>   |######<span onClick={() => houseObj.onClick()}>| '|</span>####|   ||</p>
             </div>
         )
+    }
+
+    function renderHouseMessage(houseObj, show){
+        if (show){
+            return(
+                <div
+                style={{
+                    position: 'absolute',
+                    marginTop: -40,
+                    backgroundColor: 'white',
+                    border: '1px solid black',
+                    padding: '5px',
+                    width: 200,
+                    whiteSpace: 'normal',      
+                    overflowWrap: 'normal',
+                    wordBreak: 'normal', fontSize: 12,
+                    zIndex: 1000
+                }}
+                onClick={() => clearAllMessages()}
+                >
+                    {houseObj.message}
+                </div>
+            )
+        }
     }
 
     function renderLilForest1(){
@@ -107,9 +177,11 @@ export default function NewOldsville({
                     {renderLilForest2()}
                     {renderLilForest1()}
                 </div>
-                <div>{renderHouse()}</div>
-                <div>{renderHouse()}</div>
+                <div>{renderHouse(house1, house1Msg)}</div>
+                <div>{renderHouse(house2, house2Msg)}</div>
+                {renderLilForest2()}
             </div>
+
             
         </div>
     )

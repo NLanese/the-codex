@@ -45,11 +45,12 @@ export default function CandyBox3() {
         const [maxHealth, setMaxHealth] = useState(100)
         const [healthPercent, setHealthPercent] = useState('100%')
 
+        const [inventory, setInventory] = useState([])
+
         // Page State
         const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
         const [screenShown, setScreenShown] = useState("Main")
         const [screenTabs, setScreenTabs] = useState(["Inventory", "Candy Box"])
-
         const [selectedMap, setSelectedMap] = useState("New Oldsville")
       
 
@@ -175,6 +176,8 @@ export default function CandyBox3() {
                     <Map
                     selectedMap={selectedMap}
                     setSelectedMap={setSelectedMap}
+                    inventory={inventory}
+                    setInventory={setInventory}
                     />
                 )
             }
