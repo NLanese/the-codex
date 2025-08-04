@@ -15,7 +15,8 @@ export default function CandyBox3MainScreen({
     setThrown,
     eaten,
     setEaten,
-    features
+    features,
+    setFeature,
 }) {
 
     ///////////
@@ -26,31 +27,60 @@ export default function CandyBox3MainScreen({
     const [showNewFeature, setShowNewFeature] = useState(false)
     const [newFeatureCost, setNewFeatureCost] = useState([30, 10, 10, 50])
 
+    const [localState, setLocalState] = useState({
+        candies: candies,
+        lollipops: lollipops,
+        chocolates: chocolates,
+        thrown: thrown,
+        eaten: eaten,
+        features: features
+    })
+
 
     ////////////////
     // UseEffects //
     ////////////////
 
     useEffect(() => {
-        if (candies > 10){
+        if (localState.candies > 10){
             setShowThrow(true)
         }
-        if (candies > 25){
+        if (localState.candies > 25){
             setShowNewFeature(true)
         }
-    }, [])
+    }, [localState])
+
+    useEffect(() => {
+        setLocalState({
+            candies: candies,
+            lollipops: lollipops,
+            chocolates: chocolates,
+            thrown: thrown,
+            eaten: eaten,
+            features: features
+        })
+    }, [candies, lollipops, chocolates, thrown, eaten, features])
 
     //////////////
     // Handlers //
     //////////////
 
     function handleThrowCandy(){
-        if (candies < 10){
+        if (localState.candies < 10){
             return
         }
         else{
             setThrown(prev => prev + 10)
             setCandies(prev => prev - 10)
+        }
+    }
+
+    function handleRequestFeature(){
+        if (localState.candies < newFeatureCost[localState.features]){
+            return
+        }
+        else{
+            setFeature(prev => prev + 1)
         }
     }
 
@@ -62,7 +92,7 @@ export default function CandyBox3MainScreen({
     function showCandyCount(){
         return(
             <div style={{marginBottom: 15}}>
-                <p>You have {candies} candies</p>
+                <p>You have {localState.candies} candies</p>
                 <button>
                     Eat all the candy
                 </button>
@@ -83,9 +113,9 @@ export default function CandyBox3MainScreen({
     function renderRequestFeature(){
         if (showNewFeature){
             return(
-                <div>
-                    <button>
-                        Request a new Feature ({newFeatureCost[features]} candies)
+                <div style={{marginTop: 15}}>
+                    <button onClick={() => handleRequestFeature()}>
+                        Request a new Feature ({newFeatureCost[localState.features]} candies)
                     </button>
                     
                 </div>
@@ -95,53 +125,53 @@ export default function CandyBox3MainScreen({
     }
 
     function renderTotalThrown(){
-        if (thrown > 0){
+        if (localState.thrown > 0){
             if (thrown >= 30000){
 
             }
-            else if (thrown  >= 890){
+            else if (localState.thrown  >= 890){
                 return(
-                    <p>{`You've thrown ${thrown} candies on the ground...  (>_<) seriously. thats a LOT of candy...`}</p>
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (>_<) seriously. thats a LOT of candy...`}</p>
                 )
             }
-            else if (thrown  >= 720){
+            else if (localState.thrown  >= 720){
                 return(
-                    <p>{`You've thrown ${thrown} candies on the ground...  (>_<) duuude stop`}</p>
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (>_<) duuude stop`}</p>
                 )
             }
-            else if (thrown  >= 600){
+            else if (localState.thrown  >= 600){
                 return(
-                    <p>{`You've thrown ${thrown} candies on the ground...  >: (      WHY??`}</p>
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  >: (      WHY??`}</p>
                 )
             }
-            else if (thrown  >= 500){
+            else if (localState.thrown  >= 500){
                 return(
-                    <p>{`You've thrown ${thrown} candies on the ground...  >: (`}</p>
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  >: (`}</p>
                 )
             }
-            else if (thrown  >= 340){
+            else if (localState.thrown  >= 340){
                 return(
-                    <p>{`You've thrown ${thrown} candies on the ground...  :'(`}</p>
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  :'(`}</p>
                 )
             }
-            else if (thrown  >= 270){
+            else if (localState.thrown  >= 270){
                 return(
-                    <p>{`You've thrown ${thrown} candies on the ground...  : (`}</p>
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t : (`}</p>
                 )
             }
-            else if (thrown  >= 140){
+            else if (localState.thrown  >= 140){
                 return(
-                    <p>You've thrown {thrown} candies on the ground..?</p>
+                    <p>You've thrown {localState.thrown} candies on the ground..?</p>
                 )
             }
-            else if (thrown  >= 80){
+            else if (localState.thrown  >= 80){
                 return(
-                    <p>You've thrown {thrown} candies on the ground...</p>
+                    <p>You've thrown {localState.thrown} candies on the ground...</p>
                 )
             }
             else{
                 return(
-                    <p>You've thrown {thrown} candies on the ground.</p>
+                    <p>You've thrown {localState.thrown} candies on the ground.</p>
                 )
             }
         }

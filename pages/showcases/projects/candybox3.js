@@ -44,7 +44,7 @@ export default function CandyBox3() {
         const [healthPercent, setHealthPercent] = useState('100%')
 
         // Page State
-        const [featuresUnlocked, setFeaturesUnlocked] = useState(1)
+        const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
         const [screenShown, setScreenShown] = useState("Main")
         const [screenTabs, setScreenTabs] = useState(["Map", "Inventory", "Candy Box"])
       
@@ -76,6 +76,13 @@ export default function CandyBox3() {
             };
         }, []);
 
+        // Features
+        useEffect(() => {
+            if (featuresUnlocked === 2){
+                setScreenTabs(prev => [...prev, "Save"])
+            }
+        }, [featuresUnlocked])
+
     ///////////////
     // Functions //
     ///////////////
@@ -83,6 +90,7 @@ export default function CandyBox3() {
         function eatAllCandies(){
 
         }
+
 
     ///////////////
     // Renderers //
@@ -93,10 +101,14 @@ export default function CandyBox3() {
                 return(
                     <OstCard style={{width: '95%', marginLeft: '2.5%'}}>
                         <div style={{width: '100%'}}>
+
+                            {/* Tabs */}
                             <OstrichTabBar
                                 style={{width: '100%'}}
                                 tabs={screenTabs}
                             />
+
+                            {/* Health Bar */}
                             <div style={{display: 'flex', flexDirection: 'row', marginTop: 30, textAlign: 'center'}}>
                                 <div style={{flex: 1}}>
                                     Health:
@@ -107,6 +119,8 @@ export default function CandyBox3() {
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </OstCard>
                 )
@@ -126,6 +140,7 @@ export default function CandyBox3() {
                         eaten={candiesEaten}
                         setEaten={setCandiesEaten}
                         features={featuresUnlocked}
+                        setFeature={setFeaturesUnlocked}
                     />
                 )
             }
