@@ -154,6 +154,14 @@ const BasicDefinitionsList = [
     },
 
     {
+        title: "Return Statement",
+        definition: "In most cases, a function will have a return statement. This statement tells the function to stop running itself and spit out the following value. For example, a function that takes a number as a parameter and adds 1 to it would return a new number. If 2 was the parameter, the return vaue of the addOne() function would be 3. Higher Level programming langauges do not necesarily always need a return statement, but lower level ones like C# and Java usually will. These lower level anguages also need the data type of t=its return value specified ahead of time.",
+        titleStyle: Styles.Fonts.h2,
+        definitionStyle: Styles.Fonts.definition,
+        color: "#11Df9f"
+    },
+
+    {
         title: "Object Oriented Programming (OOP)",
         definition: "There are many standard practices of coding, but the newest and most widely used is Object Oriented Programming. This methodology of coding states that the best way to develop a program is to simulate real world objects and events through quantifiable data. Social Media Apps will create Classes to mimic these real world phenomena. There will be a Class for Posts, a Class for Users. a Class for Comments, and so on. These Classes will interact with each other just as people and 'posts' would on a real life media board. Other methodologies include Functional Programming, Data Oriented Programing, and Procedural Oriented Programing.",
         titleStyle: Styles.Fonts.h2,

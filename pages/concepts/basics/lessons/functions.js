@@ -495,6 +495,20 @@ const VariablesLesson = ({}) => {
                             <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter</strong>
                             and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>.
 
+                            <p>
+                            Once the function begins, it takes the parameter, which is referred to as <span style={Styles.Code.var}>num</span>, and 
+                            makes its value one plus itself. (More simply put, it increases the value of num by one). Then, the function will 
+                            <ODef 
+                            text="return" 
+                            modalContent={
+                            <ODefContnet 
+                                color= "#11Df9f"
+                                word="Return Statement" 
+                                definition="In most cases, a function will have a return statement. This statement tells the function to stop running itself and spit out the following value. For example, a function that takes a number as a parameter and adds 1 to it would return a new number. If 2 was the parameter, the return vaue of the addOne() function would be 3. Higher Level programming langauges do not necesarily always need a return statement, but lower level ones like C# and Java usually will. These lower level anguages also need the data type of t=its return value specified ahead of time."                            
+                            />} 
+                            /> the new value
+                            </p>
+
                         </div>
 
                         {/* Python */}
