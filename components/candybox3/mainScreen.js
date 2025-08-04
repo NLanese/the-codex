@@ -25,7 +25,7 @@ export default function CandyBox3MainScreen({
 
     const [showThrow, setShowThrow] = useState(false)
     const [showNewFeature, setShowNewFeature] = useState(false)
-    const [newFeatureCost, setNewFeatureCost] = useState([30, 10, 10, 50000])
+    const [newFeatureCost, setNewFeatureCost] = useState([30, 10, 20, 15, 1000, 50000])
 
     const [localState, setLocalState] = useState({
         candies: candies,
@@ -117,11 +117,34 @@ export default function CandyBox3MainScreen({
                     <button onClick={() => handleRequestFeature()}>
                         Request a new Feature ({newFeatureCost[localState.features]} candies)
                     </button>
-                    
+                    <p>{renderFeaturePrompt()}</p>
                 </div>
                 
             )
         }   
+    }
+
+    function renderFeaturePrompt(){
+        if (features === 1){
+            return(
+                <p>You've unlocked a health bar!</p>
+            )
+        }
+        else if (features === 2){
+            return(
+                <p>Now we gave you an inventory!</p>
+            )
+        }
+        else if (features === 3){
+            return(
+                <p>Check out your new, enhanced Menu Bar</p>
+            )
+        }
+        else if (features === 4){
+            return(
+                <p>Now you got something cool! Travel the (local) world with your new map!</p>
+            )
+        }
     }
 
     function renderTotalThrown(){

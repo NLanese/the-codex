@@ -30,6 +30,7 @@ export default function CandyBox3() {
         const [candiesRate, setCandiesRate] = useState(1)
         const [candiesEaten, setCandiesEaten] = useState(0)
         const [candiesThrown, setCandiesThrown] = useState(0)
+        const [candiesPerThrow, setCandiesPerThrow] = useState(10)
 
         const [lollipops, setLollipops] = useState(0)
         const [lollipopsRate, setLollipopsRate] = useState(0)
@@ -78,7 +79,7 @@ export default function CandyBox3() {
 
         // Features
         useEffect(() => {
-            if (featuresUnlocked === 3){
+            if (featuresUnlocked === 4){
                 setScreenTabs(prev => [...prev, "Local Map", "Save"])
             }
         }, [featuresUnlocked])
@@ -116,8 +117,7 @@ export default function CandyBox3() {
                                     </div>
                                 </div>
                             </div>
-
-
+                            {renderMoreMenu()}
                         </div>
                     </OstCard>
                 )
@@ -131,6 +131,19 @@ export default function CandyBox3() {
                         style={{width: '100%'}}
                         tabs={screenTabs}
                     />
+                )
+            }
+        }
+
+        function renderMoreMenu(){
+            if (featuresUnlocked >= 3){
+                return(
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                        <p>Candies: {candies}</p> 
+                        <p> Lollipops: {lollipops}</p>
+                        <p> Chocolate Bars: {chocolateBars}</p>
+                        <p> Pains Au Chocolat: {pocs}</p>
+                    </div>
                 )
             }
         }
