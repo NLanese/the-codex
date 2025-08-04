@@ -155,7 +155,7 @@ export default function CandyBox3() {
         }
 
         function MAIN(){
-            if (screenShown === "Main"){
+            if (screenShown === "Main" || screenShown === "Candy Box"){
                 return (
                     <CandyBox3MainScreen
                         candies={candies}

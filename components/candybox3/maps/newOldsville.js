@@ -90,6 +90,17 @@ export default function NewOldsville({
         )
     }
 
+    function renderWesternRoad(){
+        return(
+            <div>
+                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *</p>
+                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \______________________________</p>
+                <p style={candyBoxStyles.mapStyle}>|                                </p>
+                <p style={candyBoxStyles.mapStyle}> \____________________________________________________________</p>
+            </div>
+        )
+    }
+
     function renderHouse(houseObj, show){
         return(
             <div>
@@ -138,13 +149,13 @@ export default function NewOldsville({
         return(
             <div>
                 <p style={candyBoxStyles.mapStyle}>  888        </p>
-                <p style={candyBoxStyles.mapStyle}> 888*8       </p>
+                <p style={candyBoxStyles.mapStyle}> 888*8    *  </p>
                 <p style={candyBoxStyles.mapStyle}>8*888*8      </p>
                 <p style={candyBoxStyles.mapStyle}>  ||      88*   </p>
                 <p style={candyBoxStyles.mapStyle}>  ||     8*88*   </p>
-                <p style={candyBoxStyles.mapStyle}>        8*888*8   </p>
-                <p style={candyBoxStyles.mapStyle}>          ||   </p>
-                <p style={candyBoxStyles.mapStyle}>          ||   </p>
+                <p style={candyBoxStyles.mapStyle}>*       8*888*8   </p>
+                <p style={candyBoxStyles.mapStyle}>    '     ||   </p>
+                <p style={candyBoxStyles.mapStyle}> ''        ||   </p>
             </div>
         )
     }
@@ -153,14 +164,14 @@ export default function NewOldsville({
         return(
             <div>
                 <p style={candyBoxStyles.mapStyle}>      888        </p>
-                <p style={candyBoxStyles.mapStyle}>     888*8         </p>
+                <p style={candyBoxStyles.mapStyle}> ,'   888*8        * </p>
                 <p style={candyBoxStyles.mapStyle}>    8*888*8    8   </p>
                 <p style={candyBoxStyles.mapStyle}>       ||     &88   </p>
                 <p style={candyBoxStyles.mapStyle}>   888 ||    88*8 </p>
                 <p style={candyBoxStyles.mapStyle}> *88*88     *88*88</p>
                 <p style={candyBoxStyles.mapStyle}> 8*888*8       ||</p>
                 <p style={candyBoxStyles.mapStyle}>   ||          ||  </p>
-                <p style={candyBoxStyles.mapStyle}>   ||       </p>
+                <p style={candyBoxStyles.mapStyle}> ' ||       </p>
             </div>
         )
     }
@@ -181,7 +192,9 @@ export default function NewOldsville({
                 <div>{renderHouse(house2, house2Msg)}</div>
                 {renderLilForest2()}
             </div>
-
+            <div style={{marginTop: -200, marginLeft: 220}}>
+                {renderWesternRoad()}
+            </div>
             
         </div>
     )

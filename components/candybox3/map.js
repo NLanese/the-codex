@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 
 // Maps
 import NewOldsville from "./maps/newOldsville";
+import NewOldsvilleHouse2 from "./maps/newOldsvilleMaps/house2";
 
 
 export default function Map({
@@ -21,6 +22,9 @@ export default function Map({
     ///////////
 
     const [thisMap, setThisMap] = useState(selectedMap)
+    useEffect(() => {
+        setThisMap(selectedMap)
+    }, [selectedMap])
 
     ///////////////
     // Renderers //
