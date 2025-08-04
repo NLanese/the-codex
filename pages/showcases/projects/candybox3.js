@@ -12,6 +12,7 @@ import Styles from "../../../styles/styles";
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import CandyBox3MainScreen from "../../../components/candybox3/mainScreen";
+import Map from "../../../components/candybox3/map";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 
@@ -26,7 +27,7 @@ export default function CandyBox3() {
         const router = useRouter()
 
         // Accumulation and Basic Stats
-        const [candies, setCandies] = useState(0)
+        const [candies, setCandies] = useState(1000)
         const [candiesRate, setCandiesRate] = useState(1)
         const [candiesEaten, setCandiesEaten] = useState(0)
         const [candiesThrown, setCandiesThrown] = useState(0)
@@ -48,6 +49,8 @@ export default function CandyBox3() {
         const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
         const [screenShown, setScreenShown] = useState("Main")
         const [screenTabs, setScreenTabs] = useState(["Inventory", "Candy Box"])
+
+        const [selectedMap, setSelectedMap] = useState("New Oldsville")
       
 
 
@@ -130,6 +133,7 @@ export default function CandyBox3() {
                     <OstrichTabBar
                         style={{width: '100%'}}
                         tabs={screenTabs}
+                        onTabClick={setScreenShown}
                         startingTabByIndex={1}
                     />
                 )
@@ -163,6 +167,14 @@ export default function CandyBox3() {
                         setEaten={setCandiesEaten}
                         features={featuresUnlocked}
                         setFeature={setFeaturesUnlocked}
+                    />
+                )
+            }
+            if (screenShown === "Local Map"){
+                return(
+                    <Map
+                    selectedMap={selectedMap}
+                    setSelectedMap={setSelectedMap}
                     />
                 )
             }

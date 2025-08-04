@@ -75,11 +75,13 @@ export default function CandyBox3MainScreen({
         }
     }
 
+    // Requests (Buys) a Feature
     function handleRequestFeature(){
         if (localState.candies < newFeatureCost[localState.features]){
             return
         }
         else{
+            setCandies(prev => prev - newFeatureCost[localState.features])
             setFeature(prev => prev + 1)
         }
     }
