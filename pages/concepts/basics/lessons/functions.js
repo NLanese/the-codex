@@ -458,7 +458,43 @@ const VariablesLesson = ({}) => {
                                 color= "#11Df9f"
                                 word="Declaration" 
                                 definition= "Functions are responsible for changing the value of variables that are at your disposal. Generally, when you execute or 'do' a function, you as the developer will need to tell the function which variables it will be changing or working with. These provided variables are the parameters"                            />} 
-                            />
+                            /> have no specified data types either. 
+
+                            <div style={{...Styles.Sections.simpleLessonCode, width: '90%'}}>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Declare the Function </span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>function </span>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.var}>num</span>
+                                <span style={Styles.Code.keyword}>{") {"}</span>
+                                </p>
+
+                                <p style={{...Styles.Code.code, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>num </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>num </span>
+                                <span style={Styles.Code.reg}>+ 1 </span>
+                                </p>
+
+                                <p style={{...Styles.Code.code, marginLeft: 20}}>
+                                <span style={Styles.Code.keyword}>return </span>
+                                <span style={Styles.Code.var}>num </span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>{"}"}</span>
+                                </p>
+                            </div>
+
+                            Here, <span style={Styles.Code.keyword}>function </span> is the key word we use to tell the computer
+                            that we are beginning a function declaration. We then enter the name of the function, which in our case is
+                            <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter</strong>
+                            and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>.
+
                         </div>
 
                         {/* Python */}
