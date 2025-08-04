@@ -1,5 +1,5 @@
 // React + Next
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
@@ -12,6 +12,7 @@ import Styles from "../../../styles/styles";
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import CandyBox3MainScreen from "../../../components/candybox3/mainScreen";
+import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 
 export default function CandyBox3() {
@@ -40,10 +41,12 @@ export default function CandyBox3() {
 
         const [health, setHealth] = useState(100)
         const [maxHealth, setMaxHealth] = useState(100)
+        const [healthPercent, setHealthPercent] = useState('100%')
 
         // Page State
-        const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
+        const [featuresUnlocked, setFeaturesUnlocked] = useState(1)
         const [screenShown, setScreenShown] = useState("Main")
+        const [screenTabs, setScreenTabs] = useState(["Map", "Inventory", "Candy Box"])
       
 
 
@@ -85,6 +88,31 @@ export default function CandyBox3() {
     // Renderers //
     ///////////////
 
+        function renderMainBar(){
+            if (featuresUnlocked > 0){
+                return(
+                    <OstCard style={{width: '95%', marginLeft: '2.5%'}}>
+                        <div style={{width: '100%'}}>
+                            <OstrichTabBar
+                                style={{width: '100%'}}
+                                tabs={screenTabs}
+                            />
+                            <div style={{display: 'flex', flexDirection: 'row', marginTop: 30, textAlign: 'center'}}>
+                                <div style={{flex: 1}}>
+                                    Health:
+                                </div>
+                                <div style={{flex: 11}}>
+                                    <div style={{backgroundColor: 'red', width: healthPercent, height: '100%', display: 'flex', justifyContent: 'center'}}>
+                                        <p style={{padding: 2, margin: 0}}>{health} / {maxHealth}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </OstCard>
+                )
+            }   
+        }
+
         function MAIN(){
             if (screenShown === "Main"){
                 return (
@@ -105,6 +133,7 @@ export default function CandyBox3() {
 
     return(
         <div style={{marginTop: 20}}>
+            {renderMainBar()}
             {MAIN()}
         </div>
     )

@@ -24,6 +24,7 @@ export default function CandyBox3MainScreen({
 
     const [showThrow, setShowThrow] = useState(false)
     const [showNewFeature, setShowNewFeature] = useState(false)
+    const [newFeatureCost, setNewFeatureCost] = useState([30, 10, 10, 50])
 
 
     ////////////////
@@ -84,7 +85,7 @@ export default function CandyBox3MainScreen({
             return(
                 <div>
                     <button>
-                        Throw 10 candies on the ground
+                        Request a new Feature ({newFeatureCost[features]} candies)
                     </button>
                     
                 </div>
@@ -98,7 +99,7 @@ export default function CandyBox3MainScreen({
             if (thrown >= 30000){
 
             }
-            else if (thrown  >= 800){
+            else if (thrown  >= 890){
                 return(
                     <p>{`You've thrown ${thrown} candies on the ground...  (>_<) seriously. thats a LOT of candy...`}</p>
                 )
@@ -108,7 +109,7 @@ export default function CandyBox3MainScreen({
                     <p>{`You've thrown ${thrown} candies on the ground...  (>_<) duuude stop`}</p>
                 )
             }
-            else if (thrown  >= 720){
+            else if (thrown  >= 600){
                 return(
                     <p>{`You've thrown ${thrown} candies on the ground...  >: (      WHY??`}</p>
                 )
@@ -152,6 +153,7 @@ export default function CandyBox3MainScreen({
             {showCandyCount()}
             {renderThrowCandies()}
             {renderTotalThrown()}
+            {renderRequestFeature()}
         </div>
     )
 }

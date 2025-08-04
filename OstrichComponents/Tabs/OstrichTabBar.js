@@ -282,8 +282,10 @@ export const OstrichTabBar = ({
     /////////////////
 
     return (
-        <div style={{ ...barStyle, display: 'flex' }}>
-           {renderTabRow()}
+        <div style={{ ...barStyle}}>
+            <div style={{width: '100%', display: 'flex' }}>
+                {renderTabRow()}
+            </div>
         </div>
     );
 };
