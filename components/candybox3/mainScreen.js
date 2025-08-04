@@ -25,7 +25,7 @@ export default function CandyBox3MainScreen({
 
     const [showThrow, setShowThrow] = useState(false)
     const [showNewFeature, setShowNewFeature] = useState(false)
-    const [newFeatureCost, setNewFeatureCost] = useState([30, 10, 10, 50])
+    const [newFeatureCost, setNewFeatureCost] = useState([30, 10, 10, 50000])
 
     const [localState, setLocalState] = useState({
         candies: candies,
@@ -128,6 +128,156 @@ export default function CandyBox3MainScreen({
         if (localState.thrown > 0){
             if (thrown >= 30000){
 
+            }
+            else if (localState.thrown  >= 1830){
+                return(
+                    <div style={{flexDirection: 'row'}}>
+                        <p>{`You've thrown ${localState.thrown} candies on the ground...`}</p>
+                        <p style={{marginLeft: 20}}>
+                            {"(>__>)"}
+                        </p>
+                    </div>
+                )
+            }
+            else if (localState.thrown  >= 1830){
+                return(
+                    <div style={{flexDirection: 'row'}}>
+                        <p>{`You've thrown ${localState.thrown} candies on the ground...`}</p>
+                        <p style={{marginLeft: 15}}>
+                            {"(>__>)"}
+                        </p>
+                    </div>
+                )
+            }
+            else if (localState.thrown  >= 1820){
+                return(
+                    <div style={{flexDirection: 'row'}}>
+                        <p>{`You've thrown ${localState.thrown} candies on the ground...`}</p>
+                        <p style={{marginLeft: 10}}>
+                            {"(>__>)"}
+                        </p>
+                    </div>
+                )
+            }
+            else if (localState.thrown  >= 1810){
+                return(
+                    <div style={{flexDirection: 'row'}}>
+                        <p>{`You've thrown ${localState.thrown} candies on the ground...`}</p>
+                        <p style={{marginLeft: 5}}>
+                            {"(>__>)"}
+                        </p>
+                    </div>
+                )
+            }
+            else if (localState.thrown  >= 1800){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (O _ O) fine, if you won't stop, ill have to stop you myself!!`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1580){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (v__v)`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1570){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (v__v) wow man. not cool.`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1570){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (0__0) I FAKED MY DEATH AND YOU DIDNT CARE???`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1560){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (0__0) YOURE STILL DOING THIS???`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1550){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (x____0) `}</p>
+                )
+            }
+            else if (localState.thrown  >= 1450){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (x____x)`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1400){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (x____x) *he died*`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1300){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (x____x) `}</p>
+                )
+            }
+            else if (localState.thrown  >= 1200){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o____o) `}</p>
+                )
+            }
+            else if (localState.thrown  >= 1190){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o___o) `}</p>
+                )
+            }
+            else if (localState.thrown  >= 1180){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o__o) `}</p>
+                )
+            }
+            else if (localState.thrown  >= 1170){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o_o) `}</p>
+                )
+            }
+            else if (localState.thrown  >= 1150){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (*_*) if i ignore you, you'll stop`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1100){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (*_*) this is probably my fault`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1020){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o_o) i didnt think you'd get this far`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1020){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o_o) you dont get anything for doing this`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1020){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o_o) this makes no sense`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1010){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o_o) that could have fed a whole country`}</p>
+                )
+            }
+            else if (localState.thrown  >= 1000){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (o_o) omg you wasted 1000 candies`}</p>
+                )
+            }
+            else if (localState.thrown  >= 930){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (P_P) pls stop. its such a waste of candy.`}</p>
+                )
+            }
+            else if (localState.thrown  >= 910){
+                return(
+                    <p>{`You've thrown ${localState.thrown} candies on the ground...\t  (O__o) `}</p>
+                )
             }
             else if (localState.thrown  >= 890){
                 return(

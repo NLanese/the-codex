@@ -46,7 +46,7 @@ export default function CandyBox3() {
         // Page State
         const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
         const [screenShown, setScreenShown] = useState("Main")
-        const [screenTabs, setScreenTabs] = useState(["Map", "Inventory", "Candy Box"])
+        const [screenTabs, setScreenTabs] = useState(["Inventory", "Candy Box"])
       
 
 
@@ -78,8 +78,8 @@ export default function CandyBox3() {
 
         // Features
         useEffect(() => {
-            if (featuresUnlocked === 2){
-                setScreenTabs(prev => [...prev, "Save"])
+            if (featuresUnlocked === 3){
+                setScreenTabs(prev => [...prev, "Local Map", "Save"])
             }
         }, [featuresUnlocked])
 
@@ -103,10 +103,7 @@ export default function CandyBox3() {
                         <div style={{width: '100%'}}>
 
                             {/* Tabs */}
-                            <OstrichTabBar
-                                style={{width: '100%'}}
-                                tabs={screenTabs}
-                            />
+                            {renderTabs()}
 
                             {/* Health Bar */}
                             <div style={{display: 'flex', flexDirection: 'row', marginTop: 30, textAlign: 'center'}}>
@@ -125,6 +122,17 @@ export default function CandyBox3() {
                     </OstCard>
                 )
             }   
+        }
+
+        function renderTabs(){
+            if (featuresUnlocked >= 2){
+                return(
+                    <OstrichTabBar
+                        style={{width: '100%'}}
+                        tabs={screenTabs}
+                    />
+                )
+            }
         }
 
         function MAIN(){
