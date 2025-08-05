@@ -57,7 +57,7 @@ const Styles = {
     },
 
     Code: {
-        code: {marginBottom: 0, marginTop: 0, fontSize: 22},
+        code: {marginBottom: 0, marginTop: 0, fontSize: 18},
         keyword: {color: '#bd2eff', marginTop: 0, marginBottom: 0},
         var: {color: '#0fdefa', marginTop: 0, marginBottom: 0},
         reg: {color: 'white', marginTop: 0, marginBottom: 0},

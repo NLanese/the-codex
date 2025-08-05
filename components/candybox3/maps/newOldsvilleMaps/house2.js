@@ -14,4 +14,7 @@ export default function NewOldsvilleHouse2({
     setSelectedMap
 }){
 
+    return(
+        <div></div>
+    )
 }

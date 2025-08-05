@@ -88,11 +88,20 @@ export default function CandyBox3() {
             }
         }, [featuresUnlocked])
 
+        // Health Updates
+        useEffect(() => {
+
+        }, [])
+
     ///////////////
     // Functions //
     ///////////////
 
         function eatAllCandies(){
+
+        }
+
+        function determineHealthBarColor(){
 
         }
 

@@ -492,7 +492,7 @@ const VariablesLesson = ({}) => {
 
                             Here, <span style={Styles.Code.keyword}>function </span> is the key word we use to tell the computer
                             that we are beginning a function declaration. We then enter the name of the function, which in our case is
-                            <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter</strong>
+                            <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter </strong>
                             and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>.
 
                             <p>
@@ -508,6 +508,56 @@ const VariablesLesson = ({}) => {
                             />} 
                             /> the new value
                             </p>
+
+                            <div style={{...Styles.Sections.simpleLessonCode, width: '95%'}}>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Run the Function on a Value</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.reg}>1</span>
+                                <span style={Styles.Code.keyword}>{")"}</span>
+                                </p>
+
+                                <br></br>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Run the Function on a Variable</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>let </span>
+                                <span style={Styles.Code.var}>testVal</span>
+                                <span style={Styles.Code.reg}> = 5</span>
+                                </p>
+
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.var}>testVal</span>
+                                <span style={Styles.Code.keyword}>{")"}</span>
+                                </p>
+
+                                <br></br>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Initialize a Variable Equal to the Return</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>let </span>
+                                <span style={Styles.Code.var}>functionVal</span>
+                                <span style={Styles.Code.reg}> = </span>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.var}>testVal</span>
+                                <span style={Styles.Code.keyword}>{")"}</span>
+                                </p>
+
+                            </div>
 
                         </div>
 
