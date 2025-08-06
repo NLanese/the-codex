@@ -58,6 +58,10 @@ export default function NewOldsville({
             setHouse1Msg(false)
         }
 
+        function clickOnStore(){
+
+        }
+
     ///////////////
     // Renderers //
     ///////////////
@@ -117,8 +121,46 @@ export default function NewOldsville({
             <p style={candyBoxStyles.mapStyle}>   |  []      []  |   888</p>
             <p style={candyBoxStyles.mapStyle}>   |      {renderHouseMessage(houseObj, show)}        |  8888</p>
             <p style={candyBoxStyles.mapStyle}>   |      <span onClick={() => houseObj.onClick()}>____</span>    | 888888</p>
-            <p style={candyBoxStyles.mapStyle}>   |      <span onClick={() => houseObj.onClick()}>|  |</span>    |   ||</p>
-            <p style={candyBoxStyles.mapStyle}>   |######<span onClick={() => houseObj.onClick()}>| '|</span>####|   ||</p>
+            <p style={candyBoxStyles.mapStyle}>   |      <span onClick={() => houseObj.onClick()}>|. |</span>    |   ||</p>
+            <p style={candyBoxStyles.mapStyle}>   |######<span onClick={() => houseObj.onClick()}>|__|</span>####|   ||</p>
+            </div>
+        )
+    }
+
+    function renderHouseB(){
+        return(
+            <div>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>     _____||___   </p>
+            <p style={candyBoxStyles.mapStyle}>    /          \ </p>
+            <p style={candyBoxStyles.mapStyle}>   /            \ </p>
+            <p style={candyBoxStyles.mapStyle}>  /______________\  </p>
+            <p style={candyBoxStyles.mapStyle}> /|              |\         </p>
+            <p style={candyBoxStyles.mapStyle}>  |  __          |</p>
+            <p style={candyBoxStyles.mapStyle}>  | [__] ______  |</p>
+            <p style={candyBoxStyles.mapStyle}>  |       |. |   | </p>
+            <p style={candyBoxStyles.mapStyle}>  |_______|__|___|    </p>
+            </div>
+        )
+    }
+
+    function renderShop(){
+        return(
+            <div>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>   ______________ </p>
+            <p style={candyBoxStyles.mapStyle}>  /______________\  </p>
+            <p style={candyBoxStyles.mapStyle}> /|              |\         </p>
+            <p style={candyBoxStyles.mapStyle}>  |   | SHOP |   |</p>
+            <p style={candyBoxStyles.mapStyle}>  |    ______    |</p>
+            <p style={candyBoxStyles.mapStyle}>  |     <span onClick={() => clickOnStore()}>|. |</span>     | </p>
+            <p style={candyBoxStyles.mapStyle}>  |_____<span onClick={() => clickOnStore()}>|__|</span>_____|    </p>
             </div>
         )
     }
@@ -189,10 +231,14 @@ export default function NewOldsville({
                     {renderLilForest1()}
                     {renderLilForest2()}
                     {renderLilForest1()}
+                    
                 </div>
                 <div>{renderHouse(house1, house1Msg)}</div>
                 <div>{renderHouse(house2, house2Msg)}</div>
                 {renderLilForest2()}
+                <div style={{marginLeft:30}}>
+                    {renderShop()}
+                </div>
             </div>
             <div style={{marginTop: -200, marginLeft: 220}}>
                 {renderWesternRoad()}

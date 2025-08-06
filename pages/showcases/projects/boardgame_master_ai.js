@@ -540,9 +540,9 @@ return (
         </div>
 
         {/* Technical Exploration */}
-        <div style={{display: 'flex', flexDirection: 'row', marginTop: 50}}>
-            <OstCard style={{margin: "30px", flex: 12}}>
-                <div style={Styles.Sections.lessonContent}>
+        <div style={{...Styles.Sections.lessonContent, marginTop: 50}}>
+            <OstCard style={{padding: 30}}>
+                <div>
                     <p style={Styles.Fonts.basic}>
                     Like everything else you see on this site, the UI was constructed using Ostrich React Components (Made by myself) on NextJS. 
                     The majority of the code sending the request to the API is within the `api` subdirectory that is naturally a part of NextJS projects.
