@@ -378,7 +378,7 @@ const VariablesLesson = ({}) => {
 
         function renderFirst(){
             return(
-                <div style={Styles.Sections.lessonContent}>
+                <div>
                     <p style={Styles.Fonts.basic}>
                         Functions are just as essential in Software Development as Variables are. As we know, <strong>variables hold data that can be changed, used, or displayed. If is often functions that do this changing, displaying, or using.</strong> 
                         A good way to think about this relationship between variables and functions is to think of them as nouns and verbs in a sentence. Computer Science is essentially you telling the computer what to do, and the Programming Langauges you are using 
@@ -427,7 +427,7 @@ const VariablesLesson = ({}) => {
 
         function renderSecond(){
             return(
-                <div style={{...Styles.Sections.lessonContent, ...Styles.Fonts.basic}}>
+                <div style={{...Styles.Fonts.basic}}>
                     <p>
                         As you see above, function declaration has some differences in different programming languages. Again, 
                         <ODef 
@@ -729,7 +729,7 @@ const VariablesLesson = ({}) => {
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Functions")}
                 {renderFirst()}
                 <CodeSnippet

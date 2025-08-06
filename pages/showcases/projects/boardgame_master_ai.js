@@ -108,6 +108,8 @@ export default function BoardGameMasterAIProjectPage() {
     // Renderings //
     ////////////////
 
+
+    // Actual Content //
         function renderMessages(){
             return messages.map(msg => {
                 return (
@@ -122,6 +124,91 @@ export default function BoardGameMasterAIProjectPage() {
             })
         }
 
+        function renderINTRO_REGION(){
+            return(
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <OstCard style={{margin: "30px", flex: 12}}>
+                        <div style={Styles.Sections.lessonContent}>
+                            <p style={Styles.Fonts.basic}>
+                            Below is a Chat Bot designed to answer your questions about any of the board games we have listed! 
+                            Simply select a board game from the dropdown menu and enter your question in the text field. 
+                            Once complete, press submit and wait for the Board Game Master to give you a response!
+                            </p>
+
+                            <p style={Styles.Fonts.basic}>
+                            This bot was deisgned using Amazon Bedrock. Its knowledge base was compiled by Nick Lanese but all the content was 
+                            information from the respecitve board games' official rules (when applicable).
+                            </p>
+
+                            <p style={Styles.Fonts.basic}>
+                            The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
+                            </p>
+                        </div>
+                    </OstCard>
+                </div>
+            )
+        }
+
+        function renderGAME_DROPDOWN(){
+            return(
+                <div>
+                <OstrichDropDown 
+                    boxStyle={{width: 400, alignContent: 'center'}}
+                    title={determineDropTitle()}
+                    titleStyle={{fontSize: 20}}
+                    onDrawerClick={(drawer) => setSelGame(drawer)}
+                    drawers={[
+                        "5 Minute Mystery",
+                        "Checkers",
+                        "Chess",
+                        "Jenga",
+                        "Monopoly",
+                        "Poker",
+                        "Robo Quest Arena",
+                        "Splendor",
+                    ]}
+                />
+            </div>
+            )
+        }
+
+        function renderMESSAGE_SPACE(){
+            return(
+                <OstCard style={{marginTop: 50, height: '45vw', width: '85%'}}>
+                <OstCard 
+                style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed', overflow: 'scroll'}}
+                >
+                    {renderMessages()}
+                </OstCard>
+                <textarea 
+                    type="textarea" 
+                    onChange={(event) => setCurrent(event.target.value)} 
+                    value={current}
+                    style={{
+                        marginTop: '3%', 
+                        height: '14%', 
+                        width: '95%', 
+                        marginLeft: '2.5%', 
+                        borderRadius: 0, 
+                        backgroundColor: '#eee',
+                        fontSize: 18,
+                        padding: 20,
+                        boxSizing: 'border-box',
+                        verticalAlign: 'top',
+                        fontFamily: 'Gilroy'
+                    }}
+                />
+                <OstCard
+                    style={{alignSelf: 'flex-end', backgroundColor: 'white', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22, borderRadius: 0}}
+                    onClick={() => sendMessage()}
+                >
+                    Send
+                </OstCard>
+            </OstCard>
+            )
+        }
+
+    // How-to Section
         function renderBackendRequestCode(){
             return(
                 <div style={{...Styles.Sections.simpleLessonCode, width: '60%'}}>
@@ -433,86 +520,22 @@ export default function BoardGameMasterAIProjectPage() {
             )
         }
 
+       
+
 return (
     <div style={{marginTop: 20}}>
         <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
 
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-            <OstCard style={{margin: "30px", flex: 12}}>
-                <div style={Styles.Sections.lessonContent}>
-                    <p style={Styles.Fonts.basic}>
-                    Below is a Chat Bot designed to answer your questions about any of the board games we have listed! 
-                    Simply select a board game from the dropdown menu and enter your question in the text field. 
-                    Once complete, press submit and wait for the Board Game Master to give you a response!
-                    </p>
-
-                    <p style={Styles.Fonts.basic}>
-                    This bot was deisgned using Amazon Bedrock. Its knowledge base was compiled by Nick Lanese but all the content was 
-                    information from the respecitve board games' official rules (when applicable).
-                    </p>
-
-                    <p style={Styles.Fonts.basic}>
-                    The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
-                    </p>
-                </div>
-            </OstCard>
-        </div>
+        {renderINTRO_REGION()}
 
         {/* Board Game AI  */}
         <div style={{...Styles.Sections.lessonContent, alignItems: 'center', display: 'flex', flexDirection: 'column'}}>
             
             {/* Dropdown */}
-            <div>
-                <OstrichDropDown 
-                    boxStyle={{width: 400, alignContent: 'center'}}
-                    title={determineDropTitle()}
-                    titleStyle={{fontSize: 20}}
-                    onDrawerClick={(drawer) => setSelGame(drawer)}
-                    drawers={[
-                        "5 Minute Mystery",
-                        "Checkers",
-                        "Chess",
-                        "Jenga",
-                        "Monopoly",
-                        "Poker",
-                        "Robo Quest Arena",
-                        "Splendor",
-                    ]}
-                />
-            </div>
+            {renderGAME_DROPDOWN()}
             
             {/* Message Space */}
-            <OstCard style={{marginTop: 50, height: '45vw', width: '85%'}}>
-                <OstCard 
-                style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed', overflow: 'scroll'}}
-                >
-                    {renderMessages()}
-                </OstCard>
-                <textarea 
-                    type="textarea" 
-                    onChange={(event) => setCurrent(event.target.value)} 
-                    value={current}
-                    style={{
-                        marginTop: '3%', 
-                        height: '14%', 
-                        width: '95%', 
-                        marginLeft: '2.5%', 
-                        borderRadius: 0, 
-                        backgroundColor: '#eee',
-                        fontSize: 18,
-                        padding: 20,
-                        boxSizing: 'border-box',
-                        verticalAlign: 'top',
-                        fontFamily: 'Gilroy'
-                    }}
-                />
-                <OstCard
-                    style={{alignSelf: 'flex-end', backgroundColor: 'white', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22, borderRadius: 0}}
-                    onClick={() => sendMessage()}
-                >
-                    Send
-                </OstCard>
-            </OstCard>
+            {renderMESSAGE_SPACE()}
 
         </div>
 

@@ -59,6 +59,11 @@ export default function CandyBox3() {
     ////////////////
     // UseEffects //
     ////////////////
+
+        // Sets Directory
+        useEffect(() => {
+            setDirectory("Portfolio")            
+        }, [])
     
         // Candies and Lollipops Timers
         useEffect(() => {

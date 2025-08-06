@@ -44,6 +44,7 @@ export const portfolioTabs = (setTabBar, router) => {
                 "Boardgame Master AI", 
                 "BetBot",
                 {title: "Ostrich Component Library", onClick: () => router.replace("/showcases/ostrich-components/menu"), manualOnClick: true},
+                "CandyBox 3"
             ],
             onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer, router) }
         }
