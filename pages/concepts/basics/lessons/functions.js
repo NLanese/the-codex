@@ -442,6 +442,8 @@ const VariablesLesson = ({}) => {
                         Using, or <strong>running</strong> functions is usually done the same way across most languagaes, however.
                     </p>
                     <div style={Styles.Sections.importantNote}>
+
+
                         {/* JS */}
                         <div style={{
                             padding: 15, 
@@ -493,7 +495,8 @@ const VariablesLesson = ({}) => {
                             Here, <span style={Styles.Code.keyword}>function </span> is the key word we use to tell the computer
                             that we are beginning a function declaration. We then enter the name of the function, which in our case is
                             <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter </strong>
-                            and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>.
+                            and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>. Everything inside the function is encased
+                            by curly brackets  {"{  }"}.
 
                             <p>
                             Once the function begins, it takes the parameter, which is referred to as <span style={Styles.Code.var}>num</span>, and 
@@ -506,12 +509,12 @@ const VariablesLesson = ({}) => {
                                 word="Return Statement" 
                                 definition="In most cases, a function will have a return statement. This statement tells the function to stop running itself and spit out the following value. For example, a function that takes a number as a parameter and adds 1 to it would return a new number. If 2 was the parameter, the return vaue of the addOne() function would be 3. Higher Level programming langauges do not necesarily always need a return statement, but lower level ones like C# and Java usually will. These lower level anguages also need the data type of t=its return value specified ahead of time."                            
                             />} 
-                            /> the new value
+                            /> the new value.
                             </p>
 
                             <div style={{...Styles.Sections.simpleLessonCode, width: '95%'}}>
                                 <p style={Styles.Code.code}>
-                                <span style={Styles.Code.comment}>// Run the Function on a Value</span>
+                                <span style={Styles.Code.comment}>// Call (or Run) the Function on a Value</span>
                                 </p>
 
                                 <p style={Styles.Code.code}>
@@ -524,7 +527,7 @@ const VariablesLesson = ({}) => {
                                 <br></br>
 
                                 <p style={Styles.Code.code}>
-                                <span style={Styles.Code.comment}>// Run the Function on a Variable</span>
+                                <span style={Styles.Code.comment}>// Call (or Run) the Function on a Variable</span>
                                 </p>
 
                                 <p style={Styles.Code.code}>
@@ -563,10 +566,118 @@ const VariablesLesson = ({}) => {
 
                         {/* Python */}
                         <div style={{
-                            padding: 15,
+                            padding: 15, 
                             border: "1px solid black", borderRadius: 15, 
-                            margin: 20
+                            margin: "5%", width: '90%'
                         }}>
+                            Python is another high level programming langauge with a rather straightforward syntax for function declaration. Similarly, its
+                            <ODef 
+                            text="parameters" 
+                            modalContent={
+                            <ODefContnet 
+                                color= "#11Df9f"
+                                word="Declaration" 
+                                definition= "Functions are responsible for changing the value of variables that are at your disposal. Generally, when you execute or 'do' a function, you as the developer will need to tell the function which variables it will be changing or working with. These provided variables are the parameters"                            />} 
+                            /> have no specified data types either. 
+
+                            <div style={{...Styles.Sections.simpleLessonCode, width: '90%'}}>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}># Declare the Function </span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>def </span>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.var}>num</span>
+                                <span style={Styles.Code.keyword}>{") :"}</span>
+                                </p>
+
+                                <p style={{...Styles.Code.code, marginLeft: 20}}>
+                                <span style={Styles.Code.var}>num </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>num </span>
+                                <span style={Styles.Code.reg}>+ 1 </span>
+                                </p>
+
+                                <p style={{...Styles.Code.code, marginLeft: 20}}>
+                                <span style={Styles.Code.keyword}>return </span>
+                                <span style={Styles.Code.var}>num </span>
+                                </p>
+
+                            </div>
+
+                            Here, <span style={Styles.Code.keyword}>def </span> is the key word we use to tell the computer
+                            that we are beginning a function declaration. We then enter the name of the function, which in our case is
+                            <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter </strong>
+                            and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>. Python differs from 
+                            the vast majority of programming languages in that it does NOT use curly brackets to indicate scope, or what's inside of 
+                            a function vs outside of it. Rather, it uses a colon : and indentations. This means every line that is 1 tab indented after the 
+                            colon is a part of the function.
+
+                            <p>
+                            Once the function begins, it takes the parameter, which is referred to as <span style={Styles.Code.var}>num</span>, and 
+                            makes its value one plus itself. (More simply put, it increases the value of num by one). Then, the function will 
+                            <ODef 
+                            text="return" 
+                            modalContent={
+                            <ODefContnet 
+                                color= "#11Df9f"
+                                word="Return Statement" 
+                                definition="In most cases, a function will have a return statement. This statement tells the function to stop running itself and spit out the following value. For example, a function that takes a number as a parameter and adds 1 to it would return a new number. If 2 was the parameter, the return vaue of the addOne() function would be 3. Higher Level programming langauges do not necesarily always need a return statement, but lower level ones like C# and Java usually will. These lower level anguages also need the data type of t=its return value specified ahead of time."                            
+                            />} 
+                            /> the new value
+                            </p>
+
+                            <div style={{...Styles.Sections.simpleLessonCode, width: '95%'}}>
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Call (or Run) the Function on a Value</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.reg}>1</span>
+                                <span style={Styles.Code.keyword}>{")"}</span>
+                                </p>
+
+                                <br></br>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Call (or Run) the Function on a Variable</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>let </span>
+                                <span style={Styles.Code.var}>testVal</span>
+                                <span style={Styles.Code.reg}> = 5</span>
+                                </p>
+
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.var}>testVal</span>
+                                <span style={Styles.Code.keyword}>{")"}</span>
+                                </p>
+
+                                <br></br>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.comment}>// Initialize a Variable Equal to the Return</span>
+                                </p>
+
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>let </span>
+                                <span style={Styles.Code.var}>functionVal</span>
+                                <span style={Styles.Code.reg}> = </span>
+                                <span style={Styles.Code.func}>increaseValueByOne</span>
+                                <span style={Styles.Code.keyword}>{"("}</span>
+                                <span style={Styles.Code.var}>testVal</span>
+                                <span style={Styles.Code.keyword}>{")"}</span>
+                                </p>
+
+                            </div>
 
                         </div>
 

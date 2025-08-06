@@ -93,10 +93,12 @@ export default function NewOldsville({
     function renderWesternRoad(){
         return(
             <div>
-                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *</p>
-                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \______________________________</p>
+                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *          ',     ,      |   |</p>
+                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \______</p>
                 <p style={candyBoxStyles.mapStyle}>|                                </p>
-                <p style={candyBoxStyles.mapStyle}> \____________________________________________________________</p>
+                <p style={candyBoxStyles.mapStyle}> \_________________________________________________________________________       ______</p>
+                <p style={candyBoxStyles.mapStyle}>    *                 '',                                                  \     /</p>
+                <p style={candyBoxStyles.mapStyle}>                    ,                         *              '.             |   |</p>
             </div>
         )
     }

@@ -52,6 +52,7 @@ export default function CandyBox3() {
         const [screenShown, setScreenShown] = useState("Main")
         const [screenTabs, setScreenTabs] = useState(["Inventory", "Candy Box"])
         const [selectedMap, setSelectedMap] = useState("New Oldsville")
+        const [termMsgs, setTermMsgs] = useState([])
       
 
 
@@ -132,6 +133,7 @@ export default function CandyBox3() {
                             </div>
                             {renderMoreMenu()}
                         </div>
+                        
                     </OstCard>
                 )
             }   
@@ -159,6 +161,26 @@ export default function CandyBox3() {
                         <p> Chocolate Bars: {chocolateBars}</p>
                         <p> Pains Au Chocolat: {pocs}</p>
                     </div>
+                )
+            }
+        }
+
+        function renderTerminal(){
+            if (featuresUnlocked >= 4){
+                return(
+                    <div
+                    style={{
+                        width: '100%',
+                        backgroundColor: '#efefef',
+                        height: '200px',           
+                        overflowY: 'auto',         
+                        padding: '10px',
+                        fontFamily: 'monospace'    
+                    }}>
+                    {termMsgs.map(msg => {
+                        <p>{msg}</p>
+                    })}
+                </div>
                 )
             }
         }
