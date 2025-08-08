@@ -18,8 +18,11 @@ export default function NewOldsville({
     // State //
     ///////////
 
+        // Inventory
         const [yourInventory, setYourInventory] = useState([...inventory])
 
+
+        // House Objects
         const [house1, setHouse1] = useState({
             onClick: (() => {
                 if (yourInventory.includes("Your House Key")){
@@ -46,6 +49,14 @@ export default function NewOldsville({
         })
         const [house2Msg, setHouse2Msg] = useState(false)
 
+        // Lake Objects
+        const [showLakeMsg, setShowLakeMsg] = useState(false)
+
+        useEffect(() => {
+            console.log("showLakeMsg changed:", showLakeMsg);
+          }, [showLakeMsg]);
+          
+
     ///////////////
     // Constants //
     ///////////////
@@ -54,12 +65,22 @@ export default function NewOldsville({
     // Functions //
     ///////////////
 
+        // Clears all Messages
         function clearAllMessages(){
+            console.log("Leave")
             setHouse1Msg(false)
+            console.log("Leave1")
+            setShowLakeMsg(false)
+            console.log("Leave2")
         }
 
+        // Navigates to Store Screen
         function clickOnStore(){
             console.log("Store")
+        }
+
+        function handleLakeClick(){
+            setShowLakeMsg(true)
         }
 
     ///////////////
@@ -98,11 +119,11 @@ export default function NewOldsville({
         return(
             <div>
                 <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *          ',     ,      |   |         ; '      |   |</p>
-                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \________________/     \_</p>
-                <p style={candyBoxStyles.mapStyle}>|                                </p>
-                <p style={candyBoxStyles.mapStyle}> \_________________________________________________________________________       _______________________</p>
-                <p style={candyBoxStyles.mapStyle}>    *                 '',                                                  \     /</p>
-                <p style={candyBoxStyles.mapStyle}>                    ,                         *              '.             |   |</p>
+                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \________________/     \_____________</p>
+                <p style={candyBoxStyles.mapStyle}>|                                                                                                                      \</p>
+                <p style={candyBoxStyles.mapStyle}> \_________________________________________________________________________       ________________________________     |</p>
+                <p style={candyBoxStyles.mapStyle}>    *                 '',                                                  \     /                                \    |</p>
+                <p style={candyBoxStyles.mapStyle}>                    ,                         *              '.             |   |                                  |   |</p>
             </div>
         )
     }
@@ -239,26 +260,134 @@ export default function NewOldsville({
         )
     }
 
-    function renderLake(){
+    function renderLake(show, setShow){
         return(
             <div>
                 <p style={candyBoxStyles.mapStyle}>                                __________</p>
-                <p style={candyBoxStyles.mapStyle}>     ______               _____/           \_</p>
-                <p style={candyBoxStyles.mapStyle}>    /       \___________/         ~~         \____</p>
-                <p style={candyBoxStyles.mapStyle}>   /                                               \</p>
-                <p style={candyBoxStyles.mapStyle}>  |          ~                ____                  \</p>
-                <p style={candyBoxStyles.mapStyle}>  |                          /    \                  \__</p>
-                <p style={candyBoxStyles.mapStyle}>   \                         \____/           ~~         \</p>
-                <p style={candyBoxStyles.mapStyle}>    \                                                     \</p>
-                <p style={candyBoxStyles.mapStyle}>     \           {"<=^^^0<"}                                    |</p>
-                <p style={candyBoxStyles.mapStyle}>      |      ~                                            /</p>
-                <p style={candyBoxStyles.mapStyle}>      |                                   {">0^^^=>"}          /</p>
-                <p style={candyBoxStyles.mapStyle}>       \ _____              ~                            \</p>
-                <p style={candyBoxStyles.mapStyle}>              \_                                     ~   /</p>
-                <p style={candyBoxStyles.mapStyle}>                \______________________________________ /</p>
+                <p style={candyBoxStyles.mapStyle}>     ______               _____<span onClick={() => handleLakeClick()}>/           \_</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}> /       \___________/         ~~         \____</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>/                                               \</span></p>
+                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|          ~                _____                 \</span></p>
+                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           / 0=k \                  \__</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         \_____/           ~~         \</span></p>
+                <p style={candyBoxStyles.mapStyle}>    <span onClick={() => handleLakeClick()}>\                                                     \</span></p>
+                <p style={candyBoxStyles.mapStyle}>     <span onClick={() => handleLakeClick()}>\           {"<=^^^8<"}      {renderLakeMessage(show, setShow)}                             |</span></p>
+                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|      ~                                            /</span></p>
+                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|                                   {">8^^^=>"}         /</span></p>
+                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}> \ _____              ~                            \</span></p>
+                <p style={candyBoxStyles.mapStyle}>              <span onClick={() => handleLakeClick()}>\_                                     ~   /</span></p>
+                <p style={candyBoxStyles.mapStyle}>                <span onClick={() => handleLakeClick()}>\______________________________________ /</span></p>
             </div>
         )
     }
+
+    function renderLakeMessage(show, setShow){
+        if (show){
+            return(
+                <div
+                    style={{
+                        position: 'absolute',
+                        marginTop: -40,
+                        backgroundColor: 'white',
+                        border: '1px solid black',
+                        padding: '5px',
+                        width: 200,
+                        whiteSpace: 'normal',      
+                        overflowWrap: 'normal',
+                        wordBreak: 'normal', fontSize: 12,
+                        zIndex: 1000
+                    }}
+                    >
+                    The Lake is deep and filled with crocodiles. No way you can get across without a raft
+                    <div style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                        {yourInventory.includes("Raft") && (
+                            <button>
+                                Take Raft
+                            </button>
+                        )}
+                            <button onClick={(e) => {
+                                e.stopPropagation();
+                                setShow(false);
+                            }}>
+                                Leave
+                            </button>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    function renderSouthbound(hasExit=false){
+        function renderExit(){
+            if ((hasExit)){
+                return(
+                    <>
+                        <p style={candyBoxStyles.mapStyle}>                |   |        _________ </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |       [To Forest]  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |          |   |  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |______________________</p>
+                        <p style={candyBoxStyles.mapStyle}>                |                </p>
+                        <p style={candyBoxStyles.mapStyle}>                |    ______________________</p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    </>
+                )
+            }
+        }
+        function renderExtra(){
+            if (hasExit)
+            return(
+                <>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                </>
+            )
+        }
+        return(
+            <div style={{marginLeft: 2}}>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                {renderExit()}
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                {renderExtra()}
+            </div>
+        )
+    }
+
+
+    //////////
+    // MAIN //
+    //////////
 
     return(
         <div style={{...candyBoxStyles.mapStyle, height: '150%', width: '100%', margin: 20}}>
@@ -308,7 +437,13 @@ export default function NewOldsville({
             {/* Road */}
             <div style={{marginTop: -200, marginLeft: 220}}>
                 {renderWesternRoad()}
-                {renderLake()}
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    {renderLake(showLakeMsg, setShowLakeMsg)}
+                    {renderSouthbound()}
+                    <div style={{marginLeft: 40}}>{renderHouseB()}</div>
+                    <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
+                </div>
+                
             </div>
         </div>
     )
