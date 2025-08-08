@@ -51,6 +51,7 @@ export default function NewOldsville({
 
         // Lake Objects
         const [showLakeMsg, setShowLakeMsg] = useState(false)
+        const [showKeyInLakeMsg, setShowKeyInLakeMsg] = useState(false)
 
         useEffect(() => {
             console.log("showLakeMsg changed:", showLakeMsg);
@@ -81,6 +82,11 @@ export default function NewOldsville({
 
         function handleLakeClick(){
             setShowLakeMsg(true)
+        }
+
+        function handleKeyInLakeClick(){
+            setShowLakeMsg(false)
+            setShowKeyInLakeMsg(true)
         }
 
     ///////////////
@@ -268,8 +274,8 @@ export default function NewOldsville({
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}> /       \___________/         ~~         \____</span></p>
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>/                                               \</span></p>
                 <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|          ~                _____                 \</span></p>
-                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           / 0=k \                  \__</span></p>
-                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         \_____/           ~~         \</span></p>
+                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           </span><span onClick={() => handleLakeClick()}>/ 0=k \</span><span onClick={() => handleLakeClick()}>                 \__</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         </span><span onClick={() => handleLakeClick()}>\_____/</span><span onClick={() => handleLakeClick()}>           ~~         \</span></p>
                 <p style={candyBoxStyles.mapStyle}>    <span onClick={() => handleLakeClick()}>\                                                     \</span></p>
                 <p style={candyBoxStyles.mapStyle}>     <span onClick={() => handleLakeClick()}>\           {"<=^^^8<"}      {renderLakeMessage(show, setShow)}                             |</span></p>
                 <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|      ~                                            /</span></p>
