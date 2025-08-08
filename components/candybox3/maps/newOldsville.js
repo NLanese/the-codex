@@ -239,6 +239,27 @@ export default function NewOldsville({
         )
     }
 
+    function renderLake(){
+        return(
+            <div>
+                <p style={candyBoxStyles.mapStyle}>                                __________</p>
+                <p style={candyBoxStyles.mapStyle}>     ______               _____/           \_</p>
+                <p style={candyBoxStyles.mapStyle}>    /       \___________/         ~~         \____</p>
+                <p style={candyBoxStyles.mapStyle}>   /                                               \</p>
+                <p style={candyBoxStyles.mapStyle}>  |          ~                ____                  \</p>
+                <p style={candyBoxStyles.mapStyle}>  |                          /    \                  \__</p>
+                <p style={candyBoxStyles.mapStyle}>   \                         \____/           ~~         \</p>
+                <p style={candyBoxStyles.mapStyle}>    \                                                     \</p>
+                <p style={candyBoxStyles.mapStyle}>     \           {"<=^^^0<"}                                    |</p>
+                <p style={candyBoxStyles.mapStyle}>      |      ~                                            /</p>
+                <p style={candyBoxStyles.mapStyle}>      |                                   {">0^^^=>"}          /</p>
+                <p style={candyBoxStyles.mapStyle}>       \ _____              ~                            \</p>
+                <p style={candyBoxStyles.mapStyle}>              \_                                     ~   /</p>
+                <p style={candyBoxStyles.mapStyle}>                \______________________________________ /</p>
+            </div>
+        )
+    }
+
     return(
         <div style={{...candyBoxStyles.mapStyle, height: '150%', width: '100%', margin: 20}}>
             <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -283,8 +304,11 @@ export default function NewOldsville({
                     {renderLilForest1()}
                 </div>
             </div>
+
+            {/* Road */}
             <div style={{marginTop: -200, marginLeft: 220}}>
                 {renderWesternRoad()}
+                {renderLake()}
             </div>
         </div>
     )
