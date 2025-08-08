@@ -59,7 +59,7 @@ export default function NewOldsville({
         }
 
         function clickOnStore(){
-
+            console.log("Store")
         }
 
     ///////////////
@@ -97,10 +97,10 @@ export default function NewOldsville({
     function renderWesternRoad(){
         return(
             <div>
-                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *          ',     ,      |   |</p>
-                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \______</p>
+                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *          ',     ,      |   |         ; '      |   |</p>
+                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \________________/     \_</p>
                 <p style={candyBoxStyles.mapStyle}>|                                </p>
-                <p style={candyBoxStyles.mapStyle}> \_________________________________________________________________________       ______</p>
+                <p style={candyBoxStyles.mapStyle}> \_________________________________________________________________________       _______________________</p>
                 <p style={candyBoxStyles.mapStyle}>    *                 '',                                                  \     /</p>
                 <p style={candyBoxStyles.mapStyle}>                    ,                         *              '.             |   |</p>
             </div>
@@ -156,11 +156,30 @@ export default function NewOldsville({
             <p style={candyBoxStyles.mapStyle}>                  </p>
             <p style={candyBoxStyles.mapStyle}>   ______________ </p>
             <p style={candyBoxStyles.mapStyle}>  /______________\  </p>
-            <p style={candyBoxStyles.mapStyle}> /|              |\         </p>
+            <p style={candyBoxStyles.mapStyle}> /|              |\ </p>
             <p style={candyBoxStyles.mapStyle}>  |   | SHOP |   |</p>
             <p style={candyBoxStyles.mapStyle}>  |    ______    |</p>
             <p style={candyBoxStyles.mapStyle}>  |     <span onClick={() => clickOnStore()}>|. |</span>     | </p>
             <p style={candyBoxStyles.mapStyle}>  |_____<span onClick={() => clickOnStore()}>|__|</span>_____|    </p>
+            </div>
+        )
+    }
+
+    function renderForge(){
+        return(
+            <div>
+            <p style={candyBoxStyles.mapStyle}>                  </p>
+            <p style={candyBoxStyles.mapStyle}>                              %%# </p>
+            <p style={candyBoxStyles.mapStyle}>                            %###</p>
+            <p style={candyBoxStyles.mapStyle}>    ----                   ##%</p>
+            <p style={candyBoxStyles.mapStyle}>    |  |                   %# </p>
+            <p style={candyBoxStyles.mapStyle}>   _|__|_________          #</p>
+            <p style={candyBoxStyles.mapStyle}>  /_______________\       /--\</p>
+            <p style={candyBoxStyles.mapStyle}> /|_T_T_T_T_T_T_T_|\     /    \</p>
+            <p style={candyBoxStyles.mapStyle}>  |]  | FORGE |  [|-----[======]</p>
+            <p style={candyBoxStyles.mapStyle}>  |]   _______   [|     [-|-|-|]</p>
+            <p style={candyBoxStyles.mapStyle}>  |]   |. | .|   [|     [|-|-|-]</p>
+            <p style={candyBoxStyles.mapStyle}>  |]___|__|__|___[|_____[_|_|_|]</p>
             </div>
         )
     }
@@ -238,6 +257,9 @@ export default function NewOldsville({
                 {renderLilForest2()}
                 <div style={{marginLeft:30}}>
                     {renderShop()}
+                </div>
+                <div>
+                    {renderForge()}
                 </div>
             </div>
             <div style={{marginTop: -200, marginLeft: 220}}>

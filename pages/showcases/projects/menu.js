@@ -139,7 +139,7 @@ export default function ProjectsMenu() {
                         imageSrc={"moop"}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/projects/candybox3")
+                        router.replace("/showcases/projects/candybox_3")
                         }}
                     >
                         Candy Box 3
