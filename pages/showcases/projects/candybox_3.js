@@ -46,6 +46,7 @@ export default function CandyBox3() {
         const [healthPercent, setHealthPercent] = useState('100%')
 
         const [inventory, setInventory] = useState([])
+        const [thingsDone, setThingsDone] = useState([])
 
         // Page State
         const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
@@ -214,6 +215,8 @@ export default function CandyBox3() {
                     setSelectedMap={setSelectedMap}
                     inventory={inventory}
                     setInventory={setInventory}
+                    thingsDone={thingsDone}
+                    setThingsDone={setThingsDone}
                     />
                 )
             }

@@ -14,7 +14,9 @@ export default function Map({
     selectedMap, 
     setSelectedMap,
     inventory,
-    setInventory
+    setInventory,
+    thingsDone, 
+    setThingsDone,
 }) {
 
     ///////////
@@ -37,6 +39,8 @@ export default function Map({
                     inventory={inventory}
                     setInventory={setInventory}
                     setSelectedMap={setSelectedMap}
+                    thingsDone={thingsDone}
+                    setThingsDone={setThingsDone}
                 />
             )
         }

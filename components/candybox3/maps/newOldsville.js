@@ -84,7 +84,8 @@ export default function NewOldsville({
             setShowLakeMsg(true)
         }
 
-        function handleKeyInLakeClick(){
+        function handleKeyInLakeClick(e){
+            e.stopPropagation();
             setShowLakeMsg(false)
             setShowKeyInLakeMsg(true)
         }
@@ -124,8 +125,8 @@ export default function NewOldsville({
     function renderWesternRoad(){
         return(
             <div>
-                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *          ',     ,      |   |         ; '      |   |</p>
-                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \________________/     \_____________</p>
+                <p style={candyBoxStyles.mapStyle}>  |   |         `           |   |    '''           *          ',     ,      |   |         ; '     |    |</p>
+                <p style={candyBoxStyles.mapStyle}> /     \___________________/     \_________________________________________/     \_______________/      \_____________</p>
                 <p style={candyBoxStyles.mapStyle}>|                                                                                                                      \</p>
                 <p style={candyBoxStyles.mapStyle}> \_________________________________________________________________________       ________________________________     |</p>
                 <p style={candyBoxStyles.mapStyle}>    *                 '',                                                  \     /                                \    |</p>
@@ -266,7 +267,7 @@ export default function NewOldsville({
         )
     }
 
-    function renderLake(show, setShow){
+    function renderLake(show, setShow, show2, setShow2){
         return(
             <div>
                 <p style={candyBoxStyles.mapStyle}>                                __________</p>
@@ -274,8 +275,8 @@ export default function NewOldsville({
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}> /       \___________/         ~~         \____</span></p>
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>/                                               \</span></p>
                 <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|          ~                _____                 \</span></p>
-                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           </span><span onClick={() => handleLakeClick()}>/ 0=k \</span><span onClick={() => handleLakeClick()}>                 \__</span></p>
-                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         </span><span onClick={() => handleLakeClick()}>\_____/</span><span onClick={() => handleLakeClick()}>           ~~         \</span></p>
+                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           </span><span onClick={(e) => handleKeyInLakeClick(e)}>/ 0=k \</span><span onClick={() => handleLakeClick()}>                 \__</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         </span><span onClick={(e) => handleKeyInLakeClick(e)}>\_____/</span><span onClick={() => handleLakeClick()}>           ~~         \</span></p>
                 <p style={candyBoxStyles.mapStyle}>    <span onClick={() => handleLakeClick()}>\                                                     \</span></p>
                 <p style={candyBoxStyles.mapStyle}>     <span onClick={() => handleLakeClick()}>\           {"<=^^^8<"}      {renderLakeMessage(show, setShow)}                             |</span></p>
                 <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|      ~                                            /</span></p>
@@ -294,6 +295,7 @@ export default function NewOldsville({
                     style={{
                         position: 'absolute',
                         marginTop: -40,
+                        marginLeft: 30,
                         backgroundColor: 'white',
                         border: '1px solid black',
                         padding: '5px',
@@ -305,6 +307,43 @@ export default function NewOldsville({
                     }}
                     >
                     The Lake is deep and filled with crocodiles. No way you can get across without a raft
+                    <div style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                        {yourInventory.includes("Raft") && (
+                            <button>
+                                Take Raft
+                            </button>
+                        )}
+                            <button onClick={(e) => {
+                                e.stopPropagation();
+                                setShow(false);
+                            }}>
+                                Leave
+                            </button>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    function renderKeyInLakeMessage(show, setShow){
+        if (show){
+            return(
+                <div
+                    style={{
+                        position: 'absolute',
+                        marginTop: -40,
+                        marginLeft: 30,
+                        backgroundColor: 'white',
+                        border: '1px solid black',
+                        padding: '5px',
+                        width: 200,
+                        whiteSpace: 'normal',      
+                        overflowWrap: 'normal',
+                        wordBreak: 'normal', fontSize: 12,
+                        zIndex: 1000
+                    }}
+                    >
+                    Your key! It is on a rock in the middle of the lake. 
                     <div style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
                         {yourInventory.includes("Raft") && (
                             <button>

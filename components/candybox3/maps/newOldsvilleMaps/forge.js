@@ -12,7 +12,7 @@ export default function NewOldsvilleHouse2({
     inventory,
     setInventory,
     setSelectedMap,
-    thingsDone,
+    thingsDone, 
     setThingsDone
 }){
 
