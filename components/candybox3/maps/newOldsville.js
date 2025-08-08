@@ -244,28 +244,48 @@ export default function NewOldsville({
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 {renderOldsVilleSign()}
             </div>
+
+            {/* Top Row */}
             <div style={{display: 'flex', flexDirection: 'row'}}>
+
+                {/* Left Forest Wall */}
                 <div style={{display: 'flex', flexDirection: 'column', marginTop: -80}}>
                     {renderLilForest1()}
                     {renderLilForest1()}
                     {renderLilForest2()}
                     {renderLilForest1()}
-                    
                 </div>
+
+                {/* Your House */}
                 <div>{renderHouse(house1, house1Msg)}</div>
+
+                {/* Old Man Jenkins' House */}
                 <div>{renderHouse(house2, house2Msg)}</div>
+
+                {/* Trees */}
                 {renderLilForest2()}
+
+                {/* Shop */}
                 <div style={{marginLeft:30}}>
                     {renderShop()}
                 </div>
+
+                {/* Forge */}
                 <div>
                     {renderForge()}
+                </div>
+
+                {/* Left Forest Wall */}
+                <div style={{display: 'flex', flexDirection: 'column', marginTop: -80, marginLeft: 40}}>
+                    {renderLilForest1()}
+                    {renderLilForest1()}
+                    {renderLilForest2()}
+                    {renderLilForest1()}
                 </div>
             </div>
             <div style={{marginTop: -200, marginLeft: 220}}>
                 {renderWesternRoad()}
             </div>
-            
         </div>
     )
 }
