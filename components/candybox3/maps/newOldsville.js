@@ -11,7 +11,9 @@ import {candyBoxStyles} from "../const/styles"
 export default function NewOldsville({
     inventory,
     setInventory,
-    setSelectedMap
+    setSelectedMap,
+    thingsDone,
+    setThingsDone
 }){
 
     ///////////
@@ -88,6 +90,11 @@ export default function NewOldsville({
             e.stopPropagation();
             setShowLakeMsg(false)
             setShowKeyInLakeMsg(true)
+        }
+
+        function handleForgeClick(){
+            console.log("Changing Selected Screen....")
+            setSelectedMap("New Oldsville -- Forge")
         }
 
     ///////////////
@@ -206,8 +213,8 @@ export default function NewOldsville({
             <p style={candyBoxStyles.mapStyle}> /|_T_T_T_T_T_T_T_|\     /    \</p>
             <p style={candyBoxStyles.mapStyle}>  |]  | FORGE |  [|-----[======]</p>
             <p style={candyBoxStyles.mapStyle}>  |]   _______   [|     [-|-|-|]</p>
-            <p style={candyBoxStyles.mapStyle}>  |]   |. | .|   [|     [|-|-|-]</p>
-            <p style={candyBoxStyles.mapStyle}>  |]___|__|__|___[|_____[_|_|_|]</p>
+            <p style={candyBoxStyles.mapStyle}>  |]   <span onClick={() => handleForgeClick()}>|. | .|</span>   [|     [|-|-|-]</p>
+            <p style={candyBoxStyles.mapStyle}>  |]___<span onClick={() => handleForgeClick()}>|__|__|</span>___[|_____[_|_|_|]</p>
             </div>
         )
     }

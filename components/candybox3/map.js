@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 // Maps
 import NewOldsville from "./maps/newOldsville";
 import NewOldsvilleHouse2 from "./maps/newOldsvilleMaps/house2";
+import NewOldsvilleForge from "./maps/newOldsvilleMaps/forge";
 
 
 export default function Map({
@@ -36,6 +37,17 @@ export default function Map({
         if (thisMap === "New Oldsville"){
             return( 
                 <NewOldsville 
+                    inventory={inventory}
+                    setInventory={setInventory}
+                    setSelectedMap={setSelectedMap}
+                    thingsDone={thingsDone}
+                    setThingsDone={setThingsDone}
+                />
+            )
+        }
+        else if (thisMap === "New Oldsville -- Forge"){
+            return( 
+                <NewOldsvilleForge 
                     inventory={inventory}
                     setInventory={setInventory}
                     setSelectedMap={setSelectedMap}
