@@ -61,10 +61,83 @@ export default function NewOldsvilleForge({
                     <p>Feel free to take a look at my wares. Purchase what you like, but remember I only take payment in candies!</p>
                 </div>
                 <div>
+                    {renderWeaponsPurchase()}
+                </div>
+                <div style={{marginTop: 20}}>
+                    {renderArmorPurchase()}
+                </div>
+                <div style={{marginTop: 20}}>
                     {renderLeave()}
                 </div>
             </div>
         )
+    }
+
+    function renderWeaponsPurchase(){
+        if (inventory.includes("Silver Sword") || inventory.includes("Polished Rock Candy Sword")){
+            return(
+                <div>
+                    I have no more weapons to sell!
+                </div>
+            )
+        }
+        else if (inventory.includes("Silver Sword") || inventory.includes("Polished Rock Candy Sword")){
+            return(
+                <button>
+                    Purchase Mace (25,000,000 candies)
+                </button>
+            )
+        }
+        else if (inventory.includes("Iron Axe") || inventory.includes("Dark Chocolate Axe") || inventory.includes("Powdered Axe")){
+            return(
+                <button>
+                    Silver Sword (10,000 candies)
+                </button>
+            )
+        }
+        else if (inventory.includes("Wooden Sword") || inventory.includes("Candy Cane Sword") || inventory.includes("Chocolate Dipped Sword")){
+           return(
+                <button>
+                    Iron Axe (1500 candies)
+                </button>
+            )
+        }
+        else{
+            return(
+                <button>
+                Wooden Sword (350 candies)
+                </button>
+            )
+        }
+    }
+
+    function renderArmorPurchase(){
+        if (inventory.includes("Silver Sword") || inventory.includes("Polished Rock Candy Sword")){
+            return(
+                <div>I have no more armor to sell!</div>
+            )
+        }
+        else if (inventory.includes("Iron Armor") || inventory.includes("Dark Chocolate Chainmail") || inventory.includes("Skittle Plated Armor")){
+            return(
+                <button>
+                    Space Age Steel Armor (100,000 candies)
+                </button>
+            )
+        }
+        else if (inventory.includes("Leather Armor") || inventory.includes("Milk Chocolate Armor") || inventory.includes("Strawberry Chocolate Armor")){
+           return(
+                <button>
+                    Iron Armor (18,000 candies)
+                </button>
+            )
+        }
+        else{
+            return(
+                <button>
+                    Leather Armor (2500 candies)
+                </button>
+            )
+        }
     }
 
     function renderForgeRoom(){
