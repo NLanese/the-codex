@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 
 import {candyBoxStyles} from "../../const/styles"
-
+import NewOldsForgeItems from "../../const/items/NewOldsVilleForge";
+import checkInvFor from "../../func/checkInventoryFor";
 
 export default function NewOldsvilleForge({
     inventory,
@@ -74,28 +75,28 @@ export default function NewOldsvilleForge({
     }
 
     function renderWeaponsPurchase(){
-        if (inventory.includes("Silver Sword") || inventory.includes("Polished Rock Candy Sword")){
+        if (checkInvFor(inventory, "mace")){
             return(
                 <div>
                     I have no more weapons to sell!
                 </div>
             )
         }
-        else if (inventory.includes("Silver Sword") || inventory.includes("Polished Rock Candy Sword")){
+        else if (checkInvFor(inventory, "sword2")){
             return(
                 <button>
-                    Purchase Mace (25,000,000 candies)
+                    Purchase Mace (5,000,000 candies)
                 </button>
             )
         }
-        else if (inventory.includes("Iron Axe") || inventory.includes("Dark Chocolate Axe") || inventory.includes("Powdered Axe")){
+        else if (checkInvFor(inventory, "axe")){
             return(
                 <button>
                     Silver Sword (10,000 candies)
                 </button>
             )
         }
-        else if (inventory.includes("Wooden Sword") || inventory.includes("Candy Cane Sword") || inventory.includes("Chocolate Dipped Sword")){
+        else if (checkInvFor(inventory, "sword1")){
            return(
                 <button>
                     Iron Axe (1500 candies)
@@ -112,29 +113,29 @@ export default function NewOldsvilleForge({
     }
 
     function renderArmorPurchase(){
-        if (inventory.includes("Silver Sword") || inventory.includes("Polished Rock Candy Sword")){
+        if (checkInvFor(inventory, "sas")){
             return(
                 <div>I have no more armor to sell!</div>
             )
         }
-        else if (inventory.includes("Iron Armor") || inventory.includes("Dark Chocolate Chainmail") || inventory.includes("Skittle Plated Armor")){
+        else if (checkInvFor(inventory, "iron")){
             return(
                 <button>
-                    Space Age Steel Armor (100,000 candies)
+                    Space Age Steel Armor (10,000,000 candies)
                 </button>
             )
         }
-        else if (inventory.includes("Leather Armor") || inventory.includes("Milk Chocolate Armor") || inventory.includes("Strawberry Chocolate Armor")){
+        else if (checkInvFor(inventory, "leather")){
            return(
                 <button>
-                    Iron Armor (18,000 candies)
+                    Iron Armor (115,000 candies)
                 </button>
             )
         }
         else{
             return(
                 <button>
-                    Leather Armor (2500 candies)
+                    Leather Armor (10,000 candies)
                 </button>
             )
         }
