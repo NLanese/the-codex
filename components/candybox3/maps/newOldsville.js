@@ -13,7 +13,9 @@ export default function NewOldsville({
     setInventory,
     setSelectedMap,
     thingsDone,
-    setThingsDone
+    setThingsDone,
+    setCandies,
+    setLollipops,
 }){
 
     ///////////
@@ -70,11 +72,8 @@ export default function NewOldsville({
 
         // Clears all Messages
         function clearAllMessages(){
-            console.log("Leave")
             setHouse1Msg(false)
-            console.log("Leave1")
             setShowLakeMsg(false)
-            console.log("Leave2")
         }
 
         // Navigates to Store Screen
@@ -253,7 +252,7 @@ export default function NewOldsville({
                 <p style={candyBoxStyles.mapStyle}>  ||     8*88*   </p>
                 <p style={candyBoxStyles.mapStyle}>*       8*888*8   </p>
                 <p style={candyBoxStyles.mapStyle}>    '     ||   </p>
-                <p style={candyBoxStyles.mapStyle}> ''        ||   </p>
+                <p style={candyBoxStyles.mapStyle}> ''       ||   </p>
             </div>
         )
     }
@@ -386,17 +385,9 @@ export default function NewOldsville({
             }
         }
         function renderExtra(){
-            if (hasExit)
+            if (!hasExit)
             return(
                 <>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
                     <p style={candyBoxStyles.mapStyle}>                |   |</p>
                     <p style={candyBoxStyles.mapStyle}>                |   |</p>
                     <p style={candyBoxStyles.mapStyle}>                |   |</p>
@@ -492,7 +483,10 @@ export default function NewOldsville({
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     {renderLake(showLakeMsg, setShowLakeMsg)}
                     {renderSouthbound()}
-                    <div style={{marginLeft: 40}}>{renderHouseB()}</div>
+                    <div style={{marginLeft: 40, display: 'flex', flexDirection: 'column'}}>
+                        {renderHouse()}
+                        {renderHouseB()}
+                    </div>
                     <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
                 </div>
                 

@@ -13,14 +13,16 @@ export default function NewOldsvilleForge({
     setInventory,
     setSelectedMap,
     thingsDone, 
-    setThingsDone
+    setThingsDone,
+    setCandies,
+    setLollipops,
 }){
 
     const [lolliPresent, setLolliPresent] = useState(determineLolliState())
 
     function renderLolli(){
         if (lolliPresent){
-            return(<span onClick={() => grabLolli}>----o</span>)
+            return(<span onClick={() => grabLolli()}>----o</span>)
         }
         else{
             return <span>     </span>
@@ -37,7 +39,9 @@ export default function NewOldsvilleForge({
     }
 
     function grabLolli(){
+        console.log("grab?")
         setThingsDone(prev => [...prev, "forgeLolliGrabbed"])
+        setLollipops(prev => prev + 1)
         setLolliPresent(false)
     }
 
@@ -52,8 +56,9 @@ export default function NewOldsvilleForge({
     function renderDialogue(){
         return(
             <div>
-                <div style={{height: '70%'}}>
+                <div style={{height: '70%', paddingRight: '7.5%'}}>
                     <p>Welcome to the Forge!</p>
+                    <p>Feel free to take a look at my wares. Purchase what you like, but remember I only take payment in candies!</p>
                 </div>
                 <div>
                     {renderLeave()}
@@ -106,11 +111,11 @@ export default function NewOldsvilleForge({
     }
 
     return(
-        <div style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-evenly'}}>
-            <div style={{flex: 8}}>   
+        <div style={{flexDirection: 'row', display: 'flex'}}>
+            <div style={{ marginTop: '10%', marginLeft: '10%'}}>   
                 {renderForgeRoom()}
             </div>
-            <div style={{flex: 4}}>
+            <div style={{marginTop: '10%', paddingLeft: '5%'}}>
                 {renderDialogue()}
             </div>
         </div>
