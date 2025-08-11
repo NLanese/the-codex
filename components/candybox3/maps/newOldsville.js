@@ -301,7 +301,7 @@ export default function NewOldsville({
                     style={{
                         position: 'absolute',
                         marginTop: -40,
-                        marginLeft: 30,
+                        marginLeft: 180,
                         backgroundColor: 'white',
                         border: '1px solid black',
                         padding: '5px',
