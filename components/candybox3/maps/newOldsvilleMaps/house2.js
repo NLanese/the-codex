@@ -74,6 +74,36 @@ export default function NewOldsvilleHouse2({
         }
     }
 
+    /////////////////////////
+    // Drawer Pot Lollipop //
+    /////////////////////////
+
+    const [drawerFlowerGrabbed, setDrawerFlowerGrabbed] = useState(determineDrawerLolliState())
+
+    function grabDrawerLolli(){
+        setLollipops(prev => prev + 1)
+        setThingsDone(prev => [...prev, "house2DrawerLolliGrabbed"])
+        setDrawerFlowerGrabbed(true)
+    }
+
+    function determineDrawerLolliState(){
+        if (thingsDone.includes("house2DrawerLolliGrabbed")){
+            return (true)
+        }
+        else{
+            return (false)
+        }
+    }
+
+    const renderLolliInDrawer = (x) => {
+        if (drawerFlowerGrabbed){
+            return<>    </>
+        }
+        else{
+            return(<span onClick={() => grabDrawerLolli()}>---o</span>)
+        }
+    }
+
     //////////////////////
     // Homeowner Status //
     //////////////////////
@@ -130,7 +160,7 @@ export default function NewOldsvilleHouse2({
                 <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |_____|  |____|      |    ||     || \                        |          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |    O        |  |___________|           | __/     |__|     \_____|____||_____||__\_______________________|          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |             | /            |           ||________|  |________|                                          \          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |             |/             |           |                                                                 \         |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |             |/    {renderLolliInDrawer()}     |           |                                                                 \         |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |_____________|______________|___________|                                                                  \        |</p>
                 <p style={candyBoxStyles.mapStyle}>|      /                                                                                                            \       |</p>
                 <p style={candyBoxStyles.mapStyle}>|     /                                                                                                              \      |</p>
