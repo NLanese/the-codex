@@ -249,10 +249,10 @@ export default function NewOldsvilleHouse2({
                     <p>What should I do?</p>
                     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', gap: '5%'}}>
                         <button style={{flex: 6}}>
-                            Take Care of it yourself
+                            "Take Care of it yourself"
                         </button>
                         <button style={{flex: 6}}>
-                            Just wait it out
+                            "Just wait it out"
                         </button>
                        {renderHelpButton()}
                     </div>

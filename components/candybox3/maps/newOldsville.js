@@ -422,6 +422,21 @@ export default function NewOldsville({
         )
     }
 
+    function renderSouthernEdgeRoad(){
+        return(
+            <div>
+                <p style={candyBoxStyles.mapStyle}>         _______________              |   |          ,           |   |     ,               ,            |   |         ; '     |    |</p>
+                <p style={candyBoxStyles.mapStyle}>  ''     [To LightHouse]              |   | *               *    |   |             *              .'    |   |         ; '     |    |</p>
+                <p style={candyBoxStyles.mapStyle}>            |       |          '      |   |    ';     `          |   |    '''          *       ',       |   |         ; '     |    |</p>
+                <p style={candyBoxStyles.mapStyle}> ____________________________________/     \____________________/     \________________________________/     \_______________/      \_____________</p>
+                <p style={candyBoxStyles.mapStyle}>                                                                                                                                                     \</p>
+                <p style={candyBoxStyles.mapStyle}> ______________________________________________________________________________________________________________       ________________________________     |</p>
+                <p style={candyBoxStyles.mapStyle}>    *                                               '',                                                  \     /                                \    |</p>
+                <p style={candyBoxStyles.mapStyle}>                                                  ,                         *              '.             |   |                                  |   |</p>
+            </div> 
+        )
+    }
+
 
     //////////
     // MAIN //
@@ -472,11 +487,18 @@ export default function NewOldsville({
                 </div>
             </div>
 
-            {/* Road */}
+            {/* Lake and Southbound Road */}
             <div style={{marginTop: -200, marginLeft: 220}}>
                 {renderWesternRoad()}
                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                    {renderLake(showLakeMsg, setShowLakeMsg)}
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        {renderLake(showLakeMsg, setShowLakeMsg)}
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            {renderHouseB()}
+                            {renderHouseB()}
+                        </div>
+                    </div>
+                    
                     {renderSouthbound()}
                     <div style={{marginLeft: 40, display: 'flex', flexDirection: 'column'}}>
                         {renderHouse()}
@@ -485,6 +507,11 @@ export default function NewOldsville({
                     <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
                 </div>
                 
+            </div>
+
+            {/* Southern Edge */}
+            <div>
+                {renderSouthernEdgeRoad()}
             </div>
         </div>
     )
