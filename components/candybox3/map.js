@@ -60,6 +60,19 @@ export default function Map({
                 />
             )
         }
+        else if (thisMap === "New Oldsville -- House2"){
+            return( 
+                <NewOldsvilleHouse2 
+                    inventory={inventory}
+                    setInventory={setInventory}
+                    setSelectedMap={setSelectedMap}
+                    thingsDone={thingsDone}
+                    setThingsDone={setThingsDone}
+                    setCandies={setCandies}
+                    setLollipops={setLollipops}
+                />
+            )
+        }
     }
 
 

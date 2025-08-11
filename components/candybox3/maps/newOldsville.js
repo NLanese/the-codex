@@ -42,12 +42,7 @@ export default function NewOldsville({
 
         const [house2, setHouse2] = useState({
             onClick: (() => {
-                if (yourInventory.includes("Your House Key")){
-                    setSelectedMap("Your House")
-                }
-                else{
-                    setHouse1Msg(true)
-                }
+                setSelectedMap("New Oldsville -- House2")
             }),
             message: "This is your house. You lost your key when you fed to a crocodile."
         })
