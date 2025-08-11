@@ -5,8 +5,10 @@ import { useRouter } from "next/router";
 // Recoil
 import { useRecoilState } from "recoil";
 
+// Candybox
 import {candyBoxStyles} from "../../const/styles"
-import { render } from "react-dom";
+import checkInvFor from "../../func/checkInventoryFor";
+
 
 
 export default function NewOldsvilleHouse2({
@@ -66,10 +68,10 @@ export default function NewOldsvilleHouse2({
         if (potFlowerGrabbed){
             return<> </>
         }
-        if (x = 1){
+        if (x === 1){
             return(<span onClick={() => grabFlowerLolli()}>o</span>)
         }
-        else if (x != 1){
+        else if (x !== 1){
             return(<span onClick={() => grabFlowerLolli()}>|</span>)
         }
     }
@@ -95,7 +97,7 @@ export default function NewOldsvilleHouse2({
         }
     }
 
-    const renderLolliInDrawer = (x) => {
+    const renderLolliInDrawer = () => {
         if (drawerFlowerGrabbed){
             return<>    </>
         }
@@ -108,26 +110,30 @@ export default function NewOldsvilleHouse2({
     // Homeowner Status //
     //////////////////////
 
-    const [manInHouse2, setManInHouse2] = useState()
+    const [manInHouse2, setManInHouse2] = useState(determineManInHouseState())
 
     function determineManInHouseState(){
-        if (thingsDone.includes("house2ManToldToFight")){
+        if (thingsDone.includes("house2ManDead")){
+            return ("Dead")
+        }
+        else if (thingsDone.includes("house2ManToldToFight")){
             return ("Downstairs")
         }
         else if (thingsDone.includes("house2ManToldToWait")){
-
+            return ("Waiting")
         }
         else if (thingsDone.includes("house2ManHelped")){
-            
+            return ("Happy")
         }
-        else if (thingsDone.includes("house2ManDead")){
-            
+        else{
+            return "Default"
         }
+        
     }
 
-    ///////////////////
-    // Drawer Status //
-    ///////////////////
+    /////////////
+    // Renders //
+    /////////////
 
     function renderHouse2(){
         if (drawerOpened){
@@ -154,10 +160,10 @@ export default function NewOldsvilleHouse2({
                 <p style={candyBoxStyles.mapStyle}>|         /        |     |             /|        ||   |_________|        |    ||\ \                              |          |</p>
                 <p style={candyBoxStyles.mapStyle}>|        /          \___/             / |       oOOOo /          \       |    || \ \                             |          |</p>
                 <p style={candyBoxStyles.mapStyle}>|       /                            /  |            /     /\     \      |    ||  \ \                            |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      /____________________________/____________   |     |  |    |      |    ||   \ \                           |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |     |  |    |      |    ||    \ \                          |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |     |  |    |      |    ||     \|\                         |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |_____|  |____|      |    ||     || \                        |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      /____________________________/___________    |     |  |     |     |    ||   \ \                           |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |     |  |     |     |    ||    \ \                          |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |     |  |     |     |    ||     \|\                         |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |             |  |           |           |   |_____|  |_____|     |    ||     || \                        |          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |    O        |  |___________|           | __/     |__|     \_____|____||_____||__\_______________________|          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |             | /            |           ||________|  |________|                                          \          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |             |/    {renderLolliInDrawer()}     |           |                                                                 \         |</p>
@@ -217,5 +223,91 @@ export default function NewOldsvilleHouse2({
         
     }
 
-    return renderHouse2()
+    function renderDialogue(){
+        return(
+            <div style={{height: '70%', paddingRight: '7.5%'}}>
+                <div>
+                    {renderManGivesQuest()}
+                    {renderManIsSaved()}
+                    {renderManIsDead()}
+                </div>
+                <button 
+                style={{marginTop: 20}}
+                onClick={() => setSelectedMap("New Oldsville")}>
+                    Leave
+                </button>
+            </div>
+        )
+    }
+
+    function renderManGivesQuest(){
+        if (manInHouse2 === "Default"){
+            return(
+                <div>
+                    <p>My name is Hugh Manson, welcome to my house!</p>
+                    <p>Some evil corporate spiders came into my basement, turned it into a hegde fund; and now they won't leave!</p>
+                    <p>What should I do?</p>
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', gap: '5%'}}>
+                        <button style={{flex: 6}}>
+                            Take Care of it yourself
+                        </button>
+                        <button style={{flex: 6}}>
+                            Just wait it out
+                        </button>
+                       {renderHelpButton()}
+                    </div>
+                </div>
+            )
+        }
+    }
+    
+    function renderHelpButton(){
+        if (
+            checkInvFor(inventory, "mace") || 
+            checkInvFor(inventory, "sword2") || 
+            checkInvFor(inventory, "sword1") || 
+            checkInvFor(inventory, "axe")  
+        ){
+            return(
+                <button>
+                    Let me handle it for you!
+                </button>
+            )
+        }
+    }
+
+    function renderManIsSaved(){
+        if (manInHouse2 === "house2ManHelped"){
+            return(
+                <div>
+                    <p>Thanks for all the help!</p>
+                </div>
+            )
+        }
+    }
+
+    function renderManIsDead(){
+        if (manInHouse2 === "house2ManDead"){
+            return(
+                <div>
+                    <p>I am dead.</p>
+                </div>
+            )
+        }
+    }
+
+    /////////////////
+    // Main Render //
+    /////////////////
+
+    return (
+        <div style={{flexDirection: 'row', display: 'flex'}}>
+            <div style={{ marginTop: '10%', marginLeft: '10%'}}>   
+                {renderHouse2()}
+            </div>
+            <div style={{marginTop: '10%', paddingLeft: '5%'}}>
+                {renderDialogue()}
+            </div>
+        </div>
+    )
 }
