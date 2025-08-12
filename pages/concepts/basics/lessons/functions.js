@@ -743,13 +743,15 @@ const VariablesLesson = ({}) => {
                                 </p>
                             </div>
 
-                            Here, <span style={Styles.Code.keyword}>function </span> is the key word we use to tell the computer
-                            that we are beginning a function declaration. We then enter the name of the function, which in our case is
-                            <span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter </strong>
-                            and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span>. Everything inside the function is encased
-                            by curly brackets  {"{  }"}.
-
+                            Here we do not just have a keyword as simple as <strong>function.</strong> Instead, we denote the beginning of a function 
+                            declaration by stating whethere the function is <span style={Styles.Code.keyword}>public (or private) </span>, followed by 
+                            <span style={Styles.Code.keyword}>static (or dynamic) </span>. Finally, the function declaration needs to specify the 
+                            <span style={Styles.Code.keyword}>data type of the return value (int, in this case)</span> declaration. We then enter 
+                            the name of the function, which in our case is<span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter </strong>
+                            and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span> that is of data type 
+                            <span style={Styles.Code.keyword}> int</span>. Everything inside the function is encased by curly brackets  {"{  }"}.
                             <p>
+
                             Once the function begins, it takes the parameter, which is referred to as <span style={Styles.Code.var}>num</span>, and 
                             makes its value one plus itself. (More simply put, it increases the value of num by one). Then, the function will 
                             <ODef 
