@@ -424,15 +424,15 @@ export default function NewOldsville({
 
     function renderSouthernEdgeRoad(){
         return(
-            <div>
-                <p style={candyBoxStyles.mapStyle}>         _______________              |   |          ,           |   |     ,               ,            |   |         ; '     |    |</p>
-                <p style={candyBoxStyles.mapStyle}>  ''     [To LightHouse]              |   | *               *    |   |             *              .'    |   |         ; '     |    |</p>
-                <p style={candyBoxStyles.mapStyle}>            |       |          '      |   |    ';     `          |   |    '''          *       ',       |   |         ; '     |    |</p>
-                <p style={candyBoxStyles.mapStyle}> ____________________________________/     \____________________/     \________________________________/     \_______________/      \_____________</p>
-                <p style={candyBoxStyles.mapStyle}>                                                                                                                                                     \</p>
-                <p style={candyBoxStyles.mapStyle}> ______________________________________________________________________________________________________________       ________________________________     |</p>
-                <p style={candyBoxStyles.mapStyle}>    *                                               '',                                                  \     /                                \    |</p>
-                <p style={candyBoxStyles.mapStyle}>                                                  ,                         *              '.             |   |                                  |   |</p>
+            <div style={{marginLeft: 0.5}}>
+                <p style={candyBoxStyles.mapStyle}>         _______________              |   |          ,           |   |     ,               ,            |   |              |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>  ''     [To LightHouse]              |   | *               *    |   |             *              .'    |   |      ; '     |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>            |       |          '      |   |    ';     `          |   |    '''          *       ',       |   |         * .  |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}> ____________________________________/     \____________________/     \________________________________/     \____________/      \____________/     \</p>
+                <p style={candyBoxStyles.mapStyle}>                                                                                                                                                     |</p>
+                <p style={candyBoxStyles.mapStyle}> ____________________________________________________________________________________________________________________________________________________/</p>
+                <p style={candyBoxStyles.mapStyle}>    *                                               '',                                                                                      </p>
+                <p style={candyBoxStyles.mapStyle}>                                                  ,                         *              '.                                               </p>
             </div> 
         )
     }
