@@ -68,9 +68,6 @@ export const HeaderBar = ({
         if (directory === "Portfolio"){
             return portfolioTabs(setTabBar, router)
         }
-        else if (directory === "Basics"){
-            return basicsTabs(setTabBar, router)
-        }
         else if (token){
             return userTabs(setTabBar, router)
         }

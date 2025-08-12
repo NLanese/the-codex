@@ -379,6 +379,7 @@ const VariablesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
+                    <div style={Styles.Fonts.lessonHeader}>What are Functions</div>
                     <p style={Styles.Fonts.basic}>
                         Functions are just as essential in Software Development as Variables are. As we know, <strong>variables hold data that can be changed, used, or displayed. If is often functions that do this changing, displaying, or using.</strong> 
                         A good way to think about this relationship between variables and functions is to think of them as nouns and verbs in a sentence. Computer Science is essentially you telling the computer what to do, and the Programming Langauges you are using 
@@ -746,7 +747,7 @@ const VariablesLesson = ({}) => {
                             Here we do not just have a keyword as simple as <strong>function.</strong> Instead, we denote the beginning of a function 
                             declaration by stating whethere the function is <span style={Styles.Code.keyword}>public (or private) </span>, followed by 
                             <span style={Styles.Code.keyword}>static (or dynamic) </span>. Finally, the function declaration needs to specify the 
-                            <span style={Styles.Code.keyword}>data type of the return value (int, in this case)</span> declaration. We then enter 
+                            <span style={Styles.Code.keyword}> data type of the return value (int, in this case)</span> declaration. We then enter 
                             the name of the function, which in our case is<span style={Styles.Code.func}> increaseValueByOne</span>. The function takes <strong>one parameter </strong>
                             and inside that function, it will be referred to as <span style={Styles.Code.var}>num</span> that is of data type 
                             <span style={Styles.Code.keyword}> int</span>. Everything inside the function is encased by curly brackets  {"{  }"}.
@@ -824,32 +825,13 @@ const VariablesLesson = ({}) => {
 
         function renderThird(){
             return(
-                <div>
+                <div style={{...Styles.Fonts.basic, marginTop: 25}}>
+                    <div style={Styles.Fonts.lessonHeader}>Functions, Variables, and Scope</div>
                     <p>
-                        Variables are the basic building blocks of <strong>Object Oriented Programming</strong> focused software development. This means that nearly every operation or every computation will be done using variables. The examples shown above are very basic, but as we continue along the course you will learn more and more about variables and how to use them when developing.
+                        As previously mentioned, Programming Languages are just different ways developers can communicate with the computer, and in all of these languages
+                        <strong> Variables are the nouns and Functions are the verbs</strong>. In the vast majority of cases, whenever a value is changed, updated, created, 
+                        deleted, or otherwise manipulated it will be because of a function. 
                     </p>
-                    <p>
-                        For example, even this web page is comprised of variables. In the examples of code above, when you the user select a different tab ("JavaScript", "Java", "C", or "Python") you are actually changing a variable named 'display' to match the value of the button you selected. To explain this more simply, allow me to explain in <strong>pseudocode</strong>  
-                    </p>
-                    <div>
-                        <li>
-                            A user presses a button that has a variable attached to it. That variable's value is the same as the text shown on each button (Java, JavaScript, C#, or Python)
-                        </li>
-                        <br></br>
-                        <li>
-                            A <strong>function</strong> fires that uses this variable. Depending on what is variable's value is ("Java", "JavaScript", "Python", or "C#") it will load a specific set of lines to render. If the code box's variable's value is "JavaScript", it will load the text you see in the box when 'JavaScript' is selected, for example
-                        </li>
-                        <br></br>
-                        <li>
-                            Once this value is changed, the code box will render the newly selected text
-                        </li>
-                        <p>
-                            This is actually some of the code running the very site we are using in action. Look below as the variable, 'lang' will have a different result in the function based off of its value. If this is all still confusing to you, do not worry! There is a lot more to cover before this all comes together
-                        </p>
-                        <div>
-                            <Image src={require('../../../../public/assets/lesson_images/variables/codeExample.png')} width="70%" height="20%"/>
-                        </div>
-                    </div>
                 </div>
             )
         }

@@ -114,6 +114,13 @@ export const guestTabs = (setTabBar, router) => {
         title: "Back End", 
     },
     {
+        title: "Return to Portfolio Home", 
+        onClick: () => {
+            setTabBar(false)
+            router.replace("/")
+        },
+    },
+    {
         title: "Account", 
         onClick: () => {
             setTabBar("Frameworks")
@@ -169,6 +176,13 @@ export const userTabs = (setTabBar, router)  => {
         },
         {
             title: "Back End", 
+        },
+        {
+            title: "Return to Portfolio Home", 
+            onClick: () => {
+                setTabBar(false)
+                router.replace("/")
+            },
         },
         {
             title: "Account", 
