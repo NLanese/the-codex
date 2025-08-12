@@ -263,15 +263,15 @@ export const FormText = ({
             }
             if (inMultiTextField){
                 return(
-                <div style={{marginLeft: 'auto', marginRight: '-29%'}}>
-                    <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                <div style={{marginLeft: 'auto', marginRight: '-27.5%'}}>
+                    <div style={{height: 40, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
                     </div>
                 </div>
                 )
             }
             return(
                 <div style={{marginLeft: 'auto'}}>
-                    <div style={{height: '100%', aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                    <div style={{height: 40, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
                     </div>
                 </div>
             )
@@ -283,7 +283,7 @@ export const FormText = ({
             }
             else{
                 return(
-                    <div style={{width: '95%', height: 'auto'}}>
+                    <div style={{width: '95%', height: '10%'}}>
                         <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
                             <p style={{...titleStyleFinal}}>
                                 {fieldObj.title}
