@@ -171,9 +171,8 @@ export const FormMultipleText = ({
                 tempBox.marginRight = '1.5%'
                 tempBox.marginLeft = '1.5%'
                 tempBox.width = '100%'
-                tempBox.boxShadow ='2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
                 tempBox.borderRadius =  10,
-                tempBox.border = "1px solid rgb(182, 117, 117)",
+                tempBox.backgroundColor =  '#efefef',
                 tempBox.justifyContent = 'center'
                 tempBox.textAlign = 'center'
                 final = {...tempBox, answerBoxStyle}
@@ -251,7 +250,8 @@ export const FormMultipleText = ({
             }
             return(
                 <OstCard 
-                    style={answerBoxStyleFinal}
+                    style={{...answerBoxStyleFinal}}
+                    noShadow={true}
                     onClick={() => handleRemoveEntry(val)}
                 >
                     {val}

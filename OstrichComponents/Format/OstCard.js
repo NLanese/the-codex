@@ -8,6 +8,7 @@ export const OstCard =({
     templateStyle,
     style,
     details,
+    noShadow=false,
     onClick
 }) =>{
 
@@ -24,7 +25,7 @@ export const OstCard =({
         let tempStyle = {
             borderRadius: 15, 
             padding: 10, 
-            boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
+            boxShadow: !noShadow ? '1px 2px 3px 2px rgba(0, 0, 0, 0.2)' : null,
             fontFamily: "Gilroy"
         }
         if (!style || !use){
