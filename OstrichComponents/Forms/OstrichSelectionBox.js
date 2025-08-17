@@ -77,7 +77,7 @@ export const OstrichSelectionBox = ({
 
         const handleInititalState = () => {
             let temp = {
-                border: "2px solid black", borderRadius: 32, 
+                border: "0.0px solid black", borderRadius: 32, 
                 height: 32, width: 32, minHeight: 32, minWidth: 32, 
                 justifySelf: 'center',
                 backgroundColor: '#bdbdbd'
@@ -99,11 +99,12 @@ export const OstrichSelectionBox = ({
             setCorrectStyleFinal({...temp, borderColor: '#57f25f', backgroundColor: '#a8ffad', correctOptionStyle})
 
             let tempTitle = {
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: 600,
                 fontFamily: "Gilroy",
                 margin: 3,
                 paddingBottom: 1,
+                paddingLeft: 10,
                 marginBottom: 0,
                 textAlignVertical: 'center',
             }

@@ -51,13 +51,13 @@ export default function OstFormsShowcase(){
             <div style={Styles.Fonts.lessonHeader}>Ostrich Forms (OstrichForm)</div>
 
             {/* Preamble */}
-            <p style={{...Styles.Fonts.basic}}>
+            <p style={{...Styles.Fonts.basic, fontSize: 22}}>
                 Ostrich Forms are versatile Components that allow developers to create either minimal or complex user-input zones, 
                 as well as fire a function on the submission of those inputs. Through an Ostrich Form, you can display numerous different
                 inputs and input types. Ostrich Forms support Multiple Choice (Multi and Singular Selection), text input, toggle fields, and more. 
             </p>
 
-            <p style={Styles.Fonts.basic}>
+            <p style={{...Styles.Fonts.basic, fontSize: 22}}>
                 Lets start by going over some very simple and basic examples, before moving on to more complex instances of Ostrich Forms
             </p>
 
@@ -388,6 +388,31 @@ export default function OstFormsShowcase(){
                 </p>
 
             </div>
+
+            <p style={{...Styles.Fonts.basic, fontSize: 22}}>
+            We can also make forms that are intended to have correct or incorrect answers. We can toggle the feedback when the form is submitted, 
+            to change how the form relays what questions were right or wrong, as well as the ability to toggle whether the correct answers are shown after 
+            submission. Finally, we possess the ability to allow resubmission.
+            </p>
+
+                <OstrichForm
+                    title="Example Test Form"
+                    style={{width: '70%', marginLeft: '15%'}}
+                    fields={[
+                        {
+                            id: "1",
+                            title: "Question 1: What is 2 + 2",
+                            type: "MC",
+                            options: ["1", "2", "3", "4", "5", "6"]
+                        },
+                        {
+                            id: "2",
+                            title: "Question 2: What is 'blue'",
+                            type: "MC",
+                            options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"]
+                        },
+                    ]}
+                />
 
             </div>
         </div>
