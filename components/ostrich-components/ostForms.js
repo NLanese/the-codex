@@ -411,6 +411,13 @@ export default function OstFormsShowcase(){
                             type: "MC",
                             options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"]
                         },
+                        {
+                            id: "3",
+                            title: "Question 3: Choose all letters",
+                            type: "MC",
+                            options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", "Alexander the Warrior Jar"],
+                            textStyle: {fontSize: 12}
+                        },
                     ]}
                 />
 
