@@ -152,25 +152,26 @@ export const FormMultipleChoice = ({
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
-   
+            console.log("Handling Input")
             if (fieldObj.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
             
             // Single Answer
-            if (singleOption){                      
+            if (singleOption){       
+                console.log("Single Option")               
                 if (value === tag){
                     setvalue([])           // Removing Previous Answer
                 }
                 else{
-                    setvalue(tag)           // Changing / Selecting Answer
+                    setvalue([tag])           // Changing / Selecting Answer
                 }
             }
 
 
             // Multiple Answers
             else{     
-                
+                console.log("Multiple Option")
                 // If Below the Limit or the Limit does not exist
                 if (
                     (limit && limit <= value.length) ||
@@ -315,6 +316,9 @@ export const FormMultipleChoice = ({
                     type={type}
                     fieldObj={fieldObj}
                     containerStyle={{width: 'calc(23.33%)', marginRight: '10%'}}
+                    singleOption={fieldObj.singleOption ? fieldObj.singleOption : true}
+                    min={fieldObj.min ? fieldObj.min : null}
+                    limit={fieldObj.limit ? fieldObj.limit : null}
                     />
                 )
             })

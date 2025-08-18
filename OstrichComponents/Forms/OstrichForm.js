@@ -142,7 +142,6 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
-                console.log(fieldObj.options)
                 return(
                     <FormMultipleChoice 
                         key={fieldObj.id}
@@ -154,8 +153,8 @@ export const OstrichForm = ({
                         options={fieldObj.options}
                         fieldID={fieldObj.id}
                         singleOption={fieldObj.singleOption ? fieldObj.singleOption : true}
-                        min={fieldObj.min ? fieldObj.min : true}
-                        limit={fieldObj.limit ? fieldObj.limit : true}
+                        min={fieldObj.min ? fieldObj.min : null}
+                        limit={fieldObj.limit ? fieldObj.limit : null}
                     />
                 )
             }
