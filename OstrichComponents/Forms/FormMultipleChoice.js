@@ -27,6 +27,9 @@ export const FormMultipleChoice = ({
     // States //
     ////////////
 
+        console.log("Is single option? for ", fieldObj.id)
+        console.log(singleOption)
+
         // Text Style
         const [titleStyleFinal, setTitleStyleFinal] = useState(false)
         const [captionStyleFinal, setCaptionStyleFinal] = useState(false)
@@ -316,7 +319,7 @@ export const FormMultipleChoice = ({
                     type={type}
                     fieldObj={fieldObj}
                     containerStyle={{width: 'calc(23.33%)', marginRight: '10%'}}
-                    singleOption={fieldObj.singleOption ? fieldObj.singleOption : true}
+                    singleOption={fieldObj.singleOption !== null ? fieldObj.singleOption : true}
                     min={fieldObj.min ? fieldObj.min : null}
                     limit={fieldObj.limit ? fieldObj.limit : null}
                     />

@@ -142,6 +142,8 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
+                console.log("Field in Form")
+                console.log(fieldObj)
                 return(
                     <FormMultipleChoice 
                         key={fieldObj.id}
@@ -152,7 +154,7 @@ export const OstrichForm = ({
                         setNewFieldValue={handleSetFieldsState}
                         options={fieldObj.options}
                         fieldID={fieldObj.id}
-                        singleOption={fieldObj.singleOption ? fieldObj.singleOption : true}
+                        singleOption={fieldObj.singleOption !== null ? fieldObj.singleOption : true}
                         min={fieldObj.min ? fieldObj.min : null}
                         limit={fieldObj.limit ? fieldObj.limit : null}
                     />
