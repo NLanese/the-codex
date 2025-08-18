@@ -403,20 +403,23 @@ export default function OstFormsShowcase(){
                             id: "1",
                             title: "Question 1: What is 2 + 2",
                             type: "MC",
-                            options: ["1", "2", "3", "4", "5", "6"]
+                            options: ["1", "2", "3", "4", "5", "6"],
+                            correctResponse: ["4"]
                         },
                         {
                             id: "2",
                             title: "Question 2: What is 'blue'",
                             type: "MC",
-                            options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"]
+                            options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"],
+                            correctResponse: ["A Color"]
                         },
                         {
                             id: "3",
                             title: "Question 3: Choose all letters",
                             type: "MC",
                             options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", "Alexander the Warrior Jar"],
-                            textStyle: {fontSize: 12}
+                            textStyle: {fontSize: 12},
+                            correctResponse: ["A", "B", "C", "D"]
                         },
                     ]}
                 />

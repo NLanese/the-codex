@@ -119,15 +119,7 @@ export const OstrichForm = ({
                 if (fieldKey === 'undefined'){
                     return
                 }
-                return (
-                    // <div key={index} style={{
-                    //     borderWidth: (field.isCorrect ? 4 : 2), borderStyle: 'solid', borderColor: (field.isCorrect ? "#14f20c" :  (field.isWrong ? "#d6111b" : "#E9F1FF")),
-                    //     marginBottom: 8, padding: 8,
-                    //     boxShadow: '2px 3px 3px rgba(0, 0, 0, 0.1)',
-                    // }}>
-                        renderSingleField(field, index, fieldsTitleStyle)
-                    // </div>
-                )
+                return (renderSingleField(field, index, fieldsTitleStyle))
             })
         }
 
@@ -394,7 +386,69 @@ export const OstrichForm = ({
             if (clearOnSubmit){
                 setFormData({})
             }
+            if (reviewOnSubmit){
+                checkAllAnswersForCorrect()
+            }
             setSubmitted(true)
+            
+        }
+
+        function checkAllAnswersForCorrect(){
+            let fieldsKeys = Object.keys(fieldsState)
+            fieldsKeys.forEach(fieldID => {
+
+                // If there is a correct response
+                if (fieldsState[fieldID].correctResponse){
+
+                    // If Correct Answer is provided as a function
+                    if (typeof correctResponse === "function"){
+
+                        // If the function fires correct
+                        if (fieldsState[fieldID].correctResponse(fieldsState[fieldID])){
+                            // Set as Correct
+                            setFieldsState(prev => ({
+                                ...prev, [fieldID]: {...prev[fieldID], isCorrect: true, isWromg: false}
+                            }))
+                        }
+
+                        // if the fubnction fires incorrect
+                        else{
+                            // Set as Wrong
+                            setFieldsState(prev => ({
+                                ...prev, [fieldID]: {...prev[fieldID], isCorrect: false, isWrong: true}
+                            }))
+                        }
+                    }
+
+                    // If Correct Answer is provided as a value
+                    else if (typeof correctResponse === "array"){
+
+                        // If CorrectResponse === Current Value
+                        if (fieldsState[fieldID].value === fieldsState[fieldID].correctResponse){
+            
+                            // Set as Correct
+                            setFieldsState(prev => ({
+                                ...prev, [fieldID]: {...prev[fieldID], isCorrect: true, isWromg: false}
+                            }))
+                        }
+
+                        // If CorrectResponse !== Current Value
+                        else{
+            
+                            // Set as Correct
+                            setFieldsState(prev => ({
+                                ...prev, [fieldID]: {...prev[fieldID], isCorrect: false, isWromg: true}
+                            }))
+                        }
+                    }
+                }
+
+                // If there is no particular correct response
+                // Set as Correct
+                setFieldsState(prev => ({
+                    ...prev, [fieldID]: {...prev[fieldID], isCorrect: true}
+                }))
+            })
         }
 
 
