@@ -75,7 +75,8 @@ export default function OstFormsShowcase(){
                         type: "text",
                         value: text1,
                         validResponse: (value) => {
-                            if (value.includes("@") && value.includes(".")){
+                            console.log(value)
+                            if (value.split("").includes("@") && value.includes(".")){
                                 return true
                             }
                             else{

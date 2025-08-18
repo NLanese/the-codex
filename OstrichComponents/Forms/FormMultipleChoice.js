@@ -27,9 +27,6 @@ export const FormMultipleChoice = ({
     // States //
     ////////////
 
-        console.log("Is single option? for ", fieldObj.id)
-        console.log(singleOption)
-
         // Text Style
         const [titleStyleFinal, setTitleStyleFinal] = useState(false)
         const [captionStyleFinal, setCaptionStyleFinal] = useState(false)

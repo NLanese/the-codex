@@ -83,6 +83,10 @@ export const FormText = ({
         }
     }, [value]);
 
+    useEffect(() => {
+        console.log("Is Valid ? ", isValid)
+    }, [isValid])
+
     ///////////////
     // Functions //
     ///////////////
@@ -176,19 +180,18 @@ export const FormText = ({
         // Takes FieldObj ValidResponse and determines if True
         function determineIfAnswerValid(){
             if (typeof fieldObj.validResponse === "function"){
+                console.log("Checking the following value -- ", value)
                 checkValid(value).then(resp =>{
+                    console.log(resp)
                     if (resp){
+                        console.log("True")
                         setNewFieldValue({...fieldObj, isValid: true})
                         setIsValid(true)
                         return true
                     }
-                    else if (typeof validResponse === 'function'){
-                        if (validResponse(fieldObj)){
-                            return true
-                        }
-                    }
                     else{
                         setIsValid(false)
+                        return false
                     }
                 })
                 
@@ -253,14 +256,26 @@ export const FormText = ({
             }
             let borderColor = '#bdbdbd'
             let borderFill = '#efefef'
-            if ((!fieldObj.validResponse && isValid) && !correctResponse){
-                borderColor = '#57a5f2'
-                borderFill = '#9cc6f0'
-            }
-            else if (correctResponse && isCorrect){
+
+            // Is Correct
+            if (isCorrect){
+                console.log("CORRECT response")
                 borderColor = '#57f25f'
                 borderFill = '#a8ffad'
             }
+
+            // Is Wrong
+            else if (isWrong){
+                borderColor = 'red'
+                borderFill = 'red'
+            }
+
+            // Is Valid
+            else if (isValid){
+                borderColor = '#57a5f2'
+                borderFill = '#9cc6f0'
+            }
+            
             if (inMultiTextField){
                 return(
                 <div style={{marginLeft: 'auto', marginRight: '-27.5%'}}>

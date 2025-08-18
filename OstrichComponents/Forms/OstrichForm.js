@@ -142,8 +142,6 @@ export const OstrichForm = ({
                 )
             }
             else if (fieldObj.type === "MC" || fieldObj.type === "MultipleChoice" || fieldObj.type === "mc"){
-                console.log("Field in Form")
-                console.log(fieldObj)
                 return(
                     <FormMultipleChoice 
                         key={fieldObj.id}
@@ -190,7 +188,7 @@ export const OstrichForm = ({
                  inactiveColor={submitButtonInactiveStyleFinal.backgroundColor}
                  titleStyle={submitButtonTextStyleFinal}
                  isActive={canSubmit}
-                 onSubmit={submitForm}
+                 onSubmit={() => submitForm()}
                 />
             )
         }
