@@ -169,20 +169,32 @@ export const FormMultipleChoice = ({
 
 
             // Multiple Answers
-            else{                                   
-                if (limit && limit <= value.answer){
+            else{     
+                
+                // If Below the Limit or the Limit does not exist
+                if (
+                    (limit && limit <= value.length) ||
+                    !limit
+                ){
+
+                    // If the values array currently includes the selected value
                     if (value.includes(tag)){
                         let newSelected = value
+
+                        // Remove selected value from current values
                         newSelected = newSelected.filter(sel => {
                             if (sel !== tag){
                                 return sel
                             }
                         })
+                        setvalue(newSelected)
                     }
-                    setvalue(newSelected)
-                }
-                else{
-                    setvalue([...value, tag])
+
+                    // If the values array does NOT currently includes the selected value
+                    else{
+                        setvalue([...value, tag])
+                    }
+                    
                 }
             }
             

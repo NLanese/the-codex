@@ -398,6 +398,7 @@ export default function OstFormsShowcase(){
                 <OstrichForm
                     title="Example Test Form"
                     style={{width: '70%', marginLeft: '15%'}}
+                    reviewOnSubmit={true}
                     fields={[
                         {
                             id: "1",
@@ -419,7 +420,8 @@ export default function OstFormsShowcase(){
                             type: "MC",
                             options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", "Alexander the Warrior Jar"],
                             textStyle: {fontSize: 12},
-                            correctResponse: ["A", "B", "C", "D"]
+                            correctResponse: ["A", "B", "C", "D"],
+                            singleOption: false
                         },
                     ]}
                 />

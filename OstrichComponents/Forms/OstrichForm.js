@@ -153,6 +153,9 @@ export const OstrichForm = ({
                         setNewFieldValue={handleSetFieldsState}
                         options={fieldObj.options}
                         fieldID={fieldObj.id}
+                        singleOption={fieldObj.singleOption ? fieldObj.singleOption : true}
+                        min={fieldObj.min ? fieldObj.min : true}
+                        limit={fieldObj.limit ? fieldObj.limit : true}
                     />
                 )
             }
