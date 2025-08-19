@@ -73,41 +73,12 @@ export default function NewOldsvilleHouse3({
         }
     }
 
-    /////////////////////////
-    // Drawer Pot Lollipop //
-    /////////////////////////
-
-    const [drawerFlowerGrabbed, setDrawerFlowerGrabbed] = useState(determineDrawerLolliState())
-
-    function grabDrawerLolli(){
-        setLollipops(prev => prev + 1)
-        setThingsDone(prev => [...prev, "house2DrawerLolliGrabbed"])
-        setDrawerFlowerGrabbed(true)
-    }
-
-    function determineDrawerLolliState(){
-        if (thingsDone.includes("house2DrawerLolliGrabbed")){
-            return (true)
-        }
-        else{
-            return (false)
-        }
-    }
-
-    const renderLolliInDrawer = () => {
-        if (drawerFlowerGrabbed){
-            return<>    </>
-        }
-        else{
-            return(<span onClick={() => grabDrawerLolli()}>---o</span>)
-        }
-    }
 
     //////////////////////
     // Homeowner Status //
     //////////////////////
 
-    const [manInHouse2, setManInHouse2] = useState(determineManInHouseState())
+    const [manInHouse3, setManInHouse3] = useState(determineManInHouseState())
 
     function determineManInHouseState(){
         if (thingsDone.includes("house2ManDead")){
@@ -132,81 +103,38 @@ export default function NewOldsvilleHouse3({
     // Renders //
     /////////////
 
-    function renderHouse2(){
-        if (drawerOpened){
-            return(
-                <div>
-                <p style={candyBoxStyles.mapStyle}>   /       |                                                                                                     |      \</p>
-                <p style={candyBoxStyles.mapStyle}>  /        |                                                                                                     |        \</p>
-                <p style={candyBoxStyles.mapStyle}> /         |                                                                                                     |         \</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                          %%%%%**            ________________________________________|          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                        {"<%&%&%%$%$%$"}         |                CELLAR                 |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                       {"<############"}         |_______________________________________|          |</p>      
-                <p style={candyBoxStyles.mapStyle}>|          |                                        [_  0   0  _] \\     |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                          |       |%%  \\    |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                          \  __  /%%% //    |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                           \___/ %%% //     |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                             ||     //      |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                         ----------//       | \                                     |   | \    |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                        //|         |        |\ \                                    |   |  \   |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                       // |         |        | \ \                                   |   |   |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                      //  |         |        |  \ \                                  |   |   |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                     //   |         |        |   \ \                                 |    \  |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                     ||   |         |        |    \ \                                |     \ |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |____________________________         ||   |         |        |    |\ \                               |      \|  |</p>
-                <p style={candyBoxStyles.mapStyle}>|         /                            /|        ||   |_________|        |    ||\ \                              |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|        /            {renderLolliOnDesk()}           / |       oOOOo /          \       |    || \ \                             |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|       _____________________________/  |            /     /\     \      |    ||  \ \                            |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |    o        ||         o   |   |           |     |  |     |     |    ||   \ \                           |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |_____________||_____________|   |           |     |  |     |     |    ||    \ \                          |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |   |           |     |  |     |     |    ||     \|\                         |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      | /           || /           |   |           |_____|  |_____|     |    ||     || \                        |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|   |___________/     |__|     \_____|____||_____||__\_______________________|          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |  /         |________|  |________|                                          \          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      | /           || /           | /                                                                           \         |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|/                                                                             \        |</p>
-                <p style={candyBoxStyles.mapStyle}>|      /                                                                                                            \       |</p>
-                <p style={candyBoxStyles.mapStyle}>|     /                                                                                                              \      |</p>
-                <p style={candyBoxStyles.mapStyle}>|    /                                                                                                                \     |</p>
-                <p style={candyBoxStyles.mapStyle}>|   /                                                                                                                  \    |</p>
-                <p style={candyBoxStyles.mapStyle}>|  /                                                                                                                    \   |</p>
-                <p style={candyBoxStyles.mapStyle}>| /                                                                                                                      \  |</p>
-                <p style={candyBoxStyles.mapStyle}>|/________________________________________________________________________________________________________________________\ |</p>
-                </div>
-                )
-        }
-        else{
-            return(
+    function renderHouse3(){
+        return(
             <div>
-                <p style={candyBoxStyles.mapStyle}>   /       |                                                                                                     |      \</p>
-                <p style={candyBoxStyles.mapStyle}>  /        |                                                                                                     |        \</p>
-                <p style={candyBoxStyles.mapStyle}> /         |                                                                                                     |         \</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                          %%%%%**            ________________________________________|          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                        {"<%&%&%%$%$%$"}         |                CELLAR                 |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |           ___________________          {"<############"}         |_______________________________________|          |</p>      
-                <p style={candyBoxStyles.mapStyle}>|          |           |  v     v        |          [_  0   0  _] \\     |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |           | v         / \   |            |       |%%  \\    |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |           |   /www\  /   \  |            \  __  /%%% //    |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |           |  /     \/     \ |             \___/ %%% //     |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |           | /       \      \|               ||     //      |                                       |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |           |/_________\______|                  ----------//       | \                                     |   | \    |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                        //|         |        |\ \                                    |   |  \   |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                       // |         |        | \ \                                   |   |   |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                      //  |         |        |  \ \                                  |   |   |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                     //   |         |        |   \ \                                 |    \  |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |                                     ||   |         |        |    \ \                                |     \ |  |</p>
-                <p style={candyBoxStyles.mapStyle}>|          |____________________________         ||   |         |        |    |\ \                               |      \|  |</p>
-                <p style={candyBoxStyles.mapStyle}>|         /                            /|        ||   |_________|        |    ||\ \                              |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|        /                            / |       oOOOo /          \       |    || \ \                             |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|       _____________________________/  |            /     /\     \      |    ||  \ \                            |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |    o        ||         o   |   |           |     |  |     |     |    ||   \ \                           |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |_____________||_____________|   |           |     |  |     |     |    ||    \ \                          |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |   |           |     |  |     |     |    ||     \|\                         |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      | /           || /           |   |           |_____|  |_____|     |    ||     || \                        |          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|   |___________/     |__|     \_____|____||_____||__\_______________________|          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |  /         |________|  |________|                                          \          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      | /           || /           | /                                                                           \         |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|/                                                                             \        |</p>
+                <p style={candyBoxStyles.mapStyle}>   /       |                                                                             |      |                |      \</p>
+                <p style={candyBoxStyles.mapStyle}>  /        |                                                                             |      |                |        \</p>
+                <p style={candyBoxStyles.mapStyle}> /         |                                                                             |      |                |         \</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                                                             |      |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                           __________                        |      |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |           ___________________            /___       \                       |    __|                |          |</p>      
+                <p style={candyBoxStyles.mapStyle}>|          |           |  v     v        |           |/ O \   O   |                      |      |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |           | v         / \   |           |\___/       |9                     |      |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |           |   /www\  /   \  |           | |   ]      |                      |    - |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |           |  /     \/     \ |           | |********# |                      | --   |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |           | /       \      \|           */  ----   #**                      |      |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |           |/_________\______|            ************                       |      |                |   | \    |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                        //|*#**##***|\\                      |   ---|                |   |  \   |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                       / /|  *#**##  |\ \                    |  -   |                |   |   |  |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                      / / |    **    | \ \                   |      |                |   |   |  |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                     / /__|     *    |__\ \                  |      |                |    \  |  |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |                                    (_____|          |_____)                 |      |                |     \ |  |</p>
+                <p style={candyBoxStyles.mapStyle}>|          |____________________________              |          |                       |-     |                |      \|  |</p>
+                <p style={candyBoxStyles.mapStyle}>|         /                            /|             |__________|                       |      |                |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|        /       {renderLolliOnDesk()}                / |             /          \                  _____|  --  |________        |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|       _____________________________/  |            /     /\     \                /     |      |       /|       |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |    o        ||         o   |   |           |     |  |     |              /                    / |       |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |_____________||_____________|   |           |     |  |     |             /____________________/  |       |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |   |           |     |  |     |             |                   |   |       |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      | /           || /           |   |           |_____|  |_____|             |      _______      |   |       |          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|   |___________/-    |__|    -\_____________|    /)|#(#%|& \    |   |_______|          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |  /         |________|  |________|          |   |(#|3#3%|)% |   |  /        \          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      | /           || /           | /                                          |   |__|____|___|   | /          \         |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|/                                           |___________________|/            \        |</p>
                 <p style={candyBoxStyles.mapStyle}>|      /                                 ____________________________________________________                       \       |</p>
                 <p style={candyBoxStyles.mapStyle}>|     /                                 #                                                   #                        \      |</p>
                 <p style={candyBoxStyles.mapStyle}>|    /                                 #                                                   #                          \     |</p>
@@ -215,18 +143,14 @@ export default function NewOldsvilleHouse3({
                 <p style={candyBoxStyles.mapStyle}>| /                                                                                                                      \  |</p>
                 <p style={candyBoxStyles.mapStyle}>|/________________________________________________________________________________________________________________________\ |</p>
             </div>
-            )
-        }
-        
+        )        
     }
 
     function renderDialogue(){
         return(
             <div style={{height: '70%', paddingRight: '7.5%'}}>
                 <div>
-                    {renderManGivesQuest()}
-                    {renderManIsSaved()}
-                    {renderManIsDead()}
+                    Hello,  I am The Explorer
                 </div>
                 <button 
                 style={{marginTop: 20}}
@@ -237,61 +161,6 @@ export default function NewOldsvilleHouse3({
         )
     }
 
-    function renderManGivesQuest(){
-        if (manInHouse2 === "Default"){
-            return(
-                <div>
-                    <p>My name is Hugh Manson, welcome to my house!</p>
-                    <p>Some evil corporate spiders came into my basement, turned it into a hegde fund; and now they won't leave!</p>
-                    <p>What should I do?</p>
-                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', gap: '5%'}}>
-                        <button style={{flex: 6}}>
-                            "Take Care of it yourself"
-                        </button>
-                        <button style={{flex: 6}}>
-                            "Just wait it out"
-                        </button>
-                       {renderHelpButton()}
-                    </div>
-                </div>
-            )
-        }
-    }
-    
-    function renderHelpButton(){
-        if (
-            checkInvFor(inventory, "mace") || 
-            checkInvFor(inventory, "sword2") || 
-            checkInvFor(inventory, "sword1") || 
-            checkInvFor(inventory, "axe")  
-        ){
-            return(
-                <button>
-                    Let me handle it for you!
-                </button>
-            )
-        }
-    }
-
-    function renderManIsSaved(){
-        if (manInHouse2 === "house2ManHelped"){
-            return(
-                <div>
-                    <p>Thanks for all the help!</p>
-                </div>
-            )
-        }
-    }
-
-    function renderManIsDead(){
-        if (manInHouse2 === "house2ManDead"){
-            return(
-                <div>
-                    <p>I am dead.</p>
-                </div>
-            )
-        }
-    }
 
     /////////////////
     // Main Render //
@@ -300,7 +169,7 @@ export default function NewOldsvilleHouse3({
     return (
         <div style={{flexDirection: 'row', display: 'flex'}}>
             <div style={{ marginTop: '10%', marginLeft: '10%'}}>   
-                {renderHouse2()}
+                {renderHouse3()}
             </div>
             <div style={{marginTop: '10%', paddingLeft: '5%'}}>
                 {renderDialogue()}
