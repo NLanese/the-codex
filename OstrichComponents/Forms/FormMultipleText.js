@@ -240,7 +240,7 @@ export const FormMultipleText = ({
                     height: '25%', textAlign: 'center', 
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
                     margin: 0, width: "90%", marginLeft:'5%', marginRight: '5%',
-                    backgroundColor: '#9cc6f0', fontSize: 18,
+                    backgroundColor: '#9cc6f0', fontSize: 18, boxShadow: null
                 }}
                 onClick={() => handleAddEntry()}
                 >
