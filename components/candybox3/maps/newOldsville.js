@@ -22,36 +22,48 @@ export default function NewOldsville({
     // State //
     ///////////
 
-        // Inventory
+        // Inventory \\
         const [yourInventory, setYourInventory] = useState([...inventory])
 
 
-        // House Objects
-        const [house1, setHouse1] = useState({
-            onClick: (() => {
-                if (yourInventory.includes("Your House Key")){
-                    setSelectedMap("Your House")
-                }
-                else{
-                    setHouse1Msg(true)
-                }
-            }),
-            message: "This is your house. You lost your key when you fed to a crocodile."
-        })
-        const [house1Msg, setHouse1Msg] = useState(false)
+        // House Objects \\
 
-        const [house2, setHouse2] = useState({
-            onClick: (() => {
-                setSelectedMap("New Oldsville -- House2")
-            }),
-            message: "This is your house. You lost your key when you fed to a crocodile."
-        })
-        const [house2Msg, setHouse2Msg] = useState(false)
+            // House 1
+            const [house1, setHouse1] = useState({
+                onClick: (() => {
+                    if (yourInventory.includes("Your House Key")){
+                        setSelectedMap("Your House")
+                    }
+                    else{
+                        setHouse1Msg(true)
+                    }
+                }),
+                message: "This is your house. You lost your key when you fed to a crocodile."
+            })
+            const [house1Msg, setHouse1Msg] = useState(false)
 
-        // Lake Objects
+            // House 2 
+            const [house2, setHouse2] = useState({
+                onClick: (() => {
+                    setSelectedMap("New Oldsville -- House2")
+                }),
+                message: "This is your house. You lost your key when you fed to a crocodile."
+            })
+            const [house2Msg, setHouse2Msg] = useState(false)
+
+            // House 3 
+            const [house3, setHouse3] = useState({
+                onClick: (() => {
+                    setSelectedMap("New Oldsville -- House3")
+                }),
+                message: "This is your house. You lost your key when you fed to a crocodile."
+            })
+            const [house3Msg, setHouse3Msg] = useState(false)
+
+        // Lake Objects \\
+
         const [showLakeMsg, setShowLakeMsg] = useState(false)
         const [showKeyInLakeMsg, setShowKeyInLakeMsg] = useState(false)
-
         useEffect(() => {
             console.log("showLakeMsg changed:", showLakeMsg);
           }, [showLakeMsg]);
@@ -156,7 +168,7 @@ export default function NewOldsville({
         )
     }
 
-    function renderHouseB(){
+    function renderHouseB(houseObj, show){
         return(
             <div>
             <p style={candyBoxStyles.mapStyle}>                  </p>
@@ -167,10 +179,10 @@ export default function NewOldsville({
             <p style={candyBoxStyles.mapStyle}>   /            \ </p>
             <p style={candyBoxStyles.mapStyle}>  /______________\  </p>
             <p style={candyBoxStyles.mapStyle}> /|              |\         </p>
-            <p style={candyBoxStyles.mapStyle}>  |  __          |</p>
+            <p style={candyBoxStyles.mapStyle}>  |  __   {renderHouseMessage(houseObj, show)}       |</p>
             <p style={candyBoxStyles.mapStyle}>  | [__] ______  |</p>
-            <p style={candyBoxStyles.mapStyle}>  |       |. |   | </p>
-            <p style={candyBoxStyles.mapStyle}>  |_______|__|___|    </p>
+            <p style={candyBoxStyles.mapStyle}>  |       <span onClick={() => houseObj.onClick()}>|. |</span>   | </p>
+            <p style={candyBoxStyles.mapStyle}>  |_______<span onClick={() => houseObj.onClick()}>|__|</span>___|    </p>
             </div>
         )
     }
@@ -368,9 +380,9 @@ export default function NewOldsville({
             if ((hasExit)){
                 return(
                     <>
-                        <p style={candyBoxStyles.mapStyle}>                |   |        _________ </p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |       [To Forest]  </p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |          |   |  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |     _________________ </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |    [To Eastern Forest]  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |       |        |  </p>
                         <p style={candyBoxStyles.mapStyle}>                |   |______________________</p>
                         <p style={candyBoxStyles.mapStyle}>                |                </p>
                         <p style={candyBoxStyles.mapStyle}>                |    ______________________</p>
@@ -425,9 +437,9 @@ export default function NewOldsville({
     function renderSouthernEdgeRoad(){
         return(
             <div style={{marginLeft: 0.5}}>
-                <p style={candyBoxStyles.mapStyle}>         _______________              |   |          ,           |   |     ,               ,            |   |              |    |              |   |</p>
-                <p style={candyBoxStyles.mapStyle}>  ''     [To LightHouse]              |   | *               *    |   |             *              .'    |   |      ; '     |    |              |   |</p>
-                <p style={candyBoxStyles.mapStyle}>            |       |          '      |   |    ';     `          |   |    '''          *       ',       |   |         * .  |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>         ___________________          |   |          ,           |   |     ,               ,            |   |              |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>  ''     [To Western Forest]          |   | *               *    |   |             *              .'    |   |      ; '     |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>            |         |        '      |   |    ';     `          |   |    '''          *       ',       |   |         * .  |    |              |   |</p>
                 <p style={candyBoxStyles.mapStyle}> ____________________________________/     \____________________/     \________________________________/     \____________/      \____________/     \</p>
                 <p style={candyBoxStyles.mapStyle}>                                                                                                                                                     |</p>
                 <p style={candyBoxStyles.mapStyle}> ____________________________________________________________________________________________________________________________________________________/</p>
@@ -488,29 +500,39 @@ export default function NewOldsville({
             </div>
 
             {/* Lake and Southbound Road */}
-            <div style={{marginTop: -200, marginLeft: 220}}>
-                {renderWesternRoad()}
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{display: 'flex', flexDirection: 'column'}}>
-                        {renderLake(showLakeMsg, setShowLakeMsg)}
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            {renderHouseB()}
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{marginTop: -200, marginLeft: 220}}>
+                    {renderWesternRoad()}
+                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            {renderLake(showLakeMsg, setShowLakeMsg)}
+                            <div style={{display: 'flex', flexDirection: 'row'}}>
+                                {renderHouseB(house3, house3Msg)}
+                                {renderHouseB()}
+                            </div>
+                        </div>
+                        
+                        {renderSouthbound()}
+                        <div style={{marginLeft: 40, display: 'flex', flexDirection: 'column'}}>
+                            {renderHouse()}
                             {renderHouseB()}
                         </div>
+                        <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
                     </div>
-                    
-                    {renderSouthbound()}
-                    <div style={{marginLeft: 40, display: 'flex', flexDirection: 'column'}}>
-                        {renderHouse()}
-                        {renderHouseB()}
-                    </div>
-                    <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
                 </div>
-                
+                <div style={{display: 'flex', flexDirection: 'column', marginTop: -315, marginLeft: 40}}>
+                    {renderLilForest1()}
+                    {renderLilForest1()}
+                    {renderLilForest2()}
+                    {renderLilForest1()}
+                    {renderLilForest2()}
+                    {renderLilForest1()}
+                </div>
             </div>
+            
 
             {/* Southern Edge */}
-            <div>
+            <div style={{marginTop: -105}}>
                 {renderSouthernEdgeRoad()}
             </div>
         </div>
