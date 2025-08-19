@@ -203,11 +203,25 @@ export const FormMultipleChoice = ({
 
         // Determines on an indiivdual level whether an answer is selected
         function isTagSelected(option){
-            if (value.includes(option)){
-                return true
+
+            // String Options
+            if (typeof option === "string"){
+                if (value.includes(option)){
+                    return true
+                }
+                else{
+                    return false
+                }
             }
+
+            // Object Options
             else{
-                return false
+                if (value.includes(option.tag)){
+                    return true
+                }
+                else{
+                    return false
+                }
             }
         }
 
