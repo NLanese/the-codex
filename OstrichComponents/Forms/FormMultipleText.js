@@ -77,13 +77,8 @@ export const FormMultipleText = ({
                 }
             }
         }
-        console.log("Value changed to ", value)
     }, [value]);
 
-    useEffect(() => {
-        console.log(isValid)
-    }, [isValid])
-        
 
     ///////////////
     // Functions //

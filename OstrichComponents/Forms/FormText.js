@@ -83,10 +83,6 @@ export const FormText = ({
         }
     }, [value]);
 
-    useEffect(() => {
-        console.log("Is Valid ? ", isValid)
-    }, [isValid])
-
     ///////////////
     // Functions //
     ///////////////
@@ -180,11 +176,8 @@ export const FormText = ({
         // Takes FieldObj ValidResponse and determines if True
         function determineIfAnswerValid(){
             if (typeof fieldObj.validResponse === "function"){
-                console.log("Checking the following value -- ", value)
                 checkValid(value).then(resp =>{
-                    console.log(resp)
                     if (resp){
-                        console.log("True")
                         setNewFieldValue({...fieldObj, isValid: true})
                         setIsValid(true)
                         return true
@@ -284,17 +277,18 @@ export const FormText = ({
                 borderFill = '#9cc6f0'
             }
             
+            // In a Multi Text Field, this needs to be pushed more to the right
             if (inMultiTextField){
                 return(
                 <div style={{marginLeft: 'auto', marginRight: '-27.5%'}}>
-                    <div style={{height: 40, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                    <div style={{height: 30, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
                     </div>
                 </div>
                 )
             }
             return(
                 <div style={{marginLeft: 'auto'}}>
-                    <div style={{height: 40, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                    <div style={{height: 30, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
                     </div>
                 </div>
             )
