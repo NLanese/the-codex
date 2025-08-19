@@ -250,10 +250,18 @@ export const FormText = ({
 
         // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
+
+            // Not sure what this is 
             if ((!fieldObj.validResponse && !correctResponse && !hasValidResponse)){
                 console.warn("No valid field, no correct field, or correct display is not bubble in ", fieldObj.id)
                 return
             }
+
+            // If Field is not required at all and cannot be correct or wrong
+            if (fieldObj.required === false && !fieldObj.correctResponse){
+                return
+            }
+
             let borderColor = '#bdbdbd'
             let borderFill = '#efefef'
 
