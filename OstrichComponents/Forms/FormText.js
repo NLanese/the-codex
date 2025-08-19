@@ -83,6 +83,13 @@ export const FormText = ({
         }
     }, [value]);
 
+    useEffect(() => {
+        if (typeof fieldObj.validResponse === "booleamn"){
+            setIsValid(fieldObj.validResponse)
+            return fieldObj.validResponse
+        }
+    }, [validResponse])
+
     ///////////////
     // Functions //
     ///////////////
@@ -154,6 +161,9 @@ export const FormText = ({
                 tempBox.boxShadow = '0px 0px 2px 0px rgba(212, 59, 59 0.2)'
             }
             final = {...tempBox, ...boxStyle}
+            if (inMultiTextField){
+                final.boxShadow = null
+            }
             setBoxStyleFinal(final)
         }
 
@@ -175,6 +185,10 @@ export const FormText = ({
 
         // Takes FieldObj ValidResponse and determines if True
         function determineIfAnswerValid(){
+            if (typeof fieldObj.validResponse === "booleamn"){
+                setIsValid(fieldObj.validResponse)
+                return fieldObj.validResponse
+            }
             if (typeof fieldObj.validResponse === "function"){
                 checkValid(value).then(resp =>{
                     if (resp){
@@ -211,6 +225,9 @@ export const FormText = ({
 
         // Renders the Field's Description / Caption
         function renderCaption(){
+            if (inMultiTextField){
+                return
+            }
             if (fieldObj.caption){
                 return(
                     <span style={captionStyleFinal}>
@@ -222,6 +239,9 @@ export const FormText = ({
 
         // Renders Additional Text or Field Image
         function renderMoreDetails(){
+            if (inMultiTextField){
+                return
+            }
             if (fieldObj.img){
                 return(
                     <OstCard
@@ -236,6 +256,19 @@ export const FormText = ({
                     style={moreTextStyleFinal}
                     >
                         {fieldObj.moreText}
+                    </p>
+                )
+            }
+        }
+
+        function renderTitle(){
+            if (inMultiTextField){
+                return
+            }
+            else{
+                return(
+                    <p style={{...titleStyleFinal}}>
+                        {fieldObj.title}
                     </p>
                 )
             }
@@ -279,13 +312,16 @@ export const FormText = ({
             
             // In a Multi Text Field, this needs to be pushed more to the right
             if (inMultiTextField){
-                return(
-                <div style={{marginLeft: 'auto', marginRight: '-27.5%'}}>
-                    <div style={{height: 30, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
-                    </div>
-                </div>
-                )
+                return
+            // (
+            //     <div style={{marginLeft: 'auto', marginRight: '-27.5%'}}>
+            //         <div style={{height: 30, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+            //         </div>
+            //     </div>
+            //     )
             }
+
+            // Not in Multi Text
             return(
                 <div style={{marginLeft: 'auto'}}>
                     <div style={{height: 30, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
@@ -302,9 +338,7 @@ export const FormText = ({
                 return(
                     <div style={{width: '95%', height: '10%'}}>
                         <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
-                            <p style={{...titleStyleFinal}}>
-                                {fieldObj.title}
-                            </p>
+                            {renderTitle()}
                             {renderBubbleValidOrCorrect()}
                         </div>  
                         <div style={{display: 'flex', flexDirection: 'column'}}>

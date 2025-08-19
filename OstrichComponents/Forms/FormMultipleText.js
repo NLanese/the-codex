@@ -64,6 +64,7 @@ export const FormMultipleText = ({
     // When this Field has its value changed, the change is conveyed to the Greater Form
     const prevValueRef = useRef(value);
     useEffect(() => {
+        console.log("Value Change")
         if (prevValueRef.current !== value) {
             fieldObj.value = value;
             fieldObj.isValid = true
@@ -72,8 +73,16 @@ export const FormMultipleText = ({
                 onChange(fieldObj);
             }
             if (minLength){
+                console.log("Min Length")
+                console.log(" is ", value.length, " greater or equal to ", minLength)
                 if (value.length >= minLength){
+                    console.log("Is valid")
                     setIsValid(true)
+                }
+            }
+            else{
+                if (value.length > 1){
+                    return true
                 }
             }
         }
@@ -188,6 +197,7 @@ export const FormMultipleText = ({
             setCurrentInput("")
         }
 
+        // Handles the Removal of a Submitted Entry
         function handleRemoveEntry(val){
             let temp = [...value].filter((thisVal) => {
                 if (val !== thisVal){
@@ -201,6 +211,7 @@ export const FormMultipleText = ({
     // Renderings //
     ////////////////
 
+    // Renders area for User Input
     function renderInputSpace(){
         return(
             <FormText 
@@ -213,13 +224,14 @@ export const FormMultipleText = ({
                 setNewFieldValue={setNewFieldValue}
                 hasValidResponse={true}
                 correctDisplay={correctDisplay}
-                validResponse={ () => {if (isValid) return true}}
+                validResponse={isValid}
                 inMultiTextField={true}
                 currentValue={currentInput}
             />
         )
     }
 
+    // Renders Buttont o Submit Entry
     function renderAddEntry(){
         return(
             <div style={{ flex: 2, display: 'flex',  flexDirection: 'column',  justifyContent: 'flex-end'}}>
@@ -238,6 +250,7 @@ export const FormMultipleText = ({
         )
     }
 
+    // Renders a single row of selected answers
     function renderSubmissionRow(arr){
         return arr.map(val => {
             if (!val){
@@ -255,6 +268,7 @@ export const FormMultipleText = ({
         })
     }
 
+    // Renders all submitted answers
     function renderSubmittedAnswers(){
         if (value.length < 4){
             return (
@@ -282,8 +296,85 @@ export const FormMultipleText = ({
         }
     }
 
+    // Renders the Bubble Version of Correct or Valid
+    function renderBubbleValidOrCorrect(){
+
+        // Not sure what this is 
+        if ((!fieldObj.validResponse && !correctResponse && !hasValidResponse)){
+            console.warn("No valid field, no correct field, or correct display is not bubble in ", fieldObj.id)
+            return
+        }
+
+        // If Field is not required at all and cannot be correct or wrong
+        if (fieldObj.required === false && !fieldObj.correctResponse){
+            return
+        }
+
+        let borderColor = '#bdbdbd'
+        let borderFill = '#efefef'
+
+        // Is Correct
+        if (isCorrect){
+            console.log("CORRECT response")
+            borderColor = '#57f25f'
+            borderFill = '#a8ffad'
+        }
+
+        // Is Wrong
+        else if (isWrong){
+            borderColor = 'red'
+            borderFill = 'red'
+        }
+
+        // Is Valid
+        else if (isValid){
+            borderColor = '#57a5f2'
+            borderFill = '#9cc6f0'
+        }
+
+        // Not in Multi Text
+        return(
+            <div style={{marginLeft: 'auto'}}>
+                <div style={{height: 30, aspectRatio: 1, borderRadius: 50, border: `3px solid ${borderColor}`, backgroundColor: borderFill}}>
+                </div>
+            </div>
+        )
+    }
+
+    // Renders the Field's Description / Caption
+    function renderCaption(){
+        if (fieldObj.caption){
+            return(
+                <span style={captionStyleFinal}>
+                    {fieldObj.caption}
+                </span>
+            )
+        }
+    }
+
+    // Renders Additional Text or Field Image
+    function renderMoreDetails(){
+        if (fieldObj.img){
+            return(
+                <OstCard
+                    style={{justifySelf: 'center'}}
+                    imageSrc={img} 
+                />
+            )
+        }
+        else if (fieldObj.moreText){
+            return(
+                <p 
+                style={moreTextStyleFinal}
+                >
+                    {fieldObj.moreText}
+                </p>
+            )
+        }
+    }
 
 
+    // MAIN // 
     function MAIN(){
         if (isLoading){
             return null
@@ -291,6 +382,17 @@ export const FormMultipleText = ({
         else{
             return(
                 <div style={{width: '95%', height: 'auto', display: 'flex', flexDirection: 'column'}}>
+                    {/* {renderBubbleValidOrCorrect()} */}
+                    <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%'}}>
+                            <p style={{...titleStyleFinal}}>
+                                {fieldObj.title}
+                            </p>
+                            {renderBubbleValidOrCorrect()}
+                        </div>  
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            {renderCaption()} 
+                            {renderMoreDetails()}
+                        </div>
                     <div style= {{display: 'flex', flexDirection: 'row'}}>
                         {renderInputSpace()}
                         {renderAddEntry()}
