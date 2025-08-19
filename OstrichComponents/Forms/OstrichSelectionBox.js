@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 export const OstrichSelectionBox = ({
-    tag,
+    option,
     selected = false,
     onSelect,
     type,
@@ -50,6 +50,9 @@ export const OstrichSelectionBox = ({
         // Loading
         const [loading, setLoading] = useState(true)
 
+        // Option Value
+        const [tag, setTag] = useState(null)
+
     /////////////////
     // Use Effects //
     /////////////////
@@ -75,7 +78,19 @@ export const OstrichSelectionBox = ({
             }
         };
 
+
+        // Loads initial styles and finds tag from object
         const handleInititalState = () => {
+
+            // Tag Finding
+            if (typeof option === "string"){
+                setTag(option)
+            }
+            else{
+                setTag(option.tag)
+            }
+
+            // Style Setting
             let temp = {
                 border: "0.0px solid black", borderRadius: 32, 
                 height: 32, width: 32, minHeight: 32, minWidth: 32, 
@@ -108,16 +123,27 @@ export const OstrichSelectionBox = ({
                 marginBottom: 0,
                 textAlignVertical: 'center',
             }
-            setTitleStyleFinal({...tempTitle, titleStyle})
+            setTitleStyleFinal({...tempTitle, ...titleStyle, ...fieldObj.textStyle})
 
             let tempContainer = {display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', ...containerStyle}
             setContainerStyleFinal(tempContainer)
         }
 
+        // Handles Selection of Option
         const handleSelectionClick = (tag) => {
             onSelect(tag)
             if (fieldObj && fieldObj.onChange){          // If there is a Field Obj and Field Obj Function  
                 fieldObj.onChange(tag, fieldObj)         // Fire the Field Obj Function
+            }
+        }
+
+        const determineTextStyle = () => {
+            if (typeof option === "string"){
+                return titleStyleFinal
+            }
+            else{
+                console.log(typeof option)
+                return {...titleStyleFinal, ...option.textStyle}
             }
         }
 
@@ -160,7 +186,7 @@ export const OstrichSelectionBox = ({
                 <div style={containerStyleFinal}>
                    {renderOption()}
                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: "100%",}}>
-                        <p style={titleStyleFinal}>
+                        <p style={determineTextStyle()}>
                             {tag}
                         </p>
                     </div>

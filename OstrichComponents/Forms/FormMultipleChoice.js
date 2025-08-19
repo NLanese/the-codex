@@ -309,7 +309,7 @@ export const FormMultipleChoice = ({
             return rowOptions.map( (opt, index) => {
                 return(
                     <OstrichSelectionBox 
-                    tag={opt}
+                    option={opt}
                     selected={isTagSelected(opt)}
                     onSelect={handleInput}
                     key={index}

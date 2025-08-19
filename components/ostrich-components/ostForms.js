@@ -413,14 +413,15 @@ export default function OstFormsShowcase(){
                             title: "Question 2: What is 'blue'",
                             type: "MC",
                             options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"],
+                            textStyle: {fontSize: 18},
                             correctResponse: ["A Color"]
                         },
                         {
                             id: "3",
                             title: "Question 3: Choose all letters",
                             type: "MC",
-                            options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", "Alexander the Warrior Jar"],
-                            textStyle: {fontSize: 12},
+                            options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", {tag: "Alexander the Warrior Jar", textStyle: {fontSize: 14, textAlign: 'center'}}],
+                            textStyle: {fontSize: 18},
                             correctResponse: ["A", "B", "C", "D"],
                             singleOption: false
                         },
