@@ -29,6 +29,6 @@ const fists = {
     status: "base",
     type: "weapon",
     damage: 1,
-    speed: 2000,
+    speed: 800,
     status: 'active'
 }

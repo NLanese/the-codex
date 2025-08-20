@@ -7,7 +7,7 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 25,
-        speed: 2500,
+        speed: 1200,
         status: 'inactive'
     },
     {
@@ -17,8 +17,8 @@ const NewOldsForgeItems = [
         id: "sword2",
         status: "base",
         type: "weapon",
-        damage: 7,
-        speed: 1000,
+        damage: 9,
+        speed: 600,
         status: 'inactive'
     },
     {
@@ -29,7 +29,7 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 5,
-        speed: 2000,
+        speed: 900,
         status: 'inactive'
     },
     {
@@ -40,7 +40,7 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 2,
-        speed: 1500,
+        speed: 750,
         status: 'inactive'
     },
     {

@@ -8,6 +8,9 @@ import { useRecoilState } from "recoil";
 // Battle Track
 import BATTLE_TRACK from "./battle_track";
 
+// Battle Tracks
+import easternForest from "./battle_track_maps/newOldsVilleTracks/easternForest";
+
 // Maps
 import NewOldsville from "./maps/newOldsville";
 import NewOldsvilleHouse2 from "./maps/newOldsvilleMaps/house2";
@@ -93,10 +96,14 @@ export default function Map({
 
 
         else if (thisMap.split(" -- ")[0] === "BattleTrack"){
+            let selectedTrack
+            if (thisMap.split(" -- ")[1] === "Eastern Forest"){
+                selectedTrack = easternForest
+            }
             return(
                 <BATTLE_TRACK
                     setSelectedMap={setSelectedMap}
-                    selectedTrack={thisMap.split(" -- ")[1]}
+                    selectedTrack={selectedTrack}
                     inventory={inventory}
                     setInventory={setInventory}
                     thingsDone={thingsDone}

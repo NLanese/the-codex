@@ -10,6 +10,7 @@ import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
 import findActiveWeapon from "./func/findActiveWeapon"
 
+
 export default function BATTLE_TRACK({
     setSelectedMap,
     selectedTrack,
@@ -34,6 +35,19 @@ export default function BATTLE_TRACK({
 
         // TRACK STATE \\
 
+            // Movement and Movement Timer
+            const [moved, setMoved] = useState(0)
+            useEffect(() => {
+                if (!inCombat){
+                    const posTimer = setInterval(() => {
+                        handlePathing()
+                    }, 150);
+                    return () => {
+                        clearInterval(posTimer)
+                    };
+                }
+            }, [inCombat]);
+
             // Combat Timer
             useEffect(() => {
             if (inCombat){
@@ -55,6 +69,9 @@ export default function BATTLE_TRACK({
 
             // Completion Status
             const [isComplete, setIsComplete] = useState(false)
+
+            // Candies
+            const [candiesAcquired, setCandiesAcquired] = useState(0)
 
         // PLAYER \\
 
@@ -86,7 +103,7 @@ export default function BATTLE_TRACK({
             const [fightingEnemy, setfightingenemy] = useState({name: "Nothing", atkSpeed: 1000})
 
             // Position
-            const [pos, setPos] = useState([0,0])
+            const [pos, setPos] = useState([ 0, selectedTrack.startingY ])
 
         // WEAPON \\ 
 
@@ -108,6 +125,30 @@ export default function BATTLE_TRACK({
                 setInventory(newInv)
             }
 
+    ///////////////
+    // Functions //
+    ///////////////
+
+            function handleLeave(){
+                if (isComplete()){
+                    if (selectedTrack.thingDone){
+                        if (!thingsDone.includes(selectedTrack.thingDone)){
+                            setThingsDone(prev => [...prev, selectedTrack.thingDone])
+                            setCandies(prev => prev + candiesAcquired)
+                            setSelectedMap(selectedTrack.winReturnTo)
+                        }   
+                    }
+                }
+                else{
+                    setSelectedMap(selectedTrack.returnTo)
+                }
+            }
+
+            function handlePathing(){
+                if (selectedTrack.pathing === 'straight-line'){
+                    setPos(prev => [prev[0] + 1, prev[1]])
+                }
+            }
 
     /////////////
     // Renders //
@@ -126,7 +167,7 @@ export default function BATTLE_TRACK({
             }
             return (
                 <div style={{marginTop: 20}}>
-                    <button>
+                    <button onClick={() => handleLeave()}>
                         {leaveTxt}
                     </button>
                 </div>
@@ -142,6 +183,9 @@ export default function BATTLE_TRACK({
                 {renderMessages()}
                 {renderLeave()}
             </div>  
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                {selectedTrack.render}
+            </div>
         </div>
     )
 }
