@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 // Recoil
 import { useRecoilState } from "recoil";
 
+// Styles
+import { candyBoxStyles } from "./const/styles";
+
 // Functions
 import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
@@ -41,17 +44,17 @@ export default function BATTLE_TRACK({
                 if (checkInvFor(selectedTrinkets, 'sponge')){
                     if (checkInvFor(selectedTrinkets, 'sponge').status === 'active'){
                         return (
-                        <div>
-                            <p>\o/</p>
+                        <div style={candyBoxStyles.mapStyle}>
+                            <p style={candyBoxStyles.mapStyle}>\o/</p>
                         </div>
                         )
                     }
                 }
                 return (
-                <div>
-                    <p>\O/</p>
-                    <p> | </p>
-                    <p>/ \</p>
+                <div style={{...candyBoxStyles.mapStyle, padding: 0, margin:0}}>
+                    <p style={candyBoxStyles.mapStyle}>\O/</p>
+                    <p style={candyBoxStyles.mapStyle}> | </p>
+                    <p style={candyBoxStyles.mapStyle}>/ \</p>
                 </div>
                 )
             }
@@ -63,7 +66,7 @@ export default function BATTLE_TRACK({
             const [fightingEnemy, setfightingenemy] = useState({name: "Nothing", atkSpeed: 1000})
 
             // Position
-            const [pos, setPos] = useState([ 0, selectedTrack.startingY ])
+            const [pos, setPos] = useState([ selectedTrack.startingX, selectedTrack.startingY ])
 
         // WEAPON \\ 
 
@@ -90,15 +93,25 @@ export default function BATTLE_TRACK({
             // Movement and Movement Timer
             const [moved, setMoved] = useState(0)
             useEffect(() => {
-                if (!inCombat){
+                if (!inCombat && !isComplete){
                     const posTimer = setInterval(() => {
                         handlePathing()
-                    }, 150);
+                    }, 10);
                     return () => {
                         clearInterval(posTimer)
                     };
                 }
             }, [inCombat]);
+
+            useEffect(() => {
+                if (selectedTrack.finalX){
+                    console.log(moved , selectedTrack.finalX)
+                    if (moved >= selectedTrack.finalX){
+                        setIsComplete(true)
+                    }
+                }
+                
+            }, [moved])
 
             // Combat Timer
             useEffect(() => {
@@ -130,7 +143,7 @@ export default function BATTLE_TRACK({
     ///////////////
 
             function handleLeave(){
-                if (isComplete()){
+                if (isComplete){
                     if (selectedTrack.thingDone){
                         if (!thingsDone.includes(selectedTrack.thingDone)){
                             setThingsDone(prev => [...prev, selectedTrack.thingDone])
@@ -148,6 +161,7 @@ export default function BATTLE_TRACK({
                 if (selectedTrack.pathing === 'straight-line'){
                     setPos(prev => [prev[0] + 1, prev[1]])
                 }
+                setMoved(prev => prev + 1)
             }
 
     /////////////
@@ -166,10 +180,18 @@ export default function BATTLE_TRACK({
                 leaveTxt = "Leave (and keep what you found)"
             }
             return (
-                <div style={{marginTop: 20}}>
+                <div style={{marginTop: 20, marginBottom: 20, display: 'flex', justifyContent: 'center'}}>
                     <button onClick={() => handleLeave()}>
                         {leaveTxt}
                     </button>
+                </div>
+            )
+        }
+
+        function renderDude(){
+            return(
+                <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
+                    {token}
                 </div>
             )
         }
@@ -179,12 +201,18 @@ export default function BATTLE_TRACK({
     //////////
     return(
         <div>
-            <div style={{border: '1px solid black'}}>
-                {renderMessages()}
+            <div style={{border: '1px solid black', marginTop: '1.5%', marginLeft: '20%', width: '60%', marginBottom: 20}}>
+                <div style={{height: 120}}>
+                    {renderMessages()}
+                </div>
                 {renderLeave()}
             </div>  
+            <div style={{height: 120, marginLeft: '20%', marginBottom: 50}}>
+                Abilities will go here
+            </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 {selectedTrack.render}
+                {renderDude()}
             </div>
         </div>
     )
