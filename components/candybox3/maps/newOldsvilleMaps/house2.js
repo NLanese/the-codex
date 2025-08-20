@@ -302,10 +302,10 @@ export default function NewOldsvilleHouse2({
 
     return (
         <div style={{flexDirection: 'row', display: 'flex'}}>
-            <div style={{ marginTop: '10%', marginLeft: '10%'}}>   
+            <div style={{ marginTop: '1%', marginLeft: '2.5%', flex:7 }}>   
                 {renderHouse2()}
             </div>
-            <div style={{marginTop: '10%', paddingLeft: '5%'}}>
+            <div style={{marginTop: '1%', paddingLeft: '2.5%', flex:5 }}>
                 {renderDialogue()}
             </div>
         </div>

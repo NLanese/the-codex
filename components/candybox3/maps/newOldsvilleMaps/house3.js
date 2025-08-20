@@ -21,27 +21,19 @@ export default function NewOldsvilleHouse3({
     setLollipops,
 }){
 
-    //////////////////
-    // Drawer State //
-    //////////////////
+    ////////////////////
+    // Question State //
+    ////////////////////
+    
+    const [ans, setAns] = useState("")
+    const [ansResp, setAnsResp] = useState("")
+    const ans1 = "38"
 
-    const [drawerOpened, setDrawerOpened] = useState(determinedDrawerState())
+    function checkAnswer(){
+        if (manInHouse3 === 'q1'){
 
-    function openDrawer(){
-        console.log("Door Opened")
-        setDrawerOpened(true)
-        setThingsDone(prev => [...prev, "hosue2DrawerOpened"])
-    }
-
-    function determinedDrawerState(){
-        if (thingsDone.includes("hosue2DrawerOpened")){
-            return true
-        }
-        else{
-            return false
         }
     }
-
 
     /////////////////////////
     // Flower Pot Lollipop //
@@ -81,23 +73,27 @@ export default function NewOldsvilleHouse3({
     const [manInHouse3, setManInHouse3] = useState(determineManInHouseState())
 
     function determineManInHouseState(){
-        if (thingsDone.includes("house2ManDead")){
-            return ("Dead")
+        if (thingsDone.includes("house2ManQ3")){
+            return ("q4")
         }
-        else if (thingsDone.includes("house2ManToldToFight")){
-            return ("Downstairs")
+        else if (thingsDone.includes("house2ManQ2")){
+            return ("q3")
         }
-        else if (thingsDone.includes("house2ManToldToWait")){
-            return ("Waiting")
+        else if (thingsDone.includes("house2ManQ1")){
+            return ("q2")
         }
-        else if (thingsDone.includes("house2ManHelped")){
-            return ("Happy")
+        else if (thingsDone.includes("house3OK")){
+            return ("q1")
         }
         else{
             return "Default"
         }
-        
     }
+
+    function tellManOkay(){
+        setManInHouse3("q1")
+        setThingsDone(prev => [...prev, "house3OK"])
+    }  
 
     /////////////
     // Renders //
@@ -132,10 +128,10 @@ export default function NewOldsvilleHouse3({
                 <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |   |           |     |  |     |             |                   |   |       |          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      | /           || /           |   |           |_____|  |_____|             |      _______      |   |       |          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|   |___________/-    |__|    -\_____________|    /)|#(#%|& \    |   |_______|          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |  /         |________|  |________|          |   |(#|3#3%|)% |   |  /        \          |</p>
-                <p style={candyBoxStyles.mapStyle}>|      | /           || /           | /                                          |   |__|____|___|   | /          \         |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________|/                                           |___________________|/            \        |</p>
-                <p style={candyBoxStyles.mapStyle}>|      /                                 ____________________________________________________                       \       |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |   /         |________|  |________|         |   |(#|3#3%|)% |   |  /        \          |</p>
+                <p style={candyBoxStyles.mapStyle}>|      | /           || /           |  /                                         |   |__|____|___|   | /          \         |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________| /                                          |___________________|/            \        |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |____________________________|/    ____________________________________________________                       \       |</p>
                 <p style={candyBoxStyles.mapStyle}>|     /                                 #                                                   #                        \      |</p>
                 <p style={candyBoxStyles.mapStyle}>|    /                                 #                                                   #                          \     |</p>
                 <p style={candyBoxStyles.mapStyle}>|   /                                 #                                                   #                            \    |</p>
@@ -148,9 +144,14 @@ export default function NewOldsvilleHouse3({
 
     function renderDialogue(){
         return(
-            <div style={{height: '70%', paddingRight: '7.5%'}}>
+            <div style={{height: '70%', marginRight: '10%'}}>
                 <div>
-                    Hello,  I am The Explorer
+                    Hello and welcome to my house.  I am The Explorer, I've traveled 100s of miles 
+                    from Overtheristan to be here and explore the area, but alas I am too old to continue anymore. 
+                    Can you remind me some of the finer details of the world? I will reward you with some candy!
+                </div>
+                <div style={{marginTop: 20}}>
+                    {renderOkayOrQuestions()}
                 </div>
                 <button 
                 style={{marginTop: 20}}
@@ -161,6 +162,45 @@ export default function NewOldsvilleHouse3({
         )
     }
 
+    function renderOkayOrQuestions(){ 
+        if (manInHouse3 === "Default"){
+            return(
+                <div>
+                    <button onClick={() => tellManOkay()}>Sure!</button>
+                </div>
+            )
+        }
+        else{
+            return (
+                <div>
+                    {determineQuestion()}
+                    <div style={{marginTop: 20}}>
+                        <button onClick={() => checkAnswer()}>
+                            Submit
+                        </button>
+                    </div> 
+                </div>
+            )
+        }
+    }
+
+    function determineQuestion(){
+        if (manInHouse3 === "q1"){
+            return(
+                <div>
+                    I haven't been outside in awhile, and I forgot how to count. 
+                    Can you remind me how many trees are outside in New Oldsville?
+                    <div style={{marginTop: 20}}>
+                        <input
+                            onChange={(e) => setAns(e.target.value)}
+                            value={ans}
+                        />
+                    </div>
+                </div>
+            )
+        }
+    }
+
 
     /////////////////
     // Main Render //
@@ -168,10 +208,10 @@ export default function NewOldsvilleHouse3({
 
     return (
         <div style={{flexDirection: 'row', display: 'flex'}}>
-            <div style={{ marginTop: '10%', marginLeft: '10%'}}>   
-                {renderHouse3()}
+            <div style={{ marginTop: '1%', marginLeft: '2.5%', flex:7, }}>   
+                {renderHouse3()} 
             </div>
-            <div style={{marginTop: '10%', paddingLeft: '5%'}}>
+            <div style={{marginTop: '1%', paddingLeft: '2.5%', flex:5, }}>
                 {renderDialogue()}
             </div>
         </div>
