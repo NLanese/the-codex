@@ -9,6 +9,7 @@ const easternForest = {
     thingDone: 'CrossedEasternForest',
     finalX: 130 * 8,
     finalY: false,
+    openingMsg: <p>You wander into the (kind of) peaceful forest.</p>,
     render: (
         <div>
             <p style={candyBoxStyles.mapStyle}>           88888                                          8888888         8888888o                               8888888o</p>

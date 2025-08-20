@@ -24,6 +24,8 @@ const DDScreen = "../../../assets/icons/big/DDScreen.png";
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
 const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
+const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
+
 
 
 export default function ProjectsMenu() {
@@ -136,7 +138,7 @@ export default function ProjectsMenu() {
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={"moop"}
+                        imageSrc={CandyBox3}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
                         router.replace("/showcases/projects/candybox_3")
