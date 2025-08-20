@@ -2,13 +2,13 @@ export default function checkInvFor(inv, id){
     let found = false
     inv.forEach(itm => {
         if (itm.id){
-            if (it?.id === id){
-                found = true
+            if (itm.id === id){
+                found = itm
             }
         } 
         else{
             if (itm === id){
-                found = true
+                found = itm
             }
         }
     });

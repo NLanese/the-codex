@@ -1,3 +1,6 @@
+import checkInvFor from "./func/checkInventoryFor"
+import makeNewInventoryWithReplacement from "./func/updateFromInv"
+
 export default function BATTLE_TRACK({
     setSelectedMap,
     selectedTrack,
@@ -21,17 +24,37 @@ export default function BATTLE_TRACK({
     ///////////
 
     // Player Token
-    const [token, seToken] = useState(
+    const [token, setToken] = useState(determineTokenAtStart())
+    function determineTokenAtStart(){
+        if (checkInvFor(selectedTrinkets, 'sponge')){
+            if (checkInvFor(selectedTrinkets, 'sponge').status === 'active'){
+                return (
+                <div>
+                    <p>\o/</p>
+                </div>
+                )
+            }
+        }
+        return (
         <div>
-            <p>\ O / </p>
-            <p> `| </p>
-            <p> / \  </p>
+            <p>\O/</p>
+            <p> | </p>
+            <p>/ \</p>
         </div>
-    )
-    function determineToken(){
-
+        )
     }
 
+    // Weapon
+    
+
+    // Sponge
+    const hasSponge = checkInvFor(inventory, "sponge") ? true : false;
+    function activateShrink(){
+        let foundSponge = checkInvFor(inventory, "sponge")
+        foundSponge.status = "active"
+        let newInv = makeNewInventoryWithReplacement(inventory, "sponge", foundSponge)
+        setInventory(newInv)
+    }
 
 
 
