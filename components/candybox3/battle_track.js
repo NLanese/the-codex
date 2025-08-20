@@ -1,6 +1,6 @@
 export default function BATTLE_TRACK({
-    selectedMap, 
     setSelectedMap,
+    selectedTrack,
     inventory,
     setInventory,
     thingsDone, 
@@ -31,4 +31,18 @@ export default function BATTLE_TRACK({
     function determineToken(){
 
     }
+
+
+
+
+
+
+    //////////
+    // Main //
+    //////////
+    return(
+        <div>
+
+        </div>
+    )
 }

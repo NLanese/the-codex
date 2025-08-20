@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 // Recoil
 import { useRecoilState } from "recoil";
 
+// Battle Track
+import BATTLE_TRACK from "./battle_track";
+
 // Maps
 import NewOldsville from "./maps/newOldsville";
 import NewOldsvilleHouse2 from "./maps/newOldsvilleMaps/house2";
@@ -84,6 +87,23 @@ export default function Map({
                     setThingsDone={setThingsDone}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
+                />
+            )
+        }
+
+
+        else if (thisMap.split(" -- ")[0] === "BattleTrack"){
+            return(
+                <BATTLE_TRACK
+                    setSelectedMap={setSelectedMap}
+                    selectedTrack={thisMap.split(" -- ")[1]}
+                    inventory={inventory}
+                    setInventory={setInventory}
+                    thingsDone={thingsDone}
+                    setThingsDone={setThingsDone}
+                    setCandies={setCandies}
+                    setLollipops={setLollipops}
+                    
                 />
             )
         }

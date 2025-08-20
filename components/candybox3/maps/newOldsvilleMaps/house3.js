@@ -239,7 +239,7 @@ export default function NewOldsvilleHouse3({
     /////////////////
 
     return (
-        <div style={{flexDirection: 'row', display: 'flex'}}>
+        <div style={{flexDirection: 'row', display: 'flex', marginTop: '5%'}}>
             <div style={{ marginTop: '1%', marginLeft: '2.5%', flex:7, }}>   
                 {renderHouse3()} 
             </div>
