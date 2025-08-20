@@ -32,87 +32,116 @@ export default function BATTLE_TRACK({
     // State //
     ///////////
 
-    // UPDATE TIMERS \\
+        // TRACK STATE \\
 
+            // Combat Timer
+            useEffect(() => {
+            if (inCombat){
+                const attacks = setInterval(() => {
+                    // TO DO: Attack Function
+                }, atkSpeed);
+                const defends = setInterval(() => {
+                    // TO DO: Defend Function
+                }, fightingEnemy.atkSpeed);
+                return () => {
+                    clearInterval(attacks)
+                    clearInterval(defends)
+                };
+            }
+            }, [inCombat]);
 
-    // Combat Timer
-    useEffect(() => {
-        if (inCombat){
-            const attacks = setInterval(() => {
-                // TO DO: Attack Function
-            }, atkSpeed);
-            const defends = setInterval(() => {
-                // TO DO: Defend Function
-            }, fightingEnemy.atkSpeed);
-            return () => {
-                clearInterval(attacks)
-                clearInterval(defends)
-            };
-        }
-      }, [inCombat]);
+            // Messages
+            const [msg, setMsg] = useState([])
 
+            // Completion Status
+            const [isComplete, setIsComplete] = useState(false)
 
-    // PLAYER \\
+        // PLAYER \\
 
-        // Player Token
-        const [token, setToken] = useState(determineTokenAtStart())
-        function determineTokenAtStart(){
-            if (checkInvFor(selectedTrinkets, 'sponge')){
-                if (checkInvFor(selectedTrinkets, 'sponge').status === 'active'){
-                    return (
-                    <div>
-                        <p>\o/</p>
-                    </div>
-                    )
+            // Player Token
+            const [token, setToken] = useState(determineTokenAtStart())
+            function determineTokenAtStart(){
+                if (checkInvFor(selectedTrinkets, 'sponge')){
+                    if (checkInvFor(selectedTrinkets, 'sponge').status === 'active'){
+                        return (
+                        <div>
+                            <p>\o/</p>
+                        </div>
+                        )
+                    }
                 }
+                return (
+                <div>
+                    <p>\O/</p>
+                    <p> | </p>
+                    <p>/ \</p>
+                </div>
+                )
+            }
+
+            // Fighting Enemy Boolean
+            const [inCombat, setInCombat] = useState(false)
+
+            // Enemy that is being Fought
+            const [fightingEnemy, setfightingenemy] = useState({name: "Nothing", atkSpeed: 1000})
+
+            // Position
+            const [pos, setPos] = useState([0,0])
+
+        // WEAPON \\ 
+
+            // Selected Weapon
+            const weapon = findActiveWeapon(inventory)
+
+            // Weapon Attack Speed
+            const [atkSpeed, setAtkSpeed] = useState(weapon.speed)
+
+        // TRINKETS \\
+
+            // Sponge
+            const hasSponge = checkInvFor(inventory, "sponge") ? true : false;
+            // Use Sponge
+            function activateShrink(){
+                let foundSponge = checkInvFor(inventory, "sponge")
+                foundSponge.status = "active"
+                let newInv = makeNewInventoryWithReplacement(inventory, "sponge", foundSponge)
+                setInventory(newInv)
+            }
+
+
+    /////////////
+    // Renders //
+    /////////////
+
+        function renderMessages(){
+            return msg.map(m => {
+                {m}
+            })
+        }
+
+        function renderLeave(){
+            let leaveTxt = "Leave (If you leave now you won't keep what you found)"
+            if (isComplete){
+                leaveTxt = "Leave (and keep what you found)"
             }
             return (
-            <div>
-                <p>\O/</p>
-                <p> | </p>
-                <p>/ \</p>
-            </div>
+                <div style={{marginTop: 20}}>
+                    <button>
+                        {leaveTxt}
+                    </button>
+                </div>
             )
         }
-
-        // Fighting Enemy
-        const [inCombat, setInCombat] = useState(false)
-
-        const [fightingEnemy, setfightingenemy] = useState({name: "Nothing", atkSpeed: 1000})
-
-        // Position
-        const [pos, setPos] = useState([0,0])
-
-    // WEAPON \\ 
-
-        // Selected Weapon
-        const weapon = findActiveWeapon(inventory)
-
-        // Weapon Attack Speed
-        const [atkSpeed, setAtkSpeed] = useState(weapon.speed)
-
-    // TRINKETS \\
-
-        // Sponge
-        const hasSponge = checkInvFor(inventory, "sponge") ? true : false;
-        // Use Sponge
-        function activateShrink(){
-            let foundSponge = checkInvFor(inventory, "sponge")
-            foundSponge.status = "active"
-            let newInv = makeNewInventoryWithReplacement(inventory, "sponge", foundSponge)
-            setInventory(newInv)
-        }
-
-
-
-
 
     //////////
     // Main //
     //////////
     return(
         <div>
-
+            <div style={{border: '1px solid black'}}>
+                {renderMessages()}
+                {renderLeave()}
+            </div>  
         </div>
     )
 }

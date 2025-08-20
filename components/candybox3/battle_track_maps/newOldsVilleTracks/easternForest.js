@@ -26,7 +26,11 @@ export default function EasternForest({
 
     // 120 char long
     function renderFloor(){
-            return(
+
+        const easternForest = {
+            pathing: 'straight-line',
+            returnTo: 'New Oldsville',
+            render: (
                 <div>
                     <p style={candyBoxStyles.mapStyle}>   88888                                        8888888         8888888o                               8888888o</p>
                     <p style={candyBoxStyles.mapStyle}> 888888888                                    88888888888    888o888888888                            8o8888888</p>
@@ -38,7 +42,8 @@ export default function EasternForest({
                     <p style={candyBoxStyles.mapStyle}>__/    \_________,\/\/._________________________/    \_\/\/_____/    \_________________________________/    \__________</p>
                     <p style={candyBoxStyles.mapStyle}>_______________________________________________________________________________________________________________________</p>
                 </div>
-            )
+            ),
+
         }
     }
 
