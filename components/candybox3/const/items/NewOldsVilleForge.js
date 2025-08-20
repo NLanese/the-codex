@@ -7,7 +7,8 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 25,
-        speed: 2500
+        speed: 2500,
+        status: 'inactive'
     },
     {
         name: "Silver Sword",
@@ -17,7 +18,8 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 7,
-        speed: 1000
+        speed: 1000,
+        status: 'inactive'
     },
     {
         name: "Iron Axe",
@@ -27,7 +29,8 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 5,
-        speed: 2000
+        speed: 2000,
+        status: 'inactive'
     },
     {
         name: "Wooden Sword",
@@ -37,7 +40,8 @@ const NewOldsForgeItems = [
         status: "base",
         type: "weapon",
         damage: 2,
-        speed: 1500
+        speed: 1500,
+        status: 'inactive'
     },
     {
         name: "Leather Armor",
@@ -45,7 +49,8 @@ const NewOldsForgeItems = [
         id: "leather",
         status: "base",
         type: "armor",
-        reduction: 0.3
+        reduction: 0.3,
+        status: 'inactive'
     },
     {
         name: "Iron Armor",
@@ -53,7 +58,8 @@ const NewOldsForgeItems = [
         id: "iron",
         status: "base",
         type: "armor",
-        reduction: 0.55
+        reduction: 0.55,
+        status: 'inactive'
     },
     {
         name: "Space Age Steel",
@@ -61,7 +67,8 @@ const NewOldsForgeItems = [
         id: "sas",
         status: "base",
         type: "armor",
-        reduction: 0.75
+        reduction: 0.75,
+        status: 'inactive'
     },
     
 ]

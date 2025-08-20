@@ -1,5 +1,6 @@
 import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
+import findActiveWeapon from "./func/findActiveWeapon"
 
 export default function BATTLE_TRACK({
     setSelectedMap,
@@ -45,7 +46,7 @@ export default function BATTLE_TRACK({
     }
 
     // Weapon
-    
+    const weapon = findActiveWeapon(inventory)
 
     // Sponge
     const hasSponge = checkInvFor(inventory, "sponge") ? true : false;
