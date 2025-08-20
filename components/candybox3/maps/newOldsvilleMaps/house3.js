@@ -28,6 +28,8 @@ export default function NewOldsvilleHouse3({
     const [ans, setAns] = useState("")
     const [ansResp, setAnsResp] = useState("")
     const ans1 = "38"
+    const ans2 = "9"
+
 
     function checkAnswer(){
         if (manInHouse3 === 'q1'){
@@ -36,6 +38,17 @@ export default function NewOldsvilleHouse3({
                 setManInHouse3('q2')
                 setAnsResp("")
                 setCandies(prev => prev + 55)
+            }
+            else{
+                setAnsResp("No, I'm sorry! I don't think that's right...")
+            }
+        }
+        if (manInHouse3 === 'q2'){
+            if (ans === ans2){
+                setThingsDone(prev => [...prev, "house3ManQ2"])
+                setManInHouse3('q3')
+                setAnsResp("")
+                setCandies(prev => prev + 150)
             }
             else{
                 setAnsResp("No, I'm sorry! I don't think that's right...")
@@ -215,7 +228,7 @@ export default function NewOldsvilleHouse3({
         else if (manInHouse3 === "q2"){
             return(
                 <div>
-                    Wonderful! Here's 55 candies as a reward! Now can you tell me how many apple trees were in the Eastern Forest?
+                    Wonderful! Here's 55 candies as a reward! Now can you tell me how many apples are in the trees in the Eastern Forest?
                 </div>
             )
         }

@@ -1,3 +1,11 @@
+// React + Next
+import React, {useEffect, useState} from "react";
+import { useRouter } from "next/router";
+
+// Recoil
+import { useRecoilState } from "recoil";
+
+// Functions
 import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
 import findActiveWeapon from "./func/findActiveWeapon"
@@ -44,9 +52,11 @@ export default function BATTLE_TRACK({
         </div>
         )
     }
+    const [bumpingEnemy, setBumpingEnemy] = useState(false)
 
     // Weapon
     const weapon = findActiveWeapon(inventory)
+    const [atkSpeed, setAtkSpeed] = useState(weapon.speed)
 
     // Sponge
     const hasSponge = checkInvFor(inventory, "sponge") ? true : false;
