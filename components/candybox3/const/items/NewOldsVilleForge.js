@@ -45,6 +45,7 @@ const NewOldsForgeItems = [
     },
     {
         name: "Leather Armor",
+        desc: "You can tell the armorer took his time with this tunic, although it does not appear to be new.",
         cost: 10000,
         id: "leather",
         status: "base",
@@ -54,6 +55,7 @@ const NewOldsForgeItems = [
     },
     {
         name: "Iron Armor",
+        desc: "Iron armor taken from a Knight in a castle far away. Legend said these Knights protected a great Dragon.",
         cost: 115000,
         id: "iron",
         status: "base",
@@ -63,6 +65,7 @@ const NewOldsForgeItems = [
     },
     {
         name: "Space Age Steel",
+        desc: "Most games would make something this cool a microtransaction.",
         cost: 10000000,
         id: "sas",
         status: "base",

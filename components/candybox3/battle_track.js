@@ -33,46 +33,6 @@ export default function BATTLE_TRACK({
     // State //
     ///////////
 
-        // TRACK STATE \\
-
-            // Movement and Movement Timer
-            const [moved, setMoved] = useState(0)
-            useEffect(() => {
-                if (!inCombat){
-                    const posTimer = setInterval(() => {
-                        handlePathing()
-                    }, 150);
-                    return () => {
-                        clearInterval(posTimer)
-                    };
-                }
-            }, [inCombat]);
-
-            // Combat Timer
-            useEffect(() => {
-            if (inCombat){
-                const attacks = setInterval(() => {
-                    // TO DO: Attack Function
-                }, atkSpeed);
-                const defends = setInterval(() => {
-                    // TO DO: Defend Function
-                }, fightingEnemy.atkSpeed);
-                return () => {
-                    clearInterval(attacks)
-                    clearInterval(defends)
-                };
-            }
-            }, [inCombat]);
-
-            // Messages
-            const [msg, setMsg] = useState([])
-
-            // Completion Status
-            const [isComplete, setIsComplete] = useState(false)
-
-            // Candies
-            const [candiesAcquired, setCandiesAcquired] = useState(0)
-
         // PLAYER \\
 
             // Player Token
@@ -124,6 +84,46 @@ export default function BATTLE_TRACK({
                 let newInv = makeNewInventoryWithReplacement(inventory, "sponge", foundSponge)
                 setInventory(newInv)
             }
+
+        // TRACK STATE \\
+
+            // Movement and Movement Timer
+            const [moved, setMoved] = useState(0)
+            useEffect(() => {
+                if (!inCombat){
+                    const posTimer = setInterval(() => {
+                        handlePathing()
+                    }, 150);
+                    return () => {
+                        clearInterval(posTimer)
+                    };
+                }
+            }, [inCombat]);
+
+            // Combat Timer
+            useEffect(() => {
+            if (inCombat){
+                const attacks = setInterval(() => {
+                    // TO DO: Attack Function
+                }, atkSpeed);
+                const defends = setInterval(() => {
+                    // TO DO: Defend Function
+                }, fightingEnemy.atkSpeed);
+                return () => {
+                    clearInterval(attacks)
+                    clearInterval(defends)
+                };
+            }
+            }, [inCombat]);
+
+            // Messages
+            const [msg, setMsg] = useState([])
+
+            // Completion Status
+            const [isComplete, setIsComplete] = useState(false)
+
+            // Candies
+            const [candiesAcquired, setCandiesAcquired] = useState(0)
 
     ///////////////
     // Functions //

@@ -381,7 +381,7 @@ export default function NewOldsville({
                 return(
                     <>
                         <p style={candyBoxStyles.mapStyle}>                |   |     _________________ </p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |    [To Eastern Forest]  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |    <span onClick={() => setSelectedMap("BattleTrack -- Eastern Forest")}>[To Eastern Forest]</span>  </p>
                         <p style={candyBoxStyles.mapStyle}>                |   |       |        |  </p>
                         <p style={candyBoxStyles.mapStyle}>                |   |______________________</p>
                         <p style={candyBoxStyles.mapStyle}>                |                </p>

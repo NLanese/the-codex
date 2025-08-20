@@ -16,6 +16,7 @@ import NewOldsville from "./maps/newOldsville";
 import NewOldsvilleHouse2 from "./maps/newOldsvilleMaps/house2";
 import NewOldsvilleForge from "./maps/newOldsvilleMaps/forge";
 import NewOldsvilleHouse3 from "./maps/newOldsvilleMaps/house3";
+import findActiveTrinkets from "./func/findActiveTrinkets";
 
 
 export default function Map({
@@ -100,6 +101,7 @@ export default function Map({
             if (thisMap.split(" -- ")[1] === "Eastern Forest"){
                 selectedTrack = easternForest
             }
+            let selectedTrinkets = findActiveTrinkets(inventory)
             return(
                 <BATTLE_TRACK
                     setSelectedMap={setSelectedMap}
@@ -110,6 +112,7 @@ export default function Map({
                     setThingsDone={setThingsDone}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
+                    selectedTrinkets={selectedTrinkets}
                     
                 />
             )
