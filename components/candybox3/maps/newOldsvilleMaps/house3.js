@@ -31,7 +31,15 @@ export default function NewOldsvilleHouse3({
 
     function checkAnswer(){
         if (manInHouse3 === 'q1'){
-
+            if (ans === ans1){
+                setThingsDone(prev => [...prev, "house3ManQ1"])
+                setManInHouse3('q2')
+                setAnsResp("")
+                setCandies(prev => prev + 55)
+            }
+            else{
+                setAnsResp("No, I'm sorry! I don't think that's right...")
+            }
         }
     }
 
@@ -72,14 +80,15 @@ export default function NewOldsvilleHouse3({
 
     const [manInHouse3, setManInHouse3] = useState(determineManInHouseState())
 
+    // Sets initial Man State
     function determineManInHouseState(){
-        if (thingsDone.includes("house2ManQ3")){
+        if (thingsDone.includes("house3ManQ3")){
             return ("q4")
         }
-        else if (thingsDone.includes("house2ManQ2")){
+        else if (thingsDone.includes("house3ManQ2")){
             return ("q3")
         }
-        else if (thingsDone.includes("house2ManQ1")){
+        else if (thingsDone.includes("house3ManQ1")){
             return ("q2")
         }
         else if (thingsDone.includes("house3OK")){
@@ -90,6 +99,7 @@ export default function NewOldsvilleHouse3({
         }
     }
 
+    // Tells man Okay init
     function tellManOkay(){
         setManInHouse3("q1")
         setThingsDone(prev => [...prev, "house3OK"])
@@ -131,7 +141,7 @@ export default function NewOldsvilleHouse3({
                 <p style={candyBoxStyles.mapStyle}>|      |  /          ||  /          |   /         |________|  |________|         |   |(#|3#3%|)% |   |  /        \          |</p>
                 <p style={candyBoxStyles.mapStyle}>|      | /           || /           |  /                                         |   |__|____|___|   | /          \         |</p>
                 <p style={candyBoxStyles.mapStyle}>|      |/____________||/____________| /                                          |___________________|/            \        |</p>
-                <p style={candyBoxStyles.mapStyle}>|      |____________________________|/    ____________________________________________________                       \       |</p>
+                <p style={candyBoxStyles.mapStyle}>|      |____________________________|/    ____________________________________________________                      \       |</p>
                 <p style={candyBoxStyles.mapStyle}>|     /                                 #                                                   #                        \      |</p>
                 <p style={candyBoxStyles.mapStyle}>|    /                                 #                                                   #                          \     |</p>
                 <p style={candyBoxStyles.mapStyle}>|   /                                 #                                                   #                            \    |</p>
@@ -174,6 +184,7 @@ export default function NewOldsvilleHouse3({
             return (
                 <div>
                     {determineQuestion()}
+                    {renderInputAndResponse()}
                     <div style={{marginTop: 20}}>
                         <button onClick={() => checkAnswer()}>
                             Submit
@@ -184,22 +195,43 @@ export default function NewOldsvilleHouse3({
         }
     }
 
+    function renderResponse(){
+        return(
+            <div style={{marginLeft: 20}}>
+                {ansResp}
+            </div>
+        )
+    }
+
     function determineQuestion(){
         if (manInHouse3 === "q1"){
             return(
                 <div>
                     I haven't been outside in awhile, and I forgot how to count. 
                     Can you remind me how many trees are outside in New Oldsville?
-                    <div style={{marginTop: 20}}>
-                        <input
-                            onChange={(e) => setAns(e.target.value)}
-                            value={ans}
-                        />
-                    </div>
+                </div>
+            )
+        }
+        else if (manInHouse3 === "q2"){
+            return(
+                <div>
+                    Wonderful! Here's 55 candies as a reward! Now can you tell me how many apple trees were in the Eastern Forest?
                 </div>
             )
         }
     }
+
+    function renderInputAndResponse(){
+        return(
+            <div style={{marginTop: 20, display: 'flex', flexDirection: 'row'}}>
+                <input
+                    onChange={(e) => setAns(e.target.value)}
+                    value={ans}
+                />
+                {renderResponse()}
+            </div>
+        )
+    }   
 
 
     /////////////////
