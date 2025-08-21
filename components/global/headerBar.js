@@ -26,10 +26,11 @@ export const HeaderBar = ({
 
     const [directory, setDirectory] = useRecoilState(directoryDataState)
 
+    // Which Tab Bar is Rendered (Guest, User, Lessons, etc)
     const [tabBar, setTabBar] = useRecoilState(tabBarState)
 
+    // The Array of Objects to be used as Tabs
     const [tabs, setTabs] = useState([])
-
     const tabsRef = useRef(tabs)
     useEffect(() => {
         tabsRef.current = tabs

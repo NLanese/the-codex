@@ -1,5 +1,5 @@
 // React + Next
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef, useLayoutEffect} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
@@ -66,7 +66,7 @@ export default function BATTLE_TRACK({
             const [fightingEnemy, setfightingenemy] = useState({name: "Nothing", atkSpeed: 1000})
 
             // Position
-            const [pos, setPos] = useState([ selectedTrack.startingX, selectedTrack.startingY ])
+            const [pos, setPos] = useState([ 0, selectedTrack.startingY ])
 
         // WEAPON \\ 
 
@@ -103,9 +103,9 @@ export default function BATTLE_TRACK({
                 }
             }, [inCombat]);
 
+            // Marks when Player Token gets to the end of the Track
             useEffect(() => {
                 if (selectedTrack.finalX){
-                    console.log(moved , selectedTrack.finalX)
                     if (moved >= selectedTrack.finalX){
                         setIsComplete(true)
                     }
@@ -138,25 +138,40 @@ export default function BATTLE_TRACK({
             // Candies
             const [candiesAcquired, setCandiesAcquired] = useState(0)
 
+            // Track Left st Point
+            const trackRef = useRef(null);
+            const parentRef = useRef(null);
+            const [trackLeft, setTrackLeft] = useState(0);
+          
+            useLayoutEffect(() => {
+              if (trackRef.current) {
+                const rect = trackRef.current.getBoundingClientRect();
+                setTrackLeft(rect.left);
+                console.log(trackLeft)
+              }
+            }, [selectedTrack]);
+
     ///////////////
     // Functions //
     ///////////////
 
+            // Handles Leaving the Track
             function handleLeave(){
                 if (isComplete){
                     if (selectedTrack.thingDone){
                         if (!thingsDone.includes(selectedTrack.thingDone)){
                             setThingsDone(prev => [...prev, selectedTrack.thingDone])
-                            setCandies(prev => prev + candiesAcquired)
-                            setSelectedMap(selectedTrack.winReturnTo)
                         }   
                     }
+                    setCandies(prev => prev + candiesAcquired)
+                    setSelectedMap(selectedTrack.winReturnTo)
                 }
                 else{
                     setSelectedMap(selectedTrack.returnTo)
                 }
             }
 
+            // Handles moving your player Token
             function handlePathing(){
                 if (selectedTrack.pathing === 'straight-line'){
                     setPos(prev => [prev[0] + 1, prev[1]])
@@ -169,7 +184,6 @@ export default function BATTLE_TRACK({
     /////////////
 
         function renderMessages(){
-            console.log(msg)
             return msg.map(m => {
                 return <>{m}</>
             })
@@ -212,7 +226,9 @@ export default function BATTLE_TRACK({
                 Abilities will go here
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                {selectedTrack.render}
+                <div ref={trackRef} style={{backgroundColor: 'red'}}>
+                    {selectedTrack.render}
+                </div>
                 {renderDude()}
             </div>
         </div>

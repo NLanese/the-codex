@@ -7,7 +7,7 @@ function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
 }
 
 // Handles Clicks in Ostrich Components
-function handleOstrichComponentsDrawer(folder, drawer, router){
+function handleShowcaseDrawer(folder, drawer, router){
     console.log(`Should route to /showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
     router.replace(`/showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
 }
@@ -46,20 +46,20 @@ export const portfolioTabs = (setTabBar, router) => {
                 {title: "Ostrich Component Library", onClick: () => router.replace("/showcases/ostrich-components/menu"), manualOnClick: true},
                 "CandyBox 3"
             ],
-            onDrawerClick: (drawer) =>  { handleOstrichComponentsDrawer("projects", drawer, router) }
+            onDrawerClick: (drawer) =>  { handleShowcaseDrawer("projects", drawer, router) }
         }
     },
     {
         title: "Official Works", 
         onClick: () => {
-            // setTabBar("Frameworks")
-            // router.replace("/frameworks/list")
+            setTabBar("Portfolio")
+            router.replace("/showcases/works/menu")
         },
-        // dropdown: {
-            // openOnHover: true,
-            // drawers: frameworksList,
-            // onDrawerClick: (drawer) => { handleDrawerClick('frameworks', drawer, router,  setTabBar, "menu")}
-        // }
+        dropdown: {
+            openOnHover: true,
+            drawers: frameworksList,
+            onDrawerClick: (drawer) => { handleShowcaseDrawer('works', drawer, router)}
+        }
     },
     {
         title: "Return Home", 

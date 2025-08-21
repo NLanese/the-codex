@@ -3,7 +3,7 @@ import { candyBoxStyles } from "../../const/styles"
 const easternForest = {
     pathing: 'straight-line',
     startingX: 450,
-    startingY: 640,
+    startingY: 675,
     returnTo: 'New Oldsville',
     winReturnTo: 'New Oldsville',
     thingDone: 'CrossedEasternForest',
@@ -11,7 +11,11 @@ const easternForest = {
     finalY: false,
     openingMsg: <p>You wander into the (kind of) peaceful forest.</p>,
     render: (
-        <div>
+        <div 
+        style={{backgroundColor: "#ebfff5"}}
+        >
+            <p style={candyBoxStyles.mapStyle}>                                                </p>
+            <p style={candyBoxStyles.mapStyle}>                                                </p>
             <p style={candyBoxStyles.mapStyle}>           88888                                          8888888         8888888o                               8888888o</p>
             <p style={candyBoxStyles.mapStyle}>         888888888                                      88888888888    888o888888888                            8o8888888</p>
             <p style={candyBoxStyles.mapStyle}>        88888888888                                   888888888888888 888888888o888888                         88888888888</p>

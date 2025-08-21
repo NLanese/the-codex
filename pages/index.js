@@ -90,6 +90,10 @@ export default function Landing() {
                   templateStyle={1}
                   imageSrc={OstCompImg}
                   style={{flex: 4, margin: 5}}
+                  onClick={() => {
+                    setTabBar("Ongoing Projects")
+                    router.replace("/showcases/works/menu")
+                  }}
                 >
                   Nick's Portfolio
                 </OstCard>
