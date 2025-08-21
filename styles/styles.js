@@ -16,6 +16,11 @@ const Styles = {
             fontSize: 16.5, fontWeight: 400, 
         },
 
+        basicX: {
+            fontFamily: "Gilroy", 
+            fontSize: 20, fontWeight: 400, 
+        },
+
         pageTitle: {
             fontFamily: "Gilroy", 
             fontSize: 48, fontWeight: 700, 

@@ -61,7 +61,7 @@ export default function WorksMenu() {
                         imageSrc={KNM}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/knm.js")
+                        router.replace("/showcases/works/knm")
                         }}
                     >
                         Kidz-N-Motion
@@ -71,7 +71,7 @@ export default function WorksMenu() {
                         imageSrc={ieee}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/knm.js")
+                        router.replace("/showcases/works/knm")
                         }}
                     >
                         IEEE (Flagship App)
@@ -81,7 +81,7 @@ export default function WorksMenu() {
                         imageSrc={eventHub}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/knm.js")
+                        router.replace("/showcases/works/knm")
                         }}
                     >
                         EventHub (IEEE Events App)
