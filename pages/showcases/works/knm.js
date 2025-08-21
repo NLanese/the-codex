@@ -9,9 +9,15 @@ import { tokenState, tabBarState, directoryDataState } from "../../../recoil/ato
 // Styles 
 import Styles from "../../../styles/styles";
 
-
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
+
+// Assets
+const listing = "../../../assets/showcase_images/knm/AppListing.png";
+const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
+const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
+const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
+
 
 
 export default function KNMPage(){
@@ -56,8 +62,69 @@ export default function KNMPage(){
                         Therapists can assign work outs to their clients, and each work out comes with its own pre-rendered animation 
                         of a child doing the exercise in order for the client to follow along. Therapists can also record the client 
                         during in-person sessions and is able to easily send the videos over to the parent through the app's record feature.
-                        This allows parents to see how their child progresses along their Physial therapy journey. 
+                        This allows parents to see how their child progresses along their Physial Therapy journey. 
                     </p>
+                </div>
+            )
+        }
+
+        function renderAppListing(){
+            return(
+                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
+                    <div style={{flex: 6}}>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={listing}
+                        >
+                            <a href="https://apps.apple.com/us/app/kidz-n-motion/id1661352847">iOS Listing</a> / <a href="">Android Listing</a>
+                        </OstCard>
+                    </div>
+                    <div style={{flex: 6, padding: 20, paddingTop: 0}}>
+                        <p style={Styles.Fonts.basicX}>
+                            Released to App Stores (iOS and Google Play) in 2021, the Kidz-N-Motion app has many users, 
+                            therapists and clients and their parents alike. Created using React Native (Vanilla) and up to date 
+                            with modern SKDs, APIs, and compliances; I have been the sole architect of the Kidz-N-Motion app, overseeing 
+                            its production, development, and publication. I am also in charge of both the Google Play and Apple 
+                            Developer Accounts. 
+                        </p>
+                        <p style={Styles.Fonts.basicX}>
+                            This was my very first professional endaever as a computer scientist, and as such it came with its fair share 
+                            of issues and complications. For example, this application was my first forray into Gradle Build Errors on Android's side 
+                            and Pod issues on Apple's side. Having no senior member to turn to-- as well as no chatbot assistants yet to asisst me; 
+                            I was able to solve all compatability issues and always managed to successfully build and distribute the app. 
+                        </p>
+                    </div>
+                </div>
+            )
+        }
+
+        const[card1, setCard1] = useState(false)
+        const[card2, setCard2] = useState(false)
+        const[card3, setCard3] = useState(false)
+        function renderAccountTypes(){
+            return(
+                <div>
+                    <p style={Styles.Fonts.basicX}>
+                        As previously mentioned there are three different expected user types for this app. Clients (Children needing Physical Therapy), Parents, and Therapist / Administrators. 
+                        Each user type will have a different in-app experience, as they each come to the app with a different purpose in mind. 
+                    </p>
+                    <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={chiScreen}
+                        >
+                        </OstCard>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={therScreen}
+                        >
+                        </OstCard>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={parScreen}
+                        >
+                        </OstCard>
+                    </div>
                 </div>
             )
         }
@@ -67,11 +134,15 @@ export default function KNMPage(){
     /////////////////
 
     return(
-        <div style={{backgroundColor: 'orange',  height: '100vh', marginTop: -20}}>
+        <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
             <div style={{marginLeft: '15%', marginRight:'15%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
                     <div style={{...Styles.Fonts.lessonHeader}}>Kidz-N-Motion</div>
                         {renderInitialRambling()}
+                    <div style={{...Styles.Fonts.lessonHeader}}>Distribution</div>
+                        {renderAppListing()}
+                    <div style={{...Styles.Fonts.lessonHeader}}>Account Types</div>
+                        {renderAccountTypes()}
                 </div>
             </div>
         </div>
