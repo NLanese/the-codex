@@ -54,7 +54,7 @@ export default function WorksMenu() {
                     marginLeft: '5%',
                     height: 300,
                     paddingTop: 20,
-                    gap: 20
+                    gap: '10%'
                 }}>
                     <OstCard
                         templateStyle={1}

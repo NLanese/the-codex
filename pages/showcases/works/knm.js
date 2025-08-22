@@ -102,28 +102,55 @@ export default function KNMPage(){
         const[card2, setCard2] = useState(false)
         const[card3, setCard3] = useState(false)
         function renderAccountTypes(){
+            const renderCardOne = () =>{
+                if (!card1){
+                    return(
+                        <OstCard
+                        templateStyle={1}
+                        imageSrc={chiScreen}
+                        >
+                        </OstCard>
+                    )
+                }
+            }
+            const renderCardTwo = () => {
+                if (!card2){
+                    return(
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={therScreen}
+                        >
+                        </OstCard>
+                    )
+                }
+            }
+            const renderCardThree = () => {
+                if (!card3){
+                    return(
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={parScreen}
+                        >
+                        </OstCard>
+                    )
+                }
+                else{
+
+                }
+            }
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
                         As previously mentioned there are three different expected user types for this app. Clients (Children needing Physical Therapy), Parents, and Therapist / Administrators. 
                         Each user type will have a different in-app experience, as they each come to the app with a different purpose in mind. 
                     </p>
-                    <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={chiScreen}
-                        >
-                        </OstCard>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={therScreen}
-                        >
-                        </OstCard>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={parScreen}
-                        >
-                        </OstCard>
+                    <p style={Styles.Fonts.basicX}>
+                        <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
+                    </p>
+                    <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 40}}>
+                        {renderCardOne()}
+                        {renderCardTwo()}
+                        {renderCardThree()}
                     </div>
                 </div>
             )
