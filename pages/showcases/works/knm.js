@@ -262,6 +262,16 @@ export default function KNMPage(){
                         {renderCardTwo()}
                         {renderCardThree()}
                     </div>
+                    <p style={Styles.Fonts.basicX}>
+                        Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 
+                        that will allow users even with color blindness to find a palette that works for them and is visible in for their specific type of color
+                        blindness. 
+                    </p>
+                    <p style={Styles.Fonts.basicX}>
+                        Users can also change their profile Avatar (seen in the top right of each screen) and have a 'change password' email sent to them if 
+                        they desire a new password. Similarly, if they forgot their password they can request a temporary by entering their email, where a 
+                        a link will be provided that redirects users to the site where they can change thier password. 
+                    </p>
                 </div>
             )
         }

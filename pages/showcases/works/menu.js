@@ -11,9 +11,6 @@ import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-// import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
-// import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-// import { HeaderBar } from "../../../components/Global/headerBar";
 
 
 // Assets
