@@ -101,6 +101,18 @@ export default function KNMPage(){
         const[card1, setCard1] = useState(false)
         const[card2, setCard2] = useState(false)
         const[card3, setCard3] = useState(false)
+        const cardStyle = (flipped) => {
+            return(
+                {
+                    flex: 4,
+                    transformStyle: "preserve-3d",
+                    transition: "transform 0.6s",
+                    transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                    height: 600
+                }
+            )
+            
+        }
         function renderAccountTypes(){
             const renderCardOne = () =>{
                 if (!card1){
@@ -108,7 +120,41 @@ export default function KNMPage(){
                         <OstCard
                         templateStyle={1}
                         imageSrc={chiScreen}
+                        onClick={() => setCard1(!card1)}
+                        style={cardStyle(card1)}
                         >
+                        </OstCard>
+                    )
+                }
+                else{
+                    return(
+                        <OstCard
+                        onClick={() => setCard1(!card1)}
+                        style={cardStyle(card1)}
+                        >
+                            <div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Child Account</div>
+                                <p style={Styles.Fonts.basic}>
+                                    Children have pretty minimal functionality in order to maintain simplicity and prevent 
+                                    the Children from getting lost within the app. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    They are able to watch and complete workout videos only when their Physical Therapist has assigned it 
+                                    to them. This prevents the child from attempting an exercise they may not be ready for. Upon completion
+                                    of the 1 minute video, the child is asked 3 question. 
+                                </p>
+                                <ol>
+                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without help from a parent</li>
+                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without leaning on something for support</li>
+                                    <li style={Styles.Fonts.basic}>How long were you able to complete the video for the full minute, at least 30 seconds, or less than 30 seconds</li>
+                                </ol>
+                                <p style={Styles.Fonts.basic}>
+                                    Depending on these answers, the child is awarded one of three medals-- Gold, Silver, or Bronze. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    Finally, the Child is also able to check their calendar which indicates when assignments are due or when appointments are scheduled. 
+                                </p>
+                            </div>
                         </OstCard>
                     )
                 }
@@ -119,7 +165,39 @@ export default function KNMPage(){
                         <OstCard
                             templateStyle={1}
                             imageSrc={therScreen}
+                            onClick={() => setCard2(!card2)}
+                            style={cardStyle(card2)}
                         >
+                        </OstCard>
+                    )
+                }
+                else{
+                    return(
+                        <OstCard
+                        onClick={() => setCard2(!card2)}
+                        style={cardStyle(card2)}
+                        >
+                            <div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'fuchsia'}}>Therapist Account</div>
+                                <p style={Styles.Fonts.basic}>
+                                    Therapists have the most functionality out of the three account type. A therapist can create or approve 
+                                    appointments, meetings, and workout assignments for their clients. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    Just like the Parent and the Child Accounts, the Therapist is able to check their calendar and see all
+                                    assignment start / end dates, as well as all appointment dates and times. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    Similarly to the parent, the Physical Therpist has the ability to send a recieve messages. This is limitied to 
+                                    parent accounts, as for obvious reasons we did not want to facilitate communication between and adult and a child. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    Finally, the Therapist is able to send invites to porespective clients from in the app. Through the 'invite clients' 
+                                    option, Therapists need to just enter in the email address of the individual they want to invite, along with some 
+                                    other basic information such as names and the child's motor function level. Upon the accecpting of that
+                                    invite, an account for the Guardian and their child is automatically created with temporary passwords. 
+                                </p>
+                            </div>
                         </OstCard>
                     )
                 }
@@ -130,12 +208,40 @@ export default function KNMPage(){
                         <OstCard
                             templateStyle={1}
                             imageSrc={parScreen}
+                            onClick={() => setCard3(!card3)}
+                            style={cardStyle(card3)}
                         >
                         </OstCard>
                     )
                 }
                 else{
-
+                    return(
+                        <OstCard
+                        onClick={() => setCard3(!card3)}
+                        style={cardStyle(card3)}
+                        >
+                            <div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Parent Account</div>
+                                <p style={Styles.Fonts.basic}>
+                                    Parents have all the functionality that Children do, as well as some more functionality. The first of which is 
+                                    the ability to switch between which 'child' is currently active. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    Videos can also be watched on the parent's account and as previously mentioned, whichever child is 'active' will be
+                                    the one who is awarded the medals for a video's completion. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    Again like the child, the Parent is also able to check their calendar which indicates when assignments are due or when 
+                                    appointments are scheduled. They may also choose a specific date to request an appointment for. Once a request for an 
+                                    appointment is made, the Physcal Therapist will get an email and push notification and can confirm or deny it.
+                                </p>
+                                <p>
+                                    Parents can also switch to child mode and hand the phone off to their child if the child does not have a device of 
+                                    his or her own. When trying to switch back to the parent account from a child account, a password will need to be entered. 
+                                </p>
+                            </div>
+                        </OstCard>
+                    )
                 }
             }
             return(
