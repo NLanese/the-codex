@@ -41,6 +41,8 @@ export default function KNMPage(){
     // Renderings //
     ////////////////
 
+
+        // First Paragraph
         function renderInitialRambling(){
             return(
                 <div style={{paddingTop: 20}}>
@@ -68,6 +70,7 @@ export default function KNMPage(){
             )
         }
 
+        // Second Part ( Distribution )
         function renderAppListing(){
             return(
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
@@ -98,6 +101,7 @@ export default function KNMPage(){
             )
         }
 
+        // Third Part ( Account Types )
         const[card1, setCard1] = useState(false)
         const[card2, setCard2] = useState(false)
         const[card3, setCard3] = useState(false)
@@ -276,6 +280,7 @@ export default function KNMPage(){
                         {renderAppListing()}
                     <div style={{...Styles.Fonts.lessonHeader}}>Account Types</div>
                         {renderAccountTypes()}
+                    <div style={{...Styles.Fonts.lessonHeader}}>Calendar Functionality</div>
                 </div>
             </div>
         </div>
