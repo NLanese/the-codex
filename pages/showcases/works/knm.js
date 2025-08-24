@@ -270,7 +270,7 @@ export default function KNMPage(){
                     <p style={Styles.Fonts.basicX}>
                         Users can also change their profile Avatar (seen in the top right of each screen) and have a 'change password' email sent to them if 
                         they desire a new password. Similarly, if they forgot their password they can request a temporary by entering their email, where a 
-                        a link will be provided that redirects users to the site where they can change thier password. 
+                        a link will be provided that redirects users to the site where they can change thier password. .
                     </p>
                 </div>
             )
