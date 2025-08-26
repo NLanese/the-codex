@@ -17,6 +17,7 @@ const listing = "../../../assets/showcase_images/knm/AppListing.png";
 const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
 const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
 const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
+const therCal = "../../../assets/showcase_images/knm/therCalView.png"
 
 
 
@@ -276,6 +277,36 @@ export default function KNMPage(){
             )
         }
 
+        // Fourth Part ( Calendar )
+        function renderCalendarDetails(){
+            return(
+                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
+                    <div style={{flex: 6}}>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={therCal}
+                        >
+                        </OstCard>
+                    </div>
+                    <div style={{flex: 6, padding: 20, paddingTop: 0}}>
+                        <p style={Styles.Fonts.basicX}>
+                            As previously covered, Therapists can create 'assignments' and 'meetings' for their clients. These events will be marked on both the Therapist
+                            as well as the Child and the Guardians' accounts. 
+                        </p>
+                        <p style={Styles.Fonts.basicX}>
+                            In our Calendar Image to the Left, we are currently in a Therapist account using the Pink Color Palette. This makes assignment due dates appear as 
+                            lighter pink dots beneath the date and darker fuschia dots as markers for meetups. In this example, you can see an assignment is 
+                            due on the 28th with a meeting on the 23rd. 
+                        </p>
+                        <p style={Styles.Fonts.basicX}>
+                            Again in this screen, you will see that the user currently has August 28th selected. This shows that there is an assignment with 3 work out videos;
+                            Rolling, Toe Touches, and Squat, due on August 28th. 
+                        </p>
+                    </div>
+                </div>
+            )
+        }
+
     /////////////////
     // Main Return //
     /////////////////
@@ -291,6 +322,7 @@ export default function KNMPage(){
                     <div style={{...Styles.Fonts.lessonHeader}}>Account Types</div>
                         {renderAccountTypes()}
                     <div style={{...Styles.Fonts.lessonHeader}}>Calendar Functionality</div>
+                        {renderCalendarDetails()}
                 </div>
             </div>
         </div>
