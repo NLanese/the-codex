@@ -281,14 +281,15 @@ export default function KNMPage(){
         function renderCalendarDetails(){
             return(
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 6}}>
+                    <div style={{flex: 4}}>
                         <OstCard
                             templateStyle={1}
                             imageSrc={therCal}
+                            style={{height: 700}}
                         >
                         </OstCard>
                     </div>
-                    <div style={{flex: 6, padding: 20, paddingTop: 0}}>
+                    <div style={{flex: 8, padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
                             As previously covered, Therapists can create 'assignments' and 'meetings' for their clients. These events will be marked on both the Therapist
                             as well as the Child and the Guardians' accounts. 
@@ -302,6 +303,29 @@ export default function KNMPage(){
                             Again in this screen, you will see that the user currently has August 28th selected. This shows that there is an assignment with 3 work out videos;
                             Rolling, Toe Touches, and Squat, due on August 28th. 
                         </p>
+                        <p style={Styles.Fonts.basicX}>
+                            Users, unless they disable the following feature, will also get a Push Notification sent to their device (Powered by Firebase) whenever one of the following occurrs. 
+                        </p>
+                        <ol>
+                            <li><p style={Styles.Fonts.basicX}>
+                                The Child and/or Guardian recieve an assignment or if a meeting has been scheduled
+                            </p></li>
+                            <li><p style={Styles.Fonts.basicX}>
+                                The Start Date of an assignment is today. (Notifications sent at 9am)
+                            </p></li>
+                            <li><p style={Styles.Fonts.basicX}>
+                                The End Date of an assignment is today. (Notifications sent at 9am)
+                            </p></li>
+                            <li><p style={Styles.Fonts.basicX}>
+                                The End Date of an assignment has passed, and the assignment was not completed. 
+                            </p></li>
+                            <li><p style={Styles.Fonts.basicX}>
+                                Guardians and Therapists can get notifications when a child completes an assignment
+                            </p></li>
+                            <li><p style={Styles.Fonts.basicX}>
+                                A meeting is today. (Notifications sent at 9am)
+                            </p></li>
+                        </ol>
                     </div>
                 </div>
             )
@@ -321,7 +345,7 @@ export default function KNMPage(){
                         {renderAppListing()}
                     <div style={{...Styles.Fonts.lessonHeader}}>Account Types</div>
                         {renderAccountTypes()}
-                    <div style={{...Styles.Fonts.lessonHeader}}>Calendar Functionality</div>
+                    <div style={{...Styles.Fonts.lessonHeader}}>Calendar Functionality and Assignments / Meetings</div>
                         {renderCalendarDetails()}
                 </div>
             </div>
