@@ -18,6 +18,9 @@ const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
 const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
 const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
 const therCal = "../../../assets/showcase_images/knm/therCalView.png"
+const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
+const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
+
 
 
 
@@ -280,6 +283,7 @@ export default function KNMPage(){
         // Fourth Part ( Calendar )
         function renderCalendarDetails(){
             return(
+            <div>
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
                     <div style={{flex: 4}}>
                         <OstCard
@@ -328,6 +332,40 @@ export default function KNMPage(){
                         </ol>
                     </div>
                 </div>
+                <div style={{paddingTop: 0, padding: 20}}>
+                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
+                    <div style={{flex: 4, padding: 20, paddingTop: 0}}>
+                        <p style={Styles.Fonts.basicX}>
+                            From the Calendar Menu you are also able to click "View All", bringing you to the "View All" screen. 
+                            From here, users are able to parse through all assignments and meetings, past and present. As you see in the first
+                            image, 'Show Expired' is selected, and returns every assignment the Child has ever had. 
+                        </p>
+                        <p style={Styles.Fonts.basicX}>
+                            Clicking on an individual assignment will open up a module that shows the due date, start date, and all videos assigned. If 
+                            the assigned child completes any of the workouts while the assignment is active the video will return with a green background
+                            as opposed to a red one. This allows therapists, children, and guardians alike  to check the progress of the assignment.
+                        </p>
+                    </div>
+                    <div style={{flex: 8}}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <OstCard
+                                templateStyle={1}
+                                imageSrc={allAssign}
+                                style={{height: 700}}
+                            >
+                            </OstCard>
+                            <OstCard
+                                templateStyle={1}
+                                imageSrc={assignOpened}
+                                style={{height: 700}}
+                            >
+                            </OstCard>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+            </div>
             )
         }
 
@@ -339,13 +377,13 @@ export default function KNMPage(){
         <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
             <div style={{marginLeft: '15%', marginRight:'15%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
-                    <div style={{...Styles.Fonts.lessonHeader}}>Kidz-N-Motion</div>
+                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Kidz-N-Motion</div>
                         {renderInitialRambling()}
-                    <div style={{...Styles.Fonts.lessonHeader}}>Distribution</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader}}>Account Types</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
                         {renderAccountTypes()}
-                    <div style={{...Styles.Fonts.lessonHeader}}>Calendar Functionality and Assignments / Meetings</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
                         {renderCalendarDetails()}
                 </div>
             </div>
