@@ -385,6 +385,7 @@ export default function KNMPage(){
                         {renderAccountTypes()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
                         {renderCalendarDetails()}
+                        <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
                 </div>
             </div>
         </div>
