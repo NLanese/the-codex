@@ -369,6 +369,18 @@ export default function KNMPage(){
             )
         }
 
+        // Fifth Part Account Structure
+        function renderAccountStructure(){
+            return(
+                <div style={{paddingTop: 20}}>
+                    <p style={Styles.Fonts.basicX}>
+                        The Flaghship app for Therapy in Motion PA, the Kidz-N-Motion app is designed to 
+                        connect children facing disabilities to their own professional Physical Therapist.
+                    </p>
+                </div>
+            )
+        }
+
     /////////////////
     // Main Return //
     /////////////////
@@ -385,7 +397,8 @@ export default function KNMPage(){
                         {renderAccountTypes()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
                         {renderCalendarDetails()}
-                        <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
+                        {renderAccountStructure()}
                 </div>
             </div>
         </div>
