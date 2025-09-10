@@ -20,6 +20,8 @@ const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
 const therCal = "../../../assets/showcase_images/knm/therCalView.png"
 const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
 const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
+const modelStruc = "../../../assets/showcase_images/knm/modelStructure.png"
+
 
 
 
@@ -374,9 +376,22 @@ export default function KNMPage(){
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
-                        The Flaghship app for Therapy in Motion PA, the Kidz-N-Motion app is designed to 
-                        connect children facing disabilities to their own professional Physical Therapist.
+                       The app is designed to supplement real life practices and systems. This means to say, the app was designed and will be most optimized for 
+                       Physical Therapists and their existing clients. Most client type users are invited by their therapist and can create an account through an email they recieve. 
+                       In order to do this, however; a therapist must first be a part of an Organization. Each organization has at least one founder account, which is typically also a 
+                       therapist. This organization can then invite therapists, and those therapists can then invite clients. Each 'client' consists of a Parent and a Child. The Data Structure looks as so
                     </p>
+                    <div>
+                        <div>
+                            <OstCard
+                            templateStyle={1}
+                            imageSrc={modelStruc}
+                            style={{height: 500}}
+                            >
+
+                            </OstCard>
+                        </div>
+                    </div>
                 </div>
             )
         }
