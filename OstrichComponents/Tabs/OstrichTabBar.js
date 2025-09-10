@@ -65,14 +65,18 @@ export const OstrichTabBar = ({
             hasNeededValues()
         }, [])
 
-        // Sets Starting Tab
         useEffect(() => {
-            if (startingTabByIndex){
-                setActiveTab(tabs[startingTabByIndex])
-            }
-            else if (startingTabByTitle){
-            }
-        }, [])
+            console.log("Updated activeTab:", activeTab);
+          }, [activeTab]);
+
+        // Sets Starting Tab
+        // useEffect(() => {
+        //     if (startingTabByIndex){
+        //         setActiveTab(tabs[startingTabByIndex])
+        //     }
+        //     else if (startingTabByTitle){
+        //     }
+        // }, [])
 
     ///////////////
     // Functions //
@@ -80,6 +84,7 @@ export const OstrichTabBar = ({
 
         // Determines if Tab is Active or not 
         function isActive(tab){
+            console.log(activeTab)
             if (activeTab?.title){
                 if (activeTab.title === tab.title){
                     return true
@@ -123,7 +128,10 @@ export const OstrichTabBar = ({
                 let tempBar = {
                     width: '300px',
                     height: '40px',
-                    border: "1px solid black"
+                    borderRight: "1px solid black",
+                    borderLeft: "1px solid black",
+                    borderTop: "1px solid black",
+                    borderBottom: "1px solid black"
                 }
                 setBarStyle({...tempBar, ...style})
             }
@@ -191,24 +199,36 @@ export const OstrichTabBar = ({
 
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
+                console.log("Detected Tab Click ", tab)
                 if (tab.clickable === false){
+                    console.log("Not Clickable")
                     return
                 }
                 else{
                     if (tab?.onClick){
+                        console.log("Tab on Click")
                         tab.onClick(tab)
                     }
                     if (onTabClick){
+                        console.log("Tab Bar on Click")
                         onTabClick(tab)
                     }
                     if (showsActive){
                         if (tabDeactivates){
                             if (isActive(tab)){
+                                console.log("Setting FALSE")
                                 setActiveTab(false)
                                 return
                             }
+                            else{
+                                console.log("Setting ", tab, " as active")
+                                setActiveTab(tab)
+                            }
                         }
-                        setActiveTab(tab)
+                        else{
+                            console.log("Setting ", tab, " as active")
+                            setActiveTab(tab)
+                        }
                     }
                 }
             }

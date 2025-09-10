@@ -12,6 +12,7 @@ import Styles from "../../../styles/styles";
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
+import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 export default function BetBotProjectPage() {
 
@@ -32,11 +33,20 @@ export default function BetBotProjectPage() {
             // All Scraped Bets
             const [bets, setBets] = useState(false)
 
+            // Bets matching Selected Date
+            const [daysBets, setDaysBets] = useState([])
+
+            // All Dates of Found Games
+            const [dates, setDates] = useState([])
+
             // Current Staged Bet Sheet
             const [stagedBetSheet, setStagedBetSheet] = useState(false)
 
             // All Added Bets for Checking
             const [selectedBets, setSelectedBets] = useState(false)
+
+            // Currently Selected Date
+            const [selectedDate, setSelectedDate] = useState(false)
 
         // Trigger for Add Bet Modal
         const [addBetModal, setAddBetModal] = useState(false)
@@ -227,12 +237,34 @@ export default function BetBotProjectPage() {
             handleRequestToAPI()
         }, [])
 
+        useEffect(() => {
+            console.log(selectedDate)
+            if (bets){
+                let theseBets = bets.filter(bet => {
+                    if (extractDate(bet) === selectedDate){
+                        return bet
+                    }
+                    else{
+                        return false
+                    }
+                })
+                setDaysBets(theseBets)
+            }
+        }, [selectedDate])
+
+        useEffect(() => {
+            if (daysBets.length > 0){
+                setLoading(false)
+            }
+        }, [daysBets])
+
     ///////////////
     // Functions //
     ///////////////
 
         // Grabs Bets from Odds API
         async function handleRequestToAPI(){
+            setSelectedDate(false)
             fetch("/api/betBot/scrapeFanDuel", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -247,7 +279,24 @@ export default function BetBotProjectPage() {
                         }
                     }
                     else{
-                        console.log(json)
+                        let newBets = []
+                        let newDates = []
+                        json.forEach(bet => {
+                            let date = extractDate(bet)
+                            if (!newDates.includes(date)){
+                                console.log(date)
+                                console.log("Adding Date")
+                                newDates = [...newDates, date]
+                            }
+                            if (!newBets.includes(bet)){
+                                newBets = [...newBets, date]
+                            }
+                        })
+                        console.log(newDates)
+                        console.log("Setting Dates")
+                        setDates(newDates)
+                        setBets(newBets)
+                        setSelectedDate(dates[0])
                         setBets(json)
                         setLoading(false)      
                     }  
@@ -264,10 +313,20 @@ export default function BetBotProjectPage() {
             });
         }
 
+        // Finds the dates of each found game
+        function extractDate(game){
+            return(`${game.tipoff.split("-")[1]}-${game.tipoff.split("-")[2].split("T")[0]}`)
+        }
+
 
         // Adds a specific bet to the Bet Sheet
         function selectBet(teamBetSheet){
             setSelectedBets
+        }
+
+        function pickDate(tab){
+            setLoading(true)
+            setSelectedDate(tab)
         }
     
     ////////////////
@@ -328,15 +387,23 @@ export default function BetBotProjectPage() {
                 return(
                     <OstCard>
                         <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '35%', marginBottom: 35}}>Select Your Bets to Analyze! </div>
+                           <div style={{width: '100%'}}>
+                                <OstrichTabBar
+                                    tabs={dates}
+                                    onTabClick={(tab) => pickDate(tab)}
+                                    showsActive={true}
+                                    style={{width: '100%'}}
+                                    
+                                />
+                            </div> 
                             {renderBetCards()}
                     </OstCard>
                 )
             }
         }
 
-        //
+        ///////////////
         // Bet Cards 
-
 
             // Renders all FanDuel Bets as individual Cards
             function renderBetCards(){
@@ -346,7 +413,7 @@ export default function BetBotProjectPage() {
                 let fullRenderList = []
                 let row = []
                 let i = 0
-                bets.forEach((betCard, index) => {
+                daysBets.forEach((betCard, index) => {
                     const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
                     const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
 
@@ -357,10 +424,6 @@ export default function BetBotProjectPage() {
                     const homeSpreadOdds = betCard?.bet?.spread?.[betCard.home]?.odds ? betCard?.bet?.spread?.[betCard.home]?.odds : "No Spread Betting"
 
                     const tipoff = betCard.tipoff
-
-                    // if (!awayLine && !awayDiff){
-                    //     return false
-                    // }
 
                     row = [
                         ...row, 
@@ -400,6 +463,7 @@ export default function BetBotProjectPage() {
                         row = []
                         i = 0
                     }
+                   
                 })
                 return fullRenderList  
             }
@@ -455,7 +519,7 @@ export default function BetBotProjectPage() {
                 )
             }
 
-        //
+        ///////////////////
         // Selected Bets
 
             // Renders Add Bet Modal
