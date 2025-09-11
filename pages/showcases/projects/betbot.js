@@ -29,6 +29,7 @@ export default function BetBotProjectPage() {
 
             //
             //// Bet States
+            const [hasLoadedBets, setHasLoadedBets] = useState(false)
 
             // All Scraped Bets
             const [bets, setBets] = useState(false)
@@ -233,8 +234,11 @@ export default function BetBotProjectPage() {
 
         // On Init
         useEffect(() => {
-            setDirectory("Portfolio")    
-            handleRequestToAPI()
+            if (!hasLoadedBets){
+                setDirectory("Portfolio")    
+                handleRequestToAPI()
+                setHasLoadedBets(true)
+            }
         }, [])
 
         useEffect(() => {
@@ -248,7 +252,7 @@ export default function BetBotProjectPage() {
                         return false
                     }
                 })
-                setDaysBets(theseBets)
+                setDaysBets([...theseBets])
             }
         }, [selectedDate])
 
@@ -264,6 +268,7 @@ export default function BetBotProjectPage() {
 
         // Grabs Bets from Odds API
         async function handleRequestToAPI(){
+            console.log("FETCHING")
             setSelectedDate(false)
             fetch("/api/betBot/scrapeFanDuel", {
                 method: "POST",
@@ -284,16 +289,12 @@ export default function BetBotProjectPage() {
                         json.forEach(bet => {
                             let date = extractDate(bet)
                             if (!newDates.includes(date)){
-                                console.log(date)
-                                console.log("Adding Date")
                                 newDates = [...newDates, date]
                             }
                             if (!newBets.includes(bet)){
                                 newBets = [...newBets, date]
                             }
                         })
-                        console.log(newDates)
-                        console.log("Setting Dates")
                         setDates(newDates)
                         setBets(newBets)
                         setSelectedDate(dates[0])
@@ -368,6 +369,23 @@ export default function BetBotProjectPage() {
             )
         }
 
+        function renderDateTab(){
+            if (dates){
+                if (dates.length > 0 ){
+                    return(
+                        <div style={{width: '100%'}}>
+                            <OstrichTabBar
+                                tabs={dates}
+                                onTabClick={(tab) => pickDate(tab)}
+                                showsActive={true}
+                                style={{width: '100%'}}  
+                            />
+                        </div>
+                    )
+                }
+            }
+        }
+
         // Main Render for Betting Area
         function renderBetCardArea(){
             if (outOfCredits){
@@ -387,15 +405,6 @@ export default function BetBotProjectPage() {
                 return(
                     <OstCard>
                         <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '35%', marginBottom: 35}}>Select Your Bets to Analyze! </div>
-                           <div style={{width: '100%'}}>
-                                <OstrichTabBar
-                                    tabs={dates}
-                                    onTabClick={(tab) => pickDate(tab)}
-                                    showsActive={true}
-                                    style={{width: '100%'}}
-                                    
-                                />
-                            </div> 
                             {renderBetCards()}
                     </OstCard>
                 )
@@ -598,6 +607,7 @@ export default function BetBotProjectPage() {
             <div>
                 {renderAddbetModal()}
                 {renderIntro()}
+                {renderDateTab()}
                 {renderBetCardArea()}
             </div>
         </div>

@@ -84,7 +84,6 @@ export const OstrichTabBar = ({
 
         // Determines if Tab is Active or not 
         function isActive(tab){
-            console.log(activeTab)
             if (activeTab?.title){
                 if (activeTab.title === tab.title){
                     return true
@@ -201,16 +200,13 @@ export const OstrichTabBar = ({
             function determineOnPress(tab){
                 console.log("Detected Tab Click ", tab)
                 if (tab.clickable === false){
-                    console.log("Not Clickable")
                     return
                 }
                 else{
                     if (tab?.onClick){
-                        console.log("Tab on Click")
                         tab.onClick(tab)
                     }
                     if (onTabClick){
-                        console.log("Tab Bar on Click")
                         onTabClick(tab)
                     }
                     if (showsActive){
