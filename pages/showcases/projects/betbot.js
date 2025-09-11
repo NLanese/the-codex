@@ -13,6 +13,7 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
+import { ST } from "next/dist/shared/lib/utils";
 
 export default function BetBotProjectPage() {
 
@@ -248,9 +249,6 @@ export default function BetBotProjectPage() {
                     if (extractDate(bet) === selectedDate){
                         return bet
                     }
-                    else{
-                        return false
-                    }
                 })
                 setDaysBets([...theseBets])
             }
@@ -373,14 +371,18 @@ export default function BetBotProjectPage() {
             if (dates){
                 if (dates.length > 0 ){
                     return(
-                        <div style={{width: '100%'}}>
+                        <OstCard 
+                        noShadow={true}
+                        style={{width: '90%', paddingBottom: 20, marginLeft: '5%'}}
+                        >
+                            <div style={{...Styles.Fonts.h1, boxShadow: '0', display: 'flex', justifyContent: 'center'}}>Pick a Date</div>
                             <OstrichTabBar
                                 tabs={dates}
                                 onTabClick={(tab) => pickDate(tab)}
                                 showsActive={true}
-                                style={{width: '100%'}}  
+                                style={{width: '90%', marginLeft: '5%'}}  
                             />
-                        </div>
+                        </OstCard>
                     )
                 }
             }
@@ -403,7 +405,7 @@ export default function BetBotProjectPage() {
             }
             else{
                 return(
-                    <OstCard>
+                    <OstCard noShadow={true}>
                         <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '35%', marginBottom: 35}}>Select Your Bets to Analyze! </div>
                             {renderBetCards()}
                     </OstCard>
@@ -416,12 +418,10 @@ export default function BetBotProjectPage() {
 
             // Renders all FanDuel Bets as individual Cards
             function renderBetCards(){
-                if (!bets || bets.length < 1){
-                    return
-                }
                 let fullRenderList = []
                 let row = []
                 let i = 0
+                console.log(daysBets)
                 daysBets.forEach((betCard, index) => {
                     const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
                     const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
@@ -456,7 +456,7 @@ export default function BetBotProjectPage() {
                         )
                     ]
                     i = i + 1
-                    if (i == 3 || index >= bets.length - 1){
+                    if (i == 3 || index >= daysBets.length - 1){
                         fullRenderList = [
                             ...fullRenderList,
                             (
