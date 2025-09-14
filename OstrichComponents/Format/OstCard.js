@@ -9,6 +9,7 @@ export const OstCard =({
     style,
     details,
     noShadow=false,
+    rounded=true,
     onClick
 }) =>{
 
@@ -23,7 +24,7 @@ export const OstCard =({
     function completeStyle(use = true){
         let completeStyle
         let tempStyle = {
-            borderRadius: 15, 
+            borderRadius: rounded === true ? 15 : 0, 
             padding: 10, 
             boxShadow: !noShadow ? '1px 2px 3px 2px rgba(0, 0, 0, 0.2)' : null,
             fontFamily: "Gilroy"

@@ -320,7 +320,7 @@ export default function BetBotProjectPage() {
 
         // Adds a specific bet to the Bet Sheet
         function selectBet(teamBetSheet){
-            setSelectedBets
+            setSelectedBets(prev => [...prev, teamBetSheet])
         }
 
         function pickDate(tab){
@@ -405,8 +405,12 @@ export default function BetBotProjectPage() {
             }
             else{
                 return(
-                    <OstCard noShadow={true}>
-                        <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '35%', marginBottom: 35}}>Select Your Bets to Analyze! </div>
+                    <OstCard noShadow={true} rounded={false}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '0%', marginBottom: 35, borderRadius: 0}}>
+                                Select Your Bets to Analyze! 
+                            </div>
+                        </div>
                             {renderBetCards()}
                     </OstCard>
                 )
@@ -588,7 +592,7 @@ export default function BetBotProjectPage() {
                                 console.log(stagedBetSheet)
                             }}>
                                 <p style={{...Styles.Fonts.h2, padding: 0, margin: 0}}>
-                                    Compare 
+                                    Add Bet 
                                 </p>
                             </OstCard>
                         </div>
