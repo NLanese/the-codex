@@ -388,6 +388,18 @@ export default function BetBotProjectPage() {
             }
         }
 
+        function renderSelectYourBet(){
+            if (!loading && daysBets.length < 0){
+                return(
+                    <div style={{display: 'flex', flexDirection: 'row', marginLeft: '15%'}}>
+                        <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '0%', marginBottom: 35, borderRadius: 0}}>
+                            Select Your Bets to Analyze! 
+                        </div>
+                    </div>
+                )
+            }
+        }
+
         // Main Render for Betting Area
         function renderBetCardArea(){
             if (outOfCredits){
@@ -406,11 +418,7 @@ export default function BetBotProjectPage() {
             else{
                 return(
                     <OstCard noShadow={true} rounded={false}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '0%', marginBottom: 35, borderRadius: 0}}>
-                                Select Your Bets to Analyze! 
-                            </div>
-                        </div>
+                        
                             {renderBetCards()}
                     </OstCard>
                 )
