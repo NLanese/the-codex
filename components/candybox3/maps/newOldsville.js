@@ -70,7 +70,7 @@ export default function NewOldsville({
             const [house4, setHouse4] = useState({
                 onClick: (() => {
                     if (yourInventory.includes("Knight's Key")){
-                        setSelectedMap("Knight's House")
+                        setSelectedMap("House's House")
                     }
                     else{
                         setHouse4Msg(true)
@@ -79,6 +79,21 @@ export default function NewOldsville({
                 message: "This is the House house. No, not a house that houses live in, this is Gregory House's House. The door is locked, however."
             })
             const [house4Msg, setHouse4Msg] = useState(false)
+
+            //////////////
+            // House 5
+            const [house5, setHouse5] = useState({
+                onClick: (() => {
+                    if (yourInventory.includes("Simon Key")){
+                        setSelectedMap("Simon House")
+                    }
+                    else{
+                        setHouse4Msg(true)
+                    }
+                }),
+                message: "You've never seen the lights on in this house, you're not even sure if anyone lives here. You are sure that it is locked, however."
+            })
+            const [house5Msg, setHouse5Msg] = useState(false)
 
         // Lake Objects \\
 
@@ -130,6 +145,7 @@ export default function NewOldsville({
     // Renderers //
     ///////////////
 
+    // Just a Sign
     function renderOldsVilleSign(){
         return(
             <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -158,6 +174,7 @@ export default function NewOldsville({
         )
     }
 
+    // Just a Road
     function renderWesternRoad(){
         return(
             <div>
@@ -171,6 +188,40 @@ export default function NewOldsville({
         )
     }
 
+    // Just a Clump of Trees
+    function renderLilForest1(){
+        return(
+            <div>
+                <p style={candyBoxStyles.mapStyle}>  888        </p>
+                <p style={candyBoxStyles.mapStyle}> 888*8    *  </p>
+                <p style={candyBoxStyles.mapStyle}>8*888*8      </p>
+                <p style={candyBoxStyles.mapStyle}>  ||      88*   </p>
+                <p style={candyBoxStyles.mapStyle}>  ||     8*88*   </p>
+                <p style={candyBoxStyles.mapStyle}>*       8*888*8   </p>
+                <p style={candyBoxStyles.mapStyle}>    '     ||   </p>
+                <p style={candyBoxStyles.mapStyle}> ''       ||   </p>
+            </div>
+        )
+    }
+
+    // Just a Clump of Trees 2
+    function renderLilForest2(){
+        return(
+            <div>
+                <p style={candyBoxStyles.mapStyle}>      888        </p>
+                <p style={candyBoxStyles.mapStyle}> ,'   888*8        * </p>
+                <p style={candyBoxStyles.mapStyle}>    8*888*8    8   </p>
+                <p style={candyBoxStyles.mapStyle}>       ||     &88   </p>
+                <p style={candyBoxStyles.mapStyle}>   888 ||    88*8 </p>
+                <p style={candyBoxStyles.mapStyle}> *88*88     *88*88</p>
+                <p style={candyBoxStyles.mapStyle}> 8*888*8       ||</p>
+                <p style={candyBoxStyles.mapStyle}>   ||          ||  </p>
+                <p style={candyBoxStyles.mapStyle}> ' ||       </p>
+            </div>
+        )
+    }
+
+    // FUNCTIONAL House
     function renderHouse(houseObj, show){
         return(
             <div>
@@ -191,6 +242,7 @@ export default function NewOldsville({
         )
     }
 
+    // FUNCTIONAL House 2
     function renderHouseB(houseObj, show){
         return(
             <div>
@@ -210,6 +262,7 @@ export default function NewOldsville({
         )
     }
 
+    // FUNCTIONAL Town Store
     function renderShop(){
         return(
             <div>
@@ -229,6 +282,7 @@ export default function NewOldsville({
         )
     }
 
+    // FUNCTIONAL Town Forge
     function renderForge(){
         return(
             <div>
@@ -272,36 +326,6 @@ export default function NewOldsville({
         }
     }
 
-    function renderLilForest1(){
-        return(
-            <div>
-                <p style={candyBoxStyles.mapStyle}>  888        </p>
-                <p style={candyBoxStyles.mapStyle}> 888*8    *  </p>
-                <p style={candyBoxStyles.mapStyle}>8*888*8      </p>
-                <p style={candyBoxStyles.mapStyle}>  ||      88*   </p>
-                <p style={candyBoxStyles.mapStyle}>  ||     8*88*   </p>
-                <p style={candyBoxStyles.mapStyle}>*       8*888*8   </p>
-                <p style={candyBoxStyles.mapStyle}>    '     ||   </p>
-                <p style={candyBoxStyles.mapStyle}> ''       ||   </p>
-            </div>
-        )
-    }
-
-    function renderLilForest2(){
-        return(
-            <div>
-                <p style={candyBoxStyles.mapStyle}>      888        </p>
-                <p style={candyBoxStyles.mapStyle}> ,'   888*8        * </p>
-                <p style={candyBoxStyles.mapStyle}>    8*888*8    8   </p>
-                <p style={candyBoxStyles.mapStyle}>       ||     &88   </p>
-                <p style={candyBoxStyles.mapStyle}>   888 ||    88*8 </p>
-                <p style={candyBoxStyles.mapStyle}> *88*88     *88*88</p>
-                <p style={candyBoxStyles.mapStyle}> 8*888*8       ||</p>
-                <p style={candyBoxStyles.mapStyle}>   ||          ||  </p>
-                <p style={candyBoxStyles.mapStyle}> ' ||       </p>
-            </div>
-        )
-    }
 
     function renderLake(show, setShow, show2, setShow2){
         return(
@@ -538,7 +562,7 @@ export default function NewOldsville({
                         {renderSouthbound()}
                         <div style={{marginLeft: 40, display: 'flex', flexDirection: 'column'}}>
                             {renderHouse(house4, house4Msg)}
-                            {renderHouseB()}
+                            {renderHouseB(house5, house5Msg)}
                         </div>
                         <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
                     </div>
