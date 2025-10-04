@@ -22,12 +22,15 @@ export default function NewOldsville({
     // State //
     ///////////
 
+         /////////////
         // Inventory \\
         const [yourInventory, setYourInventory] = useState([...inventory])
 
 
+         /////////////////
         // House Objects \\
 
+            //////////////
             // House 1
             const [house1, setHouse1] = useState({
                 onClick: (() => {
@@ -42,6 +45,7 @@ export default function NewOldsville({
             })
             const [house1Msg, setHouse1Msg] = useState(false)
 
+            /////////////
             // House 2 
             const [house2, setHouse2] = useState({
                 onClick: (() => {
@@ -51,6 +55,7 @@ export default function NewOldsville({
             })
             const [house2Msg, setHouse2Msg] = useState(false)
 
+            /////////////
             // House 3 
             const [house3, setHouse3] = useState({
                 onClick: (() => {
@@ -59,6 +64,21 @@ export default function NewOldsville({
                 message: "This is your house. You lost your key when you fed to a crocodile."
             })
             const [house3Msg, setHouse3Msg] = useState(false)
+
+            //////////////
+            // House 4
+            const [house4, setHouse4] = useState({
+                onClick: (() => {
+                    if (yourInventory.includes("Knight's Key")){
+                        setSelectedMap("Knight's House")
+                    }
+                    else{
+                        setHouse4Msg(true)
+                    }
+                }),
+                message: "This is the House house. No, not a house that houses live in, this is Gregory House's House. The door is locked, however."
+            })
+            const [house4Msg, setHouse4Msg] = useState(false)
 
         // Lake Objects \\
 
@@ -80,6 +100,9 @@ export default function NewOldsville({
         // Clears all Messages
         function clearAllMessages(){
             setHouse1Msg(false)
+            setHouse2Msg(false)
+            setHouse3Msg(false)
+            setHouse4Msg(false)
             setShowLakeMsg(false)
         }
 
@@ -514,7 +537,7 @@ export default function NewOldsville({
                         
                         {renderSouthbound()}
                         <div style={{marginLeft: 40, display: 'flex', flexDirection: 'column'}}>
-                            {renderHouse()}
+                            {renderHouse(house4, house4Msg)}
                             {renderHouseB()}
                         </div>
                         <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
