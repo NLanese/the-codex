@@ -16,7 +16,7 @@ export default function NewOldsville({
     setThingsDone,
     setCandies,
     setLollipops,
-    timer,
+    getTimerValue,
 }){
 
     ///////////
@@ -26,6 +26,21 @@ export default function NewOldsville({
          /////////////
         // Inventory \\
         const [yourInventory, setYourInventory] = useState([...inventory])
+
+         /////////////////////
+        // Environment Timer \\
+        const [timer, setTimer] = useState(0)
+        useEffect(() => {
+            const interval = setInterval(() => {
+                setTimer(prev => {
+                    const next = prev < 5 ? prev + 1 : 0;
+                    console.log(next); // next value
+                    return next;
+                });
+            }, 1400);
+        
+            return () => clearInterval(interval); // cleanup
+        }, []);
 
 
          /////////////////
@@ -427,13 +442,13 @@ export default function NewOldsville({
     }
 
     function renderWaves(){
-        if (timer  === 4 || timer === 5 || timer === 6 || timer === 7){
+        if (timer === 2 || timer === 3){
             return <span>  ~~ </span>
         }
-        else if (timer  === 2 || timer === 3 || timer === 8 || timer === 9){
+        else if (timer === 1 || timer === 4 ){
             return <span> ~~  </span>
         }
-        else if (timer  === 0 || timer === 1 || timer === 10){
+        else if (timer === 0 || timer === 5 ){
             return <span>~~   </span>
         }
     }
