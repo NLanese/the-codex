@@ -1,9 +1,10 @@
 import { candyBoxStyles } from "../../const/styles"
+import { wasp, millipede } from "../../const/enemies"
 
 const easternForest = {
     pathing: 'straight-line',
     startingX: 450,
-    startingY: 675,
+    startingY: 685,
     returnTo: 'New Oldsville',
     winReturnTo: 'New Oldsville',
     thingDone: 'CrossedEasternForest',
@@ -28,37 +29,7 @@ const easternForest = {
         </div>
     ),
     enemies: [
-        {
-            name: "wasp",
-            health: 2,
-            atk: 5,
-            atkSpeed: 1500,
-            render: (
-                <div>
-                    <p>{"o{>"}</p>
-                </div>
-            ),
-            movementSpeed: 200,
-            customMovement: false,
-            candiesDroppedMin: 2,
-            candiesDroppedMax: 7,
-            spawnsAt: [120, 5]
-        },
-        {
-            name: "Millipede",
-            health: 5,
-            atk:25,
-            atkSpeed: 2000,
-            render: (
-                <div>
-                    <p>{"Cmmm"}</p>
-                </div>
-            ),
-            movementSpeed: 200,
-            customMovement: false,
-            candiesDroppedMin: 2,
-            candiesDroppedMax: 7
-        }
+        wasp, millipede
     ]
 
 }
