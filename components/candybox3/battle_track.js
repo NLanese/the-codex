@@ -52,9 +52,9 @@ export default function BATTLE_TRACK({
                 }
                 return (
                 <div style={{...candyBoxStyles.mapStyle, padding: 0, margin:0}}>
-                    <p style={candyBoxStyles.mapStyle}>\O/</p>
-                    <p style={candyBoxStyles.mapStyle}> | </p>
-                    <p style={candyBoxStyles.mapStyle}>/ \</p>
+                    <p style={{...candyBoxStyles.mapStyle, fontWeight: 700}}>\O/</p>
+                    <p style={{...candyBoxStyles.mapStyle, fontWeight: 900}}> | </p>
+                    <p style={{...candyBoxStyles.mapStyle, fontWeight: 900}}>/ \</p>
                 </div>
                 )
             }

@@ -31,7 +31,7 @@ export default function NewOldsville({
         // House Objects \\
 
             //////////////
-            // House 1
+            // House 1 (Your House)
             const [house1, setHouse1] = useState({
                 onClick: (() => {
                     if (yourInventory.includes("Your House Key")){
@@ -46,17 +46,17 @@ export default function NewOldsville({
             const [house1Msg, setHouse1Msg] = useState(false)
 
             /////////////
-            // House 2 
+            // House 2  (Hedge Fund Spiders)
             const [house2, setHouse2] = useState({
                 onClick: (() => {
                     setSelectedMap("New Oldsville -- House2")
                 }),
-                message: "This is your house. You lost your key when you fed to a crocodile."
+                message: "There's a lot of noise coming form this house. Small voices yelling 'buy' and 'sell'."
             })
             const [house2Msg, setHouse2Msg] = useState(false)
 
             /////////////
-            // House 3 
+            // House 3 (Explorer's House)
             const [house3, setHouse3] = useState({
                 onClick: (() => {
                     setSelectedMap("New Oldsville -- House3")
@@ -66,10 +66,10 @@ export default function NewOldsville({
             const [house3Msg, setHouse3Msg] = useState(false)
 
             //////////////
-            // House 4
+            // House 4  (House's House)
             const [house4, setHouse4] = useState({
                 onClick: (() => {
-                    if (yourInventory.includes("Knight's Key")){
+                    if (yourInventory.includes("House's House Key")){
                         setSelectedMap("House's House")
                     }
                     else{
@@ -81,14 +81,14 @@ export default function NewOldsville({
             const [house4Msg, setHouse4Msg] = useState(false)
 
             //////////////
-            // House 5
+            // House 5 (Simon House)
             const [house5, setHouse5] = useState({
                 onClick: (() => {
                     if (yourInventory.includes("Simon Key")){
                         setSelectedMap("Simon House")
                     }
                     else{
-                        setHouse4Msg(true)
+                        setHouse5Msg(true)
                     }
                 }),
                 message: "You've never seen the lights on in this house, you're not even sure if anyone lives here. You are sure that it is locked, however."
@@ -118,6 +118,7 @@ export default function NewOldsville({
             setHouse2Msg(false)
             setHouse3Msg(false)
             setHouse4Msg(false)
+            setHouse5Msg(false)
             setShowLakeMsg(false)
         }
 
@@ -218,6 +219,82 @@ export default function NewOldsville({
                 <p style={candyBoxStyles.mapStyle}>   ||          ||  </p>
                 <p style={candyBoxStyles.mapStyle}> ' ||       </p>
             </div>
+        )
+    }
+
+    // Just a Road 
+    function renderSouthbound(hasExit=false){
+        function renderExit(){
+            if ((hasExit)){
+                return(
+                    <>
+                        <p style={candyBoxStyles.mapStyle}>                |   |     _________________ </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |    <span onClick={() => setSelectedMap("BattleTrack -- Eastern Forest")}>[To Eastern Forest]</span>  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |       |        |  </p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |______________________</p>
+                        <p style={candyBoxStyles.mapStyle}>                |                </p>
+                        <p style={candyBoxStyles.mapStyle}>                |    ______________________</p>
+                        <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    </>
+                )
+            }
+        }
+        function renderExtra(){
+            if (!hasExit)
+            return(
+                <>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                </>
+            )
+        }
+        return(
+            <div style={{marginLeft: 2}}>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                {renderExit()}
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                <p style={candyBoxStyles.mapStyle}>                |   |</p>
+                {renderExtra()}
+            </div>
+        )
+    }
+
+    // Just a Road 
+    function renderSouthernEdgeRoad(){
+        return(
+            <div style={{marginLeft: 0.5}}>
+                <p style={candyBoxStyles.mapStyle}>         ___________________          |   |          ,           |   |     ,               ,            |   |              |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>  ''     [To Western Forest]          |   | *               *    |   |             *              .'    |   |      ; '     |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}>            |         |        '      |   |    ';     `          |   |    '''          *       ',       |   |         * .  |    |              |   |</p>
+                <p style={candyBoxStyles.mapStyle}> ____________________________________/     \____________________/     \________________________________/     \____________/      \____________/     \</p>
+                <p style={candyBoxStyles.mapStyle}>                                                                                                                                                     |</p>
+                <p style={candyBoxStyles.mapStyle}> ____________________________________________________________________________________________________________________________________________________/</p>
+                <p style={candyBoxStyles.mapStyle}>    *                                               '',                                                                                      </p>
+                <p style={candyBoxStyles.mapStyle}>                                                  ,                         *              '.                                               </p>
+            </div> 
         )
     }
 
@@ -422,79 +499,6 @@ export default function NewOldsville({
         }
     }
 
-    function renderSouthbound(hasExit=false){
-        function renderExit(){
-            if ((hasExit)){
-                return(
-                    <>
-                        <p style={candyBoxStyles.mapStyle}>                |   |     _________________ </p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |    <span onClick={() => setSelectedMap("BattleTrack -- Eastern Forest")}>[To Eastern Forest]</span>  </p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |       |        |  </p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |______________________</p>
-                        <p style={candyBoxStyles.mapStyle}>                |                </p>
-                        <p style={candyBoxStyles.mapStyle}>                |    ______________________</p>
-                        <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    </>
-                )
-            }
-        }
-        function renderExtra(){
-            if (!hasExit)
-            return(
-                <>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                    <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                </>
-            )
-        }
-        return(
-            <div style={{marginLeft: 2}}>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                {renderExit()}
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                <p style={candyBoxStyles.mapStyle}>                |   |</p>
-                {renderExtra()}
-            </div>
-        )
-    }
-
-    function renderSouthernEdgeRoad(){
-        return(
-            <div style={{marginLeft: 0.5}}>
-                <p style={candyBoxStyles.mapStyle}>         ___________________          |   |          ,           |   |     ,               ,            |   |              |    |              |   |</p>
-                <p style={candyBoxStyles.mapStyle}>  ''     [To Western Forest]          |   | *               *    |   |             *              .'    |   |      ; '     |    |              |   |</p>
-                <p style={candyBoxStyles.mapStyle}>            |         |        '      |   |    ';     `          |   |    '''          *       ',       |   |         * .  |    |              |   |</p>
-                <p style={candyBoxStyles.mapStyle}> ____________________________________/     \____________________/     \________________________________/     \____________/      \____________/     \</p>
-                <p style={candyBoxStyles.mapStyle}>                                                                                                                                                     |</p>
-                <p style={candyBoxStyles.mapStyle}> ____________________________________________________________________________________________________________________________________________________/</p>
-                <p style={candyBoxStyles.mapStyle}>    *                                               '',                                                                                      </p>
-                <p style={candyBoxStyles.mapStyle}>                                                  ,                         *              '.                                               </p>
-            </div> 
-        )
-    }
 
 
     //////////
