@@ -39,6 +39,26 @@ export default function Map({
         setThisMap(selectedMap)
     }, [selectedMap])
 
+
+        /////////////////////
+    // Environment Timer \\
+    const [timer, setTimer] = useState(0)
+    useEffect(() => {
+        setInterval(() => {
+            console.log(timer)
+            let val
+            if (timer <= 10){
+                val = timer + 1
+                console.log(val)
+                setTimer(prev => val)
+            }
+            else{
+                val = 0
+                setTimer(prev => val)
+            }
+        }, 2500);
+    }, [])
+
     ///////////////
     // Renderers //
     ///////////////
@@ -52,6 +72,7 @@ export default function Map({
                     setSelectedMap={setSelectedMap}
                     thingsDone={thingsDone}
                     setThingsDone={setThingsDone}
+                    timer={timer}
                 />
             )
         }
@@ -65,6 +86,7 @@ export default function Map({
                     setThingsDone={setThingsDone}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
+                    timer={timer}
                 />
             )
         }
@@ -78,6 +100,7 @@ export default function Map({
                     setThingsDone={setThingsDone}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
+                    timer={timer}
                 />
             )
         }
@@ -91,6 +114,7 @@ export default function Map({
                     setThingsDone={setThingsDone}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
+                    timer={timer}
                 />
             )
         }

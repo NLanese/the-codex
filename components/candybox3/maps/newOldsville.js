@@ -16,6 +16,7 @@ export default function NewOldsville({
     setThingsDone,
     setCandies,
     setLollipops,
+    timer,
 }){
 
     ///////////
@@ -411,18 +412,30 @@ export default function NewOldsville({
                 <p style={candyBoxStyles.mapStyle}>     ______               _____<span onClick={() => handleLakeClick()}>/           \_</span></p>
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}> /       \___________/         ~~         \____</span></p>
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>/                                               \</span></p>
-                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|          ~                _____                 \</span></p>
+                <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|          {renderWaves()}            _____                 \</span></p>
                 <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           </span><span onClick={(e) => handleKeyInLakeClick(e)}>/ 0=k \</span><span onClick={() => handleLakeClick()}>                 \__</span></p>
-                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         </span><span onClick={(e) => handleKeyInLakeClick(e)}>\_____/</span><span onClick={() => handleLakeClick()}>           ~~         \</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>\                         </span><span onClick={(e) => handleKeyInLakeClick(e)}>\_____/</span><span onClick={() => handleLakeClick()}>         {renderWaves()}       \</span></p>
                 <p style={candyBoxStyles.mapStyle}>    <span onClick={() => handleLakeClick()}>\                                                     \</span></p>
                 <p style={candyBoxStyles.mapStyle}>     <span onClick={() => handleLakeClick()}>\           {"<=^^^8<"}      {renderLakeMessage(show, setShow)}                             |</span></p>
-                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|      ~                                            /</span></p>
+                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|      {renderWaves()}                                        /</span></p>
                 <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}>|                                   {">8^^^=>"}         /</span></p>
-                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}> \ _____              ~                            \</span></p>
-                <p style={candyBoxStyles.mapStyle}>              <span onClick={() => handleLakeClick()}>\_                                     ~   /</span></p>
+                <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}> \ _____              {renderWaves()}                         \</span></p>
+                <p style={candyBoxStyles.mapStyle}>              <span onClick={() => handleLakeClick()}>\_                                  {renderWaves()}  /</span></p>
                 <p style={candyBoxStyles.mapStyle}>                <span onClick={() => handleLakeClick()}>\______________________________________ /</span></p>
             </div>
         )
+    }
+
+    function renderWaves(){
+        if (timer  === 4 || timer === 5 || timer === 6 || timer === 7){
+            return <span>  ~~ </span>
+        }
+        else if (timer  === 2 || timer === 3 || timer === 8 || timer === 9){
+            return <span> ~~  </span>
+        }
+        else if (timer  === 0 || timer === 1 || timer === 10){
+            return <span>~~   </span>
+        }
     }
 
     function renderLakeMessage(show, setShow){
