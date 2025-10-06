@@ -502,13 +502,13 @@ export default function NewOldsville({
     // Env Changes Via Timer for Lake Waves
     function renderWaves(){
         if (timer === 2 || timer === 3){
-            return <span>  ~~ </span>
+            return <span>    ~~</span>
         }
         else if (timer === 1 || timer === 4 ){
-            return <span> ~~  </span>
+            return <span>  ~~  </span>
         }
         else if (timer === 0 || timer === 5 ){
-            return <span>~~   </span>
+            return <span>~~    </span>
         }
     }
 
@@ -658,7 +658,7 @@ export default function NewOldsville({
                         <div style={{marginLeft: -116}}>{renderSouthbound(true)}</div>
                     </div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'column', marginTop: -315, marginLeft: 40}}>
+                <div style={{display: 'flex', flexDirection: 'column', marginTop: -315, marginLeft: 70}}>
                     {renderLilForest1()}
                     {renderLilForest1()}
                     {renderLilForest2()}
