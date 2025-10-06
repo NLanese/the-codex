@@ -380,11 +380,11 @@ export default function NewOldsville({
         return(
             <div>
             <p style={candyBoxStyles.mapStyle}>                  </p>
-            <p style={candyBoxStyles.mapStyle}>                              %%# </p>
-            <p style={candyBoxStyles.mapStyle}>                            %###</p>
-            <p style={candyBoxStyles.mapStyle}>    ----                   ##%</p>
-            <p style={candyBoxStyles.mapStyle}>    |  |                   %# </p>
-            <p style={candyBoxStyles.mapStyle}>   _|__|_________          #</p>
+            <p style={candyBoxStyles.mapStyle}>                              {renderSmokeStack(4)} </p>
+            <p style={candyBoxStyles.mapStyle}>                            {renderSmokeStack(3)}</p>
+            <p style={candyBoxStyles.mapStyle}>    ----                   {renderSmokeStack(2)}</p>
+            <p style={candyBoxStyles.mapStyle}>    |  |                   {renderSmokeStack(1)} </p>
+            <p style={candyBoxStyles.mapStyle}>   _|__|_________          {renderSmokeStack(0)}</p>
             <p style={candyBoxStyles.mapStyle}>  /_______________\       /--\</p>
             <p style={candyBoxStyles.mapStyle}> /|_T_T_T_T_T_T_T_|\     /    \</p>
             <p style={candyBoxStyles.mapStyle}>  |]  | FORGE |  [|-----[======]</p>
@@ -393,6 +393,64 @@ export default function NewOldsville({
             <p style={candyBoxStyles.mapStyle}>  |]___<span onClick={() => handleForgeClick()}>|__|__|</span>___[|_____[_|_|_|]</p>
             </div>
         )
+    }
+
+    function renderSmokeStack(row){
+        if (row === 0){
+            if (timer === 0 || timer === 3){
+                return<span>#</span>
+            } 
+            else if (timer === 1 || timer === 4){
+                return<span> #</span>
+            }
+            else if (timer === 2 || timer === 5){
+                return<span>  </span>
+            }
+        }
+        else if (row === 1){
+            if (timer === 0 || timer === 3){
+                return<span>%# </span>
+            } 
+            else if (timer === 1 || timer === 4){
+                return<span> %;</span>
+            }
+            else if (timer === 2 || timer === 5){
+                return<span>  %</span>
+            }
+        }
+        else if (row === 2){
+            if (timer === 0 || timer === 3){
+                return<span>##%</span>
+            } 
+            else if (timer === 1 || timer === 4){
+                return<span> % ;%</span>
+            }
+            else if (timer === 2 || timer === 5){
+                return<span> !  ;'</span>
+            }
+        }
+        else if (row === 3){
+            if (timer === 0 || timer === 3){
+                return<span>%###</span>
+            } 
+            else if (timer === 1 || timer === 4){
+                return<span> %;##</span>
+            }
+            else if (timer === 2 || timer === 5){
+                return<span>   ; #%#</span>
+            }
+        }
+        else if (row === 4){
+            if (timer === 0 || timer === 3){
+                return<span>%%#      </span>
+            } 
+            else if (timer === 1 || timer === 4){
+                return<span>% #!%;   </span>
+            }
+            else if (timer === 2 || timer === 5){
+                return<span>    #%#  </span>
+            }
+        }
     }
 
     function renderHouseMessage(houseObj, show){
@@ -425,7 +483,7 @@ export default function NewOldsville({
             <div>
                 <p style={candyBoxStyles.mapStyle}>                                __________</p>
                 <p style={candyBoxStyles.mapStyle}>     ______               _____<span onClick={() => handleLakeClick()}>/           \_</span></p>
-                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}> /       \___________/         ~~         \____</span></p>
+                <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}> /       \___________/         {renderWaves()}      \____</span></p>
                 <p style={candyBoxStyles.mapStyle}>   <span onClick={() => handleLakeClick()}>/                                               \</span></p>
                 <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|          {renderWaves()}            _____                 \</span></p>
                 <p style={candyBoxStyles.mapStyle}>  <span onClick={() => handleLakeClick()}>|        {"<=^^^8<"}           </span><span onClick={(e) => handleKeyInLakeClick(e)}>/ 0=k \</span><span onClick={() => handleLakeClick()}>                 \__</span></p>
@@ -441,6 +499,7 @@ export default function NewOldsville({
         )
     }
 
+    // Env Changes Via Timer for Lake Waves
     function renderWaves(){
         if (timer === 2 || timer === 3){
             return <span>  ~~ </span>
