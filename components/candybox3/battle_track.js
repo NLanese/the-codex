@@ -40,11 +40,13 @@ export default function BATTLE_TRACK({
 
             // Player Token
             const [token, setToken] = useState(determineTokenAtStart())
+            const playerRef = useRef(null);
             function determineTokenAtStart(){
                 if (checkInvFor(selectedTrinkets, 'sponge')){
                     if (checkInvFor(selectedTrinkets, 'sponge').status === 'active'){
                         return (
-                        <div style={candyBoxStyles.mapStyle}>
+                        <div ref={tokenRef}
+                        style={candyBoxStyles.mapStyle}>
                             <p style={candyBoxStyles.mapStyle}>\o/</p>
                         </div>
                         )
@@ -150,6 +152,10 @@ export default function BATTLE_TRACK({
                 console.log(trackLeft)
               }
             }, [selectedTrack]);
+
+        // ENEMIES STATE \\
+        
+            const [enemies, setEnemies] = useState([])
 
     ///////////////
     // Functions //

@@ -1,4 +1,6 @@
 import Enemy from "../const/classes/enemy"
+import { candyBoxStyles } from "../const/styles";
+
 
 const wasp = new Enemy({
     name: "wasp",
@@ -7,15 +9,16 @@ const wasp = new Enemy({
     atkSpeed: 1500,
     render: ( 
     <div>
-        <p>
+        <p style={{...candyBoxStyles.mapStyle, fontWeight: 700}}>
             {"o{>"}
         </p>
     </div>
     ),
-    movementSpeed: 500,
+    movementSpeed: 3,
     customMovement: false,
     candiesDroppedMin: 2,
     candiesDroppedMax: 7,
+    spawnWeight: 1,
   });
 
   const millipede = new Enemy({
@@ -25,11 +28,20 @@ const wasp = new Enemy({
     atkSpeed: 2000,
     render: (
         <div>
-            <p>{"@mmm"}</p>
+            <p style={{...candyBoxStyles.mapStyle, fontWeight: 700}}>
+                {"@mmm"}
+            </p>
         </div>
     ),
-    movementSpeed: 200,
+    movementSpeed: 0.75,
     customMovement: false,
     candiesDroppedMin: 2,
-    candiesDroppedMax: 7
+    candiesDroppedMax: 7,
+    spawnWeight: 1
   })
+
+
+  export {
+    wasp,
+    millipede
+  }

@@ -120,7 +120,7 @@ export default function CandyBox3() {
         function renderMainBar(){
             if (featuresUnlocked > 0){
                 return(
-                    <OstCard style={{width: '95%', marginLeft: '2.5%'}}>
+                    <OstCard style={{width: '95%', marginLeft: '2.5%', position: 'fixed', backgroundColor: 'white'}}>
                         <div style={{width: '100%'}}>
 
                             {/* Tabs */}
@@ -227,7 +227,9 @@ export default function CandyBox3() {
     return(
         <div style={{marginTop: 20}}>
             {renderMainBar()}
-            {MAIN()}
+            <div style={{paddingTop: '10%'}}>
+                {MAIN()}
+            </div>  
         </div>
     )
 }
