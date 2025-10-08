@@ -19,6 +19,8 @@ const wasp = new Enemy({
     candiesDroppedMin: 2,
     candiesDroppedMax: 7,
     spawnWeight: 1,
+    deathMessage: "You squashed a wasp",
+    playerKillMessage: "You got stung too many times to continue"
   });
 
   const millipede = new Enemy({
@@ -37,7 +39,9 @@ const wasp = new Enemy({
     customMovement: false,
     candiesDroppedMin: 2,
     candiesDroppedMax: 7,
-    spawnWeight: 1
+    spawnWeight: 1,
+    deathMessage: "The millipede is no-more-ipede.",
+    playerKillMessage: "Not sure how you let a millipede beat you, but it happened."
   })
 
 

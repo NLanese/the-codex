@@ -11,7 +11,8 @@ type EnemyConfig = {
   candiesDroppedMin: number;
   candiesDroppedMax: number;
   spawnWeight: number;
-  deathMessage: string
+  deathMessage: string;
+  playerKillMessage: string;
 };
 
 class Enemy {
@@ -26,6 +27,7 @@ class Enemy {
   candiesDroppedMax: number;
   spawnWeight: number;
   deathMessage: string;
+  playerKillMessage: string;
 
   constructor(config: EnemyConfig) {
     this.name = config.name;
@@ -39,6 +41,7 @@ class Enemy {
     this.candiesDroppedMax = config.candiesDroppedMax;
     this.spawnWeight = config.spawnWeight;
     this.deathMessage = config.deathMessage
+    this.playerKillMessage = config.playerKillMessage
   }
 
   attack(): number {
