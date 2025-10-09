@@ -29,6 +29,11 @@ class Enemy {
   deathMessage: string;
   playerKillMessage: string;
 
+  posX: number | null;
+  posY: number | null;
+  isInCombat: boolean;
+  canMove: boolean
+
   constructor(config: EnemyConfig) {
     this.name = config.name;
     this.health = config.health;
@@ -42,6 +47,11 @@ class Enemy {
     this.spawnWeight = config.spawnWeight;
     this.deathMessage = config.deathMessage
     this.playerKillMessage = config.playerKillMessage
+    
+    this.posX = null;
+    this.posY = null;
+    this.isInCombat = false;
+    this.canMove = true;
   }
 
   attack(): number {

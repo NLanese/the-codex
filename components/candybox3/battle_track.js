@@ -12,7 +12,7 @@ import { candyBoxStyles } from "./const/styles";
 import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
 import findActiveWeapon from "./func/findActiveWeapon"
-import replaceInArray from "@/constants/functions/replaceInArray";
+import replaceInArray from "../../constants/functions/replaceInArray";
 
 
 export default function BATTLE_TRACK({
