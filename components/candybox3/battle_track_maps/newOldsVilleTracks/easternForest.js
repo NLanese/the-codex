@@ -32,6 +32,8 @@ const easternForest = {
         wasp, millipede
     ]
 
+    
+    
 }
 
 export default easternForest
