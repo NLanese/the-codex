@@ -12,6 +12,7 @@ import { candyBoxStyles } from "./const/styles";
 import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
 import findActiveWeapon from "./func/findActiveWeapon"
+import replaceInArray from "@/constants/functions/replaceInArray";
 
 
 export default function BATTLE_TRACK({
@@ -156,6 +157,7 @@ export default function BATTLE_TRACK({
         // ENEMIES STATE \\
         
             const [enemies, setEnemies] = useState([])
+            const enemyRefs = useRef([]);
 
     ///////////////
     // Functions //
@@ -178,9 +180,28 @@ export default function BATTLE_TRACK({
             }
 
             // Handles moving your player Token
-            function handlePathing(){
+            function handlePathing(forEnemy=false){
+
+                // Standard Straight Track
                 if (selectedTrack.pathing === 'straight-line'){
-                    setPos(prev => [prev[0] + 1, prev[1]])
+
+                    // For Player
+                    if (!forEnemy){
+                        setPos(prev => [prev[0] + 1, prev[1]])
+                    }
+
+                    // For Enemy
+                    else{
+                        let oldEnemiesValues = [...enemies]
+                        let newEnemiesValue = replaceInArray(
+                            oldEnemiesValues, 
+                            forEnemy, 
+                            {...forEnemy, 
+                                posX : forEnemy.posX - 1
+                            })
+                        setEnemies(newEnemiesValue)
+                    }
+                    
                 }
                 setMoved(prev => prev + 1)
             }
@@ -228,7 +249,7 @@ export default function BATTLE_TRACK({
                 </div>
                 {renderLeave()}
             </div>  
-            <div style={{height: 120, marginLeft: '20%', marginBottom: 50}}>
+            <div style={{height: 120, marginLeft: '20%', width: '60%', marginBottom: 25, backgroundColor: 'green'}}>
                 Abilities will go here
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>

@@ -31,9 +31,6 @@ const easternForest = {
     enemies: [
         wasp, millipede
     ]
-
-    
-    
 }
 
 export default easternForest
