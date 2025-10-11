@@ -166,12 +166,33 @@ export default function BATTLE_TRACK({
 
             // Enemy Movement
             useEffect(() => {
-                selectedTrack.enemies.forEach(mapEnemy => {
-                    const enemyMovementTimer = setInterval(() => {
-                        handlePathing(mapEnemy)
-                    }, mapEnemy.movementSpeed);
-                })
-            }, [])
+                if (selectedTrack){
+                    selectedTrack.enemies.forEach(mapEnemy => {
+                        const enemyMovementTimer = setInterval(() => {
+                            handlePathing(mapEnemy)
+                        }, mapEnemy.movementSpeed);
+                    })
+                }
+            }, [selectedTrack])
+
+            // Enemy Spawning
+            const [enemyWeightedList, setEnemyWeightedList] = useState()
+
+            // Creates Enemy Lsit for Spawning Weights
+            useEffect(() => {
+                if (selectedTrack){
+                    
+                }
+            }, [selectedTrack])
+
+            // Spawns Enemies
+            useEffect(() => {
+                if (selectedTrack){
+                    const spawner = setInterval(() => {
+                        
+                    }, selectedTrack.spawnTick);
+                }
+            }, [selectedTrack])
 
     ///////////////
     // Functions //
@@ -233,6 +254,10 @@ export default function BATTLE_TRACK({
             // Adds content to Messages Screen
             function addToMessages(msg){
                 setMsg(prev => [...prev, msg])
+            }
+
+            function determineWhichEnemySpawns(){
+
             }
 
     /////////////

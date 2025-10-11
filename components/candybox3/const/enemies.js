@@ -18,7 +18,7 @@ const wasp = new Enemy({
     customMovement: false,
     candiesDroppedMin: 2,
     candiesDroppedMax: 7,
-    spawnWeight: 1,
+    spawnWeight: 3,
     deathMessage: "You squashed a wasp",
     playerKillMessage: "You got stung too many times to continue"
   });
