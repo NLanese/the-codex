@@ -67,7 +67,7 @@ export default function BATTLE_TRACK({
             const [inCombat, setInCombat] = useState(false)
 
             // Enemy that is being Fought
-            const [fightingEnemy, setfightingenemy] = useState({name: "Nothing", atkSpeed: 1000})
+            const [fightingEnemy, setFightingEnemy] = useState({name: "Nothing", atkSpeed: 1000})
 
             // Position
             const [pos, setPos] = useState([ 0, selectedTrack.startingY ])
@@ -142,7 +142,7 @@ export default function BATTLE_TRACK({
             // Candies
             const [candiesAcquired, setCandiesAcquired] = useState(0)
 
-            // Track Left st Point
+            // Track Left at Point
             const trackRef = useRef(null);
             const parentRef = useRef(null);
             const [trackLeft, setTrackLeft] = useState(0);
@@ -157,8 +157,21 @@ export default function BATTLE_TRACK({
 
         // ENEMIES STATE \\
         
+            // All Enemies
             const [enemies, setEnemies] = useState([])
-            const enemyRefs = useRef([]);
+            useEffect(() => {
+                enemiesRef.current = enemies
+            }, [enemies])
+            const enemiesRef = useRef([]);
+
+            // Enemy Movement
+            useEffect(() => {
+                selectedTrack.enemies.forEach(mapEnemy => {
+                    const enemyMovementTimer = setInterval(() => {
+                        handlePathing(mapEnemy)
+                    }, mapEnemy.movementSpeed);
+                })
+            }, [])
 
     ///////////////
     // Functions //
@@ -255,7 +268,7 @@ export default function BATTLE_TRACK({
         }
 
         function renderBaddies(){
-            return enemies.map(enemy => {
+            return enemiesRef.map(enemy => {
                 return(
                     <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
                         {enemy.render()}
@@ -283,6 +296,7 @@ export default function BATTLE_TRACK({
                     {selectedTrack.render}
                 </div>
                 {renderDude()}
+                {renderBaddies()}
             </div>
         </div>
     )

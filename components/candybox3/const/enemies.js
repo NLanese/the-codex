@@ -35,7 +35,7 @@ const wasp = new Enemy({
             </p>
         </div>
     ),
-    movementSpeed: 0.75,
+    movementSpeed: 15,
     customMovement: false,
     candiesDroppedMin: 2,
     candiesDroppedMax: 7,
