@@ -8,12 +8,15 @@ import { useRecoilState } from "recoil";
 // Styles
 import { candyBoxStyles } from "./const/styles";
 
-// Functions
+// Candybox3 Functions
 import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
 import findActiveWeapon from "./func/findActiveWeapon"
+
+// General Functions
 import replaceInArray from "../../constants/functions/replaceInArray";
 import removeFromArray from "../../constants/functions/removeFromArray";
+import orderArrayBy from "../../constants/functions/orderArrayBy";
 
 
 export default function BATTLE_TRACK({
@@ -179,10 +182,13 @@ export default function BATTLE_TRACK({
             // Enemy Spawning
             const [enemyWeightedList, setEnemyWeightedList] = useState()
 
-            // Creates Enemy Lsit for Spawning Weights
+            // Current Weight for Enemy Spawning
+            const [spawnWeight, setSpawnWeight] = useState(0)
+
+            // Creates Enemy List for Spawning Weights
             useEffect(() => {
                 if (selectedTrack){
-
+                    setEnemyWeightedList(orderArrayBy(selectedTrack.enemies, "spawnWeight", false))
                 }
             }, [selectedTrack])
 
@@ -252,13 +258,22 @@ export default function BATTLE_TRACK({
                 addToMessages(`You've picked up ${candies} candies. You have found ${candiesAcquired} candies total.`)
             }
 
+            function spanwEnemy(enemy){
+                
+            }
+
             // Adds content to Messages Screen
             function addToMessages(msg){
                 setMsg(prev => [...prev, msg])
             }
 
             function determineWhichEnemySpawns(){
-
+                let weighted = Math.random(0, spawnWeight)
+                enemyWeightedList.forEach((en) => {
+                    if (weighted >= en.spawnWeight){
+                        spanwEnemy(en)
+                    }
+                })
             }
 
     /////////////
