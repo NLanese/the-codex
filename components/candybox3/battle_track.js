@@ -255,11 +255,13 @@ export default function BATTLE_TRACK({
         }
 
         function renderBaddies(){
-            return(
-                <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
-                    {token}
-                </div>
-            )
+            return enemies.map(enemy => {
+                return(
+                    <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
+                        {enemy.render()}
+                    </div>
+                )
+            })
         }
 
     //////////
