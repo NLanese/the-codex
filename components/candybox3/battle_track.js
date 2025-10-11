@@ -159,14 +159,15 @@ export default function BATTLE_TRACK({
         
             // All Enemies
             const [enemies, setEnemies] = useState([])
+            const enemiesRef = useRef(enemies);
             useEffect(() => {
                 enemiesRef.current = enemies
             }, [enemies])
-            const enemiesRef = useRef([]);
 
             // Enemy Movement
             useEffect(() => {
                 if (selectedTrack){
+                    console.log("eR : ", enemiesRef.current)
                     selectedTrack.enemies.forEach(mapEnemy => {
                         const enemyMovementTimer = setInterval(() => {
                             handlePathing(mapEnemy)
@@ -181,7 +182,7 @@ export default function BATTLE_TRACK({
             // Creates Enemy Lsit for Spawning Weights
             useEffect(() => {
                 if (selectedTrack){
-                    
+
                 }
             }, [selectedTrack])
 
@@ -293,13 +294,16 @@ export default function BATTLE_TRACK({
         }
 
         function renderBaddies(){
-            return enemiesRef.map(enemy => {
-                return(
-                    <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
-                        {enemy.render()}
-                    </div>
-                )
-            })
+            if (enemiesRef){
+                console.log("eR : ", enemiesRef.current)
+                return enemiesRef.current?.map(enemy => {
+                    return(
+                        <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
+                            {enemy.render()}
+                        </div>
+                    )
+                })
+            }   
         }
 
     //////////
