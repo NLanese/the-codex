@@ -34,7 +34,6 @@ export default function NewOldsville({
             const interval = setInterval(() => {
                 setTimer(prev => {
                     const next = prev < 5 ? prev + 1 : 0;
-                    console.log(next); // next value
                     return next;
                 });
             }, 1400);
@@ -154,7 +153,6 @@ export default function NewOldsville({
         }
 
         function handleForgeClick(){
-            console.log("Changing Selected Screen....")
             setSelectedMap("New Oldsville -- Forge")
         }
 
