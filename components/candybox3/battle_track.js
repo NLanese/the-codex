@@ -13,6 +13,7 @@ import checkInvFor from "./func/checkInventoryFor"
 import makeNewInventoryWithReplacement from "./func/updateFromInv"
 import findActiveWeapon from "./func/findActiveWeapon"
 import replaceInArray from "../../constants/functions/replaceInArray";
+import removeFromArray from "../../constants/functions/removeFromArray";
 
 
 export default function BATTLE_TRACK({
@@ -206,6 +207,21 @@ export default function BATTLE_TRACK({
                 setMoved(prev => prev + 1)
             }
 
+            // Runs on the Defeat of an Enemy
+            function handleSlayEnemy(enemy){
+                let newEnemiesValue = removeFromArray([...enemies], enemy)
+                setEnemies(newEnemiesValue)
+                addToMessages(enemy.deathMessage)
+                let candies = enemy.dropCandies()
+                setCandiesAcquired(prev => prev + candies)
+                addToMessages(`You've picked up ${candies} candies. You have found ${candiesAcquired} candies total.`)
+            }
+
+            // Adds content to Messages Screen
+            function addToMessages(msg){
+                setMsg(prev => [...prev, msg])
+            }
+
     /////////////
     // Renders //
     /////////////
@@ -231,6 +247,14 @@ export default function BATTLE_TRACK({
         }
 
         function renderDude(){
+            return(
+                <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
+                    {token}
+                </div>
+            )
+        }
+
+        function renderBaddies(){
             return(
                 <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
                     {token}

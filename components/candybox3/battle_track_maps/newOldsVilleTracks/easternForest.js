@@ -29,7 +29,7 @@ const easternForest = {
         </div>
     ),
     enemies: [
-        wasp, millipede
+        {...wasp, posX: 245 * 7.7, posY: 682}, {...millipede, posX: 245 * 7.7, posY: 685}
     ]
 }
 
