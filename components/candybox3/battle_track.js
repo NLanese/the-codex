@@ -196,7 +196,7 @@ export default function BATTLE_TRACK({
             useEffect(() => {
                 if (selectedTrack){
                     const spawner = setInterval(() => {
-                        
+                        determineWhichEnemySpawns()
                     }, selectedTrack.spawnTick);
                 }
             }, [selectedTrack])
@@ -259,7 +259,8 @@ export default function BATTLE_TRACK({
             }
 
             function spanwEnemy(enemy){
-                
+                setEnemies(prev => [...enemies, enemy])
+                decreaseSpawnWeight(enemy)
             }
 
             // Adds content to Messages Screen
@@ -274,6 +275,23 @@ export default function BATTLE_TRACK({
                         spanwEnemy(en)
                     }
                 })
+            }
+
+            function increaseSpawnWeight(){
+                if (spawnWeight + 1 >= selectedTrack.maxSpawnWeight){
+                    setSpawnWeight(selectedTrack.maxSpawnWeight)
+                }
+                else{
+                    setSpawnWeight(prev => prev + 1)
+                }
+            }
+
+            function decreaseSpawnWeight(enemy){
+                let newWeight = spawnWeight - enemy.spawnWeight
+                if (newWeight < 0){
+                    newWeight = 0
+                }
+                setSpawnWeight(newWeight)
             }
 
     /////////////
