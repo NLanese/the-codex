@@ -192,6 +192,10 @@ export default function BATTLE_TRACK({
 
             // Current Weight for Enemy Spawning
             const [spawnWeight, setSpawnWeight] = useState(0)
+            const spawnWeightRef = useRef(spawnWeight)
+            useEffect(() => {
+                spawnWeightRef.current = spawnWeight
+            }, [spawnWeight])
 
             // Creates Enemy List for Spawning Weights
             useEffect(() => {
@@ -284,8 +288,9 @@ export default function BATTLE_TRACK({
             }
 
             function determineWhichEnemySpawns(){
-                let weighted = Math.random(0, spawnWeight)
-                console.log("Spawn Weight: ", spawnWeight)
+                console.log("Spawn Weight: ", spawnWeightRef.current)
+                let weighted = Math.floor(Math.random() * (spawnWeightRef.current + 1));
+                console.log("Spawning with weight ", weighted)
                 enemyWeightedList.forEach((en) => {
                     if (weighted >= en.spawnWeight){
                         console.log("Should be spawning ", en.name)
@@ -299,10 +304,13 @@ export default function BATTLE_TRACK({
             }
 
             function increaseSpawnWeight(){
+                console.log("Increasing Spawn Weight")
                 if (spawnWeight + 1 >= selectedTrack.maxSpawnWeight){
+                    console.log("Increasing Spawn Weight to ", selectedTrack.maxSpawnWeight)
                     setSpawnWeight(selectedTrack.maxSpawnWeight)
                 }
                 else{
+                    console.log("Increasing Spawn Weight to ", spawnWeight + 1)
                     setSpawnWeight(prev => prev + 1)
                 }
             }
