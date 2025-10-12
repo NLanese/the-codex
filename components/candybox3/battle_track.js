@@ -183,7 +183,6 @@ export default function BATTLE_TRACK({
               return () => {
                 enemyTimers.current.forEach((timerId) => clearInterval(timerId));
                 enemyTimers.current.clear();
-                console.log("All enemy movement timers cleared");
               };
             }, [selectedTrack]);
 
@@ -200,8 +199,6 @@ export default function BATTLE_TRACK({
             // Creates Enemy List for Spawning Weights
             useEffect(() => {
                 if (selectedTrack){
-                    console.log("Setting Weighted list as ")
-                    console.log(orderArrayBy(selectedTrack.enemies, "spawnWeight", false))
                     setEnemyWeightedList(orderArrayBy(selectedTrack.enemies, "spawnWeight", false))
                 }
             }, [selectedTrack])
@@ -210,7 +207,6 @@ export default function BATTLE_TRACK({
             useEffect(() => {
                 if (enemyWeightedList){
                     const spawner = setInterval(() => {
-                        console.log("Determinging which enemy spawns")
                         determineWhichEnemySpawns()
                     }, selectedTrack.spawnTick);
                     return () => {
@@ -359,8 +355,8 @@ export default function BATTLE_TRACK({
             if (enemiesRef){
                 return enemiesRef.current?.map(enemy => {
                     return(
-                        <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: pos[1], left: pos[0]}}>
-                            {enemy.render()}
+                        <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: 500, left: 500}}>
+                            {enemy.render}
                         </div>
                     )
                 })
