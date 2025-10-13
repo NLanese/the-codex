@@ -165,9 +165,8 @@ export default function BATTLE_TRACK({
                 enemiesRef.current = enemies
             }, [enemies])
 
-            // Enemy Movement
+            // Enemy Movement Timer
             const enemyTimers = useRef(new Map());
-
             useEffect(() => {
               if (selectedTrack) {
                 // Set timers for each enemy
@@ -291,9 +290,7 @@ export default function BATTLE_TRACK({
                     if (weighted >= en.spawnWeight){
                         console.log("Should be spawning ", en.name)
                         spanwEnemy(en)
-                    }
-                    else{
-                        console.log("Not spawning ", en.name)
+                        return
                     }
                 })
                 increaseSpawnWeight()
@@ -361,6 +358,9 @@ export default function BATTLE_TRACK({
                     )
                 })
             }   
+            else{
+                console.log("Bingo Bango")
+            }
         }
 
     //////////

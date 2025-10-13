@@ -31,7 +31,7 @@ const easternForest = {
     enemies: [
         {...wasp, posX: 245 * 7.7, posY: 682}, {...millipede, posX: 245 * 7.7, posY: 685}
     ],
-    spawnTick: 800,
+    spawnTick: 2300,
     maxSpawnWeight: 7,
 }
 
