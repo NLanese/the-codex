@@ -13,7 +13,7 @@ const easternForest = {
     openingMsg: <p>You wander into the (kind of) peaceful forest.</p>,
     render: (
         <div 
-        style={{backgroundColor: "#ebfff5"}}
+        style={{backgroundColor: "#ebfff5", height: 180}}
         >
             <p style={candyBoxStyles.mapStyle}>                                                </p>
             <p style={candyBoxStyles.mapStyle}>                                                </p>

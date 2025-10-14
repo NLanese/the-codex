@@ -227,7 +227,7 @@ export default function CandyBox3() {
     return(
         <div style={{marginTop: 20}}>
             {renderMainBar()}
-            <div style={{paddingTop: '10%'}}>
+            <div style={{paddingTop: 200}}>
                 {MAIN()}
             </div>  
         </div>

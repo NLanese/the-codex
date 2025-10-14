@@ -368,7 +368,7 @@ export default function BATTLE_TRACK({
     //////////
     return(
         <div>
-            <div style={{border: '1px solid black', marginTop: '1.5%', marginLeft: '20%', width: '60%', marginBottom: 20}}>
+            <div style={{border: '1px solid black', marginTop: 200, marginLeft: '20%', width: '60%', marginBottom: 20}}>
                 <div style={{height: 120, padding: 10}}>
                     {renderMessages()}
                 </div>
