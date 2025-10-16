@@ -162,6 +162,8 @@ export default function BATTLE_TRACK({
             const [enemies, setEnemies] = useState([])
             const enemiesRef = useRef(enemies);
             useEffect(() => {
+                // console.log("Change to enemies")
+                // console.log(enemies)
                 enemiesRef.current = enemies
             }, [enemies])
 
@@ -205,6 +207,7 @@ export default function BATTLE_TRACK({
             // Spawns Enemies
             useEffect(() => {
                 if (enemyWeightedList){
+                    console.log("Beginning Spawn Timer")
                     const spawner = setInterval(() => {
                         determineWhichEnemySpawns()
                     }, selectedTrack.spawnTick);
@@ -247,14 +250,14 @@ export default function BATTLE_TRACK({
 
                     // For Enemy
                     else{
-                        let oldEnemiesValues = [...enemies]
+                        let oldEnemiesValues = [...enemiesRef.current]
                         let newEnemiesValue = replaceInArray(
                             oldEnemiesValues, 
                             forEnemy, 
                             {...forEnemy, 
                                 posX : forEnemy.posX - 1
                             })
-                        setEnemies(newEnemiesValue)
+                        setEnemies([...newEnemiesValue])
                     }
                     
                 }
@@ -271,9 +274,10 @@ export default function BATTLE_TRACK({
                 addToMessages(`You've picked up ${candies} candies. You have found ${candiesAcquired} candies total.`)
             }
 
+            // Adds an Enemy (provided as Param) to Enemies Array
             function spanwEnemy(enemy){
-                console.log("Should be spawning ", enemy.name)
-                setEnemies(prev => [...enemies, enemy])
+                console.log("Spawns an Enemy")
+                setEnemies(prev => [...prev, enemy])
                 decreaseSpawnWeight(enemy)
             }
 
@@ -283,12 +287,10 @@ export default function BATTLE_TRACK({
             }
 
             function determineWhichEnemySpawns(){
-                console.log("Spawn Weight: ", spawnWeightRef.current)
+                console.log("Determining What Enemy Spawns")
                 let weighted = Math.floor(Math.random() * (spawnWeightRef.current + 1));
-                console.log("Spawning with weight ", weighted)
                 enemyWeightedList.forEach((en) => {
                     if (weighted >= en.spawnWeight){
-                        console.log("Should be spawning ", en.name)
                         spanwEnemy(en)
                         return
                     }
@@ -297,13 +299,10 @@ export default function BATTLE_TRACK({
             }
 
             function increaseSpawnWeight(){
-                console.log("Increasing Spawn Weight")
                 if (spawnWeight + 1 >= selectedTrack.maxSpawnWeight){
-                    console.log("Increasing Spawn Weight to ", selectedTrack.maxSpawnWeight)
                     setSpawnWeight(selectedTrack.maxSpawnWeight)
                 }
                 else{
-                    console.log("Increasing Spawn Weight to ", spawnWeight + 1)
                     setSpawnWeight(prev => prev + 1)
                 }
             }
@@ -358,9 +357,6 @@ export default function BATTLE_TRACK({
                     )
                 })
             }   
-            else{
-                console.log("Bingo Bango")
-            }
         }
 
     //////////
@@ -368,7 +364,7 @@ export default function BATTLE_TRACK({
     //////////
     return(
         <div>
-            <div style={{border: '1px solid black', marginTop: 200, marginLeft: '20%', width: '60%', marginBottom: 20}}>
+            <div style={{border: '1px solid black', marginTop: 40, marginLeft: '20%', width: '60%', marginBottom: 20}}>
                 <div style={{height: 120, padding: 10}}>
                     {renderMessages()}
                 </div>

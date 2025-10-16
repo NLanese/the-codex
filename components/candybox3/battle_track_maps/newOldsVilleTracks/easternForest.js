@@ -4,7 +4,7 @@ import { wasp, millipede } from "../../const/enemies"
 const easternForest = {
     pathing: 'straight-line',
     startingX: 450,
-    startingY: 685,
+    startingY: 703,
     returnTo: 'New Oldsville',
     winReturnTo: 'New Oldsville',
     thingDone: 'CrossedEasternForest',
