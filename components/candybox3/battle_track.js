@@ -351,7 +351,7 @@ export default function BATTLE_TRACK({
             if (enemiesRef){
                 return enemiesRef.current?.map(enemy => {
                     return(
-                        <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: 500, left: 500}}>
+                        <div style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: enemy.posY, left: enemy.posX}}>
                             {enemy.render}
                         </div>
                     )
