@@ -191,7 +191,7 @@ export default function BATTLE_TRACK({
             const [enemyWeightedList, setEnemyWeightedList] = useState()
 
             // Current Weight for Enemy Spawning
-            const [spawnWeight, setSpawnWeight] = useState(0)
+            const [spawnWeight, setSpawnWeight] = useState(1)
             const spawnWeightRef = useRef(spawnWeight)
             useEffect(() => {
                 spawnWeightRef.current = spawnWeight
@@ -376,9 +376,10 @@ export default function BATTLE_TRACK({
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <div ref={trackRef} style={{backgroundColor: 'red'}}>
                     {selectedTrack.render}
+                    {renderDude()}
+                    {renderBaddies()}
                 </div>
-                {renderDude()}
-                {renderBaddies()}
+                
             </div>
         </div>
     )
