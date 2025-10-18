@@ -392,6 +392,38 @@ export default function KNMPage(){
                             </OstCard>
                         </div>
                     </div>
+                    <div style={Styles.Fonts.lessonHeader}>Organization</div>
+                    <p style={Styles.Fonts.basicX}>
+                        The Organization Model is the parent to every other data model in the Kidz N Motion App. Organizations will <strong>have many</strong> Therapists, as well as a variety of other options that 
+                        will apply to all Therapists and thus all Clients. Some of these properties include the payment settings as well as video settings from the Therapeutic Practice. While you would be able to access the 
+                        information of Patients by finding the Therapists from the Organization and going down through the models that way, the Organization will also have direct relationships with the Clients and parents and children as well. 
+                    </p>
+                    <div style={Styles.Fonts.lessonHeader}>Users</div>
+                    <p style={Styles.Fonts.basicX}>
+                        All users are a part of the User tabel in the database, meaning Therapists, Children and Guardians alike are all just instances of the User Model. There is, however
+                        <strong> role-specific properties</strong> attached to the user model that seperates Children from Guardians and Guardians from Therapists. This is mostly determined through the 'role' property which is 
+                        provided during the create call to the API. If the role provded is "THERAPIST", then the user model follows a different path in the API's code than it would had "GUARDIAN" been provided as 
+                        the role. These are the only two users that can directly sign up, as when signing up as a GUARDIAN, a CHILD user is automatically created alongside the parent using user provided information. 
+                    </p>
+
+                    <p style={Styles.Fonts.basicX}>
+                        All Users are created through the same mutation, <storng>signupUser</storng>. As previously mentioned, this will take a 'role' as a parameter and from there will add the user role 
+                        specific properties. Those properties include...
+                    </p>
+                    <p style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
+                        <strong style={{color: 'black'}}>Therapist Specific</strong>
+                        <ul>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableAppointmentNotifications </span>(This is true if the Therapist gets notified on confirmed appointments)</li>
+                        </ul>
+                        <strong style={{color: 'black'}}>Guardian Specific</strong>
+                        <ul>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>messagesAreMuted</span> (This is true if the Therapist has the clien'st messages muted)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>appointmentsAreMuted</span> (This is true if the Therapist has the client's appointments muted)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableMissedDateNotifications</span> (This is true if the client has their missed asisignments muted)</li>
+                        </ul>
+                    </p>
+
                 </div>
             )
         }
