@@ -441,8 +441,8 @@ export default function IEEEPage(){
     /////////////////
 
     return(
-        <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
-            <div style={{marginLeft: '10%', marginRight:'10', height: '100%', backgroundColor: 'white'}}>
+        <div style={{backgroundColor: '#00629B',  height: '100%', marginTop: -20}}>
+            <div style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
                 <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Kidz-N-Motion</div>
                         {renderInitialRambling()}

@@ -13,14 +13,8 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 
 // Assets
-const listing = "../../../assets/showcase_images/knm/AppListing.png";
-const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
-const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
-const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
-const therCal = "../../../assets/showcase_images/knm/therCalView.png"
-const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
-const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
-const modelStruc = "../../../assets/showcase_images/knm/modelStructure.png"
+const eh = "../../../assets/showcase_images/ieee/eventhub.png";
+
 
 
 
@@ -53,15 +47,11 @@ export default function EventHubPage(){
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
-                        The Flaghship app for Therapy in Motion PA, the Kidz-N-Motion app is designed to 
-                        connect children facing disabilities to their own professional Physical Therapist.
+                        IEEE hosts up to thiusands of events a year, and as such each event will be unable to have its own app on the 
+                        App Stores, whether Google or Apple. As such, a single application was made to host all IEEE Events, Conferences, and Official Meetings.
                     </p>
                     <p style={Styles.Fonts.basicX}>
-                        Founded by <a href="https://www.linkedin.com/in/dr-lafonda-beneby-pt-dpt-982255134/">Dr Lafonda Benelby</a>, Kidz-N-Motion was created during covid, as Dr LaFonda and her 
-                        in-school Physial Therapist peers found themselves unable to give their clients the critical 
-                        services they needed. While relaying instructions for exercises and other activities to parents
-                        was possible, there existed no way to <strong>show</strong> the children the exercises they should 
-                        be doing, nor was there way way to actually confirm whether the activities were completed.
+                        IEEE as an organization
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         In order to reconect with children who desperately needed her and her peers' assistance, Dr LaFonda 
@@ -83,9 +73,9 @@ export default function EventHubPage(){
                     <div style={{flex: 6}}>
                         <OstCard
                             templateStyle={1}
-                            imageSrc={listing}
+                            imageSrc={eh}
                         >
-                            <a href="https://apps.apple.com/us/app/kidz-n-motion/id1661352847">iOS Listing</a> / <a href="">Android Listing</a>
+                            <a href={eh}>iOS Listing</a> / <a href="">Android Listing</a>
                         </OstCard>
                     </div>
                     <div style={{flex: 6, padding: 20, paddingTop: 0}}>
@@ -441,20 +431,20 @@ export default function EventHubPage(){
     /////////////////
 
     return(
-        <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
-            <div style={{marginLeft: '10%', marginRight:'10', height: '100%', backgroundColor: 'white'}}>
+        <div style={{backgroundColor: '#00629B',  height: '100%', marginTop: -20}}>
+            <div style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
-                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Kidz-N-Motion</div>
+                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>IEEE EventHub</div>
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
                         {renderAccountTypes()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
                         {renderCalendarDetails()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
                         {renderAccountStructure()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
         </div>
