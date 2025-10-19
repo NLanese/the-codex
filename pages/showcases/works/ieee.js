@@ -26,7 +26,7 @@ const modelStruc = "../../../assets/showcase_images/knm/modelStructure.png"
 
 
 
-export default function KNMPage(){
+export default function IEEEPage(){
 
     ///////////
     // State //
