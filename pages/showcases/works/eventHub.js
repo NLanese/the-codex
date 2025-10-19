@@ -51,16 +51,12 @@ export default function EventHubPage(){
                         App Stores, whether Google or Apple. As such, a single application was made to host all IEEE Events, Conferences, and Official Meetings.
                     </p>
                     <p style={Styles.Fonts.basicX}>
-                        IEEE as an organization
+                        IEEE initially had every Event HHoster create its own app-- this was eventaully caught and declined by Apple, with the threat that future independant apps for 
+                        events would be barred from submission. As a result, the EventHub app was made, and within it all IEEE sponsored events were made accessible.
                     </p>
                     <p style={Styles.Fonts.basicX}>
-                        In order to reconect with children who desperately needed her and her peers' assistance, Dr LaFonda 
-                        founded Therapy In Motion and began the creation of her Kidz-N-Motion app. This app allows clients and their 
-                        parents to be able to reach their Physical Therapists at the click of a button through in-app instant messaging. 
-                        Therapists can assign work outs to their clients, and each work out comes with its own pre-rendered animation 
-                        of a child doing the exercise in order for the client to follow along. Therapists can also record the client 
-                        during in-person sessions and is able to easily send the videos over to the parent through the app's record feature.
-                        This allows parents to see how their child progresses along their Physial Therapy journey. 
+                        Whereas each event composer (IEEE ComSoc, IEEE Womens Society, etc) used to have their own indivials apps, all event organizers are
+                        now resided in the IEEE Eventhub App. 
                     </p>
                 </div>
             )
