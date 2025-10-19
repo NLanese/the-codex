@@ -68,7 +68,7 @@ export default function WorksMenu() {
                         imageSrc={ieee}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/knm")
+                        router.replace("/showcases/works/ieee")
                         }}
                     >
                         IEEE (Flagship App)
@@ -78,7 +78,7 @@ export default function WorksMenu() {
                         imageSrc={eventHub}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/knm")
+                        router.replace("/showcases/works/eventHub")
                         }}
                     >
                         EventHub (IEEE Events App)

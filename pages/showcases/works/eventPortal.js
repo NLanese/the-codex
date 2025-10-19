@@ -53,8 +53,8 @@ export default function EventPortalPage(){
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
-                        The Flaghship app for Therapy in Motion PA, the Kidz-N-Motion app is designed to 
-                        connect children facing disabilities to their own professional Physical Therapist.
+                        IEEE hosts up to thiusands of events a year, and as such each event will be unable to have its own app on the 
+                        App Stores, whether Google or Apple. As such, a single application was made to host all IEEE Events, Conferences, and Official Meetings.
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         Founded by <a href="https://www.linkedin.com/in/dr-lafonda-beneby-pt-dpt-982255134/">Dr Lafonda Benelby</a>, Kidz-N-Motion was created during covid, as Dr LaFonda and her 
