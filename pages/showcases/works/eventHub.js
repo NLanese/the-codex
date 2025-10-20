@@ -56,7 +56,8 @@ export default function EventHubPage(){
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         Whereas each event composer (IEEE ComSoc, IEEE Womens Society, etc) used to have their own indivials apps, all event organizers are
-                        now resided in the IEEE Eventhub App. 
+                        now resided in the IEEE Eventhub App. From here, users can check other attendees' as well as speakers' profiles; check out maps of the event grounds, 
+                        create your own schedule for the event that connects to your phone's calendar, and find out even more details pertaining to the event selected. 
                     </p>
                 </div>
             )
@@ -71,16 +72,15 @@ export default function EventHubPage(){
                             templateStyle={1}
                             imageSrc={eh}
                         >
-                            <a href={eh}>iOS Listing</a> / <a href="">Android Listing</a>
+                            <a href={"https://apps.apple.com/us/app/ieee-eventhub/id1456133827"}>iOS Listing</a> / <a href="">Android Listing</a>
                         </OstCard>
                     </div>
                     <div style={{flex: 6, padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
-                            Released to App Stores (iOS and Google Play) in 2021, the Kidz-N-Motion app has many users, 
-                            therapists and clients and their parents alike. Created using React Native (Vanilla) and up to date 
-                            with modern SKDs, APIs, and compliances; I have been the sole architect of the Kidz-N-Motion app, overseeing 
-                            its production, development, and publication. I am also in charge of both the Google Play and Apple 
-                            Developer Accounts. 
+                            Since my employment at IEEE in 2021, I resumed the responsibilites left by the employee before me in building and 
+                            adding the Event Hub app to the Google Play Console. When I had first started, the App wazs built using Angular / Cordova 
+                            with some Capacitor packages hewn in. Since then, I have converted the App to work on the much more modern Capacitor Engine
+                            opposed to the now deprecated Cordova. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
                             This was my very first professional endaever as a computer scientist, and as such it came with its fair share 
@@ -432,7 +432,7 @@ export default function EventHubPage(){
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
                 <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>IEEE EventHub</div>
                         {renderInitialRambling()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>My Contributions to Distribution</div>
                         {renderAppListing()}
                     {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
                         {renderAccountTypes()}

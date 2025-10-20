@@ -1,4 +1,5 @@
 import { conceptsList, languagesList, frameworksList, basicsLessons, basicsTests, basicsLabs } from "./lessonLists"
+import { proWorks, onGoing } from "./portfolioLists"
 
 // Fires on specific drawer type clicks
 function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
@@ -40,12 +41,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: [
-                "Boardgame Master AI", 
-                "BetBot",
-                {title: "Ostrich Component Library", onClick: () => router.replace("/showcases/ostrich-components/menu"), manualOnClick: true},
-                "CandyBox 3"
-            ],
+            drawers: onGoing,
             onDrawerClick: (drawer) =>  { handleShowcaseDrawer("projects", drawer, router) }
         }
     },
@@ -57,7 +53,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: frameworksList,
+            drawers: proWorks,
             onDrawerClick: (drawer) => { handleShowcaseDrawer('works', drawer, router)}
         }
     },
