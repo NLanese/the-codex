@@ -7,6 +7,7 @@ const onGoing = [
 
 const proWorks = [
     "Kidz-n-Motion",
+    "IEEE",
     "EventHub",
     "EventPortal",
 ]

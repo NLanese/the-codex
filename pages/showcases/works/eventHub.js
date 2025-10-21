@@ -47,7 +47,7 @@ export default function EventHubPage(){
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
-                        IEEE hosts up to thiusands of events a year, and as such each event will be unable to have its own app on the 
+                        IEEE hosts up to thousands of events a year, and as such each event will be unable to have its own app on the 
                         App Stores, whether Google or Apple. As such, a single application was made to host all IEEE Events, Conferences, and Official Meetings.
                     </p>
                     <p style={Styles.Fonts.basicX}>
@@ -83,10 +83,18 @@ export default function EventHubPage(){
                             opposed to the now deprecated Cordova. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            This was my very first professional endaever as a computer scientist, and as such it came with its fair share 
-                            of issues and complications. For example, this application was my first forray into Gradle Build Errors on Android's side 
-                            and Pod issues on Apple's side. Having no senior member to turn to-- as well as no chatbot assistants yet to asisst me; 
-                            I was able to solve all compatability issues and always managed to successfully build and distribute the app. 
+                            Starting in 2023, relying on the Cordova Engine became impossible, as mutliple @ionic-native dependencies became incompatible with modern
+                            Android and iOS SDKs. @ionic-native packages relied on old Cordova and were incompatible with Cordova-Capacitor hybrid engines. I had removed 
+                            the trouble packages and replaced them with their @capacitor or @awesome-cordova packages (which were comnpatible with the Cordova-Capacitor engine)
+                            and made the appropriate syntactical adjustments in the files with replaced package imports. 
+                        </p>
+                        <p style={Styles.Fonts.basicX}>
+                            Then in Spring 2024, more issues arose from older dependencies, causing me to update entirely to Capacitor. This meant we no longer used 
+                            `cordova` build commands and instead switched to `capacitor` commands. TypeScript was upgraded to adjust for this, as were several different analytics 
+                            packages we used. The cordova configuration files were exchanged for Capacitor ones, and the tsconfig file was updated. 
+                        </p>
+                        <p style={Styles.Fonts.basicX}>
+                            Finally, 
                         </p>
                     </div>
                 </div>
