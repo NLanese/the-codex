@@ -130,18 +130,18 @@ export default function BoardGameMasterAIProjectPage() {
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <OstCard style={{margin: "30px", flex: 12}}>
                         <div style={Styles.Sections.lessonContent}>
-                            <p style={Styles.Fonts.basic}>
+                            <p style={Styles.Fonts.basicXL}>
                             Below is a Chat Bot designed to answer your questions about any of the board games we have listed! 
                             Simply select a board game from the dropdown menu and enter your question in the text field. 
                             Once complete, press submit and wait for the Board Game Master to give you a response!
                             </p>
 
-                            <p style={Styles.Fonts.basic}>
+                            <p style={Styles.Fonts.basicXL}>
                             This bot was deisgned using Amazon Bedrock. Its knowledge base was compiled by Nick Lanese but all the content was 
                             information from the respecitve board games' official rules (when applicable).
                             </p>
 
-                            <p style={Styles.Fonts.basic}>
+                            <p style={Styles.Fonts.basicXL}>
                             The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
                             </p>
                         </div>
@@ -544,7 +544,7 @@ return (
         <div style={{...Styles.Sections.lessonContent, marginTop: 50}}>
             <OstCard style={{padding: 30}}>
                 <div>
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     Like everything else you see on this site, the UI was constructed using Ostrich React Components (Made by myself) on NextJS. 
                     The majority of the code sending the request to the API is within the `api` subdirectory that is naturally a part of NextJS projects.
                     This makes the process of sending the initial request to the backend where the API request is compiled much simpler
@@ -552,20 +552,20 @@ return (
 
                     {renderBackendRequestCode()}                   
                     
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     From there, the user Message is taken, packaged up in a request and sent to this project's `ppages/api/boardGameWizard.js' file, where the 
                     brunt of the request content lies. There, we compile the request to my specific Amazon Bedrock Bnowledge Base API
                     </p>
 
-                    <p style={Styles.Fonts.basic}>
-                    Thankfully, AWS makes sending the request pretty simple. They have a default option to copy and paste from, but
+                    <p style={Styles.Fonts.basicXL}>
+                    Thankfully, AWS makes sending the request pretty simple. They have a default option to <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html">copy and paste from</a>, but
                     it is recommended you adjust some of the values and structure youself. The adjustments depend on what model you are using 
                     for Text Generation. This does NOT have anything to do with the model you have selected for Text Embedding and Processing. 
                     </p>
 
                     {renderAWSRequestCode()}
 
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     As you may see, we make the API call using the 'send' function from a client variable; as opposed to using Axios or some other generic HTTP Request function. This is because 
                     we need to make the request through a logged in client instance of AWS. We must configure the client using our AWS Region, I_AM Access ID, and our Knowledge Base's Secrey Key. 
                     You can find all of these in your AWS Console, and we will cover how to find those further along in this page. However, immediately below you will see the proper syntax for creating
@@ -574,11 +574,11 @@ return (
 
                     {renderAWSClientCode()}
 
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     And that is as much coding as we will need for creating this Chat Bot! The rest of the work is done in the AWS Console
                     </p>
 
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     The first thing to do is generate a document (or up to 10 documents) that hold the information you want your Chat Bot to reference. 
                     For now, all of my Board Game Rules are stored in a single text document, since they can be a massive size. However, upon adding more rules,
                     I may be forced to split the master document up into smaller sections. Regardless, we have to upload this document to an S3 Bucket
@@ -589,7 +589,7 @@ return (
                         imageSrc={S3Strcuture}
                     />
 
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     From here, you will want to navigae to the AWS Bedrock Dashboard. Once there, you will be able to do a few different actions, but for now we are
                     focused on the Knowledge Bases. Clicking Knowledge Bases from the left menu will bring you to the 
                     desired dashboard
@@ -600,7 +600,7 @@ return (
                         imageSrc={BedrockKB}
                     />
 
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicXL}>
                     You then get brought to the AWS Bedrock Knowledge Bases Dashboard, you will want to select onw of your Knowledge Bases. If you have none, none 
                     will be shown and you will be prompted to create one. Once you have created one or clicked on an existing one, you will be brought to the Knowledge Base Actions Dashboard. 
                     From here you have a lot of different customization options as well as an ability to test different LLMs against your knowledge base
