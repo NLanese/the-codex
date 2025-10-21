@@ -95,7 +95,8 @@ export default function BoardGameMasterAIProjectPage() {
                     setMessages(prev => [...prev, newMessage])
                 } 
                 catch (err) {
-                    console.error("BEDROCK ERROR:", JSON.stringify(err, null, 2));
+                    console.warn("BEDROCK IN RESPONSE ERROR:", JSON.stringify(err, null, 2));
+                    console.warn(JSON.stringify(err))
                     res.status(500).json({ message: "Internal server error" });
                 }
             })

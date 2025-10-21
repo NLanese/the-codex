@@ -27,7 +27,7 @@ export async function POST(req) {
     const response = await client.send(command);
     return Response.json({ reply: response.output?.text || "No response" });
   } catch (err) {
-    console.error(err);
-    return Response.json({ reply: "Something went wrong." }, { status: 500 });
+    console.error("ERROR IN BOARD GAME WIZARD API ROUTE --- ", err);
+    return Response.json({ reply: ("Something went wrong. \n", err) }, { status: 500 });
   }
 }
