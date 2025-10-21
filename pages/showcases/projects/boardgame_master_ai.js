@@ -543,7 +543,12 @@ return (
         {/* Technical Exploration */}
         <div style={{...Styles.Sections.lessonContent, marginTop: 50}}>
             <OstCard style={{padding: 30}}>
+
+                {/* Constructing the Chatbot */}
                 <div>
+                    <p style={Styles.Fonts.lessonHeaderXL}>
+                        Constructing the Chatbot
+                    </p>
                     <p style={Styles.Fonts.basicXL}>
                     Like everything else you see on this site, the UI was constructed using Ostrich React Components (Made by myself) on NextJS. 
                     The majority of the code sending the request to the API is within the `api` subdirectory that is naturally a part of NextJS projects.
@@ -611,6 +616,44 @@ return (
                         imageSrc={KB_Dash}
                     />
 
+                </div>
+
+                {/* Errors and Issues */}
+                <div style={{marginTop: 75}}>
+                    <p style={Styles.Fonts.lessonHeaderXL}>
+                        Errors and Issues with Solutions
+                    </p>
+                    <div>
+                        <div>
+                            <OstCard style={{backgroundColor: '#db695e', fontWeight: 600, fontSize: 28}}>
+                            ValidationException: The model arn provided is not supported. Please check your configuration and retry the request
+                            </OstCard>
+                        </div>
+                        <div>
+                            <p style={Styles.Fonts.basicXL}>
+                                AWS is constantly updating their models, and similarly the connected parties AWS works with are updating their's
+                                as well. As such, models can become deprecated. When this happens, you will need to find an accepted model. Once you have,
+                                update your model arn (which should be stored in your .env file). Recall the following line inside of your <span style={{...Styles.Code.code, fontSize: 24, fontWeight: 600}}>retrieveAndGenerateConfiguration</span> property
+                            </p>
+                            <div style={{...Styles.Sections.simpleLessonCode, minWidth: 1000}}>
+                                <p style={{...Styles.Code.code, marginLeft: 60}}>
+                                    <span style={Styles.Code.str}>"modelArn"</span>
+                                    <span style={Styles.Code.reg}>{": "}</span>
+                                    <span style={Styles.Code.var}>process.env.BEDROCK_MODEL_ARN</span>
+                                    <span style={Styles.Code.comment}> {"// This value will need to be updated in your .env file"}</span>
+                                    <span style={Styles.Code.reg}>{","}</span>
+                                </p>
+                            </div>
+                            <p style={Styles.Fonts.basicXL}>
+                                A proper model arn string will look as follows...
+                            </p>
+                            <div style={{...Styles.Sections.simpleLessonCode, minWidth: 800}}>
+                                <p style={{...Styles.Fonts.basicXL, color: "white", paddingLeft: 40}}>
+                                    arn:aws:bedrock:<span style={{color: 'red'}}>[region]</span>::foundation-model/<span style={{color: 'red'}}>[model string]</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </OstCard>
         </div>
