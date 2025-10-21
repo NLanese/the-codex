@@ -14,6 +14,11 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 
 // Assets
 const eh = "../../../assets/showcase_images/ieee/eventhub.png";
+const ehal = "../../../assets/showcase_images/ieee/eventhub-attendee-list-1.png";
+const ehal2 = "../../../assets/showcase_images/ieee/eventhub-attendee-list-2.png";
+const cordcap = "../../../assets/showcase_images/ieee/cord-to-cap.png";
+
+
 
 
 
@@ -66,13 +71,18 @@ export default function EventHubPage(){
         // Second Part ( Distribution )
         function renderAppListing(){
             return(
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 6}}>
+                <div style={{flexDirection: 'row', display: 'flex', padding: 20, alignItems: 'stretch'}}>
+                    <div style={{display: 'flex', flex: 6, flexDirection: 'column', justifyContent: 'space-evenly', gap: 50}}>
                         <OstCard
                             templateStyle={1}
                             imageSrc={eh}
                         >
                             <a href={"https://apps.apple.com/us/app/ieee-eventhub/id1456133827"}>iOS Listing</a> / <a href="">Android Listing</a>
+                        </OstCard>
+                        <OstCard
+                            templateStyle={1}
+                            imageSrc={cordcap}
+                        >
                         </OstCard>
                     </div>
                     <div style={{flex: 6, padding: 20, paddingTop: 0}}>
@@ -117,16 +127,17 @@ export default function EventHubPage(){
             )
             
         }
-        function renderAccountTypes(){
+        function renderAttendeeList(){
             const renderCardOne = () =>{
                 if (!card1){
                     return(
                         <OstCard
                         templateStyle={1}
-                        imageSrc={chiScreen}
+                        imageSrc={ehal}
                         onClick={() => setCard1(!card1)}
                         style={cardStyle(card1)}
                         >
+                            Click to learn more about the Alphabet List
                         </OstCard>
                     )
                 }
@@ -168,10 +179,11 @@ export default function EventHubPage(){
                     return(
                         <OstCard
                             templateStyle={1}
-                            imageSrc={therScreen}
+                            imageSrc={ehal2}
                             onClick={() => setCard2(!card2)}
                             style={cardStyle(card2)}
                         >
+                            Click to learn more about the Attendee Cards
                         </OstCard>
                     )
                 }
@@ -251,8 +263,10 @@ export default function EventHubPage(){
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
-                        As previously mentioned there are three different expected user types for this app. Clients (Children needing Physical Therapy), Parents, and Therapist / Administrators. 
-                        Each user type will have a different in-app experience, as they each come to the app with a different purpose in mind. 
+                        As previously mentioned the EventHub App features the ability to find and connect with other event attendees. I have worked
+                        quite a bit with this features and features adjacent to this. One of the earliest contributions in this regard was the addition of 
+                        the iOS contacts list style Alphabet Slider. I then worked on the appearance of the individual atendee cards, as well as the navigation that
+                        occurs when users click on an attendee's social medias. 
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
@@ -260,7 +274,7 @@ export default function EventHubPage(){
                     <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 40}}>
                         {renderCardOne()}
                         {renderCardTwo()}
-                        {renderCardThree()}
+                        {/* {renderCardThree()} */}
                     </div>
                     <p style={Styles.Fonts.basicX}>
                         Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 
@@ -442,13 +456,13 @@ export default function EventHubPage(){
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>My Contributions to Distribution</div>
                         {renderAppListing()}
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
-                        {renderAccountTypes()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
-                        {renderCalendarDetails()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
-                        {renderAccountStructure()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>My Contributions to Attendee List</div>
+                        {renderAttendeeList()}
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
+                        {renderCalendarDetails()} */}
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
+                        {renderAccountStructure()} */}
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
         </div>
