@@ -644,7 +644,7 @@ return (
                                     <span style={Styles.Code.reg}>{","}</span>
                                 </p>
                             </div>
-                            <p style={Styles.Fonts.basicXL}>
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0}}>
                                 A proper model arn string will look as follows...
                             </p>
                             <div style={{...Styles.Sections.simpleLessonCode, minWidth: 800}}>
@@ -652,7 +652,19 @@ return (
                                     arn:aws:bedrock:<span style={{color: 'red'}}>[region]</span>::foundation-model/<span style={{color: 'red'}}>[model string]</span>
                                 </p>
                             </div>
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0}}>
+                                Where <span style={{color: 'red'}}>regions</span> look like... <span style={{color: 'grey'}}>us-west-2</span>
+                            </p>
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0}}>
+                                and <span style={{color: 'red'}}>model strings</span> look like... <span style={{color: 'grey'}}>anthropic.claude-3-haiku-20240307-v1:0</span>
+                            </p>
+                            <p style={Styles.Fonts.basicXL}>
+                                Considering that models are always being updated and that licensing will always keep models from being truly static;
+                                it is good to periodically check what models are acceptable for AWS Bedrock Knowledge Bases, as any of the models that are not 
+                                on <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-supported.html">this list</a> will cause the error seen above, even if they exist on other AWS services. 
+                            </p>
                         </div>
+
                     </div>
                 </div>
             </OstCard>
