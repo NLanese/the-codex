@@ -58,7 +58,7 @@ export default function WorksMenu() {
                         imageSrc={KNM}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/knm")
+                        router.replace("/showcases/works/kidz-n-motion")
                         }}
                     >
                         Kidz-N-Motion
