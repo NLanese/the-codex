@@ -22,6 +22,10 @@ const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
 const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
 const modelStruc = "../../../assets/showcase_images/knm/modelStructure.png"
 
+const chevdown = "../../../assets/icons/clickIcons/down.png"
+const chevup = "../../../assets/icons/clickIcons/up.png"
+
+
 
 
 
@@ -34,6 +38,11 @@ export default function KNMPage(){
 
         const [directory, setDirectory] = useRecoilState(directoryDataState)
         const router = useRouter()
+
+        const [renderListing, setRenderListing] = useState(true)
+        const [renderAccTypes, setRenderAccTypes] = useState(true)
+        const [renderCal, setRenderCal] = useState(true)
+        const [renderAccStruc, setRenderAccStruc] = useState(true)
 
     ////////////////
     // UseEffects //
@@ -78,6 +87,9 @@ export default function KNMPage(){
 
         // Second Part ( Distribution )
         function renderAppListing(){
+            if (!renderListing){
+                return 
+            }
             return(
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
                     <div style={{flex: 6}}>
@@ -124,6 +136,8 @@ export default function KNMPage(){
             
         }
         function renderAccountTypes(){
+
+            // Cards
             const renderCardOne = () =>{
                 if (!card1){
                     return(
@@ -254,6 +268,12 @@ export default function KNMPage(){
                     )
                 }
             }
+
+            if (!renderAccTypes){
+                return false
+            }
+
+            // Render
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
@@ -284,6 +304,9 @@ export default function KNMPage(){
 
         // Fourth Part ( Calendar )
         function renderCalendarDetails(){
+            if (!renderCal){
+                return
+            }
             return(
             <div>
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
@@ -373,6 +396,9 @@ export default function KNMPage(){
 
         // Fifth Part Account Structure
         function renderAccountStructure(){
+            if (!renderAccStruc){
+                return
+            }
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
@@ -436,6 +462,16 @@ export default function KNMPage(){
             )
         }
 
+        function renderAssignmentStructure(){
+            return(
+                <div style={{paddingTop: 20}}>
+                    <p style={Styles.Fonts.basicX}>
+
+                    </p>
+                </div>
+            )
+        }
+
     /////////////////
     // Main Return //
     /////////////////
@@ -444,17 +480,58 @@ export default function KNMPage(){
         <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
             <div style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
-                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Kidz-N-Motion</div>
-                        {renderInitialRambling()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
-                        {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
-                        {renderAccountTypes()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
-                        {renderCalendarDetails()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
-                        {renderAccountStructure()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div>
+
+                    {/*  Init */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10, display: 'flex'}}>
+                        Kidz-N-Motion   
+                    </div>
+                    {renderInitialRambling()}
+
+                    {/* Render Distribution */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
+                        Distribution
+                        <img 
+                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderListing ? chevup : chevdown}
+                            onClick={() => setRenderListing(!renderListing)}>
+                        </img>
+                    </div>
+                    {renderAppListing()}
+
+                    {/* Account Types */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
+                        Account Types
+                        <img 
+                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderAccTypes ? chevup : chevdown}
+                            onClick={() => setRenderAccTypes(!renderAccTypes)}>
+                        </img>
+                    </div>
+                    {renderAccountTypes()}
+
+                    {/* Calendar Types */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
+                        Calendar Functionality and Assignments / Meetings
+                        <img 
+                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderCal ? chevup : chevdown}
+                            onClick={() => setRenderCal(!renderCal)}>
+                        </img>
+                    </div>
+                    {renderCalendarDetails()}
+
+                    {/* Account Structure */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
+                        Account Model Structure / Relationships
+                        <img 
+                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderAccStruc ? chevup : chevdown}
+                            onClick={() => setRenderAccStruc(!renderAccStruc)}>
+                        </img>
+                    </div>
+                    {renderAccountStructure()}
+
+
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>
+                        Assignmnent Structure
+                    </div>
+                    {renderAssignmentStructure()}
                 </div>
             </div>
         </div>

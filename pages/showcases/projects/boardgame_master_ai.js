@@ -547,7 +547,7 @@ return (
                 {/* Constructing the Chatbot */}
                 <div>
                     <p style={Styles.Fonts.lessonHeaderXL}>
-                        Constructing the Chatbot
+                        Constructing the Request
                     </p>
                     <p style={Styles.Fonts.basicXL}>
                     Like everything else you see on this site, the UI was constructed using Ostrich React Components (Made by myself) on NextJS. 
@@ -581,6 +581,10 @@ return (
 
                     <p style={Styles.Fonts.basicXL}>
                     And that is as much coding as we will need for creating this Chat Bot! The rest of the work is done in the AWS Console
+                    </p>
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, marginTop: 75, marginBottom: 35}}>
+                        Setting up the Knowledge Base in AWS
                     </p>
 
                     <p style={Styles.Fonts.basicXL}>
@@ -620,7 +624,7 @@ return (
 
                 {/* Errors and Issues */}
                 <div style={{marginTop: 75}}>
-                    <p style={Styles.Fonts.lessonHeaderXL}>
+                    <p style={{...Styles.Fonts.lessonHeaderXL, marginTop: 75, marginBottom: 35}}>
                         Errors and Issues with Solutions
                     </p>
                     <div>
@@ -662,6 +666,10 @@ return (
                                 Considering that models are always being updated and that licensing will always keep models from being truly static;
                                 it is good to periodically check what models are acceptable for AWS Bedrock Knowledge Bases, as any of the models that are not 
                                 on <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-supported.html">this list</a> will cause the error seen above, even if they exist on other AWS services. 
+                            </p>
+                            <p style={Styles.Fonts.basicXL}>
+                                Once you have determined which model best suits your needs, you will then want to look it up in the <a href="https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/model-catalog?region=us-east-1&providerName=anthropic">
+                                AWS Model Registry</a> in order to find the model arn string that you need for your request. 
                             </p>
                         </div>
 
