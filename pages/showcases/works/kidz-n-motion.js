@@ -418,13 +418,13 @@ export default function KNMPage(){
                             </OstCard>
                         </div>
                     </div>
-                    <div style={Styles.Fonts.lessonHeader}>Organization</div>
+                    <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Organization</div>
                     <p style={Styles.Fonts.basicX}>
                         The Organization Model is the parent to every other data model in the Kidz N Motion App. Organizations will <strong>have many</strong> Therapists, as well as a variety of other options that 
                         will apply to all Therapists and thus all Clients. Some of these properties include the payment settings as well as video settings from the Therapeutic Practice. While you would be able to access the 
                         information of Patients by finding the Therapists from the Organization and going down through the models that way, the Organization will also have direct relationships with the Clients and parents and children as well. 
                     </p>
-                    <div style={Styles.Fonts.lessonHeader}>Users</div>
+                    <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Users</div>
                     <p style={Styles.Fonts.basicX}>
                         All users are a part of the User tabel in the database, meaning Therapists, Children and Guardians alike are all just instances of the User Model. There is, however
                         <strong> role-specific properties</strong> attached to the user model that seperates Children from Guardians and Guardians from Therapists. This is mostly determined through the 'role' property which is 
@@ -441,6 +441,7 @@ export default function KNMPage(){
                         <ul>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableAppointmentNotifications </span>(This is true if the Therapist gets notified on confirmed appointments)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>clientCarePlans </span>(This is a list of all Clients belonging to the Therapist)</li>
                         </ul>
                         <strong style={{color: 'black'}}>Guardian Specific</strong>
                         <ul>
@@ -449,15 +450,53 @@ export default function KNMPage(){
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableMissedDateNotifications</span> (This is true if the client has their missed asisignments muted)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUser</span> (This is true if the client is using this without a therapist)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUserStripeID</span> (This holds relevant payment IDs id a user is solo and has paid for full access)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>childCarePlans </span>(This is a list of all the Children objects associated with the Guardian)</li>
                         </ul>
                         <strong style={{color: 'black'}}>Child Specific</strong>
                         <ul>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessSettings</span> (This is true if Guardian enabled the child to change their settings)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessMessages</span> (This is true if Guardian enabled the child to be able to message the therapist)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>leaveApp</span> (This is true if Guardian enabled the child to leave the app or change sign in status)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan </span>(This the client care plan object for the child)</li>
                         </ul>
                     </p>
-
+                    <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Clients / Care Plans</div>
+                    <p style={Styles.Fonts.basicX}>
+                        While the User models contain personal information, settings, and relationships to other users and models, they do not 
+                        contain data pertaining to the meetings or assignments that can be scheduled, nor do they contain therapist notes and 
+                        excersize progress. This is where the 'careplan' or Client object is needed.
+                    </p>
+                    <p style={Styles.Fonts.basicX}>
+                        The careplan is separated from the user, as a Therapist, a guardiana and the child should all have equal access to the model,
+                        as we do not want to have too much data linked directly to the child model. As you saw in the Model Relationship Chart shown above, the 
+                        client model also helps keep relationships a bit less confusing. 
+                    </p>
+                    <p style={Styles.Fonts.basicX}>
+                        As just mentioned, the CarePlan / Client models contain the following information
+                    </p>
+                    <p style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
+                        <strong style={{color: 'black'}}>Relationship Data</strong>
+                        <ul>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>child </span>(Connected Child accounts)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>guardians </span>(Connected Guardian accounts)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>therapist </span>(Connected Therapist accounts)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoDetails </span>(This will be covered in more detail below)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>medals </span>(This will be covered in more detail below)</li>
+                        </ul>
+                        <strong style={{color: 'black'}}>Progression and Excersize</strong>
+                        <ul>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>dailyStreak</span> (Tracks how many consecutive days a child earns a medal)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>functionalLevel</span> (This determines what level of videos the child has access to)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>blockedVideoIDs</span> (Lists video IDs of videos the Therapist has blocked the Child from accessing)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>generalNotes</span> (Notes left by the Therapist )</li>
+                        </ul>
+                        <strong style={{color: 'black'}}>Contents of 'videoDetails' model</strong>
+                        <ul>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoID</span> (The ID of the video as it is hosted on Cloudinary. Used to track videos watched and which videos are blocked)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>medals</span> (All of the medals for this specific video and this specific care plan user)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoNotes</span> (Notes left by the Therapist for this specific video)</li>
+                        </ul>
+                    </p>
                 </div>
             )
         }
