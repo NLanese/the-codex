@@ -104,7 +104,8 @@ export default function EventHubPage(){
                             packages we used. The cordova configuration files were exchanged for Capacitor ones, and the tsconfig file was updated. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            Finally, 
+                            Finally, I lead the efforts on making sure the Event Hub app was compatible with Android 35, as Google Play is making all Apps relying on
+                            Android 34 and below deprecated and unable to be published as of November 2025. 
                         </p>
                     </div>
                 </div>

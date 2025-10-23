@@ -482,6 +482,9 @@ export default function KNMPage(){
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>therapist </span>(Connected Therapist accounts)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoDetails </span>(This will be covered in more detail below)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>medals </span>(This will be covered in more detail below)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>assignments </span>(This will be covered in more detail below)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>meetings </span>(This will be covered in more detail below)</li>
+
                         </ul>
                         <strong style={{color: 'black'}}>Progression and Excersize</strong>
                         <ul>
@@ -490,11 +493,19 @@ export default function KNMPage(){
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>blockedVideoIDs</span> (Lists video IDs of videos the Therapist has blocked the Child from accessing)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>generalNotes</span> (Notes left by the Therapist )</li>
                         </ul>
-                        <strong style={{color: 'black'}}>Contents of 'videoDetails' model</strong>
+                        <strong style={{color: 'black'}}>Contents of 'videoDetail' model</strong>
                         <ul>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoID</span> (The ID of the video as it is hosted on Cloudinary. Used to track videos watched and which videos are blocked)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>medals</span> (All of the medals for this specific video and this specific care plan user)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoNotes</span> (Notes left by the Therapist for this specific video)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan</span> (The careplan which the video notes are connected to)</li>
+                        </ul>
+                        <strong style={{color: 'black'}}>Contents of 'medal' model</strong>
+                        <ul>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>grade</span> (bronze, silver, or gold)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoID</span> (The ID of the corresponding video as it is stored on Cloudinary)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>date</span> (The date the medal was earned)</li>
+                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan</span> (The careplan which the medal is connected to)</li>
                         </ul>
                     </p>
                 </div>
