@@ -212,16 +212,20 @@ export default function EventHubPage(){
                         onClick={() => setCard2(!card2)}
                         style={cardStyle(card2)}
                         >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'fuchsia'}}>Therapist Account</div>
+                            <div style={{...Styles.Fonts.lessonHeader, backgroundColor: '#00629B', color: "white"}}>Atttendee Item Cards</div>
+                            <div style={{overflow: 'scroll', height: '90%', padding: 15}}>
                                 <p style={Styles.Fonts.basic}>
-                                    Therapists have the most functionality out of the three account type. A therapist can create or approve 
-                                    appointments, meetings, and workout assignments for their clients. 
+                                    A much simpler undertaking that the creation of the Alphabet list, these attendee cards also provided their own set of challenges. 
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    Just like the Parent and the Child Accounts, the Therapist is able to check their calendar and see all
-                                    assignment start / end dates, as well as all appointment dates and times. 
+                                    Before getting into the weeds on the details, lets go over what is expected from these title cards...
                                 </p>
+                                <ol>
+                                    <li style={Styles.Fonts.basic}>Users can click an attendee item and the item expands into a full card</li>
+                                    <li style={Styles.Fonts.basic}>When the item expands into the card, the scroll tracking for the letter list cannot be interfered with</li>
+                                    <li style={Styles.Fonts.basic}>If the selected user has their social medias enabled and listed, users should be able to click on the socials and go to the user's page, either through the social emdia app if installed or an In-App Browser if not</li>
+                                    <li style={Styles.Fonts.basic}>Only one Attendee Card can be opened at a time</li>
+                                </ol>
                                 <p style={Styles.Fonts.basic}>
                                     Similarly to the parent, the Physical Therpist has the ability to send a recieve messages. This is limitied to 
                                     parent accounts, as for obvious reasons we did not want to facilitate communication between and adult and a child. 
@@ -237,48 +241,13 @@ export default function EventHubPage(){
                     )
                 }
             }
-            const renderCardThree = () => {
-                if (!card3){
-                    return(
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={parScreen}
-                            onClick={() => setCard3(!card3)}
-                            style={cardStyle(card3)}
-                        >
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard3(!card3)}
-                        style={cardStyle(card3)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Parent Account</div>
-                                <p style={Styles.Fonts.basic}>
-                                    Parents have all the functionality that Children do, as well as some more functionality. The first of which is 
-                                    the ability to switch between which 'child' is currently active. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Videos can also be watched on the parent's account and as previously mentioned, whichever child is 'active' will be
-                                    the one who is awarded the medals for a video's completion. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Again like the child, the Parent is also able to check their calendar which indicates when assignments are due or when 
-                                    appointments are scheduled. They may also choose a specific date to request an appointment for. Once a request for an 
-                                    appointment is made, the Physcal Therapist will get an email and push notification and can confirm or deny it.
-                                </p>
-                                <p>
-                                    Parents can also switch to child mode and hand the phone off to their child if the child does not have a device of 
-                                    his or her own. When trying to switch back to the parent account from a child account, a password will need to be entered. 
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
+
+
+
+
+            //////////
+            // Main //
+            //////////
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
@@ -293,7 +262,6 @@ export default function EventHubPage(){
                     <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 70}}>
                         {renderCardOne()}
                         {renderCardTwo()}
-                        {/* {renderCardThree()} */}
                     </div>
                     <p style={Styles.Fonts.basicX}>
                         Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 
@@ -310,14 +278,14 @@ export default function EventHubPage(){
         }
 
         // Fourth Part ( Calendar )
-        function renderCalendarDetails(){
+        function renderAddingEvents(){
             return(
             <div>
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
                     <div style={{flex: 4}}>
                         <OstCard
                             templateStyle={1}
-                            imageSrc={therCal}
+                            imageSrc={""}
                             style={{height: 700}}
                         >
                         </OstCard>
@@ -379,13 +347,13 @@ export default function EventHubPage(){
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <OstCard
                                 templateStyle={1}
-                                imageSrc={allAssign}
+                                imageSrc={""}
                                 style={{height: 700}}
                             >
                             </OstCard>
                             <OstCard
                                 templateStyle={1}
-                                imageSrc={assignOpened}
+                                imageSrc={""}
                                 style={{height: 700}}
                             >
                             </OstCard>
@@ -477,10 +445,10 @@ export default function EventHubPage(){
                         {renderAppListing()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>My Contributions to Attendee List</div>
                         {renderAttendeeList()}
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
-                        {renderCalendarDetails()} */}
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
-                        {renderAccountStructure()} */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Adding New Events</div>
+                        {renderAddingEvents()}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Implementing a Safe Area</div>
+                        {renderAccountStructure()}
                     {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
