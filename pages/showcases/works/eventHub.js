@@ -123,7 +123,7 @@ export default function EventHubPage(){
                     transformStyle: "preserve-3d",
                     transition: "transform 0.6s",
                     transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 900,
+                    height: 800,
                     marginLeft: 0, marginRight: 0
                 }
             )
@@ -149,8 +149,9 @@ export default function EventHubPage(){
                         onClick={() => setCard1(!card1)}
                         style={cardStyle(card1)}
                         >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: '#00629B', color: "white"}}>Alphabet List</div>
+                            <div style={{...Styles.Fonts.lessonHeader, backgroundColor: '#00629B', color: "white"}}>Alphabet List</div>
+                            <div style={{overflow: 'scroll', height: '90%', padding: 15}}>
+                                
                                 <p style={Styles.Fonts.basic}>
                                     This is one of the first major UI Changes I was responsible for at IEEE, and is also one of my 
                                     favorite features added-- not only because of how it came out, but the challenges it provided in implementation 
@@ -174,6 +175,18 @@ export default function EventHubPage(){
                                     Next, we tracked the height of each list item. Using Angular's Element property, we can extract the height (in px) of each user item in the list. 
                                     From here, we can determine that if B last names being at the 6th item, and each item is 50 px tall, then when the user scrolls 60 px, the Aphabet list updates
                                     to show B is the currently shown letter group. Similarly, if "L" begins at the 100th element, clicking L on the Alphabet Bar would scroll the page to 5000px down. 
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    There was the addiitonal issue of dealing with Angular's infinite lists. A great tool to optimize page loading and reduce 
+                                    over rendering; infinite lists CAN cause some developmental issues when trying to implement features that involve instantly loading 
+                                    an item that is several load groups away. I dealt with this similarly to the scrolling issue, as I tracked the index of the last element loaded 
+                                    and was able to determine how many more load groups needed to be added to the infinite list in order to load the desired element.
+                                </p>
+                                <p style={Styles.Fonts.basic}>
+                                    This means to say, if the first name beginning with Z was the 2000th element, each load group was 50 items, and the user has not added any new load groups 
+                                    (meaning they haven't scrolled down to the bottom of the list yet) that means the last loade index would be 50. Since 2000 - 50 is 1950, that means we need 
+                                    to load 1950 more users, or 39 more load groups. As such, before scrolling down the needed amount of pixels, 39 more load groups worth of users would be added
+                                    to the list, and the screen would then be able to scroll down to that 2000th item.
                                 </p>
                             </div>
                         </OstCard>
