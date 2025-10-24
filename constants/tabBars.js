@@ -41,7 +41,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: onGoing,
+            drawers: onGoing(router),
             onDrawerClick: (drawer) =>  { handleShowcaseDrawer("projects", drawer, router) }
         }
     },

@@ -242,13 +242,6 @@ export default function EventHubPage(){
                     )
                 }
             }
-
-
-
-
-            //////////
-            // Main //
-            //////////
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
@@ -265,14 +258,9 @@ export default function EventHubPage(){
                         {renderCardTwo()}
                     </div>
                     <p style={Styles.Fonts.basicX}>
-                        Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 
-                        that will allow users even with color blindness to find a palette that works for them and is visible in for their specific type of color
-                        blindness. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Users can also change their profile Avatar (seen in the top right of each screen) and have a 'change password' email sent to them if 
-                        they desire a new password. Similarly, if they forgot their password they can request a temporary by entering their email, where a 
-                        a link will be provided that redirects users to the site where they can change thier password. .
+                        Additionally, all users have the functionality to press the magnify icon in the top right of the screen to search for any individual user.
+                        I refined this search so that it searches both first and last name as opposed to just a 'firstName + lastName' string search. Specifically, my 
+                        additions made it so that typing "Mann" or "Stan" would both bring up "Stanley Mann", as opposed to just "Stan" in the previous iteration.
                     </p>
                 </div>
             )

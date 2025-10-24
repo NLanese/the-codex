@@ -1,7 +1,7 @@
-const onGoing = [
+const onGoing = (router) => [
     "Boardgame Master AI", 
     "BetBot",
-    {title: "Ostrich Component Library", onClick: () => router.replace("/showcases/ostrich-components/menu"), manualOnClick: true},
+    {title: "Ostrich Component Library", onClick: () => router.replace("/showcases/ostrich-components/showcase"), manualOnClick: true},
     "CandyBox 3"
 ]
 
