@@ -119,11 +119,12 @@ export default function EventHubPage(){
         const cardStyle = (flipped) => {
             return(
                 {
-                    flex: 4,
+                    flex: 3,
                     transformStyle: "preserve-3d",
                     transition: "transform 0.6s",
                     transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 600
+                    height: 900,
+                    marginLeft: 0, marginRight: 0
                 }
             )
             
@@ -149,26 +150,30 @@ export default function EventHubPage(){
                         style={cardStyle(card1)}
                         >
                             <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Child Account</div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: '#00629B', color: "white"}}>Alphabet List</div>
                                 <p style={Styles.Fonts.basic}>
-                                    Children have pretty minimal functionality in order to maintain simplicity and prevent 
-                                    the Children from getting lost within the app. 
+                                    This is one of the first major UI Changes I was responsible for at IEEE, and is also one of my 
+                                    favorite features added-- not only because of how it came out, but the challenges it provided in implementation 
+                                    well!
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    They are able to watch and complete workout videos only when their Physical Therapist has assigned it 
-                                    to them. This prevents the child from attempting an exercise they may not be ready for. Upon completion
-                                    of the 1 minute video, the child is asked 3 question. 
+                                    Functionally, this feature intends to accomplish three main goals
                                 </p>
                                 <ol>
-                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without help from a parent</li>
-                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without leaning on something for support</li>
-                                    <li style={Styles.Fonts.basic}>How long were you able to complete the video for the full minute, at least 30 seconds, or less than 30 seconds</li>
+                                    <li style={Styles.Fonts.basic}>Users can click a letter in the side bar and the page will navigate to the first user whose last name begins with that letter</li>
+                                    <li style={Styles.Fonts.basic}>As users scroll down the list of names, the side bar updates to track which letter group is currently displayed</li>
+                                    <li style={Styles.Fonts.basic}>Only letters that have users with a last name beginning with that letter are shown. This means to say if no last names begin with X, then X is not shown</li>
                                 </ol>
                                 <p style={Styles.Fonts.basic}>
-                                    Depending on these answers, the child is awarded one of three medals-- Gold, Silver, or Bronze. 
+                                    The first part was relatively simple. I order the array of users alphabetically and I create an obejct that mirrors where each new letter
+                                    appears in the beginning of someone's last name. A list that has a user with a last name beginning with A for example would have an objecty with key "A"
+                                    and value 0, showing that the first appearance of a last name with letter A begins at index of 0. If the first last name beginning with B occurred at the 6th element,
+                                    then the object would have key B with value 6. 
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    Finally, the Child is also able to check their calendar which indicates when assignments are due or when appointments are scheduled. 
+                                    Next, we tracked the height of each list item. Using Angular's Element property, we can extract the height (in px) of each user item in the list. 
+                                    From here, we can determine that if B last names being at the 6th item, and each item is 50 px tall, then when the user scrolls 60 px, the Aphabet list updates
+                                    to show B is the currently shown letter group. Similarly, if "L" begins at the 100th element, clicking L on the Alphabet Bar would scroll the page to 5000px down. 
                                 </p>
                             </div>
                         </OstCard>
@@ -272,7 +277,7 @@ export default function EventHubPage(){
                     <p style={Styles.Fonts.basicX}>
                         <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
                     </p>
-                    <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 40}}>
+                    <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 70}}>
                         {renderCardOne()}
                         {renderCardTwo()}
                         {/* {renderCardThree()} */}
