@@ -115,7 +115,6 @@ export default function EventHubPage(){
         // Third Part ( Account Types )
         const[card1, setCard1] = useState(false)
         const[card2, setCard2] = useState(false)
-        const[card3, setCard3] = useState(false)
         const cardStyle = (flipped) => {
             return(
                 {
@@ -227,14 +226,15 @@ export default function EventHubPage(){
                                     <li style={Styles.Fonts.basic}>Only one Attendee Card can be opened at a time</li>
                                 </ol>
                                 <p style={Styles.Fonts.basic}>
-                                    Similarly to the parent, the Physical Therpist has the ability to send a recieve messages. This is limitied to 
-                                    parent accounts, as for obvious reasons we did not want to facilitate communication between and adult and a child. 
+                                    The first expected behavior was pretty straight-forward. Every attendee item was converted to a clickable element. 
+                                    If the item is clicked, a state variable 'selectedAttendee' is set to equal the attendee clicked. When the list is rendered,
+                                    if the rendered attendee is equal to the selectedAttendee, rather than rendering a regular attendee item it will render the 
+                                    expanded attendee card. This assures only one is 'opened' at a time as well.
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    Finally, the Therapist is able to send invites to porespective clients from in the app. Through the 'invite clients' 
-                                    option, Therapists need to just enter in the email address of the individual they want to invite, along with some 
-                                    other basic information such as names and the child's motor function level. Upon the accecpting of that
-                                    invite, an account for the Guardian and their child is automatically created with temporary passwords. 
+                                    Similarly, I implemented a 'scrollOffset' that takes the difference in height between the attendee item and the now
+                                    expanded attendee card. This number goes into the scroll calculations to make sure the Alphabet Bar on the side of the screen is 
+                                    not negatively effected by the expanded attendee card.
                                 </p>
                             </div>
                         </OstCard>
@@ -448,7 +448,7 @@ export default function EventHubPage(){
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Adding New Events</div>
                         {renderAddingEvents()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Implementing a Safe Area</div>
-                        {renderAccountStructure()}
+                        {/* {renderAccountStructure()} */}
                     {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
