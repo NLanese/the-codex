@@ -17,6 +17,7 @@ const eh = "../../../assets/showcase_images/ieee/eventhub.png";
 const ehal = "../../../assets/showcase_images/ieee/eventhub-attendee-list-1.png";
 const ehal2 = "../../../assets/showcase_images/ieee/eventhub-attendee-list-2.png";
 const cordcap = "../../../assets/showcase_images/ieee/cord-to-cap.png";
+const selectEv = "../../../assets/showcase_images/ieee/selectEvent.png";
 
 
 
@@ -285,48 +286,26 @@ export default function EventHubPage(){
                     <div style={{flex: 4}}>
                         <OstCard
                             templateStyle={1}
-                            imageSrc={""}
+                            imageSrc={selectEv}
                             style={{height: 700}}
                         >
                         </OstCard>
                     </div>
                     <div style={{flex: 8, padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
-                            As previously covered, Therapists can create 'assignments' and 'meetings' for their clients. These events will be marked on both the Therapist
-                            as well as the Child and the Guardians' accounts. 
+                            As previously covered, the Event Hub app will host events from a variety of different providers. On the screen to the left, you will see some of the Sponsored IEEE Groups. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            In our Calendar Image to the Left, we are currently in a Therapist account using the Pink Color Palette. This makes assignment due dates appear as 
-                            lighter pink dots beneath the date and darker fuschia dots as markers for meetups. In this example, you can see an assignment is 
-                            due on the 28th with a meeting on the 23rd. 
+                            Every event Provider has is own listing in a JSON object stored within an IEEE S3 Bucket. When new providers begin working with the EventHub App, either myself or another cohort are responsibile for 
+                            adding said provider and its details to the aforementioned JSON. From here, when a User begins the app, the app pings that S3 to find which providers it should search for and what data it should use. 
+                            From there, an API request is sent to an IEEE Wordpress Website where all the Providers upload their Event information. This information is scraped and returned to the Eventhub app 
+                            for the user. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            Again in this screen, you will see that the user currently has August 28th selected. This shows that there is an assignment with 3 work out videos;
-                            Rolling, Toe Touches, and Squat, due on August 28th. 
+                            I personally added a few of the IEEE Providers now on the app into the JSON and reupolaoded to S3. Furthermore, I was involved with nearly
+                            every change in both the app, the JSON Object, and the aforementioned API when changes were made to the Event Structure, such as the addition of 
+                            eventFormatType and some changes made to EventStartDate and eventEndDate to include time in addition to just date.
                         </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Users, unless they disable the following feature, will also get a Push Notification sent to their device (Powered by Firebase) whenever one of the following occurrs. 
-                        </p>
-                        <ol>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The Child and/or Guardian recieve an assignment or if a meeting has been scheduled
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The Start Date of an assignment is today. (Notifications sent at 9am)
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The End Date of an assignment is today. (Notifications sent at 9am)
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The End Date of an assignment has passed, and the assignment was not completed. 
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                Guardians and Therapists can get notifications when a child completes an assignment
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                A meeting is today. (Notifications sent at 9am)
-                            </p></li>
-                        </ol>
                     </div>
                 </div>
                 <div style={{paddingTop: 0, padding: 20}}>
