@@ -19,6 +19,10 @@ const ehal2 = "../../../assets/showcase_images/ieee/eventhub-attendee-list-2.png
 const cordcap = "../../../assets/showcase_images/ieee/cord-to-cap.png";
 const selectEv = "../../../assets/showcase_images/ieee/selectEvent.png";
 
+const safeEhal = "../../../assets/showcase_images/ieee/safeAttendee.png";
+const safeSel = "../../../assets/showcase_images/ieee/safeSelect.png";
+
+
 
 
 
@@ -296,103 +300,35 @@ export default function EventHubPage(){
                         </p>
                     </div>
                 </div>
-                <div style={{paddingTop: 0, padding: 20}}>
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4, padding: 20, paddingTop: 0}}>
-                        <p style={Styles.Fonts.basicX}>
-                            From the Calendar Menu you are also able to click "View All", bringing you to the "View All" screen. 
-                            From here, users are able to parse through all assignments and meetings, past and present. As you see in the first
-                            image, 'Show Expired' is selected, and returns every assignment the Child has ever had. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Clicking on an individual assignment will open up a module that shows the due date, start date, and all videos assigned. If 
-                            the assigned child completes any of the workouts while the assignment is active the video will return with a green background
-                            as opposed to a red one. This allows therapists, children, and guardians alike  to check the progress of the assignment.
-                        </p>
-                    </div>
-                    <div style={{flex: 8}}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <OstCard
-                                templateStyle={1}
-                                imageSrc={""}
-                                style={{height: 700}}
-                            >
-                            </OstCard>
-                            <OstCard
-                                templateStyle={1}
-                                imageSrc={""}
-                                style={{height: 700}}
-                            >
-                            </OstCard>
-                        </div>
-                        
-                    </div>
-                </div>
-                </div>
             </div>
             )
         }
 
         // Fifth Part Account Structure
-        function renderAccountStructure(){
+        function renderSafeArea(){
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
-                       The app is designed to supplement real life practices and systems. This means to say, the app was designed and will be most optimized for 
-                       Physical Therapists and their existing clients. Most client type users are invited by their therapist and can create an account through an email they recieve. 
-                       In order to do this, however; a therapist must first be a part of an Organization. Each organization has at least one founder account, which is typically also a 
-                       therapist. This organization can then invite therapists, and those therapists can then invite clients. Each 'client' consists of a Parent and a Child. The Data Structure looks as so
+                       As you may have seen in some of the screen shots above, there is an overlap between the upper UI of Android phones and the 
+                       top sections of our app page. We were unsure whether it was the angular upgrade during the move to higher Android SDKs or 
+                       some other upgrade, but we seemed to have lost the use of the safe area package we were using. I fixed this
                     </p>
                     <div>
-                        <div>
+                        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', width: '70%', marginLeft: '15%'}}>
                             <OstCard
                             templateStyle={1}
-                            imageSrc={modelStruc}
-                            style={{height: 500}}
+                            imageSrc={safeSel}
+                            style={{height: 600, width: 300, padding: 5}}
                             >
-
+                            </OstCard>
+                            <OstCard
+                            templateStyle={1}
+                            imageSrc={safeEhal}
+                            style={{height: 600, width: 300, padding: 5}}
+                            >
                             </OstCard>
                         </div>
                     </div>
-                    <div style={Styles.Fonts.lessonHeader}>Organization</div>
-                    <p style={Styles.Fonts.basicX}>
-                        The Organization Model is the parent to every other data model in the Kidz N Motion App. Organizations will <strong>have many</strong> Therapists, as well as a variety of other options that 
-                        will apply to all Therapists and thus all Clients. Some of these properties include the payment settings as well as video settings from the Therapeutic Practice. While you would be able to access the 
-                        information of Patients by finding the Therapists from the Organization and going down through the models that way, the Organization will also have direct relationships with the Clients and parents and children as well. 
-                    </p>
-                    <div style={Styles.Fonts.lessonHeader}>Users</div>
-                    <p style={Styles.Fonts.basicX}>
-                        All users are a part of the User tabel in the database, meaning Therapists, Children and Guardians alike are all just instances of the User Model. There is, however
-                        <strong> role-specific properties</strong> attached to the user model that seperates Children from Guardians and Guardians from Therapists. This is mostly determined through the 'role' property which is 
-                        provided during the create call to the API. If the role provded is "THERAPIST", then the user model follows a different path in the API's code than it would had "GUARDIAN" been provided as 
-                        the role. These are the only two users that can directly sign up, as when signing up as a GUARDIAN, a CHILD user is automatically created alongside the parent using user provided information. 
-                    </p>
-
-                    <p style={Styles.Fonts.basicX}>
-                        All Users are created through the same mutation, <storng>signupUser</storng>. As previously mentioned, this will take a 'role' as a parameter and from there will add the user role 
-                        specific properties. Those properties include...
-                    </p>
-                    <p style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
-                        <strong style={{color: 'black'}}>Therapist Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableAppointmentNotifications </span>(This is true if the Therapist gets notified on confirmed appointments)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Guardian Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>messagesAreMuted</span> (This is true if the Therapist has the clien'st messages muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>appointmentsAreMuted</span> (This is true if the Therapist has the client's appointments muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableMissedDateNotifications</span> (This is true if the client has their missed asisignments muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUser</span> (This is true if the client is using this without a therapist)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUserStripeID</span> (This holds relevant payment IDs id a user is solo and has paid for full access)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Child Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessSettings</span> (This is true if Guardian enabled the child to change their settings)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessMessages</span> (This is true if Guardian enabled the child to be able to message the therapist)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>leaveApp</span> (This is true if Guardian enabled the child to leave the app or change sign in status)</li>
-                        </ul>
-                    </p>
 
                 </div>
             )
@@ -415,7 +351,7 @@ export default function EventHubPage(){
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Adding New Events</div>
                         {renderAddingEvents()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Implementing a Safe Area</div>
-                        {/* {renderAccountStructure()} */}
+                        {renderSafeArea()}
                     {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
