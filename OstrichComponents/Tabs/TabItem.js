@@ -140,7 +140,10 @@ export const TabItem = ({
             if (type === "active"){
                 if (tab?.activeStyle){
                     rObj = {...activeTextStyle, ...tab.activeTextStyle}
-                }           
+                }     
+                else{
+                    return activeTextStyle ? activeTextStyle : textStyle
+                }      
             }
 
             // Hovered (While Closed)
@@ -151,6 +154,12 @@ export const TabItem = ({
                 if (tab?.hoverStyle){
                     rObj = {...hoverTextStyle, ...tab.hoverTextStyle}
                 }
+                else{
+                    return hoverTextStyle ? hoverTextStyle : textStyle
+                } 
+            }
+            if (type === "active"){
+                console.log(rObj)
             }
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
         }
@@ -200,6 +209,9 @@ export const TabItem = ({
             let styleType = (isActive ? "active" : "regular")
             if (isHovered && !isActive){
                 styleType = "hover"
+            }
+            if (styleType === "active"){
+                console.log(title)
             }
             return(
                 <div
