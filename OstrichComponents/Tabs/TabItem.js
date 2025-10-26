@@ -128,6 +128,9 @@ export const TabItem = ({
                 if (tab?.style){
                     rObj = {...textStyle, ...tab.textStyle}
                 }
+                else{
+                    rObj = textStyle
+                }
                 if (!rObj?.minWidth){
                     rObj = {...rObj, minWidth: '0'}
                 }
@@ -138,11 +141,11 @@ export const TabItem = ({
 
             // Active / Opened
             if (type === "active"){
-                if (tab?.activeStyle){
+                if (tab?.activeTextStyle){
                     rObj = {...activeTextStyle, ...tab.activeTextStyle}
                 }     
                 else{
-                    return activeTextStyle ? activeTextStyle : textStyle
+                    rObj = activeTextStyle
                 }      
             }
 
@@ -151,17 +154,14 @@ export const TabItem = ({
                 if (tab.showsHover === false){
                     return determineBoxStyle('regular', tab)
                 }
-                if (tab?.hoverStyle){
+                if (tab?.hoverTextStyle){
                     rObj = {...hoverTextStyle, ...tab.hoverTextStyle}
                 }
                 else{
-                    return hoverTextStyle ? hoverTextStyle : textStyle
+                    rObj = hoverTextStyle
                 } 
             }
-            if (type === "active"){
-                console.log(rObj)
-            }
-            return (rObj ? {...rObj, maxHeight: '100%'} : {})
+            return ({...rObj, maxHeight: '100%'})
         }
 
         // Determine the Drawer Press Handlers
@@ -209,9 +209,6 @@ export const TabItem = ({
             let styleType = (isActive ? "active" : "regular")
             if (isHovered && !isActive){
                 styleType = "hover"
-            }
-            if (styleType === "active"){
-                console.log(title)
             }
             return(
                 <div
