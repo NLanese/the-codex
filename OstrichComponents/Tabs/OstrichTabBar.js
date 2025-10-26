@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -10,27 +12,27 @@ export const OstrichTabBar = ({
 
     tabs,                           // Array of Objects for Tab Information
 
-    style,                          // The Style of the Tab Bar itself
+    style = {},                     // The Style of the Tab Bar itself
 
-    titleStyle,                     //- The text styles for each Tab Title
-    activeTitleStyle,               //- The text styles for each Tab Title WHEN ACTIVE
-    hoverTitleStyle,                //- The text styles for each Tab Title WHEN HOVERED
+    titleStyle = {},                     //- The text styles for each Tab Title
+    activeTitleStyle = {},               //- The text styles for each Tab Title WHEN ACTIVE
+    hoverTitleStyle = {},                //- The text styles for each Tab Title WHEN HOVERED
 
-    tabStyle,                       //- The Style of each Tab in the TabBar 
-    activeTabStyle,                 //- The Style of each Tab in the TabBar WHEN ACTIVE
-    hoverTabStyle,                  //- The Style of each Tab in the TabBar WHEN HOVERED
+    tabStyle = {},                       //- The Style of each Tab in the TabBar 
+    activeTabStyle = {},                 //- The Style of each Tab in the TabBar WHEN ACTIVE
+    hoverTabStyle = {},                  //- The Style of each Tab in the TabBar WHEN HOVERED
 
-    drawerStyle,                    //- The Style of each Drawer in a Dropdown Tab
-    activeDrawerStyle,              //- The Style of each Drawer in a Dropdown Tab WHEN ACTIVE
-    hoverDrawerStyle,               //- The Style of each Drawer in a Dropdown Tab WHEN HOVERED
+    drawerStyle = {},                    //- The Style of each Drawer in a Dropdown Tab
+    activeDrawerStyle = {},              //- The Style of each Drawer in a Dropdown Tab WHEN ACTIVE
+    hoverDrawerStyle = {},               //- The Style of each Drawer in a Dropdown Tab WHEN HOVERED
 
-    onTabClick,                     //- Default onClick for Tab Items
+    onTabClick = false,                     //- Default onClick for Tab Items
     tabDeactivates=false,           //- If true, clicking on an already active tab will deactivate it. If false, you can only deactivate tabs by switching to a new one      
     onDrawerClick=false,            //- Default onClick for Drawers
     manualActiveTab=false,
 
     showsHover = true,              //- If false, Tabs do not change style on hover
-    onTabHover,                     //- Runs on Tab Hover
+    onTabHover = false,                     //- Runs on Tab Hover
 
     showsActive = true              //- If false, Tabs do not change style on open / active
     
@@ -125,14 +127,14 @@ export const OstrichTabBar = ({
             // Bar Style Defaults
             function setDefaultBarStyles(){
                 let tempBar = {
-                    width: '300px',
                     height: '40px',
                     borderRight: "1px solid black",
                     borderLeft: "1px solid black",
                     borderTop: "1px solid black",
                     borderBottom: "1px solid black"
                 }
-                setBarStyle({...tempBar, ...style})
+                let surrogate = style ? {...style} : null
+                setBarStyle({...tempBar, ...surrogate})
             }
 
             // Checks Default Imported Styles
@@ -149,7 +151,7 @@ export const OstrichTabBar = ({
 
                 let tempTitleStyle = {
                         textAlign: 'center',
-                        fontSize: 14,
+                        fontSize: titleStyle?.fontSize ? titleStyle.fontSize : 14,
                         fontWeight: 500,
                         color: "black"
                 }
@@ -158,8 +160,15 @@ export const OstrichTabBar = ({
             
             // Checks Default Imported Active Styles
             function checkActiveStyle(){
+                let tempTitleStyle = {
+                    textAlign: 'center',
+                    fontSize: titleStyle?.fontSize ? titleStyle.fontSize : 14,
+                    fontWeight: 500,
+                    color: "black"
+                }
                 let tempActiveTitleStyle = {
-                    ...titleStyleX,
+                    ...tempTitleStyle,
+                    color: 'black',
                     fontWeight: 600
                 }
                 setActiveTitleStyleX({...tempActiveTitleStyle, ...activeTitleStyle})
@@ -173,7 +182,13 @@ export const OstrichTabBar = ({
 
             // Checks Default Imported Hover Styles
             function checkHoverStyle(){
-                setHoverTitleStyleX({...titleStyleX, ...hoverTitleStyle})
+                let tempTitleStyle = {
+                    textAlign: 'center',
+                    fontSize: titleStyle?.fontSize ? titleStyle.fontSize : 14,
+                    fontWeight: 500,
+                    color: "black"
+                }
+                setHoverTitleStyleX({...tempTitleStyle, ...hoverTitleStyle})
                 let temp = {
                     ...tabStyleX, 
                     ...hoverTabStyle
@@ -309,7 +324,7 @@ export const OstrichTabBar = ({
 
     return (
         <div style={{ ...barStyle}}>
-            <div style={{width: '100%', display: 'flex' }}>
+            <div style={{width: '100%', display: 'flex', flex: 1, height: '100%'}}>
                 {renderTabRow()}
             </div>
         </div>
