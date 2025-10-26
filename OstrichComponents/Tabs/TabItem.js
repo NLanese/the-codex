@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState, useRef } from 'react';
 import { OstrichDropDown } from '../Dropdown/OstrichDropDown';
 import PropTypes from 'prop-types';
@@ -117,6 +119,42 @@ export const TabItem = ({
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
         }
 
+        // Determines GENERAL or SPECIFIC Text Style
+        function  determineTextStyle(type, tab){
+            let rObj = {}
+
+            // Regular 
+            if (type === "regular"){
+                if (tab?.style){
+                    rObj = {...textStyle, ...tab.textStyle}
+                }
+                if (!rObj?.minWidth){
+                    rObj = {...rObj, minWidth: '0'}
+                }
+                if (!rObj?.borderRadius){
+                    rObj = {...rObj, borderRadius: '0'}
+                }
+            }
+
+            // Active / Opened
+            if (type === "active"){
+                if (tab?.activeStyle){
+                    rObj = {...activeTextStyle, ...tab.activeTextStyle}
+                }           
+            }
+
+            // Hovered (While Closed)
+            else if (type === "hover" && showsHover){
+                if (tab.showsHover === false){
+                    return determineBoxStyle('regular', tab)
+                }
+                if (tab?.hoverStyle){
+                    rObj = {...hoverTextStyle, ...tab.hoverTextStyle}
+                }
+            }
+            return (rObj ? {...rObj, maxHeight: '100%'} : {})
+        }
+
         // Determine the Drawer Press Handlers
         function determineDrawerPress(drawer){
             if (onDrawerClick){
@@ -170,13 +208,9 @@ export const TabItem = ({
                 onMouseEnter={() => onMouseEnter(tabObj)}
                 onMouseLeave={() => onMouseLeave(tabObj)}
                 >
-                    <div 
-                    style={determineBoxStyle(style, tabObj)}
-                    >
-                        <p>
-                            {title}
-                        </p>
-                    </div>
+                    <p style={determineTextStyle(styleType, tabObj)}>
+                        {title}
+                    </p>
                 </div>
             )
         }
@@ -228,7 +262,7 @@ export const TabItem = ({
         function MAIN(){
             if (dropdown){
                 return(
-                    <div style={{flex: flex}}
+                    <div style={{flex: flex, flex: 1}}
                     onClick={() => onPress(tabObj)}
                     onMouseEnter={() => onMouseEnter(tabObj)}
                     onMouseLeave={() => onMouseLeave(tabObj)}    
@@ -239,7 +273,7 @@ export const TabItem = ({
             }
             else{
                 return(
-                    <div style={{flex: flex}}
+                    <div style={{flex: flex, flex: 1}}
                     onClick={() => onPress(tabObj)}
                     onMouseEnter={() => onMouseEnter(tabObj)}
                     onMouseLeave={() => onMouseLeave(tabObj)}    
