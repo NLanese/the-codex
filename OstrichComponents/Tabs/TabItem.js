@@ -42,6 +42,9 @@ export const TabItem = ({
     ////////////
 
     const [isActiveX, setIsActiveX] = useState(isActive)
+    useEffect(() => {
+        setIsActiveX(isActive)
+    }, [isActive])
     const [isHoveredX, setIsHoveredX] = useState(isHovered)
 
     ///////////////
@@ -220,7 +223,7 @@ export const TabItem = ({
         }
 
         function tabOnClick(tabObj){
-            setIsActiveX(!isActiveX)
+            // setIsActiveX(!isActiveX)
             if (onPress){
                 onPress(tabObj)
             }
@@ -236,12 +239,6 @@ export const TabItem = ({
             let styleType = (isActiveX ? "active" : "regular")
             if (isHoveredX && !isActiveX){
                 styleType = "hover"
-            }
-            if (title === "A Sound"){
-                console.log(styleType)
-                console.log(
-                    applyTabDefaultStyles(determineBoxStyle(styleType, tabObj)).backgroundColor
-                )
             }
             return(
                 <div

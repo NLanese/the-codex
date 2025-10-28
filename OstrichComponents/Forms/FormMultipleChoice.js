@@ -4,6 +4,7 @@ import { OstrichSelectionBox } from './OstrichSelectionBox';
 import { OstCard } from '../Format/OstCard';
 import { OstrichTabBar } from "../Tabs/OstrichTabBar"
 import { TabItem } from '../Tabs/TabItem';
+import { title } from 'process';
 
 export const FormMultipleChoice = ({
     boxStyle,
@@ -155,7 +156,6 @@ export const FormMultipleChoice = ({
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(input){
             let tag = input
-            console.log(input)
             if (typeof input === "object"){
                 tag = input.tag
             }
@@ -393,8 +393,11 @@ export const FormMultipleChoice = ({
                 if (fieldObj?.template === "tabs"){
                     // console.log(opt)
                     // console.log(value)
-                    // console.log((typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)))
-                    return(
+                    if (opt === "A Sound"){
+                        console.log("is ", opt, " active?")
+                        console.log((typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)))    
+                    }
+                   return(
                         <TabItem 
                             title={typeof opt === "object" ? opt.tag : opt}
                             tabObj={opt}
