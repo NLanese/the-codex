@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 import { OstCard } from '../Format/OstCard';
+import { OstrichTabBar } from "../Tabs/OstrichTabBar"
 
 export const FormMultipleChoice = ({
     boxStyle,
@@ -344,28 +345,36 @@ export const FormMultipleChoice = ({
 
         function renderOptions() {
             if (loading) return;
-            if (fieldObj?.template === "tabs"){
-                return(
-                    <>
-                        <OstrichTabBar
-                            tabs={options}
-                            onTabClick={(value) => setValue(value)}
-                        />
-                    </>
-                )
-            }
             
             const rows = [];
             for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
-                rows.push(
-                    <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
-                        {renderOptionsRow(rowItems)}
-                    </div>
-                );
+                if (fieldObj?.template === "tabs"){
+                    console.log("TABS")
+                    rows.push(
+                        <>
+                            <OstrichTabBar
+                                style={{margin: 0, width: '100%'}}
+                                tabs={options}
+                                onTabClick={(value) => setValue(value)}
+                            />
+                        </>
+                    )
+                }
+                else{
+                    rows.push(
+                        <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
+                            {renderOptionsRow(rowItems)}
+                        </div>
+                    );
+                }
             }
         
-            return <>{rows}</>;
+            return (
+            <div style={{height: '100%', width: '100%'}}>
+                {rows}
+            </div>
+            )
         }
 
         // Renders Row to contain options
@@ -401,7 +410,7 @@ export const FormMultipleChoice = ({
                     <div style={{width: '95%', height: '10%'}}>
                         {renderBubbleAndTitle()}
                         {renderCaptionAndDetails()}
-                        <div style={{padding: 5, paddingTop: 15}}>
+                        <div style={{padding: 5, paddingTop: 15,}}>
                             {renderOptions()}
                         </div>
                     </div>

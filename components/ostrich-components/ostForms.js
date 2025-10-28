@@ -412,6 +412,7 @@ export default function OstFormsShowcase(){
                             id: "2",
                             title: "Question 2: What is 'blue'",
                             type: "MC",
+                            template: "tabs",
                             options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"],
                             textStyle: {fontSize: 18},
                             correctResponse: ["A Color"]
