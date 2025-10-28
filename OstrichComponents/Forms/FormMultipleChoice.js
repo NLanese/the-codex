@@ -391,9 +391,9 @@ export const FormMultipleChoice = ({
 
                 // Tabs Template
                 if (fieldObj?.template === "tabs"){
-                    console.log(opt)
-                    console.log(value)
-                    console.log((typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)))
+                    // console.log(opt)
+                    // console.log(value)
+                    // console.log((typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)))
                     return(
                         <TabItem 
                             title={typeof opt === "object" ? opt.tag : opt}
@@ -401,14 +401,13 @@ export const FormMultipleChoice = ({
                             index={index}
                             isActive={typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)}
                             showsHover={true}
-                            // style={{width: '32%'}}
                             onPress={handleInput}
+                            activeStyle={{backgroundColor: '#9cc6f0'}}
+                            hoverStyle={{backgroundColor: 'lightgrey'}}
                         >
 
                         </TabItem>
                     )
-    
-    
                 }
                 return(
                     <OstrichSelectionBox 

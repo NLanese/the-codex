@@ -3,7 +3,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { OstrichDropDown } from '../Dropdown/OstrichDropDown';
 import PropTypes from 'prop-types';
-import { root } from 'postcss';
 
 
 export const TabItem = ({
@@ -203,6 +202,8 @@ export const TabItem = ({
             return {...rObj, ...style}
         }
 
+
+        // On Mouse Enter or Leave
         function tabOnMouse(type, tabObj){
             if (type === "leave"){
                 setIsHoveredX(false)
@@ -218,6 +219,13 @@ export const TabItem = ({
             }
         }
 
+        function tabOnClick(tabObj){
+            setIsActiveX(!isActiveX)
+            if (onPress){
+                onPress(tabObj)
+            }
+        }
+
 
     ////////////////
     // Renderings //
@@ -228,6 +236,12 @@ export const TabItem = ({
             let styleType = (isActiveX ? "active" : "regular")
             if (isHoveredX && !isActiveX){
                 styleType = "hover"
+            }
+            if (title === "A Sound"){
+                console.log(styleType)
+                console.log(
+                    applyTabDefaultStyles(determineBoxStyle(styleType, tabObj)).backgroundColor
+                )
             }
             return(
                 <div
@@ -249,7 +263,7 @@ export const TabItem = ({
                 <OstrichDropDown
                 title={title}
 
-                onClick={(tab) => onPress(tab)}
+                onClick={(tab) => tabOnClick(tab)}
                 onMouseEnter={() => onMouseEnter(tabObj)}
                 onMouseLeave={() => onMouseLeave(tabObj)}
 
@@ -291,7 +305,7 @@ export const TabItem = ({
             if (dropdown){
                 return(
                     <div style={{flex: flex, flex: 1}}
-                    onClick={() => onPress(tabObj)}
+                    onClick={() => tabOnClick(tabObj)}
                     onMouseEnter={() => tabOnMouse("enter", tabObj)}
                     onMouseLeave={() => tabOnMouse("leave", tabObj)}    
                     >
@@ -302,7 +316,7 @@ export const TabItem = ({
             else{
                 return(
                     <div style={{flex: flex, flex: 1}}
-                    onClick={() => onPress(tabObj)}
+                    onClick={() => tabOnClick(tabObj)}
                     onMouseEnter={() => tabOnMouse("enter", tabObj)}
                     onMouseLeave={() => tabOnMouse("leave", tabObj)}    
                     >
