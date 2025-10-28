@@ -7,8 +7,9 @@ import { TabItem } from './TabItem';
 import { title } from 'process';
 
 export const OstrichTabBar = ({ 
-    startingTabByTitle = false,     // the Title of the Tab you want selected by default
-    startingTabByIndex = false,     // the Index of the Tab you want selected by default
+    startedActive = false,
+    startingTabByTitle = "",     // the Title of the Tab you want selected by default
+    startingTabByIndex = 0,     // the Index of the Tab you want selected by default
 
     tabs,                           // Array of Objects for Tab Information
 
@@ -29,7 +30,8 @@ export const OstrichTabBar = ({
     onTabClick = false,                     //- Default onClick for Tab Items
     tabDeactivates=false,           //- If true, clicking on an already active tab will deactivate it. If false, you can only deactivate tabs by switching to a new one      
     onDrawerClick=false,            //- Default onClick for Drawers
-    manualActiveTab=false,
+    manualActiveTabTitle="",
+    isManuallyActive=false,
 
     showsHover = true,              //- If false, Tabs do not change style on hover
     onTabHover = false,                     //- Runs on Tab Hover
@@ -67,18 +69,30 @@ export const OstrichTabBar = ({
             hasNeededValues()
         }, [])
 
-        useEffect(() => {
-            console.log("Updated activeTab:", activeTab);
-          }, [activeTab]);
-
         // Sets Starting Tab
-        // useEffect(() => {
-        //     if (startingTabByIndex){
-        //         setActiveTab(tabs[startingTabByIndex])
-        //     }
-        //     else if (startingTabByTitle){
-        //     }
-        // }, [])
+        useEffect(() => {
+            if (isManuallyActive){
+                tabs.forEach(tab => {
+                    if (tab === manualActiveTabTitle || tab?.title === manualActiveTabTitle){
+                        setActiveTab(tab)
+                        return
+                    }
+                });
+            }
+            else if (startedActive){
+                if (startingTabByIndex){
+                    setActiveTab(tabs[startingTabByIndex])
+                }
+                else if (startingTabByTitle){
+                    tabs.forEach(tab => {
+                        if (tab === startingTabByTitle || tab?.title === startingTabByTitle){
+                            setActiveTab(tab)
+                            return
+                        }
+                    });
+                }
+            }
+        }, [])
 
     ///////////////
     // Functions //
@@ -86,7 +100,13 @@ export const OstrichTabBar = ({
 
         // Determines if Tab is Active or not 
         function isActive(tab){
-            if (activeTab?.title){
+            if (isManuallyActive){
+                if (tab === manualActiveTabTitle || tab?.title === manualActiveTabTitle){
+                    console.log(tab, " is manually true")
+                    return true
+                }
+            }
+            else if (activeTab?.title){
                 if (activeTab.title === tab.title){
                     return true
                 }
@@ -131,8 +151,7 @@ export const OstrichTabBar = ({
                     borderRight: "1px solid black",
                     borderLeft: "1px solid black",
                     borderTop: "1px solid black",
-                    borderBottom: "1px solid black",
-                    width: 300
+                    borderBottom: "1px solid black"
                 }
                 let surrogate = style ? {...style} : null
                 setBarStyle({...tempBar, ...surrogate})
@@ -214,7 +233,6 @@ export const OstrichTabBar = ({
 
             // Determines whether to use onPress or TabObj.onPress
             function determineOnPress(tab){
-                console.log("Detected Tab Click ", tab)
                 if (tab.clickable === false){
                     return
                 }
@@ -228,17 +246,14 @@ export const OstrichTabBar = ({
                     if (showsActive){
                         if (tabDeactivates){
                             if (isActive(tab)){
-                                console.log("Setting FALSE")
                                 setActiveTab(false)
                                 return
                             }
                             else{
-                                console.log("Setting ", tab, " as active")
                                 setActiveTab(tab)
                             }
                         }
                         else{
-                            console.log("Setting ", tab, " as active")
                             setActiveTab(tab)
                         }
                     }

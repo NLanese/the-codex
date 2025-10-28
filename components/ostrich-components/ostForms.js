@@ -421,6 +421,7 @@ export default function OstFormsShowcase(){
                             id: "3",
                             title: "Question 3: Choose all letters",
                             type: "MC",
+                            // template: "tabs",
                             options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", {tag: "Alexander the Warrior Jar", textStyle: {fontSize: 14, textAlign: 'center'}}],
                             textStyle: {fontSize: 18},
                             correctResponse: ["A", "B", "C", "D"],

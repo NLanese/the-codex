@@ -355,8 +355,10 @@ export const FormMultipleChoice = ({
                         <>
                             <OstrichTabBar
                                 style={{margin: 0, width: '100%'}}
-                                tabs={options}
-                                onTabClick={(value) => setValue(value)}
+                                tabs={rowItems}
+                                onTabClick={(value) => setvalue(value)}
+                                isManuallyActive={true}
+                                manualActiveTabTitle={value}
                             />
                         </>
                     )
