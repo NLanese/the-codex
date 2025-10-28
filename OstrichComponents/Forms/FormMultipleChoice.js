@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 import { OstCard } from '../Format/OstCard';
 import { OstrichTabBar } from "../Tabs/OstrichTabBar"
+import { TabItem } from '../Tabs/TabItem';
 
 export const FormMultipleChoice = ({
     boxStyle,
@@ -152,7 +153,11 @@ export const FormMultipleChoice = ({
         }
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
-        function handleInput(tag){
+        function handleInput(input){
+            let tag = input
+            if (typeof input === "object"){
+                tag = input.tag
+            }
             if (fieldObj?.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
@@ -349,27 +354,27 @@ export const FormMultipleChoice = ({
             const rows = [];
             for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
-                if (fieldObj?.template === "tabs"){
-                    console.log(value)
-                    rows.push(
-                        <>
-                            <OstrichTabBar
-                                style={{margin: 0, width: '100%'}}
-                                tabs={rowItems}
-                                onTabClick={(value) => handleInput(value)}
-                                isManuallyActive={true}
-                                manualActiveTabTitle={value[0]}
-                            />
-                        </>
-                    )
-                }
-                else{
+                // if (fieldObj?.template === "tabs"){
+                //     console.log(value)
+                //     rows.push(
+                //         <>
+                //             <OstrichTabBar
+                //                 style={{margin: 0, width: '100%'}}
+                //                 tabs={rowItems}
+                //                 onTabClick={(value) => handleInput(value)}
+                //                 isManuallyActive={true}
+                //                 manualActiveTabTitle={value[0]}
+                //             />
+                //         </>
+                //     )
+                // }
+                // else{
                     rows.push(
                         <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
                             {renderOptionsRow(rowItems)}
                         </div>
                     );
-                }
+                // }
             }
         
             return (
@@ -382,6 +387,25 @@ export const FormMultipleChoice = ({
         // Renders Row to contain options
         function renderOptionsRow(rowOptions){
             return rowOptions.map( (opt, index) => {
+
+                // Tabs Template
+                if (fieldObj?.template === "tabs"){
+                    return(
+                    <TabItem 
+                        title={typeof opt === "object" ? opt.tag : opt}
+                        tabObj={typeof opt === "object" ? opt : null}
+                        index={index}
+                        isActive={typeof opt === "object" ? (value.includes(opt.tag)) : opt}
+                        showsHover={true}
+                        style={{width: '32%'}}
+                        onPress={handleInput}
+                    >
+    
+                    </TabItem>
+                    )
+    
+    
+                }
                 return(
                     <OstrichSelectionBox 
                     option={opt}
