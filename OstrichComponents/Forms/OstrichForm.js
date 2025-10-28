@@ -145,13 +145,16 @@ export const OstrichForm = ({
                 return(
                     <FormMultipleChoice 
                         key={fieldObj.id}
+
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
+
                         onChange={onFieldChange}
+                        type={fieldObj?.type ? fieldObj.type : "Bubble"}
+
                         setNewFieldValue={handleSetFieldsState}
                         options={fieldObj.options}
-                        fieldID={fieldObj.id}
                         singleOption={fieldObj.singleOption !== null ? fieldObj.singleOption : true}
                         min={fieldObj.min ? fieldObj.min : null}
                         limit={fieldObj.limit ? fieldObj.limit : null}
@@ -162,12 +165,15 @@ export const OstrichForm = ({
                 return(
                     <FormMultipleText 
                         key={fieldObj.id ? fieldObj.id : index}
+
                         boxStyle={fieldsBoxStyle}
                         fieldObj={fieldObj}
-                        onChange={onFieldChange}
-                        setNewFieldValue={handleSetFieldsState}
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
+
+                        onChange={onFieldChange}
+                        setNewFieldValue={handleSetFieldsState}
+                        
                         fieldID={fieldObj.id}
                         correctResponse={fieldObj.correctResponse ? fieldObj.correctResponse : false}
                         validResponse={fieldObj.validResponse ? fieldObj.validResponse : false}

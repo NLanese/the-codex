@@ -164,7 +164,8 @@ export const FormMultipleChoice = ({
             }
             
             // Single Answer
-            if (singleOption){       
+            if (singleOption){      
+                console.log("Single Option") 
                 if (value === tag){
                     setvalue([])           // Removing Previous Answer
                 }
@@ -175,15 +176,17 @@ export const FormMultipleChoice = ({
 
 
             // Multiple Answers
-            else{     
+            else{
+                console.log("Multi Answer")     
                 // If Below the Limit or the Limit does not exist
                 if (
                     (limit && limit <= value.length) ||
-                    !limit
+                    (!limit)
                 ){
-
+                    console.log("Limit is not an issue")
                     // If the values array currently includes the selected value
                     if (value.includes(tag)){
+                        console.log("Removing ", tag, " from values")
                         let newSelected = value
 
                         // Remove selected value from current values
@@ -355,27 +358,11 @@ export const FormMultipleChoice = ({
             const rows = [];
             for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
-                // if (fieldObj?.template === "tabs"){
-                //     console.log(value)
-                //     rows.push(
-                //         <>
-                //             <OstrichTabBar
-                //                 style={{margin: 0, width: '100%'}}
-                //                 tabs={rowItems}
-                //                 onTabClick={(value) => handleInput(value)}
-                //                 isManuallyActive={true}
-                //                 manualActiveTabTitle={value[0]}
-                //             />
-                //         </>
-                //     )
-                // }
-                // else{
-                    rows.push(
-                        <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
-                            {renderOptionsRow(rowItems)}
-                        </div>
-                    );
-                // }
+                rows.push(
+                    <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
+                        {renderOptionsRow(rowItems)}
+                    </div>
+                );
             }
         
             return (
@@ -391,12 +378,6 @@ export const FormMultipleChoice = ({
 
                 // Tabs Template
                 if (fieldObj?.template === "tabs"){
-                    // console.log(opt)
-                    // console.log(value)
-                    if (opt === "A Sound"){
-                        console.log("is ", opt, " active?")
-                        console.log((typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)))    
-                    }
                    return(
                         <TabItem 
                             title={typeof opt === "object" ? opt.tag : opt}

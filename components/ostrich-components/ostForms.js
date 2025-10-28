@@ -415,7 +415,8 @@ export default function OstFormsShowcase(){
                             template: "tabs",
                             options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse", "A Four Letter Word"],
                             textStyle: {fontSize: 18},
-                            correctResponse: ["A Color"]
+                            correctResponse: ["A Color"],
+                            singleOption: false
                         },
                         {
                             id: "3",
