@@ -175,6 +175,7 @@ export const TabItem = ({
 
         }
 
+        // Applies Default Styles
         function applyTabDefaultStyles(style){
             let rObj = {
                 display: 'flex',
@@ -199,6 +200,21 @@ export const TabItem = ({
             return {...rObj, ...style}
         }
 
+        function tabOnMouse(type, tabObj){
+            if (type === "leave"){
+                isHovered = false
+                if (onMouseLeave){
+                    onMouseLeave(tabObj)
+                }
+            }
+            else{
+                isHovered = true
+                if (onMouseEnter){
+                    onMouseEnter(tabObj)
+                }
+            }
+        }
+
 
     ////////////////
     // Renderings //
@@ -214,8 +230,8 @@ export const TabItem = ({
                 <div
                 style={applyTabDefaultStyles(determineBoxStyle(styleType, tabObj))}
                 // onClick={() => onPress(tabObj)}
-                onMouseEnter={() => onMouseEnter(tabObj)}
-                onMouseLeave={() => onMouseLeave(tabObj)}
+                onMouseEnter={() => tabOnMouse("enter", tabObj)}
+                onMouseLeave={() => tabOnMouse("leave", tabObj)}
                 >
                     <p style={determineTextStyle(styleType, tabObj)}>
                         {title}
@@ -273,8 +289,8 @@ export const TabItem = ({
                 return(
                     <div style={{flex: flex, flex: 1}}
                     onClick={() => onPress(tabObj)}
-                    onMouseEnter={() => onMouseEnter(tabObj)}
-                    onMouseLeave={() => onMouseLeave(tabObj)}    
+                    onMouseEnter={() => tabOnMouse("enter", tabObj)}
+                    onMouseLeave={() => tabOnMouse("leave", tabObj)}    
                     >
                         {renderDropTab()}
                     </div>
@@ -284,8 +300,8 @@ export const TabItem = ({
                 return(
                     <div style={{flex: flex, flex: 1}}
                     onClick={() => onPress(tabObj)}
-                    onMouseEnter={() => onMouseEnter(tabObj)}
-                    onMouseLeave={() => onMouseLeave(tabObj)}    
+                    onMouseEnter={() => tabOnMouse("enter", tabObj)}
+                    onMouseLeave={() => tabOnMouse("leave", tabObj)}    
                     >
                         {renderTab()}
                     </div>

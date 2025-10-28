@@ -155,6 +155,7 @@ export const FormMultipleChoice = ({
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(input){
             let tag = input
+            console.log(input)
             if (typeof input === "object"){
                 tag = input.tag
             }
@@ -390,10 +391,12 @@ export const FormMultipleChoice = ({
 
                 // Tabs Template
                 if (fieldObj?.template === "tabs"){
+                    console.log(opt)
+                    console.log(typeof opt)
                     return(
                     <TabItem 
                         title={typeof opt === "object" ? opt.tag : opt}
-                        tabObj={typeof opt === "object" ? opt : null}
+                        tabObj={opt}
                         index={index}
                         isActive={typeof opt === "object" ? (value.includes(opt.tag)) : opt}
                         showsHover={true}

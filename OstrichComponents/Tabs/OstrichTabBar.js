@@ -149,7 +149,8 @@ export const OstrichTabBar = ({
                     borderRight: "1px solid black",
                     borderLeft: "1px solid black",
                     borderTop: "1px solid black",
-                    borderBottom: "1px solid black"
+                    borderBottom: "1px solid black",
+                    width: 300
                 }
                 let surrogate = style ? {...style} : null
                 setBarStyle({...tempBar, ...surrogate})
