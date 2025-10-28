@@ -350,15 +350,15 @@ export const FormMultipleChoice = ({
             for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
                 if (fieldObj?.template === "tabs"){
-                    console.log("TABS")
+                    console.log(value)
                     rows.push(
                         <>
                             <OstrichTabBar
                                 style={{margin: 0, width: '100%'}}
                                 tabs={rowItems}
-                                onTabClick={(value) => setvalue(value)}
+                                onTabClick={(value) => handleInput(value)}
                                 isManuallyActive={true}
-                                manualActiveTabTitle={value}
+                                manualActiveTabTitle={value[0]}
                             />
                         </>
                     )

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { TabItem } from './TabItem';
-import { title } from 'process';
 
 export const OstrichTabBar = ({ 
     startedActive = false,
@@ -102,7 +101,6 @@ export const OstrichTabBar = ({
         function isActive(tab){
             if (isManuallyActive){
                 if (tab === manualActiveTabTitle || tab?.title === manualActiveTabTitle){
-                    console.log(tab, " is manually true")
                     return true
                 }
             }

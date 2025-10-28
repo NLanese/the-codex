@@ -142,7 +142,6 @@ export const OstrichSelectionBox = ({
                 return titleStyleFinal
             }
             else{
-                console.log(typeof option)
                 return {...titleStyleFinal, ...option.textStyle}
             }
         }
