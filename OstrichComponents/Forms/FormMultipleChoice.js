@@ -344,7 +344,17 @@ export const FormMultipleChoice = ({
 
         function renderOptions() {
             if (loading) return;
-        
+            if (fieldObj?.template === "tabs"){
+                return(
+                    <>
+                        <OstrichTabBar
+                            tabs={options}
+                            onTabClick={(value) => setValue(value)}
+                        />
+                    </>
+                )
+            }
+            
             const rows = [];
             for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
