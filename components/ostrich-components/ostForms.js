@@ -409,7 +409,8 @@ export default function OstFormsShowcase(){
                         },
                         {
                             id: "2",
-                            title: "Question 2: What is 'blue'",
+                            title: "Question 2: What is 'blue?'",
+                            caption: "Select all that apply",
                             type: "MC",
                             template: "tabs",
                             options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse"],

@@ -349,7 +349,7 @@ export const FormMultipleChoice = ({
             )
         }
 
-        function renderOptions() {
+        const renderOptions = () => {
             if (loading) return;
             
             const rows = [];
@@ -386,25 +386,26 @@ export const FormMultipleChoice = ({
         }
 
         // Renders Row to contain options
-        function renderOptionsRow(rowOptions){
+        const renderOptionsRow = (rowOptions) => {
             return rowOptions.map( (opt, index) => {
 
                 // Tabs Template
                 if (fieldObj?.template === "tabs"){
                     console.log(opt)
-                    console.log(typeof opt)
+                    console.log(value)
+                    console.log((typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)))
                     return(
-                    <TabItem 
-                        title={typeof opt === "object" ? opt.tag : opt}
-                        tabObj={opt}
-                        index={index}
-                        isActive={typeof opt === "object" ? (value.includes(opt.tag)) : opt}
-                        showsHover={true}
-                        style={{width: '32%'}}
-                        onPress={handleInput}
-                    >
-    
-                    </TabItem>
+                        <TabItem 
+                            title={typeof opt === "object" ? opt.tag : opt}
+                            tabObj={opt}
+                            index={index}
+                            isActive={typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)}
+                            showsHover={true}
+                            // style={{width: '32%'}}
+                            onPress={handleInput}
+                        >
+
+                        </TabItem>
                     )
     
     

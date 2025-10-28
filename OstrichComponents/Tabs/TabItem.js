@@ -42,6 +42,9 @@ export const TabItem = ({
     // States //
     ////////////
 
+    const [isActiveX, setIsActiveX] = useState(isActive)
+    const [isHoveredX, setIsHoveredX] = useState(isHovered)
+
     ///////////////
     // Functions //
     ///////////////
@@ -202,13 +205,13 @@ export const TabItem = ({
 
         function tabOnMouse(type, tabObj){
             if (type === "leave"){
-                isHovered = false
+                setIsHoveredX(false)
                 if (onMouseLeave){
                     onMouseLeave(tabObj)
                 }
             }
             else{
-                isHovered = true
+                setIsHoveredX(true)
                 if (onMouseEnter){
                     onMouseEnter(tabObj)
                 }
@@ -221,9 +224,9 @@ export const TabItem = ({
     ////////////////
 
         // Renders a Button as a Tab
-        function renderTab(){
-            let styleType = (isActive ? "active" : "regular")
-            if (isHovered && !isActive){
+        const renderTab = () => {
+            let styleType = (isActiveX ? "active" : "regular")
+            if (isHoveredX && !isActiveX){
                 styleType = "hover"
             }
             return(
@@ -257,7 +260,7 @@ export const TabItem = ({
                 openOnHover={(dropdown.openOnHover === false ? false : true)}
                 closeOnLeave={(dropdown.closeOnLeave === false ? false : true)}
                 manualOpen={dropdown.manualOpen}
-                open={isActive}
+                open={isActiveX}
 
                 boxHovers={(showsHover || tabObj.showsHover)}
                 drawersHover={(dropdown.drawersShowHover === false) ? false : true}
@@ -278,7 +281,7 @@ export const TabItem = ({
                 noShadow={(style.boxShadow || tabObj.style?.boxShadow) ? false : true}
 
                 isTabItem={true}
-                isActiveTab={isActive}
+                isActiveTab={isActiveX}
                 />
             )
         }
