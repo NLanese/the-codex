@@ -50,7 +50,7 @@ export const FormMultipleChoice = ({
         // When this Field has its value changed, the change is conveyed to the Greater Form
         const prevValueRef = useRef(value);
         useEffect(() => {
-            if (prevValueRef.current !== value) {
+            if (prevValueRef.current !== value && fieldObj) {
                 fieldObj.value = value;
                 fieldObj.isValid = true
                 prevValueRef.current = value;
@@ -64,13 +64,13 @@ export const FormMultipleChoice = ({
         // Also Sets Styles
         useEffect(() => {
             if (!options){
-                if (!fieldObj.options){
+                if (!fieldObj?.options){
                     console.warn("[Ostrich Component Error] -- No Options provided in FormMultipleChoice Component. If <OstrichForm>, make sure that al of your FieldObjects that are of type 'MultipleChoice', 'MC', or 'mc' also have an 'options' property. This property should be an array of strings. If using a <FormMultipleChoice> component alone... for some reason... make sure you provide the options property, which is an array of strings.")
                 }
-                options = fieldObj.options
+                options = fieldObj?.options
             }
             finalizeStyles()
-            if (fieldObj.value){
+            if (fieldObj?.value){
                 setvalue(fieldObj.value)
             }
             setLoading(false)
@@ -107,7 +107,7 @@ export const FormMultipleChoice = ({
             temp.marginBottom = 10
             temp.fontWeight = 300
             temp.color = '#3d3d3d'
-            if (fieldObj.moreTextStyle){
+            if (fieldObj?.moreTextStyle){
                 final = {...temp, ...fieldObj.moreTextStyle}
             }
             else{
@@ -124,8 +124,8 @@ export const FormMultipleChoice = ({
                 borderTopWidth: 0, borderRightWidth: 0, borderLeftWidth: 0
             }
             final = {...tempInput, ...inputStyleFinal }
-            if (fieldObj.style){
-                final = {...final, ...fieldObj.style}
+            if (fieldObj?.style){
+                final = {...final, ...fieldObj?.style}
             }
             setInputStyleFinal(final)
 
@@ -140,10 +140,10 @@ export const FormMultipleChoice = ({
                 paddingBottom: 15
 
             }
-            if (fieldObj.isCorrect && correctDisplay === "border"){
+            if (fieldObj?.isCorrect && correctDisplay === "border"){
                 tempBox.boxShadow = '0px 0px 2px 0px rgba(62, 250, 141, 0.2)'
             }
-            if (fieldObj.isWrong && correctDisplay === "border"){
+            if (fieldObj?.isWrong && correctDisplay === "border"){
                 tempBox.boxShadow = '0px 0px 2px 0px rgba(212, 59, 59 0.2)'
             }
             final = {...tempBox, ...boxStyle}
@@ -152,7 +152,7 @@ export const FormMultipleChoice = ({
 
         // Selects Current Field and Sends Data back to Ostrich Form. Also runs any custom Field Function
         function handleInput(tag){
-            if (fieldObj.onChange){                 // Fires FieldObj Function if present
+            if (fieldObj?.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)
             }
             
@@ -226,10 +226,27 @@ export const FormMultipleChoice = ({
     // Renderings //
     ////////////////
 
+        function renderCaptionAndDetails(){
+            if (!fieldObj){
+                return
+            }
+            else if (!fieldObj.caption && !fieldObj.img && !fieldObj.moreText){
+                return
+            }
+            else{
+                return (
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        {renderCaption()} 
+                        {renderMoreDetails()}
+                    </div>
+                )
+            }
+        }
+
 
         // Renders the Field's Description / Caption
         function renderCaption(){
-            if (fieldObj.caption){
+            if (fieldObj?.caption){
                 return(
                     <span style={captionStyleFinal}>
                         {fieldObj.caption}
@@ -240,7 +257,7 @@ export const FormMultipleChoice = ({
 
         // Renders Additional Text or Field Image
         function renderMoreDetails(){
-            if (fieldObj.img){
+            if (fieldObj?.img){
                 return(
                     <OstCard
                         style={{justifySelf: 'center'}}
@@ -248,7 +265,7 @@ export const FormMultipleChoice = ({
                     />
                 )
             }
-            else if (fieldObj.moreText){
+            else if (fieldObj?.moreText){
                 return(
                     <p 
                     style={moreTextStyleFinal}
@@ -257,14 +274,29 @@ export const FormMultipleChoice = ({
                     </p>
                 )
             }
-            else if (fieldObj.render){
+            else if (fieldObj?.render){
                 return fieldObj.render()
             }
         }
 
+        function renderBubbleAndTitle(){
+            if (
+             (!fieldObj || !fieldObj.title) &&
+             ((correctDisplay !== "bubble") || (!validResponse && !correctResponse))
+            ){
+                return
+            }
+            return(
+                <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%', height:'100%'}}>
+                    {renderTitle()}
+                    {renderBubbleValidOrCorrect()}
+                </div>  
+            )
+        }
+
         // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
-            if ((!validResponse && !correctResponse && (fieldObj.required === false)) || (correctDisplay !== "bubble")){
+            if ((!validResponse && !correctResponse && (fieldObj?.required === false)) || (correctDisplay !== "bubble") || (!fieldObj)){
                 return
             }
             let borderColor = '#bdbdbd'
@@ -273,7 +305,7 @@ export const FormMultipleChoice = ({
                 borderColor = '#57a5f2'
                 borderFill = '#9cc6f0'
             }
-            else if (!(fieldObj.required === false)){
+            else if (!(fieldObj?.required === false)){
                 if (value.length > 0){
                     if (min){
                         if (value.length >= min){
@@ -299,11 +331,22 @@ export const FormMultipleChoice = ({
             )
         }
 
+        function renderTitle(){
+            if (!fieldObj || !fieldObj.title){
+                return
+            }
+            return(
+                <p style={{...titleStyleFinal, flex: 11}}>
+                {fieldObj?.title} 
+                </p>
+            )
+        }
+
         function renderOptions() {
             if (loading) return;
         
             const rows = [];
-            for (let i = 0; i < fieldObj.options.length; i += 3) {
+            for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
                 rows.push(
                     <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
@@ -327,9 +370,9 @@ export const FormMultipleChoice = ({
                     type={type}
                     fieldObj={fieldObj}
                     containerStyle={{width: 'calc(23.33%)', marginRight: '10%'}}
-                    singleOption={fieldObj.singleOption !== null ? fieldObj.singleOption : true}
-                    min={fieldObj.min ? fieldObj.min : null}
-                    limit={fieldObj.limit ? fieldObj.limit : null}
+                    singleOption={fieldObj?.singleOption !== null ? fieldObj.singleOption : true}
+                    min={fieldObj?.min ? fieldObj.min : null}
+                    limit={fieldObj?.limit ? fieldObj.limit : null}
                     />
                 )
             })
@@ -346,16 +389,8 @@ export const FormMultipleChoice = ({
             else{
                 return(
                     <div style={{width: '95%', height: '10%'}}>
-                        <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%', height:'100%'}}>
-                            <p style={{...titleStyleFinal, flex: 11}}>
-                            {fieldObj.title} 
-                            </p>
-                            {renderBubbleValidOrCorrect()}
-                        </div>  
-                        <div style={{display: 'flex', flexDirection: 'column'}}>
-                            {renderCaption()} 
-                            {renderMoreDetails()}
-                        </div>
+                        {renderBubbleAndTitle()}
+                        {renderCaptionAndDetails()}
                         <div style={{padding: 5, paddingTop: 15}}>
                             {renderOptions()}
                         </div>
