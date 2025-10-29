@@ -11,6 +11,7 @@ export const FormMultipleChoice = ({
     fieldObj,               // If coming from a form, this object will represent the properties needed to fill this component
     titleStyle,             // Style of the Title for the Multiple Choice Question
     captionStyle,
+    fieldTextStyle,
     
     onChange,               // Function to fire whenever a value is selected or unselected
 
@@ -388,6 +389,7 @@ export const FormMultipleChoice = ({
                             onPress={handleInput}
                             activeStyle={{backgroundColor: '#9cc6f0'}}
                             hoverStyle={{backgroundColor: 'lightgrey'}}
+                            textStyle={fieldTextStyle}
                         >
 
                         </TabItem>

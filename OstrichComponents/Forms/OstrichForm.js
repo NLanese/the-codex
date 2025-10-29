@@ -31,12 +31,12 @@ export const OstrichForm = ({
     fieldsBoxStyle,
     fieldsTitleStyle,
 
+    fieldTextStyles,
     captionTextStyle,
     moreTextStyle,
 
     fieldButtonStyles,
     fieldOptionStyles,
-    fieldTextOptions,
 
     submitButtonStyle,
     submitButtonInactiveStyle,
@@ -149,6 +149,7 @@ export const OstrichForm = ({
                         fieldObj={fieldObj}
                         titleStyle={fieldsTitleStyle}
                         captionStyle={captionTextStyle}
+                        fieldTextStyle={fieldTextStyles}
 
                         onChange={onFieldChange}
                         type={fieldObj?.type ? fieldObj.type : "Bubble"}
@@ -158,6 +159,7 @@ export const OstrichForm = ({
                         singleOption={fieldObj.singleOption !== null ? fieldObj.singleOption : true}
                         min={fieldObj.min ? fieldObj.min : null}
                         limit={fieldObj.limit ? fieldObj.limit : null}
+
                     />
                 )
             }
