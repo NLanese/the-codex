@@ -91,21 +91,15 @@ export const TabItem = ({
                 else{
                     rObj = style
                 }
-                if (!rObj?.minWidth){
-                    rObj = {...rObj, minWidth: '0'}
-                }
-                if (!rObj?.borderRadius){
-                    rObj = {...rObj, borderRadius: '0'}
-                }
             }
 
             // Active / Opened
             if (type === "active"){
                 if (tab?.activeStyle){
-                    rObj = {...activeStyle, ...tab.activeStyle}
+                    rObj = {...style, ...activeStyle, ...tab.activeStyle}
                 }
                 else{
-                    rObj = activeStyle
+                    rObj = {...style, activeStyle}
                 }                
             }
 
@@ -115,11 +109,18 @@ export const TabItem = ({
                     return determineBoxStyle('regular', tab)
                 }
                 if (tab?.hoverStyle){
-                    rObj = {...hoverStyle, ...tab.hoverStyle}
+                    rObj = {...style, ...hoverStyle, ...tab.hoverStyle}
                 }
                 else{
-                    rObj = hoverStyle
+                    rObj = {...style, ...hoverStyle}
                 }
+            }
+
+            if (!rObj?.minWidth){
+                rObj = {...rObj, minWidth: '0'}
+            }
+            if (!rObj?.borderRadius){
+                rObj = {...rObj, borderRadius: '0'}
             }
             return (rObj ? {...rObj, maxHeight: '100%'} : {})
         }
@@ -136,12 +137,6 @@ export const TabItem = ({
                 else{
                     rObj = textStyle
                 }
-                if (!rObj?.minWidth){
-                    rObj = {...rObj, minWidth: '0'}
-                }
-                if (!rObj?.borderRadius){
-                    rObj = {...rObj, borderRadius: '0'}
-                }
             }
 
             // Active / Opened
@@ -150,7 +145,7 @@ export const TabItem = ({
                     rObj = {...activeTextStyle, ...tab.activeTextStyle}
                 }     
                 else{
-                    rObj = activeTextStyle
+                    rObj = {...textStyle, activeTextStyle}
                 }      
             }
 
@@ -160,11 +155,18 @@ export const TabItem = ({
                     return determineBoxStyle('regular', tab)
                 }
                 if (tab?.hoverTextStyle){
-                    rObj = {...hoverTextStyle, ...tab.hoverTextStyle}
+                    rObj = {...textStyle, ...hoverTextStyle, ...tab.hoverTextStyle}
                 }
                 else{
-                    rObj = hoverTextStyle
+                    rObj = {...textStyle, hoverTextStyle}
                 } 
+            }
+
+            if (!rObj?.minWidth){
+                rObj = {...rObj, minWidth: '0'}
+            }
+            if (!rObj?.borderRadius){
+                rObj = {...rObj, borderRadius: '0'}
             }
             return ({...rObj, maxHeight: '100%'})
         }
