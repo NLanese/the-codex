@@ -2,9 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import { OstrichSelectionBox } from './OstrichSelectionBox';
 import { OstCard } from '../Format/OstCard';
-import { OstrichTabBar } from "../Tabs/OstrichTabBar"
 import { TabItem } from '../Tabs/TabItem';
-import { title } from 'process';
 
 export const FormMultipleChoice = ({
     boxStyle,
