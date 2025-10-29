@@ -399,6 +399,7 @@ export default function OstFormsShowcase(){
                     title="Example Test Form"
                     style={{width: '70%', marginLeft: '15%'}}
                     reviewOnSubmit={true}
+                    fieldTextStyles={{fontSize: 18}}
                     fields={[
                         {
                             id: "1",
