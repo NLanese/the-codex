@@ -99,7 +99,7 @@ export const TabItem = ({
                     rObj = {...style, ...activeStyle, ...tab.activeStyle}
                 }
                 else{
-                    rObj = {...style, activeStyle}
+                    rObj = {...style, ...activeStyle}
                 }                
             }
 
