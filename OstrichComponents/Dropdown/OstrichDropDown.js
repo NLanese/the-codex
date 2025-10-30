@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 
 export const OstrichDropDown = ({
     title="ADD TITLE OR OBJECT PROP",
+    isInput=false,
+    placeholder="Begin Typing...",
+    onChangeWhenInput,
 
     onClick=false,
     onMouseEnter=false,
@@ -50,6 +53,7 @@ export const OstrichDropDown = ({
 
     // Status
     const [isOpen, setIsOpen] = useState(open)
+    const [lockedOpen, setLockedOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [isHovered, setIsHovered] = useState(false)
     const hoverRef = useRef(isHovered)
@@ -57,6 +61,36 @@ export const OstrichDropDown = ({
         hoverRef.current = isHovered
     }, [isHovered])
 
+    // Title (For Inputs)
+    const [titleX, setTitleX] = useState(title)
+    useEffect(() => {
+        setTitleX(title)
+    }, [title])
+
+    const [drawersX, setDrawersX] = useState(drawers)
+    useEffect(() => {
+        setDrawersX(drawers)
+    }, [drawers])
+    useEffect(() => {
+        if (isInput){
+            const newDrawers = drawers.filter(d => {
+                if (typeof d === "object"){
+                    if (d.tag.includes(titleX)){
+                        return d
+                    }
+                    else if (d.title.includes(titleX)){
+                        return d
+                    }
+                }
+                else{
+                    if (d.includes(titleX)){
+                        return d
+                    }
+                }
+            })
+            setDrawersX(newDrawers)
+        }
+    }, [titleX])
 
 
     const [activeDrawer, setActiveDrawer] = useState(false)
@@ -276,7 +310,9 @@ export const OstrichDropDown = ({
     function handlePress(){
         if (!openOnHover && !manualOpen){
             if (drawers.length > 0){
-                setIsOpen(!isOpen)
+                if (!lockedOpen){
+                    setIsOpen(!isOpen)
+                }
             }
             
         }
@@ -365,7 +401,9 @@ export const OstrichDropDown = ({
     // If closeOnLeave, closes the Drop. Fires any hover functions
     function handleMouseLeave(){
         if (closeOnLeave){
-            setIsOpen(false)
+            if (!lockedOpen){
+                setIsOpen(false)
+            }
         }
         if (onMouseLeave){
             onMouseLeave(obj)
@@ -480,18 +518,55 @@ export const OstrichDropDown = ({
 
     // Renders Obj.Title or Title
     function renderTitle(){
+
+        // Title When Input
+        if (isInput){
+            return(
+                <input
+                placeholder={placeholder}
+                onChange={(e) => {
+                    if (onChangeWhenInput){
+                        onChangeWhenInput(e.target.value)
+                    }
+                    setTitleX(e.target.value)
+                }}
+                style={ 
+                    {
+                        margin: 0, height: '100%', flex: 1,
+                        display: 'flex', alignItems: 'center', 
+                        backgroundColor: 'rgba(0,0,0,0)', border: 0,
+                        display: 'block', alignSelf: 'stretch',  
+                        ...determineTitleStyle()
+                    }
+                }
+                onFocus={() => {
+                    setIsOpen(true)
+                    setLockedOpen(true)
+                }}
+                onBlur={() => {
+                    setIsOpen(false)
+                    setLockedOpen(false)
+                }}
+                />
+            )
+        }
+
+        // Regular Title
+        let renderTitle = titleX
         if (obj && obj.title){
-            return obj.title
+            renderTitle =  obj.title
         }
-        else{
-            return title
-        }
+        return(
+            <p style={{margin: 0, height: '100%', display: 'flex', alignItems: 'center', ...determineTitleStyle()}}>
+                {renderTitle}
+            </p>
+        )
     }
 
     // Renders the Drop Drawers
     function renderDrawers(){
-        if (isOpen && drawers){
-            return drawers.map((drawer, index) => {
+        if (isOpen && drawersX){
+            return drawersX.map((drawer, index) => {
                 let drawerObject = {}
                 if (typeof(drawer) === "string" || typeof(drawer) === "number" || typeof(drawer) === "integer"){
                     drawerObject = {title: `${drawer}`}
@@ -564,9 +639,7 @@ export const OstrichDropDown = ({
             onMouseEnter={() => handleMouseEnter()}
             >
                 <div style={{height: '100%', width: '100%',  boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
-                    <p style={{margin: 0, height: '100%', display: 'flex', alignItems: 'center', ...determineTitleStyle()}}>
-                        {renderTitle()}
-                    </p>
+                    {renderTitle()}
                 </div>
                 <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%',}}>
                     {renderDrawerContainer()}

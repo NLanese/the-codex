@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Styles from "../../styles/styles";
 
 import { OstrichForm } from "../../OstrichComponents/Forms/OstrichForm";
-import { ST } from "next/dist/shared/lib/utils";
+import { OstrichDropDown } from "../../OstrichComponents/Dropdown/OstrichDropDown";
 
 export default function OstFormsShowcase(){
 
@@ -429,6 +429,13 @@ export default function OstFormsShowcase(){
                             correctResponse: ["A", "B", "C", "D"],
                             singleOption: false
                         },
+                    ]}
+                />
+
+                <OstrichDropDown
+                    isInput={true}
+                    drawers={[
+                        "1", "12", "123", "4", "45", "456", "567", "67890", "90", "45"
                     ]}
                 />
 
