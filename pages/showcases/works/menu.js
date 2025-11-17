@@ -30,19 +30,54 @@ export default function WorksMenu() {
       const [directory, setDirectory] = useRecoilState(directoryDataState)
       const router = useRouter()
 
-      ////////////////
-      // UseEffects //
-      ////////////////
+    ///////////////
+    // Constants //
+    ///////////////
+
+    const projects = [
+        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion"},
+        {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)"},
+        {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)"}
+
+    ]
+
+    ////////////////
+    // UseEffects //
+    ////////////////
     
       useEffect(() => {
         setDirectory("Portfolio")            
       }, [])
 
-    return(
-        <div style={{marginTop: 20}}>
-            <div style={Styles.Fonts.pageTitle}>Nick Lanese's Professional Works</div>
+    ////////////////
+    // Renderings //
+    ////////////////
 
-            <div style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b"}}>
+      function renderAllProjects(){
+        let arrayOfProjectArrays = []
+        let i = 0
+        if (projects.length > 3){
+            while (i < (projects / 3)){
+                arrayOfProjectArrays = [...arrayOfProjectArrays, [projects[i], projects[i + 1], projects[i + 2]]]
+                i = i + 3
+            }
+        }
+        else{
+            arrayOfProjectArrays = [[...projects]]
+        }
+        return(
+            <div style={{marginTop: 20}}>
+                <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Projects</div>
+                {arrayOfProjectArrays.map((arr, i) => {
+                    return (renderProjectsRow(arr, i))
+                })}
+        </div>
+        )
+      }
+
+      function renderProjectsRow(projectsArray, index){
+        return (
+            <div key={index} style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b"}}>
                 <div style={{
                     display: 'flex', 
                     flexDirection: 'row',
@@ -55,49 +90,47 @@ export default function WorksMenu() {
                 }}>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={KNM}
+                        imageSrc={projectsArray[0].img} 
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/kidz-n-motion")
+                        router.replace(projectsArray[0].url) 
                         }}
                     >
-                        Kidz-N-Motion
+                        {projectsArray[0].name}
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={ieee}
+                        imageSrc={projectsArray[1].img} 
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/ieee")
+                            router.replace(projectsArray[1].url) 
                         }}
                     >
-                        IEEE (Flagship App)
+                        {projectsArray[1].name}
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={eventHub}
+                        imageSrc={projectsArray[2].img}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/works/eventHub")
+                            router.replace(projectsArray[2].url) 
                         }}
                     >
-                        EventHub (IEEE Events App)
+                        {projectsArray[2].name}
                     </OstCard>
                 </div>
             </div>
+        )
+      }
 
-            <div style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b"}}>
-                <div style={{
-                    display: 'flex', 
-                    flexDirection: 'row',
-                    alignContent: 'space-evenly',
-                    width: '90%',
-                    marginLeft: '5%',
-                    height: 300,
-                    gap: 20,
-                }}>
-                </div>
-            </div>
+
+    /////////////////
+    // Main Return //
+    /////////////////
+    return(
+        <div>
+            <p style={Styles.Fonts.pageTitle}>Nick Lanese's Portfolio</p>
+            {renderAllProjects()}
         </div>
     )
 }
