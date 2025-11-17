@@ -17,6 +17,7 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 const KNM = "../../../assets/icons/big/KNM.png";
 const eventHub = "../../../assets/icons/big/eventHub.png";
 const ieee = "../../../assets/icons/big/ieee.png";
+const headhsot = "../../assets/aboutMe/headshot.png"
 
 
 
@@ -52,6 +53,37 @@ export default function WorksMenu() {
     ////////////////
     // Renderings //
     ////////////////
+
+      function renderAboutMe(){
+        return(
+            <div>
+                <OstCard 
+                templateStyle={3}
+                imageSrc={headhsot}
+                details={{
+                    pictureFlexSize: 5,
+                }}
+                >
+                    <p>
+                    Creation has always been a passion of mine. As a child, before I could even properly formulate sentences I could often be found
+                    constructing elaborate pathways for my Thomas the Tank Engines, and as I grew that graduated from basic toy trains to legos and magnetic toys.
+                    I always loved to build, as one of my favorite Christmas Gifts as a child was a iCoaster, a set a magnetic roller coaster pieces you could 
+                    connect in a way to create an endless loop of marbles being lifted up an elevator system, sent down the track and returned back to the elevator. 
+                    Immediately, much to my father's shagrin I demanded we create our own unique coaster as oppsoed to following the instructions provided. 
+                    </p>
+
+                    <p>
+                    Building something often times was not enough for my younger self-- I did not want to just follow a recipe, I wanted to create something
+                    unique to me and my expertse; something that had never been made before. That yearning stayed with me my entire life, and even as my passion
+                    for physical construction began to wane, I never relented in creating things. It was not long before I discovered just how powerful a tool modern 
+                    computing is, and how endless the possibilities for creation are with Software in particular. Once I began taking Computer Science 
+                    classes in High School, my path was chosen and there was no forgoing it. 
+                    </p>
+                    
+                </OstCard>
+            </div>
+        )
+      }
 
       function renderAllProjects(){
         let arrayOfProjectArrays = []
@@ -130,6 +162,7 @@ export default function WorksMenu() {
     return(
         <div>
             <p style={Styles.Fonts.pageTitle}>Nick Lanese's Portfolio</p>
+            {renderAboutMe()}
             {renderAllProjects()}
         </div>
     )
