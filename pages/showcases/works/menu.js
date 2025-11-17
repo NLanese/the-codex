@@ -67,7 +67,7 @@ export default function WorksMenu() {
         }
         return(
             <div style={{marginTop: 20}}>
-                <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Projects</div>
+                <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Professional Works</div>
                 {arrayOfProjectArrays.map((arr, i) => {
                     return (renderProjectsRow(arr, i))
                 })}

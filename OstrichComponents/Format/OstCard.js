@@ -194,11 +194,11 @@ export const OstCard =({
                     display: 'flex', flex: 10,
                     justifyContent: 'center', alignItems: 'row', 
                     }}>
-                        <div style={{display: 'flex', flex: 8}}>
+                        <div style={{display: 'flex', flex: details?.pictureFlexSize ? details.pictureFlexSize : 8}}>
                             <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: (details?.title ? "contain" : details?.caption ? "contain" : "contain")}} />
                         </div>
                         <div style={{ display: 'flex',
-                        flex: 4, 
+                        flex: details?.pictureFlexSize ? 12 - details?.pictureFlexSize : 4,
                         paddingBottom: 5, paddingTop: 5, textAlign: 'center', 
                         justifyContent: 'center', 
                         alignItems: 'center',
@@ -207,7 +207,7 @@ export const OstCard =({
                         </div>
                     </div>
                         
-                    {/* Title  */}
+                    {/* Caption  */}
                     {details?.caption ? 
                         (
                         <div style={{ 
