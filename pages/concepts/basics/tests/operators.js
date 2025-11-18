@@ -59,15 +59,15 @@ const OperatorsTest = ({}) => {
     ///////////////
 
         function handleLessonClick(lesson){
-            router.replace(`/concepts/basics/lessons/${lesson.toLowerCase().replace(" ", "_")}`)
+            router.push(`/concepts/basics/lessons/${lesson.toLowerCase().replace(" ", "_")}`)
         }
 
         function handleTestClick(test){
-            router.replace(`/concepts/basics/tests/${test.toLowerCase().replace(" ", "_")}`)
+            router.push(`/concepts/basics/tests/${test.toLowerCase().replace(" ", "_")}`)
         }
 
         function handleLabsClick(lab){
-            router.replace(`/concepts/basics/labs/${lab.toLowerCase().replace(" ", "_")}`)
+            router.push(`/concepts/basics/labs/${lab.toLowerCase().replace(" ", "_")}`)
         }
  
     /////////////////

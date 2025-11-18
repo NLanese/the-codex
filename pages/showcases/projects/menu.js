@@ -64,7 +64,7 @@ export default function ProjectsMenu() {
                         imageSrc={BoardGameAI}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/projects/boardgame_master_ai")
+                        router.push("/showcases/projects/boardgame_master_ai")
                         }}
                     >
                         The Board Game Wizard AI
@@ -74,7 +74,7 @@ export default function ProjectsMenu() {
                         imageSrc={BetBotImg}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/projects/betbot")
+                        router.push("/showcases/projects/betbot")
                         }}
                     >
                         NBA BetBot AI
@@ -91,7 +91,7 @@ export default function ProjectsMenu() {
                         imageSrc={OstCompImg}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/ostrich-components/showcase")
+                        router.push("/showcases/ostrich-components/showcase")
                         }}
                     >
                         The Ostrich Component Library
@@ -114,7 +114,7 @@ export default function ProjectsMenu() {
                         imageSrc={DDScreen}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                         // onClick={() => {
-                        // router.replace("/showcases/projects/boardgameMasterAI")
+                        // router.push("/showcases/projects/boardgameMasterAI")
                         // }}
                     >
                         Dungeon Dash (Unity Project)
@@ -124,7 +124,7 @@ export default function ProjectsMenu() {
                         imageSrc={WandererImg}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
                         // onClick={() => {
-                        // router.replace("/showcases/projects/betbot")
+                        // router.push("/showcases/projects/betbot")
                         // }}
                     >
                         Wanderer
@@ -141,7 +141,7 @@ export default function ProjectsMenu() {
                         imageSrc={CandyBox3}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                         onClick={() => {
-                        router.replace("/showcases/projects/candybox_3")
+                        router.push("/showcases/projects/candybox_3")
                         }}
                     >
                         Candy Box 3

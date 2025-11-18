@@ -104,7 +104,7 @@ export default function CodexList({
             // if (directory){
             //     setDirectoryState(itm)   
             // }
-            router.replace(`/${directory.toLowerCase()}/${itm.toLowerCase()}/menu`)
+            router.push(`/${directory.toLowerCase()}/${itm.toLowerCase()}/menu`)
         }
 
     /////////////////

@@ -67,15 +67,15 @@ const ConditionalsLesson = ({}) => {
     ///////////////
 
         function handleLessonClick(lesson){
-            router.replace(`/concepts/basics/lessons/${lesson.toLowerCase().replaceAll(" ", "_")}`)
+            router.push(`/concepts/basics/lessons/${lesson.toLowerCase().replaceAll(" ", "_")}`)
         }
 
         function handleTestClick(test){
-            router.replace(`/concepts/basics/tests/${test.toLowerCase().replaceAll(" ", "_")}`)
+            router.push(`/concepts/basics/tests/${test.toLowerCase().replaceAll(" ", "_")}`)
         }
 
         function handleLabsClick(lab){
-            router.replace(`/concepts/basics/labs/${lab.toLowerCase().replaceAll(" ", "_")}`)
+            router.push(`/concepts/basics/labs/${lab.toLowerCase().replaceAll(" ", "_")}`)
         }
  
     ////////////////////

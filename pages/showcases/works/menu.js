@@ -38,7 +38,7 @@ export default function WorksMenu() {
 
     const projects = [
         {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion App", internal: true},
-        {img: knmSite, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion Website", internal: false},
+        {img: knmSite, url: "https://kidz-n-motion.app/", name: "Kidz-N-Motion Website", internal: false},
         {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)", internal: true},
         {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)", internal: true}
 
@@ -182,7 +182,7 @@ export default function WorksMenu() {
                 style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                 onClick={() => {
                     if (itm.internal){
-                        router.replace(itm.url) 
+                        router.push(itm.url) 
                     }
                     else{
                         window.open(itm.url, "_blank", "noopener,noreferrer");

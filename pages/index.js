@@ -70,7 +70,7 @@ export default function Landing() {
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
                     setTabBar("Ostrich Components")
-                    router.replace("/showcases/ostrich-components/showcase")
+                    router.push("/showcases/ostrich-components/showcase")
                   }}
                 >
                   Ostrich Component Library
@@ -81,7 +81,7 @@ export default function Landing() {
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
                     setTabBar("Ongoing Projects")
-                    router.replace("/showcases/projects/menu")
+                    router.push("/showcases/projects/menu")
                   }}
                 >
                   Current Projects by Nick
@@ -92,7 +92,7 @@ export default function Landing() {
                   style={{flex: 4, margin: 5}}
                   onClick={() => {
                     setTabBar("Ongoing Projects")
-                    router.replace("/showcases/works/menu")
+                    router.push("/showcases/works/menu")
                   }}
                 >
                   Nick's Portfolio

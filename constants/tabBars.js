@@ -3,19 +3,19 @@ import { proWorks, onGoing } from "./portfolioLists"
 
 // Fires on specific drawer type clicks
 function handleDrawerClick(type, drawer, router, setTabBar, finalPath){
-    router.replace(`/${type}/${drawer.toLowerCase()}/menu`)
+    router.push(`/${type}/${drawer.toLowerCase()}/menu`)
     setTabBar(false)
 }
 
 // Handles Clicks in Ostrich Components
 function handleShowcaseDrawer(folder, drawer, router){
     console.log(`Should route to /showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
-    router.replace(`/showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
+    router.push(`/showcases/${folder}/${drawer.toLowerCase().replaceAll(" ", "_")}`)
 }
 
 // Fires on specific Lesson drawer type clicks
 function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
-    router.replace((`/${type}/${unit}/${LTL}/${finalPath}`).toLowerCase().replaceAll(" ", "_"))
+    router.push((`/${type}/${unit}/${LTL}/${finalPath}`).toLowerCase().replaceAll(" ", "_"))
 }
 
 // Portfolio
@@ -24,7 +24,7 @@ export const portfolioTabs = (setTabBar, router) => {
         {
         title: "Ostrich Components", 
         onClick: () => {
-            router.replace("/showcases/ostrich-components/menu")
+            router.push("/showcases/ostrich-components/menu")
         },
         dropdown: {
             openOnHover: true,
@@ -37,7 +37,7 @@ export const portfolioTabs = (setTabBar, router) => {
     {
         title: "Ongoing Projects", 
         onClick: () => {
-            router.replace("/showcases/projects/menu")
+            router.push("/showcases/projects/menu")
         },
         dropdown: {
             openOnHover: true,
@@ -49,7 +49,7 @@ export const portfolioTabs = (setTabBar, router) => {
         title: "Official Works", 
         onClick: () => {
             setTabBar("Portfolio")
-            router.replace("/showcases/works/menu")
+            router.push("/showcases/works/menu")
         },
         dropdown: {
             openOnHover: true,
@@ -61,7 +61,7 @@ export const portfolioTabs = (setTabBar, router) => {
         title: "Return Home", 
         onClick: () => {
             setTabBar(false)
-            router.replace("/")
+            router.push("/")
         },
     },
     ])
@@ -74,7 +74,7 @@ export const guestTabs = (setTabBar, router) => {
         title: "Concepts", 
         onClick: () => {
             setTabBar("Concepts")
-            router.replace("/concepts/list")
+            router.push("/concepts/list")
         },
         dropdown: {
             openOnHover: true,
@@ -86,7 +86,7 @@ export const guestTabs = (setTabBar, router) => {
         title: "Languages", 
         onClick: () => {
             setTabBar("Languages")
-            router.replace("/languages/list")
+            router.push("/languages/list")
         },
         dropdown: {
             openOnHover: true,
@@ -98,7 +98,7 @@ export const guestTabs = (setTabBar, router) => {
         title: "Front End", 
         onClick: () => {
             setTabBar("Frameworks")
-            router.replace("/frameworks/list")
+            router.push("/frameworks/list")
         },
         dropdown: {
             openOnHover: true,
@@ -113,14 +113,14 @@ export const guestTabs = (setTabBar, router) => {
         title: "Return to Portfolio Home", 
         onClick: () => {
             setTabBar(false)
-            router.replace("/")
+            router.push("/")
         },
     },
     {
         title: "Account", 
         onClick: () => {
             setTabBar("Frameworks")
-            router.replace("/account/menu")
+            router.push("/account/menu")
         },
         dropdown: {
             openOnHover: true,
@@ -138,7 +138,7 @@ export const userTabs = (setTabBar, router)  => {
             title: "Concepts", 
             onClick: () => {
                 setTabBar("Concepts")
-                router.replace("/concepts/list")
+                router.push("/concepts/list")
             },
             dropdown: {
                 openOnHover: true,
@@ -150,7 +150,7 @@ export const userTabs = (setTabBar, router)  => {
             title: "Languages", 
             onClick: () => {
                 setTabBar("Languages")
-                router.replace("/languages/list")
+                router.push("/languages/list")
             },
             dropdown: {
                 openOnHover: true,
@@ -162,7 +162,7 @@ export const userTabs = (setTabBar, router)  => {
             title: "Front End", 
             onClick: () => {
                 setTabBar("Frameworks")
-                router.replace("/frameworks/list")
+                router.push("/frameworks/list")
             },
             dropdown: {
                 openOnHover: true,
@@ -177,14 +177,14 @@ export const userTabs = (setTabBar, router)  => {
             title: "Return to Portfolio Home", 
             onClick: () => {
                 setTabBar(false)
-                router.replace("/")
+                router.push("/")
             },
         },
         {
             title: "Account", 
             onClick: () => {
                 setTabBar("Account")
-                router.replace("/account/menu")
+                router.push("/account/menu")
             },
             dropdown: {
                 openOnHover: true,
@@ -200,7 +200,7 @@ export const basicsTabs = (setTabBar, router) => {
     return([
     {
         title: "Definitions",
-        onClick: (() => router.replace("/concepts/basics/definitions"))
+        onClick: (() => router.push("/concepts/basics/definitions"))
     },
     {
         title: "Lessons",
@@ -226,7 +226,7 @@ export const basicsTabs = (setTabBar, router) => {
     },
     {
         title: "Return Home",
-        onClick: (() => router.replace("/"))
+        onClick: (() => router.push("/"))
     }
     ])
 }

@@ -40,15 +40,15 @@ const FunctionsMenu = ({}) => {
     ///////////////
 
     function handleLessonClick(lesson){
-        router.replace(`/concepts/functions/lessons/${lesson.toLowerCase().replace(" ", "_")}`)
+        router.push(`/concepts/functions/lessons/${lesson.toLowerCase().replace(" ", "_")}`)
     }
 
     function handleTestClick(test){
-        router.replace(`/concepts/functions/tests/${test.toLowerCase().replace(" ", "_")}`)
+        router.push(`/concepts/functions/tests/${test.toLowerCase().replace(" ", "_")}`)
     }
 
     function handleLabsClick(lab){
-        router.replace(`/concepts/functions/labs/${lab.toLowerCase().replace(" ", "_")}`)
+        router.push(`/concepts/functions/labs/${lab.toLowerCase().replace(" ", "_")}`)
     }
     
     /////////////////
