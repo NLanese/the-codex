@@ -36,7 +36,8 @@ export default function WorksMenu() {
     ///////////////
 
     const projects = [
-        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion"},
+        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion App"},
+        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion Website"},
         {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)"},
         {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)"}
 
@@ -64,6 +65,7 @@ export default function WorksMenu() {
                     pictureFlexSize: 5,
                 }}
                 >
+                    <div style={{paddingRight: 20, paddingLeft: 20, ...Styles.Fonts.basicX, textAlign: 'left'}}> 
                     <p>
                     Creation has always been a passion of mine. As a child, before I could even properly formulate sentences I could often be found
                     constructing elaborate pathways for my Thomas the Tank Engines, and as I grew that graduated from basic toy trains to legos and magnetic toys.
@@ -79,6 +81,28 @@ export default function WorksMenu() {
                     computing is, and how endless the possibilities for creation are with Software in particular. Once I began taking Computer Science 
                     classes in High School, my path was chosen and there was no forgoing it. 
                     </p>
+
+                    <p>
+                    I vividly remember making my first 'programs' on <a href="https://www.alice.org/get-alice/alice-2/">Alice.</a> For a final project we instructed to make a 
+                    simple game. Most classmates created games like tic-tac-toe, or a stationary carnival-game like shooter, where users just pressed 'Space' to fire at targets that moved in and 
+                    out of frame. I instead opted to make a more complicated "Call of Duty" clone, with full user interface, movement, and aiming. Enough was never enough for me,
+                    when I create something I take extreme pride in it. 
+                    </p>
+
+                    <p>
+                    Fittingly, I began my professional journey as a software developer hitting the ground in a full sprint. Hired as part of a brand new 2 man team by a Studio that 
+                    had never before dipped its toes in the Technology Sector, there was an immense amount of both work and learning needed to be accomplished. The team lead ended up departing from 
+                    the company less than three months in which shifted all of his responsibilities on to me. This meant that on my first job ever as a software engineer, I had to 
+                    master React Native / Expo as well as learn PostgreSQL and PlanetScale Database hosting on the fly while continuing to build the App, Website, and Database as a satisfactory rate.     
+                    </p>
+
+                    <p>
+                    From here, when I eventually moved on from the Studio, I kept the remaining client, Kidz-n-Motion and have since then mananaged the production and maintenance of the 
+                    Kidz-N-Motion site, App, and Database. While managing these responsibilities, I also began my adventure with IEEE. I was extremely fortunate to land in a 
+                    more stable environment following what had been an exceedingly tumultuous work environment. From here I was able to grow and develop even momre as software engineer, 
+                    working with a team for the first time in my career and maintaining several much more massive codebases for Apps that are used by millions of people around the world. 
+                    </p>
+                    </div>
                     
                 </OstCard>
             </div>
@@ -89,14 +113,23 @@ export default function WorksMenu() {
         let arrayOfProjectArrays = []
         let i = 0
         if (projects.length > 3){
-            while (i < (projects / 3)){
-                arrayOfProjectArrays = [...arrayOfProjectArrays, [projects[i], projects[i + 1], projects[i + 2]]]
+            while (i < (projects.length)){
+                arrayOfProjectArrays = 
+                    [...arrayOfProjectArrays, 
+                        [
+                            projects[i], 
+                            (i + 1 < projects.length ? projects[i + 1] : null), 
+                            (i + 2 < projects.length ? projects[i + 2] : null)
+                        ]
+                    ]
                 i = i + 3
             }
         }
         else{
             arrayOfProjectArrays = [[...projects]]
         }
+
+        console.log(arrayOfProjectArrays)
         return(
             <div style={{marginTop: 20}}>
                 <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Professional Works</div>
@@ -120,41 +153,44 @@ export default function WorksMenu() {
                     paddingTop: 20,
                     gap: '10%'
                 }}>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={projectsArray[0].img} 
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.replace(projectsArray[0].url) 
-                        }}
-                    >
-                        {projectsArray[0].name}
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={projectsArray[1].img} 
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                            router.replace(projectsArray[1].url) 
-                        }}
-                    >
-                        {projectsArray[1].name}
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={projectsArray[2].img}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                            router.replace(projectsArray[2].url) 
-                        }}
-                    >
-                        {projectsArray[2].name}
-                    </OstCard>
+                    {renderOtherCards(projectsArray[0])}
+                    {renderOtherCards(projectsArray[1])}
+                    {renderOtherCards(projectsArray[2])}
                 </div>
             </div>
         )
       }
 
+      function renderOtherCards(itm){
+        if (itm === null){
+            return (
+                <OstCard
+                templateStyle={1}
+                style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                >
+                </OstCard>
+            )
+
+        }
+        else{
+            return(
+                <OstCard
+                templateStyle={1}
+                imageSrc={itm.img} 
+                style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                onClick={() => {
+                    router.replace(itm.url) 
+                }}
+                >
+                    {itm.name}
+                </OstCard>
+            )
+        }
+      }
+
+      function renderThirdCard(tim){
+
+      }
 
     /////////////////
     // Main Return //
