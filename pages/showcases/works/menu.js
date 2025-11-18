@@ -221,7 +221,7 @@ export default function WorksMenu() {
     // Main Return //
     /////////////////
     return(
-        <div>
+        <div style={{marginLeft: '5%', width: '90%'}}>
             <p style={Styles.Fonts.pageTitle}>Nick Lanese's Portfolio</p>
             {renderAboutMe()}
             {renderProjects(proWorks)}
