@@ -80,17 +80,7 @@ export default function Landing() {
                 >
                   Current Projects by Nick
                 </OstCard>
-                <OstCard
-                  templateStyle={1}
-                  imageSrc={OstCompImg}
-                  style={{flex: 4, margin: 5}}
-                  onClick={() => {
-                    setTabBar("Ongoing Projects")
-                    router.push("/showcases/works/menu")
-                  }}
-                >
-                  Nick's Portfolio
-                </OstCard>
+                
         </div>
      </div>
     </div>
