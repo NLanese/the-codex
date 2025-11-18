@@ -27,7 +27,7 @@ export default function CandyBox3() {
         const router = useRouter()
 
         // Accumulation and Basic Stats
-        const [candies, setCandies] = useState(1000)
+        const [candies, setCandies] = useState(0)
         const [candiesRate, setCandiesRate] = useState(1)
         const [candiesEaten, setCandiesEaten] = useState(0)
         const [candiesThrown, setCandiesThrown] = useState(0)
