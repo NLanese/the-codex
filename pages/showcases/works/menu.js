@@ -15,7 +15,7 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 
 // Assets
 const KNM = "../../../assets/icons/big/KNM.png";
-const eventHub = "../../../assets/icons/big/eventHub.png";
+const eventHub = "../../../assets/icons/big/eventhub.png";
 const ieee = "../../../assets/icons/big/ieee.png";
 const headhsot = "../../assets/aboutMe/headshot.png"
 const knmSite = "../../assets/icons/big/knmSite.png"
