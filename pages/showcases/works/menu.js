@@ -20,6 +20,15 @@ const ieee = "../../../assets/icons/big/ieee.png";
 const headhsot = "../../assets/aboutMe/headshot.png"
 const knmSite = "../../assets/icons/big/knmSite.png"
 
+const BoardGameAI = "../../../assets/icons/big/BoardGameWizardIcon.jpeg";
+const BetBotImg = "../../../assets/icons/big/BetBot.jpeg";
+const DDAImg = "../../../assets/icons/big/DDAImg.jpeg";
+const DDScreen = "../../../assets/icons/big/DDScreen.png";
+const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
+const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
+const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
+const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
+
 
 
 
@@ -36,12 +45,17 @@ export default function WorksMenu() {
     // Constants //
     ///////////////
 
-    const projects = [
+    const proWorks = [
         {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion App", internal: true},
         {img: knmSite, url: "https://kidz-n-motion.app/", name: "Kidz-N-Motion Website", internal: false},
         {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)", internal: true},
         {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)", internal: true}
+    ]
 
+    const personalWorks = [
+        {img: BoardGameAI, url: "/showcases/projects/boardgame_master_ai", name: "Boardgame Wizard AI", internal: true},
+        {img: BetBotImg, url: "/showcases/projects/betbot", name: "NBA Bet Bot", internal: true},
+        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3I", internal: true}
     ]
 
     ////////////////
@@ -112,7 +126,7 @@ export default function WorksMenu() {
         )
       }
 
-      function renderAllProjects(){
+      function renderProjects(projects){
         let arrayOfProjectArrays = []
         let i = 0
         if (projects.length > 3){
@@ -144,7 +158,7 @@ export default function WorksMenu() {
 
       function renderProjectsRow(projectsArray, index){
         return (
-            <div key={index} style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b"}}>
+            <div key={index} style={{...Styles.Sections.lessonContent, margin: "30px", paddingBottom: 30, borderBottom: "4px solid #11013b"}}>
                 <div style={{
                     display: 'flex', 
                     flexDirection: 'row',
@@ -203,7 +217,8 @@ export default function WorksMenu() {
         <div>
             <p style={Styles.Fonts.pageTitle}>Nick Lanese's Portfolio</p>
             {renderAboutMe()}
-            {renderAllProjects()}
+            {renderProjects(proWorks)}
+            {renderProjects(personalWorks)}
         </div>
     )
 }

@@ -12,8 +12,6 @@ import { tokenState, tabBarState, directoryDataState } from "../recoil/atoms";
 import Styles from "../styles/styles";
 
 // Ostrich
-import { ODef } from "../OstrichComponents/Text/OstrichDefinition";
-import { ODefContnet } from "../constants/oDefContent";
 import { OstCard } from "../OstrichComponents/Format/OstCard";
 
 // Assets
