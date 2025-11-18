@@ -12,6 +12,7 @@ export default function DropdownShowcase(){
 
     return(
         <div style={{marginBottom: 30}}>
+        <div style={{...Styles.Sections.lessonContent, marginLeft: '5%', width: '80%'}}>
             <div style={Styles.Fonts.lessonHeader}>Ostrich Dropdown Menus (OstrichDropDowns)</div>
             
             {/* Preamble */}
@@ -1029,7 +1030,7 @@ export default function DropdownShowcase(){
                 
             </div>
 
-
+        </div>
         </div>
     )
 }

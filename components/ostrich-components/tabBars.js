@@ -16,22 +16,23 @@ export default function TabBarsShowcase(){
 
     return(
         <div style={{marginBottom: 15, marginTop: 15 }}>
+        <div style={{...Styles.Sections.lessonContent, marginLeft: '5%', width: '80%'}}>
         <div style={Styles.Fonts.lessonHeader}>Ostrich Tab Bars (OstrichTabBar)</div>
             
             {/* Preamble */}
             <div>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     Ostrich Dropdowns are also used as a part of another very dynamic and response Ostrich Component, the Ostrich Tab Bar. The Tab Bar that you see on the top of your screen right now 
                     (if you're reading this on the Ostrich Codex Website) is made using this Tab Bar Component.
                 </p>
 
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     Just like Dropdowns and Cards, Ostrich Tab Bars even in their most basic uneditted form have multiple forms of responsiveness as well as in-the-box styling that enables you to 
                     quickly render comprehensive and clean Tab Bars without having to develop it yourself. This includes automatic width calculations based on the amount of Tabs; different regular, 
                     active and hover bacground colors and styles; as well as all the features that were present in the Dropdown, as you can make the Tab Bar be a row of Dropdowns without ever needing 
                     to render the Dropdown yourself.
                 </p>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     We'll get to showing you the code behind the current Header Tab Bar at the end of this section; but for now let's to some simpler examples. 
                 </p>
             </div>
@@ -159,7 +160,7 @@ export default function TabBarsShowcase(){
 
             {/* Preamble II */}
             <div>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     Now that we've seen some minimalistic Ostrich Tab Bars, let's check out some more complex examples. Below, we will explore two 
                     examples with a relatively compex degree of functionality for each tab.
                     You will see that most of the configuration for TabBars can often end up within the 'tabs' prop as opposed to formal props of their own. 
@@ -805,29 +806,29 @@ export default function TabBarsShowcase(){
 
             {/* Preamble III */}
             <div>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     Let's go over what we saw above a bit more. Starting with the Tab Bar on the left; you will notice that the <strong>onTabClick </strong>
                     function takes a parameter called 'tab.' This input value will always be the value of the the 'tab' that you press. 
                     If your 'tabs' are json objects, then the parameter will be the entire json; if your tab is just a string or an int, the value would be that. 
                     In this example, the 'total' state is changed by the 'value' of the clicked tab. 
                 </p>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     You will also notice that each tab has its own unique 'hoverStyle.' 
                     When using json objects to represent tabs, consider that the expected key/value key names match the props for OstrichDropDowns. 
                     This essentially means that a 'tab' json object optionally expects any of the properties you can provide an OstrichDropDown; including
                     onClick, onMouseEnter, onMouseLeave, style, titleStyle, hoverStyle, hoverTitleStyle, activeStyle, activeTitleStyle, and more.
                 </p>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     This param depth furthers with the example on the right. Here you will see that there are two tabs with dropdowns; and you will notice the 'drawers' value in the 'dropdown' object in each 'tab' matches how 'drawers' look in OstrichDropDowns!
                 </p>
             </div>
 
             {/* Preamble IV */}
             <div style={{marginTop: 60}}>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     Now, let's check out a complicated (and styled) Tab Bar in use. 
                 </p>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                     Below, you will see the same tab bar as the one on top of your screen. We'll go over the code for that as well!
                 </p>
             </div>
@@ -1371,7 +1372,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>tabStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each tab bar when not active, hovered, or overriden by individual tab style
                         </p>
@@ -1384,7 +1385,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>activeTabStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each tab bar when active, unless overriden by an individual tab activeStyle
                         </p>
@@ -1397,7 +1398,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>hoverTabStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each tab bar when hovered (and not opened or active), unless overriden by an individual tab hoverStyle
                         </p>
@@ -1419,7 +1420,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>drawerStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each dropdown drawer (if any) when not active, hovered, or overriden by individual drawer style or dropdown drawerStyle
                         </p>
@@ -1432,7 +1433,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>activeDrawerStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each dropdown drawer when active, unless overriden by an individual drawer activeStyle or dropdown activeDrawerStyle
                         </p>
@@ -1445,7 +1446,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>hoverDrawerStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each dropdown drawer when hovered, unless overriden by an individual drawer hoverStyle or dropdown hoverDrawerStyle
                         </p>
@@ -1467,7 +1468,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>titleStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each Tab Title when not active or hovered, unless overriden by an individual tab titleStyle
                         </p>
@@ -1480,7 +1481,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>activeTitleStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each Tab Title when active, unless overriden by an individual tab activeTitleStyle
                         </p>
@@ -1493,7 +1494,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>hoverTitleStyle</span>
                             <span style={Styles.Fonts.h2}> - Object</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             An object that will style each Tab Title when hovered, unless overriden by an individual tab hoverTitleStyle
                         </p>
@@ -1515,7 +1516,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>onTabClick</span>
                             <span style={Styles.Fonts.h2}> - Function</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             A function (that takes the entire Tab JSON or value as a param) that runs whenever a Tab in the Tab Bar is clicked
                         </p>
@@ -1528,7 +1529,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>onTabHover</span>
                             <span style={Styles.Fonts.h2}> - Function</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             A function (that takes the entire Tab JSON or value as a param) that runs whenever a Tab in the Tab Bar is hovered
                         </p>
@@ -1541,7 +1542,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>onDrawerClick</span>
                             <span style={Styles.Fonts.h2}> - Function</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>(Optional) </span> 
                             A function (that takes the entire Drawer JSON or value as a param) that runs whenever a Drawer in a Drop Tab's Dropdown menu is clicked
                         </p>
@@ -1563,7 +1564,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>tabDeactivates</span>
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>DEFAULTS TO FALSE </span> 
                             If true, this allows tabs to go from 'active' to 'inactive' by clicking an already active tab. If this is false, the only way to deactivate a tab is by clicking another.
                         </p>
@@ -1576,7 +1577,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>showsHover</span>
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                             <span style={{fontWeight: 600}}>DEFAULTS TO TRUE </span> 
                             If false, Tabs and their text will not change styles when hovered
                         </p>
@@ -1589,7 +1590,7 @@ export default function TabBarsShowcase(){
                             <span style={Styles.Fonts.h3}>showsActive</span>
                             <span style={Styles.Fonts.h2}> - Boolean</span>
                         </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
+                        <p style={{...Styles.Fonts.basicX, marginTop: 10, textAlign: 'center', fontSize: 15}}>
                         <span style={{fontWeight: 600}}>DEFAULTS TO TRUE </span> 
                             If false, Tabs and their text will not change styles when active / opened
                         </p>
@@ -1597,7 +1598,7 @@ export default function TabBarsShowcase(){
                 </OstCard>
             </div>
 
-
+        </div>
         </div>
     )
 }

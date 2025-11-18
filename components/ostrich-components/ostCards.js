@@ -8,7 +8,6 @@ const OstCompImg = "../../assets/icons/big/OstrichComponentsLogo.png";
 
 // Ostrich
 import { OstCard } from "../../OstrichComponents/Format/OstCard";
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 
 export default function OstCardShowcase(){
     return(
