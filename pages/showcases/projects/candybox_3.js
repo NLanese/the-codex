@@ -6,15 +6,15 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
 
-// Styles 
-import Styles from "../../../styles/styles";
-
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import CandyBox3MainScreen from "../../../components/candybox3/mainScreen";
 import Map from "../../../components/candybox3/map";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
+
+// Other
+import WhatIsCandyBox from "../../../components/candybox3/whatIsCandybox";
 
 export default function CandyBox3() {
 
@@ -51,7 +51,7 @@ export default function CandyBox3() {
         // Page State
         const [featuresUnlocked, setFeaturesUnlocked] = useState(0)
         const [screenShown, setScreenShown] = useState("Main")
-        const [screenTabs, setScreenTabs] = useState(["Inventory", "Candy Box"])
+        const [screenTabs, setScreenTabs] = useState(["Inventory", "Candy Box", "What is this?"])
         const [selectedMap, setSelectedMap] = useState("New Oldsville")
         const [termMsgs, setTermMsgs] = useState([])
       
@@ -221,6 +221,9 @@ export default function CandyBox3() {
                     setLollipops={setLollipops}
                     />
                 )
+            }
+            else if (screenShown === "What is this?"){
+                return <WhatIsCandyBox />
             }
         }
 
