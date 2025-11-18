@@ -18,6 +18,7 @@ const KNM = "../../../assets/icons/big/KNM.png";
 const eventHub = "../../../assets/icons/big/eventHub.png";
 const ieee = "../../../assets/icons/big/ieee.png";
 const headhsot = "../../assets/aboutMe/headshot.png"
+const knmSite = "../../assets/icons/big/knmSite.png"
 
 
 
@@ -36,10 +37,10 @@ export default function WorksMenu() {
     ///////////////
 
     const projects = [
-        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion App"},
-        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion Website"},
-        {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)"},
-        {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)"}
+        {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion App", internal: true},
+        {img: knmSite, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion Website", internal: false},
+        {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)", internal: true},
+        {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)", internal: true}
 
     ]
 
@@ -62,6 +63,8 @@ export default function WorksMenu() {
                 templateStyle={3}
                 imageSrc={headhsot}
                 details={{
+                    title: "About Me",
+                    titleStyle: Styles.Fonts.lessonHeaderXL,
                     pictureFlexSize: 5,
                 }}
                 >
@@ -129,7 +132,6 @@ export default function WorksMenu() {
             arrayOfProjectArrays = [[...projects]]
         }
 
-        console.log(arrayOfProjectArrays)
         return(
             <div style={{marginTop: 20}}>
                 <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Professional Works</div>
@@ -179,7 +181,12 @@ export default function WorksMenu() {
                 imageSrc={itm.img} 
                 style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
                 onClick={() => {
-                    router.replace(itm.url) 
+                    if (itm.internal){
+                        router.replace(itm.url) 
+                    }
+                    else{
+                        window.open(itm.url, "_blank", "noopener,noreferrer");
+                    }
                 }}
                 >
                     {itm.name}
@@ -188,9 +195,6 @@ export default function WorksMenu() {
         }
       }
 
-      function renderThirdCard(tim){
-
-      }
 
     /////////////////
     // Main Return //

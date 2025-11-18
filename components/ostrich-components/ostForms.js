@@ -51,13 +51,13 @@ export default function OstFormsShowcase(){
             <div style={Styles.Fonts.lessonHeader}>Ostrich Forms (OstrichForm)</div>
 
             {/* Preamble */}
-            <p style={{...Styles.Fonts.basic, fontSize: 22}}>
+            <p style={{...Styles.Fonts.basicX}}>
                 Ostrich Forms are versatile Components that allow developers to create either minimal or complex user-input zones, 
                 as well as fire a function on the submission of those inputs. Through an Ostrich Form, you can display numerous different
                 inputs and input types. Ostrich Forms support Multiple Choice (Multi and Singular Selection), text input, toggle fields, and more. 
             </p>
 
-            <p style={{...Styles.Fonts.basic, fontSize: 22}}>
+            <p style={{...Styles.Fonts.basicX}}>
                 Lets start by going over some very simple and basic examples, before moving on to more complex instances of Ostrich Forms
             </p>
 
@@ -389,7 +389,7 @@ export default function OstFormsShowcase(){
 
             </div>
 
-            <p style={{...Styles.Fonts.basic, fontSize: 22}}>
+            <p style={{...Styles.Fonts.basicX}}>
             We can also make forms that are intended to have correct or incorrect answers. We can toggle the feedback when the form is submitted, 
             to change how the form relays what questions were right or wrong, as well as the ability to toggle whether the correct answers are shown after 
             submission. Finally, we possess the ability to allow resubmission.

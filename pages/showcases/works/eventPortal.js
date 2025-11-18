@@ -410,7 +410,7 @@ export default function EventPortalPage(){
                         All Users are created through the same mutation, <storng>signupUser</storng>. As previously mentioned, this will take a 'role' as a parameter and from there will add the user role 
                         specific properties. Those properties include...
                     </p>
-                    <p style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
+                    <div style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
                         <strong style={{color: 'black'}}>Therapist Specific</strong>
                         <ul>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
@@ -430,7 +430,7 @@ export default function EventPortalPage(){
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessMessages</span> (This is true if Guardian enabled the child to be able to message the therapist)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>leaveApp</span> (This is true if Guardian enabled the child to leave the app or change sign in status)</li>
                         </ul>
-                    </p>
+                    </div>
 
                 </div>
             )

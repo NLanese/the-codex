@@ -436,7 +436,7 @@ export default function KNMPage(){
                         All Users are created through the same mutation, <storng>signupUser</storng>. As previously mentioned, this will take a 'role' as a parameter and from there will add the user role 
                         specific properties. Those properties include...
                     </p>
-                    <p style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
+                    <div style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
                         <strong style={{color: 'black'}}>Therapist Specific</strong>
                         <ul>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
@@ -459,7 +459,7 @@ export default function KNMPage(){
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>leaveApp</span> (This is true if Guardian enabled the child to leave the app or change sign in status)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan </span>(This the client care plan object for the child)</li>
                         </ul>
-                    </p>
+                    </div>
                     <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Clients / Care Plans</div>
                     <p style={Styles.Fonts.basicX}>
                         While the User models contain personal information, settings, and relationships to other users and models, they do not 
@@ -474,7 +474,7 @@ export default function KNMPage(){
                     <p style={Styles.Fonts.basicX}>
                         As just mentioned, the CarePlan / Client models contain the following information
                     </p>
-                    <p style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
+                    <div style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
                         <strong style={{color: 'black'}}>Relationship Data</strong>
                         <ul>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>child </span>(Connected Child accounts)</li>
@@ -507,7 +507,7 @@ export default function KNMPage(){
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>date</span> (The date the medal was earned)</li>
                             <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan</span> (The careplan which the medal is connected to)</li>
                         </ul>
-                    </p>
+                    </div>
                 </div>
             )
         }

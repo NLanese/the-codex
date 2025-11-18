@@ -13,14 +13,15 @@ import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 export default function OstCardShowcase(){
     return(
         <div style={{marginBottom: 30}}>
+        <div style={{...Styles.Sections.lessonContent, marginLeft: '5%', width: '80%'}}>
             <div style={Styles.Fonts.lessonHeader}>Ostrich Cards (OstCards)</div>
                 
                 {/* Preamble */}
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                 Ostrich Cards are the Ostrich Framework's take on a View. They have predetermined padding and a box shadow to add an elevated visual effect. They are meant to be 
                 versatile compoonents for a wide variety of uses, so by adding an 'onClick' function to an OstCard component you automatically make it behave and animate like a button. 
                 </p>
-                <p style={Styles.Fonts.basic}>
+                <p style={Styles.Fonts.basicX}>
                 Let's look at some examples
                 </p>
 
@@ -162,15 +163,15 @@ export default function OstCardShowcase(){
                 <div style={{paddingTop: 40}}>
 
                     {/* Preamble */}
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicX}>
                         As you see, adding an <strong>onClick</strong> property automatically transfroms the entire component into a button.
                         Additionally, you see that developers can still add their own custom styles to Ostrich Cards, while not removing the padding or shadow features the card has by default. 
                     </p>
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicX}>
                         Ostrich Cards are also a great way to display pictures, as they take image inputs and have several different template options to help your image be 
                         displayed exactly how you would like it to be
                     </p>
-                    <p style={Styles.Fonts.basic}>
+                    <p style={Styles.Fonts.basicX}>
                         Let's take a look at some Ostrich Cards that use Templates
                     </p>
 
@@ -593,6 +594,7 @@ export default function OstCardShowcase(){
                         </p>
                     </div>
                 </div>
+        </div>
         </div>
     )
 }
