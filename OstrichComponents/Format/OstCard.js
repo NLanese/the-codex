@@ -170,8 +170,10 @@ export const OstCard =({
         
         // Template Three
         const TemplateThreeRender = () => {
+            console.log({display: 'flex', flexDirection: 'column', ...style})
             return(
-                <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+
+                <div style={{display: 'flex', flexDirection: 'column', ...style}}>
                     {/* Title  */}
                     {details?.title ? 
                         (
@@ -179,8 +181,7 @@ export const OstCard =({
                         display: 'flex',
                         flex: 2, 
                         justifyContent: 'center', alignItems: 'center',
-                        fontSize: (details?.fontSize ? details.fontSize : 22),
-                        fontFamily : (details?.fontFamily ? details.fontFamily : "Gilroy"),
+                        ...details?.titleTextStyle
                         }}>
                             {details?.title}
                         </div>

@@ -76,13 +76,20 @@ export default function WorksMenu() {
                 <OstCard 
                 templateStyle={3}
                 imageSrc={headhsot}
+                style={{width: '90%', marginLeft: '5%'}}
                 details={{
                     title: "About Me",
-                    titleStyle: Styles.Fonts.lessonHeaderXL,
+                    titleTextStyle: Styles.Fonts.lessonHeaderXL,
                     pictureFlexSize: 5,
                 }}
                 >
-                    <div style={{paddingRight: 20, paddingLeft: 20, ...Styles.Fonts.basicX, textAlign: 'left'}}> 
+                    <div style={{
+                        ...Styles.Fonts.basicX,
+                        paddingRight: 20, paddingLeft: 20, 
+                        textAlign: 'left', overflowY: 'auto',
+                        minHeight: 600, maxHeight: 600,
+
+                        }}> 
                     <p>
                     Creation has always been a passion of mine. As a child, before I could even properly formulate sentences I could often be found
                     constructing elaborate pathways for my Thomas the Tank Engines, and as I grew that graduated from basic toy trains to legos and magnetic toys.
