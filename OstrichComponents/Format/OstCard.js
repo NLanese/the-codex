@@ -170,34 +170,54 @@ export const OstCard =({
         
         // Template Three
         const TemplateThreeRender = () => {
-            console.log({display: 'flex', flexDirection: 'column', ...style})
-            return(
 
-                <div style={{display: 'flex', flexDirection: 'column', ...style}}>
-                    {/* Title  */}
-                    {details?.title ? 
-                        (
+            function renderTitle(){
+                if (details?.title){
+                    return(
                         <div style={{ 
-                        display: 'flex',
-                        flex: 2, 
+                        ...details?.titleTextStyle,
+                        display: 'flex', flex: 2, 
                         justifyContent: 'center', alignItems: 'center',
-                        ...details?.titleTextStyle
                         }}>
                             {details?.title}
                         </div>
-                        )
-                        :
-                        null
-                    }
+                    )
+                }
+            }
+
+            function renderCaption(){
+                if (details?.caption){
+                    return(
+                        <div style={{ 
+                        display: 'flex',
+                        flex: 1, 
+                        justifyContent: 'center', alignItems: 'center',
+                        fontSize: (details?.fontSize ? details.fontSize : 18),
+                        fontFamily : (details?.fontFamily ? details.fontFamily : "Gilroy"),
+                        }}>
+                            {details?.caption}
+                        </div>
+                    )
+                }
+            }
+
+
+            return(
+
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    
+                    {/* Title  */}
+                    {renderTitle()}
 
                     {/* Content */}
                     <div style={{ 
-                    display: 'flex', flex: 10,
+                    display: 'flex', flex: 10, flexDirection: 'row',
                     justifyContent: 'center', alignItems: 'row', 
                     }}>
                         <div style={{display: 'flex', flex: details?.pictureFlexSize ? details.pictureFlexSize : 8}}>
                             <img src={imageSrc} style={{maxWidth: '100%', maxHeight: '100%', objectFit: (details?.title ? "contain" : details?.caption ? "contain" : "contain")}} />
                         </div>
+
                         <div style={{ 
                         display: 'flex', flexDirection: 'column',
                         flex: details?.pictureFlexSize ? 12 - details?.pictureFlexSize : 4,
@@ -210,21 +230,7 @@ export const OstCard =({
                     </div>
                         
                     {/* Caption  */}
-                    {details?.caption ? 
-                        (
-                        <div style={{ 
-                        display: 'flex',
-                        flex: 1, 
-                        justifyContent: 'center', alignItems: 'center',
-                        fontSize: (details?.fontSize ? details.fontSize : 18),
-                        fontFamily : (details?.fontFamily ? details.fontFamily : "Gilroy"),
-                        }}>
-                            {details?.caption}
-                        </div>
-                        )
-                        :
-                        null
-                    }
+                    {renderCaption()}
                 </div>
             )
         }
