@@ -175,7 +175,7 @@ export default function BoardGameMasterAIProjectPage() {
 
         function renderMESSAGE_SPACE(){
             return(
-                <OstCard style={{marginTop: 50, height: '45vw', width: '85%'}}>
+                <OstCard style={{marginTop: 10, height: '45vw', width: '100%'}}>
                 <OstCard 
                 style={{marginTop: '3%', height: '70%', width: '90%', marginLeft: '5%', borderRadius: 0, backgroundColor: '#ededed', overflow: 'scroll'}}
                 >
@@ -524,7 +524,7 @@ export default function BoardGameMasterAIProjectPage() {
        
 
 return (
-    <div style={{marginTop: 20}}>
+    <div style={{marginTop: 20, marginLeft: '10%', width: '80%'}}>
         <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
 
         {renderINTRO_REGION()}
