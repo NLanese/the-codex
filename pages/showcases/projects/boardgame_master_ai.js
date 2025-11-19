@@ -62,6 +62,16 @@ export default function BoardGameMasterAIProjectPage() {
             return (selGame ? selGame : "No Game Selected")
         }
 
+        function formatAIResponse(text) {
+            return text
+              // Add newline before markdown headers like "### Something"
+              .replace(/###/g, '\n###')
+          
+              // Add newline before numbered list items like "1. Something"
+              .replace(/(\n?)(\d+\.\s)/g, '\n$2')
+              .trim();
+          }
+
         function sendMessage(){
             let newMessage = {
                 from: "User",
@@ -70,7 +80,6 @@ export default function BoardGameMasterAIProjectPage() {
             let fullMessage = current
             let makeRequest = fullRequest
             fullMessage = makeRequest(selGame, current)
-            // fullMessage = `(This question is for the game ${selGame}. Give the user a a complete answer and but try to word it simply and plainly. Explain terms they may not know. Question: ${current})`
             setCurrent("")
             setMessages(prev => [...prev, newMessage]);
             handleRequestToScrapeFanDuel(fullMessage)
@@ -88,9 +97,10 @@ export default function BoardGameMasterAIProjectPage() {
                 try {
                     const json = JSON.parse(text);
                     console.log("Parsed JSON:", json);
+                    let formattedReply = formatAIResponse(json.reply)
                     let newMessage = {
                         from: "AI",
-                        content: json.reply
+                        content: formattedReply
                     }
                     setMessages(prev => [...prev, newMessage])
                 } 

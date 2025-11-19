@@ -410,6 +410,16 @@ export default function OstFormsShowcase(){
                         },
                         {
                             id: "2",
+                            title: "Question 3: Choose all letters",
+                            type: "MC",
+                            // template: "tabs",
+                            options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", {tag: "Alexander the Warrior Jar", textStyle: {fontSize: 14, textAlign: 'center'}}],
+                            textStyle: {fontSize: 18},
+                            correctResponse: ["A", "B", "C", "D"],
+                            singleOption: false
+                        },
+                        {
+                            id: "3",
                             title: "Question 2: What is 'blue?'",
                             caption: "Select all that apply",
                             type: "MC",
@@ -417,16 +427,6 @@ export default function OstFormsShowcase(){
                             options: ["A Color", "A Shape", "A Sound", "A Smell", "A Type of Horse", "A Four Letter Word"],
                             textStyle: {fontSize: 18},
                             correctResponse: ["A Color"],
-                            singleOption: false
-                        },
-                        {
-                            id: "3",
-                            title: "Question 3: Choose all letters",
-                            type: "MC",
-                            // template: "tabs",
-                            options: ["A", "Circle", "B", "Horses", "C", "Bobby Hill", "D", {tag: "Alexander the Warrior Jar", textStyle: {fontSize: 14, textAlign: 'center'}}],
-                            textStyle: {fontSize: 18},
-                            correctResponse: ["A", "B", "C", "D"],
                             singleOption: false
                         },
                     ]}
