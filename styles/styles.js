@@ -69,6 +69,17 @@ const Styles = {
             color: 'black'
         },
 
+        lessonHeaderShadedXL: {
+            fontFamily: "Gilroy", 
+            fontSize: 44, fontWeight: 600, 
+            letterSpacing: 0.95, 
+            boxShadow:'2px 2px 0.5px 1px rgba(0, 0, 0, 0.2)',
+            paddingRight: '2.5%', paddingLeft: '2.5%', paddingTop: 3.5,
+            marginTop: 20,
+            color: 'black',
+            backgroundColor: '#9cc6f0'
+        },
+
         lessonSubHeader: {
             fontFamily: "Gilroy", 
             fontSize: 24, fontWeight: 500, 

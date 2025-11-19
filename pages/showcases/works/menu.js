@@ -89,10 +89,10 @@ export default function WorksMenu() {
                 <OstCard 
                 templateStyle={3}
                 imageSrc={headhsot}
-                style={{width: '90%', marginLeft: '5%', paddingBottom: 0}}
+                style={{width: '90%', marginLeft: '5%', paddingBottom: 0, boxShadow: "0", border: "2px solid #9cc6f0"}}
                 details={{
                     title: "About Me",
-                    titleTextStyle: Styles.Fonts.lessonHeaderXL,
+                    titleTextStyle: Styles.Fonts.lessonHeaderShadedXL,
                     pictureFlexSize: 5,
                 }}
                 >
@@ -155,7 +155,7 @@ export default function WorksMenu() {
 
       function personalCard(){
         return(
-            <OstCard style={{maxHeight: 500, overflowY: 'auto'}}>
+            <OstCard style={{maxHeight: 500, minHeight: 500, overflowY: 'auto'}}>
 
                 <p style={Styles.Fonts.lessonHeaderShaded}>Personal Story</p>
 
@@ -187,7 +187,7 @@ export default function WorksMenu() {
 
       function careerHistoryCard(){
         return(
-            <OstCard style={{maxHeight: 500, overflowY: 'auto'}}>
+            <OstCard style={{maxHeight: 500, minHeight: 500, overflowY: 'auto'}}>
 
             <p style={Styles.Fonts.lessonHeaderShaded}>Career History</p>
 
@@ -210,7 +210,7 @@ export default function WorksMenu() {
 
       function renderWorkEthicCard(){
         return(
-            <OstCard style={{maxHeight: 500, overflowY: 'auto'}}>
+            <OstCard style={{maxHeight: 500, minHeight: 500, overflowY: 'auto'}}>
 
             <p style={Styles.Fonts.lessonHeaderShaded}>Strengths and Weaknesses</p>
 
