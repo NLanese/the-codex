@@ -5,8 +5,8 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState, userState } from "../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState, userState } from "../../jotai/atoms";
 
 // Styles 
 import Styles from "../../styles/styles";
@@ -17,10 +17,10 @@ export default function AccountMenu() {
     // State //
     ///////////
 
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
-    const [tabBar, setTabBar] = useRecoilState(tabBarState)
-    const [token, setToken] = useRecoilState(tokenState)
-    const [user, setUser] = useRecoilState(userState)
+    const [directory, setDirectory] = useAtom(directoryDataState)
+    const [tabBar, setTabBar] = useAtom(tabBarState)
+    const [token, setToken] = useAtom(tokenState)
+    const [user, setUser] = useAtom(userState)
 
     const [loggedIn, setLoggedIn] = useState(false)
 

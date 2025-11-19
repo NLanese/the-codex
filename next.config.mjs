@@ -8,7 +8,7 @@ const nextConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@helpers": path.resolve("api/helpers"),
-      "@recoil": path.resolve("recoil"),
+      "@jotai": path.resolve("jotai"),
       "@prismaDB": path.resolve("prisma/prismaDB.js"),
       "@graphql": path.resolve("api/graphql"),
       "@Ostrich": path.resolve("OstrichComponents"),

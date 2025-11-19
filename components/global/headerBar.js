@@ -2,8 +2,8 @@
 import React, {useEffect, useState, useRef} from "react";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState } from "../../jotai/atoms";
 
 // Next JS
 import { useRouter } from "next/router";
@@ -22,22 +22,25 @@ export const HeaderBar = ({
 // State //
 ///////////
 
-    const [token, setToken] = useRecoilState(tokenState)
+    const [token, setToken] = useAtom(tokenState)
 
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
+    // Which Tab Bar is Rendered (Guest, User, Lessons, Portfolio, etc)
+    const [directory, setDirectory] = useAtom(directoryDataState)
 
-    // Which Tab Bar is Rendered (Guest, User, Lessons, etc)
-    const [tabBar, setTabBar] = useRecoilState(tabBarState)
+    // Active Tab Bar
+    const [activeTabBar, setActiveTabBar] = useAtom(tabBarState)
 
-    // The Array of Objects to be used as Tabs
+    // The Array of Objects to be used as Tabs that are Rendered
     const [tabs, setTabs] = useState([])
     const tabsRef = useRef(tabs)
     useEffect(() => {
         tabsRef.current = tabs
     }, [tabs])
 
+    // Loading
     const [loading, setLoading] = useState(true)
 
+    // Router
     const router = useRouter()
 
 ////////////////
@@ -50,10 +53,19 @@ export const HeaderBar = ({
     }, [directory])
 
     useEffect(() => {
+        setLoading(true)
         if(tabs){
             setLoading(false)
         }
     }, [tabs])
+
+    useEffect(() => {
+        setLoading(true)
+        if(activeTabBar){
+            setLoading(false)
+        }
+    }, [activeTabBar])
+
 //////////////
 // Contants //
 //////////////
@@ -67,13 +79,13 @@ export const HeaderBar = ({
     // Determines which set of Tabs should render on the TabBar
     function determineTabs(){
         if (directory === "Portfolio"){
-            return portfolioTabs(setTabBar, router)
+            return portfolioTabs(setActiveTabBar, router)
         }
         else if (token){
-            return userTabs(setTabBar, router)
+            return userTabs(setActiveTabBar, router)
         }
         else if (!token){
-            return guestTabs(setTabBar, router)
+            return guestTabs(setActiveTabBar, router)
         }
     }
 
@@ -89,7 +101,8 @@ export const HeaderBar = ({
         else{
             return(
                 <OstrichTabBar 
-                startingTabByTitle={tabBar}
+                startingTabByTitle={activeTabBar}
+                startedActive={true}
                 tabs={tabs}
                 style={{
                     height: 55, width: '100%', 

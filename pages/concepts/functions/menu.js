@@ -2,8 +2,8 @@
 import React, {useEffect, useState} from "react";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { directoryDataState } from "../../../jotai/atoms";
 
 // Next JS
 import { useRouter } from "next/router";
@@ -19,7 +19,7 @@ const FunctionsMenu = ({}) => {
     // State //
     ///////////
 
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
+    const [directory, setDirectory] = useAtom(directoryDataState)
     const [loading, setLoading] = useState(true)
 
     const router = useRouter()

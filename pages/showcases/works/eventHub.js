@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
@@ -38,7 +38,8 @@ export default function EventHubPage(){
     // State //
     ///////////
 
-        const [directory, setDirectory] = useRecoilState(directoryDataState)
+        const [directory, setDirectory] = useAtom(directoryDataState)
+        const [activeTab, setActiveTab] = useAtom(tabBarState)
         const router = useRouter()
 
     ////////////////
@@ -46,8 +47,12 @@ export default function EventHubPage(){
     ////////////////
 
     useEffect(() => {
-    setDirectory("Portfolio")            
+        setDirectory("Portfolio")            
     }, [])
+
+    useEffect(() => {
+        setActiveTab("Official Works")
+      }, [])
 
     ////////////////
     // Renderings //
@@ -348,23 +353,27 @@ export default function EventHubPage(){
                         notes did not properly save nor did they properly connect to the event they were composed for. 
                     </p>
                     <div>
-                        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', width: '70%', marginLeft: '15%'}}>
+                        <div style={{
+                            display: 'flex', flexDirection: 'row', 
+                            justifyContent: 'space-around', gap: 45,
+                            width: '90%', marginLeft: '5%'
+                        }}>
                             <OstCard
                             templateStyle={1}
                             imageSrc={ehNotesLanding}
-                            style={{height: 600, width: 300, padding: 5}}
+                            style={{maxHeight: 600, width: 300, padding: 5}}
                             >
                             </OstCard>
                             <OstCard
                             templateStyle={1}
                             imageSrc={ehNotesTaken}
-                            style={{height: 600, width: 300, padding: 5}}
+                            style={{maxHeight: 600, width: 300, padding: 5}}
                             >
                             </OstCard>
                             <OstCard
                             templateStyle={1}
                             imageSrc={ehNotesTaked}
-                            style={{height: 600, width: 300, padding: 5}}
+                            style={{maxHeight: 600, width: 300, padding: 5}}
                             >
                             </OstCard>
                         </div>

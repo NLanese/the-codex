@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
@@ -30,7 +30,7 @@ export default function ProjectsMenu() {
     // State //
     ///////////
 
-      const [directory, setDirectory] = useRecoilState(directoryDataState)
+      const [directory, setDirectory] = useAtom(directoryDataState)
       const router = useRouter()
 
       ////////////////

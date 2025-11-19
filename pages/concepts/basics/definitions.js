@@ -2,8 +2,8 @@
 import React, {useEffect, useState} from "react";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
 import DefinitionList from "../../../OstrichComponents/DefinitionsList/DefinitionList";
@@ -19,7 +19,7 @@ const VariableDefinitions = ({}) => {
 // State //
 ///////////
 
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
+    const [directory, setDirectory] = useAtom(directoryDataState)
 
 ////////////////
 // UseEffects //

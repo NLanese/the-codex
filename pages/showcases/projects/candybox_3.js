@@ -3,8 +3,8 @@ import React, {useEffect, useState, useRef} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
@@ -23,7 +23,7 @@ export default function CandyBox3() {
     ///////////
 
         // Site Stuff
-        const [directory, setDirectory] = useRecoilState(directoryDataState)
+        const [directory, setDirectory] = useAtom(directoryDataState)
         const router = useRouter()
 
         // Accumulation and Basic Stats

@@ -6,9 +6,6 @@ import { DefaultSeo } from "next-seo";
 import Script from "next/script";
 import Head from "next/head";
 
-// Recoil
-import { RecoilRoot } from "recoil";
-
 // Apollo GraphQL
 import { ApolloProvider } from "@apollo/client";
 import client from "@graphql/Apollo/apolloClient";
@@ -59,7 +56,6 @@ class MyApp extends App {
 
         <div style={{margin: 0}}>
           <DefaultSeo title="Welcome" titleTemplate="%s  | The Codex" tyle={{margin: 0}}/>
-          <RecoilRoot style={{margin: 0}}>
             <ApolloProvider client={client}>
               {/* <Layout> */}
               <div style={{position: 'relative', margin: 0}}>
@@ -76,7 +72,6 @@ class MyApp extends App {
               </div>
               {/* </Layout> */}
             </ApolloProvider>
-          </RecoilRoot>
         </div>
       </div>
     );

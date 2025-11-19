@@ -3,17 +3,15 @@ import React, {useEffect, useState} from "react";
 import ReactModal from 'react-modal';
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { directoryDataState } from "../../../jotai/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-import { ST } from "next/dist/shared/lib/utils";
 
 export default function BetBotProjectPage() {
 
@@ -22,7 +20,7 @@ export default function BetBotProjectPage() {
     ///////////
 
         // Directory
-        const [directory, setDirectory] = useRecoilState(directoryDataState)
+        const [directory, setDirectory] = useAtom(directoryDataState)
 
         // Loading
         const [loading, setLoading] = useState(true)

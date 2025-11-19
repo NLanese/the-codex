@@ -1,14 +1,14 @@
 import DropdownShowcase from "../../../components/ostrich-components/dropdowns";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tabBarState, directoryDataState } from "../../../jotai/atoms";
 import { useEffect } from "react";
 
 
 export default function DropdownPage(){
 
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
+    const [directory, setDirectory] = useAtom(directoryDataState)
     
     useEffect(() => {
         setDirectory("Portfolio")

@@ -9,8 +9,8 @@ import {ODef} from "../../../../OstrichComponents/Text/OstrichDefinition";
 import {ODefContnet}  from "../../../../constants/oDefContent";
  
 // Recoil
-import { useRecoilState } from "recoil";
-import { directoryDataState, tabBarState } from "../../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { directoryDataState, tabBarState } from "../../../../jotai/atoms";
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
@@ -34,10 +34,10 @@ const PrintingLesson = ({}) => {
     const router = useRouter()
 
     // Makes sure URL Path is correct
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
+    const [directory, setDirectory] = useAtom(directoryDataState)
 
     // Makes sure Header Bar Highlights the Active Tab
-    const [tabBar, setTabBar] = useRecoilState(tabBarState)
+    const [tabBar, setTabBar] = useAtom(tabBarState)
 
     // Loading Check
     const [loading, setLoading] = useState(true)

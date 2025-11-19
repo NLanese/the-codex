@@ -1,11 +1,11 @@
 import OstCardShowcase from "../../../components/ostrich-components/ostCards";
-import { useRecoilState } from "recoil";
-import { tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tabBarState, directoryDataState } from "../../../jotai/atoms";
 import { useEffect } from "react";
 
 export default function OstCardsPage(){
 
-    const [directory, setDirectory] = useRecoilState(directoryDataState)
+    const [directory, setDirectory] = useAtom(directoryDataState)
     
     useEffect(() => {
         setDirectory("Portfolio")

@@ -2,8 +2,8 @@
 import React, {useEffect, useState} from "react";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tabBarState} from "../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tabBarState} from "../../jotai/atoms";
 
 // Constants
 import Styles from "../../styles/styles";

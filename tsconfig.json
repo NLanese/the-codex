@@ -20,7 +20,7 @@
     "baseUrl": "./",
     "paths": {
       "@helpers/*": ["api/helpers/*"],
-      "@recoil/*": ["recoil/*"],  
+      "@jotai/*": ["jotai/*"],  
       "@prismaDB": ["prisma/prismaDB.js"],
       "@graphql/*": ["api/graphql/*"],
       "@Ostrich/*": ["OstrichComponents/*"],

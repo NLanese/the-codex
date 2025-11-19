@@ -5,8 +5,8 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState, userState } from "../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState, userState } from "../../jotai/atoms";
 
 export default function LoginScreen(){
 

@@ -3,7 +3,7 @@ import React, {useEffect, useState, useRef, useLayoutEffect} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
+import { useAtom } from "jotai";
 
 // Styles
 import { candyBoxStyles } from "./const/styles";

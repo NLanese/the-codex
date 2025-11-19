@@ -2,8 +2,8 @@
 import React, {useEffect, useState} from "react";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { directoryDataState } from "../../../jotai/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
@@ -37,7 +37,7 @@ export default function BoardGameMasterAIProjectPage() {
         const [messages, setMessages] = useState([])
 
         // Directory
-        const [directory, setDirectory] = useRecoilState(directoryDataState)
+        const [directory, setDirectory] = useAtom(directoryDataState)
 
     ///////////////
     // UseEffect //

@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 // Recoil
-import { useRecoilState } from "recoil";
-import { tokenState, tabBarState, directoryDataState } from "../../../recoil/atoms";
+import { useAtom } from "jotai";
+import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
@@ -36,7 +36,8 @@ export default function KNMPage(){
     // State //
     ///////////
 
-        const [directory, setDirectory] = useRecoilState(directoryDataState)
+        const [directory, setDirectory] = useAtom(directoryDataState)
+        const [activeTab, setActiveTab] = useAtom(tabBarState)
         const router = useRouter()
 
         const [renderListing, setRenderListing] = useState(true)
@@ -44,13 +45,18 @@ export default function KNMPage(){
         const [renderCal, setRenderCal] = useState(true)
         const [renderAccStruc, setRenderAccStruc] = useState(true)
 
+
     ////////////////
     // UseEffects //
     ////////////////
 
-    useEffect(() => {
-    setDirectory("Portfolio")            
-    }, [])
+        useEffect(() => {
+            setDirectory("Portfolio")            
+        }, [])
+
+        useEffect(() => {
+            setActiveTab("Official Works")
+        }, [])
 
     ////////////////
     // Renderings //
