@@ -336,14 +336,14 @@ export default function BetBotProjectPage() {
         function renderIntro(){
             return(
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <div style={{...Styles.Sections.lessonContent, width: '70%', marginLeft: '15%', marginTop: 45}}>
-                        <p style={Styles.Fonts.basic}>
+                    <div style={{...Styles.Sections.lessonContent, width: '80%', marginLeft: '10%', marginTop: 15}}>
+                        <p style={Styles.Fonts.basicX}>
                         Here I have created a system that uses two seperate webscrapers combined with some AI to find all of today's
                         NBA Bets from FanDuel, gets all relevant stats from the NBA API, sends the Data to an AI and determines how good 
                         or bad a bet may be. 
                         </p>
 
-                        <p style={Styles.Fonts.basic}>
+                        <p style={Styles.Fonts.basicX}>
                         As mentioned, all bets below are FanDuel odds pulled using the Odds API. Once bets are selected, all of the relevant
                         infromation is scraped from the NBA API. This includes things like each player's full season game log, the team stats, and
                         the specific head to head matchup stats between each team. 
@@ -352,13 +352,13 @@ export default function BetBotProjectPage() {
                         significant player / general team analysis. 
                         </p>
 
-                        <p style={Styles.Fonts.basic}>
+                        <p style={Styles.Fonts.basicX}>
                         Using all of the information given the AWS Model with the knowledge base then determines the odds of your bet coming to fruition. 
                         If the AI's odds look better than what FanDuel has, it will return to you that it is a good value bet. If the AI determines
                         the odds of your bet hitting are above 50%, it will return to you that it is a secure bet. 
                         </p>
 
-                        <p style={Styles.Fonts.basic}>
+                        <p style={Styles.Fonts.basicX}>
                         I'm pretty sure I have to say something about responsible gambling here... so gamble responsibly, I'm not endorsing gambling. You get it.  
                         </p>
                     </div>
@@ -616,6 +616,8 @@ export default function BetBotProjectPage() {
     return (
         <div style={{marginTop: 20}}>
             <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
+            <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
+            <p style={{...Styles.Fonts.basicXL, color: 'red'}}>Please forgive any errors, as much of this page's functionalities are being actively worked on or in beta</p>
             <div>
                 {renderAddbetModal()}
                 {renderIntro()}

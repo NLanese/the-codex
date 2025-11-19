@@ -455,13 +455,15 @@ export default function IEEEPage(){
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
+
+                    <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
                         {renderAccountTypes()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
                         {renderCalendarDetails()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
                         {renderAccountStructure()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
         </div>
