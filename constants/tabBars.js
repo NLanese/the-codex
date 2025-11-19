@@ -53,7 +53,7 @@ export const portfolioTabs = (setTabBar, router) => {
         },
         dropdown: {
             openOnHover: true,
-            drawers: proWorks,
+            drawers: proWorks(router),
             onDrawerClick: (drawer) => { handleShowcaseDrawer('works', drawer, router)}
         }
     },
