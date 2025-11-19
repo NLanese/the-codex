@@ -1,17 +1,22 @@
 import { BedrockAgentRuntimeClient, RetrieveAndGenerateCommand } from "@aws-sdk/client-bedrock-agent-runtime";
 
-const client = new BedrockAgentRuntimeClient({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-});
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
+
+  const client = new BedrockAgentRuntimeClient({
+    region: process.env.AWS_REGION,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+  });
+
+  console.log("Region at runtime:", process.env.AWS_DEFAULT_REGION);
+  console.log("Access key:", !!process.env.AWS_ACCESS_KEY_ID);
+  console.log("Secret key:", !!process.env.AWS_SECRET_ACCESS_KEY);
+
 
   try {
     const { message } = req.body;
