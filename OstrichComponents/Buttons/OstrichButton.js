@@ -6,10 +6,13 @@ export const OstrichButton = ({
     inactiveStyle=false,
     title,
     caption=false,
-    activeColor,
+    activeColor='#9cc6f0',
     inactiveColor="grey",
     titleStyle,
     captionStyle,
+
+    imgOnly,
+    imgSrc,
 
     isActive=true,
     onSubmit,
@@ -51,11 +54,11 @@ export const OstrichButton = ({
                     boxShadow: '1px 2px 3px 2px rgba(0, 0, 0, 0.2)',
                     fontFamily: "Gilroy"
                 }
-                setStyleFinal({...temp, style})
+                setStyleFinal({...temp, ...style})
                 if (!inactiveStyle){
                     inactiveStyle = style
                 }
-                setInactiveStyleFinal({...temp, inactiveStyle})
+                setInactiveStyleFinal({...temp, ...inactiveStyle})
 
             }
 
@@ -139,6 +142,13 @@ export const OstrichButton = ({
     ////////////////
 
     function renderButtonText(){
+
+        if (imgOnly){
+            return(
+                <img src={imgSrc} style={{maxWidth: ('100%'), maxHeight: '100%', objectFit: "contain"}} />
+            )
+        }
+
         if (!caption){
             return(
                 <div style={{...titleStyle}}>
@@ -146,6 +156,7 @@ export const OstrichButton = ({
                 </div>
             )
         }
+
         else{
             return(
                 <div style={{justifyContent: 'center', alignItems: 'center'}}>
