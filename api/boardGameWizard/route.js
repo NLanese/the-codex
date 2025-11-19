@@ -30,6 +30,13 @@ export async function POST(req) {
     return Response.json({ reply: response.output?.text || "No response" });
   } catch (err) {
     console.error("ERROR IN BOARD GAME WIZARD API ROUTE --- ", err);
-    return Response.json({ reply: ("Something went wrong. \n", err) }, { status: 500 });
+  
+    return Response.json(
+      {
+        reply: "Something went wrong.",
+        error: err instanceof Error ? err.message : JSON.stringify(err),
+      },
+      { status: 500 }
+    );
   }
 }
