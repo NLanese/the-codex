@@ -53,15 +53,13 @@ export default function IEEEPage(){
             return(
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
-                        The Flaghship app for Therapy in Motion PA, the Kidz-N-Motion app is designed to 
-                        connect children facing disabilities to their own professional Physical Therapist.
+                        The Flaghship app for IEEE, this app reaches millions of users across the world, and it is a priviledge 
+                        to say that I have contributed to such a widely used application.
                     </p>
                     <p style={Styles.Fonts.basicX}>
-                        Founded by <a href="https://www.linkedin.com/in/dr-lafonda-beneby-pt-dpt-982255134/">Dr Lafonda Benelby</a>, Kidz-N-Motion was created during covid, as Dr LaFonda and her 
-                        in-school Physial Therapist peers found themselves unable to give their clients the critical 
-                        services they needed. While relaying instructions for exercises and other activities to parents
-                        was possible, there existed no way to <strong>show</strong> the children the exercises they should 
-                        be doing, nor was there way way to actually confirm whether the activities were completed.
+                        Published in 2014, the app's codebase and support structure was built well before my arrival-- while also being built well before
+                        more modern Native frameworks had been released. That meant that the application was entirely powered by Cordova, a framework that had become
+                        fully deprecated by the time I had arrived at IEEE.
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         In order to reconect with children who desperately needed her and her peers' assistance, Dr LaFonda 
@@ -444,7 +442,7 @@ export default function IEEEPage(){
         <div style={{backgroundColor: '#00629B',  height: '100%', marginTop: -20}}>
             <div style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
-                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Kidz-N-Motion</div>
+                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>The IEEE App</div>
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}

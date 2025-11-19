@@ -55,7 +55,8 @@ export default function WorksMenu() {
     const personalWorks = [
         {img: BoardGameAI, url: "/showcases/projects/boardgame_master_ai", name: "Boardgame Wizard AI", internal: true},
         {img: BetBotImg, url: "/showcases/projects/betbot", name: "NBA Bet Bot", internal: true},
-        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3I", internal: true}
+        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3", internal: true},
+        {img: OstCompImg, url: "/showcases/ostrich-components/menu", name: "Ostrich Components", internal: true}
     ]
 
     ////////////////
@@ -91,41 +92,42 @@ export default function WorksMenu() {
 
                         }}> 
                     <p>
-                    Creation has always been a passion of mine. As a child, before I could even properly formulate sentences I could often be found
-                    constructing elaborate pathways for my Thomas the Tank Engines, and as I grew that graduated from basic toy trains to legos and magnetic toys.
-                    I always loved to build, as one of my favorite Christmas Gifts as a child was a iCoaster, a set a magnetic roller coaster pieces you could 
-                    connect in a way to create an endless loop of marbles being lifted up an elevator system, sent down the track and returned back to the elevator. 
-                    Immediately, much to my father's shagrin I demanded we create our own unique coaster as oppsoed to following the instructions provided. 
+                    Creation has always been a passion of mine. As a child, before I could even properly formulate sentences, I could often be found
+                    constructing elaborate pathways for my Thomas the Tank Engines. As I grew, that graduated from basic toy trains to Legos and magnetic toys.
+                    I always loved to build; one of my favorite Christmas gifts as a child was an iCoaster, a set of magnetic roller coaster pieces you could 
+                    connect to create an endless loop of marbles being lifted up an elevator system, sent down the track, and returned back to the elevator. 
+                    Immediately, much to my father's chagrin, I insisted we create our own unique coaster instead of following the instructions provided. 
                     </p>
 
                     <p>
-                    Building something often times was not enough for my younger self-- I did not want to just follow a recipe, I wanted to create something
-                    unique to me and my expertse; something that had never been made before. That yearning stayed with me my entire life, and even as my passion
-                    for physical construction began to wane, I never relented in creating things. It was not long before I discovered just how powerful a tool modern 
-                    computing is, and how endless the possibilities for creation are with Software in particular. Once I began taking Computer Science 
-                    classes in High School, my path was chosen and there was no forgoing it. 
+                    Building something was often not enough for my younger self — I didn’t want to just follow a recipe; I wanted to create something
+                    uniquely mine, something shaped by my own imagination and expertise. That yearning stayed with me throughout my life, and even as my passion
+                    for physical construction began to fade, I never relented in creating things. It wasn’t long before I discovered just how powerful a tool modern 
+                    computing is, and how endless the possibilities for creation are with software in particular. Once I began taking Computer Science 
+                    classes in high school, my path was chosen, and there was no turning back. 
                     </p>
 
                     <p>
-                    I vividly remember making my first 'programs' on <a href="https://www.alice.org/get-alice/alice-2/">Alice.</a> For a final project we instructed to make a 
-                    simple game. Most classmates created games like tic-tac-toe, or a stationary carnival-game like shooter, where users just pressed 'Space' to fire at targets that moved in and 
-                    out of frame. I instead opted to make a more complicated "Call of Duty" clone, with full user interface, movement, and aiming. Enough was never enough for me,
-                    when I create something I take extreme pride in it. 
+                    I vividly remember making my first “programs” on <a href="https://www.alice.org/get-alice/alice-2/">Alice.</a> For a final project we were instructed to build a 
+                    simple game. Most classmates created things like tic-tac-toe or a stationary carnival-style shooting game, where users simply pressed “Space” to fire at moving targets. 
+                    I instead attempted a more complicated “Call of Duty”–style clone, complete with a user interface, movement, and aiming. Enough was never enough for me;
+                    when I create something, I take extreme pride in it. 
                     </p>
 
                     <p>
-                    Fittingly, I began my professional journey as a software developer hitting the ground in a full sprint. Hired as part of a brand new 2 man team by a Studio that 
-                    had never before dipped its toes in the Technology Sector, there was an immense amount of both work and learning needed to be accomplished. The team lead ended up departing from 
-                    the company less than three months in which shifted all of his responsibilities on to me. This meant that on my first job ever as a software engineer, I had to 
-                    master React Native / Expo as well as learn PostgreSQL and PlanetScale Database hosting on the fly while continuing to build the App, Website, and Database as a satisfactory rate.     
+                    Fittingly, I began my professional journey as a software developer in a full sprint. I was hired as part of a brand-new two-man team by a studio that 
+                    had never before dipped its toes into the technology sector, so there was an immense amount of both work and learning to take on. Less than three months in, 
+                    the team lead departed the company, shifting all of his responsibilities onto me. This meant that on my first job as a software engineer, I had to 
+                    master React Native / Expo and learn PostgreSQL and PlanetScale database hosting on the fly — all while continuing to build the app, website, and database at a satisfactory pace.     
                     </p>
 
                     <p>
-                    From here, when I eventually moved on from the Studio, I kept the remaining client, Kidz-n-Motion and have since then mananaged the production and maintenance of the 
-                    Kidz-N-Motion site, App, and Database. While managing these responsibilities, I also began my adventure with IEEE. I was extremely fortunate to land in a 
-                    more stable environment following what had been an exceedingly tumultuous work environment. From here I was able to grow and develop even momre as software engineer, 
-                    working with a team for the first time in my career and maintaining several much more massive codebases for Apps that are used by millions of people around the world. 
+                    When I eventually moved on from the studio, I kept the remaining client, Kidz-n-Motion, and have since managed the production and maintenance of the 
+                    Kidz-n-Motion site, app, and database. While handling those responsibilities, I also began my journey with IEEE. I was extremely fortunate to land in a 
+                    far more stable environment after what had been an exceedingly tumultuous early work experience. There I was able to grow and develop even further as a software engineer, 
+                    working with a team for the first time in my career and maintaining several significantly larger codebases for apps used by millions of people around the world. 
                     </p>
+
                     </div>
                     
                 </OstCard>
@@ -154,8 +156,7 @@ export default function WorksMenu() {
         }
 
         return(
-            <div style={{marginTop: 20}}>
-                <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Professional Works</div>
+            <div style={{marginTop: 0}}>
                 {arrayOfProjectArrays.map((arr, i) => {
                     return (renderProjectsRow(arr, i))
                 })}
@@ -224,7 +225,9 @@ export default function WorksMenu() {
         <div style={{marginLeft: '5%', width: '90%'}}>
             <p style={Styles.Fonts.pageTitle}>Nick Lanese's Portfolio</p>
             {renderAboutMe()}
+            <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Professional Works</div>
             {renderProjects(proWorks)}
+            <div style={Styles.Fonts.lessonHeaderXL}>Nick Lanese's Personal Projects</div>
             {renderProjects(personalWorks)}
         </div>
     )

@@ -10,6 +10,7 @@ export const FormMultipleChoice = ({
     titleStyle,             // Style of the Title for the Multiple Choice Question
     captionStyle,
     fieldTextStyle,
+    inForm=true,
     
     onChange,               // Function to fire whenever a value is selected or unselected
 
@@ -358,7 +359,12 @@ export const FormMultipleChoice = ({
             for (let i = 0; i < fieldObj?.options.length; i += 3) {
                 const rowItems = fieldObj.options.slice(i, i + 3);
                 rows.push(
-                    <div key={i} style={{ display: 'flex', flex: 4, flexDirection: 'row',  justifyContent: 'flex-start', marginBottom: 10, width: '90%', marginBottom: 10}}>
+                    <div key={i} 
+                    style={{ 
+                    display: 'flex', flex: 4, flexDirection: 'row',  
+                    justifyContent: 'flex-start', 
+                    marginBottom: 10, width: (inForm ? '90%' : '100%'),
+                    }}>
                         {renderOptionsRow(rowItems)}
                     </div>
                 );
@@ -420,10 +426,10 @@ export const FormMultipleChoice = ({
             }
             else{
                 return(
-                    <div style={{width: '95%', height: '10%'}}>
+                    <div style={{width: (inForm ? '95%' : '100%'), height: '10%'}}>
                         {renderBubbleAndTitle()}
                         {renderCaptionAndDetails()}
-                        <div style={{padding: 5, paddingTop: 15,}}>
+                        <div style={{padding: 5, paddingTop: 15}}>
                             {renderOptions()}
                         </div>
                     </div>
