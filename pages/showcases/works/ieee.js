@@ -85,19 +85,19 @@ export default function IEEEPage(){
                     <div style={{flexDirection: 'row', display: 'flex', gap: 70}}>
                         <OstCard
                         templateStyle={1}
-                        style={{height: 580, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
+                        style={{height: 450, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
                         imageSrc={listing}
                         >
-                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 58, fontWeight: 600}}>
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 48, fontWeight: 600}}>
                                 <a href="https://play.google.com/store/apps/details?id=org.ieee.mobile.mcoe.ieee&hl=en_US">Android Listing</a>
                              </p>
                         </OstCard>
                         <OstCard
                         templateStyle={1}
-                        style={{height: 580, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
+                        style={{height: 450, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
                         imageSrc={listing2}
                         >
-                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 58, fontWeight: 600}}>
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 48, fontWeight: 600}}>
                                 <a href="https://apps.apple.com/us/app/ieee/id1259370915">iOS Listing</a>
                             </p>
                         </OstCard>
