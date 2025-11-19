@@ -49,14 +49,14 @@ export default function WorksMenu() {
         {img: KNM, url: "/showcases/works/kidz-n-motion", name: "Kidz-N-Motion App", internal: true},
         {img: knmSite, url: "https://kidz-n-motion.app/", name: "Kidz-N-Motion Website", internal: false},
         {img: ieee, url: "/showcases/works/ieee", name: "IEEE (Flagship App)", internal: true},
-        {img: eventHub, url: "/showcases/works/eventHub", name: "EventHub (IEEE Events App)", internal: true}
+        {img: eventHub, url: "/showcases/works/eventhub", name: "EventHub (IEEE Events App)", internal: true}
     ]
 
     const personalWorks = [
         {img: BoardGameAI, url: "/showcases/projects/boardgame_master_ai", name: "Boardgame Wizard AI", internal: true},
+        {img: OstCompImg, url: "/showcases/ostrich-components/menu", name: "Ostrich Components", internal: true},
         {img: BetBotImg, url: "/showcases/projects/betbot", name: "NBA Bet Bot", internal: true},
-        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3", internal: true},
-        {img: OstCompImg, url: "/showcases/ostrich-components/menu", name: "Ostrich Components", internal: true}
+        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3", internal: true}
     ]
 
     ////////////////
@@ -100,7 +100,7 @@ export default function WorksMenu() {
                     </p>
 
                     <p>
-                    Building something was often not enough for my younger self — I didn’t want to just follow a recipe; I wanted to create something
+                    Building something was often not enough for my younger self. I did not want to simply follow a recipe; I wanted to create something
                     uniquely mine, something shaped by my own imagination and expertise. That yearning stayed with me throughout my life, and even as my passion
                     for physical construction began to fade, I never relented in creating things. It wasn’t long before I discovered just how powerful a tool modern 
                     computing is, and how endless the possibilities for creation are with software in particular. Once I began taking Computer Science 

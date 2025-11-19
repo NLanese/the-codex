@@ -58,7 +58,7 @@ export const FormMultipleChoice = ({
                 fieldObj.isValid = true
                 prevValueRef.current = value;
                 if (onChange) {
-                    onChange(fieldObj);
+                    onChange({...fieldObj});
                 }
             }
         }, [value]);

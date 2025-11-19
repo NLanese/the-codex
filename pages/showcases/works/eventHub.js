@@ -21,7 +21,9 @@ const selectEv = "../../../assets/showcase_images/ieee/selectEvent.png";
 
 const safeEhal = "../../../assets/showcase_images/ieee/safeAttendee.png";
 const safeSel = "../../../assets/showcase_images/ieee/safeSelect.png";
-
+const ehNotesLanding = "../../../assets/showcase_images/ieee/ehNotesLanding.png";
+const ehNotesTaked = "../../../assets/showcase_images/ieee/ehNotesTaked.png";
+const ehNotesTaken = "../../../assets/showcase_images/ieee/ehNotesTaken.png";
 
 
 
@@ -311,7 +313,8 @@ export default function EventHubPage(){
                     <p style={Styles.Fonts.basicX}>
                        As you may have seen in some of the screen shots above, there is an overlap between the upper UI of Android phones and the 
                        top sections of our app page. We were unsure whether it was the angular upgrade during the move to higher Android SDKs or 
-                       some other upgrade, but we seemed to have lost the use of the safe area package we were using. I fixed this
+                       some other upgrade, but we seemed to have lost the use of the safe area package we were using. I fixed this, greatly enhancing User 
+                       Experience on newer Android devices running Android OS 15+
                     </p>
                     <div>
                         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', width: '70%', marginLeft: '15%'}}>
@@ -324,6 +327,43 @@ export default function EventHubPage(){
                             <OstCard
                             templateStyle={1}
                             imageSrc={safeEhal}
+                            style={{height: 600, width: 300, padding: 5}}
+                            >
+                            </OstCard>
+                        </div>
+                    </div>
+
+                </div>
+            )
+        }
+
+        // Fifth Part Account Structure
+        function renderTakeNotes(){
+            return(
+                <div style={{paddingTop: 20}}>
+                    <p style={Styles.Fonts.basicX}>
+                        One of the very first contributions I had to the EventHub App was the cleaning and resotring of the 
+                        Notes Taking Feature. This would allow users to take notes for specific events, where the notes would then 
+                        be saved upon reentering the event on the app. When I came to IEEE, this feature was not working as anticipated as 
+                        notes did not properly save nor did they properly connect to the event they were composed for. 
+                    </p>
+                    <div>
+                        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', width: '70%', marginLeft: '15%'}}>
+                            <OstCard
+                            templateStyle={1}
+                            imageSrc={ehNotesLanding}
+                            style={{height: 600, width: 300, padding: 5}}
+                            >
+                            </OstCard>
+                            <OstCard
+                            templateStyle={1}
+                            imageSrc={ehNotesTaken}
+                            style={{height: 600, width: 300, padding: 5}}
+                            >
+                            </OstCard>
+                            <OstCard
+                            templateStyle={1}
+                            imageSrc={ehNotesTaked}
                             style={{height: 600, width: 300, padding: 5}}
                             >
                             </OstCard>
@@ -352,7 +392,8 @@ export default function EventHubPage(){
                         {renderAddingEvents()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Implementing a Safe Area</div>
                         {renderSafeArea()}
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Taking Notes</div>
+                        {renderTakeNotes()}
                 </div>
             </div>
         </div>
