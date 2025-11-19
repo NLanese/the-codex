@@ -63,7 +63,7 @@ export default function EventHubPage(){
                         App Stores, whether Google or Apple. As such, a single application was made to host all IEEE Events, Conferences, and Official Meetings.
                     </p>
                     <p style={Styles.Fonts.basicX}>
-                        IEEE initially had every Event HHoster create its own app-- this was eventaully caught and declined by Apple, with the threat that future independant apps for 
+                        IEEE initially had every Event Hoster create its own app-- this was eventaully caught and declined by Apple, with the threat that future independant apps for 
                         events would be barred from submission. As a result, the EventHub app was made, and within it all IEEE sponsored events were made accessible.
                     </p>
                     <p style={Styles.Fonts.basicX}>
@@ -94,7 +94,7 @@ export default function EventHubPage(){
                     </div>
                     <div style={{flex: 6, padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
-                            Since my employment at IEEE in 2021, I resumed the responsibilites left by the employee before me in building and 
+                            Since my employment at IEEE in 2023, I resumed the responsibilites left by the employee before me in building and 
                             adding the Event Hub app to the Google Play Console. When I had first started, the App wazs built using Angular / Cordova 
                             with some Capacitor packages hewn in. Since then, I have converted the App to work on the much more modern Capacitor Engine
                             opposed to the now deprecated Cordova. 

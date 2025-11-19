@@ -13,7 +13,8 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 
 // Assets
-const listing = "../../../assets/showcase_images/knm/AppListing.png";
+const listing = "../../../assets/showcase_images/ieee/ieeeAndListing.png";
+const listing2 = "../../../assets/showcase_images/ieee/ieeeAppListing.png";
 const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
 const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
 const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
@@ -54,7 +55,9 @@ export default function IEEEPage(){
                 <div style={{paddingTop: 20}}>
                     <p style={Styles.Fonts.basicX}>
                         The Flaghship app for IEEE, this app reaches millions of users across the world, and it is a priviledge 
-                        to say that I have contributed to such a widely used application.
+                        to say that I have contributed to such a widely used application. During my time at IEEE, I have maintained and 
+                        updated forward facing technologies to better the user experience of millions of users, while within my three years
+                        helping to increase total user downloads by about 30,000 a year.
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         Published in 2014, the app's codebase and support structure was built well before my arrival-- while also being built well before
@@ -62,13 +65,9 @@ export default function IEEEPage(){
                         fully deprecated by the time I had arrived at IEEE.
                     </p>
                     <p style={Styles.Fonts.basicX}>
-                        In order to reconect with children who desperately needed her and her peers' assistance, Dr LaFonda 
-                        founded Therapy In Motion and began the creation of her Kidz-N-Motion app. This app allows clients and their 
-                        parents to be able to reach their Physical Therapists at the click of a button through in-app instant messaging. 
-                        Therapists can assign work outs to their clients, and each work out comes with its own pre-rendered animation 
-                        of a child doing the exercise in order for the client to follow along. Therapists can also record the client 
-                        during in-person sessions and is able to easily send the videos over to the parent through the app's record feature.
-                        This allows parents to see how their child progresses along their Physial Therapy journey. 
+                        Additionally, my time at IEEE saw a change in leadership at the CTO position, and with that change came some 
+                        repriortization on client-facing products. This lead to some major overhauls of the IEEE App that I was a large 
+                        and often times invaluable piece of.
                     </p>
                 </div>
             )
@@ -77,28 +76,38 @@ export default function IEEEPage(){
         // Second Part ( Distribution )
         function renderAppListing(){
             return(
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 6}}>
+                <div style={{padding: 20}}>
+                    <div style={{flexDirection: 'row', display: 'flex', gap: 70}}>
                         <OstCard
-                            templateStyle={1}
-                            imageSrc={listing}
+                        templateStyle={1}
+                        style={{height: 580, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
+                        imageSrc={listing}
                         >
-                            <a href="https://apps.apple.com/us/app/kidz-n-motion/id1661352847">iOS Listing</a> / <a href="">Android Listing</a>
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 58, fontWeight: 600}}>
+                                <a href="https://play.google.com/store/apps/details?id=org.ieee.mobile.mcoe.ieee&hl=en_US">Android Listing</a>
+                             </p>
+                        </OstCard>
+                        <OstCard
+                        templateStyle={1}
+                        style={{height: 580, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
+                        imageSrc={listing2}
+                        >
+                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 58, fontWeight: 600}}>
+                                <a href="https://apps.apple.com/us/app/ieee/id1259370915">iOS Listing</a>
+                            </p>
                         </OstCard>
                     </div>
-                    <div style={{flex: 6, padding: 20, paddingTop: 0}}>
+                    <div style={{padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
-                            Released to App Stores (iOS and Google Play) in 2021, the Kidz-N-Motion app has many users, 
-                            therapists and clients and their parents alike. Created using React Native (Vanilla) and up to date 
-                            with modern SKDs, APIs, and compliances; I have been the sole architect of the Kidz-N-Motion app, overseeing 
-                            its production, development, and publication. I am also in charge of both the Google Play and Apple 
-                            Developer Accounts. 
+                            As previously eluded to and as will be mentioned again under my contributions to the IEEE EventHub, one of the 
+                            major responsibilities of mine was keeping the app compliant with the ever changing Apple and Google Play Store Policies. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            This was my very first professional endaever as a computer scientist, and as such it came with its fair share 
-                            of issues and complications. For example, this application was my first forray into Gradle Build Errors on Android's side 
-                            and Pod issues on Apple's side. Having no senior member to turn to-- as well as no chatbot assistants yet to asisst me; 
-                            I was able to solve all compatability issues and always managed to successfully build and distribute the app. 
+                            Such work includes the manual addition of PrivacyManifests for Apple Builds, as many of the libraries used in the app
+                            were deprecated and did not provide the modern security and permission information that iOS now looks for. 
+                            While the manual PrivacyManifests enabled us to continue releasing updates with new content and bug fixes on our anticipated
+                            schedule, it was not a permanent fix. This led me to integrate Capacitor into the app, leading to a Capacitor/Cordova hybrid project.
+                            In order to do this, however, I first needed to upgrade the Angular and Ionic versions.
                         </p>
                     </div>
                 </div>
