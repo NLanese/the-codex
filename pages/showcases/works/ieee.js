@@ -62,7 +62,7 @@ export default function IEEEPage(){
                         The Flaghship app for IEEE, this app reaches millions of users across the world, and it is a priviledge 
                         to say that I have contributed to such a widely used application. During my time at IEEE, I have maintained and 
                         updated forward facing technologies to better the user experience of millions of users, while within my three years
-                        helping to increase total user downloads by about 30,000 a year.
+                        helping to increase total user downloads by about 75,000 a year.
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         Published in 2014, the app's codebase and support structure was built well before my arrival-- while also being built well before
@@ -81,7 +81,7 @@ export default function IEEEPage(){
         // Second Part ( Distribution )
         function renderAppListing(){
             return(
-                <div style={{padding: 20}}>
+                <div style={{paddingTop: 30}}>
                     <div style={{flexDirection: 'row', display: 'flex', gap: 70}}>
                         <OstCard
                         templateStyle={1}
@@ -269,8 +269,7 @@ export default function IEEEPage(){
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
-                        As previously mentioned there are three different expected user types for this app. Clients (Children needing Physical Therapy), Parents, and Therapist / Administrators. 
-                        Each user type will have a different in-app experience, as they each come to the app with a different purpose in mind. 
+                        Perhaps the largest undertaking I've been a part of at IEEE was the reinvention of the User Dashboard for the Flagship App.
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
@@ -460,15 +459,16 @@ export default function IEEEPage(){
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Account Types</div>
+                        {renderAccountTypes()}
 
                     <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Types</div>
-                        {renderAccountTypes()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div>
-                        {renderCalendarDetails()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div>
-                        {renderAccountStructure()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
+                    
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div> */}
+                        {/* {renderCalendarDetails()} */}
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div> */}
+                        {/* {renderAccountStructure()} */}
+                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
                 </div>
             </div>
         </div>
