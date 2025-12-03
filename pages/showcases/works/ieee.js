@@ -130,7 +130,7 @@ export default function IEEEPage(){
                     transformStyle: "preserve-3d",
                     transition: "transform 0.6s",
                     transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 600
+                    height: 600, overflowY: "auto"
                 }
             )
             
@@ -156,26 +156,22 @@ export default function IEEEPage(){
                         style={cardStyle(card1)}
                         >
                             <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Child Account</div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'teal'}}>New Modules</div>
                                 <p style={Styles.Fonts.basic}>
-                                    Children have pretty minimal functionality in order to maintain simplicity and prevent 
-                                    the Children from getting lost within the app. 
+                                    The newer designs were much less rigid and block like than their original counter parts. 
+                                    Despite looking more simple, the new modules actually contain more information than their original
+                                    counterparts do.  
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    They are able to watch and complete workout videos only when their Physical Therapist has assigned it 
-                                    to them. This prevents the child from attempting an exercise they may not be ready for. Upon completion
-                                    of the 1 minute video, the child is asked 3 question. 
-                                </p>
-                                <ol>
-                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without help from a parent</li>
-                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without leaning on something for support</li>
-                                    <li style={Styles.Fonts.basic}>How long were you able to complete the video for the full minute, at least 30 seconds, or less than 30 seconds</li>
-                                </ol>
-                                <p style={Styles.Fonts.basic}>
-                                    Depending on these answers, the child is awarded one of three medals-- Gold, Silver, or Bronze. 
+                                    For starters, the Events Cards are now colored to indicate what type of Event the are (Hybrid, In Person, or fully Remote)
+                                    Using flex-box sizing and dynamic SCSS, the text size is now dependent on the screen size. This means to say the fonts are bigger on 
+                                    larger screens. This prevents longer titles from being cut off on smaller phones while also allowing the Event modules to look good 
+                                    on bigger devices like iPads. 
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    Finally, the Child is also able to check their calendar which indicates when assignments are due or when appointments are scheduled. 
+                                    The People Cards had one major transformation in mind. The Profile Pictures on the originals were way too small, and in the newer
+                                    designs they were intended to be the focus of the People Cards. We kept the coloring, as the lighter blue band around this individual's profile
+                                    indicates their "Traiditonal Member" Member Grade. Other grades will have different colors. 
                                 </p>
                             </div>
                         </OstCard>
@@ -279,9 +275,9 @@ export default function IEEEPage(){
                         <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
                     </p>
                     <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 40}}>
-                        {renderCardOne()}
                         {renderCardTwo()}
                         {renderCardThree()}
+                        {renderCardOne()}
                     </div>
                     <p style={Styles.Fonts.basicX}>
                         Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 

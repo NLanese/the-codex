@@ -134,7 +134,7 @@ export default function EventHubPage(){
                     transformStyle: "preserve-3d",
                     transition: "transform 0.6s",
                     transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 800,
+                    height: 800, overflowY: "auto",
                     marginLeft: 0, marginRight: 0
                 }
             )

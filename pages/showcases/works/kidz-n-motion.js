@@ -136,7 +136,7 @@ export default function KNMPage(){
                     transformStyle: "preserve-3d",
                     transition: "transform 0.6s",
                     transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 600
+                    height: 600, overflowY: "auto"
                 }
             )
             
