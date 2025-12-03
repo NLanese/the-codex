@@ -1024,6 +1024,7 @@ const ConditionalsLesson = ({}) => {
                             borderRadius: 15
                         }}
                         title={"Test your Conditonals Knowledge!"}
+                        fieldTextStyles={{fontSize: 16}}
                         fields={[
                             {
                                 id: '1',

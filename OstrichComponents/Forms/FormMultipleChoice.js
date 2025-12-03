@@ -401,16 +401,17 @@ export const FormMultipleChoice = ({
                 }
                 return(
                     <OstrichSelectionBox 
-                    option={opt}
-                    selected={isTagSelected(opt)}
-                    onSelect={handleInput}
-                    key={index}
-                    type={type}
-                    fieldObj={fieldObj}
-                    containerStyle={{width: 'calc(23.33%)', marginRight: '10%'}}
-                    singleOption={fieldObj?.singleOption !== null ? fieldObj.singleOption : true}
-                    min={fieldObj?.min ? fieldObj.min : null}
-                    limit={fieldObj?.limit ? fieldObj.limit : null}
+                        option={opt}
+                        selected={isTagSelected(opt)}
+                        onSelect={handleInput}
+                        key={index}
+                        type={type}
+                        fieldObj={fieldObj}
+                        containerStyle={{width: 'calc(23.33%)', marginRight: '10%'}}
+                        textStyle={fieldTextStyle}
+                        singleOption={fieldObj?.singleOption !== null ? fieldObj.singleOption : true}
+                        min={fieldObj?.min ? fieldObj.min : null}
+                        limit={fieldObj?.limit ? fieldObj.limit : null}
                     />
                 )
             })

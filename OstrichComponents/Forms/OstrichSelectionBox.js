@@ -9,7 +9,7 @@ export const OstrichSelectionBox = ({
     type,
     fieldObj = false,
 
-    titleStyle,
+    textStyle,
 
     optionType = "bubble",
     optionStyle,
@@ -123,7 +123,7 @@ export const OstrichSelectionBox = ({
                 marginBottom: 0,
                 textAlignVertical: 'center',
             }
-            setTitleStyleFinal({...tempTitle, ...titleStyle, ...fieldObj.textStyle})
+            setTitleStyleFinal({...tempTitle, ...textStyle, ...fieldObj.textStyle})
 
             let tempContainer = {display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', ...containerStyle}
             setContainerStyleFinal(tempContainer)
@@ -142,7 +142,7 @@ export const OstrichSelectionBox = ({
                 return titleStyleFinal
             }
             else{
-                return {...titleStyleFinal, ...option.textStyle}
+                return {...titleStyleFinal, ...option.textStyle, ...textStyle}
             }
         }
 
