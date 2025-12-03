@@ -15,9 +15,9 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 // Assets
 const listing = "../../../assets/showcase_images/ieee/ieeeAndListing.png";
 const listing2 = "../../../assets/showcase_images/ieee/ieeeAppListing.png";
-const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
-const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
-const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
+const new_ppl_and_events = "../../../assets/showcase_images/ieee/new_dash_poeple_and_events.png";
+const old_events = "../../../assets/showcase_images/ieee/old_events.png";
+const old_people = "../../../assets/showcase_images/ieee/old_people.png";
 const therCal = "../../../assets/showcase_images/knm/therCalView.png"
 const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
 const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
@@ -141,10 +141,11 @@ export default function IEEEPage(){
                     return(
                         <OstCard
                         templateStyle={1}
-                        imageSrc={chiScreen}
+                        imageSrc={new_ppl_and_events}
                         onClick={() => setCard1(!card1)}
                         style={cardStyle(card1)}
                         >
+                            New Dashboard featuring 'People' and 'Events'
                         </OstCard>
                     )
                 }
@@ -186,10 +187,11 @@ export default function IEEEPage(){
                     return(
                         <OstCard
                             templateStyle={1}
-                            imageSrc={therScreen}
+                            imageSrc={old_events}
                             onClick={() => setCard2(!card2)}
                             style={cardStyle(card2)}
                         >
+                            Previous 'Events' cards
                         </OstCard>
                     )
                 }
@@ -229,10 +231,11 @@ export default function IEEEPage(){
                     return(
                         <OstCard
                             templateStyle={1}
-                            imageSrc={parScreen}
+                            imageSrc={old_people}
                             onClick={() => setCard3(!card3)}
                             style={cardStyle(card3)}
                         >
+                            Previous 'People' cards
                         </OstCard>
                     )
                 }
@@ -269,7 +272,8 @@ export default function IEEEPage(){
             return(
                 <div>
                     <p style={Styles.Fonts.basicX}>
-                        Perhaps the largest undertaking I've been a part of at IEEE was the reinvention of the User Dashboard for the Flagship App.
+                        Perhaps the largest undertaking I've been a part of at IEEE was the reinvention of the User Dashboard for the Flagship App. This involved a complete overhaul of our
+                        previous dahsboard in both functionality and design. In this section, we will focus on my impacts on the design. 
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
@@ -459,7 +463,7 @@ export default function IEEEPage(){
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Account Types</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Dashboard Element Redesigns</div>
                         {renderAccountTypes()}
 
                     <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
