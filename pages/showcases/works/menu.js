@@ -229,6 +229,11 @@ export default function WorksMenu() {
                 I'm very often involved directly or solely in charge of library and dependency upgrades in my professional career. I am very well familiarized with Node and NPM 
                 and have even published / upgraded some packages to NPM. 
                 </p>
+
+                <p> <strong>Strong Documentation Practices - </strong>
+                I'm very often involved directly or solely in charge of library and dependency upgrades in my professional career. I am very well familiarized with Node and NPM 
+                and have even published / upgraded some packages to NPM. 
+                </p>
             </OstCard>
         )
       }
