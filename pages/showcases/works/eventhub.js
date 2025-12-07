@@ -14,8 +14,8 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 
 // Assets
 const eh = "../../../assets/showcase_images/ieee/eventhub.png";
-const ehal = "../../../assets/showcase_images/ieee/eventhub-attendee-list-1.png";
-const ehal2 = "../../../assets/showcase_images/ieee/eventhub-attendee-list-2.png";
+const ehal = "../../../assets/showcase_images/ieee/eventhub-attendee-list1.png";
+const ehal2 = "../../../assets/showcase_images/ieee/eventhub-attendee-list2.png";
 const cordcap = "../../../assets/showcase_images/ieee/cord-to-cap.png";
 const selectEv = "../../../assets/showcase_images/ieee/selectEvent.png";
 
