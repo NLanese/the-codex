@@ -171,7 +171,7 @@ export default function IEEEPage(){
                                 <p style={Styles.Fonts.basic}>
                                     The People Cards had one major transformation in mind. The Profile Pictures on the originals were way too small, and in the newer
                                     designs they were intended to be the focus of the People Cards. We kept the coloring, as the lighter blue band around this individual's profile
-                                    indicates their "Traiditonal Member" Member Grade. Other grades will have different colors. 
+                                    indicates their "Traditonal Member" Member Grade. Other grades will have different colors. 
                                 </p>
                             </div>
                         </OstCard>
@@ -198,24 +198,15 @@ export default function IEEEPage(){
                         style={cardStyle(card2)}
                         >
                             <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'fuchsia'}}>Therapist Account</div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'teal'}}>Event Cards</div>
                                 <p style={Styles.Fonts.basic}>
-                                    Therapists have the most functionality out of the three account type. A therapist can create or approve 
-                                    appointments, meetings, and workout assignments for their clients. 
+                                    The previous Events Cards needed some work. While they clearly displayed the most important information, they felt claustrophobic with Events that 
+                                    have longer titles; which they often do. Their length also made it difficult to show off multiple events at a time on screen, and attributed to a monotonous design
+                                    on the dashboard page
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    Just like the Parent and the Child Accounts, the Therapist is able to check their calendar and see all
-                                    assignment start / end dates, as well as all appointment dates and times. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Similarly to the parent, the Physical Therpist has the ability to send a recieve messages. This is limitied to 
-                                    parent accounts, as for obvious reasons we did not want to facilitate communication between and adult and a child. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Finally, the Therapist is able to send invites to porespective clients from in the app. Through the 'invite clients' 
-                                    option, Therapists need to just enter in the email address of the individual they want to invite, along with some 
-                                    other basic information such as names and the child's motor function level. Upon the accecpting of that
-                                    invite, an account for the Guardian and their child is automatically created with temporary passwords. 
+                                    For the redesign, we wanted to split the length in half to make the home dashboard have some visual variety. We also wanted to use flex styling to prevent
+                                    the longer titles from filling the card. Additionally, we wanted to add some color as well. 
                                 </p>
                             </div>
                         </OstCard>
@@ -242,23 +233,14 @@ export default function IEEEPage(){
                         style={cardStyle(card3)}
                         >
                             <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Parent Account</div>
+                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'teal'}}>People Cards</div>
                                 <p style={Styles.Fonts.basic}>
-                                    Parents have all the functionality that Children do, as well as some more functionality. The first of which is 
-                                    the ability to switch between which 'child' is currently active. 
+                                    The old design was a little safe if not a bit cluttered. The Member rank is shown by the color on the bottom of the card,
+                                    and their similarities to the current user's profile is displayed in the middle.
                                 </p>
                                 <p style={Styles.Fonts.basic}>
-                                    Videos can also be watched on the parent's account and as previously mentioned, whichever child is 'active' will be
-                                    the one who is awarded the medals for a video's completion. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Again like the child, the Parent is also able to check their calendar which indicates when assignments are due or when 
-                                    appointments are scheduled. They may also choose a specific date to request an appointment for. Once a request for an 
-                                    appointment is made, the Physcal Therapist will get an email and push notification and can confirm or deny it.
-                                </p>
-                                <p>
-                                    Parents can also switch to child mode and hand the phone off to their child if the child does not have a device of 
-                                    his or her own. When trying to switch back to the parent account from a child account, a password will need to be entered. 
+                                    For the redesign, we wanted to make the component styled more like modern mobile apps often are. We wanted to add some color, make the 
+                                    profile picture more prominent, and add an indication that clicking the card routes the app to their profile page.
                                 </p>
                             </div>
                         </OstCard>

@@ -212,17 +212,22 @@ export default function WorksMenu() {
         return(
             <OstCard style={{maxHeight: 500, minHeight: 500, overflowY: 'auto'}}>
 
-            <p style={Styles.Fonts.lessonHeaderShaded}>Strengths and Weaknesses</p>
+            <p style={Styles.Fonts.lessonHeaderShaded}>Intangibles</p>
 
                 <p>
                 As I grow as a developer and as a man, I have learned to utilize on my strengths while also always striving to improve my areas of weakness. 
                 </p>
 
-                <p>
+                <p> <strong>Clarity and Communication - </strong>
                 Foremost, I take extreme pride in my ability to translate complicated technical topics into something easier to understand and more comfortable to hear. 
                 I know firsthand how frustrating it can be to work with something that feels nebulous, and as such I always strive to maintain transparency. In order
                 to do this, there needs to be clarity and understanding between all parties. This remains true both in communicating with clients as well as other cohorts 
                 working on the codebase alongside you.
+                </p>
+
+                <p> <strong>Version Management - </strong>
+                I'm very often involved directly or solely in charge of library and dependency upgrades in my professional career. I am very well familiarized with Node and NPM 
+                and have even published / upgraded some packages to NPM. 
                 </p>
             </OstCard>
         )
