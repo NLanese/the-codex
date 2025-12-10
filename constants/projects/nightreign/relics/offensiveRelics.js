@@ -229,6 +229,7 @@ export default offensiveRelics = [
         selfType: "AffinityGrant",
         effect: {
             affinity_AP: 12,
+            affintiy_type: "random",
             appliesRanged: true,
             always: false,
             condition: "10 Seconds after Weapon Switching"
