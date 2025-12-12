@@ -47,6 +47,13 @@ const gloomGlow = "#452d8a"
     const [deepEnabled, setDeepEnabled] = useState(false)
     const [deepDisplayed, setDeepDisplayed] = useState(false)
 
+    const [relicsModal, setRelicsModal] = useState(false)
+
+    // Vitals
+    const [hp, setHP] = useState(0)
+    const [fp, setFP] = useState(0)
+    const [stam, setStam] = useState(0)
+
 
 
 ///////////////
@@ -66,7 +73,8 @@ function renderSelectionsContainer(){
                 {renderNightFarer()}
                 {renderRelics()}
             </div>
-            <div style={{flex: 4, backgroundColor: "#83adeb", height: 450}}>
+            <div style={{flex: 4, backgroundColor: nightShade, height: 550}}>
+                {renderVitals()}
                 {renderStats()}
             </div>
         </div>
@@ -169,7 +177,7 @@ function renderRelicHeader(){
 function renderRelicEffect(relicSlot){
     if (relicSlot === null){
         return (
-            <OstCard style={{border: '1px solid black'}} noShadow={true} rounded={false}>
+            <OstCard style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => setRelicsModal(true)}>
                 No Effect
             </OstCard>
         )
@@ -202,7 +210,7 @@ function renderDeepToggles(){
 function renderDISPLAY_DEEP_RELICS(){
     if (deepEnabled){
         return(
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 0}}>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: -5}}>
                     <p style={{color: graceGiven, fontFamily: 'Gilroy', width: 180}}>DISPLAY DEEP RELICS</p>
                     <OstCard style={{display: 'flex', justifySelf: 'center', alignSelf: 'center', border: "2px solid #f2e144", borderRadius: 4, height: 10, width: 10, backgroundColor: depthColor, margin: 0}}
                     onClick={() => setDeepDisplayed(!deepDisplayed)}
@@ -227,9 +235,6 @@ function fill(type){
 function renderStats(){
     return(
         <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
-            <div>
-                {renderVitals()}
-            </div>
             <div style={{flex: 6}}>
                 {renderStat("Weapon", "off")}
                 {renderStat("Magic", "off")}
@@ -253,7 +258,7 @@ function renderStat(type, variety){
         color = frenzyTouched
     }
     return(
-        <OstCard style={{border: '1px solid black', flex: 3, backgroundColor: nightShade, padding: 5}} noShadow={true} rounded={false}>
+        <OstCard style={{border: '1px solid black', flex: 3, backgroundColor: gloomGlow, padding: 5}} noShadow={true} rounded={false}>
             <p style={{color: color, fontSize: 13, margin: 0}}>{type} Damage Mutliplier - </p>
         </OstCard>
     )
@@ -261,7 +266,28 @@ function renderStat(type, variety){
 
 // VITALS //
 function renderVitals(){
-    return
+    return(
+        <div>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
+                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "red"}}>HP</p>
+                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
+                    
+                </div>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
+                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "cyan"}}>FP</p>
+                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
+
+                </div>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
+                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "lime"}}>Stamina</p>
+                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
+
+                </div>
+            </div>
+        </div>
+    )
 }
 
 
