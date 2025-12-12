@@ -390,8 +390,8 @@ function renderRelicModal(){
         },
         content: {
             backgroundColor: 'white',
-            width: '50%', marginLeft: '25%', minWidth: 300,
-            height: '36%', marginTop: '20%', minHeight: 220,
+            width: '50%', marginLeft: '20%', minWidth: 300,
+            height: '70%', marginTop: '0%', minHeight: 220,
             borderRadius: 20
         }   
         }}
