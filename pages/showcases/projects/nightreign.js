@@ -13,6 +13,9 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice";
 
+// Nighteign Functions
+import determineBaseVitals from "../../../components/Nightreign/functions/determineBaseVitals";
+
 export default function BetBotProjectPage() {
 ////////////
 // Consts //
@@ -37,7 +40,8 @@ const gloomGlow = "#452d8a"
     const [loading, setLoading] = useState(true)
 
     // Nightfarer
-    const [nightfarer, setNightfarer] = useState("Wylder")
+    const [nightfarer, setNightfarer] = useState(false)
+    const [lvl, setLvl] = useState(false)
 
     // Relics
     const [relic1, setRelic1] = useState({})
@@ -53,6 +57,20 @@ const gloomGlow = "#452d8a"
     const [hp, setHP] = useState(0)
     const [fp, setFP] = useState(0)
     const [stam, setStam] = useState(0)
+
+////////////////
+// UseEffects //
+////////////////
+
+    useEffect(() => {
+        if (nightfarer && lvl){
+            let vitalsObject = determineBaseVitals()
+            setHP(vitalsObject.HP)
+            setFP(vitalsObject.FP)
+            setStam(vitalsObject.Stam)
+        }
+        
+    }, [nightfarer, lvl])
 
 
 

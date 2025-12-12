@@ -16,6 +16,8 @@ import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar"
 
 export default function RelicsModal() {
 
+    const [effectCat, setEffectCat] = useState()
+
     return(
         <div>
             <div>
