@@ -482,4 +482,47 @@ export default offensiveRelics = [
             condition: "When using specific weapon type"
         }
     },
+    {
+        title: "Improved Attack Power with 3 [Weapon Type] Equipped", 
+        desc: "Increases Specific Weapon damage by 20% when you have 3 or more",
+        stacks: {self: false, selfType: true},
+        selfType: "specificWeaponUp",
+        effect: {
+            weaponDamge: 1.09,
+            appliesRanged: true,
+            always: false,
+            condition: "When using specific weapon type"
+        }
+    },
+    {
+        title: "Improved Attack Power When Facing [Affliction] Afflicted Enemy", 
+        desc: "Increases all damage by 10% when facing an enemy with the selected ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "ailmentDamUp",
+        effect: {
+            weaponDamge: 1.10,
+            appliesRanged: true,
+            always: false,
+            condition: "When facing an enemy with specific ailment"
+        }
+    },
+    {
+        title: "Frostbite in Vicinity Increases Attack Power", 
+        desc: "Invisible for 6 Seconds after Frostbite Procs",
+        stacks: {self: false, selfType: false},
+        selfType: "frostInvisible",
+        effect: {  }
+    },
+    {
+        title: "Posion or Rot in Vicinity Increases Attack Power", 
+        desc: "Icreases all damage by 12% for 20 seconds after Poison or Rot Procs",
+        stacks: {self: false, selfType: true},
+        selfType: "posionRotUp",
+        effect: { 
+            allDamage: 1.20,
+            appliesRanged: true,
+            always: false,
+            condition: "20 seconds after Poison or Rot Procs nearby"
+         }
+    },
 ]
