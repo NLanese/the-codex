@@ -11,6 +11,7 @@ export const FormMultipleChoice = ({
     captionStyle,
     fieldTextStyle,
     inForm=true,
+    itemsPerRow=3,
     
     onChange,               // Function to fire whenever a value is selected or unselected
 
@@ -356,8 +357,8 @@ export const FormMultipleChoice = ({
             if (loading) return;
             
             const rows = [];
-            for (let i = 0; i < fieldObj?.options.length; i += 3) {
-                const rowItems = fieldObj.options.slice(i, i + 3);
+            for (let i = 0; i < fieldObj?.options.length; i += itemsPerRow) {
+                const rowItems = fieldObj.options.slice(i, i + itemsPerRow);
                 rows.push(
                     <div key={i} 
                     style={{ 
