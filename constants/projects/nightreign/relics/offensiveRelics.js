@@ -515,7 +515,7 @@ export default offensiveRelics = [
     },
     {
         title: "Posion or Rot in Vicinity Increases Attack Power", 
-        desc: "Icreases all damage by 12% for 20 seconds after Poison or Rot Procs",
+        desc: "Increases all damage by 12% for 20 seconds after Poison or Rot Procs",
         stacks: {self: false, selfType: true},
         selfType: "posionRotUp",
         effect: { 
@@ -523,6 +523,30 @@ export default offensiveRelics = [
             appliesRanged: true,
             always: false,
             condition: "20 seconds after Poison or Rot Procs nearby"
+         }
+    },
+    {
+        title: "Status Ailment Gauges Slowly Increase Attack Power", 
+        desc: "Having any ailment build up at all increases damage output by 4% every 20 seconds of consecutive ailment affiliction. Tops at 40% (10 stacks)",
+        stacks: {self: false, selfType: false},
+        selfType: "ailmentBarDamUp",
+        effect: { 
+            allDamage: 1.40,
+            appliesRanged: true,
+            always: false,
+            condition: "After 200 seconds of having an ailment or ailment buildup"
+         }
+    },
+    {
+        title: "Status Ailment Gauges Slowly Increase Attack Power", 
+        desc: "Having any ailment build up at all increases damage output by 4% every 20 seconds of consecutive ailment affiliction. Tops at 40% (10 stacks)",
+        stacks: {self: false, selfType: false},
+        selfType: "ailmentBarDamUp",
+        effect: { 
+            allDamage: 1.40,
+            appliesRanged: true,
+            always: false,
+            condition: "After 200 seconds of having an ailment or ailment buildup"
          }
     },
 ]
