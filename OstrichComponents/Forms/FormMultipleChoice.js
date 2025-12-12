@@ -170,7 +170,6 @@ export const FormMultipleChoice = ({
             
             // Single Answer
             if (singleOption){      
-                console.log("Single Option") 
                 if (value === tag){
                     setvalue([])           // Removing Previous Answer
                 }

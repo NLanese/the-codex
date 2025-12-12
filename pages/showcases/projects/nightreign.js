@@ -1,5 +1,5 @@
 // React
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import ReactModal from 'react-modal';
 
 // Recoil
@@ -54,9 +54,10 @@ const gloomGlow = "#452d8a"
     const [relicsModal, setRelicsModal] = useState(false)
 
     // Vitals
-    const [hp, setHP] = useState(0)
-    const [fp, setFP] = useState(0)
-    const [stam, setStam] = useState(0)
+    const [hp, setHP] = useState(1)
+    const [fp, setFP] = useState(1)
+    const [stam, setStam] = useState(1)
+
 
 ////////////////
 // UseEffects //
@@ -64,7 +65,7 @@ const gloomGlow = "#452d8a"
 
     useEffect(() => {
         if (nightfarer && lvl){
-            let vitalsObject = determineBaseVitals()
+            let vitalsObject = determineBaseVitals(nightfarer, lvl)
             setHP(vitalsObject.HP)
             setFP(vitalsObject.FP)
             setStam(vitalsObject.Stam)
@@ -115,7 +116,8 @@ function renderNightFarer(){
                 itemsPerRow={5}
                 inForm={false}
                 onChange={(op) => {
-                  setNightfarer(op)
+                    setNightfarer(false)
+                    setNightfarer(op.value[0])
                 }}
                 fieldObj={
                   {
@@ -134,7 +136,8 @@ function renderNightFarer(){
                 itemsPerRow={5}
                 inForm={false}
                 onChange={(op) => {
-                  setNightfarer(op)
+                    setLvl(false)
+                    setLvl(op.value[0])
                 }}
                 fieldObj={
                   {
@@ -289,19 +292,19 @@ function renderVitals(){
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "red"}}>HP</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    
+                    <div style={{backgroundColor: 'red', height: '100%', width: `${(hp / 17)}%`}} />
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "cyan"}}>FP</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-
+                    <div style={{backgroundColor: 'cyan', height: '100%', width: `${(fp / 2.5)}%`}} />
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "lime"}}>Stamina</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-
+                    <div style={{backgroundColor: 'lime', height: '100%', width: `${(stam / 2)}%`}} />
                 </div>
             </div>
         </div>

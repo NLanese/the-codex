@@ -427,4 +427,7 @@ export default function determineBaseVitals(nightfarer, lvl){
             }
         }
     }
+    else{
+        console.log("What?")
+    }
 }
