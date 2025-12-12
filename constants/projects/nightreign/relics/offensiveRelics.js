@@ -327,4 +327,159 @@ export default offensiveRelics = [
             always: true,
         }
     },
+    {
+        title: "Improved Crystalian Sorcery", 
+        desc: "Increases Crystalian Sorcery (Shattering Crystal, Crystal Release, Crystal Torrent) damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "CrystalUp",
+        effect: {
+            crystalDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Carian Sorcery", 
+        desc: "Increases Carian Sorcery (Slicer, Greatsword, Lance) damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "CarianUp",
+        effect: {
+            carianDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Glintblade Sorcery", 
+        desc: "Increases Glintblade Sorcery (Phalanx, Glintblade) damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "GlintUp",
+        effect: {
+            glintDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Stonedigger Sorcery", 
+        desc: "Increases Stonedigger Sorcery damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "DigUp",
+        effect: {
+            digDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Gravity Sorcery", 
+        desc: "Increases Gravity Sorcery (Rock Sling, Collapsing Stars, Meteorite, etc) damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "GravUp",
+        effect: {
+            gravDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Thorn Sorcery", 
+        desc: "Increases Thorn Sorcery damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThornUp",
+        effect: {
+            thornDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Fundamentalist Incantation", 
+        desc: "Increases Golden Order Incantation (Rings of Light, Discus, Triple Rings) damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "FundUp",
+        effect: {
+            fundDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Dragon Cult Incantation", 
+        desc: "Increases Lightning Incantation damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThornUp",
+        effect: {
+            dargonCultDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Giant's Flame Incantation", 
+        desc: "Increases Giant Fire (Giants Flame Take Thee, Flame of the Fell God, etc) Incantation damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "giantUp",
+        effect: {
+            giantFireDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Frenzy Flame Incantation", 
+        desc: "Increases Frenzy Incantation damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "frenzyUp",
+        effect: {
+            giantFireDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Frenzy Flame Incantation", 
+        desc: "Increases Frenzy Incantation damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "frenzyUp",
+        effect: {
+            giantFireDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Bestial Incantation", 
+        desc: "Increases Bestial (Sling, Claw) Incantation damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "beastUp",
+        effect: {
+            giantFireDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Roar and Breath Attacks", 
+        desc: "Increases Roar / Breath Skill damage by 15%",
+        stacks: {self: true, selfType: true},
+        selfType: "beastUp",
+        effect: {
+            roarDamage: 1.15,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved [Weapon] Attack Power", 
+        desc: "Increases Specific Weapon damage by 9%",
+        stacks: {self: true, selfType: true},
+        selfType: "specificWeaponUp",
+        effect: {
+            weaponDamge: 1.09,
+            appliesRanged: true,
+            always: false,
+            condition: "When using specific weapon type"
+        }
+    },
 ]
