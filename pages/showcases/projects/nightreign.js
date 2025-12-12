@@ -53,17 +53,19 @@ const silveredNight = "#7fc7bf"
 
     const [all_relic_effects, set_all_relic_effects] = useState([])
 
-    const [effect11, SetEffect11] = useState(false)
-    const [effect12, SetEffect12] = useState(false)
-    const [effect13, SetEffect13] = useState(false)
+    const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
 
-    const [effect21, SetEffect21] = useState(false)
-    const [effect22, SetEffect22] = useState(false)
-    const [effect23, SetEffect23] = useState(false)
+    const [effect11, setEffect11] = useState(false)
+    const [effect12, setEffect12] = useState(false)
+    const [effect13, setEffect13] = useState(false)
 
-    const [effect31, SetEffect31] = useState(false)
-    const [effect32, SetEffect32] = useState(false)
-    const [effect33, SetEffect33] = useState(false)
+    const [effect21, setEffect21] = useState(false)
+    const [effect22, setEffect22] = useState(false)
+    const [effect23, setEffect23] = useState(false)
+
+    const [effect31, setEffect31] = useState(false)
+    const [effect32, setEffect32] = useState(false)
+    const [effect33, setEffect33] = useState(false)
 
     const [deepEnabled, setDeepEnabled] = useState(false)
     const [deepDisplayed, setDeepDisplayed] = useState(false)
@@ -186,9 +188,9 @@ function renderRelics(){
     return(
         <div style={{ flex: 5, backgroundColor: nightShade}}>
             <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 450,}}>
-                {renderRelic(relic1)}
-                {renderRelic(relic2)}
-                {renderRelic(relic3)}
+                {renderRelic(relic1,1)}
+                {renderRelic(relic2,2)}
+                {renderRelic(relic3,3)}
             </div>
             {renderDeepToggles()}
         </div>
@@ -196,13 +198,13 @@ function renderRelics(){
     )
 }
 
-function renderRelic(relic){
+function renderRelic(relic, key){
     return(
-        <OstCard style={{flex: 3, backgroundColor: greyOfNight, padding: 0}}>
+        <OstCard key={key} style={{flex: 3, backgroundColor: greyOfNight, padding: 0}}>
             {renderRelicHeader()}
-            {renderRelicEffect(relic?.slot1 ? relic.slot1 : null)}
-            {renderRelicEffect(relic?.slot2 ? relic.slot2 : null)}
-            {renderRelicEffect(relic?.slot2 ? relic.slot2 : null)}
+            {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`)}
+            {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`)}
+            {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}3`)}
         </OstCard>
     )
 }
@@ -223,16 +225,17 @@ function renderRelicHeader(){
     )
 }
 
-function renderRelicEffect(relicSlot){
+function renderRelicEffect(relicSlot, key){
     if (relicSlot === null){
         return (
-            <OstCard style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => setRelicsModal(true)}>
+            <OstCard key={key}
+            style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => setRelicsModal(true)}>
                 No Effect
             </OstCard>
         )
     }
     return (
-        <OstCard style={{border: '1px solid black'}} noShadow={true} rounded={false}>
+        <OstCard key={key} style={{border: '1px solid black'}} noShadow={true} rounded={false}>
             {relicSlot.title}
         </OstCard>
         
@@ -404,6 +407,10 @@ function renderRelicModal(){
 ///////////////
 // Functions //
 ///////////////
+
+function handleRelicEffectClick(key){
+
+}
 
 function getBaseNegations(){
     let bases = determineBaseNegations(nightfarer)
