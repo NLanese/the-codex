@@ -15,6 +15,7 @@ import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipl
 
 // Nighteign Functions
 import determineBaseVitals from "../../../components/Nightreign/functions/determineBaseVitals";
+import determineBaseNegations from "../../../components/Nightreign/functions/determineBaseNegations";
 
 export default function BetBotProjectPage() {
 ////////////
@@ -27,6 +28,7 @@ const graceGiven = "#f2e144"
 const frenzyTouched = "#ff5100"
 const greyOfNight = "#636478"
 const gloomGlow = "#452d8a"
+const silveredNight = "#7fc7bf"
 
 
 ///////////
@@ -267,7 +269,14 @@ function renderStats(){
                 {renderStat("Counter", "off")}
             </div>
             <div style={{flex: 6}}>
-
+                {renderStat("Physical", "neg")}
+                {renderStat("Slash", "neg")}
+                {renderStat("Strike", "neg")}
+                {renderStat("Thrust", "neg")}
+                {renderStat("Magic", "neg")}
+                {renderStat("Fire", "neg")}
+                {renderStat("Lightning", "neg")}
+                {renderStat("Holy", "neg")}
             </div>
         </div>
     )
@@ -275,12 +284,31 @@ function renderStats(){
 
 function renderStat(type, variety){
     let color = "white"
+    let caption = ""
+
     if (variety === "off"){
         color = frenzyTouched
+        caption = "Damage"
     }
+    else{
+        color = silveredNight
+        caption = "Negation"
+    }
+    
     return(
-        <OstCard style={{border: '1px solid black', flex: 3, backgroundColor: gloomGlow, padding: 5}} noShadow={true} rounded={false}>
-            <p style={{color: color, fontSize: 13, margin: 0}}>{type} Damage Mutliplier - </p>
+        <OstCard noShadow={true} rounded={false}
+        style={{
+            border: '1px solid black', display: 'flex', 
+            flexDirection: 'row', flex: 3, 
+            backgroundColor: gloomGlow, padding: 5,
+            justifyContent: 'space-between'
+        }} >
+            <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
+                {type} {caption} - 
+            </p>
+            <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
+                determineRenderedValue(type, variety)}
+            </p>
         </OstCard>
     )
 }
@@ -292,25 +320,73 @@ function renderVitals(){
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "red"}}>HP</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: 'red', height: '100%', width: `${(hp / 17)}%`}} />
+                    <div style={{backgroundColor: 'red', height: '100%', width: `${(hp / 17.5)}%`, display: "flex", justifyContent: 'center'}} >
+                        {hp}
+                    </div>
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "cyan"}}>FP</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: 'cyan', height: '100%', width: `${(fp / 2.5)}%`}} />
+                    <div style={{backgroundColor: 'cyan', height: '100%', width: `${(fp / 3.0)}%`, display: "flex", justifyContent: 'center'}} >
+                        {fp}
+                    </div>
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "lime"}}>Stamina</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: 'lime', height: '100%', width: `${(stam / 2)}%`}} />
+                    <div style={{backgroundColor: 'lime', height: '100%', width: `${(stam / 2.5)}%`, display: "flex", justifyContent: 'center'}} >
+                        {stam}
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
+
+///////////////
+// Functions //
+///////////////
+
+    function getBaseNegations(){
+        let bases = determineBaseNegations(nightfarer)
+        console.log(bases)
+        return bases
+    }
+
+    function determineRenderedValue(type, variety){
+        if (variety === "neg"){
+            let negationBases = getBaseNegations(nightfarer)
+            console.log(negationBases)
+            if (type === "Physical"){
+                return negationBases.phys
+            }
+            else if (type === "Slash"){
+                return negationBases.slash
+            }
+            else if (type === "Strike"){
+                return negationBases.strike
+            }
+            else if (type === "Thrust"){
+                return negationBases.thrust
+            }
+            else if (type === "Magic"){
+                return negationBases.magic
+            }
+            else if (type === "Fire"){
+                return negationBases.fire
+            }
+            else if (type === "Lightning"){
+                return negationBases.lightning
+            }
+            else if (type === "Holy"){
+                return negationBases.holy
+            }
+        }
+        
+    }
 
 
 /////////////////
