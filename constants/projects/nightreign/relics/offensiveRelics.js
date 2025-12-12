@@ -1,4 +1,4 @@
-export default offensiveRelics = [
+const offensiveRelics = [
     {
         title: "Taking attacks improves attack power", 
         desc: "15% Buff to ALL DAMAGE after taking damage from an unblocked enemy attack. Lasts 10 seconds and refreshes duration on next hit.",
@@ -550,3 +550,5 @@ export default offensiveRelics = [
          }
     },
 ]
+
+export default offensiveRelics

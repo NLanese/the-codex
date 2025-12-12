@@ -9,6 +9,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.19,
             lightning: .20,
             holy: .17,
+            poise: 40
         }
     }
     else if (nightfarer === "Guardian"){
@@ -21,6 +22,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.14,
             lightning: .15,
             holy: .17,
+            poise: 120
         }
     }
     else if (nightfarer === "Ironeye"){
@@ -33,6 +35,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.14,
             lightning: .15,
             holy: .17,
+            poise: 40
         }
     }
     else if (nightfarer === "Duchess"){
@@ -45,6 +48,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.22,
             lightning: .22,
             holy: .23,
+            poise: 40
         }
     }
     else if (nightfarer === "Raider"){
@@ -57,6 +61,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.24,
             lightning: .15,
             holy: .17,
+            poise: 120
         }
     }
     else if (nightfarer === "Revenant"){
@@ -69,6 +74,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.29,
             lightning: .29,
             holy: .20,
+            poise: 40
         }
     }
     else if (nightfarer === "Recluse"){
@@ -81,6 +87,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.24,
             lightning: .25,
             holy: .25,
+            poise: 40
         }
     }
     else if (nightfarer === "Executor"){
@@ -93,6 +100,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.19,
             lightning: .15,
             holy: .22,
+            poise: 40
         }
     }
     else{
@@ -105,6 +113,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0,
             lightning: 0,
             holy: 0,
+            poise: 40
         }
     }
 }

@@ -16,6 +16,7 @@ import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipl
 // Nighteign Functions
 import determineBaseVitals from "../../../components/Nightreign/functions/determineBaseVitals";
 import determineBaseNegations from "../../../components/Nightreign/functions/determineBaseNegations";
+import RelicsModal from "../../../components/Nightreign/RelicsModal";
 
 export default function BetBotProjectPage() {
 ////////////
@@ -50,6 +51,20 @@ const silveredNight = "#7fc7bf"
     const [relic2, setRelic2] = useState({})
     const [relic3, setRelic3] = useState({})
 
+    const [all_relic_effects, set_all_relic_effects] = useState([])
+
+    const [effect11, SetEffect11] = useState(false)
+    const [effect12, SetEffect12] = useState(false)
+    const [effect13, SetEffect13] = useState(false)
+
+    const [effect21, SetEffect21] = useState(false)
+    const [effect22, SetEffect22] = useState(false)
+    const [effect23, SetEffect23] = useState(false)
+
+    const [effect31, SetEffect31] = useState(false)
+    const [effect32, SetEffect32] = useState(false)
+    const [effect33, SetEffect33] = useState(false)
+
     const [deepEnabled, setDeepEnabled] = useState(false)
     const [deepDisplayed, setDeepDisplayed] = useState(false)
 
@@ -72,8 +87,19 @@ const silveredNight = "#7fc7bf"
             setFP(vitalsObject.FP)
             setStam(vitalsObject.Stam)
         }
-        
     }, [nightfarer, lvl])
+
+    useEffect(() => {
+        set_all_relic_effects([
+            effect11, effect12, effect13,
+            effect21, effect22, effect23,
+            effect31, effect32, effect33
+        ])
+    }, [
+        effect11, effect12, effect13,
+        effect21, effect22, effect23,
+        effect31, effect32, effect33
+    ])
 
 
 
@@ -126,7 +152,7 @@ function renderNightFarer(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executer", "Scholar", "Undertaker"],
+                    options: ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executor", "Scholar", "Undertaker"],
                     textStyle: {fontSize: 16},
                   }
                 }
@@ -260,6 +286,7 @@ function renderStats(){
         <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
             <div style={{flex: 6}}>
                 {renderStat("Weapon", "off")}
+                {renderStat("Ranged", "off")}
                 {renderStat("Magic", "off")}
                 {renderStat("Lightning", "off")}
                 {renderStat("Fire", "off")}
@@ -277,6 +304,7 @@ function renderStats(){
                 {renderStat("Fire", "neg")}
                 {renderStat("Lightning", "neg")}
                 {renderStat("Holy", "neg")}
+                {renderStat("Poise", "neg")}
             </div>
         </div>
     )
@@ -293,6 +321,9 @@ function renderStat(type, variety){
     else{
         color = silveredNight
         caption = "Negation"
+        if (type === "Poise"){
+            caption = ""
+        }
     }
     
     return(
@@ -345,48 +376,81 @@ function renderVitals(){
     )
 }
 
+// RELIC MODAL //
+function renderRelicModal(){
+    return(
+        <ReactModal
+        isOpen={relicsModal}
+        onRequestClose={() => setRelicsModal(false)}   
+        shouldCloseOnOverlayClick={true}              
+        style={{
+        overlay: {
+            zIndex: 9999,
+            backgroundColor: 'rgba(17, 3, 64, 0.85)',
+        },
+        content: {
+            backgroundColor: 'white',
+            width: '50%', marginLeft: '25%', minWidth: 300,
+            height: '36%', marginTop: '20%', minHeight: 220,
+            borderRadius: 20
+        }   
+        }}
+        >
+            <RelicsModal />
+        </ReactModal>
+    )
+}
 
 ///////////////
 // Functions //
 ///////////////
 
-    function getBaseNegations(){
-        let bases = determineBaseNegations(nightfarer)
-        console.log(bases)
-        return bases
-    }
+function getBaseNegations(){
+    let bases = determineBaseNegations(nightfarer)
+    console.log(bases)
+    return bases
+}
 
-    function determineRenderedValue(type, variety){
-        if (variety === "neg"){
-            let negationBases = getBaseNegations(nightfarer)
-            console.log(negationBases)
-            if (type === "Physical"){
-                return negationBases.phys
-            }
-            else if (type === "Slash"){
-                return negationBases.slash
-            }
-            else if (type === "Strike"){
-                return negationBases.strike
-            }
-            else if (type === "Thrust"){
-                return negationBases.thrust
-            }
-            else if (type === "Magic"){
-                return negationBases.magic
-            }
-            else if (type === "Fire"){
-                return negationBases.fire
-            }
-            else if (type === "Lightning"){
-                return negationBases.lightning
-            }
-            else if (type === "Holy"){
-                return negationBases.holy
-            }
+function determineRenderedValue(type, variety){
+    if (variety === "neg"){
+        let negationBases = getBaseNegations(nightfarer)
+        if (type === "Physical"){
+            return negationBases.phys
         }
-        
+        else if (type === "Slash"){
+            return negationBases.slash
+        }
+        else if (type === "Strike"){
+            return negationBases.strike
+        }
+        else if (type === "Thrust"){
+            return negationBases.thrust
+        }
+        else if (type === "Magic"){
+            return negationBases.magic
+        }
+        else if (type === "Fire"){
+            return negationBases.fire
+        }
+        else if (type === "Lightning"){
+            return negationBases.lightning
+        }
+        else if (type === "Holy"){
+            return negationBases.holy
+        }
+        else if (type === "Poise"){
+            return negationBases.poise
+        }
     }
+    else if (variety === "off"){
+        return (100 * determineDamModifier(type) + "%")
+    }
+    
+}
+
+function determineDamModifier(type){
+    return 1
+}
 
 
 /////////////////
@@ -394,7 +458,8 @@ function renderVitals(){
 /////////////////
 return(
     <div style={{paddingTop: 20, backgroundColor: depthColor, height: '100vh'}}>
-            {renderSelectionsContainer()}
+        {renderRelicModal()}
+        {renderSelectionsContainer()}
     </div>
 )
 }
