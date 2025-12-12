@@ -28,4 +28,14 @@ export default function BetBotProjectPage() {
     const [relic1, setRelic1] = useState({})
     const [relic2, setRelic2] = useState({})
     const [relic3, setRelic3] = useState({})
+
+
+/////////////////
+// Main Return //
+/////////////////
+return(
+    <div style={{marginTop: 20}}>
+            <div style={Styles.Fonts.pageTitle}>Nightreign Build Calculator </div>
+    </div>
+)
 }
