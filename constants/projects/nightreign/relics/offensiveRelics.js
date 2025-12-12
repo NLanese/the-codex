@@ -235,4 +235,96 @@ export default offensiveRelics = [
             condition: "10 Seconds after Weapon Switching"
         }
     },
+    {
+        title: "Successive Attacks Boosts Attack Power", 
+        desc: "Increases Damage by 6%, then 10.5%, and finally 15% after 3, 5, and 8 consecutive hits. Taking damage has no effect on this relic",
+        stacks: {self: false, selfType: false},
+        selfType: "SuccessiveAttacks",
+        effect: {
+            allDamage: 1.15,
+            appliesRanged: true,
+            always: false,
+            condition: "10 Seconds after Landing 8 Hits in succession"
+        }
+    },
+    {
+        title: "Attack Power increases after using grease items", 
+        desc: "Increases Physical Attack Power by 10% for 30 seconds after using Grease Items",
+        stacks: {self: false, selfType: false},
+        selfType: "GreaseAttacks",
+        effect: {
+            physDamage: 1.10,
+            appliesRanged: true,
+            always: false,
+            condition: "30 Seconds after Applying Grease"
+        }
+    },
+    {
+        title: "Improved Initial Standard Attack", 
+        desc: "Increases standing RB/R1 initial combo chain hit by 15%",
+        stacks: {self: false, selfType: false},
+        selfType: "StandardAttack",
+        effect: {
+            physDamage: 1.15,
+            appliesRanged: true,
+            always: false,
+            condition: "First hit of standard Combo"
+        }
+    },
+    {
+        title: "Improved Guard Counters", 
+        desc: "Increases Guard Counter Damage by 23%",
+        stacks: {self: true, selfType: true},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.23,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Guard Counter is Given a Boost based on Current HP", 
+        desc: "Damage increase given based on total HP remaining, not percentage remaining. A Guardian with 700/1100 hits will do more damage than a Recluse with 480/550",
+        stacks: {self: false, selfType: false},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.35,
+            appliesRanged: false,
+            always: false,
+            condition: "At full health, 800/800 for example"
+        }
+    },
+    {
+        title: "Improved Critical Hits", 
+        desc: "Increases Critical Hit Damage by 18%",
+        stacks: {self: true, selfType: true},
+        selfType: "CritUp",
+        effect: {
+            critDamage: 1.18,
+            appliesRanged: false,
+            always: false,
+        }
+    },
+    {
+        title: "Improved Critical Hits +1", 
+        desc: "Increases Critical Hit Damage by 23%",
+        stacks: {self: true, selfType: true},
+        selfType: "CritUp",
+        effect: {
+            critDamage: 1.23,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Throwing Pot/Knife/Stone/Perfuming Arts Damage", 
+        desc: "Increases Pot/Knife/Stone/Perfuming Arts damage by 15%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            throwingDamage: 1.15,
+            appliesRanged: false,
+            always: true,
+        }
+    },
 ]
