@@ -17,7 +17,7 @@ export default offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "PhysUp",
         effect: {
-            physDamage: 1.04,
+            weaponDamge: 1.04,
             appliesRanged: true,
             always: true,
         }
@@ -28,7 +28,7 @@ export default offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "PhysUp",
         effect: {
-            physDamage: 1.05,
+            weaponDamge: 1.05,
             appliesRanged: true,
             always: true,
         }
@@ -39,7 +39,7 @@ export default offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "PhysUp",
         effect: {
-            physDamage: 1.06,
+            weaponDamge: 1.06,
             appliesRanged: true,
             always: true,
         }
@@ -253,7 +253,7 @@ export default offensiveRelics = [
         stacks: {self: false, selfType: false},
         selfType: "GreaseAttacks",
         effect: {
-            physDamage: 1.10,
+            weaponDamge: 1.10,
             appliesRanged: true,
             always: false,
             condition: "30 Seconds after Applying Grease"
@@ -265,7 +265,7 @@ export default offensiveRelics = [
         stacks: {self: false, selfType: false},
         selfType: "StandardAttack",
         effect: {
-            physDamage: 1.15,
+            weaponDamge: 1.15,
             appliesRanged: true,
             always: false,
             condition: "First hit of standard Combo"

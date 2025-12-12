@@ -10,6 +10,7 @@ export const FormMultipleChoice = ({
     titleStyle,             // Style of the Title for the Multiple Choice Question
     captionStyle,
     fieldTextStyle,
+    tabStyle,
 
     inForm=true,
     title,
@@ -397,6 +398,7 @@ export const FormMultipleChoice = ({
                             isActive={typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)}
                             showsHover={true}
                             onPress={handleInput}
+                            style={tabStyle ? tabStyle : null}
                             activeStyle={{backgroundColor: '#9cc6f0'}}
                             hoverStyle={{backgroundColor: 'lightgrey'}}
                             textStyle={fieldTextStyle}
