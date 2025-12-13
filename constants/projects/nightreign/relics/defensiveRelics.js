@@ -61,7 +61,7 @@ const defensiveRelics = [
     {
         title: "Improved Poise & Damage Negation When Knocked Back by Damage", 
         desc: "Damage Negation increased 20% and Poise Damage Taken reduced 80% after being knocked off your feet",
-        stacks: {self: true, selfType: true},
+        stacks: {self: false, selfType: true},
         selfType: "knockBack",
         effect: {
             allDamage: 1.20,
@@ -69,4 +69,17 @@ const defensiveRelics = [
             condition: "20 seconds after being knocked down"
         }
     },
+    {
+        title: "Occasionally Nullify Attacks When Damage Negation is Lowered", 
+        desc: "5-10% chance of taking no damage on a hit when below 40% HP",
+        stacks: {self: false, selfType: true},
+        selfType: "lowHealth",
+        effect: {
+            allDamage: 1.20,
+            always: false,
+            condition: "20 seconds after being knocked down"
+        }
+    },
 ]
+
+export default defensiveRelics

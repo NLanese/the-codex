@@ -11,6 +11,7 @@ import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar"
 
 // Relics
 import offensiveRelics from "../../constants/projects/nightreign/relics/offensiveRelics";
+import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
 
 export default function RelicsModal({
     selectEffect
@@ -25,8 +26,14 @@ const [filteredEffects, setFilteredEffects] = useState([])
 
 useEffect(() => {
     setSearch("")
+    if (effectCat === "All"){
+        setFilteredEffects([...offensiveRelics, ...defensiveRelics])
+    }
     if (effectCat === "Offensive"){
         setFilteredEffects(offensiveRelics)
+    }
+    else if (effectCat === "Defensive"){
+        setFilteredEffects(defensiveRelics)
     }
 }, [effectCat])
 

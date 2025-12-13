@@ -500,7 +500,7 @@ const offensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "ailmentDamUp",
         effect: {
-            weaponDamage: 1.10,
+            allDamage: 1.10,
             appliesRanged: true,
             always: false,
             condition: "When facing an enemy with specific ailment"

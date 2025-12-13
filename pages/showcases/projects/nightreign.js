@@ -134,14 +134,14 @@ function renderSelectionsContainer(){
         gap: 30, height: 500, padding: 25
         }}>
             <div style={{
-                flex: 8, display: 'flex', flexDirection: 'row', 
+                flex: 5, display: 'flex', flexDirection: 'row', 
                 backgroundColor: nightShade, height: 550, 
                 borderRadius: 20
             }}>
                 {renderNightFarer()}
                 {renderRelics()}
             </div>
-            <div style={{flex: 4, backgroundColor: nightShade, height: 550}}>
+            <div style={{flex: 7, backgroundColor: nightShade, height: 550}}>
                 {renderVitals()}
                 {renderStats()}
             </div>
@@ -154,14 +154,14 @@ function renderSelectionsContainer(){
 function renderNightFarer(){
     return(
         <div style={{
-            display: 'flex', flexDirection: 'column', flex: 7, 
+            display: 'flex', flexDirection: 'column', flex: 4, 
             backgroundColor: nightShade, paddingRight: 25
         }}>
             <FormMultipleChoice 
                 title={"Nightfarer"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
                 boxStyle={{width: '100%', margin: 0}}
-                itemsPerRow={5}
+                itemsPerRow={3}
                 inForm={false}
                 onChange={(op) => {
                     setNightfarer(false)
@@ -173,7 +173,7 @@ function renderNightFarer(){
                     type: "MC",
                     template: "tabs",
                     options: ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executor", "Scholar", "Undertaker"],
-                    textStyle: {fontSize: 16},
+                    textStyle: {fontSize: 12, padding: 0},
                   }
                 }
               />
@@ -204,7 +204,7 @@ function renderNightFarer(){
 // RELICS // 
 function renderRelics(){
     return(
-        <div style={{ flex: 5, backgroundColor: nightShade}}>
+        <div style={{ flex: 8, backgroundColor: nightShade}}>
             <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 450,}}>
                 {renderRelic(relic1,1)}
                 {renderRelic(relic2,2)}
@@ -307,8 +307,6 @@ function renderStats(){
             <div style={{flex: 6}}>
                 {renderStat("Melee", "off")}
                 {renderStat("Ranged", "off")}
-                {renderStat("Incantation", "off")}
-                {renderStat("Sorcery", "off")}
                 {renderStat("Magic", "off")}
                 {renderStat("Lightning", "off")}
                 {renderStat("Fire", "off")}
@@ -637,6 +635,28 @@ function determineDamModifier(type){
         let weaponDams = findDamageTypeFromEffects("skillDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.skillDamage
+        })
+    }
+    // Finds "Fire Damage Modifiers" and applies
+    else if (type === "Critical"){
+        let weaponDams = findDamageTypeFromEffects("critDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.critDamage
+        })
+        let extraDams = findDamageTypeFromEffects("weaponDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.weaponDamage
+        })
+    }
+    // Finds "Fire Damage Modifiers" and applies
+    else if (type === "Counter"){
+        let weaponDams = findDamageTypeFromEffects("counterDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.counterDamage
+        })
+        let extraDams = findDamageTypeFromEffects("weaponDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.weaponDamage
         })
     }
 
