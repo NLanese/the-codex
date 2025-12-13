@@ -17,7 +17,7 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "PhysUp",
         effect: {
-            weaponDamge: 1.04,
+            weaponDamage: 1.04,
             appliesRanged: true,
             always: true,
         }
@@ -28,7 +28,7 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "PhysUp",
         effect: {
-            weaponDamge: 1.05,
+            weaponDamage: 1.05,
             appliesRanged: true,
             always: true,
         }
@@ -39,7 +39,7 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "PhysUp",
         effect: {
-            weaponDamge: 1.06,
+            weaponDamage: 1.06,
             appliesRanged: true,
             always: true,
         }
@@ -50,7 +50,7 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "Melee",
         effect: {
-            weaponDamge: 1.06,
+            weaponDamage: 1.06,
             appliesRanged: false,
             always: true,
         }
@@ -253,7 +253,7 @@ const offensiveRelics = [
         stacks: {self: false, selfType: false},
         selfType: "GreaseAttacks",
         effect: {
-            weaponDamge: 1.10,
+            weaponDamage: 1.10,
             appliesRanged: true,
             always: false,
             condition: "30 Seconds after Applying Grease"
@@ -265,7 +265,7 @@ const offensiveRelics = [
         stacks: {self: false, selfType: false},
         selfType: "StandardAttack",
         effect: {
-            weaponDamge: 1.15,
+            weaponDamage: 1.15,
             appliesRanged: true,
             always: false,
             condition: "First hit of standard Combo"
@@ -476,7 +476,7 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "specificWeaponUp",
         effect: {
-            weaponDamge: 1.09,
+            weaponDamage: 1.09,
             appliesRanged: true,
             always: false,
             condition: "When using specific weapon type"
@@ -488,7 +488,7 @@ const offensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "specificWeaponUp",
         effect: {
-            weaponDamge: 1.09,
+            weaponDamage: 1.09,
             appliesRanged: true,
             always: false,
             condition: "When using specific weapon type"
@@ -500,7 +500,7 @@ const offensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "ailmentDamUp",
         effect: {
-            weaponDamge: 1.10,
+            weaponDamage: 1.10,
             appliesRanged: true,
             always: false,
             condition: "When facing an enemy with specific ailment"

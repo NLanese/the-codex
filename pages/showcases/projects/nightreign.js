@@ -92,35 +92,34 @@ const silveredNight = "#7fc7bf"
         }
     }, [nightfarer, lvl])
 
-    // Relic 1 On Effects
     useEffect(() => {
-        setRelic1({
-            slot1: effect11,
-            slot2: effect12,
-            slot3: effect13
-        })
-        determineAllRelicEffects()
-    }, [effect11, effect12, effect13])
+        let all = [];
+    
+        if (effect11) all.push(effect11);
+        if (effect12) all.push(effect12);
+        if (effect13) all.push(effect13);
 
-    // Relic 2 On Effects
-    useEffect(() => {
-        setRelic2({
-            slot1: effect21,
-            slot2: effect22,
-            slot3: effect23
-        })
-        determineAllRelicEffects()
-    },[effect21, effect22, effect23])
+        setRelic1({ slot1: effect11, slot2: effect12, slot3: effect13 })
+    
+        if (effect21) all.push(effect21);
+        if (effect22) all.push(effect22);
+        if (effect23) all.push(effect23);
 
-    // Relic 3 On Effects
-    useEffect(() => {
-        setRelic3({
-            slot1: effect31,
-            slot2: effect32,
-            slot3: effect33
-        })
-        determineAllRelicEffects()
-    }, [effect31, effect32, effect33])
+        setRelic2({ slot1: effect21, slot2: effect22, slot3: effect23 })
+    
+        if (effect31) all.push(effect31);
+        if (effect32) all.push(effect32);
+        if (effect33) all.push(effect33);
+
+        setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 })
+    
+        set_all_relic_effects(all);
+        console.log(all)
+    }, [
+        effect11, effect12, effect13,
+        effect21, effect22, effect23,
+        effect31, effect32, effect33
+    ]);
 
 
 
@@ -307,6 +306,8 @@ function renderStats(){
             <div style={{flex: 6}}>
                 {renderStat("Weapon", "off")}
                 {renderStat("Ranged", "off")}
+                {renderStat("Incantation", "off")}
+                {renderStat("Sorcery", "off")}
                 {renderStat("Magic", "off")}
                 {renderStat("Lightning", "off")}
                 {renderStat("Fire", "off")}
@@ -445,18 +446,13 @@ function handleRelicEffectClick(key){
 }
 
 function handleChangeEffect(effect){
-    console.log(currentEditNum)
-    console.log(typeof currentEditNum)
     if (currentEditNum === "11"){
-        console.log("setting 11")
         setEffect11(effect)
     }
     else if (currentEditNum === "12"){
-        console.log("setting 12")
         setEffect12(effect)
     }
     else if (currentEditNum === "13"){
-        console.log("setting 13")
         setEffect13(effect)
     }
 
@@ -543,20 +539,32 @@ function determineRenderedValue(type, variety){
         }
     }
     else if (variety === "off"){
-        return (100 * determineDamModifier(type) + "%")
+        return `${(determineDamModifier(type) * 100).toFixed(0)}%`
+
     }
     
 }
 
 function determineDamModifier(type){
-    let allDams = findDamageTypeFromEffects("allDamage")
-    console.log(allDams)
+
+    console.log("Type - ", type)
+    // Total Damage Modifier
+    let totalMod = 1
+
+    // Finds "Weapon Damage Modifiers" and applies
     if (type === "Weapon"){
-        
+        let weaponDams = findDamageTypeFromEffects("weaponDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.weaponDamage
+        })
     }
-    else{
-        return 1
-    }
+
+    // Finds "All Damage Modifiers" and applies
+    let allDams = findDamageTypeFromEffects("allDamage")
+    allDams.forEach(dam => {
+        totalMod = totalMod * dam.effect.allDamage
+    })
+    return totalMod
 }
 
 function findDamageTypeFromEffects(type){
@@ -571,43 +579,6 @@ function findDamageTypeFromEffects(type){
     })
 }
 
-function determineAllRelicEffects(){
-    let all = []
-    if (relic1){
-        if (relic1.slot1){
-            all = [...all, relic1.slot1]
-        }
-        if (relic1.slot2){
-            all = [...all, relic1.slot2]
-        }
-        if (relic1.slot3){
-            all = [...all, relic1.slot3]
-        }
-    }
-    if (relic2){
-        if (relic2.slot1){
-            all = [...all, relic2.slot1]
-        }
-        if (relic2.slot2){
-            all = [...all, relic2.slot2]
-        }
-        if (relic2.slot3){
-            all = [...all, relic2.slot3]
-        }
-    }
-    if (relic3){
-        if (relic3.slot1){
-            all = [...all, relic3.slot1]
-        }
-        if (relic3.slot2){
-            all = [...all, relic3.slot2]
-        }
-        if (relic3.slot3){
-            all = [...all, relic3.slot3]
-        }
-    }
-    set_all_relic_effects(all)
-}
 
 
 /////////////////
