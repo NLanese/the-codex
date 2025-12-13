@@ -47,9 +47,9 @@ const silveredNight = "#7fc7bf"
     const [lvl, setLvl] = useState(false)
 
     // Relics
-    const [relic1, setRelic1] = useState({})
-    const [relic2, setRelic2] = useState({})
-    const [relic3, setRelic3] = useState({})
+    const [relic1, setRelic1] = useState(false)
+    const [relic2, setRelic2] = useState(false)
+    const [relic3, setRelic3] = useState(false)
 
     const [all_relic_effects, set_all_relic_effects] = useState([])
 
@@ -95,15 +95,10 @@ const silveredNight = "#7fc7bf"
     useEffect(() => {
         setRelic1({
             slot1: effect11,
-            slot12: effect12,
-            slot13: effect13
+            slot2: effect12,
+            slot3: effect13
         })
-        console.log("Effect on Relic 1 changed")
-        console.log({
-            slot1: effect11,
-            slot12: effect12,
-            slot13: effect13
-        })
+        determineAllRelicEffects()
     }, [effect11, effect12, effect13])
 
     // Relic 2 On Effects
@@ -113,6 +108,7 @@ const silveredNight = "#7fc7bf"
             slot2: effect22,
             slot3: effect23
         })
+        determineAllRelicEffects()
     },[effect21, effect22, effect23])
 
     // Relic 3 On Effects
@@ -122,6 +118,7 @@ const silveredNight = "#7fc7bf"
             slot2: effect32,
             slot3: effect33
         })
+        determineAllRelicEffects()
     }, [effect31, effect32, effect33])
 
 
@@ -221,18 +218,21 @@ function renderRelics(){
 
 function renderRelic(relic, key){
     return(
-        <OstCard key={key} style={{flex: 3, backgroundColor: greyOfNight, padding: 0}}>
+        <OstCard key={key} style={{flex: 3, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden'}}>
             {renderRelicHeader()}
-            {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`)}
-            {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`)}
-            {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}3`)}
+            <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: 'lime'}}>
+                {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`)}
+                {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`)}
+                {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`)}
+            </div>
         </OstCard>
     )
 }
 
 function renderRelicHeader(){
     return(
-        <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10}}>
+        <div style={{height: '12%'}}>
+            <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10}}>
             <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
                 RELIC
             </OstCard>
@@ -242,22 +242,18 @@ function renderRelicHeader(){
             <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 2.5 }}>
                 LOAD
             </OstCard>
+            </div>
         </div>
     )
 }
 
 function renderRelicEffect(relicSlot, key){
-    if (relicSlot === null){
-        return (
-            <OstCard key={key}
-            style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => handleRelicEffectClick(key)}>
-                No Effect
-            </OstCard>
-        )
-    }
     return (
-        <OstCard key={key} style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => handleRelicEffectClick(key)}>
-            {relicSlot.title}
+        <OstCard key={key} noShadow={true} rounded={false} 
+        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4}} 
+        onClick={() => handleRelicEffectClick(key)}
+        >
+            {relicSlot?.title ? relicSlot?.title : "No Effect"}
         </OstCard>
         
     )
@@ -449,33 +445,37 @@ function handleRelicEffectClick(key){
 
 function handleChangeEffect(effect){
     console.log(currentEditNum)
+    console.log(typeof currentEditNum)
     if (currentEditNum === "11"){
+        console.log("setting 11")
         setEffect11(effect)
     }
-    if (currentEditNum === "12"){
+    else if (currentEditNum === "12"){
+        console.log("setting 12")
         setEffect12(effect)
     }
-    if (currentEditNum === "13"){
+    else if (currentEditNum === "13"){
+        console.log("setting 13")
         setEffect13(effect)
     }
 
-    if (currentEditNum === "21"){
+    else if (currentEditNum === "21"){
         setEffect21(effect)
     }
-    if (currentEditNum === "22"){
+    else if (currentEditNum === "22"){
         setEffect22(effect)
     }
-    if (currentEditNum === "23"){
+    else if (currentEditNum === "23"){
         setEffect23(effect)
     }
 
-    if (currentEditNum === "31"){
+    else if (currentEditNum === "31"){
         setEffect31(effect)
     }
-    if (currentEditNum === "32"){
+    else if (currentEditNum === "32"){
         setEffect32(effect)
     }
-    if (currentEditNum === "33"){
+    else if (currentEditNum === "33"){
         setEffect33(effect)
     }
     else{
@@ -492,7 +492,6 @@ function getBaseNegations(){
 function determineRenderedValue(type, variety){
     if (variety === "neg"){
         let negationBases = getBaseNegations(nightfarer)
-        console.log(nightfarer)
         if (type === "Physical"){
             return negationBases.phys
         }
@@ -550,6 +549,44 @@ function determineRenderedValue(type, variety){
 
 function determineDamModifier(type){
     return 1
+}
+
+function determineAllRelicEffects(){
+    let all = []
+    if (relic1){
+        if (relic1.slot1){
+            all = [...all, relic1.slot1]
+        }
+        if (relic1.slot2){
+            all = [...all, relic1.slot2]
+        }
+        if (relic1.slot3){
+            all = [...all, relic1.slot3]
+        }
+    }
+    if (relic2){
+        if (relic2.slot1){
+            all = [...all, relic2.slot1]
+        }
+        if (relic2.slot2){
+            all = [...all, relic2.slot2]
+        }
+        if (relic2.slot3){
+            all = [...all, relic2.slot3]
+        }
+    }
+    if (relic3){
+        if (relic3.slot1){
+            all = [...all, relic3.slot1]
+        }
+        if (relic3.slot2){
+            all = [...all, relic3.slot2]
+        }
+        if (relic3.slot3){
+            all = [...all, relic3.slot3]
+        }
+    }
+    set_all_relic_effects(all)
 }
 
 
