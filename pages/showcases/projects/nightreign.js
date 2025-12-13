@@ -91,17 +91,38 @@ const silveredNight = "#7fc7bf"
         }
     }, [nightfarer, lvl])
 
+    // Relic 1 On Effects
     useEffect(() => {
-        set_all_relic_effects([
-            effect11, effect12, effect13,
-            effect21, effect22, effect23,
-            effect31, effect32, effect33
-        ])
-    }, [
-        effect11, effect12, effect13,
-        effect21, effect22, effect23,
-        effect31, effect32, effect33
-    ])
+        setRelic1({
+            slot1: effect11,
+            slot12: effect12,
+            slot13: effect13
+        })
+        console.log("Effect on Relic 1 changed")
+        console.log({
+            slot1: effect11,
+            slot12: effect12,
+            slot13: effect13
+        })
+    }, [effect11, effect12, effect13])
+
+    // Relic 2 On Effects
+    useEffect(() => {
+        setRelic2({
+            slot1: effect21,
+            slot2: effect22,
+            slot3: effect23
+        })
+    },[effect21, effect22, effect23])
+
+    // Relic 3 On Effects
+    useEffect(() => {
+        setRelic3({
+            slot1: effect31,
+            slot2: effect32,
+            slot3: effect33
+        })
+    }, [effect31, effect32, effect33])
 
 
 
@@ -229,13 +250,13 @@ function renderRelicEffect(relicSlot, key){
     if (relicSlot === null){
         return (
             <OstCard key={key}
-            style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => setRelicsModal(true)}>
+            style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => handleRelicEffectClick(key)}>
                 No Effect
             </OstCard>
         )
     }
     return (
-        <OstCard key={key} style={{border: '1px solid black'}} noShadow={true} rounded={false}>
+        <OstCard key={key} style={{border: '1px solid black'}} noShadow={true} rounded={false} onClick={() => handleRelicEffectClick(key)}>
             {relicSlot.title}
         </OstCard>
         
@@ -297,6 +318,7 @@ function renderStats(){
                 {renderStat("Skill", "off")}
                 {renderStat("Critical", "off")}
                 {renderStat("Counter", "off")}
+                {renderStat("Poise", "off")}
             </div>
             <div style={{flex: 6}}>
                 {renderStat("Physical", "neg")}
@@ -308,6 +330,13 @@ function renderStats(){
                 {renderStat("Lightning", "neg")}
                 {renderStat("Holy", "neg")}
                 {renderStat("Poise", "neg")}
+                {renderStat("Poison", "neg")}
+                {renderStat("Sleep", "neg")}
+                {renderStat("Blight", "neg")}
+                {renderStat("Frostbite", "neg")}
+                {renderStat("Madness", "neg")}
+                {renderStat("Rot", "neg")}
+                {renderStat("Bleed", "neg")}
             </div>
         </div>
     )
@@ -326,6 +355,9 @@ function renderStat(type, variety){
         caption = "Negation"
         if (type === "Poise"){
             caption = ""
+        }
+        else if (type === "Poison" || type ===  "Sleep" || type ===  "Blight" || type ===  "Frostbite" || type ===  "Madness" || type === "Rot" || "Bleed"){
+            caption = "Resist"
         }
     }
     
@@ -399,7 +431,9 @@ function renderRelicModal(){
         }   
         }}
         >
-            <RelicsModal />
+            <RelicsModal 
+                selectEffect={handleChangeEffect}
+            />
         </ReactModal>
     )
 }
@@ -409,18 +443,56 @@ function renderRelicModal(){
 ///////////////
 
 function handleRelicEffectClick(key){
+    setCurrentEditNum(key)
+    setRelicsModal(true)
+}
 
+function handleChangeEffect(effect){
+    console.log(currentEditNum)
+    if (currentEditNum === "11"){
+        setEffect11(effect)
+    }
+    if (currentEditNum === "12"){
+        setEffect12(effect)
+    }
+    if (currentEditNum === "13"){
+        setEffect13(effect)
+    }
+
+    if (currentEditNum === "21"){
+        setEffect21(effect)
+    }
+    if (currentEditNum === "22"){
+        setEffect22(effect)
+    }
+    if (currentEditNum === "23"){
+        setEffect23(effect)
+    }
+
+    if (currentEditNum === "31"){
+        setEffect31(effect)
+    }
+    if (currentEditNum === "32"){
+        setEffect32(effect)
+    }
+    if (currentEditNum === "33"){
+        setEffect33(effect)
+    }
+    else{
+        console.log("Nope... ",  currentEditNum)
+    }
+    setRelicsModal(false)
 }
 
 function getBaseNegations(){
     let bases = determineBaseNegations(nightfarer)
-    console.log(bases)
     return bases
 }
 
 function determineRenderedValue(type, variety){
     if (variety === "neg"){
         let negationBases = getBaseNegations(nightfarer)
+        console.log(nightfarer)
         if (type === "Physical"){
             return negationBases.phys
         }
@@ -447,6 +519,27 @@ function determineRenderedValue(type, variety){
         }
         else if (type === "Poise"){
             return negationBases.poise
+        }
+        else if (type === "Poison"){
+            return negationBases.poison
+        }
+        else if (type === "Rot"){
+            return negationBases.rot
+        }
+        else if (type === "Bleed"){
+            return negationBases.bleed
+        }
+        else if (type === "Frostbite"){
+            return negationBases.frost
+        }
+        else if (type === "Sleep"){
+            return negationBases.sleep
+        }
+        else if (type === "Madness"){
+            return negationBases.mad
+        }
+        else if (type === "Blight"){
+            return negationBases.blight
         }
     }
     else if (variety === "off"){

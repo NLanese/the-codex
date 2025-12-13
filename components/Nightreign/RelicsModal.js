@@ -1,11 +1,6 @@
 
 // React
 import React, {useEffect, useState} from "react";
-import ReactModal from 'react-modal';
-
-// Recoil
-import { useAtom } from "jotai";
-import { directoryDataState } from "../../jotai/atoms";
 
 // Styles 
 import Styles from "../../styles/styles";
@@ -17,7 +12,9 @@ import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar"
 // Relics
 import offensiveRelics from "../../constants/projects/nightreign/relics/offensiveRelics";
 
-export default function RelicsModal() {
+export default function RelicsModal({
+    selectEffect
+}) {
 
 ///////////
 // State //
@@ -50,7 +47,7 @@ useEffect(() => {
 function renderFilteredEffects(){
     return filteredEffects.map(eff => {
         return(
-            <OstCard noShadow={true} rounded={false}
+            <OstCard noShadow={true} rounded={false} onClick={() => selectEffect(eff)}
             style={{border: "1px solid black", padding: 0, paddingLeft: 10}}
             >
                 <p style={{...Styles.Fonts.basicX, marginBottom: 0}}>

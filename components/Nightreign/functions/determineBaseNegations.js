@@ -9,7 +9,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.19,
             lightning: .20,
             holy: .17,
-            poise: 40
+            poise: 40,
+            poison: 102,
+            rot: 102,
+            bleed: 95,
+            frost: 95,
+            sleep: 59,
+            mad: 59,
+            blight: 59,
         }
     }
     else if (nightfarer === "Guardian"){
@@ -22,7 +29,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.14,
             lightning: .15,
             holy: .17,
-            poise: 120
+            poise: 120,
+            poison: 112,
+            rot: 112,
+            bleed: 85,
+            frost: 85,
+            sleep: 69,
+            mad: 59,
+            blight: 59,
         }
     }
     else if (nightfarer === "Ironeye"){
@@ -35,7 +49,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.14,
             lightning: .15,
             holy: .17,
-            poise: 40
+            poise: 40,
+            poison: 112,
+            rot: 112,
+            bleed: 85,
+            frost: 85,
+            sleep: 69,
+            mad: 59,
+            blight: 59,
         }
     }
     else if (nightfarer === "Duchess"){
@@ -48,7 +69,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.22,
             lightning: .22,
             holy: .23,
-            poise: 40
+            poise: 40,
+            poison: 102,
+            rot: 102,
+            bleed: 85,
+            frost: 85,
+            sleep: 69,
+            mad: 69,
+            blight: 59,
         }
     }
     else if (nightfarer === "Raider"){
@@ -61,7 +89,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.24,
             lightning: .15,
             holy: .17,
-            poise: 120
+            poise: 120,
+            poison: 102,
+            rot: 102,
+            bleed: 95,
+            frost: 95,
+            sleep: 49,
+            mad: 49,
+            blight: 59,
         }
     }
     else if (nightfarer === "Revenant"){
@@ -74,7 +109,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.29,
             lightning: .29,
             holy: .20,
-            poise: 40
+            poise: 40,
+            poison: 112,
+            rot: 112,
+            bleed: 85,
+            frost: 85,
+            sleep: 69,
+            mad: 69,
+            blight: 69,
         }
     }
     else if (nightfarer === "Recluse"){
@@ -87,7 +129,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.24,
             lightning: .25,
             holy: .25,
-            poise: 40
+            poise: 40,
+            poison: 112,
+            rot: 112,
+            bleed: 85,
+            frost: 85,
+            sleep: 69,
+            mad: 69,
+            blight: 59,
         }
     }
     else if (nightfarer === "Executor"){
@@ -100,7 +149,14 @@ export default function determineBaseNegations(nightfarer){
             fire: 0.19,
             lightning: .15,
             holy: .22,
-            poise: 40
+            poise: 40,
+            poison: 92,
+            rot: 92,
+            bleed: 105,
+            frost: 105,
+            sleep: 49,
+            mad: 49,
+            blight: 69,
         }
     }
     else{
