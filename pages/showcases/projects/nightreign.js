@@ -38,6 +38,7 @@ const silveredNight = "#7fc7bf"
 
     // Directory
     const [directory, setDirectory] = useAtom(directoryDataState)
+    setDirectory("Private")
 
     // Loading
     const [loading, setLoading] = useState(true)
@@ -345,7 +346,7 @@ function renderStat(type, variety){
     let caption = ""
 
     if (variety === "off"){
-        color = frenzyTouched
+        color = graceGiven
         caption = "Damage"
     }
     else{
