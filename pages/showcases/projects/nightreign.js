@@ -443,6 +443,7 @@ function renderRelicModal(){
 
 function handleRelicEffectClick(key){
     setCurrentEditNum(key)
+    clearEffect(key)
     setRelicsModal(true)
 }
 
@@ -480,6 +481,41 @@ function handleChangeEffect(effect){
         console.log("Nope... ",  currentEditNum)
     }
     setRelicsModal(false)
+}
+
+function clearEffect(key){
+    if (key === "11"){
+        setEffect11(false)
+    }
+    else if (key === "12"){
+        setEffect12(false)
+    }
+    else if (key === "13"){
+        setEffect13(false)
+    }
+
+    else if (key === "21"){
+        setEffect21(false)
+    }
+    else if (key === "22"){
+        setEffect22(false)
+    }
+    else if (key === "23"){
+        setEffect23(false)
+    }
+
+    else if (key === "31"){
+        setEffect31(false)
+    }
+    else if (key === "32"){
+        setEffect32(false)
+    }
+    else if (key === "33"){
+        setEffect33(false)
+    }
+    else{
+        console.log("Nope... ",  key)
+    }
 }
 
 function getBaseNegations(){
@@ -560,7 +596,7 @@ function determineDamModifier(type){
         })
     }
     // Finds "Ranged Damage Modifiers" and applies
-    if (type === "Ranged"){
+    else if (type === "Ranged"){
         let weaponDams = findDamageTypeFromEffects("weaponDamage")
         weaponDams.forEach(dam => {
             if (dam.effect.appliesRanged){
@@ -569,10 +605,38 @@ function determineDamModifier(type){
         })
     }
     // Finds "Magic Damage Modifiers" and applies
-    if (type === "Magic"){
+    else if (type === "Magic"){
         let weaponDams = findDamageTypeFromEffects("magicDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.magicDamage
+        })
+    }
+    // Finds "Lightning Damage Modifiers" and applies
+    else if (type === "Lightning"){
+        let weaponDams = findDamageTypeFromEffects("lightningDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.lightningDamage
+        })
+    }
+    // Finds "Fire Damage Modifiers" and applies
+    else if (type === "Fire"){
+        let weaponDams = findDamageTypeFromEffects("fireDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.fireDamage
+        })
+    }
+    // Finds "Fire Damage Modifiers" and applies
+    else if (type === "Holy"){
+        let weaponDams = findDamageTypeFromEffects("holyDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.holyDamage
+        })
+    }
+    // Finds "Fire Damage Modifiers" and applies
+    else if (type === "Skill"){
+        let weaponDams = findDamageTypeFromEffects("skillDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.skillDamage
         })
     }
 

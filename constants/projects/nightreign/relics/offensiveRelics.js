@@ -507,7 +507,7 @@ const offensiveRelics = [
         }
     },
     {
-        title: "Frostbite in Vicinity Increases Attack Power", 
+        title: "Frostbite in Vicinity Conseals Self", 
         desc: "Invisible for 6 Seconds after Frostbite Procs",
         stacks: {self: false, selfType: false},
         selfType: "frostInvisible",
@@ -538,8 +538,8 @@ const offensiveRelics = [
          }
     },
     {
-        title: "Status Ailment Gauges Slowly Increase Attack Power", 
-        desc: "Having any ailment build up at all increases damage output by 4% every 20 seconds of consecutive ailment affiliction. Tops at 40% (10 stacks)",
+        title: "Attacks Inflict Rot When Damage Is Taken", 
+        desc: "Adds 25 Rot AP (Attack Points) to weilded Right-Hand weapon for 12 seconds after taking any unlocked damage from an enemy",
         stacks: {self: false, selfType: false},
         selfType: "ailmentBarDamUp",
         effect: { 
