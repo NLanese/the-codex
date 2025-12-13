@@ -305,7 +305,7 @@ function renderStats(){
     return(
         <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
             <div style={{flex: 6}}>
-                {renderStat("Weapon", "off")}
+                {renderStat("Melee", "off")}
                 {renderStat("Ranged", "off")}
                 {renderStat("Incantation", "off")}
                 {renderStat("Sorcery", "off")}
@@ -552,11 +552,27 @@ function determineDamModifier(type){
     // Total Damage Modifier
     let totalMod = 1
 
-    // Finds "Weapon Damage Modifiers" and applies
-    if (type === "Weapon"){
+    // Finds "Melee Damage Modifiers" and applies
+    if (type === "Melee"){
         let weaponDams = findDamageTypeFromEffects("weaponDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.weaponDamage
+        })
+    }
+    // Finds "Ranged Damage Modifiers" and applies
+    if (type === "Ranged"){
+        let weaponDams = findDamageTypeFromEffects("weaponDamage")
+        weaponDams.forEach(dam => {
+            if (dam.effect.appliesRanged){
+                totalMod = totalMod * dam.effect.weaponDamage
+            }
+        })
+    }
+    // Finds "Magic Damage Modifiers" and applies
+    if (type === "Magic"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
         })
     }
 
@@ -572,10 +588,6 @@ function findDamageTypeFromEffects(type){
     return all_relic_effects.filter(eff => {
         if (eff.effect[type]){
             return eff.effect
-        }
-        else{
-            console.log("NO ", type)
-            console.log(eff.effect)
         }
     })
 }
