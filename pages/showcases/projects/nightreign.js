@@ -220,7 +220,7 @@ function renderRelic(relic, key){
     return(
         <OstCard key={key} style={{flex: 3, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden'}}>
             {renderRelicHeader()}
-            <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: 'lime'}}>
+            <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor}}>
                 {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`)}
                 {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`)}
                 {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`)}
