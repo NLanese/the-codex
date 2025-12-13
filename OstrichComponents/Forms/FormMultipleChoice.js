@@ -10,7 +10,12 @@ export const FormMultipleChoice = ({
     titleStyle,             // Style of the Title for the Multiple Choice Question
     captionStyle,
     fieldTextStyle,
+    tabStyle,
+
     inForm=true,
+    title,
+    caption,
+    itemsPerRow=3,
     
     onChange,               // Function to fire whenever a value is selected or unselected
 
@@ -165,7 +170,6 @@ export const FormMultipleChoice = ({
             
             // Single Answer
             if (singleOption){      
-                console.log("Single Option") 
                 if (value === tag){
                     setvalue([])           // Removing Previous Answer
                 }
@@ -237,10 +241,7 @@ export const FormMultipleChoice = ({
     ////////////////
 
         function renderCaptionAndDetails(){
-            if (!fieldObj){
-                return
-            }
-            else if (!fieldObj.caption && !fieldObj.img && !fieldObj.moreText){
+            if (!caption && (!fieldObj || (!fieldObj.caption && !fieldObj.img && !fieldObj.moreText))){
                 return
             }
             else{
@@ -256,10 +257,10 @@ export const FormMultipleChoice = ({
 
         // Renders the Field's Description / Caption
         function renderCaption(){
-            if (fieldObj?.caption){
+            if (fieldObj?.caption || caption){
                 return(
                     <span style={captionStyleFinal}>
-                        {fieldObj.caption}
+                        {fieldObj.caption ? fieldObj.caption : caption}
                     </span>
                 )
             }
@@ -291,13 +292,13 @@ export const FormMultipleChoice = ({
 
         function renderBubbleAndTitle(){
             if (
-             (!fieldObj || !fieldObj.title) &&
-             ((correctDisplay !== "bubble") || (!validResponse && !correctResponse))
+             (!fieldObj && !fieldObj.title) &&
+             ((correctDisplay !== "bubble") && (!validResponse && !correctResponse))
             ){
                 return
             }
             return(
-                <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%', height:'100%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingRight: '5%', height:'auto'}}>
                     {renderTitle()}
                     {renderBubbleValidOrCorrect()}
                 </div>  
@@ -306,7 +307,12 @@ export const FormMultipleChoice = ({
 
         // Renders the Bubble Version of Correct or Valid
         function renderBubbleValidOrCorrect(){
-            if ((!validResponse && !correctResponse && (fieldObj?.required === false)) || (correctDisplay !== "bubble") || (!fieldObj)){
+            if (
+                (!validResponse && !correctResponse && 
+                    (fieldObj?.required === false)) || 
+                    (correctDisplay !== "bubble") || 
+                    (!fieldObj || fieldObj.required === false || singleOption && !fieldObj.required)
+                ){
                 return
             }
             let borderColor = '#bdbdbd'
@@ -342,12 +348,12 @@ export const FormMultipleChoice = ({
         }
 
         function renderTitle(){
-            if (!fieldObj || !fieldObj.title){
+            if (!fieldObj && !fieldObj.title && !title){
                 return
             }
             return(
                 <p style={{...titleStyleFinal, flex: 11}}>
-                {fieldObj?.title} 
+                {fieldObj?.title ? fieldObj.title : title} 
                 </p>
             )
         }
@@ -356,8 +362,8 @@ export const FormMultipleChoice = ({
             if (loading) return;
             
             const rows = [];
-            for (let i = 0; i < fieldObj?.options.length; i += 3) {
-                const rowItems = fieldObj.options.slice(i, i + 3);
+            for (let i = 0; i < fieldObj?.options.length; i += itemsPerRow) {
+                const rowItems = fieldObj.options.slice(i, i + itemsPerRow);
                 rows.push(
                     <div key={i} 
                     style={{ 
@@ -391,6 +397,7 @@ export const FormMultipleChoice = ({
                             isActive={typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)}
                             showsHover={true}
                             onPress={handleInput}
+                            style={tabStyle ? tabStyle : null}
                             activeStyle={{backgroundColor: '#9cc6f0'}}
                             hoverStyle={{backgroundColor: 'lightgrey'}}
                             textStyle={fieldTextStyle}
@@ -430,7 +437,7 @@ export const FormMultipleChoice = ({
                     <div style={{width: (inForm ? '95%' : '100%'), height: '10%'}}>
                         {renderBubbleAndTitle()}
                         {renderCaptionAndDetails()}
-                        <div style={{padding: 5, paddingTop: 15}}>
+                        <div style={{padding: 5}}>
                             {renderOptions()}
                         </div>
                     </div>

@@ -21,6 +21,8 @@ const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
 const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
 const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
+const NR = "../../../assets/icons/big/Nightreign.png";
+
 
 
 
@@ -141,6 +143,28 @@ export default function ProjectsMenu() {
                         }}
                     >
                         Candy Box 3
+                    </OstCard>
+                </div>
+            </div>
+            <div style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b", paddingTop: 30}}>
+                <div style={{
+                    display: 'flex', 
+                    flexDirection: 'row',
+                    alignContent: 'space-evenly',
+                    width: '90%',
+                    marginLeft: '5%',
+                    height: 300,
+                    gap: 20
+                }}>
+                     <OstCard
+                        templateStyle={1}
+                        imageSrc={NR}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        onClick={() => {
+                        router.push("/showcases/projects/nightreign")
+                        }}
+                    >
+                        Nightreign Build Calculator 
                     </OstCard>
                 </div>
             </div>

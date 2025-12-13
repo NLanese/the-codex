@@ -1,5 +1,5 @@
 // React
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import ReactModal from 'react-modal';
 
 // Recoil
@@ -11,9 +11,27 @@ import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
+import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice";
+
+// Nighteign Functions
+import determineBaseVitals from "../../../components/Nightreign/functions/determineBaseVitals";
+import determineBaseNegations from "../../../components/Nightreign/functions/determineBaseNegations";
+import RelicsModal from "../../../components/Nightreign/RelicsModal";
 
 export default function BetBotProjectPage() {
+////////////
+// Consts //
+////////////
+
+const depthColor = '#161754'
+const nightShade = "#2b2161"
+const graceGiven = "#f2e144"
+const frenzyTouched = "#ff5100"
+const greyOfNight = "#636478"
+const gloomGlow = "#452d8a"
+const silveredNight = "#7fc7bf"
+
+
 ///////////
 // State //
 ///////////
@@ -24,8 +42,11 @@ export default function BetBotProjectPage() {
     // Loading
     const [loading, setLoading] = useState(true)
 
-    // Relics
+    // Nightfarer
+    const [nightfarer, setNightfarer] = useState(false)
+    const [lvl, setLvl] = useState(false)
 
+    // Relics
     const [relic1, setRelic1] = useState(false)
     const [relic2, setRelic2] = useState(false)
     const [relic3, setRelic3] = useState(false)
@@ -46,7 +67,7 @@ export default function BetBotProjectPage() {
     const [all_relic_effects, set_all_relic_effects] = useState([])
     const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
 
-    // Deep of Night    
+    // Deep Of The Night
     const [deepEnabled, setDeepEnabled] = useState(false)
     const [deepDisplayed, setDeepDisplayed] = useState(false)
 
@@ -130,7 +151,6 @@ function renderSelectionsContainer(){
 
 
 // NIGHT FARER //
-
 function renderNightFarer(){
     return(
         <div style={{

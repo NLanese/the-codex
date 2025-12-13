@@ -152,8 +152,8 @@ export const OstrichTabBar = ({
                     borderBottom: "1px solid black",
                     width: 300
                 }
-                let surrogate = style ? {...style} : null
-                setBarStyle({...tempBar, ...surrogate})
+                // let surrogate = style ? {...style} : null
+                setBarStyle({...tempBar, ...style})
             }
 
             // Checks Default Imported Styles
