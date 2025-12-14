@@ -12,6 +12,7 @@ import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar"
 // Relics
 import offensiveRelics from "../../constants/projects/nightreign/relics/offensiveRelics";
 import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
+import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
 
 export default function RelicsModal({
     selectEffect
@@ -22,29 +23,42 @@ export default function RelicsModal({
 ///////////
 const [effectCat, setEffectCat] = useState()
 const [search, setSearch] = useState("")
+const [selectedList, setSelectedList] = useState([])
 const [filteredEffects, setFilteredEffects] = useState([])
 
 useEffect(() => {
     setSearch("")
     if (effectCat === "All"){
-        setFilteredEffects([...offensiveRelics, ...defensiveRelics])
+        setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics])
+        setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics])
     }
     if (effectCat === "Offensive"){
+        setSelectedList(offensiveRelics)
         setFilteredEffects(offensiveRelics)
     }
     else if (effectCat === "Defensive"){
+        setSelectedList(defensiveRelics)
         setFilteredEffects(defensiveRelics)
+    }
+    else if (effectCat === "Regenerative"){
+        setSelectedList(regenRelics)
+        setFilteredEffects(regenRelics)
     }
 }, [effectCat])
 
 useEffect(() => {
-    let oldList = filteredEffects
-    let newList = oldList.filter(eff => {
+    console.log(search)
+    if (search === ""){
+        setFilteredEffects([...selectedList])
+    }
+    else{
+        let newList = selectedList.filter(eff => {
         if (eff.title.includes(search)){
             return eff
         }
     })
-    setFilteredEffects(newList)
+    setFilteredEffects([...newList])
+    }   
 }, [search])
 
 
@@ -55,17 +69,35 @@ function renderFilteredEffects(){
     return filteredEffects.map(eff => {
         return(
             <OstCard noShadow={true} rounded={false} onClick={() => selectEffect(eff)}
-            style={{border: "1px solid black", padding: 0, paddingLeft: 10}}
+            style={{border: "1px solid black", padding: 0, paddingLeft: 10, display: 'flex', flexDirection: 'row'}}
             >
-                <p style={{...Styles.Fonts.basicX, marginBottom: 0}}>
-                    {eff.title}
-                </p>
-                <p style={{...Styles.Fonts.basic, fontSize: 14, marginTop: 0}}>
-                    {eff.desc}
-                </p>
+                <div style={{display: 'flex', flexDirection: 'column', flex: 10}}>
+                    <p style={{...Styles.Fonts.basicX, marginBottom: 0}}>
+                        {eff.title}
+                    </p>
+                    <p style={{...Styles.Fonts.basic, fontSize: 14, marginTop: 0}}>
+                        {eff.desc}
+                    </p>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'column', flex: 2, fontSize: 12}}>
+                    {renderCanStack(eff)}
+                </div>
+                
             </OstCard>
         )
     })
+}
+
+function renderCanStack(eff){
+    if (eff.stacks.self){
+        return <p>Stacks with self</p>
+    }
+    else if (!eff.stacks.self && eff.stacks.selfType){
+        return<p>Stacks with OTHER SIMILAR verions of self</p>
+    }
+    else{
+        return <p>Does not stack</p>
+    }
 }
 
 ///////////////
@@ -83,13 +115,13 @@ function renderFilteredEffects(){
                     <p style={{...Styles.Fonts.h2, marginBottom: 0}}>Select an Effect</p>
                 </div>
                 <OstrichTabBar
-                    style={{width: '80%', marginLeft: '10%', marginBottom: 20}}
-                    tabs={["All", "Offensive", "Defensive", "Stat Changes", "Starting Equipment"]}
+                    style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
+                    tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"]}
                     onTabClick={(tab) => setEffectCat(tab)}
                 />
-                <div style={{marginLeft: '10%', display: 'flex', flexDirection: 'row', paddingTop: 10}}>
+                <div style={{marginLeft: '10%', display: 'flex', flexDirection: 'row', paddingBottom: 10}}>
                     <p style={{...Styles.Fonts.basic, marginTop: 0, marginBottom: 0}}>Search for Effect: </p>
-                    <input style={{width: '62%'}}
+                    <input style={{width: '62%'}} onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
             </div>

@@ -78,16 +78,44 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "ultGiven",
         effect: {
-            ultGiven: 5
         }
     },
     {
         title: "HP Restored When Using Cured Meats, Boluses, etc.",
         desc: "Restores 50 HP on Boluse, Crab, Prawn, Turtle Neck, and Fowl Feet comsumption.",
         stacks: {self: false, selfType: false},
-        selfType: "ultGiven",
+        selfType: "hpEat",
+        effect: {
+
+        }
+    },
+    {
+        title: "Art Gauge Charged from successful Guarding.",
+        desc: "1 Ultimate Charge per Successful Guard",
+        stacks: {self: false, selfType: false},
+        selfType: "ultGuard",
+        effect: {
+            
+        }
+    },
+    {
+        title: "Continuous HP Recovery",
+        desc: "2 HP Per Second",
+        stacks: {self: false, selfType: false},
+        selfType: "regenHP",
+        effect: {
+            
+        }
+    },
+    {
+        title: "Continuous FP Recovery",
+        desc: "1 FP Per Second",
+        stacks: {self: false, selfType: false},
+        selfType: "regenFP",
         effect: {
             
         }
     },
 ]
+
+export default regenRelics
