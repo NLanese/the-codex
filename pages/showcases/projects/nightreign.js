@@ -154,14 +154,14 @@ function renderSelectionsContainer(){
 function renderNightFarer(){
     return(
         <div style={{
-            display: 'flex', flexDirection: 'column', flex: 4, 
+            display: 'flex', flexDirection: 'column', flex: 5, 
             backgroundColor: nightShade, paddingRight: 25
         }}>
             <FormMultipleChoice 
                 title={"Nightfarer"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
                 boxStyle={{width: '100%', margin: 0}}
-                itemsPerRow={3}
+                itemsPerRow={2}
                 inForm={false}
                 onChange={(op) => {
                     setNightfarer(false)
@@ -181,7 +181,7 @@ function renderNightFarer(){
                 title={"Level"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
                 boxStyle={{width: '100%', margin: 0}}
-                itemsPerRow={5}
+                itemsPerRow={8}
                 inForm={false}
                 onChange={(op) => {
                     setLvl(false)
@@ -204,7 +204,7 @@ function renderNightFarer(){
 // RELICS // 
 function renderRelics(){
     return(
-        <div style={{ flex: 8, backgroundColor: nightShade}}>
+        <div style={{ flex: 7, backgroundColor: nightShade}}>
             <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 450,}}>
                 {renderRelic(relic1,1)}
                 {renderRelic(relic2,2)}
@@ -379,7 +379,24 @@ function renderStat(type, variety){
 // VITALS //
 function renderVitals(){
     return(
-        <div>
+        <div style={{display: 'flex', flexDirection: 'row', border: '2px solid', borderColor: greyOfNight}}>
+            {renderBars()}
+            {renderAttributes()}
+        </div>
+    )
+}
+
+function renderAttributes(){
+    return(
+        <div style={{flex: 6, borderLeft: '2px solid', borderColor: greyOfNight}}>
+
+        </div>
+    )
+}   
+
+function renderBars(){
+    return(
+        <div style={{flex: 6}}>
             <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "red"}}>HP</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
