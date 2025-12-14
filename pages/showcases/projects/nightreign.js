@@ -82,6 +82,15 @@ const silverLining = "#d4eeff"
     const [fp, setFP] = useState(1)
     const [stam, setStam] = useState(1)
 
+    const [vigor, setVigor] = useState(1)
+    const [end, setEnd] = useState(1)
+    const [dex, setDex] = useState(1)
+    const [str, setStr] = useState(1)
+    const [intl, setIntl] = useState(1)
+    const [fai, setFai] = useState(1)
+    const [mind, setMind] = useState(1)
+    const [arcane, setArcane] = useState(1)
+
 
 ////////////////
 // UseEffects //
@@ -93,6 +102,22 @@ const silverLining = "#d4eeff"
             setHP(vitalsObject.HP)
             setFP(vitalsObject.FP)
             setStam(vitalsObject.Stam)
+            setVigor(vitalsObject.Vig)
+            setEnd(vitalsObject.End)
+            setStr(vitalsObject.Str)
+            setDex(vitalsObject.Dex)
+            setMind(vitalsObject.Mind)
+            setIntl(vitalsObject.Int)
+            setFai(vitalsObject.Fai)
+            if (nightfarer === "Wylder"){
+                setArcane(10)
+            }
+            else if (nightfarer === "Guardian"){
+                setArcane(10)
+            }
+            else if (nightfarer === "Ironeye"){
+                setArcane(13)
+            }
         }
     }, [nightfarer, lvl])
 
@@ -138,13 +163,13 @@ function renderSelectionsContainer(){
         }}>
             <div style={{
                 flex: 5, display: 'flex', flexDirection: 'row', 
-                backgroundColor: nightShade, height: 550, 
+                backgroundColor: nightShade, height: 600, 
                 borderRadius: 20
             }}>
                 {renderNightFarer()}
                 {renderRelics()}
             </div>
-            <div style={{flex: 7, backgroundColor: nightShade, height: 550}}>
+            <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
                 {renderVitals()}
                 {renderStats()}
             </div>
@@ -473,25 +498,19 @@ function renderVitals(){
 
 function renderAttributes(){
     return(
-        <OstCard noShadow={true} rounded={false} style={{flex: 6, borderLeft: '2px solid', borderColor: greyOfNight, padding: 0}}>
+        <OstCard noShadow={true} rounded={false} style={{flex: 7, borderLeft: '2px solid', borderColor: greyOfNight, padding: 0}}>
             <div style={{display: 'flex', flexDirection: 'row', padding: 5}}>
                 <div style={{flex: 6, paddingRight: 10}}>
-                    {renderAttribute("Strength")}
-                    {renderAttribute("Dexterity")}
                     {renderAttribute("Vigor")}
                     {renderAttribute("Endurance")}
-                </div>
-                <div style={{flex: 5, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
-                    {renderAttribute("Intelligence")}
-                    {renderAttribute("Faith")}
                     {renderAttribute("Mind")}
                     {renderAttribute("Arcane")}
                 </div>
-                <div style={{flex: 1, paddingTop: 5, paddingLeft: 10, paddingRight: 5}}>
-                <OstCard noShadow={true} rounded={false} 
-                style={{backgroundColor: greyOfNight}}>
-                    Apply Conditions
-                </OstCard>
+                <div style={{flex: 6, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
+                    {renderAttribute("Strength")}
+                    {renderAttribute("Dexterity")}
+                    {renderAttribute("Intelligence")}
+                    {renderAttribute("Faith")}
                 </div>
             </div>
         </OstCard>
@@ -499,42 +518,82 @@ function renderAttributes(){
 }   
 
 function renderAttribute(atr){
+    let state 
+    let max = .5
+    let color = "grey"
+    if (atr === "Strength") {
+        state = str
+        max = .62
+        color = "#9c2400"
+    }
+    else if (atr === "Dexterity") {
+        state = dex
+        max = .68
+        color = "#f2970f"
+    }
+    else if (atr === "Vigor") {
+        state = vigor
+        max = .70
+        color = "#f2463a"
+    }
+    else if (atr === "Endurance") {
+        state = end
+        max = .45
+        color = "#68ad28"
+    }
+    else if (atr === "Intelligence") {
+        state = intl
+        max = .68
+        color = "#0352ff"
+    }
+    else if (atr === "Faith") {
+        state = fai
+        max = .58
+        color = graceGiven
+    }
+    else if (atr === "Mind") {
+        state = mind
+        max = .35
+        color = "#a510e6"
+    }
+    else if (atr === "Arcane") {
+        state = arcane
+        max = .60,
+        color = "#87174f"
+    }
+
+
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining, fontSize: 14}}>{atr}</p>
-            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining, fontSize: 14}}>--</p>
+        <div>
+            {renderBar(atr, state, max, color)}
         </div>
     )
 }
 
 function renderBars(){
     return(
-        <div style={{flex: 6}}>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
-                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "red"}}>HP</p>
-                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: 'red', height: '100%', width: `${(hp / 17.5)}%`, display: "flex", justifyContent: 'center'}} >
-                        {hp}
-                    </div>
-                </div>
-            </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
-                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "cyan"}}>FP</p>
-                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: 'cyan', height: '100%', width: `${(fp / 3.0)}%`, display: "flex", justifyContent: 'center'}} >
-                        {fp}
-                    </div>
-                </div>
-            </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
-                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: "lime"}}>Stamina</p>
-                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: 'lime', height: '100%', width: `${(stam / 2.5)}%`, display: "flex", justifyContent: 'center'}} >
-                        {stam}
-                    </div>
-                </div>
-            </div>
+        <div style={{flex: 5}}>
+            {renderBar("HP", hp, 17.5, 'red')}
+            {renderBar("FP", fp, 2.5, 'cyan')}     
+            {renderBar("Stam", stam, 2.5, 'lime')}
         </div>
+    )
+}
+
+function renderBar(title, value, max, color){
+    if (title.length > 5){
+        title = `${title[0]}${title[1]}${title[2]}`
+    }
+
+    return(
+        <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
+                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: color}}>{title}</p>
+                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
+                    <div style={{backgroundColor: color, height: '100%', width: `${(value / max)}%`, display: "flex", justifyContent: 'center'}} >
+                        {value}
+                    </div>
+                </div>
+            </div>
     )
 }
 
