@@ -30,6 +30,7 @@ const frenzyTouched = "#ff5100"
 const greyOfNight = "#636478"
 const gloomGlow = "#452d8a"
 const silveredNight = "#7fc7bf"
+const silverLining = "#d4eeff"
 
 
 ///////////
@@ -307,11 +308,11 @@ function renderStats(){
             <div style={{flex: 6}}>
                 {renderStat("Melee", "off")}
                 {renderStat("Ranged", "off")}
-                {renderStat("Magic", "off")}
+                {renderStat("Magic", "off", ["Magic Sorceries", "Magic Skills"])}
                 {renderStat("Lightning", "off")}
-                {renderStat("Fire", "off")}
-                {renderStat("Holy", "off")}
-                {renderStat("Skill", "off")}
+                {renderStat("Fire", "off", ["Giant's Fire", "Black Flame", "Fire Sorceries", "Fire Skills", "Black Flame Skills"])}
+                {renderStat("Holy", "off", ["Holy Incants", "Fundamentalist", "Holy Skills"])}
+                {renderStat("Skill", "off", ["Magic Skills, Fire Skills, Holy Skills, Lightning Skills"])}
                 {renderStat("Critical", "off")}
                 {renderStat("Counter", "off")}
                 {renderStat("Poise", "off")}
@@ -388,11 +389,29 @@ function renderVitals(){
 
 function renderAttributes(){
     return(
-        <div style={{flex: 6, borderLeft: '2px solid', borderColor: greyOfNight}}>
-
-        </div>
+        <OstCard noShadow={true} rounded={false} style={{flex: 6, borderLeft: '2px solid', borderColor: greyOfNight, padding: 0}}>
+            <div style={{display: 'flex', flexDirection: 'row', padding: 5}}>
+                <div style={{flex: 6, paddingRight: 10}}>
+                    {renderAttribute("Strength")}
+                    {renderAttribute("Dexterity")}
+                </div>
+                <div style={{flex: 6, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
+                    {renderAttribute("Intelligence")}
+                    {renderAttribute("Faith")}
+                </div>
+            </div>
+        </OstCard>
     )
 }   
+
+function renderAttribute(atr){
+    return (
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining}}>{atr}</p>
+            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining, alignSelf: 'flex-end'}}>100000</p>
+        </div>
+    )
+}
 
 function renderBars(){
     return(
