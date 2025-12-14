@@ -4,7 +4,8 @@ export default function determineBaseVitals(nightfarer, lvl){
             return {
                 HP: 1120,
                 FP: 140,
-                Stam: 102
+                Stam: 102,
+                
             }
         }
         else if (lvl === 14){

@@ -454,7 +454,7 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "beastUp",
         effect: {
-            giantFireDamage: 1.12,
+            beastDamage: 1.12,
             appliesRanged: false,
             always: true,
         }

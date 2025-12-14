@@ -353,11 +353,18 @@ function renderStats(){
                 {renderExtras("Dragon Incants", "off", "Incantations")}
                 {renderExtras("Bestial Incants", "off", "Incantations")}
 
-                {renderExtras("Crystalian", "off", "Sorceries")}
-                {renderExtras("Carian", "off", "Sorceries")}
-                {renderExtras("Glintblade", "off", "Sorceries")}
-                {renderExtras("Stonedigger", "off", "Sorceries")}
-                {renderExtras("Standard", "off", "Sorceries")}
+                {renderExtras("Crystalian Sorcery", "off", "Sorceries")}
+                {renderExtras("Carian Sorcery", "off", "Sorceries")}
+                {renderExtras("Glintblade Sorcery", "off", "Sorceries")}
+                {renderExtras("Gravity Sorcery", "off", "Sorceries")}
+                {renderExtras("Stonedigger Sorcery", "off", "Sorceries")}
+                {renderExtras("Standard Sorcery", "off", "Sorceries")}
+
+                {renderExtras("Physical Skill", "off", "Skill")}
+                {renderExtras("Magic / Gravity Skill", "off", "Skill")}
+                {renderExtras("Fire Skill", "off", "Skill")}
+                {renderExtras("Lightning Skill", "off", "Skill")}
+                {renderExtras("Holy Skill", "off", "Skill")}
             </div>
         </div>
     )
@@ -698,6 +705,10 @@ function determineDamModifier(type){
     // Total Damage Modifier
     let totalMod = 1
 
+    //////////////
+    // Physical //
+    //////////////
+
     // Finds "Melee Damage Modifiers" and applies
     if (type === "Melee"){
         let weaponDams = findDamageTypeFromEffects("weaponDamage")
@@ -714,6 +725,32 @@ function determineDamModifier(type){
             }
         })
     }
+    // Finds "Bestial Incantaions Damage Modifiers" and applies
+    else if (type === "Bestial Incants"){
+        let weaponDams = findDamageTypeFromEffects("weaponDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.weaponDamage
+        })
+        let extraDams = findDamageTypeFromEffects("incantDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+        let extraDams2 = findDamageTypeFromEffects("beastDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.beastDamage
+        })
+    }
+     // Finds "Physical Skill Damage Modifiers" and applies
+     else if (type === "Physical Skill"){
+        let weaponDams = findDamageTypeFromEffects("weaponDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.weaponDamage
+        })
+        let extraDams = findDamageTypeFromEffects("skillDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.skillDamage
+        })
+    }
 
     ///////////
     // Magic //
@@ -727,6 +764,113 @@ function determineDamModifier(type){
         })
     }
 
+    // Magic Skill
+    else if (type === "Magic / Gravity Skill"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let extraDams = findDamageTypeFromEffects("skillDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.skillDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
+
+    // Crystal Sorcery
+    else if (type === "Crystalian Sorcery"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let extraDams = findDamageTypeFromEffects("crystalDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.crystalDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
+
+    // Carian Sorcery
+    else if (type === "Carian Sorcery"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let extraDams = findDamageTypeFromEffects("carianDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.carianDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
+
+    // Glintblade Sorcery
+    else if (type === "Glintblade Sorcery"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let extraDams = findDamageTypeFromEffects("glintDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.glintDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
+
+    // Gravity Sorcery
+    else if (type === "Gravity Sorcery"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let extraDams = findDamageTypeFromEffects("gravDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.glintDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
+
+    // Glintblade Sorcery
+    else if (type === "Stonedigger Sorcery"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let extraDams = findDamageTypeFromEffects("diggerDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.diggerDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
+
+    // Standard Sorcery
+    else if (type === "Stonedigger Sorcery"){
+        let weaponDams = findDamageTypeFromEffects("magicDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.magicDamage
+        })
+        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+        sorcDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.sorceryDamage
+        })
+    }
 
     ///////////////
     // Lightning //
