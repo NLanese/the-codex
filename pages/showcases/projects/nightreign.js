@@ -361,6 +361,7 @@ function renderStats(){
                 {renderExtras("Standard Sorcery", "off", "Sorceries")}
 
                 {renderExtras("Physical Skill", "off", "Skill")}
+                {renderExtras("Roaring Skill", "off", "Skill")}
                 {renderExtras("Magic / Gravity Skill", "off", "Skill")}
                 {renderExtras("Fire Skill", "off", "Skill")}
                 {renderExtras("Lightning Skill", "off", "Skill")}
@@ -478,7 +479,7 @@ function renderAttributes(){
                     {renderAttribute("Strength")}
                     {renderAttribute("Dexterity")}
                     {renderAttribute("Vigor")}
-                    {renderAttribute("Endurancr")}
+                    {renderAttribute("Endurance")}
                 </div>
                 <div style={{flex: 5, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
                     {renderAttribute("Intelligence")}
@@ -550,10 +551,10 @@ function renderRelicModal(){
             backgroundColor: 'rgba(17, 3, 64, 0.85)',
         },
         content: {
-            backgroundColor: 'white',
+            backgroundColor: nightShade,
             width: '50%', marginLeft: '20%', minWidth: 300,
-            height: '70%', marginTop: '0%', minHeight: 220,
-            borderRadius: 20
+            height: '82%', marginTop: '0%', minHeight: 220,
+            borderRadius: 20, borderColor: silveredNight
         }   
         }}
         >
@@ -750,8 +751,8 @@ function determineDamModifier(type){
             totalMod = totalMod * dam.effect.beastDamage
         })
     }
-     // Finds "Physical Skill Damage Modifiers" and applies
-     else if (type === "Physical Skill"){
+    // Finds "Physical Skill Damage Modifiers" and applies
+    else if (type === "Physical Skill"){
         let weaponDams = findDamageTypeFromEffects("weaponDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.weaponDamage
@@ -759,6 +760,21 @@ function determineDamModifier(type){
         let extraDams = findDamageTypeFromEffects("skillDamage")
         extraDams.forEach(dam => {
             totalMod = totalMod * dam.effect.skillDamage
+        })
+    }
+    // Finds "Physical Skill Damage Modifiers" and applies
+    else if (type === "Roaring Skill"){
+        let weaponDams = findDamageTypeFromEffects("weaponDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.weaponDamage
+        })
+        let extraDams = findDamageTypeFromEffects("skillDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.skillDamage
+        })
+        let roarDams = findDamageTypeFromEffects("roarDamage")
+        roarDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.roarDamage
         })
     }
 
