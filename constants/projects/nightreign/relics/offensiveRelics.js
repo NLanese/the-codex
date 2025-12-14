@@ -488,7 +488,7 @@ const offensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "specificWeaponUp",
         effect: {
-            weaponDamage: 1.09,
+            allDamage: 1.09,
             appliesRanged: true,
             always: false,
             condition: "When using specific weapon type"

@@ -14,8 +14,8 @@ import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice";
 
 // Nighteign Functions
-import determineBaseVitals from "../../../components/Nightreign/functions/determineBaseVitals";
-import determineBaseNegations from "../../../components/Nightreign/functions/determineBaseNegations";
+import determineBaseNegations from "../../../constants/projects/nightreign/nightfarers/determineBaseNegations";
+import determineBaseVitals from "../../../constants/projects/nightreign/nightfarers/determineBaseVitals";
 import RelicsModal from "../../../components/Nightreign/RelicsModal";
 
 export default function BetBotProjectPage() {
@@ -253,7 +253,7 @@ function renderRelicHeader(){
 function renderRelicEffect(relicSlot, key){
     return (
         <OstCard key={key} noShadow={true} rounded={false} 
-        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4}} 
+        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15}} 
         onClick={() => handleRelicEffectClick(key)}
         >
             {relicSlot?.title ? relicSlot?.title : "No Effect"}
@@ -477,10 +477,20 @@ function renderAttributes(){
                 <div style={{flex: 6, paddingRight: 10}}>
                     {renderAttribute("Strength")}
                     {renderAttribute("Dexterity")}
+                    {renderAttribute("Vigor")}
+                    {renderAttribute("Endurancr")}
                 </div>
-                <div style={{flex: 6, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
+                <div style={{flex: 5, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
                     {renderAttribute("Intelligence")}
                     {renderAttribute("Faith")}
+                    {renderAttribute("Mind")}
+                    {renderAttribute("Arcane")}
+                </div>
+                <div style={{flex: 1, paddingTop: 5, paddingLeft: 10, paddingRight: 5}}>
+                <OstCard noShadow={true} rounded={false} 
+                style={{backgroundColor: greyOfNight}}>
+                    Apply Conditions
+                </OstCard>
                 </div>
             </div>
         </OstCard>
@@ -490,8 +500,8 @@ function renderAttributes(){
 function renderAttribute(atr){
     return (
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining}}>{atr}</p>
-            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining, alignSelf: 'flex-end'}}>100000</p>
+            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining, fontSize: 14}}>{atr}</p>
+            <p style={{...Styles.Fonts.basic, margin: 0, color: silverLining, fontSize: 14}}>--</p>
         </div>
     )
 }
@@ -861,7 +871,7 @@ function determineDamModifier(type){
     }
 
     // Standard Sorcery
-    else if (type === "Stonedigger Sorcery"){
+    else if (type === "Standard Sorcery"){
         let weaponDams = findDamageTypeFromEffects("magicDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.magicDamage
