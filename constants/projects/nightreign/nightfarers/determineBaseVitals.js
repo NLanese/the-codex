@@ -498,70 +498,140 @@ export default function determineBaseVitals(nightfarer, lvl){
             return {
                 HP: 660,
                 FP: 90,
-                Stam: 90
+                Stam: 90,
+                Vig: 31,
+                Mind: 10,
+                End: 23,
+                Str: 16,
+                Dex: 47,
+                Int: 5,
+                Fai: 9
             }
         }
         else if (lvl === 9){
             return {
                 HP: 620,
                 FP: 85,
-                Stam: 86
+                Stam: 86,
+                Vig: 27,
+                Mind: 8,
+                End: 19,
+                Str: 14,
+                Dex: 41,
+                Int: 5,
+                Fai: 7
             }
         }
         else if (lvl === 8){
             return {
                 HP: 580,
                 FP: 80,
-                Stam: 82
+                Stam: 82,
+                Vig: 25,
+                Mind: 7,
+                End: 17,
+                Str: 13,
+                Dex: 38,
+                Int: 4,
+                Fai: 7
             }
         }
         else if (lvl === 7){
             return {
                 HP: 540,
                 FP: 80,
-                Stam: 80
+                Stam: 80,
+                Vig: 23,
+                Mind: 7,
+                End: 16,
+                Str: 12,
+                Dex: 35,
+                Int: 4,
+                Fai: 6
             }
         }
         else if (lvl === 6){
             return {
                 HP: 480,
                 FP: 75,
-                Stam: 76
+                Stam: 76,
+                Vig: 20,
+                Mind: 6,
+                End: 14,
+                Str: 11,
+                Dex: 32,
+                Int: 4,
+                Fai: 5
             }
         }
         else if (lvl === 5){
             return {
                 HP: 440,
                 FP: 70,
-                Stam: 72
+                Stam: 72,
+                Vig: 18,
+                Mind: 5,
+                End: 12,
+                Str: 10,
+                Dex: 29,
+                Int: 3,
+                Fai: 5
             }
         }
         else if (lvl === 4){
             return {
                 HP: 400,
                 FP: 65,
-                Stam: 68
+                Stam: 68,
+                Vig: 16,
+                Mind: 4,
+                End: 10,
+                Str: 9,
+                Dex: 26,
+                Int: 3,
+                Fai: 4
             }
         }
         else if (lvl === 3){
             return {
                 HP: 360,
                 FP: 60,
-                Stam: 62
+                Stam: 62,
+                Vig: 14,
+                Mind: 3,
+                End: 8,
+                Str: 8,
+                Dex: 23,
+                Int: 3,
+                Fai: 3
             }
         }
         else if (lvl === 2){
             return {
                 HP: 320,
                 FP: 60,
-                Stam: 62
+                Stam: 62,
+                Vig: 12,
+                Mind: 3,
+                End: 7,
+                Str: 7,
+                Dex: 20,
+                Int: 3,
+                Fai: 5
             }
         }
         else if (lvl === 1){
             return {
                 HP: 200,
                 FP: 55,
-                Stam: 56
+                Stam: 56,
+                Vig: 6,
+                Mind: 2,
+                End: 4,
+                Str: 4,
+                Dex: 8,
+                Int: 2,
+                Fai: 2
             }
         }
     }
@@ -570,105 +640,210 @@ export default function determineBaseVitals(nightfarer, lvl){
             return {
                 HP: 860,
                 FP: 180,
-                Stam: 84
+                Stam: 84,
+                Vig: 39,
+                Mind: 27,
+                End: 18,
+                Str: 11,
+                Dex: 45,
+                Int: 42,
+                Fai: 27
             }
         }
         else if (lvl === 14){
             return {
                 HP: 820,
                 FP: 175,
-                Stam: 80
+                Stam: 80,
+                Vig: 37,
+                Mind: 26,
+                End: 16,
+                Str: 10,
+                Dex: 39,
+                Int: 40,
+                Fai: 26
             }
         }
         else if (lvl === 13){
             return {
                 HP: 800,
                 FP: 170,
-                Stam: 80
+                Stam: 80,
+                Vig: 36,
+                Mind: 25,
+                End: 15,
+                Str: 9,
+                Dex: 37,
+                Int: 38,
+                Fai: 25
             }
         }
         else if (lvl === 12){
             return {
                 HP: 780,
                 FP: 165,
-                Stam: 76
+                Stam: 76,
+                Vig: 35,
+                Mind: 27,
+                End: 14,
+                Str: 9,
+                Dex: 35,
+                Int: 36,
+                Fai: 24
             }
         }
         else if (lvl === 11){
             return {
                 HP: 720,
                 FP: 155,
-                Stam: 74
+                Stam: 74,
+                Vig: 32,
+                Mind: 22,
+                End: 13,
+                Str: 8,
+                Dex: 32,
+                Int: 33,
+                Fai: 22
             }
         }
         else if (lvl === 10){
             return {
                 HP: 680,
                 FP: 150,
-                Stam: 72
+                Stam: 72,
+                Vig: 30,
+                Mind: 21,
+                End: 12,
+                Str: 8,
+                Dex: 30,
+                Int: 30,
+                Fai: 20
             }
         }
         else if (lvl === 9){
             return {
                 HP: 640,
                 FP: 140,
-                Stam: 70
+                Stam: 70,
+                Vig: 28,
+                Mind: 19,
+                End: 11,
+                Str: 7,
+                Dex: 28,
+                Int: 27,
+                Fai: 20
             }
         }
         else if (lvl === 8){
             return {
                 HP: 600,
                 FP: 135,
-                Stam: 68
+                Stam: 68,
+                Vig: 26,
+                Mind: 18,
+                End: 10,
+                Str: 7,
+                Dex: 25,
+                Int: 24,
+                Fai: 16
             }
         }
         else if (lvl === 7){
             return {
                 HP: 560,
                 FP: 125,
-                Stam: 66
+                Stam: 66,
+                Vig: 24,
+                Mind: 16,
+                End: 9,
+                Str: 6,
+                Dex: 23,
+                Int: 22,
+                Fai: 15
             }
         }
         else if (lvl === 6){
             return {
                 HP: 500,
                 FP: 120,
-                Stam: 64
+                Stam: 64,
+                Vig: 21,
+                Mind: 15,
+                End: 8,
+                Str: 6,
+                Dex: 21,
+                Int: 19,
+                Fai: 13
             }
         }
         else if (lvl === 5){
             return {
                 HP: 460,
                 FP: 110,
-                Stam: 62
+                Stam: 62,
+                Vig: 19,
+                Mind: 13,
+                End: 7,
+                Str: 5,
+                Dex: 18,
+                Int: 16,
+                Fai: 11
             }
         }
         else if (lvl === 4){
             return {
                 HP: 420,
                 FP: 105,
-                Stam: 60
+                Stam: 60,
+                Vig: 17,
+                Mind: 12,
+                End: 6,
+                Str: 5,
+                Dex: 16,
+                Int: 13,
+                Fai: 9
             }
         }
         else if (lvl === 3){
             return {
                 HP: 380,
                 FP: 95,
-                Stam: 58
+                Stam: 58,
+                Vig: 15,
+                Mind: 10,
+                End: 5,
+                Str: 4,
+                Dex: 14,
+                Int: 10,
+                Fai: 7
             }
         }
         else if (lvl === 2){
             return {
                 HP: 340,
                 FP: 90,
-                Stam: 56
+                Stam: 56,
+                Vig: 13,
+                Mind: 9,
+                End: 4,
+                Str: 4,
+                Dex: 12,
+                Int: 8,
+                Fai: 6
             }
         }
         else if (lvl === 1){
             return {
                 HP: 220,
                 FP: 75,
-                Stam: 54
+                Stam: 54,
+                Vig: 7,
+                Mind: 6,
+                End: 3,
+                Str: 2,
+                Dex: 4,
+                Int: 4,
+                Fai: 3
             }
         }
     }

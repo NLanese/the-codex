@@ -118,6 +118,9 @@ const silverLining = "#d4eeff"
             else if (nightfarer === "Ironeye"){
                 setArcane(13)
             }
+            else if (nightfarer === "Duchess"){
+                setArcane(11)
+            }
         }
     }, [nightfarer, lvl])
 
