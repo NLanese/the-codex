@@ -432,18 +432,18 @@ const offensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "frenzyUp",
         effect: {
-            giantFireDamage: 1.12,
+            frenzyDamage: 1.12,
             appliesRanged: false,
             always: true,
         }
     },
     {
-        title: "Improved Frenzy Flame Incantation", 
-        desc: "Increases Frenzy Incantation damage by 12%",
+        title: "Improved Godslayer Incantation", 
+        desc: "Increases Black Flame Incantation damage by 12%",
         stacks: {self: true, selfType: true},
-        selfType: "frenzyUp",
+        selfType: "godSlayerUp",
         effect: {
-            giantFireDamage: 1.12,
+            godslayerDamage: 1.12,
             appliesRanged: false,
             always: true,
         }

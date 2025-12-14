@@ -73,7 +73,9 @@ const silverLining = "#d4eeff"
     const [deepEnabled, setDeepEnabled] = useState(false)
     const [deepDisplayed, setDeepDisplayed] = useState(false)
 
+    // Rendering States
     const [relicsModal, setRelicsModal] = useState(false)
+    const [expandedStat, setExpandedStat] = useState(false)
 
     // Vitals
     const [hp, setHP] = useState(1)
@@ -308,15 +310,38 @@ function renderStats(){
             <div style={{flex: 6}}>
                 {renderStat("Melee", "off")}
                 {renderStat("Ranged", "off")}
-                {renderStat("Magic", "off", ["Magic Sorceries", "Magic Skills"])}
+                {renderStat("Magic", "off")}
                 {renderStat("Lightning", "off")}
-                {renderStat("Fire", "off", ["Giant's Fire", "Black Flame", "Fire Sorceries", "Fire Skills", "Black Flame Skills"])}
-                {renderStat("Holy", "off", ["Holy Incants", "Fundamentalist", "Holy Skills"])}
-                {renderStat("Skill", "off", ["Magic Skills, Fire Skills, Holy Skills, Lightning Skills"])}
+                {renderStat("Fire", "off")}
+                {renderStat("Holy", "off")}
+                {renderStat("Skill", "off", [
+                    "Physical Skills",
+                    "Magic Skills", 
+                    "Fire Skills", 
+                    "Holy Skills", 
+                    "Lightning Skills", 
+                    "Magic Skills"
+                ])}
                 {renderStat("Critical", "off")}
                 {renderStat("Counter", "off")}
                 {renderStat("Poise", "off")}
                 {renderStat("Consumables", "off")}
+                {renderStat("Sorceries", 'off')}
+                {renderStat("Incantations", 'off', [
+                    "Fire Incants", 
+                    "Giant's Fire", 
+                    "Black Flame", 
+                    "Flame of Frenzy",
+
+                    "Holy Incants",
+                    "Golden Incants",
+
+                    "Lightning Incants",
+
+                    "Dragon Incants",
+                    "Bestial Incants"
+                ])}
+                
             </div>
             <div style={{flex: 6}}>
                 {renderStat("Physical", "neg")}
@@ -340,10 +365,10 @@ function renderStats(){
     )
 }
 
-function renderStat(type, variety){
+function renderStat(type, variety, extras=false){
+    // Style Stuff
     let color = "white"
     let caption = ""
-
     if (variety === "off"){
         color = graceGiven
         caption = "Damage"
@@ -358,23 +383,57 @@ function renderStat(type, variety){
             caption = "Resist"
         }
     }
-    
+    let cardStyle = {
+        border: '1px solid black', display: 'flex', 
+        flexDirection: 'row', flex: 3, 
+        backgroundColor: gloomGlow, padding: 5,
+        justifyContent: 'space-between'
+    }
+
+
+
+
+    if (extras){
+        return(
+            <div>
+                <OstCard noShadow={true} rounded={false}style={cardStyle} onClick={() => {}}>
+                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
+                        {type} {caption} - 
+                    </p>
+                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
+                        determineRenderedValue(type, variety)}
+                    </p>
+                </OstCard>
+                {renderExtras(variety, extras)}
+            </div>
+            
+        )
+    }
     return(
-        <OstCard noShadow={true} rounded={false}
-        style={{
-            border: '1px solid black', display: 'flex', 
-            flexDirection: 'row', flex: 3, 
-            backgroundColor: gloomGlow, padding: 5,
-            justifyContent: 'space-between'
-        }} >
+        <OstCard noShadow={true} rounded={false} style={cardStyle}>
             <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
                 {type} {caption} - 
             </p>
             <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                determineRenderedValue(type, variety)}
+                determineRenderedValue(type, type)}
             </p>
         </OstCard>
     )
+}
+
+function renderExtras(type, extras){
+    if (expandedStat === type){
+        return extras.map((ex, i) => {
+            <OstCard noShadow={true} rounded={false}style={cardStyle} onClick={() => {}} key={i}>
+                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
+                    {type} {caption} - 
+                </p>
+                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
+                    determineRenderedValue(ex, variety)}
+                </p>
+            </OstCard>
+        })
+    }
 }
 
 // VITALS //
@@ -622,6 +681,8 @@ function determineDamModifier(type){
     // Total Damage Modifier
     let totalMod = 1
 
+
+
     // Finds "Melee Damage Modifiers" and applies
     if (type === "Melee"){
         let weaponDams = findDamageTypeFromEffects("weaponDamage")
@@ -638,6 +699,11 @@ function determineDamModifier(type){
             }
         })
     }
+
+    ///////////
+    // Magic //
+    ///////////
+
     // Finds "Magic Damage Modifiers" and applies
     else if (type === "Magic"){
         let weaponDams = findDamageTypeFromEffects("magicDamage")
@@ -645,6 +711,12 @@ function determineDamModifier(type){
             totalMod = totalMod * dam.effect.magicDamage
         })
     }
+
+
+    ///////////////
+    // Lightning //
+    ///////////////
+
     // Finds "Lightning Damage Modifiers" and applies
     else if (type === "Lightning"){
         let weaponDams = findDamageTypeFromEffects("lightningDamage")
@@ -652,6 +724,19 @@ function determineDamModifier(type){
             totalMod = totalMod * dam.effect.lightningDamage
         })
     }
+    // Finds "Dragon Cult Damage Modifiers" and applies
+    else if (type === "Lightning Incants"){
+        let weaponDams = findDamageTypeFromEffects("dargonCultDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.dargonCultDamage
+        })
+    }
+
+
+    //////////
+    // FIRE //
+    //////////
+
     // Finds "Fire Damage Modifiers" and applies
     else if (type === "Fire"){
         let weaponDams = findDamageTypeFromEffects("fireDamage")
@@ -659,21 +744,132 @@ function determineDamModifier(type){
             totalMod = totalMod * dam.effect.fireDamage
         })
     }
-    // Finds "Fire Damage Modifiers" and applies
+
+    // Finds "Flame Incantation Damage Modifiers" and applies
+    else if (type === "Fire Incants"){
+        // Fire
+        let extraDams = findDamageTypeFromEffects("fireDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.fireDamage
+        })
+        // Incant
+        let extraDams2 = findDamageTypeFromEffects("incantDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+    }
+
+    // Finds "Giant's Fire Damage Modifiers" and applies
+    else if (type === "Giant's Fire"){
+        // Giants Fire
+        let weaponDams = findDamageTypeFromEffects("giantFireDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.giantFireDamage
+        })
+        // Fire
+        let extraDams = findDamageTypeFromEffects("fireDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.fireDamage
+        })
+        // Incant
+        let extraDams2 = findDamageTypeFromEffects("incantDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+    }
+
+    // Finds "Black Flame Damage Modifiers" and applies
+    else if (type === "Black Flame"){
+        // Black Flame
+        let weaponDams = findDamageTypeFromEffects("godslayerDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.godslayerDamage
+        })
+        // Fire
+        let extraDams = findDamageTypeFromEffects("fireDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.fireDamage
+        })
+        // Incant
+        let extraDams2 = findDamageTypeFromEffects("incantDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+    }
+
+    // Finds "Frenzy Flame Damage Modifiers" and applies
+    else if (type === "Flame of Frenzy"){
+        // Black Flame
+        let weaponDams = findDamageTypeFromEffects("frenzyDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.frenzyDamage
+        })
+        // Fire
+        let extraDams = findDamageTypeFromEffects("fireDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.fireDamage
+        })
+        // Incant
+        let extraDams2 = findDamageTypeFromEffects("incantDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+    }
+
+
+    //////////
+    // Holy //
+    //////////
+
+    // Finds "Holy Damage Modifiers" and applies
     else if (type === "Holy"){
         let weaponDams = findDamageTypeFromEffects("holyDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.holyDamage
         })
     }
-    // Finds "Fire Damage Modifiers" and applies
+
+    // Finds "Holy Incantation Damage Modifiers" and applies
+    else if (type === "Holy Incants"){
+        let weaponDams = findDamageTypeFromEffects("holyDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.holyDamage
+        })
+        // Incant
+        let extraDams2 = findDamageTypeFromEffects("incantDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+    }
+
+    // Finds "Fundamentalist Incantation Damage Modifiers" and applies
+    else if (type === "Golden Incants"){
+        let weaponDams = findDamageTypeFromEffects("holyDamage")
+        weaponDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.holyDamage
+        })
+        // Incant
+        let extraDams2 = findDamageTypeFromEffects("incantDamage")
+        extraDams2.forEach(dam => {
+            totalMod = totalMod * dam.effect.incantDamage
+        })
+        // Fundamentalist
+        let extraDams = findDamageTypeFromEffects("fundDamage")
+        extraDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.fundDamage
+        })
+    }
+
+
+
+    // Finds "Skill Damage Modifiers" and applies
     else if (type === "Skill"){
         let weaponDams = findDamageTypeFromEffects("skillDamage")
         weaponDams.forEach(dam => {
             totalMod = totalMod * dam.effect.skillDamage
         })
     }
-    // Finds "Fire Damage Modifiers" and applies
+    // Finds "Crit Damage Modifiers" and applies
     else if (type === "Critical"){
         let weaponDams = findDamageTypeFromEffects("critDamage")
         weaponDams.forEach(dam => {
