@@ -307,43 +307,7 @@ function fill(type){
 function renderStats(){
     return(
         <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
-            <div style={{flex: 6}}>
-                {renderStat("Melee", "off")}
-                {renderStat("Ranged", "off")}
-                {renderStat("Magic", "off")}
-                {renderStat("Lightning", "off")}
-                {renderStat("Fire", "off")}
-                {renderStat("Holy", "off")}
-                {renderStat("Skill", "off", [
-                    "Physical Skills",
-                    "Magic Skills", 
-                    "Fire Skills", 
-                    "Holy Skills", 
-                    "Lightning Skills", 
-                    "Magic Skills"
-                ])}
-                {renderStat("Critical", "off")}
-                {renderStat("Counter", "off")}
-                {renderStat("Poise", "off")}
-                {renderStat("Consumables", "off")}
-                {renderStat("Sorceries", 'off')}
-                {renderStat("Incantations", 'off', [
-                    "Fire Incants", 
-                    "Giant's Fire", 
-                    "Black Flame", 
-                    "Flame of Frenzy",
-
-                    "Holy Incants",
-                    "Golden Incants",
-
-                    "Lightning Incants",
-
-                    "Dragon Incants",
-                    "Bestial Incants"
-                ])}
-                
-            </div>
-            <div style={{flex: 6}}>
+            <div style={{flex: 4}}>
                 {renderStat("Physical", "neg")}
                 {renderStat("Slash", "neg")}
                 {renderStat("Strike", "neg")}
@@ -360,6 +324,40 @@ function renderStats(){
                 {renderStat("Madness", "neg")}
                 {renderStat("Rot", "neg")}
                 {renderStat("Bleed", "neg")}
+            </div>
+            <div style={{flex: 4}}>
+                {renderStat("Melee", "off")}
+                {renderStat("Ranged", "off")}
+                {renderStat("Magic", "off")}
+                {renderStat("Lightning", "off")}
+                {renderStat("Fire", "off")}
+                {renderStat("Holy", "off")}
+                
+                {renderStat("Critical", "off")}
+                {renderStat("Counter", "off")}
+                {renderStat("Poise", "off")}
+                {renderStat("Skill", "off", true)}
+                {renderStat("Sorceries", 'off', true)}
+                {renderStat("Incantations", 'off', true)}
+                {renderStat("Consumables", "off", true)}
+            </div>
+            <div style={{flex: 4}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining, margin: 0, textAlign: 'center'}}>{expandedStat ? expandedStat : ""}</p>
+                {renderExtras("Fire Incants", "off", "Incantations")}
+                {renderExtras("Giant's Fire", "off", "Incantations")}
+                {renderExtras("Black Flame", "off", "Incantations")}
+                {renderExtras("Flame of Frenzy", "off", "Incantations")}
+                {renderExtras("Holy Incants", "off", "Incantations")}
+                {renderExtras("Golden Incants", "off", "Incantations")}
+                {renderExtras("Lightning Incants", "off", "Incantations")}
+                {renderExtras("Dragon Incants", "off", "Incantations")}
+                {renderExtras("Bestial Incants", "off", "Incantations")}
+
+                {renderExtras("Crystalian", "off", "Sorceries")}
+                {renderExtras("Carian", "off", "Sorceries")}
+                {renderExtras("Glintblade", "off", "Sorceries")}
+                {renderExtras("Stonedigger", "off", "Sorceries")}
+                {renderExtras("Standard", "off", "Sorceries")}
             </div>
         </div>
     )
@@ -395,18 +393,14 @@ function renderStat(type, variety, extras=false){
 
     if (extras){
         return(
-            <div>
-                <OstCard noShadow={true} rounded={false}style={cardStyle} onClick={() => {}}>
-                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
-                        {type} {caption} - 
-                    </p>
-                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                        determineRenderedValue(type, variety)}
-                    </p>
-                </OstCard>
-                {renderExtras(variety, extras)}
-            </div>
-            
+            <OstCard noShadow={true} rounded={false}style={cardStyle} onClick={() => {setExpandedStat(type)}}>
+                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
+                    {type} {caption} - 
+                </p>
+                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
+                    determineRenderedValue(type, variety)}
+                </p>
+            </OstCard>
         )
     }
     return(
@@ -415,24 +409,47 @@ function renderStat(type, variety, extras=false){
                 {type} {caption} - 
             </p>
             <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                determineRenderedValue(type, type)}
+                determineRenderedValue(type, variety)}
             </p>
         </OstCard>
     )
 }
 
-function renderExtras(type, extras){
-    if (expandedStat === type){
-        return extras.map((ex, i) => {
-            <OstCard noShadow={true} rounded={false}style={cardStyle} onClick={() => {}} key={i}>
+function renderExtras(type, variety, expandedType){
+    if (expandedStat === expandedType){
+        // Style Stuff
+        let color = "white"
+        let caption = ""
+        if (variety === "off"){
+            color = graceGiven
+            caption = "Damage"
+        }
+        else{
+            color = silveredNight
+            caption = "Negation"
+            if (type === "Poise"){
+                caption = ""
+            }
+            else if (type === "Poison" || type ===  "Sleep" || type ===  "Blight" || type ===  "Frostbite" || type ===  "Madness" || type === "Rot" || type === "Bleed"){
+                caption = "Resist"
+            }
+        }
+        let cardStyle = {
+            border: '1px solid black', display: 'flex', 
+            flexDirection: 'row', flex: 3, 
+            backgroundColor: gloomGlow, padding: 5,
+            justifyContent: 'space-between'
+        }
+        return(
+            <OstCard noShadow={true} rounded={false} style={cardStyle}>
                 <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
                     {type} {caption} - 
                 </p>
                 <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                    determineRenderedValue(ex, variety)}
+                    determineRenderedValue(type, variety)}
                 </p>
             </OstCard>
-        })
+        )
     }
 }
 
@@ -681,8 +698,6 @@ function determineDamModifier(type){
     // Total Damage Modifier
     let totalMod = 1
 
-
-
     // Finds "Melee Damage Modifiers" and applies
     if (type === "Melee"){
         let weaponDams = findDamageTypeFromEffects("weaponDamage")
@@ -869,6 +884,7 @@ function determineDamModifier(type){
             totalMod = totalMod * dam.effect.skillDamage
         })
     }
+
     // Finds "Crit Damage Modifiers" and applies
     else if (type === "Critical"){
         let weaponDams = findDamageTypeFromEffects("critDamage")
@@ -880,7 +896,8 @@ function determineDamModifier(type){
             totalMod = totalMod * dam.effect.weaponDamage
         })
     }
-    // Finds "Fire Damage Modifiers" and applies
+
+    // Finds "Guard Counter Damage Modifiers" and applies
     else if (type === "Counter"){
         let weaponDams = findDamageTypeFromEffects("counterDamage")
         weaponDams.forEach(dam => {
@@ -897,6 +914,7 @@ function determineDamModifier(type){
     allDams.forEach(dam => {
         totalMod = totalMod * dam.effect.allDamage
     })
+
     return totalMod
 }
 
