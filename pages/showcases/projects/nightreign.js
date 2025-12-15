@@ -358,14 +358,16 @@ function renderStats(){
                 {renderStat("Fire", "neg")}
                 {renderStat("Lightning", "neg")}
                 {renderStat("Holy", "neg")}
+
                 {renderStat("Poise", "neg")}
-                {renderStat("Poison", "neg")}
-                {renderStat("Sleep", "neg")}
-                {renderStat("Blight", "neg")}
-                {renderStat("Frostbite", "neg")}
-                {renderStat("Madness", "neg")}
-                {renderStat("Rot", "neg")}
-                {renderStat("Bleed", "neg")}
+
+                {renderStat("Poison", "res")}
+                {renderStat("Sleep", "res")}
+                {renderStat("Blight", "res")}
+                {renderStat("Frostbite", "res")}
+                {renderStat("Madness", "res")}
+                {renderStat("Rot", "res")}
+                {renderStat("Bleed", "res")}
             </div>
             <div style={{flex: 4}}>
                 {renderStat("Melee", "off")}
@@ -731,30 +733,33 @@ function determineRenderedValue(type, variety){
     if (variety === "neg"){
         let negationBases = getBaseNegations(nightfarer)
         if (type === "Physical"){
-            return negationBases.phys
+            return `${((determineDamModifier(type, variety) * negationBases.phys) * 100).toFixed(0)}%`
         }
         else if (type === "Slash"){
-            return negationBases.slash
+            return `${((determineDamModifier(type, variety) * negationBases.slash) * 100).toFixed(0)}%`
         }
         else if (type === "Strike"){
-            return negationBases.strike
+            return `${((determineDamModifier(type, variety) * negationBases.strike) * 100).toFixed(0)}%`
         }
         else if (type === "Thrust"){
-            return negationBases.thrust
+            return `${((determineDamModifier(type, variety) * negationBases.thrust) * 100).toFixed(0)}%`
         }
         else if (type === "Magic"){
-            return negationBases.magic
+            return `${((determineDamModifier(type, variety) * negationBases.magic) * 100).toFixed(0)}%`
         }
         else if (type === "Fire"){
-            return negationBases.fire
+            return `${((determineDamModifier(type, variety) * negationBases.fire) * 100).toFixed(0)}%`
         }
         else if (type === "Lightning"){
-            return negationBases.lightning
+            return `${((determineDamModifier(type, variety) * negationBases.lightning) * 100).toFixed(0)}%`
         }
         else if (type === "Holy"){
-            return negationBases.holy
+            return `${((determineDamModifier(type, variety) * negationBases.holy) * 100).toFixed(0)}%`
         }
-        else if (type === "Poise"){
+    }
+    else if (variety === "res"){
+        let negationBases = getBaseNegations(nightfarer)
+        if (type === "Poise"){
             return negationBases.poise
         }
         else if (type === "Poison"){
@@ -1152,6 +1157,8 @@ function determineDamModifier(type, relCat){
 
     /// NEGATIONS //
     else if (relCat === "neg"){
+
+        // Finds All Negations and Applies
         let allDams = findDamageTypeFromEffects("allNegation")
         allDams.forEach(dam => {
             totalMod = totalMod * dam.effect.allNegation

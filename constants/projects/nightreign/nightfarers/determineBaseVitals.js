@@ -852,35 +852,70 @@ export default function determineBaseVitals(nightfarer, lvl){
             return {
                 HP: 1200,
                 FP: 95,
-                Stam: 122
+                Stam: 122,
+                Vig: 56,
+                Mind: 10,
+                End: 37,
+                Str: 68,
+                Dex: 19,
+                Int: 3,
+                Fai: 12
             }
         }
         else if (lvl === 14){
             return {
                 HP: 1160,
                 FP: 90,
-                Stam: 118
+                Stam: 118,
+                Vig: 54,
+                Mind: 9,
+                End: 35,
+                Str: 65,
+                Dex: 19,
+                Int: 2,
+                Fai: 11
             }
         }
         else if (lvl === 13){
             return {
                 HP: 1120,
                 FP: 85,
-                Stam: 114
+                Stam: 114,
+                Vig: 54,
+                Mind: 9,
+                End: 35,
+                Str: 65,
+                Dex: 19,
+                Int: 2,
+                Fai: 11
             }
         }
         else if (lvl === 12){
             return {
                 HP: 1080,
                 FP: 85,
-                Stam: 110
+                Stam: 110,
+                Vig: 50,
+                Mind: 8,
+                End: 31,
+                Str: 60,
+                Dex: 16,
+                Int: 2,
+                Fai: 11
             }
         }
         else if (lvl === 11){
             return {
                 HP: 1000,
                 FP: 80,
-                Stam: 106
+                Stam: 106,
+                Vig: 54,
+                Mind: 9,
+                End: 35,
+                Str: 65,
+                Dex: 19,
+                Int: 2,
+                Fai: 11
             }
         }
         else if (lvl === 10){

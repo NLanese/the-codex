@@ -5,7 +5,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "allNeg",
         effect: {
-            physDamage: 1.10,
+            physNegation: 1.10,
             always: true,
         }
     },
@@ -15,7 +15,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicDamage: 1.10,
+            magicNegation: 1.10,
             always: true,
         }
     },
@@ -25,7 +25,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningDamage: 1.10,
+            lightningNegation: 1.10,
             always: true,
         }
     },
@@ -35,7 +35,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            physDamage: 1.10,
+            holyNegation: 1.10,
             always: true,
         }
     },
@@ -45,7 +45,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allDamage: 1.16,
+            allNegation: 1.16,
             always: true,
         }
     },
@@ -64,7 +64,7 @@ const defensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "knockBack",
         effect: {
-            allDamage: 1.20,
+            allNegation: 1.20,
             always: false,
             condition: "20 seconds after being knocked down"
         }
