@@ -780,7 +780,7 @@ function determineRenderedValue(type, variety){
         }
     }
     else if (variety === "off"){
-        return `${(determineDamModifier(type) * 100).toFixed(0)}%`
+        return `${(determineDamModifier(type, variety) * 100).toFixed(0)}%`
 
     }
     
@@ -1148,7 +1148,7 @@ function determineDamModifier(type, relCat){
                 })
             }
 
-        }
+    }
 
     /// NEGATIONS //
     else if (relCat === "neg"){
