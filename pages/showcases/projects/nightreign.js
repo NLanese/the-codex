@@ -786,380 +786,378 @@ function determineRenderedValue(type, variety){
     
 }
 
-function determineDamModifier(type){
+function determineDamModifier(type, relCat){
 
     // Total Damage Modifier
     let totalMod = 1
+
+    // OFFENSIVE //
+    if (relCat === "off"){
+
+        // Finds "All Damage Modifiers" and applies
+        let allDams = findDamageTypeFromEffects("allDamage")
+        allDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.allDamage
+        })    
 
     //////////////
     // Physical //
     //////////////
 
-    // Finds "Melee Damage Modifiers" and applies
-    if (type === "Melee"){
-        let weaponDams = findDamageTypeFromEffects("weaponDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.weaponDamage
-        })
-    }
-    // Finds "Ranged Damage Modifiers" and applies
-    else if (type === "Ranged"){
-        let weaponDams = findDamageTypeFromEffects("weaponDamage")
-        weaponDams.forEach(dam => {
-            if (dam.effect.appliesRanged){
-                totalMod = totalMod * dam.effect.weaponDamage
+            // Finds "Melee Damage Modifiers" and applies
+            if (type === "Melee"){
+                let weaponDams = findDamageTypeFromEffects("weaponDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.weaponDamage
+                })
             }
-        })
-    }
-    // Finds "Bestial Incantaions Damage Modifiers" and applies
-    else if (type === "Bestial Incants"){
-        let weaponDams = findDamageTypeFromEffects("weaponDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.weaponDamage
-        })
-        let extraDams = findDamageTypeFromEffects("incantDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-        let extraDams2 = findDamageTypeFromEffects("beastDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.beastDamage
-        })
-    }
-    // Finds "Physical Skill Damage Modifiers" and applies
-    else if (type === "Physical Skill"){
-        let weaponDams = findDamageTypeFromEffects("weaponDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.weaponDamage
-        })
-        let extraDams = findDamageTypeFromEffects("skillDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.skillDamage
-        })
-    }
-    // Finds "Physical Skill Damage Modifiers" and applies
-    else if (type === "Roaring Skill"){
-        let weaponDams = findDamageTypeFromEffects("weaponDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.weaponDamage
-        })
-        let extraDams = findDamageTypeFromEffects("skillDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.skillDamage
-        })
-        let roarDams = findDamageTypeFromEffects("roarDamage")
-        roarDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.roarDamage
-        })
-    }
+            // Finds "Ranged Damage Modifiers" and applies
+            else if (type === "Ranged"){
+                let weaponDams = findDamageTypeFromEffects("weaponDamage")
+                weaponDams.forEach(dam => {
+                    if (dam.effect.appliesRanged){
+                        totalMod = totalMod * dam.effect.weaponDamage
+                    }
+                })
+            }
+            // Finds "Bestial Incantaions Damage Modifiers" and applies
+            else if (type === "Bestial Incants"){
+                let weaponDams = findDamageTypeFromEffects("weaponDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.weaponDamage
+                })
+                let extraDams = findDamageTypeFromEffects("incantDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+                let extraDams2 = findDamageTypeFromEffects("beastDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.beastDamage
+                })
+            }
+            // Finds "Physical Skill Damage Modifiers" and applies
+            else if (type === "Physical Skill"){
+                let weaponDams = findDamageTypeFromEffects("weaponDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.weaponDamage
+                })
+                let extraDams = findDamageTypeFromEffects("skillDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.skillDamage
+                })
+            }
+            // Finds "Physical Skill Damage Modifiers" and applies
+            else if (type === "Roaring Skill"){
+                let weaponDams = findDamageTypeFromEffects("weaponDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.weaponDamage
+                })
+                let extraDams = findDamageTypeFromEffects("skillDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.skillDamage
+                })
+                let roarDams = findDamageTypeFromEffects("roarDamage")
+                roarDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.roarDamage
+                })
+            }
 
     ///////////
     // Magic //
     ///////////
 
-    // Finds "Magic Damage Modifiers" and applies
-    else if (type === "Magic"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-    }
-
-    // Magic Skill
-    else if (type === "Magic / Gravity Skill"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let extraDams = findDamageTypeFromEffects("skillDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.skillDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
-
-    // Crystal Sorcery
-    else if (type === "Crystalian Sorcery"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let extraDams = findDamageTypeFromEffects("crystalDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.crystalDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
-
-    // Carian Sorcery
-    else if (type === "Carian Sorcery"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let extraDams = findDamageTypeFromEffects("carianDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.carianDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
-
-    // Glintblade Sorcery
-    else if (type === "Glintblade Sorcery"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let extraDams = findDamageTypeFromEffects("glintDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.glintDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
-
-    // Gravity Sorcery
-    else if (type === "Gravity Sorcery"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let extraDams = findDamageTypeFromEffects("gravDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.glintDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
-
-    // Glintblade Sorcery
-    else if (type === "Stonedigger Sorcery"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let extraDams = findDamageTypeFromEffects("diggerDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.diggerDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
-
-    // Standard Sorcery
-    else if (type === "Standard Sorcery"){
-        let weaponDams = findDamageTypeFromEffects("magicDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.magicDamage
-        })
-        let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-        sorcDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.sorceryDamage
-        })
-    }
+            // Finds "Magic Damage Modifiers" and applies
+            else if (type === "Magic"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+            }
+            // Magic Skill
+            else if (type === "Magic / Gravity Skill"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let extraDams = findDamageTypeFromEffects("skillDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.skillDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
+            // Crystal Sorcery
+            else if (type === "Crystalian Sorcery"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let extraDams = findDamageTypeFromEffects("crystalDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.crystalDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
+            // Carian Sorcery
+            else if (type === "Carian Sorcery"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let extraDams = findDamageTypeFromEffects("carianDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.carianDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
+            // Glintblade Sorcery
+            else if (type === "Glintblade Sorcery"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let extraDams = findDamageTypeFromEffects("glintDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.glintDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
+            // Gravity Sorcery
+            else if (type === "Gravity Sorcery"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let extraDams = findDamageTypeFromEffects("gravDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.glintDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
+            // Glintblade Sorcery
+            else if (type === "Stonedigger Sorcery"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let extraDams = findDamageTypeFromEffects("diggerDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.diggerDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
+            // Standard Sorcery
+            else if (type === "Standard Sorcery"){
+                let weaponDams = findDamageTypeFromEffects("magicDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.magicDamage
+                })
+                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
+                sorcDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.sorceryDamage
+                })
+            }
 
     ///////////////
     // Lightning //
     ///////////////
 
-    // Finds "Lightning Damage Modifiers" and applies
-    else if (type === "Lightning"){
-        let weaponDams = findDamageTypeFromEffects("lightningDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.lightningDamage
-        })
-    }
-    // Finds "Dragon Cult Damage Modifiers" and applies
-    else if (type === "Lightning Incants"){
-        let weaponDams = findDamageTypeFromEffects("dargonCultDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.dargonCultDamage
-        })
-    }
+            // Finds "Lightning Damage Modifiers" and applies
+            else if (type === "Lightning"){
+                let weaponDams = findDamageTypeFromEffects("lightningDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.lightningDamage
+                })
+            }
+            // Finds "Dragon Cult Damage Modifiers" and applies
+            else if (type === "Lightning Incants"){
+                let weaponDams = findDamageTypeFromEffects("dargonCultDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.dargonCultDamage
+                })
+            }
 
 
     //////////
     // FIRE //
     //////////
 
-    // Finds "Fire Damage Modifiers" and applies
-    else if (type === "Fire"){
-        let weaponDams = findDamageTypeFromEffects("fireDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.fireDamage
-        })
+            // Finds "Fire Damage Modifiers" and applies
+            else if (type === "Fire"){
+                let weaponDams = findDamageTypeFromEffects("fireDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.fireDamage
+                })
+            }
+            // Finds "Flame Incantation Damage Modifiers" and applies
+            else if (type === "Fire Incants"){
+                // Fire
+                let extraDams = findDamageTypeFromEffects("fireDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.fireDamage
+                })
+                // Incant
+                let extraDams2 = findDamageTypeFromEffects("incantDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+            }
+            // Finds "Giant's Fire Damage Modifiers" and applies
+            else if (type === "Giant's Fire"){
+                // Giants Fire
+                let weaponDams = findDamageTypeFromEffects("giantFireDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.giantFireDamage
+                })
+                // Fire
+                let extraDams = findDamageTypeFromEffects("fireDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.fireDamage
+                })
+                // Incant
+                let extraDams2 = findDamageTypeFromEffects("incantDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+            }
+            // Finds "Black Flame Damage Modifiers" and applies
+            else if (type === "Black Flame"){
+                // Black Flame
+                let weaponDams = findDamageTypeFromEffects("godslayerDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.godslayerDamage
+                })
+                // Fire
+                let extraDams = findDamageTypeFromEffects("fireDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.fireDamage
+                })
+                // Incant
+                let extraDams2 = findDamageTypeFromEffects("incantDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+            }
+            // Finds "Frenzy Flame Damage Modifiers" and applies
+            else if (type === "Flame of Frenzy"){
+                // Black Flame
+                let weaponDams = findDamageTypeFromEffects("frenzyDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.frenzyDamage
+                })
+                // Fire
+                let extraDams = findDamageTypeFromEffects("fireDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.fireDamage
+                })
+                // Incant
+                let extraDams2 = findDamageTypeFromEffects("incantDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+            }
+
+    
+        //////////
+        // Holy //
+        //////////
+
+            // Finds "Holy Damage Modifiers" and applies
+            else if (type === "Holy"){
+                let weaponDams = findDamageTypeFromEffects("holyDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.holyDamage
+                })
+            }
+            // Finds "Holy Incantation Damage Modifiers" and applies
+            else if (type === "Holy Incants"){
+                let weaponDams = findDamageTypeFromEffects("holyDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.holyDamage
+                })
+                // Incant
+                let extraDams2 = findDamageTypeFromEffects("incantDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+            }
+            // Finds "Fundamentalist Incantation Damage Modifiers" and applies
+            else if (type === "Golden Incants"){
+                let weaponDams = findDamageTypeFromEffects("holyDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.holyDamage
+                })
+                // Incant
+                let extraDams2 = findDamageTypeFromEffects("incantDamage")
+                extraDams2.forEach(dam => {
+                    totalMod = totalMod * dam.effect.incantDamage
+                })
+                // Fundamentalist
+                let extraDams = findDamageTypeFromEffects("fundDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.fundDamage
+                })
+            }
+
+
+
+            // Finds "Skill Damage Modifiers" and applies
+            else if (type === "Skill"){
+                let weaponDams = findDamageTypeFromEffects("skillDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.skillDamage
+                })
+            }
+            // Finds "Crit Damage Modifiers" and applies
+            else if (type === "Critical"){
+                let weaponDams = findDamageTypeFromEffects("critDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.critDamage
+                })
+                let extraDams = findDamageTypeFromEffects("weaponDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.weaponDamage
+                })
+            }
+            // Finds "Guard Counter Damage Modifiers" and applies
+            else if (type === "Counter"){
+                let weaponDams = findDamageTypeFromEffects("counterDamage")
+                weaponDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.counterDamage
+                })
+                let extraDams = findDamageTypeFromEffects("weaponDamage")
+                extraDams.forEach(dam => {
+                    totalMod = totalMod * dam.effect.weaponDamage
+                })
+            }
+
+        }
+
+    /// NEGATIONS //
+    else if (relCat === "neg"){
+        let allDams = findDamageTypeFromEffects("allNegation")
+        allDams.forEach(dam => {
+            totalMod = totalMod * dam.effect.allNegation
+        })    
     }
-
-    // Finds "Flame Incantation Damage Modifiers" and applies
-    else if (type === "Fire Incants"){
-        // Fire
-        let extraDams = findDamageTypeFromEffects("fireDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.fireDamage
-        })
-        // Incant
-        let extraDams2 = findDamageTypeFromEffects("incantDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-    }
-
-    // Finds "Giant's Fire Damage Modifiers" and applies
-    else if (type === "Giant's Fire"){
-        // Giants Fire
-        let weaponDams = findDamageTypeFromEffects("giantFireDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.giantFireDamage
-        })
-        // Fire
-        let extraDams = findDamageTypeFromEffects("fireDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.fireDamage
-        })
-        // Incant
-        let extraDams2 = findDamageTypeFromEffects("incantDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-    }
-
-    // Finds "Black Flame Damage Modifiers" and applies
-    else if (type === "Black Flame"){
-        // Black Flame
-        let weaponDams = findDamageTypeFromEffects("godslayerDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.godslayerDamage
-        })
-        // Fire
-        let extraDams = findDamageTypeFromEffects("fireDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.fireDamage
-        })
-        // Incant
-        let extraDams2 = findDamageTypeFromEffects("incantDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-    }
-
-    // Finds "Frenzy Flame Damage Modifiers" and applies
-    else if (type === "Flame of Frenzy"){
-        // Black Flame
-        let weaponDams = findDamageTypeFromEffects("frenzyDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.frenzyDamage
-        })
-        // Fire
-        let extraDams = findDamageTypeFromEffects("fireDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.fireDamage
-        })
-        // Incant
-        let extraDams2 = findDamageTypeFromEffects("incantDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-    }
-
-
-    //////////
-    // Holy //
-    //////////
-
-    // Finds "Holy Damage Modifiers" and applies
-    else if (type === "Holy"){
-        let weaponDams = findDamageTypeFromEffects("holyDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.holyDamage
-        })
-    }
-
-    // Finds "Holy Incantation Damage Modifiers" and applies
-    else if (type === "Holy Incants"){
-        let weaponDams = findDamageTypeFromEffects("holyDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.holyDamage
-        })
-        // Incant
-        let extraDams2 = findDamageTypeFromEffects("incantDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-    }
-
-    // Finds "Fundamentalist Incantation Damage Modifiers" and applies
-    else if (type === "Golden Incants"){
-        let weaponDams = findDamageTypeFromEffects("holyDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.holyDamage
-        })
-        // Incant
-        let extraDams2 = findDamageTypeFromEffects("incantDamage")
-        extraDams2.forEach(dam => {
-            totalMod = totalMod * dam.effect.incantDamage
-        })
-        // Fundamentalist
-        let extraDams = findDamageTypeFromEffects("fundDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.fundDamage
-        })
-    }
-
-
-
-    // Finds "Skill Damage Modifiers" and applies
-    else if (type === "Skill"){
-        let weaponDams = findDamageTypeFromEffects("skillDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.skillDamage
-        })
-    }
-
-    // Finds "Crit Damage Modifiers" and applies
-    else if (type === "Critical"){
-        let weaponDams = findDamageTypeFromEffects("critDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.critDamage
-        })
-        let extraDams = findDamageTypeFromEffects("weaponDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.weaponDamage
-        })
-    }
-
-    // Finds "Guard Counter Damage Modifiers" and applies
-    else if (type === "Counter"){
-        let weaponDams = findDamageTypeFromEffects("counterDamage")
-        weaponDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.counterDamage
-        })
-        let extraDams = findDamageTypeFromEffects("weaponDamage")
-        extraDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.weaponDamage
-        })
-    }
-
-    // Finds "All Damage Modifiers" and applies
-    let allDams = findDamageTypeFromEffects("allDamage")
-    allDams.forEach(dam => {
-        totalMod = totalMod * dam.effect.allDamage
-    })
-
+   
     return totalMod
 }
 

@@ -138,6 +138,112 @@ const statRelics = [
             intl: 3
         }
     },
+
+
+    {
+        title: "Faith +1",
+        desc: "Increase Faith by 1",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            fai: 1
+        }
+    },
+    {
+        title: "Faith +2",
+        desc: "Increase Faith by 2",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            fai: 2
+        }
+    },
+    {
+        title: "Faith +3",
+        desc: "Increase Faith by 3",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            fai: 3
+        }
+    },
+
+    {
+        title: "Strength +1",
+        desc: "Increase Strength by 1",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            str: 1
+        }
+    },
+    {
+        title: "Strength +2",
+        desc: "Increase Strength by 2",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            str: 2
+        }
+    },
+    {
+        title: "Strength +3",
+        desc: "Increase Strength by 3",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            str: 3
+        }
+    },
+
+    {
+        title: "Arcane +1",
+        desc: "Increase Arcane by 1",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            arcane: 1
+        }
+    },
+    {
+        title: "Arcane +2",
+        desc: "Increase Arcane by 2",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            arcane: 2
+        }
+    },
+    {
+        title: "Arcane +3",
+        desc: "Increase Arcane by 3",
+        stacks: {self: true, selfType: true},
+        selfType: "stat",
+        effect: {
+            arcane: 3
+        }
+    },
+
+    {
+        title: "Increased Max HP",
+        desc: "Increase Vigor by 5 or HP by 100",
+        stacks: {self: false, selfType: true},
+        selfType: "stat",
+        effect: {
+            vigor: 5
+        }
+    },
+    {
+        title: "Increased Max FP",
+        desc: "Increase Mind by 5 or FP by 25",
+        stacks: {self: false, selfType: true},
+        selfType: "stat",
+        effect: {
+            mind: 5
+        }
+    },
+
+    
 ]
 
 export default statRelics

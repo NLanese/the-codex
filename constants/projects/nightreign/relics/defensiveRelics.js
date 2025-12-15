@@ -75,9 +75,7 @@ const defensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allDamage: 1.20,
-            always: false,
-            condition: "20 seconds after being knocked down"
+            
         }
     },
 ]
