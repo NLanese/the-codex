@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { OstrichDropDown } from '../Dropdown/OstrichDropDown';
 import PropTypes from 'prop-types';
+import { title } from 'process';
 
 
 export const TabItem = ({
@@ -89,7 +90,7 @@ export const TabItem = ({
                     rObj = {...style, ...tab.style}
                 }
                 else{
-                    rObj = style
+                    rObj = {...style}
                 }
             }
 
@@ -127,11 +128,12 @@ export const TabItem = ({
 
         // Determines GENERAL or SPECIFIC Text Style
         function  determineTextStyle(type, tab){
+            console.log(tab)
             let rObj = {}
 
             // Regular 
             if (type === "regular"){
-                if (tab?.style){
+                if (tab?.textStyle){
                     rObj = {...textStyle, ...tab.textStyle}
                 }
                 else{
@@ -245,7 +247,6 @@ export const TabItem = ({
             return(
                 <div
                 style={applyTabDefaultStyles(determineBoxStyle(styleType, tabObj))}
-                // onClick={() => onPress(tabObj)}
                 onMouseEnter={() => tabOnMouse("enter", tabObj)}
                 onMouseLeave={() => tabOnMouse("leave", tabObj)}
                 >

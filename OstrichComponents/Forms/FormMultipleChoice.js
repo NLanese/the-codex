@@ -398,6 +398,7 @@ export const FormMultipleChoice = ({
                             showsHover={true}
                             onPress={handleInput}
                             style={tabStyle ? tabStyle : null}
+                            titleStyle={fieldTextStyle}
                             activeStyle={{backgroundColor: '#9cc6f0'}}
                             hoverStyle={{backgroundColor: 'lightgrey'}}
                             textStyle={fieldTextStyle}
