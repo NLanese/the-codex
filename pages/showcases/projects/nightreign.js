@@ -141,7 +141,7 @@ const silverLining = "#d4eeff"
 
     useEffect(() => {
         let all = [];
-    
+
         if (effect11) all.push(effect11);
         if (effect12) all.push(effect12);
         if (effect13) all.push(effect13);
@@ -161,7 +161,6 @@ const silverLining = "#d4eeff"
         setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 })
     
         set_all_relic_effects(all);
-        console.log(all)
     }, [
         effect11, effect12, effect13,
         effect21, effect22, effect23,
@@ -540,42 +539,42 @@ function renderAttribute(atr){
     let max = .5
     let color = "grey"
     if (atr === "Strength") {
-        state = str
+        state = str + findAttributeTypeFromEffects("str")
         max = .62
         color = "#9c2400"
     }
     else if (atr === "Dexterity") {
-        state = dex
+        state = dex + findAttributeTypeFromEffects("dex")
         max = .68
         color = "#f2970f"
     }
     else if (atr === "Vigor") {
-        state = vigor
+        state = vigor + findAttributeTypeFromEffects("vigor")
         max = .70
         color = "#f2463a"
     }
     else if (atr === "Endurance") {
-        state = end
+        state = end + findAttributeTypeFromEffects("end")
         max = .45
         color = "#68ad28"
     }
     else if (atr === "Intelligence") {
-        state = intl
+        state = intl + findAttributeTypeFromEffects("intl")
         max = .68
         color = "#0352ff"
     }
     else if (atr === "Faith") {
-        state = fai
+        state = fai + findAttributeTypeFromEffects("fai")
         max = .58
         color = graceGiven
     }
     else if (atr === "Mind") {
-        state = mind
+        state = mind + findAttributeTypeFromEffects("mind")
         max = .35
         color = "#a510e6"
     }
     else if (atr === "Arcane") {
-        state = arcane
+        state = arcane + findAttributeTypeFromEffects("arcane")
         max = .60,
         color = "#87174f"
     }
@@ -591,9 +590,9 @@ function renderAttribute(atr){
 function renderBars(){
     return(
         <div style={{flex: 5}}>
-            {renderBar("HP", hp, 17.5, 'red')}
-            {renderBar("FP", fp, 2.5, 'cyan')}     
-            {renderBar("Stam", stam, 2.5, 'lime')}
+            {renderBar("HP", (hp + findVitalsMods("HP")), 17.5, 'red')}
+            {renderBar("FP", (fp + findVitalsMods("FP")), 2.5, 'cyan')}     
+            {renderBar("Stam", (stam + findVitalsMods("Stam")), 2.5, 'lime')}
         </div>
     )
 }
@@ -789,7 +788,6 @@ function determineRenderedValue(type, variety){
 
 function determineDamModifier(type){
 
-    console.log("Type - ", type)
     // Total Damage Modifier
     let totalMod = 1
 
@@ -1174,11 +1172,34 @@ function findDamageTypeFromEffects(type){
 }
 
 function findAttributeTypeFromEffects(attr){
-    return all_relic_effects.filter(eff => {
+    let mods =  all_relic_effects.filter(eff => {
         if (eff.effect[attr]){
-            return eff.effect
+            return eff.effect[attr]
         }
     })
+    if (mods?.length > 0){
+        console.log(mods)
+        let totalMod = 0
+        mods.forEach((eff) => {
+            totalMod = totalMod + eff.effect[attr]
+        })
+        return(totalMod)
+    }
+    else{
+        return 0
+    }
+}
+
+function findVitalsMods(vital){
+    if (vital === "HP"){
+        return findAttributeTypeFromEffects("vigor") * 20
+    }
+    else if (vital === "FP"){
+        return findAttributeTypeFromEffects("mind") * 5
+    }
+    else if (vital === "Stam"){
+        return findAttributeTypeFromEffects("end") * 2
+    }
 }
 
 
