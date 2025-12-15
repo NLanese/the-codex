@@ -83,13 +83,28 @@ const silverLining = "#d4eeff"
     const [stam, setStam] = useState(1)
 
     const [vigor, setVigor] = useState(1)
+    const [vigorMod, setVigorMod] = useState(0)
+
     const [end, setEnd] = useState(1)
+    const [endMod, setEndMod] = useState(0)
+
     const [dex, setDex] = useState(1)
+    const [dexMod, setDexrMod] = useState(0)
+
     const [str, setStr] = useState(1)
+    const [strMod, setStrMod] = useState(0)
+
     const [intl, setIntl] = useState(1)
+    const [intlMod, setIntlMod] = useState(0)
+
     const [fai, setFai] = useState(1)
+    const [faiMod, setFaiMod] = useState(0)
+
     const [mind, setMind] = useState(1)
+    const [mindMod, setMindMod] = useState(0)
+
     const [arcane, setArcane] = useState(1)
+    const [arcaneMod, setArcaneMod] = useState(0)
 
 
 ////////////////
@@ -1153,6 +1168,14 @@ function determineDamModifier(type){
 function findDamageTypeFromEffects(type){
     return all_relic_effects.filter(eff => {
         if (eff.effect[type]){
+            return eff.effect
+        }
+    })
+}
+
+function findAttributeTypeFromEffects(attr){
+    return all_relic_effects.filter(eff => {
+        if (eff.effect[attr]){
             return eff.effect
         }
     })
