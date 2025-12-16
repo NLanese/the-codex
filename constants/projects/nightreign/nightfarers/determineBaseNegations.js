@@ -169,7 +169,7 @@ export default function determineBaseNegations(nightfarer){
             fire: 0,
             lightning: 0,
             holy: 0,
-            poise: 40,
+            poise: 0,
             poison: 0,
             rot: 0,
             bleed: 0,

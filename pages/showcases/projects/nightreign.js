@@ -222,6 +222,9 @@ function renderSelections(){
     if (selectionState === "Relics"){
         return renderRelics()
     }
+    else if (selectionState === "Deep Relics"){
+        return renderRelics()
+    }
 }
 
 
@@ -247,7 +250,7 @@ function renderNightFarer(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 12}}, "Blessings", "Talismans"],
+                    options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Effects"],
                 }}
                 inputValue={selectionState}
             />
@@ -421,7 +424,7 @@ function renderStats(){
                 {renderStat("Lightning", "neg")}
                 {renderStat("Holy", "neg")}
 
-                {renderStat("Poise", "neg")}
+                {renderStat("Poise", "malenia_is_overrated_there_I_said_it")}
 
                 {renderStat("Poison", "res")}
                 {renderStat("Sleep", "res")}
@@ -844,10 +847,7 @@ function determineRenderedValue(type, variety){
     }
     else if (variety === "res"){
         let negationBases = getBaseNegations(nightfarer)
-        if (type === "Poise"){
-            return negationBases.poise
-        }
-        else if (type === "Poison"){
+        if (type === "Poison"){
             return negationBases.poison
         }
         else if (type === "Rot"){
@@ -872,6 +872,10 @@ function determineRenderedValue(type, variety){
     else if (variety === "off"){
         return `${(determineDamModifier(type, variety) * 100).toFixed(0)}%`
 
+    }
+    else  if (type === "Poise"){
+        let negationBases = getBaseNegations(nightfarer)
+        return negationBases.poise
     }
     
 }
