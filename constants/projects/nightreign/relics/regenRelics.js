@@ -5,6 +5,7 @@ const regenRelics = [
         stacks: {self: true, selfType: true},
         selfType: "skillCooldown",
         effect: {
+            always: true,
             skillCooldown: .95
         }
     },
@@ -14,6 +15,7 @@ const regenRelics = [
         stacks: {self: true, selfType: true},
         selfType: "skillCooldown",
         effect: {
+            always: true,
             skillCooldown: .925
         }
     },
@@ -23,6 +25,7 @@ const regenRelics = [
         stacks: {self: true, selfType: true},
         selfType: "skillCooldown",
         effect: {
+            always: true,
             skillCooldown: .90
         }
     },
@@ -33,6 +36,7 @@ const regenRelics = [
         stacks: {self: true, selfType: true},
         selfType: "ultCooldown",
         effect: {
+            always: true,
             skillCooldown: .95
         }
     },
@@ -42,6 +46,7 @@ const regenRelics = [
         stacks: {self: true, selfType: true},
         selfType: "ultCooldown",
         effect: {
+            always: true,
             skillCooldown: .925
         }
     },
@@ -51,6 +56,7 @@ const regenRelics = [
         stacks: {self: true, selfType: true},
         selfType: "ultCooldown",
         effect: {
+            always: true,
             ultCooldown: .90
         }
     },
@@ -60,7 +66,7 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "postDamage",
         effect: {
-            
+            always: false,
         }
     },
     {
@@ -69,15 +75,16 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "holyGround",
         effect: {
-            
+            always: false,
         }
     },
     {
         title: "Art Gauge Filled Moderately on Critical Hit",
-        desc: "Hits restore 30% of Damage Dealt for 3 seconds after taking damage. Can only restore the damage taken during the hit.",
+        desc: "Critical Hits increase Ultimate Gauge by 5.",
         stacks: {self: false, selfType: false},
         selfType: "ultGiven",
         effect: {
+            always: true,
         }
     },
     {
@@ -86,7 +93,7 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "hpEat",
         effect: {
-
+            always: true,
         }
     },
     {
@@ -95,7 +102,7 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "ultGuard",
         effect: {
-            
+            always: true,
         }
     },
     {
@@ -104,7 +111,7 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "regenHP",
         effect: {
-            
+            always: true,
         }
     },
     {
@@ -113,7 +120,7 @@ const regenRelics = [
         stacks: {self: false, selfType: false},
         selfType: "regenFP",
         effect: {
-            
+            always: true,
         }
     },
 ]

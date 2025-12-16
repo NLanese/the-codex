@@ -126,7 +126,7 @@ const silverLining = "#d4eeff"
             setMind(vitalsObject.Mind)
             setIntl(vitalsObject.Int)
             setFai(vitalsObject.Fai)
-            if (nightfarer === "Wylder" || nightfarer === "Raider" || nightfarer === "Undertaker" || nightfarer === "Guardian" ){
+            if (nightfarer === "Wylder" || nightfarer === "Raider" || nightfarer === "Undertaker" || nightfarer === "Guardian" || nightfarer === "Recluse" ){
                 setArcane(10)
             }
             else if (nightfarer === "Duchess"){
@@ -646,7 +646,7 @@ function renderAttribute(atr){
     }
     else if (atr === "Mind") {
         state = mind + findAttributeTypeFromEffects("mind")
-        max = .35
+        max = .45
         color = "#a510e6"
     }
     else if (atr === "Arcane") {
@@ -801,24 +801,36 @@ function clearEffect(key){
 }
 
 function clearRelic(key){
-    if (key === "1"){
-        setRelic1({})
+    if (key === 1){
+        setEffect11(false)
+        setEffect12(false)
+        setEffect13(false)
     }
-    else if (key === "2"){
-        setRelic2({})
+    else if (key === 2){
+        setEffect21(false)
+        setEffect22(false)
+        setEffect23(false)
     }
-    else if (key === "3"){
-        setRelic3({})
+    else if (key === 3){
+        setEffect31(false)
+        setEffect32(false)
+        setEffect33(false)
     }
 
-    else if (key === "4"){
-        setRelic4({})
+    else if (key === 4){
+        setEffect41(false)
+        setEffect42(false)
+        setEffect43(false)
     }
-    else if (key === "5"){
-        setRelic5({})
+    else if (key === 5){
+        setEffect51(false)
+        setEffect52(false)
+        setEffect53(false)
     }
-    else if (key === "6"){
-        setRelic6({})
+    else if (key === 6){
+        setEffect61(false)
+        setEffect62(false)
+        setEffect63(false)
     }
 
 }
@@ -1283,7 +1295,6 @@ function determineDamModifier(type, relCat=false){
 }
 
 function findDamageTypeFromEffects(type){
-    console.log(type)
     return all_relic_effects.filter(eff => {
         if (eff.effect[type]){
             return eff.effect

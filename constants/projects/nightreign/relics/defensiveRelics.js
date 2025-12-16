@@ -55,7 +55,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "guardAggro",
         effect: {
-            
+            always: true,
         }
     },
     {
@@ -75,7 +75,7 @@ const defensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "lowHealth",
         effect: {
-            
+            always: true,
         }
     },
 
@@ -86,6 +86,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "madRes",
         effect: {
+            always: true,
             madRes: 75
         }
     },
@@ -95,6 +96,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "sleepRes",
         effect: {
+            always: true,
             sleepRes: 75
         }
     },
@@ -104,6 +106,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "frostRes",
         effect: {
+            always: true,
             frostRes: 75
         }
     },
@@ -113,6 +116,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "bleedRes",
         effect: {
+            always: true,
             bleedRes: 75
         }
     },
@@ -122,6 +126,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "deathRes",
         effect: {
+            always: true,
             deathRes: 75
         }
     },
@@ -131,6 +136,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "poisonRes",
         effect: {
+            always: true,
             poisonRes: 75
         }
     },
@@ -140,6 +146,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "rotRes",
         effect: {
+            always: true,
             rotRes: 75
         }
     },
