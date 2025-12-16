@@ -1700,7 +1700,14 @@ export default function determineBaseVitals(nightfarer, lvl){
             return {
                 HP: 900,
                 FP: 145,
-                Stam: 98
+                Stam: 98,
+                Vig: 41,
+                Mind: 20,
+                End: 25,
+                Str: 14,
+                Dex: 18,
+                Int: 28,
+                Fai: 15
             }
         }
         else if (lvl === 14){

@@ -78,6 +78,71 @@ const defensiveRelics = [
             
         }
     },
+
+
+    {
+        title: "Improved Madness Resistance", 
+        desc: "Increases Madness Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "madRes",
+        effect: {
+            madRes: 75
+        }
+    },
+    {
+        title: "Improved Sleep Resistance", 
+        desc: "Increases Sleep Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "sleepRes",
+        effect: {
+            sleepRes: 75
+        }
+    },
+    {
+        title: "Improved Frost Resistance", 
+        desc: "Increases Frost Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "frostRes",
+        effect: {
+            frostRes: 75
+        }
+    },
+    {
+        title: "Improved Bleed Resistance", 
+        desc: "Increases Bleed Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "bleedRes",
+        effect: {
+            bleedRes: 75
+        }
+    },
+    {
+        title: "Improved Death Resistance", 
+        desc: "Increases Death Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "deathRes",
+        effect: {
+            deathRes: 75
+        }
+    },
+    {
+        title: "Improved Poison Resistance", 
+        desc: "Increases Poison Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "poisonRes",
+        effect: {
+            poisonRes: 75
+        }
+    },
+    {
+        title: "Improved Rot Resistance", 
+        desc: "Increases Rot Resistance by 75",
+        stacks: {self: true, selfType: true},
+        selfType: "rotRes",
+        effect: {
+            rotRes: 75
+        }
+    },
 ]
 
 export default defensiveRelics

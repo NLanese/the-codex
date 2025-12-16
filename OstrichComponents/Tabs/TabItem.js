@@ -128,7 +128,6 @@ export const TabItem = ({
 
         // Determines GENERAL or SPECIFIC Text Style
         function  determineTextStyle(type, tab){
-            console.log(tab)
             let rObj = {}
 
             // Regular 

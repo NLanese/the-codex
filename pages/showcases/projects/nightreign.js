@@ -126,17 +126,23 @@ const silverLining = "#d4eeff"
             setMind(vitalsObject.Mind)
             setIntl(vitalsObject.Int)
             setFai(vitalsObject.Fai)
-            if (nightfarer === "Wylder"){
+            if (nightfarer === "Wylder" || nightfarer === "Raider" || nightfarer === "Undertaker" || nightfarer === "Guardian" ){
                 setArcane(10)
             }
-            else if (nightfarer === "Guardian"){
-                setArcane(10)
+            else if (nightfarer === "Duchess"){
+                setArcane(11)
+            }
+            else if (nightfarer === "Revenant"){
+                setArcane(12)
             }
             else if (nightfarer === "Ironeye"){
                 setArcane(13)
             }
-            else if (nightfarer === "Duchess"){
-                setArcane(11)
+            else if (nightfarer === "Executor"){
+                setArcane(28)
+            }
+            else if (nightfarer === "Scholar"){
+                setArcane(50)
             }
         }
     }, [nightfarer, lvl])
@@ -498,6 +504,9 @@ function renderStat(type, variety, extras=false){
             caption = "Resist"
         }
     }
+    if (type === "Skill" || type === "Sorceries" || type === "Incantations" || type === "Consumables"){
+        caption = caption + " (Expand)"
+    }
     let cardStyle = {
         border: '1px solid black', display: 'flex', 
         flexDirection: 'row', flex: 3, 
@@ -657,9 +666,11 @@ function renderAttribute(atr){
 function renderBars(){
     return(
         <div style={{flex: 5}}>
+            <div style={{width: '90%', marginTop: '6%'}}>
             {renderBar("HP", (hp + findVitalsMods("HP")), 17.5, 'red')}
             {renderBar("FP", (fp + findVitalsMods("FP")), 2.5, 'cyan')}     
             {renderBar("Stam", (stam + findVitalsMods("Stam")), 2.5, 'lime')}
+            </div>
         </div>
     )
 }
@@ -670,7 +681,7 @@ function renderBar(title, value, max, color){
     }
 
     return(
-        <div style={{display: 'flex', flexDirection: 'row', gap: 10, padding: 2}}>
+        <div style={{display: 'flex', flex: 1, flexDirection: 'row', gap: 10, padding: 2, }}>
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: color}}>{title}</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
                     <div style={{backgroundColor: color, height: '100%', width: `${(value / max)}%`, display: "flex", justifyContent: 'center'}} >
@@ -848,25 +859,25 @@ function determineRenderedValue(type, variety){
     else if (variety === "res"){
         let negationBases = getBaseNegations(nightfarer)
         if (type === "Poison"){
-            return negationBases.poison
+            return (negationBases.poison + findResistance(type))
         }
         else if (type === "Rot"){
-            return negationBases.rot
+            return (negationBases.rot + findResistance(type))
         }
         else if (type === "Bleed"){
-            return negationBases.bleed
+            return (negationBases.bleed + findResistance(type))
         }
         else if (type === "Frostbite"){
-            return negationBases.frost
+            return (negationBases.frost + findResistance(type))
         }
         else if (type === "Sleep"){
-            return negationBases.sleep
+            return (negationBases.sleep + findResistance(type))
         }
         else if (type === "Madness"){
-            return negationBases.mad
+            return (negationBases.mad + findResistance(type))
         }
         else if (type === "Blight"){
-            return negationBases.blight
+            return (negationBases.blight + findResistance(type))
         }
     }
     else if (variety === "off"){
@@ -880,7 +891,7 @@ function determineRenderedValue(type, variety){
     
 }
 
-function determineDamModifier(type, relCat){
+function determineDamModifier(type, relCat=false){
 
     // Total Damage Modifier
     let totalMod = 1
@@ -1252,12 +1263,27 @@ function determineDamModifier(type, relCat){
         allDams.forEach(dam => {
             totalMod = totalMod * dam.effect.allNegation
         })    
+        // Finds "Holy Damage Modifiers" and applies
+        if (type === "Holy"){
+            let weaponDams = findDamageTypeFromEffects("holyNegation")
+            weaponDams.forEach(dam => {
+                totalMod = totalMod * dam.effect.holyNegation
+            })
+        }
+        // Finds "Holy Damage Modifiers" and applies
+        else if (type === "Fire"){
+            let weaponDams = findDamageTypeFromEffects("fireNegation")
+            weaponDams.forEach(dam => {
+                totalMod = totalMod * dam.effect.fireNegation
+            })
+        }
     }
    
     return totalMod
 }
 
 function findDamageTypeFromEffects(type){
+    console.log(type)
     return all_relic_effects.filter(eff => {
         if (eff.effect[type]){
             return eff.effect
@@ -1294,6 +1320,55 @@ function findVitalsMods(vital){
     else if (vital === "Stam"){
         return findAttributeTypeFromEffects("end") * 2
     }
+}
+
+function findResistance(type){
+    let totalMod = 0
+    if (type === "Poison"){
+        let resMods = findDamageTypeFromEffects("poisonRes")
+        resMods.forEach(dam => {
+            console.log(dam)
+            totalMod = totalMod + dam.effect.poisonRes
+        })
+    }
+    else if (type === "Rot"){
+        let resMods = findDamageTypeFromEffects("rotRes")
+        resMods.forEach(dam => {
+            totalMod = totalMod + dam.effect.rotRes
+        })
+    }
+    else if (type === "Sleep"){
+        let resMods = findDamageTypeFromEffects("sleepRes")
+        resMods.forEach(dam => {
+            totalMod = totalMod + dam.effect.sleepRes
+        })
+    }
+    else if (type === "Frostbite"){
+        let resMods = findDamageTypeFromEffects("frostRes")
+        resMods.forEach(dam => {
+            totalMod = totalMod + dam.effect.frostRes
+        })
+    }
+    else if (type === "Bleed"){
+        let resMods = findDamageTypeFromEffects("bleedRes")
+        resMods.forEach(dam => {
+            totalMod = totalMod + dam.effect.bleedRes
+        })
+    }
+    else if (type === "Madness"){
+        let resMods = findDamageTypeFromEffects("madRes")
+        resMods.forEach(dam => {
+            totalMod = totalMod + dam.effect.madRes
+        })
+    }
+    else if (type === "Blight"){
+        let resMods = findDamageTypeFromEffects("deathRes")
+        resMods.forEach(dam => {
+            totalMod = totalMod + dam.effect.deathRes
+        })
+    }
+    console.log(totalMod)
+    return totalMod
 }
 
 
