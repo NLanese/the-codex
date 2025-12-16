@@ -65,15 +65,32 @@ const silverLining = "#d4eeff"
     const [effect32, setEffect32] = useState(false)
     const [effect33, setEffect33] = useState(false)
 
+    // Deep Relics
+    const [relic4, setRelic4] = useState(false)
+    const [relic5, setRelic5] = useState(false)
+    const [relic6, setRelic6] = useState(false)
+
+    const [effect41, setEffect41] = useState(false)
+    const [effect42, setEffect42] = useState(false)
+    const [effect43, setEffect43] = useState(false)
+
+    const [effect51, setEffect51] = useState(false)
+    const [effect52, setEffect52] = useState(false)
+    const [effect53, setEffect53] = useState(false)
+
+    const [effect61, setEffect61] = useState(false)
+    const [effect62, setEffect62] = useState(false)
+    const [effect63, setEffect63] = useState(false)
+
     // Relic Editting and Effects
     const [all_relic_effects, set_all_relic_effects] = useState([])
     const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
 
     // Deep Of The Night
-    const [deepEnabled, setDeepEnabled] = useState(false)
     const [deepDisplayed, setDeepDisplayed] = useState(false)
 
     // Rendering States
+    const [selectionState, setSelectionState] = useState("Relics") 
     const [relicsModal, setRelicsModal] = useState(false)
     const [expandedStat, setExpandedStat] = useState(false)
 
@@ -83,28 +100,13 @@ const silverLining = "#d4eeff"
     const [stam, setStam] = useState(1)
 
     const [vigor, setVigor] = useState(1)
-    const [vigorMod, setVigorMod] = useState(0)
-
     const [end, setEnd] = useState(1)
-    const [endMod, setEndMod] = useState(0)
-
     const [dex, setDex] = useState(1)
-    const [dexMod, setDexrMod] = useState(0)
-
     const [str, setStr] = useState(1)
-    const [strMod, setStrMod] = useState(0)
-
     const [intl, setIntl] = useState(1)
-    const [intlMod, setIntlMod] = useState(0)
-
     const [fai, setFai] = useState(1)
-    const [faiMod, setFaiMod] = useState(0)
-
     const [mind, setMind] = useState(1)
-    const [mindMod, setMindMod] = useState(0)
-
     const [arcane, setArcane] = useState(1)
-    const [arcaneMod, setArcaneMod] = useState(0)
 
 
 ////////////////
@@ -159,12 +161,34 @@ const silverLining = "#d4eeff"
         if (effect33) all.push(effect33);
 
         setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 })
+
+        if (effect41) all.push(effect41);
+        if (effect42) all.push(effect42);
+        if (effect43) all.push(effect43);
+
+        setRelic4({ slot1: effect41, slot2: effect42, slot3: effect43 })
+    
+        if (effect51) all.push(effect51);
+        if (effect52) all.push(effect52);
+        if (effect53) all.push(effect53);
+
+        setRelic5({ slot1: effect51, slot2: effect52, slot3: effect53 })
+    
+        if (effect61) all.push(effect61);
+        if (effect62) all.push(effect62);
+        if (effect63) all.push(effect63);
+
+        setRelic6({ slot1: effect61, slot2: effect62, slot3: effect63 })
     
         set_all_relic_effects(all);
     }, [
         effect11, effect12, effect13,
         effect21, effect22, effect23,
-        effect31, effect32, effect33
+        effect31, effect32, effect33,
+
+        effect41, effect42, effect43,
+        effect51, effect52, effect53,
+        effect61, effect62, effect63
     ]);
 
 
@@ -184,7 +208,7 @@ function renderSelectionsContainer(){
                 borderRadius: 20
             }}>
                 {renderNightFarer()}
-                {renderRelics()}
+                {renderSelections()}
             </div>
             <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
                 {renderVitals()}
@@ -192,6 +216,12 @@ function renderSelectionsContainer(){
             </div>
         </div>
     )
+}
+
+function renderSelections(){
+    if (selectionState === "Relics"){
+        return renderRelics()
+    }
 }
 
 
@@ -203,12 +233,30 @@ function renderNightFarer(){
             paddingRight: 10
         }}>
             <FormMultipleChoice 
+                title={"Selection"}
+                style={{width: '100%'}}
+                titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
+                itemsPerRow={3}
+                inForm={false}
+                fieldTextStyle={{padding: 0, paddingLeft: 3, paddingRight: 3, margin: 0, fontSize: 14}}
+                onChange={(op) => {
+                    setSelectionState(op.value[0])
+                }}
+                fieldObj={
+                  {
+                    id: "2",
+                    type: "MC",
+                    template: "tabs",
+                    options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 12}}, "Blessings", "Talismans"],
+                }}
+                inputValue={selectionState}
+            />
+            <FormMultipleChoice 
                 title={"Nightfarer"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
                 itemsPerRow={2}
                 inForm={false}
                 onChange={(op) => {
-                    setNightfarer(false)
                     setNightfarer(op.value[0])
                 }}
                 fieldTextStyle={{padding: 0, margin: 0}}
@@ -245,39 +293,31 @@ function renderNightFarer(){
                     textStyle: {fontSize: 16},
                 }}
               />
-              <FormMultipleChoice 
-                title={"Selection"}
-                style={{width: '100%'}}
-                titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
-                itemsPerRow={3}
-                inForm={false}
-                fieldTextStyle={{padding: 0, paddingLeft: 3, paddingRight: 3, margin: 0, fontSize: 14}}
-                onChange={(op) => {
-                    setLvl(false)
-                    setLvl(op.value[0])
-                }}
-                fieldObj={
-                  {
-                    id: "2",
-                    type: "MC",
-                    template: "tabs",
-                    options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 12}}, "Blessings", "Talismans"],
-                }}
-              />
         </div>
     )
 }
 
 // RELICS // 
 function renderRelics(){
+    if (deepDisplayed){
+        return(
+            <div style={{ flex: 7, backgroundColor: nightShade}}>
+                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
+                    {renderRelic(relic4,4)}
+                    {renderRelic(relic5,5)}
+                    {renderRelic(relic6,6)}
+                </div>
+            </div>
+            
+        )
+    }
     return(
         <div style={{ flex: 7, backgroundColor: nightShade}}>
-            <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 450,}}>
+            <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
                 {renderRelic(relic1,1)}
                 {renderRelic(relic2,2)}
                 {renderRelic(relic3,3)}
             </div>
-            {renderDeepToggles()}
         </div>
         
     )
@@ -285,8 +325,8 @@ function renderRelics(){
 
 function renderRelic(relic, key){
     return(
-        <OstCard key={key} style={{flex: 3, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden'}}>
-            {renderRelicHeader()}
+        <OstCard key={key} style={{flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight}}>
+            {renderRelicHeader(key)}
             <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor}}>
                 {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`)}
                 {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`)}
@@ -296,18 +336,18 @@ function renderRelic(relic, key){
     )
 }
 
-function renderRelicHeader(){
+function renderRelicHeader(key){
     return(
         <div style={{height: '12%'}}>
-            <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10}}>
+            <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
             <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
                 RELIC
             </OstCard>
-            <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 2.5 }}>
+            {/* <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 2.5 }}>
                 SAVE
-            </OstCard>
-            <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 2.5 }}>
-                LOAD
+            </OstCard> */}
+            <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearRelic(key)}>
+                CLEAR
             </OstCard>
             </div>
         </div>
@@ -744,6 +784,29 @@ function clearEffect(key){
     else{
         console.log("Nope... ",  key)
     }
+}
+
+function clearRelic(key){
+    if (key === "1"){
+        setRelic1({})
+    }
+    else if (key === "2"){
+        setRelic2({})
+    }
+    else if (key === "3"){
+        setRelic3({})
+    }
+
+    else if (key === "4"){
+        setRelic4({})
+    }
+    else if (key === "5"){
+        setRelic5({})
+    }
+    else if (key === "6"){
+        setRelic6({})
+    }
+
 }
 
 function getBaseNegations(){

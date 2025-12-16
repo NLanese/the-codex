@@ -11,6 +11,7 @@ export const FormMultipleChoice = ({
     captionStyle,
     fieldTextStyle,
     tabStyle,
+    inputValue,
 
     inForm=true,
     title,
@@ -46,7 +47,7 @@ export const FormMultipleChoice = ({
 
 
 
-        const [value, setvalue] = useState([])
+        const [value, setvalue] = useState(inputValue ? [inputValue] : [])
 
         const [loading, setLoading] = useState(true)
 
