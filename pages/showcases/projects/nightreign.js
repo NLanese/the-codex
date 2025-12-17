@@ -843,7 +843,7 @@ function renderRelicModal(){
     }
     const mobileStyle={
         backgroundColor: nightShade,
-        width: '90%', marginLeft: '-5%', minWidth: 300,
+        width: '85%', marginLeft: '-5%', minWidth: 300,
         height: '82%', marginTop: '0%', minHeight: 220,
         borderRadius: 20, borderColor: silveredNight
     }
