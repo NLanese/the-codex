@@ -84,7 +84,7 @@ const silverLining = "#d4eeff"
     const [effect63, setEffect63] = useState(false)
 
     // Relics Toggle Effects
-    const [relicsEffectToggles, setRelicEffectToggles] = useState({})
+    const [relics_effect_toggles, set_relic_effect_toggles] = useState({})
 
     // Relic Editting and Effects
     const [all_relic_effects, set_all_relic_effects] = useState([])
@@ -388,8 +388,40 @@ function renderRelicEffect(relicSlot, key){
 
 // EFFECTS //
 function renderEffectToggles(){
-
-    return
+    let keysOfEffects = Object.keys({...relics_effect_toggles})
+    if (!keysOfEffects || keysOfEffects.length < 1){
+        return(
+            <div style={{flex: 7}}>
+            </div>
+        )
+    }
+    const mainRender = keysOfEffects.map((eff, i) => {
+        return(
+            <OstCard 
+            noShadow={true} 
+            style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10}}
+            onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
+            >
+                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 11}}>
+                    {eff}
+                </p>
+                <OstCard style={{ flex: 1,
+                    display: 'flex', justifySelf: 'center', alignSelf: 'center', 
+                    border: "2px solid #f2e144", borderRadius: 4, 
+                    height: 10, width: 10, margin: 0,
+                    backgroundColor: depthColor, fontSize: 13.5
+                }}
+                >
+                    {fill(relics_effect_toggles[eff])}
+                </OstCard>
+            </OstCard>
+        )
+    })
+    return(
+        <div style={{flex: 7, paddingTop: 10, paddingBottom: 10}}>
+            {mainRender}
+        </div>
+    )
 }
 
 
@@ -425,11 +457,8 @@ function renderDISPLAY_DEEP_RELICS(){
     }
 }
 
-function fill(type){
-    if (deepEnabled && type === "enable"){
-        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
-    }
-    else if (deepDisplayed && type === "display"){
+function fill(filled){
+    if (filled){
         return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
     }
 }
@@ -872,7 +901,7 @@ function handleChangeEffect(effect){
         setEffect33(effect)
     }
     else{
-        console.log("Nope... ",  currentEditNum)
+        console.warn("Nope... ",  currentEditNum)
     }
     setRelicsModal(false)
 }
@@ -908,7 +937,7 @@ function clearEffect(key){
         setEffect33(false)
     }
     else{
-        console.log("Nope... ",  key)
+        console.warn("Nope... ",  key)
     }
 }
 
@@ -1024,9 +1053,11 @@ function determineDamModifier(type, relCat=false){
     if (relCat === "off"){
 
         // Finds "All Damage Modifiers" and applies
-        let allDams = findDamageTypeFromEffects("allDamage")
-        allDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.allDamage
+        let mods = findDamageTypeFromEffects("allDamage")
+        mods.forEach(dam => {
+            if (determine_if_effect_is_active(dam)){
+                totalMod = totalMod * dam.effect.allDamage
+            }
         })    
 
     //////////////
@@ -1035,34 +1066,42 @@ function determineDamModifier(type, relCat=false){
 
             // Finds "Melee Damage Modifiers" and applies
             if (type === "Melee"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
+                let mods = findDamageTypeFromEffects("weaponDamage")
+                mods.forEach(dam => {
+                    if (determine_if_effect_is_active(dam)){
+                        totalMod = totalMod * dam.effect.weaponDamage
+                    }
+                }) 
             }
             // Finds "Ranged Damage Modifiers" and applies
             else if (type === "Ranged"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    if (dam.effect.appliesRanged){
+                let mods = findDamageTypeFromEffects("weaponDamage")
+                mods.forEach(dam => {
+                    if (determine_if_effect_is_active(dam)){
                         totalMod = totalMod * dam.effect.weaponDamage
                     }
-                })
+                }) 
             }
             // Finds "Bestial Incantaions Damage Modifiers" and applies
             else if (type === "Bestial Incants"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
-                let extraDams = findDamageTypeFromEffects("incantDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
-                let extraDams2 = findDamageTypeFromEffects("beastDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.beastDamage
-                })
+                let mods = findDamageTypeFromEffects("weaponDamage")
+                mods.forEach(dam => {
+                    if (determine_if_effect_is_active(dam)){
+                        totalMod = totalMod * dam.effect.weaponDamage
+                    }
+                }) 
+                let mods2 = findDamageTypeFromEffects("incantDamage")
+                mods2.forEach(dam => {
+                    if (determine_if_effect_is_active(dam)){
+                        totalMod = totalMod * dam.effect.incantDamage
+                    }
+                }) 
+                let mods3 = findDamageTypeFromEffects("beastDamage")
+                mods3.forEach(dam => {
+                    if (determine_if_effect_is_active(dam)){
+                        totalMod = totalMod * dam.effect.beastDamage
+                    }
+                }) 
             }
             // Finds "Physical Skill Damage Modifiers" and applies
             else if (type === "Physical Skill"){
@@ -1421,7 +1460,6 @@ function findAttributeTypeFromEffects(attr){
         }
     })
     if (mods?.length > 0){
-        console.log(mods)
         let totalMod = 0
         mods.forEach((eff) => {
             totalMod = totalMod + eff.effect[attr]
@@ -1450,7 +1488,6 @@ function findResistance(type){
     if (type === "Poison"){
         let resMods = findDamageTypeFromEffects("poisonRes")
         resMods.forEach(dam => {
-            console.log(dam)
             totalMod = totalMod + dam.effect.poisonRes
         })
     }
@@ -1490,7 +1527,6 @@ function findResistance(type){
             totalMod = totalMod + dam.effect.deathRes
         })
     }
-    console.log(totalMod)
     return totalMod
 }
 
@@ -1499,25 +1535,43 @@ function findConditions(){
     all_relic_effects.forEach(eff => {
         if (!eff.effect.always){
             if (eff.effect.condition){
-                objOfToggles[condition] = false
+                objOfToggles[eff.effect.condition] = true
             }
         }
     })
+    set_relic_effect_toggles(objOfToggles)
+    
+}
+
+function determine_if_effect_is_active(effect){
+    if (!effect.effect.always){
+        console.log(effect.title, " \n...is not always active...")
+        if (relics_effect_toggles[effect.effect.condition]){
+            console.log("ACTIVE!!!!")
+            return true 
+        }
+        else{
+            console.log("IT IS NOT ACTIVE!!!!")
+            return false
+        }
+    }
+    return true
 }
 
 //////////////
 // Resizing //
 //////////////
-const { width } = useViewport()
-const isMobile = width < 900
-useEffect(() => {
-    const prev = document.body.style.backgroundColor
-    document.body.style.backgroundColor = depthColor
-  
-    return () => {
-      document.body.style.backgroundColor = prev
-    }
-  }, [])
+    const { width } = useViewport()
+    const isMobile = width < 900
+
+    useEffect(() => {
+        const prev = document.body.style.backgroundColor
+        document.body.style.backgroundColor = depthColor
+    
+        return () => {
+        document.body.style.backgroundColor = prev
+        }
+    }, [])
 
   function useViewport() {
     // Safe initial state for SSR

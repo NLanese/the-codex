@@ -46,7 +46,8 @@ const defensiveRelics = [
         selfType: "lowHealth",
         effect: {
             allNegation: 1.16,
-            always: true,
+            always: false,
+            condition: "Below 40% Health"
         }
     },
     {
