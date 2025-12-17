@@ -500,7 +500,7 @@ function renderStats(){
             )
         }
         return(
-            <div>
+            <div style={{paddingRight: 10, paddingLeft: 10}}>
                 <OstrichTabBar
                     style={{width: '80%', marginLeft: '10%', marginTop: 10, marginBottom: 10}}
                     tabs={["Damage", "Negations", "Compound"]}
