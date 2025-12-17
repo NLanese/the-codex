@@ -83,6 +83,9 @@ const silverLining = "#d4eeff"
     const [effect62, setEffect62] = useState(false)
     const [effect63, setEffect63] = useState(false)
 
+    // Relics Toggle Effects
+    const [relicsEffectToggles, setRelicEffectToggles] = useState({})
+
     // Relic Editting and Effects
     const [all_relic_effects, set_all_relic_effects] = useState([])
     const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
@@ -198,6 +201,10 @@ const silverLining = "#d4eeff"
         effect61, effect62, effect63
     ]);
 
+    useEffect(() => {
+        findConditions()
+    }, [all_relic_effects])
+
 
 
 ///////////////
@@ -232,6 +239,9 @@ function renderSelections(){
     else if (selectionState === "Deep Relics"){
         return renderRelics()
     }
+    else if (selectionState === "Effects"){
+        return renderEffectToggles()
+    }
 }
 
 
@@ -242,7 +252,7 @@ function renderNightFarer(){
             display: 'flex', flexDirection: 'column', flex: 5, 
             paddingRight: 10
         }}>
-            {/* <FormMultipleChoice 
+            <FormMultipleChoice 
                 title={"Selection"}
                 style={{width: '100%'}}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
@@ -257,10 +267,10 @@ function renderNightFarer(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Effects"],
+                    options: ["Relics", "Deep Relics", "Effects", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Items"],
                 }}
                 inputValue={selectionState}
-            /> */}
+            />
             <FormMultipleChoice 
                 title={"Nightfarer"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
@@ -375,6 +385,13 @@ function renderRelicEffect(relicSlot, key){
         
     )
 }
+
+// EFFECTS //
+function renderEffectToggles(){
+
+    return
+}
+
 
 // DEEP OF NIGHT //
 function renderDeepToggles(){
@@ -1475,6 +1492,17 @@ function findResistance(type){
     }
     console.log(totalMod)
     return totalMod
+}
+
+function findConditions(){
+    let objOfToggles = {}
+    all_relic_effects.forEach(eff => {
+        if (!eff.effect.always){
+            if (eff.effect.condition){
+                objOfToggles[condition] = false
+            }
+        }
+    })
 }
 
 //////////////
