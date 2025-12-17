@@ -18,7 +18,8 @@ import statRelics from "../../constants/projects/nightreign/relics/statRelics";
 
 export default function RelicsModal({
     selectEffect,
-    isMobile
+    isMobile, 
+    closeModal
 }) {
 
 ///////////
@@ -94,10 +95,10 @@ function renderFilteredEffects(){
             display: 'flex', flexDirection: 'row'}}
             >
                 <div style={{display: 'flex', flexDirection: 'column', flex: 10}}>
-                    <p style={{...Styles.Fonts.basicX, marginBottom: 0}}>
+                    <p style={{...Styles.Fonts.basicX, marginBottom: 0, fontSize: isMobile ? 16 : 22,}}>
                         {eff.title}
                     </p>
-                    <p style={{...Styles.Fonts.basic, fontSize: 14, marginTop: 0}}>
+                    <p style={{...Styles.Fonts.basic, fontSize: isMobile ? 12 : 14, marginTop: 0}}>
                         {eff.desc}
                     </p>
                 </div>
@@ -115,10 +116,64 @@ function renderCanStack(eff){
         return <p style={{color: graceGiven, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Stacks with self</p>
     }
     else if (!eff.stacks.self && eff.stacks.selfType){
-        return<p style={{color: silverLining, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Stacks with OTHER SIMILAR verions of self</p>
+        return<p style={{color: silverLining, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Stacks with similar type</p>
     }
     else{
         return <p style={{color: frenzyTouched, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Does not stack</p>
+    }
+}
+
+function renderOptions(){
+    if (isMobile){
+        return(
+            <FormMultipleChoice
+                title={"Relic Type"}
+                titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
+                itemsPerRow={3}
+                inForm={false}
+                onChange={(op) => {
+                    setEffectCat(op.value[0])
+                }}
+                fieldObj={
+                  {
+                    id: "2",
+                    type: "MC",
+                    template: "tabs",
+                    options: ["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"],
+                }}
+                inputValue={selectedList}
+            />
+        )
+    }
+    else{
+        return(
+            <OstrichTabBar
+            style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
+            tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"]}
+            onTabClick={(tab) => setEffectCat(tab)}
+            />
+        )
+    }
+}
+
+function renderTitle(){
+    if (isMobile){
+        return(
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '60%',  alignItems: 'center'}}>
+                <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven}}>Select an Effect</p>
+                <OstCard noShadow={true} style={{
+                    color: frenzyTouched, backgroundColor: depthColor, 
+                    padding: 4, margin: 0, flex: 2.5, height: 40,
+                    textAlign: 'center', dispklay: 'flex',
+                    justifyContent: 'center', alignContent: 'center'
+                }} onClick={() => closeModal()}>
+                    CLOSE
+                </OstCard>
+            </div>
+        )
+    }
+    else{
+        return <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven}}>Select an Effect</p>
     }
 }
 
@@ -134,13 +189,9 @@ function renderCanStack(eff){
         <div style={{height: '100%', paddingBottom: 10}}>
             <div style={{height: '20%'}}>
                 <div>
-                    <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven}}>Select an Effect</p>
+                    {renderTitle()}
                 </div>
-                <OstrichTabBar
-                    style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
-                    tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"]}
-                    onTabClick={(tab) => setEffectCat(tab)}
-                />
+                    {renderOptions()}
                 <div style={{marginLeft: '10%', display: 'flex', flexDirection: 'row'}}>
                     <p style={{...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: silverLining}}>Search for Effect: </p>
                     <input style={{width: '62%'}} onChange={(e) => setSearch(e.target.value)}
@@ -148,7 +199,7 @@ function renderCanStack(eff){
                 </div>
             </div>
             
-            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: 5, height: '80%'}}>
+            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: isMobile ? '20%' : 5, height: isMobile ? "65%" : '80%'}}>
                 {renderFilteredEffects()}
             </div>
         </div>

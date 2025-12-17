@@ -843,7 +843,7 @@ function renderRelicModal(){
     }
     const mobileStyle={
         backgroundColor: nightShade,
-        width: '80%', marginLeft: '0%', minWidth: 300,
+        width: '90%', marginLeft: '-5%', minWidth: 300,
         height: '82%', marginTop: '0%', minHeight: 220,
         borderRadius: 20, borderColor: silveredNight
     }
@@ -861,7 +861,7 @@ function renderRelicModal(){
         }}
         >
             <RelicsModal 
-                selectEffect={handleChangeEffect} isMobile={isMobile}
+                selectEffect={handleChangeEffect} isMobile={isMobile} closeModal={closeModal}
             />
         </ReactModal>
     )
@@ -1421,6 +1421,10 @@ function stack_modifiers(key, totalMod, toggles){
         }
     })  
     return totalMod
+}
+
+function closeModal(){
+    setRelicsModal(false)
 }
 
 //////////////
