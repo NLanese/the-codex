@@ -71,7 +71,7 @@ const regenRelics = [
     },
     {
         title: "Slowly Restore HP for Self and Nearby Allies when HP is low",
-        desc: "Hits restore 30% of Damage Dealt for 3 seconds after taking damage. Can only restore the damage taken during the hit.",
+        desc: "Heals Self and Allies 0.5% + 1 HP per second when Health gets below 20%. Lasts 20 seconds even if user heals",
         stacks: {self: false, selfType: false},
         selfType: "holyGround",
         effect: {
@@ -82,9 +82,10 @@ const regenRelics = [
         title: "Art Gauge Filled Moderately on Critical Hit",
         desc: "Critical Hits increase Ultimate Gauge by 5.",
         stacks: {self: false, selfType: false},
-        selfType: "ultGiven",
+        selfType: "ultCrit",
         effect: {
             always: true,
+            ultCrit: 5
         }
     },
     {
@@ -94,6 +95,7 @@ const regenRelics = [
         selfType: "hpEat",
         effect: {
             always: true,
+            hpEat: 50
         }
     },
     {
@@ -103,24 +105,59 @@ const regenRelics = [
         selfType: "ultGuard",
         effect: {
             always: true,
+            ultGuard: 1
         }
     },
     {
         title: "Continuous HP Recovery",
         desc: "2 HP Per Second",
-        stacks: {self: false, selfType: false},
+        stacks: {self: false, selfType: true},
         selfType: "regenHP",
         effect: {
             always: true,
+            regenHP: 1
         }
     },
     {
         title: "Continuous FP Recovery",
         desc: "1 FP Per Second",
-        stacks: {self: false, selfType: false},
+        stacks: {self: false, selfType: true},
         selfType: "regenFP",
         effect: {
             always: true,
+            regenFP: 1
+        }
+    },
+    {
+        title: "Rot in Vicinity Causes Continuous HP Recovery",
+        desc: "Heals Self 15% + 15 HP per second for 15 seconds (240% total HP) over 15 seconds after a rot proc",
+        stacks: {self: false, selfType: true},
+        selfType: "regenHP",
+        effect: {
+            always: false,
+            condition: "15 Seconds after Rot Proc",
+            regenHP: 15,
+            regenHP_percent: 15
+        }
+    },
+    {
+        title: "Raised Stamina Recovery for Nearby Allies but not for Self",
+        desc: "Allies regen 4 additional stamina per second when nearby",
+        stacks: {self: false, selfType: true},
+        selfType: "allyBuff",
+        effect: {
+            always: false,
+        }
+    },
+    {
+        title: "FP Restoration upon Successive Attacks",
+        desc: "Recovers 5% of FP after a series of consecutive attacks. Taking damage does not reset the counter.",
+        stacks: {self: false, selfType: true},
+        selfType: "fpGrantPercent",
+        effect: {
+            always: false,
+            fpGrantPercent: 5,
+            condition: "After consecutive attacks" 
         }
     },
 ]

@@ -159,6 +159,46 @@ export default function determineBaseNegations(nightfarer){
             blight: 69,
         }
     }
+    else if (nightfarer === "Scholar"){
+        return{
+            phys: 0.19,
+            slash: 0.17,
+            strike: 0.15,
+            thrust: 0.20,
+            magic: 0.27,
+            fire: 0.25,
+            lightning: .24,
+            holy: .09,
+            poise: 40,
+            poison: 102,
+            rot: 102,
+            bleed: 85,
+            frost: 59,
+            sleep: 85,
+            mad: 69,
+            blight: 69,
+        }
+    }
+    else if (nightfarer === "Undertaker"){
+        return{
+            phys: 0.18,
+            slash: 0.12,
+            strike: 0.18,
+            thrust: 0.12,
+            magic: 0.20,
+            fire: 0.17,
+            lightning: .20,
+            holy: .26,
+            poise: 40,
+            poison: 102,
+            rot: 102,
+            bleed: 85,
+            frost: 79,
+            sleep: 95,
+            mad: 49,
+            blight: 69,
+        }
+    }
     else{
         return {
             phys: 0,
