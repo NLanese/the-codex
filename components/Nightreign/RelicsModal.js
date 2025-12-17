@@ -8,6 +8,7 @@ import Styles from "../../styles/styles";
 // Ostrich
 import { OstCard } from "../../OstrichComponents/Format/OstCard";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar"
+import { FormMultipleChoice } from "../../OstrichComponents/Forms/FormMultipleChoice";
 
 // Relics
 import offensiveRelics from "../../constants/projects/nightreign/relics/offensiveRelics";
@@ -16,7 +17,8 @@ import regenRelics from "../../constants/projects/nightreign/relics/regenRelics"
 import statRelics from "../../constants/projects/nightreign/relics/statRelics";
 
 export default function RelicsModal({
-    selectEffect
+    selectEffect,
+    isMobile
 }) {
 
 ///////////

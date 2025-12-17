@@ -275,7 +275,7 @@ function renderNightFarer(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executor", "Scholar", "Undertaker"],
+                    options: ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executor", "Scholar", {tag: "Undertaker", fontSize: isMobile ? 12 : 16}],
                     textStyle: {fontSize: 12, padding: 0},
                   }
                 }
@@ -789,6 +789,18 @@ function renderBar(title, value, max, color){
 
 // RELIC MODAL //
 function renderRelicModal(){
+    const nonMobileStyle={
+        backgroundColor: nightShade,
+        width: '50%', marginLeft: '20%', minWidth: 300,
+        height: '82%', marginTop: '0%', minHeight: 220,
+        borderRadius: 20, borderColor: silveredNight
+    }
+    const mobileStyle={
+        backgroundColor: nightShade,
+        width: '80%', marginLeft: '0%', minWidth: 300,
+        height: '82%', marginTop: '0%', minHeight: 220,
+        borderRadius: 20, borderColor: silveredNight
+    }
     return(
         <ReactModal
         isOpen={relicsModal}
@@ -799,16 +811,11 @@ function renderRelicModal(){
             zIndex: 9999,
             backgroundColor: 'rgba(17, 3, 64, 0.85)',
         },
-        content: {
-            backgroundColor: nightShade,
-            width: '50%', marginLeft: '20%', minWidth: 300,
-            height: '82%', marginTop: '0%', minHeight: 220,
-            borderRadius: 20, borderColor: silveredNight
-        }   
+        content: (isMobile ? mobileStyle : nonMobileStyle)
         }}
         >
             <RelicsModal 
-                selectEffect={handleChangeEffect}
+                selectEffect={handleChangeEffect} isMobile={isMobile}
             />
         </ReactModal>
     )
