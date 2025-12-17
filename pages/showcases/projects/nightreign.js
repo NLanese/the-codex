@@ -83,6 +83,9 @@ const silverLining = "#d4eeff"
     const [effect62, setEffect62] = useState(false)
     const [effect63, setEffect63] = useState(false)
 
+    // Relics Toggle Effects
+    const [relics_effect_toggles, set_relic_effect_toggles] = useState({})
+
     // Relic Editting and Effects
     const [all_relic_effects, set_all_relic_effects] = useState([])
     const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
@@ -198,12 +201,16 @@ const silverLining = "#d4eeff"
         effect61, effect62, effect63
     ]);
 
+    useEffect(() => {
+        findConditions()
+    }, [all_relic_effects])
+
 
 
 ///////////////
 // Rendering //
 ///////////////
-function renderSelectionsContainer(){
+function renderSelectionsContainer(toggles){
     return(
         <div style={{
         display: 'flex', flexDirection: isMobile ? 'column' : 'row',
@@ -219,7 +226,7 @@ function renderSelectionsContainer(){
             </div>
             <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
                 {renderVitals()}
-                {renderStats()}
+                {renderStats(toggles)}
             </div>
         </div>
     )
@@ -232,6 +239,9 @@ function renderSelections(){
     else if (selectionState === "Deep Relics"){
         return renderRelics()
     }
+    else if (selectionState === "Effects"){
+        return renderEffectToggles()
+    }
 }
 
 
@@ -242,7 +252,7 @@ function renderNightFarer(){
             display: 'flex', flexDirection: 'column', flex: 5, 
             paddingRight: 10
         }}>
-            {/* <FormMultipleChoice 
+            <FormMultipleChoice 
                 title={"Selection"}
                 style={{width: '100%'}}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
@@ -257,10 +267,10 @@ function renderNightFarer(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Effects"],
+                    options: ["Relics", "Deep Relics", "Effects", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Items"],
                 }}
                 inputValue={selectionState}
-            /> */}
+            />
             <FormMultipleChoice 
                 title={"Nightfarer"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
@@ -376,6 +386,45 @@ function renderRelicEffect(relicSlot, key){
     )
 }
 
+// EFFECTS //
+function renderEffectToggles(){
+    let keysOfEffects = Object.keys({...relics_effect_toggles})
+    if (!keysOfEffects || keysOfEffects.length < 1){
+        return(
+            <div style={{flex: 7}}>
+            </div>
+        )
+    }
+    const mainRender = keysOfEffects.map((eff, i) => {
+        return(
+            <OstCard 
+            noShadow={true} 
+            style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10}}
+            onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
+            >
+                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 11}}>
+                    {eff}
+                </p>
+                <OstCard style={{ flex: 1,
+                    display: 'flex', justifySelf: 'center', alignSelf: 'center', 
+                    border: "2px solid #f2e144", borderRadius: 4, 
+                    height: 10, width: 10, margin: 0,
+                    backgroundColor: depthColor, fontSize: 13.5
+                }}
+                >
+                    {fill(relics_effect_toggles[eff])}
+                </OstCard>
+            </OstCard>
+        )
+    })
+    return(
+        <div style={{flex: 7, paddingTop: 10, paddingBottom: 10}}>
+            {mainRender}
+        </div>
+    )
+}
+
+
 // DEEP OF NIGHT //
 function renderDeepToggles(){
     return(
@@ -408,41 +457,38 @@ function renderDISPLAY_DEEP_RELICS(){
     }
 }
 
-function fill(type){
-    if (deepEnabled && type === "enable"){
-        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
-    }
-    else if (deepDisplayed && type === "display"){
+function fill(filled){
+    if (filled){
         return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
     }
 }
 
 // STATS //
-function renderStats(){
+function renderStats(toggles){
     const [statsShown, setStatsShown] = useState("Damage")
     if (isMobile){
         function renderList(){
             if (statsShown === "Negations"){
                 return(
                     <div>
-                        {renderStat("Physical", "neg")}
-                        {renderStat("Slash", "neg")}
-                        {renderStat("Strike", "neg")}
-                        {renderStat("Thrust", "neg")}
-                        {renderStat("Magic", "neg")}
-                        {renderStat("Fire", "neg")}
-                        {renderStat("Lightning", "neg")}
-                        {renderStat("Holy", "neg")}
+                        {renderStat("Physical", "neg", toggles)}
+                        {renderStat("Slash", "neg", toggles)}
+                        {renderStat("Strike", "neg", toggles)}
+                        {renderStat("Thrust", "neg", toggles)}
+                        {renderStat("Magic", "neg", toggles)}
+                        {renderStat("Fire", "neg", toggles)}
+                        {renderStat("Lightning", "neg", toggles)}
+                        {renderStat("Holy", "neg", toggles)}
 
                         {renderStat("Poise", "malenia_is_overrated_there_I_said_it")}
 
-                        {renderStat("Poison", "res")}
-                        {renderStat("Sleep", "res")}
-                        {renderStat("Blight", "res")}
-                        {renderStat("Frostbite", "res")}
-                        {renderStat("Madness", "res")}
-                        {renderStat("Rot", "res")}
-                        {renderStat("Bleed", "res")}
+                        {renderStat("Poison", "res", toggles)}
+                        {renderStat("Sleep", "res", toggles)}
+                        {renderStat("Blight", "res", toggles)}
+                        {renderStat("Frostbite", "res", toggles)}
+                        {renderStat("Madness", "res", toggles)}
+                        {renderStat("Rot", "res", toggles)}
+                        {renderStat("Bleed", "res", toggles)}
                     </div>
                 )
             }
@@ -454,48 +500,48 @@ function renderStats(){
                             tabs={["Incantations", "Sorceries", "Skill", "Items"]}
                             onTabClick={(tab) => {setExpandedStat(tab)}}
                         />
-                        {renderExtras("Fire Incants", "off", "Incantations")}
-                        {renderExtras("Giant's Fire", "off", "Incantations")}
-                        {renderExtras("Black Flame", "off", "Incantations")}
-                        {renderExtras("Flame of Frenzy", "off", "Incantations")}
-                        {renderExtras("Holy Incants", "off", "Incantations")}
-                        {renderExtras("Golden Incants", "off", "Incantations")}
-                        {renderExtras("Lightning Incants", "off", "Incantations")}
-                        {renderExtras("Dragon Incants", "off", "Incantations")}
-                        {renderExtras("Bestial Incants", "off", "Incantations")}
+                        {renderExtras("Fire Incants", "off", toggles, "Incantations")}
+                        {renderExtras("Giant's Fire", "off", toggles, "Incantations")}
+                        {renderExtras("Black Flame", "off", toggles, "Incantations")}
+                        {renderExtras("Flame of Frenzy", "off", toggles, "Incantations")}
+                        {renderExtras("Holy Incants", "off", toggles, "Incantations")}
+                        {renderExtras("Golden Incants", "off", toggles, "Incantations")}
+                        {renderExtras("Lightning Incants", "off", toggles, "Incantations")}
+                        {renderExtras("Dragon Incants", "off", toggles, "Incantations")}
+                        {renderExtras("Bestial Incants", "off", toggles, "Incantations")}
 
-                        {renderExtras("Crystalian Sorcery", "off", "Sorceries")}
-                        {renderExtras("Carian Sorcery", "off", "Sorceries")}
-                        {renderExtras("Glintblade Sorcery", "off", "Sorceries")}
-                        {renderExtras("Gravity Sorcery", "off", "Sorceries")}
-                        {renderExtras("Stonedigger Sorcery", "off", "Sorceries")}
-                        {renderExtras("Standard Sorcery", "off", "Sorceries")}
+                        {renderExtras("Crystalian Sorcery", "off", toggles, "Sorceries")}
+                        {renderExtras("Carian Sorcery", "off", toggles, "Sorceries")}
+                        {renderExtras("Glintblade Sorcery", "off", toggles, "Sorceries")}
+                        {renderExtras("Gravity Sorcery", "off", toggles, "Sorceries")}
+                        {renderExtras("Stonedigger Sorcery", "off", toggles, "Sorceries")}
+                        {renderExtras("Standard Sorcery", "off", toggles, "Sorceries")}
 
-                        {renderExtras("Physical Skill", "off", "Skill")}
-                        {renderExtras("Roaring Skill", "off", "Skill")}
-                        {renderExtras("Magic / Gravity Skill", "off", "Skill")}
-                        {renderExtras("Fire Skill", "off", "Skill")}
-                        {renderExtras("Lightning Skill", "off", "Skill")}
-                        {renderExtras("Holy Skill", "off", "Skill")}
+                        {renderExtras("Physical Skill", "off", toggles, "Skill")}
+                        {renderExtras("Roaring Skill", "off", toggles, "Skill")}
+                        {renderExtras("Magic / Gravity Skill", "off", toggles, "Skill")}
+                        {renderExtras("Fire Skill", "off", toggles, "Skill")}
+                        {renderExtras("Lightning Skill", "off", toggles, "Skill")}
+                        {renderExtras("Holy Skill", "off", toggles, "Skill")}
                     </div>
                 )
             }
             return(
                 <div>
-                    {renderStat("Melee", "off")}
-                    {renderStat("Ranged", "off")}
-                    {renderStat("Magic", "off")}
-                    {renderStat("Lightning", "off")}
-                    {renderStat("Fire", "off")}
-                    {renderStat("Holy", "off")}
+                    {renderStat("Melee", "off", toggles)}
+                    {renderStat("Ranged", "off", toggles)}
+                    {renderStat("Magic", "off", toggles)}
+                    {renderStat("Lightning", "off", toggles)}
+                    {renderStat("Fire", "off", toggles)}
+                    {renderStat("Holy", "off", toggles)}
                     
-                    {renderStat("Critical", "off")}
-                    {renderStat("Counter", "off")}
-                    {renderStat("Poise", "off")}
-                    {renderStat("Skill", "off", true)}
-                    {renderStat("Sorceries", 'off', true)}
-                    {renderStat("Incantations", 'off', true)}
-                    {renderStat("Consumables", "off", true)}
+                    {renderStat("Critical", "off", toggles)}
+                    {renderStat("Counter", "off", toggles)}
+                    {renderStat("Poise", "off", toggles)}
+                    {renderStat("Skill", "off", toggles, true)}
+                    {renderStat("Sorceries", 'off', toggles, true)}
+                    {renderStat("Incantations", 'off', toggles, true)}
+                    {renderStat("Consumables", "off", toggles, true)}
                 </div>
             )
         }
@@ -513,72 +559,72 @@ function renderStats(){
     return(
         <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
             <div style={{flex: 4, backgroundColor: gloomGlow, height: '100%'}}>
-                {renderStat("Physical", "neg")}
-                {renderStat("Slash", "neg")}
-                {renderStat("Strike", "neg")}
-                {renderStat("Thrust", "neg")}
-                {renderStat("Magic", "neg")}
-                {renderStat("Fire", "neg")}
-                {renderStat("Lightning", "neg")}
-                {renderStat("Holy", "neg")}
+                {renderStat("Physical", "neg", toggles)}
+                {renderStat("Slash", "neg", toggles)}
+                {renderStat("Strike", "neg", toggles)}
+                {renderStat("Thrust", "neg", toggles)}
+                {renderStat("Magic", "neg", toggles)}
+                {renderStat("Fire", "neg", toggles)}
+                {renderStat("Lightning", "neg", toggles)}
+                {renderStat("Holy", "neg", toggles)}
 
-                {renderStat("Poise", "malenia_is_overrated_there_I_said_it")}
+                {renderStat("Poise", "malenia_is_overrated_there_I_said_it", toggles)}
 
-                {renderStat("Poison", "res")}
-                {renderStat("Sleep", "res")}
-                {renderStat("Blight", "res")}
-                {renderStat("Frostbite", "res")}
-                {renderStat("Madness", "res")}
-                {renderStat("Rot", "res")}
-                {renderStat("Bleed", "res")}
+                {renderStat("Poison", "res", toggles)}
+                {renderStat("Sleep", "res", toggles)}
+                {renderStat("Blight", "res", toggles)}
+                {renderStat("Frostbite", "res", toggles)}
+                {renderStat("Madness", "res", toggles)}
+                {renderStat("Rot", "res", toggles)}
+                {renderStat("Bleed", "res", toggles)}
             </div>
             <div style={{flex: 4}}>
-                {renderStat("Melee", "off")}
-                {renderStat("Ranged", "off")}
-                {renderStat("Magic", "off")}
-                {renderStat("Lightning", "off")}
-                {renderStat("Fire", "off")}
-                {renderStat("Holy", "off")}
+                {renderStat("Melee", "off", toggles)}
+                {renderStat("Ranged", "off", toggles)}
+                {renderStat("Magic", "off", toggles)}
+                {renderStat("Lightning", "off", toggles)}
+                {renderStat("Fire", "off", toggles)}
+                {renderStat("Holy", "off", toggles)}
                 
-                {renderStat("Critical", "off")}
-                {renderStat("Counter", "off")}
-                {renderStat("Poise", "off")}
-                {renderStat("Skill", "off", true)}
-                {renderStat("Sorceries", 'off', true)}
-                {renderStat("Incantations", 'off', true)}
-                {renderStat("Consumables", "off", true)}
+                {renderStat("Critical", "off", toggles)}
+                {renderStat("Counter", "off", toggles)}
+                {renderStat("Poise", "off", toggles)}
+                {renderStat("Skill", "off", toggles, true)}
+                {renderStat("Sorceries", 'off', toggles, true)}
+                {renderStat("Incantations", 'off', toggles, true)}
+                {renderStat("Consumables", "off", toggles, true)}
             </div>
             <div style={{flex: 4}}>
                 <p style={{...Styles.Fonts.basicX, color: silverLining, margin: 0, textAlign: 'center'}}>{expandedStat ? expandedStat : ""}</p>
-                {renderExtras("Fire Incants", "off", "Incantations")}
-                {renderExtras("Giant's Fire", "off", "Incantations")}
-                {renderExtras("Black Flame", "off", "Incantations")}
-                {renderExtras("Flame of Frenzy", "off", "Incantations")}
-                {renderExtras("Holy Incants", "off", "Incantations")}
-                {renderExtras("Golden Incants", "off", "Incantations")}
-                {renderExtras("Lightning Incants", "off", "Incantations")}
-                {renderExtras("Dragon Incants", "off", "Incantations")}
-                {renderExtras("Bestial Incants", "off", "Incantations")}
+                {renderExtras("Fire Incants", "off", toggles, "Incantations")}
+                {renderExtras("Giant's Fire", "off", toggles, "Incantations")}
+                {renderExtras("Black Flame", "off", toggles, "Incantations")}
+                {renderExtras("Flame of Frenzy", "off", toggles, "Incantations")}
+                {renderExtras("Holy Incants", "off", toggles, "Incantations")}
+                {renderExtras("Golden Incants", "off", toggles, "Incantations")}
+                {renderExtras("Lightning Incants", "off", toggles, "Incantations")}
+                {renderExtras("Dragon Incants", "off", toggles, "Incantations")}
+                {renderExtras("Bestial Incants", "off", toggles, "Incantations")}
 
-                {renderExtras("Crystalian Sorcery", "off", "Sorceries")}
-                {renderExtras("Carian Sorcery", "off", "Sorceries")}
-                {renderExtras("Glintblade Sorcery", "off", "Sorceries")}
-                {renderExtras("Gravity Sorcery", "off", "Sorceries")}
-                {renderExtras("Stonedigger Sorcery", "off", "Sorceries")}
-                {renderExtras("Standard Sorcery", "off", "Sorceries")}
+                {renderExtras("Crystalian Sorcery", "off", toggles, "Sorceries")}
+                {renderExtras("Carian Sorcery", "off", toggles, "Sorceries")}
+                {renderExtras("Glintblade Sorcery", "off", toggles, "Sorceries")}
+                {renderExtras("Gravity Sorcery", "off", toggles, "Sorceries")}
+                {renderExtras("Stonedigger Sorcery", "off", toggles, "Sorceries")}
+                {renderExtras("Standard Sorcery", "off", toggles, "Sorceries")}
 
-                {renderExtras("Physical Skill", "off", "Skill")}
-                {renderExtras("Roaring Skill", "off", "Skill")}
-                {renderExtras("Magic / Gravity Skill", "off", "Skill")}
-                {renderExtras("Fire Skill", "off", "Skill")}
-                {renderExtras("Lightning Skill", "off", "Skill")}
-                {renderExtras("Holy Skill", "off", "Skill")}
+                {renderExtras("Physical Skill", "off", toggles, "Skill")}
+                {renderExtras("Roaring Skill", "off", toggles, "Skill")}
+                {renderExtras("Magic / Gravity Skill", "off", toggles, "Skill")}
+                {renderExtras("Fire Skill", "off", toggles, "Skill")}
+                {renderExtras("Lightning Skill", "off", toggles, "Skill")}
+                {renderExtras("Holy Skill", "off", toggles, "Skill")}
             </div>
         </div>
     )
 }
 
-function renderStat(type, variety, extras=false){
+function renderStat(type, variety, toggles, extras=false){
     // Style Stuff
     let color = "white"
     let caption = ""
@@ -616,7 +662,7 @@ function renderStat(type, variety, extras=false){
                     {type} {caption} - 
                 </p>
                 <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                    determineRenderedValue(type, variety)}
+                    determineRenderedValue(type, variety, toggles)}
                 </p>
             </OstCard>
         )
@@ -627,13 +673,13 @@ function renderStat(type, variety, extras=false){
                 {type} {caption} - 
             </p>
             <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                determineRenderedValue(type, variety)}
+                determineRenderedValue(type, variety, toggles)}
             </p>
         </OstCard>
     )
 }
 
-function renderExtras(type, variety, expandedType){
+function renderExtras(type, variety, toggles, expandedType){
     if (expandedStat === expandedType){
         // Style Stuff
         let color = "white"
@@ -664,7 +710,7 @@ function renderExtras(type, variety, expandedType){
                     {type} {caption} - 
                 </p>
                 <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                    determineRenderedValue(type, variety)}
+                    determineRenderedValue(type, variety, toggles)}
                 </p>
             </OstCard>
         )
@@ -862,7 +908,7 @@ function handleChangeEffect(effect){
         setEffect33(effect)
     }
     else{
-        console.log("Nope... ",  currentEditNum)
+        console.warn("Nope... ",  currentEditNum)
     }
     setRelicsModal(false)
 }
@@ -898,7 +944,7 @@ function clearEffect(key){
         setEffect33(false)
     }
     else{
-        console.log("Nope... ",  key)
+        console.warn("Nope... ",  key)
     }
 }
 
@@ -942,34 +988,38 @@ function getBaseNegations(){
     return bases
 }
 
-function determineRenderedValue(type, variety){
+function determineRenderedValue(type, variety, toggles){
+
+    // NEGATIONS
     if (variety === "neg"){
         let negationBases = getBaseNegations(nightfarer)
         if (type === "Physical"){
-            return `${((determineDamModifier(type, variety) * negationBases.phys) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.phys) * 100).toFixed(0)}%`
         }
         else if (type === "Slash"){
-            return `${((determineDamModifier(type, variety) * negationBases.slash) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.slash) * 100).toFixed(0)}%`
         }
         else if (type === "Strike"){
-            return `${((determineDamModifier(type, variety) * negationBases.strike) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.strike) * 100).toFixed(0)}%`
         }
         else if (type === "Thrust"){
-            return `${((determineDamModifier(type, variety) * negationBases.thrust) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.thrust) * 100).toFixed(0)}%`
         }
         else if (type === "Magic"){
-            return `${((determineDamModifier(type, variety) * negationBases.magic) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.magic) * 100).toFixed(0)}%`
         }
         else if (type === "Fire"){
-            return `${((determineDamModifier(type, variety) * negationBases.fire) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.fire) * 100).toFixed(0)}%`
         }
         else if (type === "Lightning"){
-            return `${((determineDamModifier(type, variety) * negationBases.lightning) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.lightning) * 100).toFixed(0)}%`
         }
         else if (type === "Holy"){
-            return `${((determineDamModifier(type, variety) * negationBases.holy) * 100).toFixed(0)}%`
+            return `${((determineDamModifier(type, variety, toggles) * negationBases.holy) * 100).toFixed(0)}%`
         }
     }
+
+    // RESISTANCES
     else if (variety === "res"){
         let negationBases = getBaseNegations(nightfarer)
         if (type === "Poison"){
@@ -994,10 +1044,14 @@ function determineRenderedValue(type, variety){
             return (negationBases.blight + findResistance(type))
         }
     }
+
+    // DAMAGE MODIFIERS
     else if (variety === "off"){
-        return `${(determineDamModifier(type, variety) * 100).toFixed(0)}%`
+        return `${(determineDamModifier(type, variety, toggles) * 100).toFixed(0)}%`
 
     }
+
+    // POISE
     else  if (type === "Poise"){
         let negationBases = getBaseNegations(nightfarer)
         return negationBases.poise
@@ -1005,193 +1059,93 @@ function determineRenderedValue(type, variety){
     
 }
 
-function determineDamModifier(type, relCat=false){
+function determineDamModifier(type, relCat=false, toggles){
 
     // Total Damage Modifier
     let totalMod = 1
 
     // OFFENSIVE //
     if (relCat === "off"){
+            totalMod = stack_modifiers("allDamage", totalMod, toggles)
 
-        // Finds "All Damage Modifiers" and applies
-        let allDams = findDamageTypeFromEffects("allDamage")
-        allDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.allDamage
-        })    
+            // Melee Damage
+            if (type === "Melee") totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
 
-    //////////////
-    // Physical //
-    //////////////
-
-            // Finds "Melee Damage Modifiers" and applies
-            if (type === "Melee"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
-            }
-            // Finds "Ranged Damage Modifiers" and applies
+            // Ranged Weapon Damage
             else if (type === "Ranged"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    if (dam.effect.appliesRanged){
-                        totalMod = totalMod * dam.effect.weaponDamage
+                let mods = findDamageTypeFromEffects("weaponDamage")
+                mods.forEach(dam => {
+                    if (determine_if_effect_is_active(dam, toggles)){
+                        if (dam.effect.appliesRanged){
+                            totalMod = totalMod * dam.effect.weaponDamage
+                        }
                     }
-                })
+                }) 
             }
-            // Finds "Bestial Incantaions Damage Modifiers" and applies
+
+            // Bestial Incantaions Damage 
             else if (type === "Bestial Incants"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
-                let extraDams = findDamageTypeFromEffects("incantDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
-                let extraDams2 = findDamageTypeFromEffects("beastDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.beastDamage
-                })
+                totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
+                totalMod = stack_modifiers('beastDamage', totalMod, toggles)
             }
-            // Finds "Physical Skill Damage Modifiers" and applies
+
+            // Physical Skill Damage 
             else if (type === "Physical Skill"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
-                let extraDams = findDamageTypeFromEffects("skillDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.skillDamage
-                })
+                totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
             // Finds "Physical Skill Damage Modifiers" and applies
             else if (type === "Roaring Skill"){
-                let weaponDams = findDamageTypeFromEffects("weaponDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
-                let extraDams = findDamageTypeFromEffects("skillDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.skillDamage
-                })
-                let roarDams = findDamageTypeFromEffects("roarDamage")
-                roarDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.roarDamage
-                })
+                totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
+                totalMod = stack_modifiers('roarDamage', totalMod, toggles)
             }
 
-    ///////////
-    // Magic //
-    ///////////
-
-            // Finds "Magic Damage Modifiers" and applies
+            // Magic Damage 
             else if (type === "Magic"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
             }
+
             // Magic Skill
             else if (type === "Magic / Gravity Skill"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let extraDams = findDamageTypeFromEffects("skillDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.skillDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
             // Crystal Sorcery
             else if (type === "Crystalian Sorcery"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let extraDams = findDamageTypeFromEffects("crystalDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.crystalDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('crystalDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Carian Sorcery
             else if (type === "Carian Sorcery"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let extraDams = findDamageTypeFromEffects("carianDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.carianDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('carianDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Glintblade Sorcery
             else if (type === "Glintblade Sorcery"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let extraDams = findDamageTypeFromEffects("glintDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.glintDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('glintDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Gravity Sorcery
             else if (type === "Gravity Sorcery"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let extraDams = findDamageTypeFromEffects("gravDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.glintDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('gravDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Glintblade Sorcery
             else if (type === "Stonedigger Sorcery"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let extraDams = findDamageTypeFromEffects("diggerDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.diggerDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('diggerDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Standard Sorcery
             else if (type === "Standard Sorcery"){
-                let weaponDams = findDamageTypeFromEffects("magicDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.magicDamage
-                })
-                let sorcDams = findDamageTypeFromEffects("sorceryDamage")
-                sorcDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.sorceryDamage
-                })
+                totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
 
     ///////////////
@@ -1200,17 +1154,13 @@ function determineDamModifier(type, relCat=false){
 
             // Finds "Lightning Damage Modifiers" and applies
             else if (type === "Lightning"){
-                let weaponDams = findDamageTypeFromEffects("lightningDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.lightningDamage
-                })
+                totalMod = stack_modifiers('lightningDamage', totalMod, toggles)
             }
             // Finds "Dragon Cult Damage Modifiers" and applies
             else if (type === "Lightning Incants"){
-                let weaponDams = findDamageTypeFromEffects("dargonCultDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.dargonCultDamage
-                })
+                totalMod = stack_modifiers('lightningDamage', totalMod, toggles)
+                totalMod = stack_modifiers('dargonCultDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
             }
 
 
@@ -1220,77 +1170,30 @@ function determineDamModifier(type, relCat=false){
 
             // Finds "Fire Damage Modifiers" and applies
             else if (type === "Fire"){
-                let weaponDams = findDamageTypeFromEffects("fireDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.fireDamage
-                })
+                totalMod = stack_modifiers('fireDamage', totalMod, toggles)
             }
             // Finds "Flame Incantation Damage Modifiers" and applies
             else if (type === "Fire Incants"){
-                // Fire
-                let extraDams = findDamageTypeFromEffects("fireDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.fireDamage
-                })
-                // Incant
-                let extraDams2 = findDamageTypeFromEffects("incantDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
+                totalMod = stack_modifiers('fireDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
             }
             // Finds "Giant's Fire Damage Modifiers" and applies
             else if (type === "Giant's Fire"){
-                // Giants Fire
-                let weaponDams = findDamageTypeFromEffects("giantFireDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.giantFireDamage
-                })
-                // Fire
-                let extraDams = findDamageTypeFromEffects("fireDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.fireDamage
-                })
-                // Incant
-                let extraDams2 = findDamageTypeFromEffects("incantDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
+                totalMod = stack_modifiers('fireDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
+                totalMod = stack_modifiers('giantFireDamage', totalMod, toggles)
             }
             // Finds "Black Flame Damage Modifiers" and applies
             else if (type === "Black Flame"){
-                // Black Flame
-                let weaponDams = findDamageTypeFromEffects("godslayerDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.godslayerDamage
-                })
-                // Fire
-                let extraDams = findDamageTypeFromEffects("fireDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.fireDamage
-                })
-                // Incant
-                let extraDams2 = findDamageTypeFromEffects("incantDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
+                totalMod = stack_modifiers('fireDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
+                totalMod = stack_modifiers('godslayerDamage', totalMod, toggles)
             }
             // Finds "Frenzy Flame Damage Modifiers" and applies
             else if (type === "Flame of Frenzy"){
-                // Black Flame
-                let weaponDams = findDamageTypeFromEffects("frenzyDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.frenzyDamage
-                })
-                // Fire
-                let extraDams = findDamageTypeFromEffects("fireDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.fireDamage
-                })
-                // Incant
-                let extraDams2 = findDamageTypeFromEffects("incantDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
+                totalMod = stack_modifiers('fireDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
+                totalMod = stack_modifiers('frenzyDamage', totalMod, toggles)
             }
 
     
@@ -1300,22 +1203,12 @@ function determineDamModifier(type, relCat=false){
 
             // Finds "Holy Damage Modifiers" and applies
             else if (type === "Holy"){
-                let weaponDams = findDamageTypeFromEffects("holyDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.holyDamage
-                })
+                totalMod = stack_modifiers('holyDamage', totalMod, toggles)
             }
             // Finds "Holy Incantation Damage Modifiers" and applies
             else if (type === "Holy Incants"){
-                let weaponDams = findDamageTypeFromEffects("holyDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.holyDamage
-                })
-                // Incant
-                let extraDams2 = findDamageTypeFromEffects("incantDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
+                totalMod = stack_modifiers('holyDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
             }
             // Finds "Fundamentalist Incantation Damage Modifiers" and applies
             else if (type === "Golden Incants"){
@@ -1393,6 +1286,7 @@ function determineDamModifier(type, relCat=false){
         }
     }
    
+    console.log("type -- ", type, " ", totalMod)
     return totalMod
 }
 
@@ -1411,7 +1305,6 @@ function findAttributeTypeFromEffects(attr){
         }
     })
     if (mods?.length > 0){
-        console.log(mods)
         let totalMod = 0
         mods.forEach((eff) => {
             totalMod = totalMod + eff.effect[attr]
@@ -1440,7 +1333,6 @@ function findResistance(type){
     if (type === "Poison"){
         let resMods = findDamageTypeFromEffects("poisonRes")
         resMods.forEach(dam => {
-            console.log(dam)
             totalMod = totalMod + dam.effect.poisonRes
         })
     }
@@ -1480,23 +1372,71 @@ function findResistance(type){
             totalMod = totalMod + dam.effect.deathRes
         })
     }
-    console.log(totalMod)
+    return totalMod
+}
+
+function findConditions(){
+    let objOfToggles = {}
+    all_relic_effects.forEach(eff => {
+        if (!eff.effect.always){
+            if (eff.effect.condition){
+                if (objOfToggles[eff.effect.condition] === null || objOfToggles[eff.effect.condition] === undefined){
+                    objOfToggles[eff.effect.condition] = true
+                }
+            }
+        }
+    })
+    set_relic_effect_toggles(objOfToggles) 
+}
+
+function determine_if_effect_is_active(effect, toggles){
+    toggles = (toggles === {} ? false : toggles)
+    if (!effect.effect.always){
+        if (toggles){
+            console.log(effect.title, " \n...is not always active...")
+            console.log(toggles)
+            if (toggles[effect.effect.condition]){
+                console.log("ACTIVE!!!!")
+                return true 
+            }
+            else{
+                console.log("IT IS NOT ACTIVE!!!!")
+                return false
+            }
+        }
+    }
+    return true
+}
+
+function stack_modifiers(key, totalMod, toggles){
+    let mods = findDamageTypeFromEffects(key)
+    mods.forEach(dam => {
+        if (determine_if_effect_is_active(dam, toggles)){
+            totalMod = totalMod * dam.effect[key]
+        }
+        else{
+            if (key === "allDamage"){
+                console.log(dam.title, " is not being marked active in stacker")
+            }
+        }
+    })  
     return totalMod
 }
 
 //////////////
 // Resizing //
 //////////////
-const { width } = useViewport()
-const isMobile = width < 900
-useEffect(() => {
-    const prev = document.body.style.backgroundColor
-    document.body.style.backgroundColor = depthColor
-  
-    return () => {
-      document.body.style.backgroundColor = prev
-    }
-  }, [])
+    const { width } = useViewport()
+    const isMobile = width < 900
+
+    useEffect(() => {
+        const prev = document.body.style.backgroundColor
+        document.body.style.backgroundColor = depthColor
+    
+        return () => {
+        document.body.style.backgroundColor = prev
+        }
+    }, [])
 
 
   function useViewport() {
@@ -1521,7 +1461,7 @@ useEffect(() => {
 return(
     <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1}}>
         {renderRelicModal()}
-        {renderSelectionsContainer()}
+        {renderSelectionsContainer(relics_effect_toggles)}
     </div>
 )
 }
