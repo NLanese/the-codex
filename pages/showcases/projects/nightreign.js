@@ -1491,11 +1491,18 @@ useEffect(() => {
     }
   }, [])
 
-function useViewport() {
-    const [width, setWidth] = useState(window.innerWidth)
+  function useViewport() {
+    // Safe initial state for SSR
+    const [width, setWidth] = React.useState(() =>
+      typeof window === 'undefined' ? 0 : window.innerWidth
+    )
   
-    useEffect(() => {
+    React.useEffect(() => {
       const onResize = () => setWidth(window.innerWidth)
+  
+      // Set initial width on client
+      onResize()
+  
       window.addEventListener('resize', onResize)
       return () => window.removeEventListener('resize', onResize)
     }, [])
