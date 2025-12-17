@@ -1279,6 +1279,7 @@ function determineDamModifier(type, relCat=false, toggles){
         }
     }
    
+    console.log("type -- ", type, " ", totalMod)
     return totalMod
 }
 
@@ -1404,10 +1405,6 @@ function stack_modifiers(key, totalMod, toggles){
     let mods = findDamageTypeFromEffects(key)
     mods.forEach(dam => {
         if (determine_if_effect_is_active(dam, toggles)){
-            if (key === "allDamage"){
-                console.log(dam.title, " is marked active in stacker")
-                console.log(totalMod = totalMod * dam.effect[key])
-            }
             totalMod = totalMod * dam.effect[key]
         }
         else{
@@ -1460,7 +1457,7 @@ function stack_modifiers(key, totalMod, toggles){
 return(
     <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1}}>
         {renderRelicModal()}
-        {renderSelectionsContainer(all_relic_effects)}
+        {renderSelectionsContainer(relics_effect_toggles)}
     </div>
 )
 }
