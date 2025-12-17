@@ -1491,20 +1491,17 @@ useEffect(() => {
     }
   }, [])
 
+
   function useViewport() {
-    // Safe initial state for SSR
-    const [width, setWidth] = React.useState(() =>
-      typeof window === 'undefined' ? 0 : window.innerWidth
-    )
+    const [width, setWidth] = useState(null) // start with null, server-safe
   
-    React.useEffect(() => {
-      const onResize = () => setWidth(window.innerWidth)
+    useEffect(() => {
+      // This runs only on the client
+      const handleResize = () => setWidth(window.innerWidth)
   
-      // Set initial width on client
-      onResize()
-  
-      window.addEventListener('resize', onResize)
-      return () => window.removeEventListener('resize', onResize)
+      handleResize() // set initial width
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
     }, [])
   
     return { width }
