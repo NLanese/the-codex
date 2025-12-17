@@ -17,8 +17,9 @@ import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipl
 import determineBaseNegations from "../../../constants/projects/nightreign/nightfarers/determineBaseNegations";
 import determineBaseVitals from "../../../constants/projects/nightreign/nightfarers/determineBaseVitals";
 import RelicsModal from "../../../components/Nightreign/RelicsModal";
+import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
-export default function BetBotProjectPage() {
+export default function NightreignBuildMaker() {
 ////////////
 // Consts //
 ////////////
@@ -205,8 +206,8 @@ const silverLining = "#d4eeff"
 function renderSelectionsContainer(){
     return(
         <div style={{
-        display: 'flex', flexDirection: 'row', 
-        gap: 30, height: 500, padding: 25
+        display: 'flex', flexDirection: isMobile ? 'column' : 'row',
+        gap: 30, height: 500, padding: isMobile ? 5 : 25,
         }}>
             <div style={{
                 flex: 5, display: 'flex', flexDirection: 'row', 
@@ -418,9 +419,100 @@ function fill(type){
 
 // STATS //
 function renderStats(){
+    const [statsShown, setStatsShown] = useState("Damage")
+    if (isMobile){
+        function renderList(){
+            if (statsShown === "Negations"){
+                return(
+                    <div>
+                        {renderStat("Physical", "neg")}
+                        {renderStat("Slash", "neg")}
+                        {renderStat("Strike", "neg")}
+                        {renderStat("Thrust", "neg")}
+                        {renderStat("Magic", "neg")}
+                        {renderStat("Fire", "neg")}
+                        {renderStat("Lightning", "neg")}
+                        {renderStat("Holy", "neg")}
+
+                        {renderStat("Poise", "malenia_is_overrated_there_I_said_it")}
+
+                        {renderStat("Poison", "res")}
+                        {renderStat("Sleep", "res")}
+                        {renderStat("Blight", "res")}
+                        {renderStat("Frostbite", "res")}
+                        {renderStat("Madness", "res")}
+                        {renderStat("Rot", "res")}
+                        {renderStat("Bleed", "res")}
+                    </div>
+                )
+            }
+            else if (statsShown === "Compound"){
+                return(
+                    <div>
+                        <OstrichTabBar
+                            style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
+                            tabs={["Incantations", "Sorceries", "Skill", "Items"]}
+                            onTabClick={(tab) => {setExpandedStat(tab)}}
+                        />
+                        {renderExtras("Fire Incants", "off", "Incantations")}
+                        {renderExtras("Giant's Fire", "off", "Incantations")}
+                        {renderExtras("Black Flame", "off", "Incantations")}
+                        {renderExtras("Flame of Frenzy", "off", "Incantations")}
+                        {renderExtras("Holy Incants", "off", "Incantations")}
+                        {renderExtras("Golden Incants", "off", "Incantations")}
+                        {renderExtras("Lightning Incants", "off", "Incantations")}
+                        {renderExtras("Dragon Incants", "off", "Incantations")}
+                        {renderExtras("Bestial Incants", "off", "Incantations")}
+
+                        {renderExtras("Crystalian Sorcery", "off", "Sorceries")}
+                        {renderExtras("Carian Sorcery", "off", "Sorceries")}
+                        {renderExtras("Glintblade Sorcery", "off", "Sorceries")}
+                        {renderExtras("Gravity Sorcery", "off", "Sorceries")}
+                        {renderExtras("Stonedigger Sorcery", "off", "Sorceries")}
+                        {renderExtras("Standard Sorcery", "off", "Sorceries")}
+
+                        {renderExtras("Physical Skill", "off", "Skill")}
+                        {renderExtras("Roaring Skill", "off", "Skill")}
+                        {renderExtras("Magic / Gravity Skill", "off", "Skill")}
+                        {renderExtras("Fire Skill", "off", "Skill")}
+                        {renderExtras("Lightning Skill", "off", "Skill")}
+                        {renderExtras("Holy Skill", "off", "Skill")}
+                    </div>
+                )
+            }
+            return(
+                <div>
+                    {renderStat("Melee", "off")}
+                    {renderStat("Ranged", "off")}
+                    {renderStat("Magic", "off")}
+                    {renderStat("Lightning", "off")}
+                    {renderStat("Fire", "off")}
+                    {renderStat("Holy", "off")}
+                    
+                    {renderStat("Critical", "off")}
+                    {renderStat("Counter", "off")}
+                    {renderStat("Poise", "off")}
+                    {renderStat("Skill", "off", true)}
+                    {renderStat("Sorceries", 'off', true)}
+                    {renderStat("Incantations", 'off', true)}
+                    {renderStat("Consumables", "off", true)}
+                </div>
+            )
+        }
+        return(
+            <div>
+                <OstrichTabBar
+                    style={{width: '80%', marginLeft: '10%', marginTop: 10, marginBottom: 10}}
+                    tabs={["Damage", "Negations", "Compound"]}
+                    onTabClick={(tab) => {setStatsShown(tab)}}
+                />
+                {renderList()}
+            </div>
+        )
+    }
     return(
         <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
-            <div style={{flex: 4}}>
+            <div style={{flex: 4, backgroundColor: gloomGlow, height: '100%'}}>
                 {renderStat("Physical", "neg")}
                 {renderStat("Slash", "neg")}
                 {renderStat("Strike", "neg")}
@@ -504,7 +596,7 @@ function renderStat(type, variety, extras=false){
             caption = "Resist"
         }
     }
-    if (type === "Skill" || type === "Sorceries" || type === "Incantations" || type === "Consumables"){
+    if ((type === "Skill" || type === "Sorceries" || type === "Incantations" || type === "Consumables") && !isMobile){
         caption = caption + " (Expand)"
     }
     let cardStyle = {
@@ -582,7 +674,10 @@ function renderExtras(type, variety, expandedType){
 // VITALS //
 function renderVitals(){
     return(
-        <div style={{display: 'flex', flexDirection: 'row', border: '2px solid', borderColor: greyOfNight}}>
+        <div style={{
+            display: 'flex', flexDirection: isMobile ? 'column' : 'row',
+            border: '2px solid', borderColor: greyOfNight
+        }}>
             {renderBars()}
             {renderAttributes()}
         </div>
@@ -1382,13 +1477,38 @@ function findResistance(type){
     return totalMod
 }
 
+//////////////
+// Resizing //
+//////////////
+const { width } = useViewport()
+const isMobile = width < 900
+useEffect(() => {
+    const prev = document.body.style.backgroundColor
+    document.body.style.backgroundColor = depthColor
+  
+    return () => {
+      document.body.style.backgroundColor = prev
+    }
+  }, [])
+
+function useViewport() {
+    const [width, setWidth] = useState(window.innerWidth)
+  
+    useEffect(() => {
+      const onResize = () => setWidth(window.innerWidth)
+      window.addEventListener('resize', onResize)
+      return () => window.removeEventListener('resize', onResize)
+    }, [])
+  
+    return { width }
+  }
 
 
 /////////////////
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: 20, backgroundColor: depthColor, height: '100vh'}}>
+    <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1}}>
         {renderRelicModal()}
         {renderSelectionsContainer()}
     </div>
