@@ -242,7 +242,7 @@ function renderNightFarer(){
             display: 'flex', flexDirection: 'column', flex: 5, 
             paddingRight: 10
         }}>
-            <FormMultipleChoice 
+            {/* <FormMultipleChoice 
                 title={"Selection"}
                 style={{width: '100%'}}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
@@ -260,7 +260,7 @@ function renderNightFarer(){
                     options: ["Relics", "Deep Relics", "Items", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Effects"],
                 }}
                 inputValue={selectionState}
-            />
+            /> */}
             <FormMultipleChoice 
                 title={"Nightfarer"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
