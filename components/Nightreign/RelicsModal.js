@@ -127,9 +127,8 @@ function renderOptions(){
     if (isMobile){
         return(
             <FormMultipleChoice
-                title={"Relic Type"}
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
-                itemsPerRow={3}
+                itemsPerRow={6}
                 inForm={false}
                 onChange={(op) => {
                     setEffectCat(op.value[0])
@@ -142,6 +141,7 @@ function renderOptions(){
                     options: ["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"],
                 }}
                 inputValue={selectedList}
+                fieldTextStyle={{padding: 0, margin: 0, fontSize: 12}}
             />
         )
     }
