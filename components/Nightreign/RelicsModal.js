@@ -49,15 +49,15 @@ useEffect(() => {
         setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
         setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
     }
-    if (effectCat === "Offensive"){
+    if (effectCat === "Offensive" || effectCat === "Off" ){
         setSelectedList(offensiveRelics)
         setFilteredEffects(offensiveRelics)
     }
-    else if (effectCat === "Defensive"){
+    else if (effectCat === "Defensive" || effectCat === "Def" ){
         setSelectedList(defensiveRelics)
         setFilteredEffects(defensiveRelics)
     }
-    else if (effectCat === "Regenerative"){
+    else if (effectCat === "Regenerative" || effectCat === "Regen" ){
         setSelectedList(regenRelics)
         setFilteredEffects(regenRelics)
     }
@@ -133,7 +133,7 @@ function renderOptions(){
         return(
             <FormMultipleChoice
                 titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
-                itemsPerRow={6}
+                itemsPerRow={7}
                 inForm={false}
                 onChange={(op) => {
                     setEffectCat(op.value[0])
@@ -143,10 +143,10 @@ function renderOptions(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Misc"],
+                    options: ["All", "Off", "Def", "Regen", "Stat Changes", "Character", "Misc"],
                 }}
                 inputValue={selectedList}
-                fieldTextStyle={{padding: 0, margin: 0, fontSize: 12}}
+                fieldTextStyle={{padding: 0, margin: 0, fontSize: 10}}
             />
         )
     }
@@ -154,7 +154,7 @@ function renderOptions(){
         return(
             <OstrichTabBar
             style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
-            tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Misc"]}
+            tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Character", "Misc"]}
             onTabClick={(tab) => setEffectCat(tab)}
             />
         )
