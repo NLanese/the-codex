@@ -236,7 +236,7 @@ const statRelics = [
     {
         title: "Increased Max HP",
         desc: "Increase Vigor by 5 or HP by 100",
-        stacks: {self: false, selfType: true},
+        stacks: {self: true, selfType: true},
         selfType: "stat",
         effect: {
             vigor: 5
@@ -245,7 +245,7 @@ const statRelics = [
     {
         title: "Increased Max FP",
         desc: "Increase Mind by 5 or FP by 25",
-        stacks: {self: false, selfType: true},
+        stacks: {self: true, selfType: true},
         selfType: "stat",
         effect: {
             mind: 5

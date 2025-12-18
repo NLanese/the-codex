@@ -236,11 +236,20 @@ function renderSelections(){
     if (selectionState === "Relics"){
         return renderRelics()
     }
-    else if (selectionState === "Deep Relics"){
-        return renderRelics()
-    }
+    // else if (selectionState === "Deep Relics"){
+    //     return renderRelics()
+    // }
     else if (selectionState === "Effects"){
         return renderEffectToggles()
+    }
+    else{
+        return(
+            <div style={{flex: 7}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Nothing here yet. Please check in again for updates!
+                </p>
+            </div>
+        )
     }
 }
 
@@ -392,6 +401,9 @@ function renderEffectToggles(){
     if (!keysOfEffects || keysOfEffects.length < 1){
         return(
             <div style={{flex: 7}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    All Relic Effects are always active. No Effects to toggle.
+                </p>
             </div>
         )
     }
@@ -865,6 +877,33 @@ function renderRelicModal(){
             />
         </ReactModal>
     )
+}
+
+function renderCredits(pos){
+    if (!isMobile && pos === "bottom"){
+        return(
+            <div style={{alignSelf: 'flex-end', marginTop: 90, flex: 1}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
+                </p>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
+                </p>
+            </div>
+        )
+    }
+    else if (isMobile && pos === "top"){
+        return(
+            <div style={{alignSelf: 'flex-end', marginTop: 0, flex: 1}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
+                </p>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
+                </p>
+            </div>
+        )
+    }
 }
 
 ///////////////
@@ -1463,9 +1502,13 @@ function closeModal(){
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1}}>
-        {renderRelicModal()}
-        {renderSelectionsContainer(relics_effect_toggles)}
+    <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+        {renderCredits("top")}
+        <div style={{flex: 11}}>
+            {renderRelicModal()}
+            {renderSelectionsContainer(relics_effect_toggles)}
+        </div>
+        {renderCredits("bottom")}
     </div>
 )
 }
