@@ -138,7 +138,7 @@ function renderOptions(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"],
+                    options: ["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Misc"],
                 }}
                 inputValue={selectedList}
                 fieldTextStyle={{padding: 0, margin: 0, fontSize: 12}}
@@ -149,7 +149,7 @@ function renderOptions(){
         return(
             <OstrichTabBar
             style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
-            tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Starting Equipment"]}
+            tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Misc"]}
             onTabClick={(tab) => setEffectCat(tab)}
             />
         )

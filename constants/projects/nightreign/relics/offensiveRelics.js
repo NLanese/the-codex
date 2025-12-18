@@ -549,6 +549,32 @@ const offensiveRelics = [
             condition: "After 200 seconds of having an ailment or ailment buildup"
          }
     },
+    {
+        title: "Attack Power permamently Increased for each Evergaol Defeated", 
+        desc: "Increases all damage output by 5% per evergaol completed",
+        stacks: {self: false, selfType: true},
+        selfType: "defeatBonus",
+        effect: { 
+            allDamage: 1.05,
+            appliesRanged: true,
+            always: false,
+            condition: "Evergaol Prisoners Defeated",
+            conditionCounter: true
+         }
+    },
+    {
+        title: "Attack Power permamently Increased for each Evergaol Defeated", 
+        desc: "Increases all damage output by 8% per Night Invader Defeated",
+        stacks: {self: false, selfType: true},
+        selfType: "defeatBonus",
+        effect: { 
+            allDamage: 1.08,
+            appliesRanged: true,
+            always: false,
+            condition: "Night Invader Defeated",
+            conditionCounter: true
+         }
+    },
 ]
 
 export default offensiveRelics

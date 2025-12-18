@@ -255,7 +255,6 @@ export const FormMultipleChoice = ({
             }
         }
 
-
         // Renders the Field's Description / Caption
         function renderCaption(){
             if (fieldObj?.caption || caption){
