@@ -54,6 +54,15 @@ const statRelics = [
             mind: 3
         }
     },
+    {
+        title: "Max FP increased for each Sorcerer's Rise unlocked",
+        desc: "Increases FP by 18% per Rise opened",
+        stacks: {self: false, selfType: false},
+        selfType: "fpOnRise",
+        effect: {
+            fpOnRise: 1.18
+        }
+    },
 
     {
         title: "Endurance +1",
