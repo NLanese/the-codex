@@ -152,12 +152,52 @@ const regenRelics = [
     {
         title: "FP Restoration upon Successive Attacks",
         desc: "Recovers 5% of FP after a series of consecutive attacks. Taking damage does not reset the counter.",
-        stacks: {self: false, selfType: true},
+        stacks: {self: true, selfType: true},
         selfType: "fpGrantPercent",
         effect: {
-            always: false,
+            always: true,
             fpGrantPercent: 5,
             condition: "After consecutive attacks" 
+        }
+    },
+    {
+        title: "HP Recovery From Successful Guarding",
+        desc: "Recovers 8 HP after a Successful Guard.",
+        stacks: {self: true, selfType: true},
+        selfType: "guardHpGrant",
+        effect: {
+            always: true,
+            guardHpGrant: 5,
+        }
+    },
+    {
+        title: "Defeating enemies fills more of the Art gauge",
+        desc: "Ultimate Gauge regenerates 5 points per kill",
+        stacks: {self: true, selfType: true},
+        selfType: "ultGrantOnKill",
+        effect: {
+            always: true,
+            ultGrantOnKill: 5,
+        }
+    },
+    {
+        title: "HP Restoration after [Weapon type] Attacks",
+        desc: "Restores 15 HP per hit with Specific Weapon Type",
+        stacks: {self: true, selfType: true},
+        selfType: "hpOnWeaponSucc",
+        effect: {
+            always: true,
+            hpOnWeaponSucc: 15,
+        }
+    },
+    {
+        title: "FP Restoration after [Weapon type] Attacks",
+        desc: "Restores 2 FP per hit with Specific Weapon Type",
+        stacks: {self: true, selfType: true},
+        selfType: "hpOnWeaponSucc",
+        effect: {
+            always: true,
+            hpOnWeaponSucc: 15,
         }
     },
 ]

@@ -563,7 +563,7 @@ const offensiveRelics = [
          }
     },
     {
-        title: "Attack Power permamently Increased for each Evergaol Defeated", 
+        title: "Attack Power permamently Increased for each Night Invader Defeated", 
         desc: "Increases all damage output by 8% per Night Invader Defeated",
         stacks: {self: false, selfType: true},
         selfType: "defeatBonus",

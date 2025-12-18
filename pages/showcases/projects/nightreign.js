@@ -420,11 +420,11 @@ function renderEffectToggles(){
                 <OstCard style={{ flex: 1,
                     display: 'flex', justifySelf: 'center', alignSelf: 'center', 
                     border: "2px solid #f2e144", borderRadius: 4, 
-                    height: 10, width: 10, margin: 0,
+                    height: 35, width: 35, margin: 0, padding: 0,
                     backgroundColor: depthColor, fontSize: 13.5
                 }}
                 >
-                    {fill(relics_effect_toggles[eff])}
+                    {fillOrInput(eff, relics_effect_toggles[eff])}
                 </OstCard>
             </OstCard>
         )
@@ -436,6 +436,29 @@ function renderEffectToggles(){
     )
 }
 
+function fill(filled){
+    if (filled){
+        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
+    }
+}
+
+function fillOrInput(eff, effVal){
+    if (effVal === true || effVal === false){
+        return (fill(effVal))
+    }
+    else{
+        return(
+            <input type="number" style={{height: 30, width: 30}}
+                onClick={(e) => {
+                    console.log(e.target.value)
+                    set_relic_effect_toggles(prev => 
+                        ({...prev, [eff]: e.target.value}))
+                    }
+                }
+            />
+        )
+    }
+}
 
 // DEEP OF NIGHT //
 function renderDeepToggles(){
@@ -469,11 +492,6 @@ function renderDISPLAY_DEEP_RELICS(){
     }
 }
 
-function fill(filled){
-    if (filled){
-        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
-    }
-}
 
 // STATS //
 function renderStats(toggles){
@@ -1420,7 +1438,12 @@ function findConditions(){
         if (!eff.effect.always){
             if (eff.effect.condition){
                 if (objOfToggles[eff.effect.condition] === null || objOfToggles[eff.effect.condition] === undefined){
-                    objOfToggles[eff.effect.condition] = true
+                    if (eff.effect.conditionCounter){
+                        objOfToggles[eff.effect.condition] = 0
+                    }
+                    else{
+                        objOfToggles[eff.effect.condition] = true
+                    }
                 }
             }
         }

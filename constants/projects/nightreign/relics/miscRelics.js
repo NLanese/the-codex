@@ -68,7 +68,7 @@ const miscRelics = [
         }
     },
     {
-        title: "Stating Armament inflicts [Whatever] Status", 
+        title: "Starting Armament inflicts [Whatever] Status", 
         desc: "Weapon Damage reduced 15% but 25 Blood or 35 Poison / Frost Buildup per Hit",
         stacks: {self: false, selfType: false},
         selfType: "startingAilment",
