@@ -15,6 +15,7 @@ import offensiveRelics from "../../constants/projects/nightreign/relics/offensiv
 import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
 import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
 import statRelics from "../../constants/projects/nightreign/relics/statRelics";
+import miscRelics from "../../constants/projects/nightreign/relics/miscRelics";
 
 export default function RelicsModal({
     selectEffect,
@@ -45,8 +46,8 @@ const [filteredEffects, setFilteredEffects] = useState([])
 useEffect(() => {
     setSearch("")
     if (effectCat === "All"){
-        setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics])
-        setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics])
+        setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
+        setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
     }
     if (effectCat === "Offensive"){
         setSelectedList(offensiveRelics)
@@ -63,6 +64,10 @@ useEffect(() => {
     else if (effectCat === "Stat Changes"){
         setSelectedList(statRelics)
         setFilteredEffects(statRelics)
+    }
+    else if (effectCat === "Misc"){
+        setSelectedList(miscRelics)
+        setFilteredEffects(miscRelics)
     }
 }, [effectCat])
 

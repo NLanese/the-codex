@@ -67,5 +67,33 @@ const miscRelics = [
             always: true,
         }
     },
-    
+    {
+        title: "Stating Armament inflicts [Whatever] Status", 
+        desc: "Weapon Damage reduced 15% but 25 Blood or 35 Poison / Frost Buildup per Hit",
+        stacks: {self: false, selfType: false},
+        selfType: "startingAilment",
+        effect: {
+            always: true,
+        }
+    },
+    {
+        title: "Starting Weapon Deals [Affinity] Damage", 
+        desc: "Weapon Physical Attack Power (AP) Reduced 30/40/50/60 (Depending on Weapon Type) and adds 33/44/55/66 Affinity AP",
+        stacks: {self: false, selfType: false},
+        selfType: "startingAilment",
+        effect: {
+            always: true,
+        }
+    },
+    {
+        title: "Starts With an Item", 
+        desc: "Im getting tired and these have nothing to do with numbers. You know what this does",
+        stacks: {self: false, selfType: true},
+        selfType: "startingAilment",
+        effect: {
+            always: true,
+        }
+    },
 ]
+
+export default miscRelics
