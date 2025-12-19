@@ -154,7 +154,7 @@ const characterRelics = [
         title: "Damage taken while using Character Skill Improves Attack Power and Stamina", 
         desc: "Taking any damage from an Enemy while using character Skill will increase all attack damage by 10% and stamina by 20% for 20 seconds",
         stacks: {self: false, selfType: false},
-        selfType: "allDamage",
+        selfType: "raiderBuff",
         nightfarer: "Raider",
         effect: {
             allDamage: 1.10,
@@ -170,9 +170,7 @@ const characterRelics = [
         selfType: "healOnUltKill",
         nightfarer: "Raider",
         effect: {
-            healOnUltKill: 1.10,
-            end: 10,
-            always: true
+            healOnUltKill: 20 
         },
     },
     {
@@ -208,13 +206,45 @@ const characterRelics = [
         },
     },
     {
-        title: "Power up while fighting alongside family", 
+        title: "Power up while Fighting Alongside Family", 
         desc: "Each Summon provides a unique buff. Helen heals 1 HP per second, Sebastian boosts Affinity Negation 20%, Sebastion increases all damage by 10%.",
         stacks: {self: false, selfType: false},
         selfType: "powerUlt",
         nightfarer: "Revenant",
         effect: {
             always: true
+        },
+    },
+    {
+        title: "Collecting Affinity residue Activates Terra Magica", 
+        desc: "Terra Magica Sigil (Increase Magic Dmaage by 15%) Spawns beneath you when collecting magical residue. Lasts 30 seconds or until next residue collection",
+        stacks: {self: false, selfType: false},
+        selfType: "terraSkill",
+        nightfarer: "Recluse",
+        effect: {
+            always: true
+        },
+    },
+    {
+        title: "Collecting Affinity residue Activates Terra Magica", 
+        desc: "Terra Magica Sigil (Increase Magic Dmaage by 15%) Spawns beneath you when collecting magical residue. Lasts 30 seconds or until next residue collection",
+        stacks: {self: false, selfType: false},
+        selfType: "terraSkill",
+        nightfarer: "Recluse",
+        effect: {
+            always: true
+        },
+    },
+    {
+        title: "Suffer Blood Loss and increase Attack Power upon Art activation", 
+        desc: "Lose 20% HP to blood loss but gain 16% bonus to all attack damage for 30 seconds",
+        stacks: {self: false, selfType: true},
+        selfType: "allDamage",
+        nightfarer: "Recluse",
+        effect: {
+            always: false,
+            allDamage: 1.16,
+            condtion: "20 Seconds after using Ultimate Art"
         },
     },
 ]
