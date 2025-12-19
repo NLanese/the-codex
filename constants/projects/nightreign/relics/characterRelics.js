@@ -247,4 +247,49 @@ const characterRelics = [
             condtion: "20 Seconds after using Ultimate Art"
         },
     },
+    {
+        title: "Character Skill Boosts Attack but Attacking Drains HP", 
+        desc: "Cursed Blade deals 8% more damage but you lose 10 HP per attack",
+        stacks: {self: false, selfType: true},
+        selfType: "cursedCurse",
+        nightfarer: "Executor",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Character Skill Boosts Attack but Attacking Drains HP", 
+        desc: "Cursed Blade deals 8% more damage but you lose 10 HP per attack",
+        stacks: {self: false, selfType: true},
+        selfType: "charSkillDam",
+        nightfarer: "Executor",
+        effect: {
+            always: true,
+            charSkillDam: 1.08 
+        },
+    },
+    {
+        title: "While Character Skill is active, Unlocking use of Cursed Sword Restores HP", 
+        desc: "Restores 100 HP on Cursed Sword Unlocking",
+        stacks: {self: false, selfType: true},
+        selfType: "healOnSword",
+        nightfarer: "Executor",
+        effect: {
+            always: true,
+            healOnSword: 100
+        },
+    },
+    {
+        title: "While Character Skill is active, Unlocking use of Cursed Sword Restores HP", 
+        desc: "Restores 15% of HP for Self and Allies on Roar while in Crucible Beast Form",
+        stacks: {self: false, selfType: true},
+        selfType: "healOnRoar",
+        nightfarer: "Executor",
+        effect: {
+            always: true,
+            healOnRoar: 15
+        },
+    },
 ]
+
+export default characterRelics

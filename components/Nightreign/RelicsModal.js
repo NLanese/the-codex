@@ -16,11 +16,13 @@ import defensiveRelics from "../../constants/projects/nightreign/relics/defensiv
 import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
 import statRelics from "../../constants/projects/nightreign/relics/statRelics";
 import miscRelics from "../../constants/projects/nightreign/relics/miscRelics";
+import characterRelics from "../../constants/projects/nightreign/relics/characterRelics";
 
 export default function RelicsModal({
     selectEffect,
     isMobile, 
-    closeModal
+    closeModal,
+    nightfarer
 }) {
 
 ///////////
@@ -64,6 +66,18 @@ useEffect(() => {
     else if (effectCat === "Stat Changes"){
         setSelectedList(statRelics)
         setFilteredEffects(statRelics)
+    }
+    else if (effectCat === "Character"){
+        let applicable = [...characterRelics].filter(rel => {
+            if (rel.nightfarer === nightfarer){
+                return rel
+            }
+            else{
+                return false
+            }
+        })
+        setSelectedList(applicable)
+        setFilteredEffects(applicable)
     }
     else if (effectCat === "Misc"){
         setSelectedList(miscRelics)

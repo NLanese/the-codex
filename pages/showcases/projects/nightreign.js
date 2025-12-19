@@ -891,7 +891,7 @@ function renderRelicModal(){
         }}
         >
             <RelicsModal 
-                selectEffect={handleChangeEffect} isMobile={isMobile} closeModal={closeModal}
+                selectEffect={handleChangeEffect} isMobile={isMobile} closeModal={closeModal} nightfarer={nightfarer}
             />
         </ReactModal>
     )
