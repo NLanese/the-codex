@@ -130,4 +130,91 @@ const characterRelics = [
             always: true,
         },
     },
+    {
+        title: "Successive Dagger Attack reprises Event upon Nearby Enemies", 
+        desc: "Successive hits (complete R1 / RB chain) are restaged onto nearby enemies at 50% damage.",
+        stacks: {self: false, selfType: false},
+        selfType: "invisCrit",
+        nightfarer: "Duchess",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Duration of Ultimate Art extended", 
+        desc: "That big rock that gets in everyone's way lasts 30 seconds instead of 20.",
+        stacks: {self: false, selfType: false},
+        selfType: "longArt",
+        nightfarer: "Raider",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Damage taken while using Character Skill Improves Attack Power and Stamina", 
+        desc: "Taking any damage from an Enemy while using character Skill will increase all attack damage by 10% and stamina by 20% for 20 seconds",
+        stacks: {self: false, selfType: false},
+        selfType: "allDamage",
+        nightfarer: "Raider",
+        effect: {
+            allDamage: 1.10,
+            end: 10,
+            always: false,
+            condtion: "20 Seconds after taking Damage during Character Skill"
+        },
+    },
+    {
+        title: "Defeating Enemies neat Totem Stela Restores HP", 
+        desc: "Enemies killed near the Totem Stela will heal you 20% HP",
+        stacks: {self: false, selfType: false},
+        selfType: "healOnUltKill",
+        nightfarer: "Raider",
+        effect: {
+            healOnUltKill: 1.10,
+            end: 10,
+            always: true
+        },
+    },
+    {
+        title: "Improved Poise Near Totem Stela", 
+        desc: "Take half poise damage when near Totem Stela",
+        stacks: {self: false, selfType: false},
+        selfType: "poiseNeg",
+        nightfarer: "Raider",
+        effect: {
+            poiseNeg: 1.50,
+            always: false,
+            condtion: "Standing near a deployed Totem Stela"
+        },
+    },
+    {
+        title: "Trigger ghostflame explosion during Ultimate Art activation", 
+        desc: "Performs a ghostflame 'explosion' that does 20 base magic damage. It may tickle a foot soldier. Never use this.",
+        stacks: {self: false, selfType: false},
+        selfType: "thisSucks",
+        nightfarer: "Revenant",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Strengthens Family and Allies when Ultimate Art is activated", 
+        desc: "Increases Summons' and Ally damage by 25% for 30 seconds after Ultimate Art usage.",
+        stacks: {self: false, selfType: false},
+        selfType: "powerUlt",
+        nightfarer: "Revenant",
+        effect: {
+            always: true
+        },
+    },
+    {
+        title: "Power up while fighting alongside family", 
+        desc: "Each Summon provides a unique buff. Helen heals 1 HP per second, Sebastian boosts Affinity Negation 20%, Sebastion increases all damage by 10%.",
+        stacks: {self: false, selfType: false},
+        selfType: "powerUlt",
+        nightfarer: "Revenant",
+        effect: {
+            always: true
+        },
+    },
 ]
