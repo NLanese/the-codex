@@ -51,6 +51,26 @@ const characterRelics = [
         },
     },
     {
+        title: "Slowly restores nearby allies HP while Art is active", 
+        desc: "Heals self and allies 10% + 15 HP per half second while Ultimate is open",
+        stacks: {self: false, selfType: false},
+        selfType: "healSkill",
+        nightfarer: "Guardian",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Creates Whirlwind When Charging Halberd Attacks", 
+        desc: "Creates a decent sized whirlwind that deals small damage and poise damage on enemies inside",
+        stacks: {self: false, selfType: false},
+        selfType: "whirl",
+        nightfarer: "Guardian",
+        effect: {
+            always: true,
+        },
+    },
+    {
         title: "Successful Guards send out Shockwaves while Ability is active", 
         desc: "Successful blocks during Iron Guard cause shockwaves that damage enemies and revive allies. Base 100 physical damage.",
         stacks: {self: false, selfType: false},
