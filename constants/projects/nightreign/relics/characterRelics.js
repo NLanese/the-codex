@@ -160,7 +160,7 @@ const characterRelics = [
             allDamage: 1.10,
             end: 10,
             always: false,
-            condtion: "20 Seconds after taking Damage during Character Skill"
+            condition: "20 Seconds after taking Damage during Character Skill"
         },
     },
     {
@@ -182,7 +182,7 @@ const characterRelics = [
         effect: {
             poiseNeg: 1.50,
             always: false,
-            condtion: "Standing near a deployed Totem Stela"
+            condition: "Standing near a deployed Totem Stela"
         },
     },
     {
@@ -244,7 +244,7 @@ const characterRelics = [
         effect: {
             always: false,
             allDamage: 1.16,
-            condtion: "20 Seconds after using Ultimate Art"
+            condition: "20 Seconds after using Ultimate Art"
         },
     },
     {
@@ -288,6 +288,46 @@ const characterRelics = [
         effect: {
             always: true,
             healOnRoar: 15
+        },
+    },
+    {
+        title: "Prevent slowing of Character Skill", 
+        desc: "Analyze progress decay is slowed",
+        stacks: {self: false, selfType: true},
+        selfType: "slowDecay",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Allies targeted by Character Skill gain boosted attack", 
+        desc: "Allies targetted and buffed by Character Skill will get a 20% physical and 15% affinity damage bonus for 30 seconds",
+        stacks: {self: false, selfType: true},
+        selfType: "slowDecay",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Allies targeted by Character Skill gain boosted attack", 
+        desc: "Allies targetted and buffed by Character Skill will get a 20% physical and 15% affinity damage bonus for 30 seconds",
+        stacks: {self: false, selfType: true},
+        selfType: "slowDecay",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Continuous damage inflicted on targets threaded by Ultimate Art", 
+        desc: "Allies targetted and buffed by Character Skill will get a 20% physical and 15% affinity damage bonus for 30 seconds",
+        stacks: {self: false, selfType: true},
+        selfType: "slowDecay",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
         },
     },
 ]
