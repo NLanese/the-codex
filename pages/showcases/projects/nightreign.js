@@ -414,10 +414,11 @@ function renderEffectToggles(){
             style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10}}
             onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
             >
-                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 11}}>
+                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
                     {eff}
                 </p>
-                <OstCard style={{ flex: 1,
+                <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                <OstCard style={{
                     display: 'flex', justifySelf: 'center', alignSelf: 'center', 
                     border: "2px solid #f2e144", borderRadius: 4, 
                     height: 35, width: 35, margin: 0, padding: 0,
@@ -426,6 +427,7 @@ function renderEffectToggles(){
                 >
                     {fillOrInput(eff, relics_effect_toggles[eff])}
                 </OstCard>
+                </div>
             </OstCard>
         )
     })
@@ -438,7 +440,7 @@ function renderEffectToggles(){
 
 function fill(filled){
     if (filled){
-        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven}}/>
+        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven, margin: '25%'}}/>
     }
 }
 
