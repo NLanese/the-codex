@@ -322,12 +322,59 @@ const characterRelics = [
     },
     {
         title: "Continuous damage inflicted on targets threaded by Ultimate Art", 
-        desc: "Allies targetted and buffed by Character Skill will get a 20% physical and 15% affinity damage bonus for 30 seconds",
-        stacks: {self: false, selfType: true},
-        selfType: "slowDecay",
+        desc: "Enemies caught in Analyze Character Skill will sustain 15 Dam/Second for 20 seconds (300 total)",
+        stacks: {self: false, selfType: false},
+        selfType: "damSkill",
         nightfarer: "Scholar",
         effect: {
             always: true,
+        },
+    },
+    {
+        title: "Earn Runes for each additional Specimen Acquired with Character Skill", 
+        desc: "Every new enemy TYPE (foot soldier, dog, crow, etc) will grant 1300 runes when first fully analyzed",
+        stacks: {self: false, selfType: false},
+        selfType: "runeSkill",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
+        },
+    },
+    {
+        title: "Activating Ultimate Art Increases Attack Power", 
+        desc: "Using Ult or Alternate Ult granrts 14% attack power for 40 seconds",
+        stacks: {self: false, selfType: true},
+        selfType: "allDamage",
+        nightfarer: "Undertaker",
+        effect: {
+            always: false,
+            condition: "40 Seconds after using Ult",
+            allDamage: 1.14
+        },
+    },
+    {
+        title: "Attack Power increases by landing the Final Blow of a chain attack", 
+        desc: "After completeing an R1 / RB chain, all attack power is boosted by 12% for 20 seconds. Works with any weapon type",
+        stacks: {self: false, selfType: true},
+        selfType: "allDamage",
+        nightfarer: "Undertaker",
+        effect: {
+            always: false,
+            condition: "20 Seconds after completing light attack chain",
+            allDamage: 1.12
+        },
+    },
+    {
+        title: "Physical Attacks Boosted while assist effect from Incantation is active for self", 
+        desc: "For 60 seconda after using a body or a weapon buff incantation (Black Flmae Blade, Flame Protect Me, etc) recieve a 15% boost to physical damage",
+        stacks: {self: false, selfType: true},
+        selfType: "allDamage",
+        nightfarer: "Undertaker",
+        effect: {
+            always: false,
+            condition: "60 Seconds after using a buff incantation",
+            weaponDamage: 1.15,
+            appliesRanged: true
         },
     },
 ]
