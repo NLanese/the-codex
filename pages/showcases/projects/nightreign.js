@@ -158,7 +158,6 @@ const silverLining = "#d4eeff"
         let all = [];
         let types = [];
     
-        // Compute everything first
         if (effect11) { 
             all.push({...effect11, active: true}) 
             types.push(effect11.selfType)
@@ -181,7 +180,6 @@ const silverLining = "#d4eeff"
         [all, types] = handleEffectState(effect62, all, types);
         [all, types] = handleEffectState(effect63, all, types);
     
-        // Now update React state **once** per relic set
         setRelic1({ slot1: effect11, slot2: effect12, slot3: effect13 });
         setRelic2({ slot1: effect21, slot2: effect22, slot3: effect23 });
         setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 });
@@ -201,7 +199,6 @@ const silverLining = "#d4eeff"
         effect51, effect52, effect53,
         effect61, effect62, effect63
     ]);
-    
 
     useEffect(() => {
         findConditions()
@@ -1030,33 +1027,33 @@ function clearEffect(key){
     else if (key === "33"){
         setEffect33(false)
     }
-    else if (currentEditNum === "41"){
+    else if (key === "41"){
         setEffect41(false)
     }
-    else if (currentEditNum === "42"){
+    else if (key === "42"){
         setEffect42(false)
     }
-    else if (currentEditNum === "43"){
+    else if (key === "43"){
         setEffect43(false)
     }
 
-    else if (currentEditNum === "51"){
+    else if (key === "51"){
         setEffect51(false)
     }
-    else if (currentEditNum === "52"){
+    else if (key === "52"){
         setEffect52(false)
     }
-    else if (currentEditNum === "53"){
+    else if (key === "53"){
         setEffect53(false)
     }
 
-    else if (currentEditNum === "61"){
+    else if (key === "61"){
         setEffect61(false)
     }
-    else if (currentEditNum === "62"){
+    else if (key === "62"){
         setEffect62(false)
     }
-    else if (currentEditNum === "63"){
+    else if (key === "63"){
         setEffect63(false)
     }
 
