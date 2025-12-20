@@ -1396,23 +1396,31 @@ function determineDamModifier(type, relCat=false, toggles){
     else if (relCat === "neg"){
 
         // Finds All Negations and Applies
-        let allDams = findDamageTypeFromEffects("allNegation")
-        allDams.forEach(dam => {
-            totalMod = totalMod * dam.effect.allNegation
-        })    
+        totalMod = stack_modifiers('allNegation', totalMod, toggles)   
+
+        // Finds "Physical Damage Modifiers" and applies
+        if (type === "Physical"){
+            totalMod = stack_modifiers('physNegation', totalMod, toggles)
+        }
         // Finds "Holy Damage Modifiers" and applies
         if (type === "Holy"){
-            let weaponDams = findDamageTypeFromEffects("holyNegation")
-            weaponDams.forEach(dam => {
-                totalMod = totalMod * dam.effect.holyNegation
-            })
+            totalMod = stack_modifiers('holyNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNegation', totalMod, toggles)
         }
         // Finds "Holy Damage Modifiers" and applies
         else if (type === "Fire"){
-            let weaponDams = findDamageTypeFromEffects("fireNegation")
-            weaponDams.forEach(dam => {
-                totalMod = totalMod * dam.effect.fireNegation
-            })
+            totalMod = stack_modifiers('fireNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNegation', totalMod, toggles)
+        }
+        // Finds "Magic Damage Modifiers" and applies
+        else if (type === "Magic"){
+            totalMod = stack_modifiers('magicNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNegation', totalMod, toggles)
+        }
+        // Finds "Magic Damage Modifiers" and applies
+        else if (type === "Lightning"){
+            totalMod = stack_modifiers('lightningNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNegation', totalMod, toggles)
         }
     }
    
@@ -1420,9 +1428,16 @@ function determineDamModifier(type, relCat=false, toggles){
 }
 
 function findDamageTypeFromEffects(type){
+    if (type === "allNeg"){
+        console.log("Looking for All Neg")
+    }
     return all_relic_effects.filter(eff => {
+        console.log(eff)
+        console.log(eff.effect)
+        console.log(eff.effect[type])
         if (eff.effect[type]){
-            return eff.effect
+            console.log("THIS IS THE VALUE THAT SHOULD BE RETURNED ... ", eff)
+            return eff
         }
     })
 }
@@ -1579,7 +1594,9 @@ function handleEffectState(effect, all, types){
 
 function stack_modifiers(key, totalMod, toggles){
     let mods = findDamageTypeFromEffects(key)
+    console.log("THIS IS WHAT IO GET BACK ... ", mods)
     mods.forEach(dam => {
+        console.log(dam)
         if (determine_if_effect_is_active(dam, toggles)){
             if (determine_if_effect_is_active(dam)){
                 totalMod = totalMod * dam.effect[key]
