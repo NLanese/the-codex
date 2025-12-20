@@ -141,11 +141,11 @@ const deepOffensiveRelics = [
     },
     {
         title: "Physical Attack Power Increases after using Grease Items +1", 
-        desc: "Increases Damage by 17% for 30 seconds after using a weapon grease",
+        desc: "Increases Physical Damage by 17% for 30 seconds after using a weapon grease",
         stacks: {self: false, selfType: true},
         selfType: "GreaseAttacks",
         effect: {
-            allDamage: 1.17,
+            weaponDamage: 1.17,
             appliesRanged: true,
             always: false,
             condition: "30 Seconds after Applying Grease"
@@ -153,11 +153,11 @@ const deepOffensiveRelics = [
     },
     {
         title: "Physical Attack Power Increases after using Grease Items +2", 
-        desc: "Increases Damage by 17% for 30 seconds after using a weapon grease",
+        desc: "Increases Physical Damage by 17% for 30 seconds after using a weapon grease",
         stacks: {self: false, selfType: true},
         selfType: "GreaseAttacks",
         effect: {
-            allDamage: 1.2,
+            weaponDamage: 1.2,
             appliesRanged: true,
             always: false,
             condition: "30 Seconds after Applying Grease"

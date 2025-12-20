@@ -18,6 +18,7 @@ import determineBaseNegations from "../../../constants/projects/nightreign/night
 import determineBaseVitals from "../../../constants/projects/nightreign/nightfarers/determineBaseVitals";
 import RelicsModal from "../../../components/Nightreign/RelicsModal";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
+import { type } from "os";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -88,6 +89,7 @@ const silverLining = "#d4eeff"
 
     // Relic Editting and Effects
     const [all_relic_effects, set_all_relic_effects] = useState([])
+    const [all_relic_types, set_all_relic_types] = useState([])
     const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
 
     // Deep Of The Night
@@ -96,6 +98,7 @@ const silverLining = "#d4eeff"
     // Rendering States
     const [selectionState, setSelectionState] = useState("Relics") 
     const [relicsModal, setRelicsModal] = useState(false)
+    const [cursedModal, setCursedModal] = useState(false)
     const [expandedStat, setExpandedStat] = useState(false)
 
     // Vitals
@@ -153,50 +156,45 @@ const silverLining = "#d4eeff"
 
     useEffect(() => {
         let all = [];
-
-        if (effect11) all.push(effect11);
-        if (effect12) all.push(effect12);
-        if (effect13) all.push(effect13);
-
-        setRelic1({ slot1: effect11, slot2: effect12, slot3: effect13 })
+        let types = [];
     
-        if (effect21) all.push(effect21);
-        if (effect22) all.push(effect22);
-        if (effect23) all.push(effect23);
-
-        setRelic2({ slot1: effect21, slot2: effect22, slot3: effect23 })
+        if (effect11) { 
+            all.push({...effect11, active: true}) 
+            types.push(effect11.selfType)
+        }
+        [all, types] = handleEffectState(effect12, all, types);
+        [all, types] = handleEffectState(effect13, all, types);
+        [all, types] = handleEffectState(effect21, all, types);
+        [all, types] = handleEffectState(effect22, all, types);
+        [all, types] = handleEffectState(effect23, all, types);
+        [all, types] = handleEffectState(effect31, all, types);
+        [all, types] = handleEffectState(effect32, all, types);
+        [all, types] = handleEffectState(effect33, all, types);
+        [all, types] = handleEffectState(effect41, all, types);
+        [all, types] = handleEffectState(effect42, all, types);
+        [all, types] = handleEffectState(effect43, all, types);
+        [all, types] = handleEffectState(effect51, all, types);
+        [all, types] = handleEffectState(effect52, all, types);
+        [all, types] = handleEffectState(effect53, all, types);
+        [all, types] = handleEffectState(effect61, all, types);
+        [all, types] = handleEffectState(effect62, all, types);
+        [all, types] = handleEffectState(effect63, all, types);
     
-        if (effect31) all.push(effect31);
-        if (effect32) all.push(effect32);
-        if (effect33) all.push(effect33);
-
-        setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 })
-
-        if (effect41) all.push(effect41);
-        if (effect42) all.push(effect42);
-        if (effect43) all.push(effect43);
-
-        setRelic4({ slot1: effect41, slot2: effect42, slot3: effect43 })
+        setRelic1({ slot1: effect11, slot2: effect12, slot3: effect13 });
+        setRelic2({ slot1: effect21, slot2: effect22, slot3: effect23 });
+        setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 });
+        setRelic4({ slot1: effect41, slot2: effect42, slot3: effect43 });
+        setRelic5({ slot1: effect51, slot2: effect52, slot3: effect53 });
+        setRelic6({ slot1: effect61, slot2: effect62, slot3: effect63 });
     
-        if (effect51) all.push(effect51);
-        if (effect52) all.push(effect52);
-        if (effect53) all.push(effect53);
-
-        setRelic5({ slot1: effect51, slot2: effect52, slot3: effect53 })
-    
-        if (effect61) all.push(effect61);
-        if (effect62) all.push(effect62);
-        if (effect63) all.push(effect63);
-
-        setRelic6({ slot1: effect61, slot2: effect62, slot3: effect63 })
-    
+        // Update final combined effects
         set_all_relic_effects(all);
         set_all_relic_types(types)
+
     }, [
         effect11, effect12, effect13,
         effect21, effect22, effect23,
         effect31, effect32, effect33,
-
         effect41, effect42, effect43,
         effect51, effect52, effect53,
         effect61, effect62, effect63
@@ -405,11 +403,11 @@ function renderFlipRelic(depth, setCons, cons){
     )
 }
 
-function renderRelicEffect(relicSlot, key){
+function renderRelicEffect(relicSlot, key, cons){
     return (
         <OstCard key={key} noShadow={true} rounded={false} 
         style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15}} 
-        onClick={() => handleRelicEffectClick(key)}
+        onClick={() => handleRelicEffectClick(key, cons)}
         >
             {relicSlot?.title ? relicSlot?.title : "No Effect"}
         </OstCard>
@@ -905,6 +903,7 @@ function renderRelicModal(){
                 closeModal={closeModal} 
                 nightfarer={nightfarer} 
                 isDeep={deepDisplayed}
+                isCursed={cursedModal}
             />
         </ReactModal>
     )
@@ -941,8 +940,9 @@ function renderCredits(pos){
 // Functions //
 ///////////////
 
-function handleRelicEffectClick(key){
+function handleRelicEffectClick(key, cons){
     setCurrentEditNum(key)
+    setCursedModal(cons)
     clearEffect(key)
     setRelicsModal(true)
 }
@@ -1045,33 +1045,33 @@ function clearEffect(key){
     else if (key === "33"){
         setEffect33(false)
     }
-    else if (currentEditNum === "41"){
+    else if (key === "41"){
         setEffect41(false)
     }
-    else if (currentEditNum === "42"){
+    else if (key === "42"){
         setEffect42(false)
     }
-    else if (currentEditNum === "43"){
+    else if (key === "43"){
         setEffect43(false)
     }
 
-    else if (currentEditNum === "51"){
+    else if (key === "51"){
         setEffect51(false)
     }
-    else if (currentEditNum === "52"){
+    else if (key === "52"){
         setEffect52(false)
     }
-    else if (currentEditNum === "53"){
+    else if (key === "53"){
         setEffect53(false)
     }
 
-    else if (currentEditNum === "61"){
+    else if (key === "61"){
         setEffect61(false)
     }
-    else if (currentEditNum === "62"){
+    else if (key === "62"){
         setEffect62(false)
     }
-    else if (currentEditNum === "63"){
+    else if (key === "63"){
         setEffect63(false)
     }
 
@@ -1581,7 +1581,9 @@ function stack_modifiers(key, totalMod, toggles){
     let mods = findDamageTypeFromEffects(key)
     mods.forEach(dam => {
         if (determine_if_effect_is_active(dam, toggles)){
-            totalMod = totalMod * dam.effect[key]
+            if (determine_if_effect_is_active(dam)){
+                totalMod = totalMod * dam.effect[key]
+            }  
         }
     })  
     return totalMod

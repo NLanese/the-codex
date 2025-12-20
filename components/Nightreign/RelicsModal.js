@@ -30,7 +30,8 @@ export default function RelicsModal({
     isMobile, 
     closeModal,
     nightfarer,
-    isDeep
+    isDeep,
+    isCursed
 }) {
 
 ///////////
@@ -254,6 +255,26 @@ function renderTitle(){
 /////////////////
 // Main Return //
 /////////////////
+if (isCursed){
+    if (isMobile){
+        return (
+            <div>
+                <p style={{...Styles.Fonts.basicXL, color: silverLining}}>Cursed Relic Effectcs coming soon</p>
+                <OstCard noShadow={true} style={{
+                color: frenzyTouched, backgroundColor: depthColor, 
+                padding: 4, margin: 0, wisth: 120, height: 40,
+                textAlign: 'center', dispklay: 'flex',
+                justifyContent: 'center', alignContent: 'center'
+                }} onClick={() => closeModal()}>
+                    CLOSE
+                </OstCard>
+            </div>
+        )
+    }
+    return(
+        <p style={{...Styles.Fonts.basicXL, color: silverLining}}>Cursed Relic Effectcs coming soon</p>
+    )
+}
     return(
         <div style={{height: '100%', paddingBottom: 10}}>
             <div style={{height: '20%'}}>
