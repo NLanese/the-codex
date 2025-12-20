@@ -316,13 +316,57 @@ const offensiveRelics = [
             always: true,
         }
     },
+    // {
+    //     title: "Improved Throwing Pot/Knife/Stone/Perfuming Arts Damage", 
+    //     desc: "Increases Pot/Knife/Stone/Perfuming Arts damage by 15%",
+    //     stacks: {self: true, selfType: true},
+    //     selfType: "ThrowsUp",
+    //     effect: {
+    //         throwingDamage: 1.15,
+    //         appliesRanged: false,
+    //         always: true,
+    //     }
+    // },
     {
-        title: "Improved Throwing Pot/Knife/Stone/Perfuming Arts Damage", 
-        desc: "Increases Pot/Knife/Stone/Perfuming Arts damage by 15%",
+        title: "Improved Throwing Pot Damage", 
+        desc: "Increases Pot damage by 15%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            potDamage: 1.15,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Throwing Knife Damage", 
+        desc: "Increases Throwing Knife / Poison Dart / Crystal Dart / Kukri  damage by 15%",
         stacks: {self: true, selfType: true},
         selfType: "ThrowsUp",
         effect: {
             throwingDamage: 1.15,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Glintstone and Gravity Stone Damage", 
+        desc: "Increases all throwing stone damage by 15%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            stoneDamage: 1.15,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Perfuming Arts", 
+        desc: "Increases all effects from Perfumes by 15%. This means nefations negate 15% more, poison perfumes have 15% more ailment buildup, etc.",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            perfumeEff: 1.15,
             appliesRanged: false,
             always: true,
         }

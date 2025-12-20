@@ -235,6 +235,176 @@ const deepOffensiveRelics = [
             condition: "Attacking a Poisoned enemy"
          }
     },
+    {
+        title: "Madness in Vicinity Increases Attack Power", 
+        desc: "Increases all damage by 12% for 20 seconds after Madness Procs",
+        stacks: {self: false, selfType: true},
+        selfType: "madnessUp",
+        effect: { 
+            allDamage: 1.12,
+            appliesRanged: true,
+            always: false,
+            condition: "20 seconds after Madness Procs nearby"
+         }
+    },
+    {
+        title: "Madness in Vicinity Increases Attack Power +1", 
+        desc: "Increases all damage by 16% for 20 seconds after Madness Procs",
+        stacks: {self: false, selfType: true},
+        selfType: "madnessUp",
+        effect: { 
+            allDamage: 1.16,
+            appliesRanged: true,
+            always: false,
+            condition: "20 seconds after Madness Procs nearby"
+         }
+    },
+    {
+        title: "Sleep in Vicinity Increases Attack Power", 
+        desc: "Increases all damage by 12% for 20 seconds after Madness Procs",
+        stacks: {self: false, selfType: true},
+        selfType: "sleepUp",
+        effect: { 
+            allDamage: 1.12,
+            appliesRanged: true,
+            always: false,
+            condition: "20 seconds after Sleep Procs nearby"
+         }
+    },
+    {
+        title: "Sleep in Vicinity Increases Attack Power +1", 
+        desc: "Increases all damage by 16% for 20 seconds after Madness Procs",
+        stacks: {self: false, selfType: true},
+        selfType: "sleepUp",
+        effect: { 
+            allDamage: 1.16,
+            appliesRanged: true,
+            always: false,
+            condition: "20 seconds after Sleep Procs nearby"
+         }
+    },
+    {
+        title: "Posion or Rot in Vicinity Increases Attack Power", 
+        desc: "Increases all damage by 12% for 20 seconds after Poison or Rot Procs",
+        stacks: {self: false, selfType: true},
+        selfType: "posionRotUp",
+        effect: { 
+            allDamage: 1.12,
+            appliesRanged: true,
+            always: false,
+            condition: "20 seconds after Poison or Rot Procs nearby"
+         }
+    },
+    {
+        title: "Improved Guard Counters +1", 
+        desc: "Increases Guard Counter Damage by 25%",
+        stacks: {self: true, selfType: true},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.25,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Guard Counters +2", 
+        desc: "Increases Guard Counter Damage by 29%",
+        stacks: {self: true, selfType: true},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.29,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Throwing Pot Damage +1", 
+        desc: "Increases Pot damage by 30%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            potDamage: 1.30,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Throwing Pot Damage +2", 
+        desc: "Increases Pot damage by 35%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            throwingDamage: 1.35,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Throwing Knife Damage +1", 
+        desc: "Increases Throwing Knife / Poison Dart / Crystal Dart / Kukri  damage by 30%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            throwingDamage: 1.30,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Throwing Knife Damage +2", 
+        desc: "Increases Throwing Knife / Poison Dart / Crystal Dart / Kukri  damage by 35%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            throwingDamage: 1.35,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Glintstone and Gravity Stone Damage +1", 
+        desc: "Increases all throwing stone damage by 30%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            stoneDamage: 1.30,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Glintstone and Gravity Stone Damage +2", 
+        desc: "Increases all throwing stone damage by 35%",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            stoneDamage: 1.35,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Perfuming Arts +1", 
+        desc: "Increases all effects from Perfumes by 30%. This means nefations negate 30% more, poison perfumes have 35% more ailment buildup, etc.",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            perfumeEff: 1.30,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Perfuming Arts +2", 
+        desc: "Increases all effects from Perfumes by 35%. This means nefations negate 35% more, poison perfumes have 35% more ailment buildup, etc.",
+        stacks: {self: true, selfType: true},
+        selfType: "ThrowsUp",
+        effect: {
+            perfumeEff: 1.35,
+            appliesRanged: false,
+            always: true,
+        }
+    },
 ]
 
 export default offensiveRelics
