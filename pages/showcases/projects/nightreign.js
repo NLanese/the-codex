@@ -191,6 +191,7 @@ const silverLining = "#d4eeff"
         setRelic6({ slot1: effect61, slot2: effect62, slot3: effect63 })
     
         set_all_relic_effects(all);
+        set_all_relic_types(types)
     }, [
         effect11, effect12, effect13,
         effect21, effect22, effect23,
@@ -218,7 +219,7 @@ const silverLining = "#d4eeff"
 ///////////////
 // Rendering //
 ///////////////
-function renderSelectionsContainer(toggles){
+function renderSelectionsContainer(toggles, all_relic_effects){
     return(
         <div style={{
         display: 'flex', flexDirection: isMobile ? 'column' : 'row',
@@ -233,7 +234,7 @@ function renderSelectionsContainer(toggles){
                 {renderSelections(deepDisplayed)}
             </div>
             <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
-                {renderVitals()}
+                {renderVitals(all_relic_effects)}
                 {renderStats(toggles)}
             </div>
         </div>
@@ -738,13 +739,13 @@ function renderExtras(type, variety, toggles, expandedType){
 }
 
 // VITALS //
-function renderVitals(){
+function renderVitals(all_relic_effects){
     return(
         <div style={{
             display: 'flex', flexDirection: isMobile ? 'column' : 'row',
             border: '2px solid', borderColor: greyOfNight
         }}>
-            {renderBars()}
+            {renderBars(all_relic_effects)}
             {renderAttributes()}
         </div>
     )
@@ -824,13 +825,31 @@ function renderAttribute(atr){
     )
 }
 
-function renderBars(){
+function renderBars(all_relic_effects){
+    let hpVal = hp + findVitalsMods("HP")
+    let fpVal = fp + findVitalsMods("FP")
+    let stamVal = stam + findVitalsMods("Stam")
     return(
         <div style={{flex: 5}}>
             <div style={{width: '90%', marginTop: '6%'}}>
-            {renderBar("HP", (hp + findVitalsMods("HP")), 17.5, 'red')}
-            {renderBar("FP", (fp + findVitalsMods("FP")), 2.5, 'cyan')}     
-            {renderBar("Stam", (stam + findVitalsMods("Stam")), 2.5, 'lime')}
+            {renderBar(
+                "HP", 
+                return_modified_vital("HP", hpVal, all_relic_effects),
+                17.5, 
+                'red'
+            )}
+            {renderBar(
+                "FP", 
+                return_modified_vital("FP", fpVal, all_relic_effects),
+                2.5, 
+                'cyan'
+            )}     
+            {renderBar(
+                "Stam", 
+                return_modified_vital("Stam", stamVal, all_relic_effects),
+                2.5, 
+                'lime'
+            )}
             </div>
         </div>
     )
@@ -1408,6 +1427,19 @@ function findDamageTypeFromEffects(type){
     })
 }
 
+function findPercentEffectFromEffects(type, all_relic_effects){
+    if (!all_relic_effects || all_relic_effects.length < 1){
+        return 1
+    }
+    return all_relic_effects.filter(eff => {
+        if (eff.selfType === "statPercent"){
+            if (eff.effect[type]){
+                return eff.effect[type]
+            }
+        }
+    })
+}
+
 function findAttributeTypeFromEffects(attr){
     let mods =  all_relic_effects.filter(eff => {
         if (eff.effect[attr]){
@@ -1519,6 +1551,32 @@ function determine_if_effect_is_active(effect, toggles){
     return true
 }
 
+function determine_if_effect_is_active(effect){
+    if (effect.active){
+        return true
+    }
+    return false
+}
+
+function handleEffectState(effect, all, types){
+    if (effect) {
+        if (!effect.stacks.selfType){
+            let selfType = effect.selfType
+            if (types.includes(selfType)){
+                all.push({...effect, active: false});
+            }
+            else{
+                all.push({...effect, active: true});
+            }
+        }
+        else{
+            all.push({...effect, active: true});
+            types.push(effect.selfType);
+        }
+    }
+    return [all, types]
+}
+
 function stack_modifiers(key, totalMod, toggles){
     let mods = findDamageTypeFromEffects(key)
     mods.forEach(dam => {
@@ -1531,6 +1589,16 @@ function stack_modifiers(key, totalMod, toggles){
 
 function closeModal(){
     setRelicsModal(false)
+}
+
+function return_modified_vital(vital, vitalVal, all_relic_effects){
+    let foundModifiers = findPercentEffectFromEffects(vital, all_relic_effects)
+    if (foundModifiers.length > 0){
+        foundModifiers.forEach(percentInc => {
+            vitalVal = vitalVal * percentInc
+        })
+    }
+    return vitalVal
 }
 
 //////////////
@@ -1573,7 +1641,7 @@ return(
         {renderCredits("top")}
         <div style={{flex: 11}}>
             {renderRelicModal()}
-            {renderSelectionsContainer(relics_effect_toggles)}
+            {renderSelectionsContainer(relics_effect_toggles, all_relic_effects)}
         </div>
         {renderCredits("bottom")}
     </div>
