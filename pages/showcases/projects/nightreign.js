@@ -1026,6 +1026,37 @@ function clearEffect(key){
     else if (key === "33"){
         setEffect33(false)
     }
+    else if (currentEditNum === "41"){
+        setEffect41(false)
+    }
+    else if (currentEditNum === "42"){
+        setEffect42(false)
+    }
+    else if (currentEditNum === "43"){
+        setEffect43(false)
+    }
+
+    else if (currentEditNum === "51"){
+        setEffect51(false)
+    }
+    else if (currentEditNum === "52"){
+        setEffect52(false)
+    }
+    else if (currentEditNum === "53"){
+        setEffect53(false)
+    }
+
+    else if (currentEditNum === "61"){
+        setEffect61(false)
+    }
+    else if (currentEditNum === "62"){
+        setEffect62(false)
+    }
+    else if (currentEditNum === "63"){
+        setEffect63(false)
+    }
+
+
     else{
         console.warn("Nope... ",  key)
     }
@@ -1188,45 +1219,55 @@ function determineDamModifier(type, relCat=false, toggles){
             // Magic Damage 
             else if (type === "Magic"){
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
             }
 
             // Magic Skill
             else if (type === "Magic / Gravity Skill"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
             // Crystal Sorcery
             else if (type === "Crystalian Sorcery"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('crystalDamage', totalMod, toggles)
-                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Carian Sorcery
             else if (type === "Carian Sorcery"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('carianDamage', totalMod, toggles)
-                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Glintblade Sorcery
             else if (type === "Glintblade Sorcery"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('glintDamage', totalMod, toggles)
-                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Gravity Sorcery
             else if (type === "Gravity Sorcery"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('gravDamage', totalMod, toggles)
-                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Glintblade Sorcery
             else if (type === "Stonedigger Sorcery"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('diggerDamage', totalMod, toggles)
-                totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
             // Standard Sorcery
             else if (type === "Standard Sorcery"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('sorceryDamage', totalMod, toggles)
             }
@@ -1237,10 +1278,12 @@ function determineDamModifier(type, relCat=false, toggles){
 
             // Finds "Lightning Damage Modifiers" and applies
             else if (type === "Lightning"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('lightningDamage', totalMod, toggles)
             }
             // Finds "Dragon Cult Damage Modifiers" and applies
             else if (type === "Lightning Incants"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('lightningDamage', totalMod, toggles)
                 totalMod = stack_modifiers('dargonCultDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
@@ -1253,27 +1296,32 @@ function determineDamModifier(type, relCat=false, toggles){
 
             // Finds "Fire Damage Modifiers" and applies
             else if (type === "Fire"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('fireDamage', totalMod, toggles)
             }
             // Finds "Flame Incantation Damage Modifiers" and applies
             else if (type === "Fire Incants"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('fireDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
             }
             // Finds "Giant's Fire Damage Modifiers" and applies
             else if (type === "Giant's Fire"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('fireDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
                 totalMod = stack_modifiers('giantFireDamage', totalMod, toggles)
             }
             // Finds "Black Flame Damage Modifiers" and applies
             else if (type === "Black Flame"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('fireDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
                 totalMod = stack_modifiers('godslayerDamage', totalMod, toggles)
             }
             // Finds "Frenzy Flame Damage Modifiers" and applies
             else if (type === "Flame of Frenzy"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('fireDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
                 totalMod = stack_modifiers('frenzyDamage', totalMod, toggles)
@@ -1286,29 +1334,21 @@ function determineDamModifier(type, relCat=false, toggles){
 
             // Finds "Holy Damage Modifiers" and applies
             else if (type === "Holy"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('holyDamage', totalMod, toggles)
             }
             // Finds "Holy Incantation Damage Modifiers" and applies
             else if (type === "Holy Incants"){
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('holyDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
             }
             // Finds "Fundamentalist Incantation Damage Modifiers" and applies
             else if (type === "Golden Incants"){
-                let weaponDams = findDamageTypeFromEffects("holyDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.holyDamage
-                })
-                // Incant
-                let extraDams2 = findDamageTypeFromEffects("incantDamage")
-                extraDams2.forEach(dam => {
-                    totalMod = totalMod * dam.effect.incantDamage
-                })
-                // Fundamentalist
-                let extraDams = findDamageTypeFromEffects("fundDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.fundDamage
-                })
+                totalMod = stack_modifiers('affDamage', totalMod, toggles)
+                totalMod = stack_modifiers('holyDamage', totalMod, toggles)
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
+                totalMod = stack_modifiers('fundDamage', totalMod, toggles)
             }
 
 

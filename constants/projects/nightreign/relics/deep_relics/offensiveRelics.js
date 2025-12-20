@@ -465,36 +465,6 @@ const deepOffensiveRelics = [
             always: true,
         }
     },
-    {
-        title: "Reduced FP Consumuption", 
-        desc: "Decreases all FP Consumption by 8%.",
-        stacks: {self: true, selfType: true},
-        selfType: "fpConsume",
-        effect: {
-            incantDamage: 0.92,
-            always: true,
-        }
-    },
-    {
-        title: "Reduced FP Consumuption +1", 
-        desc: "Decreases all FP Consumption by 13%.",
-        stacks: {self: true, selfType: true},
-        selfType: "fpConsume",
-        effect: {
-            incantDamage: 0.87,
-            always: true,
-        }
-    },
-    {
-        title: "Reduced FP Consumuption +2", 
-        desc: "Decreases all FP Consumption by 16%.",
-        stacks: {self: true, selfType: true},
-        selfType: "fpConsume",
-        effect: {
-            incantDamage: 0.84,
-            always: true,
-        }
-    },
 ]
 
 export default deepOffensiveRelics

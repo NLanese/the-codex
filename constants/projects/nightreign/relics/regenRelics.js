@@ -62,7 +62,7 @@ const regenRelics = [
     },
     {
         title: "Partial HP Restoartion upon Post-Damage Attacks",
-        desc: "Hits restore 30% of Damage Dealt for 3 seconds after taking damage. Can only restore the damage taken during the hit.",
+        desc: "Hits restore 15% of Damage Dealt for 3 seconds after taking damage. Can only restore the damage taken during the hit.",
         stacks: {self: false, selfType: false},
         selfType: "postDamage",
         effect: {
@@ -91,7 +91,7 @@ const regenRelics = [
     {
         title: "HP Restored When Using Cured Meats, Boluses, etc.",
         desc: "Restores 50 HP on Boluse, Crab, Prawn, Turtle Neck, and Fowl Feet comsumption.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: false, selfType: true},
         selfType: "hpEat",
         effect: {
             always: true,
@@ -198,6 +198,15 @@ const regenRelics = [
         effect: {
             always: true,
             hpOnWeaponSucc: 15,
+        }
+    },
+    {
+        title: "HP Restoration upon Thrusting Counterattack",
+        desc: "Restores 2.5% of your Max HP per attack from a thrusting sword / spear landed on an enemy that is in an attack animation",
+        stacks: {self: true, selfType: true},
+        selfType: "hpOnWeaponSucc",
+        effect: {
+            always: true,
         }
     },
 ]

@@ -438,6 +438,17 @@ const offensiveRelics = [
         }
     },
     {
+        title: "Improved Invisibility Sorcery", 
+        desc: "Increases Duration of Inviisbility from Relics, Finale (Duchess Ult, if you are the Duchess using it) and spells extended 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "invisUp",
+        effect: {
+            duration: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
         title: "Improved Fundamentalist Incantation", 
         desc: "Increases Golden Order Incantation (Rings of Light, Discus, Triple Rings) damage by 12%",
         stacks: {self: true, selfType: true},
