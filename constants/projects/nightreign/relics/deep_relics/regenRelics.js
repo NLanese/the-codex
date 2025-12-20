@@ -107,3 +107,5 @@ const regenDeepRelics = [
         }
     },
 ]
+
+export default regenDeepRelics

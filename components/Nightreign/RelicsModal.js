@@ -13,10 +13,16 @@ import { FormMultipleChoice } from "../../OstrichComponents/Forms/FormMultipleCh
 // Relics
 import offensiveRelics from "../../constants/projects/nightreign/relics/offensiveRelics";
 import deepOffensiveRelics from "../../constants/projects/nightreign/relics/deep_relics/offensiveRelics";
+
 import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
+
 import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
+import regenDeepRelics from "../../constants/projects/nightreign/relics/deep_relics/regenRelics";
+
 import statRelics from "../../constants/projects/nightreign/relics/statRelics";
+
 import miscRelics from "../../constants/projects/nightreign/relics/miscRelics";
+
 import characterRelics from "../../constants/projects/nightreign/relics/characterRelics";
 
 export default function RelicsModal({
@@ -56,8 +62,26 @@ useEffect(() => {
 
     // All
     if (effectCat === "All"){
-        setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
-        setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
+        if (isDeep){
+            setSelectedList([
+                ...offensiveRelics, ...deepOffensiveRelics, 
+                ...defensiveRelics, 
+                ...regenRelics, ...regenDeepRelics,
+                ...statRelics, 
+                ...miscRelics
+            ])
+            setFilteredEffects([
+                ...offensiveRelics, ...deepOffensiveRelics, 
+                ...defensiveRelics, 
+                ...regenRelics, ...regenDeepRelics,
+                ...statRelics, 
+                ...miscRelics
+            ])
+        }
+        else{
+            setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
+            setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
+        }
     }
 
     // Offensive 
@@ -78,8 +102,14 @@ useEffect(() => {
         setFilteredEffects(defensiveRelics)
     }
     else if (effectCat === "Regenerative" || effectCat === "Regen" ){
-        setSelectedList(regenRelics)
-        setFilteredEffects(regenRelics)
+        if (isDeep){
+            setSelectedList([...regenRelics, ...regenDeepRelics])
+            setFilteredEffects([...regenRelics, ...regenDeepRelics])
+        }
+        else{
+            setSelectedList(regenRelics)
+            setFilteredEffects(regenRelics)
+        }
     }
     else if (effectCat === "Stat Changes"){
         setSelectedList(statRelics)

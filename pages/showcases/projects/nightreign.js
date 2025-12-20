@@ -1355,21 +1355,12 @@ function determineDamModifier(type, relCat=false, toggles){
 
             // Finds "Skill Damage Modifiers" and applies
             else if (type === "Skill"){
-                let weaponDams = findDamageTypeFromEffects("skillDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.skillDamage
-                })
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
             // Finds "Crit Damage Modifiers" and applies
             else if (type === "Critical"){
-                let weaponDams = findDamageTypeFromEffects("critDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.critDamage
-                })
-                let extraDams = findDamageTypeFromEffects("weaponDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
+                totalMod = stack_modifiers('critDamage', totalMod, toggles)
+                totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
             }
             // Finds "Guard Counter Damage Modifiers" and applies
             else if (type === "Counter"){
@@ -1377,10 +1368,7 @@ function determineDamModifier(type, relCat=false, toggles){
                 weaponDams.forEach(dam => {
                     totalMod = totalMod * dam.effect.counterDamage
                 })
-                let extraDams = findDamageTypeFromEffects("weaponDamage")
-                extraDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.weaponDamage
-                })
+                totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
             }
 
     }
