@@ -12,6 +12,7 @@ import { FormMultipleChoice } from "../../OstrichComponents/Forms/FormMultipleCh
 
 // Relics
 import offensiveRelics from "../../constants/projects/nightreign/relics/offensiveRelics";
+import deepOffensiveRelics from "../../constants/projects/nightreign/relics/deep_relics/offensiveRelics";
 import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
 import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
 import statRelics from "../../constants/projects/nightreign/relics/statRelics";
@@ -22,7 +23,8 @@ export default function RelicsModal({
     selectEffect,
     isMobile, 
     closeModal,
-    nightfarer
+    nightfarer,
+    isDeep
 }) {
 
 ///////////
@@ -46,15 +48,31 @@ const [selectedList, setSelectedList] = useState([])
 const [filteredEffects, setFilteredEffects] = useState([])
 
 useEffect(() => {
+    setEffectCat("All")
+}, [])
+
+useEffect(() => {
     setSearch("")
+
+    // All
     if (effectCat === "All"){
         setSelectedList([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
         setFilteredEffects([...offensiveRelics, ...defensiveRelics, ...regenRelics, ...statRelics, ...miscRelics])
     }
+
+    // Offensive 
     if (effectCat === "Offensive" || effectCat === "Off" ){
-        setSelectedList(offensiveRelics)
-        setFilteredEffects(offensiveRelics)
+        if (isDeep){
+            setSelectedList([...offensiveRelics, ...deepOffensiveRelics])
+            setFilteredEffects([...offensiveRelics, ...deepOffensiveRelics])
+        }
+        else{
+            setSelectedList(offensiveRelics)
+            setFilteredEffects(offensiveRelics)
+        }
     }
+
+
     else if (effectCat === "Defensive" || effectCat === "Def" ){
         setSelectedList(defensiveRelics)
         setFilteredEffects(defensiveRelics)
@@ -161,12 +179,14 @@ function renderOptions(){
                 }}
                 inputValue={selectedList}
                 fieldTextStyle={{padding: 0, margin: 0, fontSize: 10}}
+                value="All"
             />
         )
     }
     else{
         return(
             <OstrichTabBar
+            startingTabByTitle="All"
             style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
             tabs={["All", "Offensive", "Defensive", "Regenerative", "Stat Changes", "Character", "Misc"]}
             onTabClick={(tab) => setEffectCat(tab)}

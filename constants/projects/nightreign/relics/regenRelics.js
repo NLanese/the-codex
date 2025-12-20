@@ -81,7 +81,7 @@ const regenRelics = [
     {
         title: "Art Gauge Filled Moderately on Critical Hit",
         desc: "Critical Hits increase Ultimate Gauge by 5.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: false, selfType: true},
         selfType: "ultCrit",
         effect: {
             always: true,
@@ -101,7 +101,7 @@ const regenRelics = [
     {
         title: "Art Gauge Charged from successful Guarding.",
         desc: "1 Ultimate Charge per Successful Guard",
-        stacks: {self: false, selfType: false},
+        stacks: {self: false, selfType: true},
         selfType: "ultGuard",
         effect: {
             always: true,

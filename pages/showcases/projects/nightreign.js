@@ -482,38 +482,6 @@ function fillOrInput(eff, effVal){
     }
 }
 
-// DEEP OF NIGHT //
-function renderDeepToggles(){
-    return(
-        <div>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 5}}>
-                <p style={{color: graceGiven, fontFamily: 'Gilroy', width: 180}}>ENABLE DEEP RELICS</p>
-                <OstCard style={{display: 'flex', justifySelf: 'center', alignSelf: 'center', border: "2px solid #f2e144", borderRadius: 4, height: 10, width: 10, backgroundColor: depthColor, margin: 0}}
-                onClick={() => setDeepEnabled(!deepEnabled)}
-                >
-                    {fill("enable")}
-                </OstCard>
-            </div>
-            {renderDISPLAY_DEEP_RELICS()}
-        </div>
-    )
-}
-
-function renderDISPLAY_DEEP_RELICS(){
-    if (deepEnabled){
-        return(
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: -5}}>
-                    <p style={{color: graceGiven, fontFamily: 'Gilroy', width: 180}}>DISPLAY DEEP RELICS</p>
-                    <OstCard style={{display: 'flex', justifySelf: 'center', alignSelf: 'center', border: "2px solid #f2e144", borderRadius: 4, height: 10, width: 10, backgroundColor: depthColor, margin: 0}}
-                    onClick={() => setDeepDisplayed(!deepDisplayed)}
-                    >
-                        {fill("display")}
-                    </OstCard>
-                </div>
-        )
-    }
-}
-
 
 // STATS //
 function renderStats(toggles){
@@ -913,7 +881,11 @@ function renderRelicModal(){
         }}
         >
             <RelicsModal 
-                selectEffect={handleChangeEffect} isMobile={isMobile} closeModal={closeModal} nightfarer={nightfarer}
+                selectEffect={handleChangeEffect} 
+                isMobile={isMobile} 
+                closeModal={closeModal} 
+                nightfarer={nightfarer} 
+                isDeep={deepDisplayed}
             />
         </ReactModal>
     )
@@ -986,6 +958,38 @@ function handleChangeEffect(effect){
     else if (currentEditNum === "33"){
         setEffect33(effect)
     }
+
+    else if (currentEditNum === "41"){
+        setEffect41(effect)
+    }
+    else if (currentEditNum === "42"){
+        setEffect42(effect)
+    }
+    else if (currentEditNum === "43"){
+        setEffect43(effect)
+    }
+
+    else if (currentEditNum === "51"){
+        setEffect51(effect)
+    }
+    else if (currentEditNum === "52"){
+        setEffect52(effect)
+    }
+    else if (currentEditNum === "53"){
+        setEffect53(effect)
+    }
+
+    else if (currentEditNum === "61"){
+        setEffect61(effect)
+    }
+    else if (currentEditNum === "62"){
+        setEffect62(effect)
+    }
+    else if (currentEditNum === "63"){
+        setEffect63(effect)
+    }
+
+
     else{
         console.warn("Nope... ",  currentEditNum)
     }

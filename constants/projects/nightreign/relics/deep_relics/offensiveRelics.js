@@ -405,6 +405,96 @@ const deepOffensiveRelics = [
             always: true,
         }
     },
+    {
+        title: "Improved Sorceries", 
+        desc: "Increases all Sorcery Damage by 5%.",
+        stacks: {self: true, selfType: true},
+        selfType: "SorcUp",
+        effect: {
+            sorcDamage: 1.05,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Sorceries +1", 
+        desc: "Increases all Sorcery Damage by 8.5%.",
+        stacks: {self: true, selfType: true},
+        selfType: "SorcUp",
+        effect: {
+            sorcDamage: 1.085,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Sorceries +2", 
+        desc: "Increases all Sorcery Damage by 10%.",
+        stacks: {self: true, selfType: true},
+        selfType: "SorcUp",
+        effect: {
+            sorcDamage: 1.1,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Incantations", 
+        desc: "Increases all Incantation Damage by 5%.",
+        stacks: {self: true, selfType: true},
+        selfType: "IncantUp",
+        effect: {
+            incantDamage: 1.05,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Incantations +1", 
+        desc: "Increases all Incantation Damage by 8.5%.",
+        stacks: {self: true, selfType: true},
+        selfType: "IncantUp",
+        effect: {
+            incantDamage: 1.085,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Incantations +2", 
+        desc: "Increases all Incantation Damage by 10%.",
+        stacks: {self: true, selfType: true},
+        selfType: "IncantUp",
+        effect: {
+            incantDamage: 1.1,
+            always: true,
+        }
+    },
+    {
+        title: "Reduced FP Consumuption", 
+        desc: "Decreases all FP Consumption by 8%.",
+        stacks: {self: true, selfType: true},
+        selfType: "fpConsume",
+        effect: {
+            incantDamage: 0.92,
+            always: true,
+        }
+    },
+    {
+        title: "Reduced FP Consumuption +1", 
+        desc: "Decreases all FP Consumption by 13%.",
+        stacks: {self: true, selfType: true},
+        selfType: "fpConsume",
+        effect: {
+            incantDamage: 0.87,
+            always: true,
+        }
+    },
+    {
+        title: "Reduced FP Consumuption +2", 
+        desc: "Decreases all FP Consumption by 16%.",
+        stacks: {self: true, selfType: true},
+        selfType: "fpConsume",
+        effect: {
+            incantDamage: 0.84,
+            always: true,
+        }
+    },
 ]
 
-export default offensiveRelics
+export default deepOffensiveRelics
