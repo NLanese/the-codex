@@ -336,9 +336,12 @@ function renderRelics(deepDisplayed){
         return(
             <div style={{ flex: 7, backgroundColor: nightShade}}>
                 <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                    {renderRelic(relic4,4,deepDisplayed)}
+                    {/* {renderRelic(relic4,4,deepDisplayed)}
                     {renderRelic(relic5,5,deepDisplayed)}
-                    {renderRelic(relic6,6,deepDisplayed)}
+                    {renderRelic(relic6,6,deepDisplayed)} */}
+                    <Relic relic={relic1} id={1} depth={true}/>
+                    <Relic relic={relic2} id={2} depth={true}/>
+                    <Relic relic={relic3} id={3} depth={true}/>
                 </div>
             </div>
             
@@ -347,30 +350,49 @@ function renderRelics(deepDisplayed){
     return(
         <div style={{ flex: 7, backgroundColor: nightShade}}>
             <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                {renderRelic(relic1,1)}
+                {/* {renderRelic(relic1,1)}
                 {renderRelic(relic2,2)}
-                {renderRelic(relic3,3)}
+                {renderRelic(relic3,3)} */}
+                <Relic relic={relic1} id={1} depth={false}/>
+                <Relic relic={relic2} id={2} depth={false}/>
+                <Relic relic={relic3} id={3} depth={false}/>
             </div>
         </div>
         
     )
 }
 
-function renderRelic(relic, key, depth){
+// const renderRelic = (relic, key, depth) => {
+//     const [cons, setCons] = useState(false)
+//     return(
+//         <OstCard key={key} style={{flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight}}>
+//             {renderRelicHeader(key, depth, cons, setCons)}
+//             <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor}}>
+//                 {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`, cons)}
+//                 {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`, cons)}
+//                 {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`, cons)}
+//             </div>
+//         </OstCard>
+//     )
+// }
+function Relic({ relic, id, depth }) {
     const [cons, setCons] = useState(false)
-    return(
-        <OstCard key={key} style={{flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight}}>
-            {renderRelicHeader(key, depth, cons, setCons)}
-            <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor}}>
-                {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`, cons)}
-                {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`, cons)}
-                {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`, cons)}
+
+    return (
+        <OstCard style={{ flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight }}>
+            {renderRelicHeader(id, depth, cons, setCons)}
+            <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
+                {renderRelicEffect(relic?.slot1 ?? null, `${id}1`, cons)}
+                {renderRelicEffect(relic?.slot2 ?? null, `${id}2`, cons)}
+                {renderRelicEffect(relic?.slot3 ?? null, `${id}3`, cons)}
             </div>
         </OstCard>
     )
 }
 
 function renderRelicHeader(key, depth, cons, setCons){
+    console.log(key)
+    console.log(depth)
     return(
         <div style={{height: '12%'}}>
             <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
@@ -427,33 +449,34 @@ function renderEffectToggles(){
             </div>
         )
     }
-    const mainRender = keysOfEffects.map((eff, i) => {
-        return(
-            <OstCard 
-            noShadow={true} 
-            style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10}}
-            onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
-            >
-                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
-                    {eff}
-                </p>
-                <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
-                <OstCard style={{
-                    display: 'flex', justifySelf: 'center', alignSelf: 'center', 
-                    border: "2px solid #f2e144", borderRadius: 4, 
-                    height: 35, width: 35, margin: 0, padding: 0,
-                    backgroundColor: depthColor, fontSize: 13.5
-                }}
+    const mainRender = () => {
+        return keysOfEffects.map((eff, i) => {
+            return(
+                <OstCard 
+                noShadow={true} 
+                style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10}}
+                onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
                 >
-                    {fillOrInput(eff, relics_effect_toggles[eff])}
+                    <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
+                        {eff}
+                    </p>
+                    <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                    <OstCard style={{
+                        display: 'flex', justifySelf: 'center', alignSelf: 'center', 
+                        border: "2px solid #f2e144", borderRadius: 4, 
+                        height: 35, width: 35, margin: 0, padding: 0,
+                        backgroundColor: depthColor, fontSize: 13.5
+                    }}
+                    >
+                        {fillOrInput(eff, relics_effect_toggles[eff])}
+                    </OstCard>
+                    </div>
                 </OstCard>
-                </div>
-            </OstCard>
-        )
-    })
+        )})
+    }
     return(
         <div style={{flex: 7, paddingTop: 10, paddingBottom: 10}}>
-            {mainRender}
+            {mainRender()}
         </div>
     )
 }
