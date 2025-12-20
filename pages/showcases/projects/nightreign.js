@@ -88,6 +88,7 @@ const silverLining = "#d4eeff"
 
     // Relic Editting and Effects
     const [all_relic_effects, set_all_relic_effects] = useState([])
+    const [all_relic_types, set_all_relic_types] = useState([])
     const [currentEditNum, setCurrentEditNum] = useState(false) //11,12,13,21,22,23,31,32,33
 
     // Deep Of The Night
@@ -153,40 +154,59 @@ const silverLining = "#d4eeff"
 
     useEffect(() => {
         let all = [];
+        let types = []
 
         if (effect11) all.push(effect11);
         if (effect12) all.push(effect12);
         if (effect13) all.push(effect13);
+        if (effect11) types.push(effect11.selfType);
+        if (effect12) types.push(effect12.selfType);
+        if (effect13) types.push(effect13.selfType);
 
         setRelic1({ slot1: effect11, slot2: effect12, slot3: effect13 })
     
         if (effect21) all.push(effect21);
         if (effect22) all.push(effect22);
         if (effect23) all.push(effect23);
+        if (effect21) types.push(effect21.selfType);
+        if (effect22) types.push(effect22.selfType);
+        if (effect23) types.push(effect23.selfType);
 
         setRelic2({ slot1: effect21, slot2: effect22, slot3: effect23 })
     
         if (effect31) all.push(effect31);
         if (effect32) all.push(effect32);
         if (effect33) all.push(effect33);
+        if (effect31) types.push(effect31.selfType);
+        if (effect32) types.push(effect32.selfType);
+        if (effect33) types.push(effect33.selfType);
 
         setRelic3({ slot1: effect31, slot2: effect32, slot3: effect33 })
 
         if (effect41) all.push(effect41);
         if (effect42) all.push(effect42);
         if (effect43) all.push(effect43);
+        if (effect41) types.push(effect41.selfType);
+        if (effect42) types.push(effect42.selfType);
+        if (effect43) types.push(effect43.selfType);
 
         setRelic4({ slot1: effect41, slot2: effect42, slot3: effect43 })
     
         if (effect51) all.push(effect51);
         if (effect52) all.push(effect52);
         if (effect53) all.push(effect53);
+        if (effect51) types.push(effect51.selfType);
+        if (effect52) types.push(effect52.selfType);
+        if (effect53) types.push(effect53.selfType);
 
         setRelic5({ slot1: effect51, slot2: effect52, slot3: effect53 })
     
         if (effect61) all.push(effect61);
         if (effect62) all.push(effect62);
         if (effect63) all.push(effect63);
+        if (effect61) types.push(effect61.selfType);
+        if (effect62) types.push(effect62.selfType);
+        if (effect63) types.push(effect63.selfType);
 
         setRelic6({ slot1: effect61, slot2: effect62, slot3: effect63 })
     
