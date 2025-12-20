@@ -184,4 +184,4 @@ const deepDefensiveRelics = [
     },
 ]
 
-export default defensiveRelics
+export default deepDefensiveRelics

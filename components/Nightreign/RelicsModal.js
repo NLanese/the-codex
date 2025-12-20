@@ -15,6 +15,7 @@ import offensiveRelics from "../../constants/projects/nightreign/relics/offensiv
 import deepOffensiveRelics from "../../constants/projects/nightreign/relics/deep_relics/offensiveRelics";
 
 import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
+import deepDefensiveRelics from "@/constants/projects/nightreign/relics/deep_relics/defensiveRelics";
 
 import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
 import regenDeepRelics from "../../constants/projects/nightreign/relics/deep_relics/regenRelics";
@@ -66,14 +67,14 @@ useEffect(() => {
         if (isDeep){
             setSelectedList([
                 ...offensiveRelics, ...deepOffensiveRelics, 
-                ...defensiveRelics, 
+                ...defensiveRelics, ...deepDefensiveRelics,
                 ...regenRelics, ...regenDeepRelics,
                 ...statRelics, 
                 ...miscRelics
             ])
             setFilteredEffects([
                 ...offensiveRelics, ...deepOffensiveRelics, 
-                ...defensiveRelics, 
+                ...defensiveRelics, ...deepDefensiveRelics,
                 ...regenRelics, ...regenDeepRelics,
                 ...statRelics, 
                 ...miscRelics
@@ -97,11 +98,19 @@ useEffect(() => {
         }
     }
 
-
+    // Defensive
     else if (effectCat === "Defensive" || effectCat === "Def" ){
-        setSelectedList(defensiveRelics)
-        setFilteredEffects(defensiveRelics)
+        if (isDeep){
+            setSelectedList([...defensiveRelics, ...deepDefensiveRelics])
+            setFilteredEffects([...defensiveRelics, ...deepDefensiveRelics])
+        }
+        else{
+            setSelectedList(defensiveRelics)
+            setFilteredEffects(defensiveRelics)
+        }
     }
+
+    // Regen
     else if (effectCat === "Regenerative" || effectCat === "Regen" ){
         if (isDeep){
             setSelectedList([...regenRelics, ...regenDeepRelics])
@@ -112,10 +121,14 @@ useEffect(() => {
             setFilteredEffects(regenRelics)
         }
     }
+
+    // Stat Changes
     else if (effectCat === "Stat Changes"){
         setSelectedList(statRelics)
         setFilteredEffects(statRelics)
     }
+
+    // Character
     else if (effectCat === "Character"){
         let applicable = [...characterRelics].filter(rel => {
             if (rel.nightfarer === nightfarer){
@@ -128,10 +141,14 @@ useEffect(() => {
         setSelectedList(applicable)
         setFilteredEffects(applicable)
     }
+
+    // Misc
     else if (effectCat === "Misc"){
         setSelectedList(miscRelics)
         setFilteredEffects(miscRelics)
     }
+
+    
 }, [effectCat])
 
 useEffect(() => {

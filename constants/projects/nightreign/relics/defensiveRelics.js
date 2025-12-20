@@ -3,7 +3,7 @@ const defensiveRelics = [
         title: "Improved Physical Damage Negation", 
         desc: "10% Boost to Phsyical Damage Negation",
         stacks: {self: true, selfType: true},
-        selfType: "allNeg",
+        selfType: "physNeg",
         effect: {
             physNegation: 1.10,
             always: true,
