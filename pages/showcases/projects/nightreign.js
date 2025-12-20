@@ -205,6 +205,11 @@ const silverLining = "#d4eeff"
         findConditions()
     }, [all_relic_effects])
 
+    useEffect(() => {
+        if (selectionState === "Deep Relics"){
+            setDeepDisplayed(true)
+        }
+    }, [selectionState])
 
 
 ///////////////
@@ -222,7 +227,7 @@ function renderSelectionsContainer(toggles){
                 borderRadius: 20
             }}>
                 {renderNightFarer()}
-                {renderSelections()}
+                {renderSelections(deepDisplayed)}
             </div>
             <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
                 {renderVitals()}
@@ -232,13 +237,10 @@ function renderSelectionsContainer(toggles){
     )
 }
 
-function renderSelections(){
-    if (selectionState === "Relics"){
-        return renderRelics()
+function renderSelections(deepDisplayed){
+    if (selectionState === "Relics" || selectionState === "Deep Relics"){
+        return renderRelics(deepDisplayed)
     }
-    // else if (selectionState === "Deep Relics"){
-    //     return renderRelics()
-    // }
     else if (selectionState === "Effects"){
         return renderEffectToggles()
     }
@@ -327,14 +329,14 @@ function renderNightFarer(){
 }
 
 // RELICS // 
-function renderRelics(){
+function renderRelics(deepDisplayed){
     if (deepDisplayed){
         return(
             <div style={{ flex: 7, backgroundColor: nightShade}}>
                 <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                    {renderRelic(relic4,4)}
-                    {renderRelic(relic5,5)}
-                    {renderRelic(relic6,6)}
+                    {renderRelic(relic4,4,deepDisplayed)}
+                    {renderRelic(relic5,5,deepDisplayed)}
+                    {renderRelic(relic6,6,deepDisplayed)}
                 </div>
             </div>
             
@@ -352,34 +354,50 @@ function renderRelics(){
     )
 }
 
-function renderRelic(relic, key){
+function renderRelic(relic, key, depth){
+    const [cons, setCons] = useState(false)
     return(
         <OstCard key={key} style={{flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight}}>
-            {renderRelicHeader(key)}
+            {renderRelicHeader(key, depth, cons, setCons)}
             <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor}}>
-                {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`)}
-                {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`)}
-                {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`)}
+                {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`, cons)}
+                {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`, cons)}
+                {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`, cons)}
             </div>
         </OstCard>
     )
 }
 
-function renderRelicHeader(key){
+function renderRelicHeader(key, depth, cons, setCons){
     return(
         <div style={{height: '12%'}}>
             <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
             <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
                 RELIC
             </OstCard>
-            {/* <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 2.5 }}>
-                SAVE
-            </OstCard> */}
+            {renderFlipRelic(depth, setCons, cons)}
             <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearRelic(key)}>
                 CLEAR
             </OstCard>
             </div>
         </div>
+    )
+}
+
+function renderFlipRelic(depth, setCons, cons){
+    if (!depth){
+        return
+    }
+    let text = "POSITIVES"
+    let color = "lime"
+    if (cons){
+        text = "NEGATIVES"
+        color = "red"
+    }
+    return(
+        <OstCard noShadow={true} style={{color: color, backgroundColor: depthColor, paddingLeft: 2, paddingRight: 2, paddingTop: 0, paddingBottom: 0, margin: 0, flex: 2.5, fontSize: 14, textAlign: 'center', alignContent: 'center'}} onClick={() => setCons(!cons)}>
+            {text}
+        </OstCard> 
     )
 }
 
@@ -452,7 +470,6 @@ function fillOrInput(eff, effVal){
         return(
             <input type="number" style={{height: 30, width: 30}}
                 onClick={(e) => {
-                    console.log(e.target.value)
                     set_relic_effect_toggles(prev => 
                         ({...prev, [eff]: e.target.value}))
                     }
@@ -1345,7 +1362,6 @@ function determineDamModifier(type, relCat=false, toggles){
         }
     }
    
-    console.log("type -- ", type, " ", totalMod)
     return totalMod
 }
 
@@ -1457,14 +1473,10 @@ function determine_if_effect_is_active(effect, toggles){
     toggles = (toggles === {} ? false : toggles)
     if (!effect.effect.always){
         if (toggles){
-            console.log(effect.title, " \n...is not always active...")
-            console.log(toggles)
             if (toggles[effect.effect.condition]){
-                console.log("ACTIVE!!!!")
                 return true 
             }
             else{
-                console.log("IT IS NOT ACTIVE!!!!")
                 return false
             }
         }
@@ -1477,11 +1489,6 @@ function stack_modifiers(key, totalMod, toggles){
     mods.forEach(dam => {
         if (determine_if_effect_is_active(dam, toggles)){
             totalMod = totalMod * dam.effect[key]
-        }
-        else{
-            if (key === "allDamage"){
-                console.log(dam.title, " is not being marked active in stacker")
-            }
         }
     })  
     return totalMod

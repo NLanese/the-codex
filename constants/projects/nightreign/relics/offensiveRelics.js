@@ -250,7 +250,7 @@ const offensiveRelics = [
     {
         title: "Attack Power increases after using grease items", 
         desc: "Increases Physical Attack Power by 10% for 30 seconds after using Grease Items",
-        stacks: {self: false, selfType: false},
+        stacks: {self: false, selfType: true},
         selfType: "GreaseAttacks",
         effect: {
             weaponDamage: 1.10,
