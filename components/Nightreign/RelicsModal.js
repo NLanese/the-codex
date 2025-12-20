@@ -15,7 +15,7 @@ import offensiveRelics from "../../constants/projects/nightreign/relics/offensiv
 import deepOffensiveRelics from "../../constants/projects/nightreign/relics/deep_relics/offensiveRelics";
 
 import defensiveRelics from "../../constants/projects/nightreign/relics/defensiveRelics";
-import deepDefensiveRelics from "@/constants/projects/nightreign/relics/deep_relics/defensiveRelics";
+import deepDefensiveRelics from "../../constants/projects/nightreign/relics/deep_relics/defensiveRelics";
 
 import regenRelics from "../../constants/projects/nightreign/relics/regenRelics";
 import regenDeepRelics from "../../constants/projects/nightreign/relics/deep_relics/regenRelics";
@@ -148,7 +148,7 @@ useEffect(() => {
         setFilteredEffects(miscRelics)
     }
 
-    
+
 }, [effectCat])
 
 useEffect(() => {
