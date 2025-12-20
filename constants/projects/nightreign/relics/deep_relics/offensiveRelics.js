@@ -162,7 +162,79 @@ const deepOffensiveRelics = [
             always: false,
             condition: "30 Seconds after Applying Grease"
         }
-    }
+    },
+    {
+        title: "Attack Power up when facing Frostbite afflicted enemy +1", 
+        desc: "Increases damage by 16% on enemies with Frostbite ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "frozenTarget",
+        effect: { 
+            allDamage: 1.16,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a frostbiten enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Frostbite afflicted enemy +2", 
+        desc: "Increases damage by 20% on enemies with Frostbite ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "frozenTarget",
+        effect: { 
+            allDamage: 1.20,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a frostbiten enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Rot afflicted enemy +1", 
+        desc: "Increases damage by 16% on enemies with Rot ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "rotTarget",
+        effect: { 
+            allDamage: 1.16,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a Rotted enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Rot afflicted enemy +2", 
+        desc: "Increases damage by 20% on enemies with Rot ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "rotTarget",
+        effect: { 
+            allDamage: 1.20,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a Rotted enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Poison afflicted enemy +1", 
+        desc: "Increases damage by 16% on enemies with Poison ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "poisonTarget",
+        effect: { 
+            allDamage: 1.16,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a Poisoned enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Poison afflicted enemy +2", 
+        desc: "Increases damage by 20% on enemies with Poison ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "poisonTarget",
+        effect: { 
+            allDamage: 1.20,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a Poisoned enemy"
+         }
+    },
 ]
 
 export default offensiveRelics

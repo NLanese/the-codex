@@ -250,7 +250,7 @@ const offensiveRelics = [
     {
         title: "Attack Power increases after using grease items", 
         desc: "Increases Physical Attack Power by 10% for 30 seconds after using Grease Items",
-        stacks: {self: false, selfType: true},
+        stacks: {self: false, selfType: false},
         selfType: "GreaseAttacks",
         effect: {
             weaponDamage: 1.10,
@@ -519,10 +519,46 @@ const offensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "posionRotUp",
         effect: { 
-            allDamage: 1.20,
+            allDamage: 1.12,
             appliesRanged: true,
             always: false,
             condition: "20 seconds after Poison or Rot Procs nearby"
+         }
+    },
+    {
+        title: "Attack Power up when facing Frostbite afflicted enemy", 
+        desc: "Increases damage by 10% on enemies with Frostbite ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "frozenTarget",
+        effect: { 
+            allDamage: 1.10,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a frostbiten enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Rot afflicted enemy", 
+        desc: "Increases damage by 10% on enemies with Rot ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "rotTarget",
+        effect: { 
+            allDamage: 1.10,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a rotted enemy"
+         }
+    },
+    {
+        title: "Attack Power up when facing Poison afflicted enemy", 
+        desc: "Increases damage by 10% on enemies with Poison ailment",
+        stacks: {self: false, selfType: true},
+        selfType: "poisonTarget",
+        effect: { 
+            allDamage: 1.10,
+            appliesRanged: true,
+            always: false,
+            condition: "Attacking a poisoned enemy"
          }
     },
     {

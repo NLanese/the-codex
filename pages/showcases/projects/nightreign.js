@@ -209,6 +209,9 @@ const silverLining = "#d4eeff"
         if (selectionState === "Deep Relics"){
             setDeepDisplayed(true)
         }
+        else{
+            setDeepDisplayed(false)
+        }
     }, [selectionState])
 
 
