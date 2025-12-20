@@ -97,6 +97,7 @@ const silverLining = "#d4eeff"
     // Rendering States
     const [selectionState, setSelectionState] = useState("Relics") 
     const [relicsModal, setRelicsModal] = useState(false)
+    const [cursedModal, setCursedModal] = useState(false)
     const [expandedStat, setExpandedStat] = useState(false)
 
     // Vitals
@@ -424,11 +425,11 @@ function renderFlipRelic(depth, setCons, cons){
     )
 }
 
-function renderRelicEffect(relicSlot, key){
+function renderRelicEffect(relicSlot, key, cons){
     return (
         <OstCard key={key} noShadow={true} rounded={false} 
         style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15}} 
-        onClick={() => handleRelicEffectClick(key)}
+        onClick={() => handleRelicEffectClick(key, cons)}
         >
             {relicSlot?.title ? relicSlot?.title : "No Effect"}
         </OstCard>
@@ -906,6 +907,7 @@ function renderRelicModal(){
                 closeModal={closeModal} 
                 nightfarer={nightfarer} 
                 isDeep={deepDisplayed}
+                isCursed={cursedModal}
             />
         </ReactModal>
     )
@@ -942,8 +944,9 @@ function renderCredits(pos){
 // Functions //
 ///////////////
 
-function handleRelicEffectClick(key){
+function handleRelicEffectClick(key, cons){
     setCurrentEditNum(key)
+    setCursedModal(cons)
     clearEffect(key)
     setRelicsModal(true)
 }
