@@ -1,7 +1,7 @@
-const characterRelics = [
+const deepCharacterRelics = [
     {
-        title: "Art Gauge is Greatly Filled when Ability is Activated", 
-        desc: "18 Ult Gauge Points gained when Second Chance ability is used. THIS DOES NOT MEAN THE GRAPPLE HOOK.",
+        title: "Character Skill inflicts Blood Loss", 
+        desc: "60 Bleed Attack Power on initial Grapple Hook Hit, and then 55 on the following pull. Enhanced by Skill Damage increase.",
         stacks: {self: false, selfType: false},
         selfType: "ultOnArt",
         nightfarer: "Wylder",
@@ -38,32 +38,6 @@ const characterRelics = [
         nightfarer: "Wylder",
         effect: {
             always: true,
-        },
-    },
-    {
-        title: "Improved Mind, Reduced Vigor ", 
-        desc: "Mind +10 (50 FP), Vigor -5 (100HP)" ,
-        stacks: {self: false, selfType: true},
-        selfType: "statChange",
-        nightfarer: "Wylder",
-        effect: {
-            always: true,
-            mind: 10,
-            vigor: -5
-        },
-    },
-    {
-        title: "Improved Intelligence and Faith, Reduced Strength and Dexterity", 
-        desc: "Intelligence / Faith +15, Strength -7, Dexterity -5" ,
-        stacks: {self: false, selfType: true},
-        selfType: "statChange",
-        nightfarer: "Wylder",
-        effect: {
-            always: true,
-            fai: 15,
-            intl: 15,
-            dex: -5,
-            str: -7
         },
     },
     {
@@ -107,32 +81,6 @@ const characterRelics = [
         },
     },
     {
-        title: "Improved Strength and Dexterity, Reduced Vigor", 
-        desc: "Dexterity +19, Strength +9, Vigor -8 (160 HP)",
-        stacks: {self: false, selfType: true},
-        selfType: "statChange",
-        nightfarer: "Guardian",
-        effect: {
-            always: true,
-            vigor: -8,
-            dex: 19,
-            str: 9
-        },
-    },
-    {
-        title: "Improved Mind and Faith, Reduced Vigor", 
-        desc: "Mind +8 (40 FP), Faith +17, Vigor -6 (120 HP)",
-        stacks: {self: false, selfType: true},
-        selfType: "statChange",
-        nightfarer: "Guardian",
-        effect: {
-            always: true,
-            vigor: -6,
-            fai: 17,
-            mind: 8
-        },
-    },
-    {
         title: "Art Charge Activation Adds Poison Effect", 
         desc: "Ultimate Art deals 300 Poison Buildup.",
         stacks: {self: false, selfType: false},
@@ -170,18 +118,6 @@ const characterRelics = [
         nightfarer: "Ironeye",
         effect: {
             always: true,
-        },
-    },
-    {
-        title: "Improved Arcane, Reduced Dexterity", 
-        desc: "Dexterity -9, Arcane +15",
-        stacks: {self: false, selfType: true},
-        selfType: "statChange",
-        nightfarer: "Ironeye",
-        effect: {
-            always: true,
-            dex: -9,
-            arcane: 15
         },
     },
     {
@@ -463,4 +399,4 @@ const characterRelics = [
     },
 ]
 
-export default characterRelics
+export default deepCharacterRelics
