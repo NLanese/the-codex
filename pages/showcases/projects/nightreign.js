@@ -43,9 +43,6 @@ const silverLining = "#d4eeff"
     const [directory, setDirectory] = useAtom(directoryDataState)
     setDirectory("Private")
 
-    // Loading
-    const [loading, setLoading] = useState(true)
-
     // Nightfarer
     const [nightfarer, setNightfarer] = useState(false)
     const [lvl, setLvl] = useState(false)
@@ -336,12 +333,9 @@ function renderRelics(deepDisplayed){
         return(
             <div style={{ flex: 7, backgroundColor: nightShade}}>
                 <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                    {/* {renderRelic(relic4,4,deepDisplayed)}
-                    {renderRelic(relic5,5,deepDisplayed)}
-                    {renderRelic(relic6,6,deepDisplayed)} */}
-                    <Relic relic={relic1} id={1} depth={true}/>
-                    <Relic relic={relic2} id={2} depth={true}/>
-                    <Relic relic={relic3} id={3} depth={true}/>
+                    <Relic relic={relic4} id={4} depth={true}/>
+                    <Relic relic={relic5} id={5} depth={true}/>
+                    <Relic relic={relic6} id={6} depth={true}/>
                 </div>
             </div>
             
@@ -350,9 +344,6 @@ function renderRelics(deepDisplayed){
     return(
         <div style={{ flex: 7, backgroundColor: nightShade}}>
             <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                {/* {renderRelic(relic1,1)}
-                {renderRelic(relic2,2)}
-                {renderRelic(relic3,3)} */}
                 <Relic relic={relic1} id={1} depth={false}/>
                 <Relic relic={relic2} id={2} depth={false}/>
                 <Relic relic={relic3} id={3} depth={false}/>
@@ -362,19 +353,6 @@ function renderRelics(deepDisplayed){
     )
 }
 
-// const renderRelic = (relic, key, depth) => {
-//     const [cons, setCons] = useState(false)
-//     return(
-//         <OstCard key={key} style={{flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight}}>
-//             {renderRelicHeader(key, depth, cons, setCons)}
-//             <div style={{height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor}}>
-//                 {renderRelicEffect((relic?.slot1 ? relic.slot1 : null), `${key}1`, cons)}
-//                 {renderRelicEffect((relic?.slot2 ? relic.slot2 : null), `${key}2`, cons)}
-//                 {renderRelicEffect((relic?.slot3 ? relic.slot3 : null), `${key}3`, cons)}
-//             </div>
-//         </OstCard>
-//     )
-// }
 function Relic({ relic, id, depth }) {
     const [cons, setCons] = useState(false)
 
@@ -391,8 +369,6 @@ function Relic({ relic, id, depth }) {
 }
 
 function renderRelicHeader(key, depth, cons, setCons){
-    console.log(key)
-    console.log(depth)
     return(
         <div style={{height: '12%'}}>
             <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
@@ -442,43 +418,66 @@ function renderEffectToggles(){
     let keysOfEffects = Object.keys({...relics_effect_toggles})
     if (!keysOfEffects || keysOfEffects.length < 1){
         return(
-            <div style={{flex: 7}}>
+            <div style={{flex: 7, marginBottom: 10}}>
                 <p style={{...Styles.Fonts.basicX, color: silverLining}}>
                     All Relic Effects are always active. No Effects to toggle.
                 </p>
             </div>
         )
     }
-    const mainRender = () => {
-        return keysOfEffects.map((eff, i) => {
-            return(
-                <OstCard 
-                noShadow={true} 
-                style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10}}
-                onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
-                >
-                    <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
-                        {eff}
-                    </p>
-                    <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
-                    <OstCard style={{
-                        display: 'flex', justifySelf: 'center', alignSelf: 'center', 
-                        border: "2px solid #f2e144", borderRadius: 4, 
-                        height: 35, width: 35, margin: 0, padding: 0,
-                        backgroundColor: depthColor, fontSize: 13.5
-                    }}
-                    >
-                        {fillOrInput(eff, relics_effect_toggles[eff])}
-                    </OstCard>
-                    </div>
-                </OstCard>
-        )})
-    }
     return(
         <div style={{flex: 7, paddingTop: 10, paddingBottom: 10}}>
-            {mainRender()}
+            {renderSingleToggle(keysOfEffects)}
         </div>
     )
+}
+
+function renderSingleToggle(keysOfEffects){
+    return keysOfEffects.map((eff, i) => {
+        let type = (typeof relics_effect_toggles[eff])
+        return(
+            <OstCard 
+            noShadow={true} 
+            style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10, backgroundColor: '#efefef'}}
+            >
+                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
+                    {eff}
+                </p>
+                <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                    {renderToggle_Check_Or_Counter(eff, relics_effect_toggles, type)}
+                </div>
+            </OstCard>
+    )})
+}
+
+function renderToggle_Check_Or_Counter(eff, relics_effect_toggles, type){
+    if (type !== 'number'){
+        return(
+            <OstCard 
+            onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
+            style={{
+                display: 'flex', justifySelf: 'center', alignSelf: 'center', 
+                border: "2px solid #f2e144", borderRadius: 4, 
+                height: 35, width: 35, margin: 0, padding: 0,
+                backgroundColor: depthColor, fontSize: 13.5
+            }}>
+                {fillOrInput(eff, relics_effect_toggles[eff], type)}
+            </OstCard>
+        )
+    }
+    else{
+        return(
+            <OstCard 
+            style={{
+                display: 'flex', justifySelf: 'center', alignSelf: 'center', 
+                border: "2px solid #f2e144", borderRadius: 4, 
+                height: 35, width: 35, margin: 0, padding: 0,
+                backgroundColor: depthColor, fontSize: 13.5
+            }}>
+                {fillOrInput(eff, relics_effect_toggles[eff], type)}
+            </OstCard>
+        )
+    }
 }
 
 function fill(filled){
@@ -487,16 +486,16 @@ function fill(filled){
     }
 }
 
-function fillOrInput(eff, effVal){
-    if (effVal === true || effVal === false){
+function fillOrInput(eff, effVal, type){
+    if (type !== 'number'){
         return (fill(effVal))
     }
     else{
         return(
             <input type="number" style={{height: 30, width: 30}}
-                onClick={(e) => {
+                onChange={(e) => {
                     set_relic_effect_toggles(prev => 
-                        ({...prev, [eff]: e.target.value}))
+                        ({...prev, [eff]: parseInt(e.target.value, 10)}))
                     }
                 }
             />
@@ -1451,15 +1450,8 @@ function determineDamModifier(type, relCat=false, toggles){
 }
 
 function findDamageTypeFromEffects(type){
-    if (type === "allNeg"){
-        console.log("Looking for All Neg")
-    }
     return all_relic_effects.filter(eff => {
-        console.log(eff)
-        console.log(eff.effect)
-        console.log(eff.effect[type])
         if (eff.effect[type]){
-            console.log("THIS IS THE VALUE THAT SHOULD BE RETURNED ... ", eff)
             return eff
         }
     })
@@ -1574,7 +1566,7 @@ function findConditions(){
     set_relic_effect_toggles(objOfToggles) 
 }
 
-function determine_if_effect_is_active(effect, toggles){
+function determine_if_effect_is_toggled(effect, toggles){
     toggles = (toggles === {} ? false : toggles)
     if (!effect.effect.always){
         if (toggles){
@@ -1617,11 +1609,14 @@ function handleEffectState(effect, all, types){
 
 function stack_modifiers(key, totalMod, toggles){
     let mods = findDamageTypeFromEffects(key)
-    console.log("THIS IS WHAT IO GET BACK ... ", mods)
     mods.forEach(dam => {
-        console.log(dam)
-        if (determine_if_effect_is_active(dam, toggles)){
-            if (determine_if_effect_is_active(dam)){
+        if (determine_if_effect_is_toggled(dam, toggles)){
+            if (dam.effect.conditionCounter){
+                let mod = (( (dam.effect[key] - 1) * toggles[dam.effect.condition] ) + 1)
+                console.log(mod)
+                totalMod = totalMod * mod
+            }
+            else if (determine_if_effect_is_active(dam)){
                 totalMod = totalMod * dam.effect[key]
             }  
         }
