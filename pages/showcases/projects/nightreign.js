@@ -277,7 +277,10 @@ function renderNightFarer(){
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    options: ["Relics", "Deep Relics", "Effects", {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Items"],
+                    options: [
+                        "Relics", "Deep Relics", "Effects",
+                        // {tag: "Weapon Passives", textStyle: {fontSize: 11}}, {tag: "Blessings + Talismans", textStyle: {fontSize: 11}}, "Items"
+                        ],
                 }}
                 inputValue={selectionState}
             />
