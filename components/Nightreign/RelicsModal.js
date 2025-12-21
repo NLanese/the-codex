@@ -21,6 +21,7 @@ import regenRelics from "../../constants/projects/nightreign/relics/regenRelics"
 import regenDeepRelics from "../../constants/projects/nightreign/relics/deep_relics/regenRelics";
 
 import statRelics from "../../constants/projects/nightreign/relics/statRelics";
+import deepStatRelics from "../../constants/projects/nightreign/relics/deep_relics/statRelics";
 
 import miscRelics from "../../constants/projects/nightreign/relics/miscRelics";
 
@@ -124,8 +125,14 @@ useEffect(() => {
 
     // Stat Changes
     else if (effectCat === "Stat Changes"){
-        setSelectedList(statRelics)
-        setFilteredEffects(statRelics)
+        if (isDeep){
+            setSelectedList([...statRelics, ...deepStatRelics])
+            setFilteredEffects([...statRelics, ...deepStatRelics])
+        }
+        else{
+            setSelectedList(statRelics)
+            setFilteredEffects(statRelics)
+        }
     }
 
     // Character

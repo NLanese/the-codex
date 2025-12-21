@@ -1,6 +1,6 @@
 const deepStatRelics = [
     {
-        title: "Increased Max HP",
+        title: "Increased Max HP (Deep Relic)",
         desc: "Increase Max HP by 10%",
         stacks: {self: true, selfType: true},
         selfType: "statPercent",
@@ -22,7 +22,7 @@ const deepStatRelics = [
         }
     },
     {
-        title: "Increased Max FP",
+        title: "Increased Max FP (Deep Relic",
         desc: "Increase Max FP by 15%",
         stacks: {self: true, selfType: true},
         selfType: "statPercent",
@@ -65,3 +65,5 @@ const deepStatRelics = [
         }
     },
 ]
+
+export default deepStatRelics
