@@ -888,7 +888,7 @@ function renderBar(title, value, max, color){
                 <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: color}}>{title}</p>
                 <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
                     <div style={{backgroundColor: color, height: '100%', width: `${(value / max)}%`, display: "flex", justifyContent: 'center'}} >
-                        {value}
+                        {(value > 2) ? value : 2}
                     </div>
                 </div>
             </div>

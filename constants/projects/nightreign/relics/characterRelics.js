@@ -185,6 +185,19 @@ const characterRelics = [
         },
     },
     {
+        title: "Improved Vigor and Strength, Reduced Dexterity", 
+        desc: "Dexterity -13, Strength +20, Vigor +5",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Ironeye",
+        effect: {
+            always: true,
+            dex: -13,
+            vigor: 5,
+            strength: 20
+        },
+    },
+    {
         title: "Defeating enemies while Art is active ups attack power", 
         desc: "All damage increased by 15% per enemy killed while invisible. Each 15% stack lasts 30 seconds, new kills do not reset the timer.",
         stacks: {self: false, selfType: false},
@@ -222,6 +235,32 @@ const characterRelics = [
         nightfarer: "Duchess",
         effect: {
             always: true,
+        },
+    },
+    {
+        title: "Improved Vigor and Strength, Reduced Mind", 
+        desc: "Mind -14 (70 FP), Strength +24, Vigor +3 (60 HP)",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Duchess",
+        effect: {
+            always: true,
+            mind: -14,
+            vigor: 3,
+            strength: 24
+        },
+    },
+    {
+        title: "Improved Mind and Faith, Reduced Intelligence", 
+        desc: "Intelligence -5, Faith +13, Mind +3 (15 FP)",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Duchess",
+        effect: {
+            always: true,
+            intl: -5,
+            fai: 13,
+            mind: 3
         },
     },
     {
@@ -270,6 +309,32 @@ const characterRelics = [
         },
     },
     {
+        title: "Improved Mind and Intelligence, Reduced Vigor and Endurance", 
+        desc: "Vigor -8 (160 HP), Endurance -4, Intelligence +35, Mind +9 (45 FP)",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Raider",
+        effect: {
+            always: true,
+            vigor: -8,
+            end: -4,
+            intl: 35,
+            mind: 9
+        },
+    },
+    {
+        title: "Improved Arcane, Reduced Vigor", 
+        desc: "Vigor -4 (80 HP), Arcane +17",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Raider",
+        effect: {
+            always: true,
+            vigor: -4,
+            arcane: 17,
+        },
+    },
+    {
         title: "Trigger ghostflame explosion during Ultimate Art activation", 
         desc: "Performs a ghostflame 'explosion' that does 20 base magic damage. It may tickle a foot soldier. Never use this.",
         stacks: {self: false, selfType: false},
@@ -297,6 +362,31 @@ const characterRelics = [
         nightfarer: "Revenant",
         effect: {
             always: true
+        },
+    },
+    {
+        title: "Improved Vigor and Endurance, Reduced Mind", 
+        desc: "Mind -11 (55 FP), Vigor +5 (35 HP), Endurance +5 (10 Stamina)",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Revenant",
+        effect: {
+            always: true,
+            mind: -11,
+            vigor: 5,
+            end: 5
+        },
+    },
+    {
+        title: "Improved Strength, Reduced Faith", 
+        desc: "Faith -6, Strength +25",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Revenant",
+        effect: {
+            always: true,
+            fai: -6,
+            str: 25,
         },
     },
     {
@@ -329,6 +419,18 @@ const characterRelics = [
             always: false,
             allDamage: 1.16,
             condition: "20 Seconds after using Ultimate Art"
+        },
+    },
+    {
+        title: "Improved Vigor, Endurance, and Dexterity, Reduced Intelligence and Faith", 
+        desc: "Inteligence / Faith -10, Dexterity +20, Endurance +5 (10 Stamina), Vigor +4 (80 HP)",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Recluse",
+        effect: {
+            always: true,
+            fai: -6,
+            str: 25,
         },
     },
     {
