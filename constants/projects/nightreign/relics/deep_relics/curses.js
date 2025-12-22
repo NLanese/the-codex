@@ -134,6 +134,26 @@ const curses = [
             always: true
         }
     },
+    {
+        title: "Reduced Flask HP Restoration", 
+        desc: "Flask Restoration Reduced 15%",
+        stacks: {self: true, selfType: true},
+        selfType: "flaskCurse",
+        effect: {
+            flaskRate: .85,
+            always: true
+        }
+    },
+    {
+        title: "Ultimate Art Charging Impaired", 
+        desc: "All Ultimate Guage increases reduced by 85%",
+        stacks: {self: true, selfType: true},
+        selfType: "ultCurse",
+        effect: {
+            ultRate: .85,
+            always: true
+        }
+    },
 ]
 
 export default curses
