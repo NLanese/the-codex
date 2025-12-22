@@ -423,14 +423,30 @@ const characterRelics = [
     },
     {
         title: "Improved Vigor, Endurance, and Dexterity, Reduced Intelligence and Faith", 
-        desc: "Inteligence / Faith -10, Dexterity +20, Endurance +5 (10 Stamina), Vigor +4 (80 HP)",
+        desc: "Intelligence / Faith -10, Dexterity +20, Endurance +5 (10 Stamina), Vigor +4 (80 HP)",
         stacks: {self: false, selfType: true},
         selfType: "statChange",
         nightfarer: "Recluse",
         effect: {
             always: true,
-            fai: -6,
-            str: 25,
+            fai: -10,
+            intl: -10,
+            end: 5,
+            vigor: 4,
+            dex: 20
+        },
+    },
+    {
+        title: "Improved Intelligence and Faith, Reduced Mind", 
+        desc: "Mind -13 (65 FP), Intelligence and Faith +12",
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Recluse",
+        effect: {
+            always: true,
+            fai: 12,
+            intl: 12,
+            mind: -13,
         },
     },
     {

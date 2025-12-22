@@ -801,12 +801,12 @@ function renderAttribute(atr){
     let color = "grey"
     if (atr === "Strength") {
         state = str + findAttributeTypeFromEffects("str")
-        max = .62
+        max = .64
         color = "#9c2400"
     }
     else if (atr === "Dexterity") {
         state = dex + findAttributeTypeFromEffects("dex")
-        max = .68
+        max = .64
         color = "#f2970f"
     }
     else if (atr === "Vigor") {
@@ -826,7 +826,7 @@ function renderAttribute(atr){
     }
     else if (atr === "Faith") {
         state = fai + findAttributeTypeFromEffects("fai")
-        max = .58
+        max = .68
         color = graceGiven
     }
     else if (atr === "Mind") {
