@@ -18,7 +18,6 @@ import determineBaseNegations from "../../../constants/projects/nightreign/night
 import determineBaseVitals from "../../../constants/projects/nightreign/nightfarers/determineBaseVitals";
 import RelicsModal from "../../../components/Nightreign/RelicsModal";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-import { type } from "os";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -1332,6 +1331,11 @@ function determineDamModifier(type, relCat=false, toggles){
                 totalMod = stack_modifiers('dargonCultDamage', totalMod, toggles)
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
             }
+            // Lightning Skill Damage 
+            else if (type === "Lightning Skill"){
+                totalMod = stack_modifiers('lightningDamage', totalMod, toggles)
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
+            }
 
 
     //////////
@@ -1342,6 +1346,11 @@ function determineDamModifier(type, relCat=false, toggles){
             else if (type === "Fire"){
                 totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('fireDamage', totalMod, toggles)
+            }
+            // Fire Skill Damage 
+            else if (type === "Fire Skill"){
+                totalMod = stack_modifiers('fireDamage', totalMod, toggles)
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
             // Finds "Flame Incantation Damage Modifiers" and applies
             else if (type === "Fire Incants"){
@@ -1380,6 +1389,11 @@ function determineDamModifier(type, relCat=false, toggles){
             else if (type === "Holy"){
                 totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('holyDamage', totalMod, toggles)
+            }
+            // Lightning Skill Damage 
+            else if (type === "Holy Skill"){
+                totalMod = stack_modifiers('holyDamage', totalMod, toggles)
+                totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
             // Finds "Holy Incantation Damage Modifiers" and applies
             else if (type === "Holy Incants"){
