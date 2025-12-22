@@ -15,7 +15,7 @@ const miscRelics = [
         selfType: "runeIncrease",
         effect: {
             always: true,
-            runeIncrease: 1.035
+            runeRate: 1.035
         }
     },
     {
