@@ -154,6 +154,93 @@ const curses = [
             always: true
         }
     },
+    {
+        title: "All Resistances Down", 
+        desc: "All Ailment Resistances Reduced by 80. THIS IS LETHAL, DO NOT USE IT WITHOUT COUNTER MEASURES",
+        stacks: {self: true, selfType: true},
+        selfType: "allAilments",
+        effect: {
+            frostRes: -80,
+            bleedRes: -80,
+            blightRes: -80,
+            poisonRes: -80,
+            rotRes: -80,
+            sleepRes: -80,
+            madRes: -80,
+            always: true
+        }
+    },
+    {
+        title: "More Damage Taken After Evasion", 
+        desc: "For about 5 frames after you exit the iFrame of a dodge, All Damage Negation is lowered 45%",
+        stacks: {self: true, selfType: true},
+        selfType: "dodgeNeg",
+        effect: {
+            allNeg: 0.55,
+            always: false,
+            condition: "Immediately after a dodge"
+        }
+    },
+    {
+        title: "Repeated Evasions Lower Damage Negation", 
+        desc: "2 Back-to-Back Dodges will result in 23% Damage Negation Reduction. 3 of such dodges will result in 35% reduction",
+        stacks: {self: true, selfType: true},
+        selfType: "repeatDodgeNeg",
+        effect: {
+            allNeg: 0.65,
+            always: false,
+            condition: "After a back to back dodge"
+        }
+    },
+    {
+        title: "Reduced Damage Negation for Flask Usages", 
+        desc: "While in the flask drinking animation, damage negation is reduced 45%",
+        stacks: {self: true, selfType: true},
+        selfType: "flaskNeg",
+        effect: {
+            allNeg: 0.65,
+            always: false,
+            condition: "While drinking a flask"
+        }
+    },
+    {
+        title: "Lower Attack When Below Max HP", 
+        desc: "All damage reduced by 8.5% when below 85% Max HP",
+        stacks: {self: true, selfType: true},
+        selfType: "healthNeg",
+        effect: {
+            allNeg: 0.915,
+            always: false,
+            condition: "While below 85% Max Health"
+        }
+    },
+    {
+        title: "Poison Buildup when Below Max HP", 
+        desc: "2 Poison Buildup per tick (.22 seconds)  when below 85% max HP",
+        stacks: {self: true, selfType: true},
+        selfType: "poisonMaxHP",
+        effect: {
+            always: true,
+        }
+    },
+    {
+        title: "Rot Buildup when Below Max HP", 
+        desc: "2 Rot Buildup per tick (.22 seconds) when below 85% max HP",
+        stacks: {self: true, selfType: true},
+        selfType: "rotMaxHP",
+        effect: {
+            always: true,
+        }
+    },
+    {
+        title: "Near Death Reduces Max HP", 
+        desc: "Max HP Reduced 25% After being Revivied when Down for the next 60 seconds",
+        stacks: {self: true, selfType: true},
+        selfType: "maxHPDown",
+        effect: {
+            always: true,
+        }
+    },
 ]
 
 export default curses
