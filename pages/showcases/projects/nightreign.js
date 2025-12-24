@@ -849,6 +849,7 @@ function renderAttribute(atr){
 
 function renderBars(all_relic_effects){
     let hpVal = hp + findVitalsMods("HP")
+    console.log(hpVal)
     let fpVal = fp + findVitalsMods("FP")
     let stamVal = stam + findVitalsMods("Stam")
     return(
@@ -1649,10 +1650,10 @@ function return_modified_vital(vital, vitalVal, all_relic_effects){
     let foundModifiers = findPercentEffectFromEffects(vital, all_relic_effects)
     if (foundModifiers.length > 0){
         foundModifiers.forEach(percentInc => {
-            vitalVal = vitalVal * percentInc
+            vitalVal = vitalVal * percentInc.effect[vital]
         })
     }
-    return vitalVal
+    return Math.round(vitalVal)
 }
 
 //////////////
