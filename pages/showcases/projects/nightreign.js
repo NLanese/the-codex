@@ -941,25 +941,55 @@ function renderRelicModal(){
 function renderCredits(pos){
     if (!isMobile && pos === "bottom"){
         return(
-            <div style={{alignSelf: 'flex-end', marginTop: 90, flex: 1}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
-                </p>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
-                </p>
+            <div style={{alignSelf: 'flex-end', marginTop: 90, flex: 1, display: 'flex', flexDirection: 'row'}}>
+                <div style={{flex: 8}}>
+                    <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                        Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
+                    </p>
+                    <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                        Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
+                    </p>
+                </div>
+                <div style={{flex: 4}}>
+                    <OstCard style={{backgroundColor: silveredNight, height: '100%', width: '60%', marginLeft: '20%', fontSize: 30, textAlign: 'center', paddingBottom: 0, marginBottom: 0}}
+                        onClick={() => {
+                            window.open(
+                              "https://www.reddit.com/r/Nightreign/comments/1ppvb4w/build_calculator_released/",
+                              "_blank",
+                              "noopener,noreferrer"
+                            )
+                          }}
+                    >
+                        Bugs or Comments? Post Here
+                    </OstCard>
+                </div>
             </div>
         )
     }
     else if (isMobile && pos === "top"){
         return(
-            <div style={{alignSelf: 'flex-end', marginTop: 0, flex: 1}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
-                </p>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
-                </p>
+            <div style={{alignSelf: 'flex-end', marginTop: 0, flex: 1, display: 'flex', flexDirection: 'row'}}>
+                <div style={{flex: 8}}>
+                    <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                        Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
+                    </p>
+                    <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                        Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
+                    </p>
+                </div>
+                <div style={{flex: 4}}>
+                    <OstCard style={{backgroundColor: silveredNight, height: '80%', width: '60%', marginLeft: '20%', fontSize: 20, textAlign: 'center', paddingBottom: 0, marginBottom: 0}}
+                        onClick={() => {
+                            window.open(
+                              "https://www.reddit.com/r/Nightreign/comments/1ppvb4w/build_calculator_released/",
+                              "_blank",
+                              "noopener,noreferrer"
+                            )
+                          }}
+                    >
+                        Bugs or Comments? Post Here
+                    </OstCard>
+                </div>
             </div>
         )
     }
