@@ -700,24 +700,28 @@ function renderStat(type, variety, toggles, extras=false){
 
     if (extras){
         return(
-            <OstCard noShadow={true} rounded={false}style={cardStyle} onClick={() => {setExpandedStat(type)}}>
+            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0}} onClick={() => {setExpandedStat(type)}}>
+                <div style={cardStyle}>
+                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
+                        {type} {caption} - 
+                    </p>
+                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
+                        determineRenderedValue(type, variety, toggles)}
+                    </p>
+                </div>
+            </OstCard>
+        )
+    }
+    return(
+        <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0}}>
+            <div style={cardStyle}>
                 <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
                     {type} {caption} - 
                 </p>
                 <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
                     determineRenderedValue(type, variety, toggles)}
                 </p>
-            </OstCard>
-        )
-    }
-    return(
-        <OstCard noShadow={true} rounded={false} style={cardStyle}>
-            <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
-                {type} {caption} - 
-            </p>
-            <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                determineRenderedValue(type, variety, toggles)}
-            </p>
+            </div>
         </OstCard>
     )
 }

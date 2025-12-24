@@ -22,7 +22,7 @@ const deepStatRelics = [
         }
     },
     {
-        title: "Increased Max FP (Deep Relic",
+        title: "Increased Max FP (Deep Relic)",
         desc: "Increase Max FP by 15%",
         stacks: {self: true, selfType: true},
         selfType: "statPercent",
