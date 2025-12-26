@@ -11,11 +11,8 @@ import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-
 
 // Nighteign Functions
-import determineBaseNegations from "../../../constants/projects/nightreign/nightfarers/determineBaseNegations";
 import determineBaseVitals from "../../../constants/projects/nightreign/nightfarers/determineBaseVitals";
 
 // Nightreign Components
