@@ -40,6 +40,16 @@ const defensiveRelics = [
         }
     },
     {
+        title: "Improved Fire Damage Negation", 
+        desc: "10% Boost to Fire Damage Negation",
+        stacks: {self: true, selfType: true},
+        selfType: "fireNeg",
+        effect: {
+            fireNegation: 1.10,
+            always: true,
+        }
+    },
+    {
         title: "Improved Damage Negation at Low HP", 
         desc: "16% Boost to All Damage Negation when below 40% Health",
         stacks: {self: true, selfType: true},

@@ -81,8 +81,8 @@ export const HeaderBar = ({
         if (directory === "Portfolio"){
             return portfolioTabs(setActiveTabBar, router)
         }
-        else if (directory === "Private"){
-            return ["Nightreign Build Calculator"]
+        else if (directory === "Nightreign"){
+            return ["Nightreign Build Calculator", "Map Walk Thrus", "Boss Stats"]
         }
         else if (token){
             return userTabs(setActiveTabBar, router)
