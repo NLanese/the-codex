@@ -20,7 +20,6 @@ export default function BossStats({
     const harmonia = "/assets/project_images/nightreign/harmonia.png"
     const strag = "/assets/project_images/nightreign/strag.png"
 
-    const depthColor = '#161754'
     const nightShade = "#2b2161"
     const graceGiven = "#f2e144"
     const frenzyTouched = "#ff5100"
@@ -30,6 +29,7 @@ export default function BossStats({
     const silverLining = "#d4eeff"
     const slateMiasma = "#595d6b"
     const traceNight = '#9b9fbf'
+    const scarletRot = '#754142'
 
     /////////////
     // Renders //
@@ -115,7 +115,7 @@ export default function BossStats({
             <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 500, marginBottom: 20}}>
                 {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
                 {renderBossCard(harmonia, "The Balancers", silverLining)}
-                {renderBossCard(strag, "The Dreglord", silverLining)}
+                {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)}
             </div>
         </div>
     )
