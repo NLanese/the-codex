@@ -82,7 +82,20 @@ export const HeaderBar = ({
             return portfolioTabs(setActiveTabBar, router)
         }
         else if (directory === "Nightreign"){
-            return ["Nightreign Build Calculator", "Map Walk Thrus", "Boss Stats"]
+            return [
+                {
+                    title: "Nightreign Build Calculator",
+                    onClick: (() => setActiveTabBar("Main"))
+                },
+                {
+                    title: "Map Walk Thrus",
+                    onClick: (() => setActiveTabBar("Maps"))
+                },
+                {
+                    title: "Boss Stats",
+                    onClick: (() => setActiveTabBar("Boss"))
+                }
+            ]
         }
         else if (token){
             return userTabs(setActiveTabBar, router)

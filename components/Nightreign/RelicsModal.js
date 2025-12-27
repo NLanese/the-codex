@@ -159,7 +159,6 @@ useEffect(() => {
 }, [effectCat])
 
 useEffect(() => {
-    console.log(search)
     if (search === ""){
         setFilteredEffects([...selectedList])
     }

@@ -509,7 +509,6 @@ function determineRenderedValue(type, variety, toggles){
     if (variety === "neg"){
         let negationBases = getBaseNegations(nightfarer)
         if (type === "Physical"){
-            console.log(negationBases.phys)
             return `${((determineDamModifier(type, variety, toggles) * negationBases.phys) * 100).toFixed(0)}%`
         }
         else if (type === "Slash"){
@@ -577,7 +576,6 @@ function determineRenderedValue(type, variety, toggles){
 
 function getBaseNegations(){
     let bases = determineBaseNegations(nightfarer)
-    console.log(bases)
     return bases
 }
 
@@ -798,7 +796,6 @@ function determineDamModifier(type, relCat=false, toggles){
 
     /// NEGATIONS //
     else if (relCat === "neg"){
-        console.log("Checking Negations for ", type)
 
         // Finds All Negations and Applies
         totalMod = stack_modifiers('allNegation', totalMod, toggles)   

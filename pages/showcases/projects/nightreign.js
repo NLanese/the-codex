@@ -4,7 +4,7 @@ import ReactModal from 'react-modal';
 
 // Recoil
 import { useAtom } from "jotai";
-import { directoryDataState } from "../../../jotai/atoms";
+import { directoryDataState, tabBarState } from "../../../jotai/atoms";
 
 // Styles 
 import Styles from "../../../styles/styles";
@@ -19,6 +19,7 @@ import determineBaseVitals from "../../../constants/projects/nightreign/nightfar
 import RelicsModal from "../../../components/Nightreign/RelicsModal";
 import BasePlayerSelections from "../../../components/Nightreign/BasePlayerSelections";
 import StatSheet from "../../../components/Nightreign/StatSheet";
+import BossStats from "../../../components/Nightreign/BossStats";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -42,6 +43,18 @@ const silverLining = "#d4eeff"
     // Directory
     const [directory, setDirectory] = useAtom(directoryDataState)
     setDirectory("Nightreign")
+    const [currentTab, setCurrentTab] = useAtom(tabBarState)
+    useEffect(() => {
+        if (currentTab === "Boss" || currentTab === "Maps"){
+            setScreen(currentTab)
+        }
+        else{
+            setScreen("Main")
+        }
+    },[currentTab])
+
+    // Screen
+    const [screen, setScreen] = useState("Main")
 
     // Nightfarer
     const [nightfarer, setNightfarer] = useState(false)
@@ -96,7 +109,6 @@ const silverLining = "#d4eeff"
     const [selectionState, setSelectionState] = useState("Relics") 
     const [relicsModal, setRelicsModal] = useState(false)
     const [cursedModal, setCursedModal] = useState(false)
-    const [expandedStat, setExpandedStat] = useState(false)
 
     // Vitals
     const [hp, setHP] = useState(1)
@@ -536,6 +548,20 @@ function renderCredits(pos){
     }
 }
 
+function RENDER_MAIN(){
+    if (screen  === "Main"){
+        return(
+            <div style={{flex: 11}}>
+            {renderRelicModal()}
+            {renderSelectionsContainer(relics_effect_toggles, all_relic_effects)}
+            </div>
+        )
+    }
+    else if (screen === "Boss"){
+        return  <BossStats />
+    }
+}
+
 ///////////////
 // Functions //
 ///////////////
@@ -796,10 +822,7 @@ function closeModal(){
 return(
     <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
         {renderCredits("top")}
-        <div style={{flex: 11}}>
-            {renderRelicModal()}
-            {renderSelectionsContainer(relics_effect_toggles, all_relic_effects)}
-        </div>
+        {RENDER_MAIN()}
         {renderCredits("bottom")}
     </div>
 )
