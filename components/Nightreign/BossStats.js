@@ -51,15 +51,15 @@ export default function BossStats({
         return(
             <div style={{display: 'flex', flexDirection: 'row'}}>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: silverLining}}>Phase 1</p>
+                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: silverLining, fontSize: 20}}>Phase 1</p>
                     {renderNegations(boss, 1)}
                 </div>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: traceNight}}>Phase 2</p>
+                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: traceNight, fontSize: 20}}>Phase 2</p>
                     {renderNegations(boss, 2)}
                 </div>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: gloomGlow, color: '#efefef'}}>Phase 3</p>
+                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: gloomGlow, color: '#efefef', fontSize: 20}}>Phase 3</p>
                     {renderNegations(boss, 3)}
                 </div>
             </div>
@@ -69,6 +69,7 @@ export default function BossStats({
     function renderNegations(){
         return(
             <div style={{ width: '94%', marginLeft: '3%'}}>
+                {renderSingleNegation("Physical")}
                 {renderSingleNegation("Strike")}
                 {renderSingleNegation("Pierce")}
                 {renderSingleNegation("Slash")}
@@ -83,10 +84,10 @@ export default function BossStats({
     function renderSingleNegation(type){
         return(
             <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1}}>
-                <p style={{padding: 0, margin: 0}}>
+                <p style={{padding: 0, margin: 0, fontSize: 20}}>
                     {type}: 
                 </p>
-                <p style={{padding: 0, margin: 0}}>
+                <p style={{padding: 0, margin: 0, fontSize: 20}}>
                     0 
                 </p>
             </OstCard>
@@ -95,24 +96,24 @@ export default function BossStats({
 
     return(
         <div style={{padding: 20}}>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 500, marginBottom: 20}}>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                 {renderBossCard(gladius, "Gladius (Tricephalos)", frenzyTouched)}
                 {renderBossCard(adel, "Adel (Gaping Jaw)", gloomGlow)}
                 {renderBossCard(maris, "Maris (Augur)", nightShade)}
                 
             </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 500, marginBottom: 20}}>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                 {renderBossCard(pest, "Gnoster (Sentient Pest)", silveredNight)}
                 {renderBossCard(pest, "Faurtis (Sentient Pest)", silveredNight)}
                 {renderBossCard(pest, "Animus (Sentient Pest)", silveredNight)}
             </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 500, marginBottom: 20}}>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                 {renderBossCard(libra, "Libra (Equilibruis Beast)", graceGiven)}
                 {renderBossCard(fulghor, "Fulghor (Darkdrift Knight)", greyOfNight)}
                 {renderBossCard(caligo, "Caligo (Fissure in the Fog", traceNight)}
                 
             </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 500, marginBottom: 20}}>
+            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                 {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
                 {renderBossCard(harmonia, "The Balancers", silverLining)}
                 {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)}

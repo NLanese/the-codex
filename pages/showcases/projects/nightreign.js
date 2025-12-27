@@ -529,7 +529,7 @@ function renderCredits(pos){
                     </p>
                 </div>
                 <div style={{flex: 4}}>
-                    <OstCard style={{backgroundColor: silveredNight, height: '50%', width: '60%', marginLeft: '20%', fontSize: 20, textAlign: 'center', paddingBottom: 0, marginBottom: 0}}
+                    <OstCard style={{backgroundColor: silveredNight, height: '70%', width: '60%', marginLeft: '20%', fontSize: 20, textAlign: 'center', paddingBottom: 0, marginBottom: 0}}
                         onClick={() => {
                             window.open(
                               "https://www.reddit.com/r/Nightreign/comments/1ppvb4w/build_calculator_released/",
