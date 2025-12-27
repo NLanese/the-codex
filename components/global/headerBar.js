@@ -87,10 +87,10 @@ export const HeaderBar = ({
                     title: "Nightreign Build Calculator",
                     onClick: (() => setActiveTabBar("Main"))
                 },
-                {
-                    title: "Map Walk Thrus",
-                    onClick: (() => setActiveTabBar("Maps"))
-                },
+                // {
+                //     title: "Map Walk Thrus",
+                //     onClick: (() => setActiveTabBar("Maps"))
+                // },
                 {
                     title: "Boss Stats",
                     onClick: (() => setActiveTabBar("Boss"))
