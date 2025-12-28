@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from "react";
 import { OstCard } from "../../OstrichComponents/Format/OstCard";
+import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
 
 export default function BossStats({
@@ -31,6 +32,12 @@ export default function BossStats({
     const slateMiasma = "#595d6b"
     const traceNight = '#9b9fbf'
     const scarletRot = '#754142'
+
+    ///////////
+    // State //
+    ///////////
+
+    const [screen, setScreen] = useState("Nightlords")
 
     /////////////
     // Renders //
@@ -122,30 +129,81 @@ export default function BossStats({
         )
     }
 
+    function main_screen_render(){
+        if (screen === "Nightlords"){
+            return _nightlords()
+        }
+    }
+
+    function _nightlords(){
+        return(
+            <div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(gladius, "Gladius (Tricephalos)", frenzyTouched)}
+                    {renderBossCard(adel, "Adel (Gaping Jaw)", gloomGlow)}
+                    {renderBossCard(maris, "Maris (Augur)", nightShade)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(pest, "Gnoster (Sentient Pest)", silveredNight)}
+                    {renderBossCard(pest, "Faurtis (Sentient Pest)", silveredNight)}
+                    {renderBossCard(pest, "Animus (Sentient Pest)", silveredNight)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(libra, "Libra (Equilibruis Beast)", graceGiven)}
+                    {renderBossCard(fulghor, "Fulghor (Darkdrift Knight)", greyOfNight)}
+                    {renderBossCard(caligo, "Caligo (Fissure in the Fog", traceNight)}
+                    
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
+                    {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
+                    {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
+                </div>
+            </div>
+        )
+    }
+
+    function _major_field_bosses(){
+        return(
+            <div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(gladius, "Gladius (Tricephalos)", frenzyTouched)}
+                    {renderBossCard(adel, "Adel (Gaping Jaw)", gloomGlow)}
+                    {renderBossCard(maris, "Maris (Augur)", nightShade)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(pest, "Gnoster (Sentient Pest)", silveredNight)}
+                    {renderBossCard(pest, "Faurtis (Sentient Pest)", silveredNight)}
+                    {renderBossCard(pest, "Animus (Sentient Pest)", silveredNight)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(libra, "Libra (Equilibruis Beast)", graceGiven)}
+                    {renderBossCard(fulghor, "Fulghor (Darkdrift Knight)", greyOfNight)}
+                    {renderBossCard(caligo, "Caligo (Fissure in the Fog", traceNight)}
+                    
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
+                    {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
+                    {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
+                </div>
+            </div>
+        )
+    }
+
+    /////////////////
+    // Main Render //
+    /////////////////
+
     return(
         <div style={{padding: 20}}>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                {renderBossCard(gladius, "Gladius (Tricephalos)", frenzyTouched)}
-                {renderBossCard(adel, "Adel (Gaping Jaw)", gloomGlow)}
-                {renderBossCard(maris, "Maris (Augur)", nightShade)}
-                
+            <div style={{padding: 20}}>
+                <OstrichTabBar style={{width: '100%'}}
+                value={screen}
+                tabs={["Nightlords", "Day 1 and 2 Bosses", "Major Field Bosses", "Minor Field Boss"]}
+                />
             </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                {renderBossCard(pest, "Gnoster (Sentient Pest)", silveredNight)}
-                {renderBossCard(pest, "Faurtis (Sentient Pest)", silveredNight)}
-                {renderBossCard(pest, "Animus (Sentient Pest)", silveredNight)}
-            </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                {renderBossCard(libra, "Libra (Equilibruis Beast)", graceGiven)}
-                {renderBossCard(fulghor, "Fulghor (Darkdrift Knight)", greyOfNight)}
-                {renderBossCard(caligo, "Caligo (Fissure in the Fog", traceNight)}
-                
-            </div>
-            <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
-                {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
-                {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
-            </div>
+            {main_screen_render()}
         </div>
     )
 }

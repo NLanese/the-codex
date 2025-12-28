@@ -9,6 +9,7 @@ export const OstrichTabBar = ({
     startedActive = false,
     startingTabByTitle = "",     // the Title of the Tab you want selected by default
     startingTabByIndex = 0,     // the Index of the Tab you want selected by default
+    value,
 
     tabs,                           // Array of Objects for Tab Information
 
@@ -67,6 +68,10 @@ export const OstrichTabBar = ({
             checkAllStyles()
             hasNeededValues()
         }, [])
+
+        useEffect(() => {
+            findValue(value)
+        },[value])
 
         // Sets Starting Tab
         useEffect(() => {
@@ -150,7 +155,7 @@ export const OstrichTabBar = ({
                     borderLeft: "1px solid black",
                     borderTop: "1px solid black",
                     borderBottom: "1px solid black",
-                    width: 300
+                    minWidth: 300
                 }
                 // let surrogate = style ? {...style} : null
                 setBarStyle({...tempBar, ...style})
@@ -226,6 +231,19 @@ export const OstrichTabBar = ({
                    throw new Error("No valid 'tabs' prop provided! This needs to be an array of objects. You provided ", tabs)
                 }
 
+            }
+
+            function findValue(value){
+                tabs.forEach((tab) => {
+                    if (value === tab){
+                        setActiveTab(tab)
+                        return
+                    }
+                    else if (tab?.title === value){
+                        setActiveTab(tab)
+                        return
+                    }
+                })
             }
 
         // Handlers / Determinators //
