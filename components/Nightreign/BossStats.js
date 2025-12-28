@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from "react";
 import { OstCard } from "../../OstrichComponents/Format/OstCard";
+import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
 
 export default function BossStats({
 }){
@@ -36,59 +37,86 @@ export default function BossStats({
     /////////////
 
     function renderBossCard(img, name, color){
+        let abv = name.split(" ")[0]
         return(
             <OstCard style={{flex: 3, padding: 0, margin: 0, backgroundColor: slateMiasma}}>
                     <OstCard rounded={false} noShadow={true} imageSrc={img} templateStyle={1} style={{height: '50%', width: '100%', padding: 0, margin: 0, backgroundColor: color}}/>
                     <p style={{textAlign: 'center', fontSize: 24, padding: 0, margin: 3}}>
                         {name}
                     </p>
-                    {renderNegationTable()}
+                    {renderNegationTable(abv)}
             </OstCard>
         )
     }
 
     function renderNegationTable(boss){
+        let stats = nightlordStats[boss] ? nightlordStats[boss] : null
+        console.log(stats)
         return(
             <div style={{display: 'flex', flexDirection: 'row'}}>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: silverLining, fontSize: 20}}>Phase 1</p>
-                    {renderNegations(boss, 1)}
+                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: silverLining, fontSize: 20}}>Negations</p>
+                    {renderNegations(stats)}
                 </div>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: traceNight, fontSize: 20}}>Phase 2</p>
-                    {renderNegations(boss, 2)}
-                </div>
-                <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: gloomGlow, color: '#efefef', fontSize: 20}}>Phase 3</p>
-                    {renderNegations(boss, 3)}
-                </div>
+                <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: gloomGlow, color: silverLining, fontSize: 20}}>Resistances</p>
+                    {renderResistances(stats)}
+               </div>
             </div>
         )
     }
 
-    function renderNegations(){
+    function renderNegations(stats){
         return(
             <div style={{ width: '94%', marginLeft: '3%'}}>
-                {renderSingleNegation("Physical")}
-                {renderSingleNegation("Strike")}
-                {renderSingleNegation("Pierce")}
-                {renderSingleNegation("Slash")}
-                {renderSingleNegation("Fire")}
-                {renderSingleNegation("Magic")}
-                {renderSingleNegation("Holy")}
-                {renderSingleNegation("Lightning")}
+                {renderSingleNegation("Physical", stats)}
+                {renderSingleNegation("Strike", stats)}
+                {renderSingleNegation("Pierce", stats)}
+                {renderSingleNegation("Slash", stats)}
+                {renderSingleNegation("Fire", stats)}
+                {renderSingleNegation("Magic", stats)}
+                {renderSingleNegation("Holy", stats)}
+                {renderSingleNegation("Lightning", stats)}
             </div>
         )
     }
 
-    function renderSingleNegation(type){
+    function renderResistances(stats){
         return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1}}>
+            <div style={{ width: '94%', marginLeft: '3%'}}>
+                {renderSingleResist("Poison", stats)}
+                {renderSingleResist("Rot", stats)}
+                {renderSingleResist("Frostbite", stats)}
+                {renderSingleResist("Bleed", stats)}
+                {renderSingleResist("Madness", stats)}
+                {renderSingleResist("Sleep", stats)}
+            </div>
+        )
+    }
+
+    function renderSingleNegation(type, stats){
+        let value = stats ? stats[type] : 0
+        return(
+            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black'}}>
                 <p style={{padding: 0, margin: 0, fontSize: 20}}>
                     {type}: 
                 </p>
+                <p style={{padding: 0, margin: 0, fontSize: 20, color: value > 0 ? frenzyTouched : value === 0 ? 'black' : silveredNight}}>
+                    {value} 
+                </p>
+            </OstCard>
+        )
+    }
+
+    function renderSingleResist(type, stats){
+        let value = stats ? stats[type] : 0
+        return(
+            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black'}}>
                 <p style={{padding: 0, margin: 0, fontSize: 20}}>
-                    0 
+                    {type}: 
+                </p>
+                <p style={{padding: 0, margin: 0, fontSize: 20, color: value === "Immune" ? frenzyTouched : value > 500 ? frenzyTouched : value > 250 ? 'black' : silveredNight}}>
+                    {value} 
                 </p>
             </OstCard>
         )
@@ -115,8 +143,8 @@ export default function BossStats({
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                 {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
-                {renderBossCard(harmonia, "The Balancers", silverLining)}
-                {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)}
+                {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
+                {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
             </div>
         </div>
     )
