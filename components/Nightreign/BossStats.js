@@ -16,7 +16,6 @@ export default function BossStats({
     const pest = "/assets/project_images/nightreign/pest.png"
     const maris = "/assets/project_images/nightreign/maris.png"
     const libra = "/assets/project_images/nightreign/libra.png"
-
     const fulghor = "/assets/project_images/nightreign/fulghor.png"
     const caligo = "/assets/project_images/nightreign/caligo.png"
     const heolster = "/assets/project_images/nightreign/heolster.png"
@@ -28,6 +27,14 @@ export default function BossStats({
     const bellBearing = "/assets/project_images/nightreign/bellBearing.png"
     const gapingDragon = "/assets/project_images/nightreign/gapingDragon.png"
     const wormFace = "/assets/project_images/nightreign/wormface.png"
+    const gargoyle = "/assets/project_images/nightreign/valiantGargoyle.png"
+    const cavalry = "/assets/project_images/nightreign/cavalry.png"
+    const freja = "/assets/project_images/nightreign/freja.png"
+    const smelter = "/assets/project_images/nightreign/smelter.png"
+    const commander = "/assets/project_images/nightreign/commander.png"
+    const tibia = "/assets/project_images/nightreign/tibia.png"
+    const centipede = "/assets/project_images/nightreign/centipede.png"
+
 
     const nightShade = "#2b2161"
     const graceGiven = "#f2e144"
@@ -187,18 +194,18 @@ export default function BossStats({
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
                     {renderBossCard(wormFace, "WormFace", greyOfNight)}
-                    {renderBossCard(pest, "ValiantGargoyle", silveredNight)}
+                    {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(libra, "DearFreja", graceGiven)}
-                    {renderBossCard(fulghor, "Fulghor", greyOfNight)}
-                    {renderBossCard(caligo, "Caligo", traceNight)}
+                    {renderBossCard(freja, "DearFreja", poisonGlow)}
+                    {renderBossCard(cavalry, "NightsCavalry", "black")}
+                    {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
                     
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
-                    {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
-                    {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
+                    {renderBossCard(commander, "Commander", scarletRot)}
+                    {renderBossCard(centipede, "Centipede", poisonGlow)}
+                    {renderBossCard(tibia, "Tibia", silverLining)}
                 </div>
             </div>
         )
