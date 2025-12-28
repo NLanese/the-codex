@@ -142,4 +142,208 @@ const weapon_passives = [
             always: true
         }
     },
+    {
+        title: "Raider's Grief +2", 
+        desc: "Vigor and Strength +6",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            str: 6,
+            vigor: 6,
+            always: true
+        }
+    },
+    {
+        title: "Raider's Grief +3", 
+        desc: "Vigor and Strength +9",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            str: 9,
+            vigor: 9,
+            always: true
+        }
+    },
+    {
+        title: "Revenent's Grief +1", 
+        desc: "Faith and Arcane +3",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            fai: 3,
+            arcane: 3,
+            always: true
+        }
+    },
+    {
+        title: "Revenent's Grief +2", 
+        desc: "Faith and Arcane +6",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            fai: 6,
+            arcane: 6,
+            always: true
+        }
+    },
+    {
+        title: "Revenent's Grief +3", 
+        desc: "Faith and Arcane +9",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            fai: 9,
+            arcane: 9,
+            always: true
+        }
+    },
+    {
+        title: "Recluse's Grief +1", 
+        desc: "Faith and Intelligence +3",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            fai: 3,
+            intl: 3,
+            always: true
+        }
+    },
+    {
+        title: "Recluse's Grief +2", 
+        desc: "Faith and Intelligence +3",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            fai: 6,
+            intl: 6,
+            always: true
+        }
+    },
+    {
+        title: "Recluse's Grief +3", 
+        desc: "Faith and Intelligence +3",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            fai: 9,
+            intl: 9,
+            always: true
+        }
+    },
+    {
+        title: "Executor's Grief +1", 
+        desc: "Dexterity and Arcane +3",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            dex: 3,
+            arcane: 3,
+            always: true
+        }
+    },
+    {
+        title: "Executor's Grief +2", 
+        desc: "Dexterity and Arcane +6",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            dex: 6,
+            arcane: 6,
+            always: true
+        }
+    },
+    {
+        title: "Executor's Grief +3", 
+        desc: "Dexterity and Arcane +9",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            dex: 9,
+            arcane: 9,
+            always: true
+        }
+    },
+    {
+        title: "Improved Item Discovery", 
+        desc: "Imrproves Item Discovery",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            dex: 9,
+            arcane: 9,
+            always: true,
+        }
+    },
+    {
+        title: "Attack Up When Wielding Two Armaments +12%", 
+        desc: "When powerstancing weapons of the same type, paired LB / L1's do more damage",
+        stacks: {self: true, selfType: true},
+        selfType: "powerstanceDam",
+        effect: {
+            allDamage: 1.12,
+            always: false,
+            condition: "Powerstancing similar weapons",
+            appliesRanged: false,
+        }
+    },
+    {
+        title: "Attack Up When Wielding Two Armaments +15%", 
+        desc: "When powerstancing weapons of the same type, paired LB / L1's do more damage",
+        stacks: {self: true, selfType: true},
+        selfType: "powerstanceDam",
+        effect: {
+            allDamage: 1.15,
+            always: false,
+            condition: "Powerstancing similar weapons",
+            appliesRanged: false,
+        }
+    },
+    {
+        title: "Attack Up When Wielding Two Armaments +18%", 
+        desc: "When powerstancing weapons of the same type, paired LB / L1's do more damage",
+        stacks: {self: true, selfType: true},
+        selfType: "powerstanceDam",
+        effect: {
+            allDamage: 1.18,
+            always: false,
+            appliesRanged: false,
+            condition: "Powerstancing similar weapons"
+        }
+    },
+    {
+        title: "Improved Attack Power When Two-Handings +12%", 
+        desc: "Two handing any armamemnt causes it to deal more damage. Does not work on bows",
+        stacks: {self: true, selfType: true},
+        selfType: "powerstanceDam",
+        effect: {
+            allDamage: 1.12,
+            always: false,
+            appliesRanged: false,
+            condition: "Two-Handing your Weapon"
+        }
+    },
+    {
+        title: "Improved Attack Power When Two-Handings +15%", 
+        desc: "Two handing any armamemnt causes it to deal more damage. Does not work on bows",
+        stacks: {self: true, selfType: true},
+        selfType: "powerstanceDam",
+        effect: {
+            allDamage: 1.15,
+            always: false,
+            appliesRanged: false,
+            condition: "Two-Handing your Weapon"
+        }
+    },
+    {
+        title: "Improved Attack Power When Two-Handings +18%", 
+        desc: "Two handing any armamemnt causes it to deal more damage. Does not work on bows",
+        stacks: {self: true, selfType: true},
+        selfType: "powerstanceDam",
+        effect: {
+            allDamage: 1.18,
+            always: false,
+            appliesRanged: false,
+            condition: "Two-Handing your Weapon"
+        }
+    },
 ]
