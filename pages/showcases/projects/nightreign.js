@@ -558,7 +558,7 @@ function RENDER_MAIN(){
         )
     }
     else if (screen === "Boss"){
-        return  <BossStats />
+        return  <BossStats isMobile={isMobile}/>
     }
 }
 
