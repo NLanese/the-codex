@@ -346,4 +346,100 @@ const weapon_passives = [
             condition: "Two-Handing your Weapon"
         }
     },
+    {
+        title: "Improved Attack Power at Low HP +7%", 
+        desc: "All Attack Damage increases when below 20% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "lowHP",
+        effect: {
+            allDamage: 1.07,
+            always: false,
+            appliesRanged: true,
+            condition: "Below 20% HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Low HP +10%", 
+        desc: "All Attack Damage increases when below 20% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "lowHP",
+        effect: {
+            allDamage: 1.10,
+            always: false,
+            appliesRanged: true,
+            condition: "Below 20% HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Low HP +13%", 
+        desc: "All Attack Damage increases when below 20% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "lowHP",
+        effect: {
+            allDamage: 1.13,
+            always: false,
+            appliesRanged: true,
+            condition: "Below 20% HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Low HP +17%", 
+        desc: "All Attack Damage increases when below 20% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "lowHP",
+        effect: {
+            allDamage: 1.17,
+            always: false,
+            appliesRanged: true,
+            condition: "Below 20% HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Low HP +21%", 
+        desc: "All Attack Damage increases when below 20% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "lowHP",
+        effect: {
+            allDamage: 1.21,
+            always: false,
+            appliesRanged: true,
+            condition: "Below 20% HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Full HP +7%", 
+        desc: "All Attack Damage increases when at 100% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "fullHP",
+        effect: {
+            allDamage: 1.07,
+            always: false,
+            appliesRanged: true,
+            condition: "At Max HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Full HP +10.5%", 
+        desc: "All Attack Damage increases when at 100% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "fullHP",
+        effect: {
+            allDamage: 1.105,
+            always: false,
+            appliesRanged: true,
+            condition: "At Max HP"
+        }
+    },
+    {
+        title: "Improved Attack Power at Full HP +14%", 
+        desc: "All Attack Damage increases when at 100% HP",
+        stacks: {self: true, selfType: true},
+        selfType: "fullHP",
+        effect: {
+            allDamage: 1.14,
+            always: false,
+            appliesRanged: true,
+            condition: "At Max HP"
+        }
+    },
 ]
