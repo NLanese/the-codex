@@ -181,4 +181,4 @@ const day1And2Stats = {
     },
 }
 
-export default nightlordStats
+export default day1And2Stats

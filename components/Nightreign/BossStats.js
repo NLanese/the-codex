@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import { OstCard } from "../../OstrichComponents/Format/OstCard";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
+import day1And2Stats from "../../constants/projects/nightreign/bosses/day1and2";
 
 export default function BossStats({
 }){
@@ -22,6 +23,12 @@ export default function BossStats({
     const harmonia = "/assets/project_images/nightreign/harmonia.png"
     const strag = "/assets/project_images/nightreign/strag.png"
 
+    const demiQueen = "/assets/project_images/nightreign/demiQueen.png"
+    const demiSwordmaster = "/assets/project_images/nightreign/demiSwordmaster.png"
+    const bellBearing = "/assets/project_images/nightreign/bellBearing.png"
+    const gapingDragon = "/assets/project_images/nightreign/gapingDragon.png"
+    const wormFace = "/assets/project_images/nightreign/wormface.png"
+
     const nightShade = "#2b2161"
     const graceGiven = "#f2e144"
     const frenzyTouched = "#ff5100"
@@ -32,6 +39,7 @@ export default function BossStats({
     const slateMiasma = "#595d6b"
     const traceNight = '#9b9fbf'
     const scarletRot = '#754142'
+    const poisonGlow = "#506e51"
 
     ///////////
     // State //
@@ -44,21 +52,23 @@ export default function BossStats({
     /////////////
 
     function renderBossCard(img, name, color){
-        let abv = name.split(" ")[0]
+        let table = nightlordStats
+        if (screen === "Day 1 and 2 Bosses"){
+            table = day1And2Stats
+        }
+        let stats = table[name] ? table[name] : null
         return(
             <OstCard style={{flex: 3, padding: 0, margin: 0, backgroundColor: slateMiasma}}>
                     <OstCard rounded={false} noShadow={true} imageSrc={img} templateStyle={1} style={{height: '50%', width: '100%', padding: 0, margin: 0, backgroundColor: color}}/>
                     <p style={{textAlign: 'center', fontSize: 24, padding: 0, margin: 3}}>
-                        {name}
+                        {stats?.name ? stats.name : "NA"}
                     </p>
-                    {renderNegationTable(abv)}
+                    {renderNegationTable(stats)}
             </OstCard>
         )
     }
 
-    function renderNegationTable(boss){
-        let stats = nightlordStats[boss] ? nightlordStats[boss] : null
-        console.log(stats)
+    function renderNegationTable(stats){
         return(
             <div style={{display: 'flex', flexDirection: 'row'}}>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
@@ -133,29 +143,32 @@ export default function BossStats({
         if (screen === "Nightlords"){
             return _nightlords()
         }
+        else if (screen === "Day 1 and 2 Bosses"){
+            return _major_field_bosses()
+        }
     }
 
     function _nightlords(){
         return(
             <div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(gladius, "Gladius (Tricephalos)", frenzyTouched)}
-                    {renderBossCard(adel, "Adel (Gaping Jaw)", gloomGlow)}
-                    {renderBossCard(maris, "Maris (Augur)", nightShade)}
+                    {renderBossCard(gladius, "Gladius", frenzyTouched)}
+                    {renderBossCard(adel, "Adel", gloomGlow)}
+                    {renderBossCard(maris, "Maris", nightShade)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(pest, "Gnoster (Sentient Pest)", silveredNight)}
-                    {renderBossCard(pest, "Faurtis (Sentient Pest)", silveredNight)}
-                    {renderBossCard(pest, "Animus (Sentient Pest)", silveredNight)}
+                    {renderBossCard(pest, "Gnoster", silveredNight)}
+                    {renderBossCard(pest, "Faurtis", silveredNight)}
+                    {renderBossCard(pest, "Animus", silveredNight)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(libra, "Libra (Equilibruis Beast)", graceGiven)}
-                    {renderBossCard(fulghor, "Fulghor (Darkdrift Knight)", greyOfNight)}
-                    {renderBossCard(caligo, "Caligo (Fissure in the Fog", traceNight)}
+                    {renderBossCard(libra, "Libra", graceGiven)}
+                    {renderBossCard(fulghor, "Fulghor", greyOfNight)}
+                    {renderBossCard(caligo, "Caligo", traceNight)}
                     
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(heolster, "Heolster (Night Aspect", "black")}
+                    {renderBossCard(heolster, "Heolster", "black")}
                     {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
                     {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
                 </div>
@@ -167,19 +180,19 @@ export default function BossStats({
         return(
             <div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(gladius, "Gladius (Tricephalos)", frenzyTouched)}
-                    {renderBossCard(adel, "Adel (Gaping Jaw)", gloomGlow)}
-                    {renderBossCard(maris, "Maris (Augur)", nightShade)}
+                    {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
+                    {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
+                    {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(pest, "Gnoster (Sentient Pest)", silveredNight)}
-                    {renderBossCard(pest, "Faurtis (Sentient Pest)", silveredNight)}
-                    {renderBossCard(pest, "Animus (Sentient Pest)", silveredNight)}
+                    {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
+                    {renderBossCard(wormFace, "WormFace", greyOfNight)}
+                    {renderBossCard(pest, "ValiantGargoyle", silveredNight)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(libra, "Libra (Equilibruis Beast)", graceGiven)}
-                    {renderBossCard(fulghor, "Fulghor (Darkdrift Knight)", greyOfNight)}
-                    {renderBossCard(caligo, "Caligo (Fissure in the Fog", traceNight)}
+                    {renderBossCard(libra, "DearFreja", graceGiven)}
+                    {renderBossCard(fulghor, "Fulghor", greyOfNight)}
+                    {renderBossCard(caligo, "Caligo", traceNight)}
                     
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
@@ -201,6 +214,7 @@ export default function BossStats({
                 <OstrichTabBar style={{width: '100%'}}
                 value={screen}
                 tabs={["Nightlords", "Day 1 and 2 Bosses", "Major Field Bosses", "Minor Field Boss"]}
+                onTabClick={(tab) => setScreen(tab)}
                 />
             </div>
             {main_screen_render()}

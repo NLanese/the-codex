@@ -1,6 +1,6 @@
 const nightlordStats = {
     Gladius: {
-        name: 'Gladius',
+        name: 'Gladius (Tricephalos)',
         HP: 33984,
         Physical: 0,
         Strike: 0,
@@ -18,7 +18,7 @@ const nightlordStats = {
         Madness: "Immune", 
     },
     Adel: {
-        name: 'Adel',
+        name: 'Adel (Gaping Jaw)',
         HP: 39420,
         Physical: 0,
         Strike: 0,
@@ -36,7 +36,7 @@ const nightlordStats = {
         Madness: "Immune", 
     },
     Gnoster: {
-        name: 'Gnoster',
+        name: 'Gnoster (Sentient Pest)',
         HP: 39081,
         Physical: -15,
         Strike: -15,
@@ -54,7 +54,7 @@ const nightlordStats = {
         Madness: "Immune", 
     },
     Faurtis: {
-        name: 'Faurtis',
+        name: 'Faurtis (Sentient Pest)',
         HP: 39081,
         Physical: 10,
         Strike: -20,
@@ -72,7 +72,7 @@ const nightlordStats = {
         Madness: "Immune", 
     },
     Animus: {
-        name: 'Animus',
+        name: 'Animus (Sentient Pest)',
         HP: 39081,
         Physical: 0,
         Strike: 0,
@@ -90,7 +90,7 @@ const nightlordStats = {
         Madness: "Immune",  
     },
     Maris: {
-        name: 'Maris',
+        name: 'Maris (Augur)',
         HP: 38061,
         Physical: 0,
         Strike: 20,
@@ -108,7 +108,7 @@ const nightlordStats = {
         Madness: "Immune",  
     },
     Libra: {
-        name: 'Libra',
+        name: 'Libra (Equilibrius Beast)',
         HP: 39144,
         Physical: 0,
         Strike: 0,
@@ -126,7 +126,7 @@ const nightlordStats = {
         Madness: 154,  
     },
     Fulghor: {
-        name: 'Fulghor',
+        name: 'Fulghor (Darkdrift Knight)',
         HP: 35682,
         Physical: 0,
         Strike: 0,
@@ -144,7 +144,7 @@ const nightlordStats = {
         Madness: "Immune",  
     },
     Caligo: {
-        name: 'Caligo',
+        name: 'Caligo (Fissure in the Fog)',
         HP: 36024,
         Physical: 0,
         Strike: -15,
@@ -162,7 +162,7 @@ const nightlordStats = {
         Madness: "Immune",  
     },
     Heolster: {
-        name: 'Heolster',
+        name: 'Heolster (Night Aspect)',
         HP: 36024,
         Physical: 0,
         Strike: -15,
