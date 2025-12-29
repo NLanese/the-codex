@@ -442,4 +442,116 @@ const weapon_passives = [
             condition: "At Max HP"
         }
     },
+    {
+        title: "Improved Melee Attack Power +9%", 
+        desc: "All Melee Attack Damage increases",
+        stacks: {self: true, selfType: true},
+        selfType: "meleeUp",
+        effect: {
+            allDamage: 1.09,
+            always: true,
+            appliesRanged: false,
+        }
+    },
+    {
+        title: "Improved Melee Attack Power +12%", 
+        desc: "All Melee Attack Damage increases",
+        stacks: {self: true, selfType: true},
+        selfType: "meleeUp",
+        effect: {
+            allDamage: 1.12,
+            always: true,
+            appliesRanged: false,
+        }
+    },
+    {
+        title: "Improved Melee Attack Power +15%", 
+        desc: "All Melee Attack Damage increases",
+        stacks: {self: true, selfType: true},
+        selfType: "meleeUp",
+        effect: {
+            allDamage: 1.15,
+            always: true,
+            appliesRanged: false,
+        }
+    },
+    {
+        title: "Improved Chain Attack Finishers +X%", 
+        desc: "Hit hit of an R1 / RB chain does increased damaged",
+        stacks: {self: true, selfType: true},
+        selfType: "finisherUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+        }
+    },
+    {
+        title: "Improved Charged Attacks +21%", 
+        desc: "Hit hit of an R1 / RB chain does increased damaged",
+        stacks: {self: true, selfType: true},
+        selfType: "chargedUp",
+        effect: {
+            always: false,
+            appliesRanged: true,
+            weaponDamage: 1.16,
+            condition: "Charged R2 / RT Attacks"
+        }
+    },
+    {
+        title: "Improved Charged Attacks +26%", 
+        desc: "Hit hit of an R1 / RB chain does increased damaged",
+        stacks: {self: true, selfType: true},
+        selfType: "chargedUp",
+        effect: {
+            always: false,
+            appliesRanged: true,
+            weaponDamage: 1.16,
+            condition: "Charged R2 / RT Attacks"
+        }
+    },
+    {
+        title: "Improved Charged Attacks +31%", 
+        desc: "Hit hit of an R1 / RB chain does increased damaged",
+        stacks: {self: true, selfType: true},
+        selfType: "chargedUp",
+        effect: {
+            always: false,
+            appliesRanged: true,
+            weaponDamage: 1.16,
+            condition: "Charged R2 / RT Attacks"
+        }
+    },
+    {
+        title: "Improved Skill Attack Power +15%", 
+        desc: "Skills do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "skillUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            skillDamage: 1.15,
+        }
+    },
+    {
+        title: "Improved Skill Attack Power +18%", 
+        desc: "Skills do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "skillUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            skillDamage: 1.18,
+        }
+    },
+    {
+        title: "Improved Skill Attack Power +21%", 
+        desc: "Skills do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "skillUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            skillDamage: 1.21,
+        }
+    },
 ]
