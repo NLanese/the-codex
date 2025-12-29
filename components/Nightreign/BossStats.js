@@ -70,7 +70,7 @@ export default function BossStats({
         }
         let stats = table[name] ? table[name] : null
         return(
-            <OstCard style={{flex: 3, padding: 0, margin: 0, backgroundColor: slateMiasma}}>
+            <OstCard style={{flex: 3, padding: 0, paddingBottom: 6, margin: 0, backgroundColor: slateMiasma}}>
                     <OstCard rounded={false} noShadow={true} imageSrc={img} templateStyle={1} style={{height: '50%', width: '100%', padding: 0, margin: 0, backgroundColor: color}}/>
                     <p style={{textAlign: 'center', fontSize: isMobile ? 18 : 24, padding: 0, margin: 3}}>
                         {stats?.name ? stats.name : "NA"}
@@ -127,10 +127,10 @@ export default function BossStats({
         let value = stats ? stats[type] : 0
         return(
             <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black'}}>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 16 :20}}>
+                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
                     {type}: 
                 </p>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 16 : 20, color: value > 0 ? frenzyTouched : value === 0 ? 'black' : silveredNight}}>
+                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color: value > 0 ? frenzyTouched : value === 0 ? 'black' : silveredNight}}>
                     {value} 
                 </p>
             </OstCard>
@@ -141,10 +141,10 @@ export default function BossStats({
         let value = stats ? stats[type] : 0
         return(
             <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black'}}>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 16 :20}}>
+                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
                     {type}: 
                 </p>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 16 : 20, color: value === "---" ? frenzyTouched : value > 500 ? frenzyTouched : value > 250 ? 'black' : silveredNight}}>
+                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color: value === "---" ? frenzyTouched : value > 500 ? frenzyTouched : value > 250 ? 'black' : silveredNight}}>
                     {value} 
                 </p>
             </OstCard>
@@ -164,23 +164,23 @@ export default function BossStats({
         if (isMobile){
             return(
                 <div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
                         {renderBossCard(gladius, "Gladius", frenzyTouched)}
                         {renderBossCard(adel, "Adel", gloomGlow)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
                         {renderBossCard(pest, "Gnoster", silveredNight)}
                         {renderBossCard(pest, "Faurtis", silveredNight)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
                         {renderBossCard(pest, "Animus", silveredNight)}
                         {renderBossCard(maris, "Maris", nightShade)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
                         {renderBossCard(libra, "Libra", graceGiven)}
                         {renderBossCard(fulghor, "Fulghor", greyOfNight)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
                         {renderBossCard(caligo, "Caligo", traceNight)}
                         {renderBossCard(heolster, "Heolster", "black")}
                     </div>
