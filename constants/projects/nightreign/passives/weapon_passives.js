@@ -554,4 +554,180 @@ const weapon_passives = [
             skillDamage: 1.21,
         }
     },
+    {
+        title: "Improved Dash Attacks +20%", 
+        desc: "R1 / RB Attacks while sprinting do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "dashUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            dashDamage: 1.20,
+        }
+    },
+    {
+        title: "Improved Dash Attacks +24%", 
+        desc: "R1 / RB Attacks while sprinting do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "dashUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            dashDamage: 1.24,
+        }
+    },
+    {
+        title: "Improved Dash Attacks +28%", 
+        desc: "R1 / RB Attacks while sprinting do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "dashUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            dashDamage: 1.24,
+        }
+    },
+    {
+        title: "Improved Rolling Attacks +20%", 
+        desc: "R1 / RB / RT / R2 Attacks right after a dodge do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "dashUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            rollDamage: 1.20,
+        }
+    },
+    {
+        title: "Improved Rolling Attacks +20%", 
+        desc: "R1 / RB / RT / R2 Attacks right after a dodge do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "rollUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            rollDamage: 1.20,
+        }
+    },
+    {
+        title: "Improved Rolling Attacks +24%", 
+        desc: "R1 / RB / RT / R2 Attacks right after a dodge do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "rollUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            rollDamage: 1.24,
+        }
+    },
+    {
+        title: "Improved Rolling Attacks +28%", 
+        desc: "R1 / RB / RT / R2 Attacks right after a dodge do increased damage",
+        stacks: {self: true, selfType: true},
+        selfType: "rollUp",
+        effect: {
+            always: true,
+            appliesRanged: true,
+            rollDamage: 1.28,
+        }
+    },
+    {
+        title: "Improved Guard Counters +17%", 
+        desc: "Increases Guard Counter Damage by 17%",
+        stacks: {self: true, selfType: true},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.17,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Guard Counters +20%", 
+        desc: "Increases Guard Counter Damage by 20%",
+        stacks: {self: true, selfType: true},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.20,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Guard Counters +23%", 
+        desc: "Increases Guard Counter Damage by 23%",
+        stacks: {self: true, selfType: true},
+        selfType: "GuardCounter",
+        effect: {
+            counterDamage: 1.23,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Jump Attacks +14%", 
+        desc: "Increases Jump Attack Damage by 14%",
+        stacks: {self: true, selfType: true},
+        selfType: "jumpAttack",
+        effect: {
+            jumpDamage: 1.14,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Jump Attacks +17%", 
+        desc: "Increases Jump Attack Damage by 17%",
+        stacks: {self: true, selfType: true},
+        selfType: "jumpAttack",
+        effect: {
+            jumpDamage: 1.17,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Jump Attacks +20%", 
+        desc: "Increases Jump Attack Damage by 20%",
+        stacks: {self: true, selfType: true},
+        selfType: "jumpAttack",
+        effect: {
+            jumpDamage: 1.20,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Critical Hits +12%", 
+        desc: "Increases Critical Hit Damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "critDamage",
+        effect: {
+            critDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Critical Hits +18%", 
+        desc: "Increases Critical Hit Damage by 18%",
+        stacks: {self: true, selfType: true},
+        selfType: "critDamage",
+        effect: {
+            critDamage: 1.18,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Critical Hits +24%", 
+        desc: "Increases Critical Hit Damage by 24%",
+        stacks: {self: true, selfType: true},
+        selfType: "critDamage",
+        effect: {
+            critDamage: 1.24,
+            appliesRanged: false,
+            always: true,
+        }
+    },
 ]
