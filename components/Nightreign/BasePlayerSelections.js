@@ -35,6 +35,7 @@ export default function BasePlayerSelections({
                     template: "tabs",
                     options: [
                         "Relics", "Deep Relics", "Effects",
+                        "Weapon Passives", "Talismans"
                         ],
                 }}
                 inputValue={selectionState}

@@ -244,12 +244,11 @@ function renderSelectionsContainer(toggles, all_relic_effects){
                 />
                 {renderSelections(deepDisplayed)}
             </div>
-            {/* <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
-                {renderVitals(all_relic_effects)}
-                {renderStats(toggles)}
-            </div> */}
-            <StatSheet nightfarer={nightfarer} all_relic_effects={all_relic_effects} toggles={toggles} isMobile={isMobile}
-            hp={hp} fp={fp} stam={stam} vigor={vigor} end={end} dex={dex} str={str} intl={intl} fai={fai} mind={mind} arcane={arcane}
+            <StatSheet 
+                nightfarer={nightfarer} all_relic_effects={all_relic_effects} 
+                toggles={toggles} isMobile={isMobile}
+                hp={hp} fp={fp} stam={stam} vigor={vigor} end={end} dex={dex} 
+                str={str} intl={intl} fai={fai} mind={mind} arcane={arcane}
             />
         </div>
     )
@@ -261,6 +260,24 @@ function renderSelections(deepDisplayed){
     }
     else if (selectionState === "Effects"){
         return renderEffectToggles()
+    }
+    else if (selectionState === "Weapon Passives"){
+        return(
+            <div style={{flex: 7}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Nothing here yet. Please check in again for updates!
+                </p>
+            </div>
+        )
+    }
+    else if (selectionState === "Talismans"){
+        return(
+            <div style={{flex: 7}}>
+                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
+                    Nothing here yet. Please check in again for updates!
+                </p>
+            </div>
+        )
     }
     else{
         return(
