@@ -82,7 +82,7 @@ export default function BossStats({
 
     function renderNegationTable(stats){
         return(
-            <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div style={{display: 'flex', flexDirection: 'row', height: 'auto', backgroundColor: slateMiasma}}>
                 <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
                     <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: silverLining, fontSize: isMobile ? 16 :20}}>Negations</p>
                     {renderNegations(stats)}
@@ -163,24 +163,24 @@ export default function BossStats({
     function _nightlords(){
         if (isMobile){
             return(
-                <div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
+                <div style={{height: 'auto'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
                         {renderBossCard(gladius, "Gladius", frenzyTouched)}
                         {renderBossCard(adel, "Adel", gloomGlow)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
                         {renderBossCard(pest, "Gnoster", silveredNight)}
                         {renderBossCard(pest, "Faurtis", silveredNight)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
                         {renderBossCard(pest, "Animus", silveredNight)}
                         {renderBossCard(maris, "Maris", nightShade)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
                         {renderBossCard(libra, "Libra", graceGiven)}
                         {renderBossCard(fulghor, "Fulghor", greyOfNight)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
                         {renderBossCard(caligo, "Caligo", traceNight)}
                         {renderBossCard(heolster, "Heolster", "black")}
                     </div>
@@ -189,7 +189,7 @@ export default function BossStats({
             )
         }
         return(
-            <div>
+            <div style={{height: 'auto'}}>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(gladius, "Gladius", frenzyTouched)}
                     {renderBossCard(adel, "Adel", gloomGlow)}
@@ -218,24 +218,24 @@ export default function BossStats({
     function _major_field_bosses(){
         if (isMobile){
             return(
-                <div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                <div style={{height: 'auto'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
                         {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
                         {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
                         {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
                         {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
                         {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
                         {renderBossCard(wormFace, "WormFace", greyOfNight)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
                         {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
                         {renderBossCard(freja, "DearFreja", poisonGlow)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 20}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
                         {renderBossCard(cavalry, "NightsCavalry", "black")}
                         {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
                     </div>
@@ -244,7 +244,7 @@ export default function BossStats({
             )
         }
         return(
-            <div>
+            <div style={{height: 'auto'}}>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
                     {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
