@@ -77,6 +77,32 @@ const silverLining = "#d4eeff"
     const [effect32, setEffect32] = useState(false)
     const [effect33, setEffect33] = useState(false)
 
+    const [weaponEffect11, setWeaponEffect11] = useState(false)
+    const [weaponEffect12, setWeaponEffect12] = useState(false)
+    const [weaponEffect13, setWeaponEffect13] = useState(false)
+
+    const [weaponEffect21, setWeaponEffect21] = useState(false)
+    const [weaponEffect22, setWeaponEffect22] = useState(false)
+    const [weaponEffect23, setWeaponEffect23] = useState(false)
+
+    const [weaponEffect31, setWeaponEffect31] = useState(false)
+    const [weaponEffect32, setWeaponEffect32] = useState(false)
+    const [weaponEffect33, setWeaponEffect33] = useState(false)
+
+    const [weaponEffect41, setWeaponEffect41] = useState(false)
+    const [weaponEffect42, setWeaponEffect42] = useState(false)
+    const [weaponEffect43, setWeaponEffect43] = useState(false)
+
+    const [weaponEffect51, setWeaponEffect51] = useState(false)
+    const [weaponEffect52, setWeaponEffect52] = useState(false)
+    const [weaponEffect53, setWeaponEffect53] = useState(false)
+
+    const [weaponEffect61, setWeaponEffect61] = useState(false)
+    const [weaponEffect62, setWeaponEffect62] = useState(false)
+    const [weaponEffect63, setWeaponEffect63] = useState(false)
+
+
+
     // Deep Relics
     const [relic4, setRelic4] = useState(false)
     const [relic5, setRelic5] = useState(false)
@@ -188,6 +214,25 @@ const silverLining = "#d4eeff"
         [all, types] = handleEffectState(effect61, all, types);
         [all, types] = handleEffectState(effect62, all, types);
         [all, types] = handleEffectState(effect63, all, types);
+
+        [all, types] = handleEffectState(weaponEffect11, all, types);
+        [all, types] = handleEffectState(weaponEffect12, all, types);
+        [all, types] = handleEffectState(weaponEffect13, all, types);
+        [all, types] = handleEffectState(weaponEffect21, all, types);
+        [all, types] = handleEffectState(weaponEffect22, all, types);
+        [all, types] = handleEffectState(weaponEffect23, all, types);
+        [all, types] = handleEffectState(weaponEffect31, all, types);
+        [all, types] = handleEffectState(weaponEffect32, all, types);
+        [all, types] = handleEffectState(weaponEffect33, all, types);
+        [all, types] = handleEffectState(weaponEffect41, all, types);
+        [all, types] = handleEffectState(weaponEffect42, all, types);
+        [all, types] = handleEffectState(weaponEffect43, all, types);
+        [all, types] = handleEffectState(weaponEffect51, all, types);
+        [all, types] = handleEffectState(weaponEffect52, all, types);
+        [all, types] = handleEffectState(weaponEffect53, all, types);
+        [all, types] = handleEffectState(weaponEffect61, all, types);
+        [all, types] = handleEffectState(weaponEffect62, all, types);
+        [all, types] = handleEffectState(weaponEffect63, all, types);
     
         setRelic1({ slot1: effect11, slot2: effect12, slot3: effect13 });
         setRelic2({ slot1: effect21, slot2: effect22, slot3: effect23 });
