@@ -131,6 +131,9 @@ const silverLining = "#d4eeff"
     // Deep Of The Night
     const [deepDisplayed, setDeepDisplayed] = useState(false)
 
+    // Weapon Passives
+    const [weaponsDisplayed, setWeaponsDisplayed] = useState(false)
+
     // Rendering States
     const [selectionState, setSelectionState] = useState("Relics") 
     const [relicsModal, setRelicsModal] = useState(false)
@@ -261,8 +264,14 @@ const silverLining = "#d4eeff"
     useEffect(() => {
         if (selectionState === "Deep Relics"){
             setDeepDisplayed(true)
+            setWeaponsDisplayed(false)
+        }
+        else if (selectionState === "Weapon Passives"){
+            setWeaponsDisplayed(true)
+            setDeepDisplayed(false)
         }
         else{
+            setWeaponsDisplayed(false)
             setDeepDisplayed(false)
         }
     }, [selectionState])
