@@ -730,4 +730,235 @@ const weapon_passives = [
             always: true,
         }
     },
+    {
+        title: "Improved Ranged Attacks +7%", 
+        desc: "Increases Ranged R1 / RB / R2 / RT Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "rangedDamage",
+        effect: {
+            rangedDamage: 1.07,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Ranged Attacks +11%", 
+        desc: "Increases Ranged R1 / RB / R2 / RT Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "rangedDamage",
+        effect: {
+            rangedDamage: 1.11,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Ranged Attacks +14%", 
+        desc: "Increases Ranged R1 / RB / R2 / RT Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "rangedDamage",
+        effect: {
+            rangedDamage: 1.14,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Magic Attack Power +6%", 
+        desc: "Increases All Magic Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "magicDamage",
+        effect: {
+            magicDamage: 1.06,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Magic Attack Power +9%", 
+        desc: "Increases All Magic Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "magicDamage",
+        effect: {
+            magicDamage: 1.09,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Magic Attack Power +12%", 
+        desc: "Increases All Magic Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "magicDamage",
+        effect: {
+            magicDamage: 1.12,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Fire Attack Power +6%", 
+        desc: "Increases All Fire Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "fireDamage",
+        effect: {
+            fireDamage: 1.06,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Fire Attack Power +9%", 
+        desc: "Increases All Fire Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "fireDamage",
+        effect: {
+            fireDamage: 1.09,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Fire Attack Power +12%", 
+        desc: "Increases All Fire Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "fireDamage",
+        effect: {
+            fireDamage: 1.12,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Lightning Attack Power +6%", 
+        desc: "Increases All Lightning Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "lightningDamage",
+        effect: {
+            lightningDamage: 1.06,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Lightning Attack Power +9%", 
+        desc: "Increases All Lightning Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "lightningDamage",
+        effect: {
+            lightningDamage: 1.09,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Lightning Attack Power +12%", 
+        desc: "Increases All Lightning Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "lightningDamage",
+        effect: {
+            lightningDamage: 1.12,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Holy Attack Power +6%", 
+        desc: "Increases All Holy Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "holyDamage",
+        effect: {
+            holyDamage: 1.06,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Holy Attack Power +9%", 
+        desc: "Increases All Holy Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "holyDamage",
+        effect: {
+            holyDamage: 1.09,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Holy Attack Power +12%", 
+        desc: "Increases All Holy Attack Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "holyDamage",
+        effect: {
+            holyDamage: 1.12,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Sorceries +5%", 
+        desc: "Increases All Sorcery Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "sorcDamage",
+        effect: {
+            sorcDamage: 1.05,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Sorceries +8%", 
+        desc: "Increases All Sorcery Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "sorcDamage",
+        effect: {
+            sorcDamage: 1.08,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Sorceries +11%", 
+        desc: "Increases All Sorcery Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "sorcDamage",
+        effect: {
+            sorcDamage: 1.11,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Incantation +5%", 
+        desc: "Increases All Incantation Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            incantDamage: 1.05,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Incantation +8%", 
+        desc: "Increases All Incantation Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            incantDamage: 1.08,
+            appliesRanged: true,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Incantation +11%", 
+        desc: "Increases All Incantation Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            incantDamage: 1.11,
+            appliesRanged: true,
+            always: true,
+        }
+    },
 ]
