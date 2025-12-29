@@ -70,7 +70,7 @@ export default function BossStats({
         }
         let stats = table[name] ? table[name] : null
         return(
-            <OstCard style={{flex: 3, padding: 0, paddingBottom: 6, margin: 0, backgroundColor: slateMiasma}}>
+            <OstCard style={{flex: 3, padding: 0, height: 'auto', paddingBottom: 6, margin: 0, backgroundColor: slateMiasma}}>
                     <OstCard rounded={false} noShadow={true} imageSrc={img} templateStyle={1} style={{height: '50%', width: '100%', padding: 0, margin: 0, backgroundColor: color}}/>
                     <p style={{textAlign: 'center', fontSize: isMobile ? 18 : 24, padding: 0, margin: 3}}>
                         {stats?.name ? stats.name : "NA"}
