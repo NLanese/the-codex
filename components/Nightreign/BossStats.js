@@ -97,7 +97,7 @@ export default function BossStats({
 
     function renderNegations(stats){
         return(
-            <div style={{ width: '94%', marginLeft: '3%'}}>
+            <div style={{ width: '94%', marginLeft: '3%', backgroundColor: slateMiasma}}>
                 {renderSingleNegation("Physical", stats)}
                 {renderSingleNegation("Strike", stats)}
                 {renderSingleNegation("Pierce", stats)}
@@ -112,7 +112,7 @@ export default function BossStats({
 
     function renderResistances(stats){
         return(
-            <div style={{ width: '94%', marginLeft: '3%'}}>
+            <div style={{ width: '94%', marginLeft: '3%', backgroundColor: slateMiasma}}>
                 {renderSingleResist("Poison", stats)}
                 {renderSingleResist("Rot", stats)}
                 {renderSingleResist("Frostbite", stats)}
@@ -126,7 +126,7 @@ export default function BossStats({
     function renderSingleNegation(type, stats){
         let value = stats ? stats[type] : 0
         return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black'}}>
+            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black', backgroundColor: slateMiasma}}>
                 <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
                     {type}: 
                 </p>
@@ -140,7 +140,7 @@ export default function BossStats({
     function renderSingleResist(type, stats){
         let value = stats ? stats[type] : 0
         return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black'}}>
+            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black', backgroundColor: slateMiasma}}>
                 <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
                     {type}: 
                 </p>
