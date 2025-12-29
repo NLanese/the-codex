@@ -637,181 +637,363 @@ function RENDER_MAIN(){
 // Functions //
 ///////////////
 
-function handleRelicEffectClick(key, cons){
-    setCurrentEditNum(key)
-    setCursedModal(cons)
-    clearEffect(key)
-    setRelicsModal(true)
-}
 
-function handleChangeEffect(effect){
-    if (currentEditNum === "11"){
-        setEffect11(effect)
-    }
-    else if (currentEditNum === "12"){
-        setEffect12(effect)
-    }
-    else if (currentEditNum === "13"){
-        setEffect13(effect)
+    ////////////////////
+    // RELIC HANDLERS //
+
+    function handleRelicEffectClick(key, cons){
+        setCurrentEditNum(key)
+        setCursedModal(cons)
+        clearEffect(key)
+        setRelicsModal(true)
     }
 
-    else if (currentEditNum === "21"){
-        setEffect21(effect)
-    }
-    else if (currentEditNum === "22"){
-        setEffect22(effect)
-    }
-    else if (currentEditNum === "23"){
-        setEffect23(effect)
-    }
+    function handleChangeEffect(effect){
+        if (currentEditNum === "11"){
+            setEffect11(effect)
+        }
+        else if (currentEditNum === "12"){
+            setEffect12(effect)
+        }
+        else if (currentEditNum === "13"){
+            setEffect13(effect)
+        }
 
-    else if (currentEditNum === "31"){
-        setEffect31(effect)
-    }
-    else if (currentEditNum === "32"){
-        setEffect32(effect)
-    }
-    else if (currentEditNum === "33"){
-        setEffect33(effect)
-    }
+        else if (currentEditNum === "21"){
+            setEffect21(effect)
+        }
+        else if (currentEditNum === "22"){
+            setEffect22(effect)
+        }
+        else if (currentEditNum === "23"){
+            setEffect23(effect)
+        }
 
-    else if (currentEditNum === "41"){
-        setEffect41(effect)
-    }
-    else if (currentEditNum === "42"){
-        setEffect42(effect)
-    }
-    else if (currentEditNum === "43"){
-        setEffect43(effect)
-    }
+        else if (currentEditNum === "31"){
+            setEffect31(effect)
+        }
+        else if (currentEditNum === "32"){
+            setEffect32(effect)
+        }
+        else if (currentEditNum === "33"){
+            setEffect33(effect)
+        }
 
-    else if (currentEditNum === "51"){
-        setEffect51(effect)
-    }
-    else if (currentEditNum === "52"){
-        setEffect52(effect)
-    }
-    else if (currentEditNum === "53"){
-        setEffect53(effect)
-    }
+        else if (currentEditNum === "41"){
+            setEffect41(effect)
+        }
+        else if (currentEditNum === "42"){
+            setEffect42(effect)
+        }
+        else if (currentEditNum === "43"){
+            setEffect43(effect)
+        }
 
-    else if (currentEditNum === "61"){
-        setEffect61(effect)
-    }
-    else if (currentEditNum === "62"){
-        setEffect62(effect)
-    }
-    else if (currentEditNum === "63"){
-        setEffect63(effect)
-    }
+        else if (currentEditNum === "51"){
+            setEffect51(effect)
+        }
+        else if (currentEditNum === "52"){
+            setEffect52(effect)
+        }
+        else if (currentEditNum === "53"){
+            setEffect53(effect)
+        }
 
-
-    else{
-        console.warn("Nope... ",  currentEditNum)
-    }
-    setRelicsModal(false)
-}
-
-function clearEffect(key){
-    if (key === "11"){
-        setEffect11(false)
-    }
-    else if (key === "12"){
-        setEffect12(false)
-    }
-    else if (key === "13"){
-        setEffect13(false)
-    }
-
-    else if (key === "21"){
-        setEffect21(false)
-    }
-    else if (key === "22"){
-        setEffect22(false)
-    }
-    else if (key === "23"){
-        setEffect23(false)
-    }
-
-    else if (key === "31"){
-        setEffect31(false)
-    }
-    else if (key === "32"){
-        setEffect32(false)
-    }
-    else if (key === "33"){
-        setEffect33(false)
-    }
-    else if (key === "41"){
-        setEffect41(false)
-    }
-    else if (key === "42"){
-        setEffect42(false)
-    }
-    else if (key === "43"){
-        setEffect43(false)
-    }
-
-    else if (key === "51"){
-        setEffect51(false)
-    }
-    else if (key === "52"){
-        setEffect52(false)
-    }
-    else if (key === "53"){
-        setEffect53(false)
-    }
-
-    else if (key === "61"){
-        setEffect61(false)
-    }
-    else if (key === "62"){
-        setEffect62(false)
-    }
-    else if (key === "63"){
-        setEffect63(false)
-    }
+        else if (currentEditNum === "61"){
+            setEffect61(effect)
+        }
+        else if (currentEditNum === "62"){
+            setEffect62(effect)
+        }
+        else if (currentEditNum === "63"){
+            setEffect63(effect)
+        }
 
 
-    else{
-        console.warn("Nope... ",  key)
-    }
-}
-
-function clearRelic(key){
-    if (key === 1){
-        setEffect11(false)
-        setEffect12(false)
-        setEffect13(false)
-    }
-    else if (key === 2){
-        setEffect21(false)
-        setEffect22(false)
-        setEffect23(false)
-    }
-    else if (key === 3){
-        setEffect31(false)
-        setEffect32(false)
-        setEffect33(false)
+        else{
+            console.warn("Nope... ",  currentEditNum)
+        }
+        setRelicsModal(false)
     }
 
-    else if (key === 4){
-        setEffect41(false)
-        setEffect42(false)
-        setEffect43(false)
-    }
-    else if (key === 5){
-        setEffect51(false)
-        setEffect52(false)
-        setEffect53(false)
-    }
-    else if (key === 6){
-        setEffect61(false)
-        setEffect62(false)
-        setEffect63(false)
+    function clearEffect(key){
+        if (key === "11"){
+            setEffect11(false)
+        }
+        else if (key === "12"){
+            setEffect12(false)
+        }
+        else if (key === "13"){
+            setEffect13(false)
+        }
+
+        else if (key === "21"){
+            setEffect21(false)
+        }
+        else if (key === "22"){
+            setEffect22(false)
+        }
+        else if (key === "23"){
+            setEffect23(false)
+        }
+
+        else if (key === "31"){
+            setEffect31(false)
+        }
+        else if (key === "32"){
+            setEffect32(false)
+        }
+        else if (key === "33"){
+            setEffect33(false)
+        }
+        else if (key === "41"){
+            setEffect41(false)
+        }
+        else if (key === "42"){
+            setEffect42(false)
+        }
+        else if (key === "43"){
+            setEffect43(false)
+        }
+
+        else if (key === "51"){
+            setEffect51(false)
+        }
+        else if (key === "52"){
+            setEffect52(false)
+        }
+        else if (key === "53"){
+            setEffect53(false)
+        }
+
+        else if (key === "61"){
+            setEffect61(false)
+        }
+        else if (key === "62"){
+            setEffect62(false)
+        }
+        else if (key === "63"){
+            setEffect63(false)
+        }
+
+
+        else{
+            console.warn("Nope... ",  key)
+        }
     }
 
-}
+    function clearRelic(key){
+        if (key === 1){
+            setEffect11(false)
+            setEffect12(false)
+            setEffect13(false)
+        }
+        else if (key === 2){
+            setEffect21(false)
+            setEffect22(false)
+            setEffect23(false)
+        }
+        else if (key === 3){
+            setEffect31(false)
+            setEffect32(false)
+            setEffect33(false)
+        }
+
+        else if (key === 4){
+            setEffect41(false)
+            setEffect42(false)
+            setEffect43(false)
+        }
+        else if (key === 5){
+            setEffect51(false)
+            setEffect52(false)
+            setEffect53(false)
+        }
+        else if (key === 6){
+            setEffect61(false)
+            setEffect62(false)
+            setEffect63(false)
+        }
+
+    }
+
+    /////////////////////
+    // WEAPON HANDLERS //
+
+    function handleWeaponEffectClick(key){
+        setCurrentEditNum(key)
+        clearWeaponEffect(key)
+        setRelicsModal(true)
+    }
+
+    function handleChangeWeaponEffect(effect){
+        if (currentEditNum === "11"){
+            setWeaponEffect11(effect)
+        }
+        else if (currentEditNum === "12"){
+            setWeaponEffect12(effect)
+        }
+        else if (currentEditNum === "13"){
+            setWeaponEffect13(effect)
+        }
+
+        else if (currentEditNum === "21"){
+            setWeaponEffect21(effect)
+        }
+        else if (currentEditNum === "22"){
+            setWeaponEffect22(effect)
+        }
+        else if (currentEditNum === "23"){
+            setWeaponEffect23(effect)
+        }
+
+        else if (currentEditNum === "31"){
+            setWeaponEffect31(effect)
+        }
+        else if (currentEditNum === "32"){
+            setWeaponEffect32(effect)
+        }
+        else if (currentEditNum === "33"){
+            setWeaponEffect33(effect)
+        }
+
+        else if (currentEditNum === "41"){
+            setWeaponEffect41(effect)
+        }
+        else if (currentEditNum === "42"){
+            setWeaponEffect42(effect)
+        }
+        else if (currentEditNum === "43"){
+            setWeaponEffect43(effect)
+        }
+
+        else if (currentEditNum === "51"){
+            setWeaponEffect51(effect)
+        }
+        else if (currentEditNum === "52"){
+            setWeaponEffect52(effect)
+        }
+        else if (currentEditNum === "53"){
+            setWeaponEffect53(effect)
+        }
+
+        else if (currentEditNum === "61"){
+            setWeaponEffect61(effect)
+        }
+        else if (currentEditNum === "62"){
+            setWeaponEffect62(effect)
+        }
+        else if (currentEditNum === "63"){
+            setWeaponEffect63(effect)
+        }
+
+
+        else{
+            console.warn("Nope... ",  currentEditNum)
+        }
+        setRelicsModal(false)
+    }
+
+    function clearWeaponEffect(key){
+        if (key === "11"){
+            setWeaponEffect11(false)
+        }
+        else if (key === "12"){
+            setWeaponEffect12(false)
+        }
+        else if (key === "13"){
+            setWeaponEffect13(false)
+        }
+
+        else if (key === "21"){
+            setWeaponEffect21(false)
+        }
+        else if (key === "22"){
+            setWeaponEffect22(false)
+        }
+        else if (key === "23"){
+            setWeaponEffect23(false)
+        }
+
+        else if (key === "31"){
+            setWeaponEffect31(false)
+        }
+        else if (key === "32"){
+            setWeaponEffect32(false)
+        }
+        else if (key === "33"){
+            setWeaponEffect33(false)
+        }
+        else if (key === "41"){
+            setWeaponEffect41(false)
+        }
+        else if (key === "42"){
+            setWeaponEffect42(false)
+        }
+        else if (key === "43"){
+            setWeaponEffect43(false)
+        }
+
+        else if (key === "51"){
+            setWeaponEffect51(false)
+        }
+        else if (key === "52"){
+            setWeaponEffect52(false)
+        }
+        else if (key === "53"){
+            setWeaponEffect53(false)
+        }
+
+        else if (key === "61"){
+            setWeaponEffect61(false)
+        }
+        else if (key === "62"){
+            setWeaponEffect62(false)
+        }
+        else if (key === "63"){
+            setWeaponEffect63(false)
+        }
+
+
+        else{
+            console.warn("Nope... ",  key)
+        }
+    }
+
+    function clearWeapon(key){
+        if (key === 1){
+            setWeaponEffect11(false)
+            setWeaponEffect12(false)
+            setWeaponEffect13(false)
+        }
+        else if (key === 2){
+            setWeaponEffect21(false)
+            setWeaponEffect22(false)
+            setWeaponEffect23(false)
+        }
+        else if (key === 3){
+            setWeaponEffect31(false)
+            setWeaponEffect32(false)
+            setWeaponEffect33(false)
+        }
+
+        else if (key === 4){
+            setWeaponEffect41(false)
+            setWeaponEffect42(false)
+            setWeaponEffect43(false)
+        }
+        else if (key === 5){
+            setWeaponEffect51(false)
+            setWeaponEffect52(false)
+            setWeaponEffect53(false)
+        }
+        else if (key === 6){
+            setWeaponEffect61(false)
+            setWeaponEffect62(false)
+            setWeaponEffect63(false)
+        }
+
+    }
 
 function findConditions(){
     let objOfToggles = {}

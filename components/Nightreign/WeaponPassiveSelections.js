@@ -1,10 +1,10 @@
 export default function BasePlayerSelections({
-    w11, w12, w13, s11, s12, s13,
-    w21, w22, w23, s21, s22, s23,
-    w31, w32, w33, s31, s32, s33,
-    w41, w42, w43, s41, s42, s43,
-    w51, w52, w53, s51, s52, s53,
-    w61, w62, w63, s61, s62, s63,
+    w11, w12, w13, 
+    w21, w22, w23, 
+    w31, w32, w33, 
+    w41, w42, w43, 
+    w51, w52, w53, 
+    w61, w62, w63, 
 }){
 ////////////
 // Consts //
@@ -67,8 +67,17 @@ function renderWeaponEffect(relicSlot, key, isNegative){
 // Main Render //
 /////////////////
 return(
-    <div>
-
+    <div style={{ flex: 7, backgroundColor: nightShade, display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+            {renderSingleWeapon(w1, 1)}
+            {renderSingleWeapon(w2, 2)}
+            {renderSingleWeapon(w3, 3)}
+        </div>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+            {renderSingleWeapon(w4, 4)}
+            {renderSingleWeapon(w5, 5)}
+            {renderSingleWeapon(w6, 6)}
+        </div>
     </div>
 )
 }
