@@ -202,7 +202,7 @@ const regenRelics = [
     },
     {
         title: "HP Restoration upon Thrusting Counterattack",
-        desc: "Restores 2.5% of your Max HP per attack from a thrusting sword / spear landed on an enemy that is in an attack animation",
+        desc: "Restores 2.5% of your Max HP per attack from a thrusting sword / spear / bow landed on an enemy that is in an attack animation",
         stacks: {self: true, selfType: true},
         selfType: "hpOnWeaponSucc",
         effect: {

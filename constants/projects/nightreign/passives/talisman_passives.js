@@ -141,7 +141,7 @@ const talismans = [
         title: "Red-Feathered Branchsword",
         desc: "Improves Attack Power by 20% at when below 20% HP.",
         stacks: {self: true, selfType: true},
-        selfType: "scorpion",
+        selfType: "lowHPBuff",
         effect: {
             always: false,
             condition: "When below 20% HP",
@@ -152,11 +152,171 @@ const talismans = [
         title: "Ritual Sword Talisman",
         desc: "Improves Attack Power by 10% at Full HP.",
         stacks: {self: true, selfType: true},
-        selfType: "scorpion",
+        selfType: "fullHPBuff",
         effect: {
             always: false,
             condition: "When at Full HP",
             allDamage: 1.10,
+        }
+    },
+    {
+        title: "Spear Talisman",
+        desc: "Improves All Piercing Damage Power by 20% when hitting an enemy in mid attack animation.",
+        stacks: {self: true, selfType: true},
+        selfType: "counterAttacks",
+        effect: {
+            always: true,
+        }
+    },
+    {
+        title: "Hammer Talisman",
+        desc: "Improves stamina damage on blocking enemies by 50%.",
+        stacks: {self: true, selfType: true},
+        selfType: "guardBreaking",
+        effect: {
+            always: true,
+        }
+    },
+    {
+        title: "Dagger Talisman",
+        desc: "Improves Critical Hit Damage by 24%.",
+        stacks: {self: true, selfType: true},
+        selfType: "critDamage",
+        effect: {
+            always: true,
+            critDamage
+        }
+    },
+    {
+        title: "Twinblade Talisman",
+        desc: "Improves the Damage on the final hit of an R1 / RB Chain by 15%.",
+        stacks: {self: true, selfType: true},
+        selfType: "critDamage",
+        effect: {
+            always: true,
+            critDamage: 1.15
+        }
+    },
+    {
+        title: "Axe Talisman",
+        desc: "Improves the Damage on Charge Attacks by 12%.",
+        stacks: {self: true, selfType: true},
+        selfType: "chargeDamage",
+        effect: {
+            always: true,
+            chargeDamage: 1.12
+        }
+    },
+    {
+        title: "Claw Talisman",
+        desc: "Improves the Damage on Jump Attacks by 12%.",
+        stacks: {self: true, selfType: true},
+        selfType: "jumpDamage",
+        effect: {
+            always: true,
+            jumpDamage: 1.12
+        }
+    },
+    {
+        title: "Curved Sword Talisman",
+        desc: "Improves the Damage on Guard Counters by 20%.",
+        stacks: {self: true, selfType: true},
+        selfType: "counterDamage",
+        effect: {
+            always: true,
+            counterDamage: 1.20
+        }
+    },
+    {
+        title: "Roar Medallion",
+        desc: "Improves the Damage on Roar and Breath Skills as well as Dragon Communion Spells by 20%.",
+        stacks: {self: true, selfType: true},
+        selfType: "roarDamage",
+        effect: {
+            always: true,
+            roarDamage: 1.20
+        }
+    },
+    {
+        title: "Perfumer's Talisman",
+        desc: "Improves the Damage on Perfume Items as well as their status buildup by 20%.",
+        stacks: {self: true, selfType: true},
+        selfType: "perfumeDamage",
+        effect: {
+            always: true,
+            perfumeDamage: 1.20
+        }
+    },
+    {
+        title: "Companion Jar",
+        desc: "Improves the Damage on Pot Items as well as their status buildup by 20%.",
+        stacks: {self: true, selfType: true},
+        selfType: "perfumeDamage",
+        effect: {
+            always: true,
+            potDamage: 1.20
+        }
+    },
+    {
+        title: "Arrow's Reach Talisman",
+        desc: "Bow Attack Damage Falloff effects accrue 50% more slowly (Distance reduces damage half as much sort of).",
+        stacks: {self: true, selfType: true},
+        selfType: "fallOffDam",
+        effect: {
+            always: true,
+            fallOfDam: .50
+        }
+    },
+    {
+        title: "Arrow's Sting Talisman",
+        desc: "Bow / Crossbow Attack Damage increased 14%.",
+        stacks: {self: true, selfType: true},
+        selfType: "rangedDamage",
+        effect: {
+            always: true,
+            rangedDamage: 1.14
+        }
+    },
+    {
+        title: "Lord of Blood's Exultation",
+        desc: "Nearby Blood Loss gives all Damage a 20% boost for 20 seconds.",
+        stacks: {self: true, selfType: true},
+        selfType: "bloodBoost",
+        effect: {
+            always: false,
+            condition: "After nearby blood loss (20 Seconds)",
+            allDamage: 1.20
+        }
+    },
+    {
+        title: "Kindred of Rot's Exultation",
+        desc: "Nearby Rot or Poison Proc gives all Damage a 20% boost for 20 seconds.",
+        stacks: {self: true, selfType: true},
+        selfType: "bloodBoost",
+        effect: {
+            always: false,
+            condition: "After nearby poison or rot proc (20 Seconds)",
+            allDamage: 1.20
+        }
+    },
+    {
+        title: "Graven-School Talisman",
+        desc: "11% Increase to all Sorcery Damage.",
+        stacks: {self: true, selfType: true},
+        selfType: "sorcDamage",
+        effect: {
+            always: true,
+            sorcDamage: 1.11
+        }
+    },
+    {
+        title: "Faithful's Canvas Talisman",
+        desc: "11% Increase to all Incantation Damage.",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            always: true,
+            sorcDamage: 1.11
         }
     },
 ]

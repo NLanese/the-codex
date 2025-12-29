@@ -92,7 +92,7 @@ const deepCharacterRelics = [
     },
     {
         title: "Boosts Thrusting Counterattacks after executing Art", 
-        desc: "Thrusting Attack damage dealt while enemy is in an attack animation deals an extra 20% damage for 30 seconds after using Ultimate Art.",
+        desc: "All Piercing (Bows included) Attack damage dealt while enemy is in an attack animation deals an extra 20% damage for 30 seconds after using Ultimate Art.",
         stacks: {self: false, selfType: false},
         selfType: "thrusting",
         nightfarer: "Ironeye",
