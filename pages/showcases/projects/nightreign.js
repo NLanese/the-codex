@@ -77,6 +77,14 @@ const silverLining = "#d4eeff"
     const [effect32, setEffect32] = useState(false)
     const [effect33, setEffect33] = useState(false)
 
+    // Weapon Passives
+    const [weapon1, setWeapon1] = useState(false)
+    const [weapon2, setWeapon2] = useState(false)
+    const [weapon3, setWeapon3] = useState(false)
+    const [weapon4, setWeapon4] = useState(false)
+    const [weapon5, setWeapon5] = useState(false)
+    const [weapon6, setWeapon6] = useState(false)
+
     const [weaponEffect11, setWeaponEffect11] = useState(false)
     const [weaponEffect12, setWeaponEffect12] = useState(false)
     const [weaponEffect13, setWeaponEffect13] = useState(false)
@@ -243,6 +251,13 @@ const silverLining = "#d4eeff"
         setRelic4({ slot1: effect41, slot2: effect42, slot3: effect43 });
         setRelic5({ slot1: effect51, slot2: effect52, slot3: effect53 });
         setRelic6({ slot1: effect61, slot2: effect62, slot3: effect63 });
+
+        setWeapon1({ slot1: weaponEffect11, slot2: weaponEffect12, slot3: weaponEffect13 });
+        setWeapon2({ slot1: weaponEffect21, slot2: weaponEffect22, slot3: weaponEffect23 });
+        setWeapon3({ slot1: weaponEffect31, slot2: weaponEffect32, slot3: weaponEffect33 });
+        setWeapon4({ slot1: weaponEffect41, slot2: weaponEffect42, slot3: weaponEffect43 });
+        setWeapon5({ slot1: weaponEffect51, slot2: weaponEffect52, slot3: weaponEffect53 });
+        setWeapon6({ slot1: weaponEffect61, slot2: weaponEffect62, slot3: weaponEffect63 });
     
         // Update final combined effects
         set_all_relic_effects(all);

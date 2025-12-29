@@ -1,10 +1,6 @@
 export default function BasePlayerSelections({
-    w11, w12, w13, 
-    w21, w22, w23, 
-    w31, w32, w33, 
-    w41, w42, w43, 
-    w51, w52, w53, 
-    w61, w62, w63, 
+    w1,w2,w3,
+    w4,w5,w6,
 }){
 ////////////
 // Consts //
@@ -54,7 +50,7 @@ function renderWeaponEffect(relicSlot, key, isNegative){
     return (
         <OstCard key={key} noShadow={true} rounded={false} 
         style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15, backgroundColor: isNegative ? frenzyTouched : silveredNight}} 
-        onClick={() => handleRelicEffectClick(key, cons)}
+        onClick={() => handleWeaponEffectClick(key, cons)}
         >
             {relicSlot?.title ? relicSlot?.title : "No Effect"}
         </OstCard>
