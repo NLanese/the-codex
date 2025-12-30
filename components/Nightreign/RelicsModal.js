@@ -69,14 +69,13 @@ useEffect(() => {
 useEffect(() => {
     setSearch("")
 
-    // WEAPONS
-    if (isWeapons){
-
-    }
-
     // All
     if (effectCat === "All"){
-        if (isDeep){
+        if (isWeapons){
+            setSelectedList([...offensive_weapon_passives, ...defensive_weapon_passives, ...stat_weapon_passives])
+            setFilteredEffects([...offensive_weapon_passives, ...defensive_weapon_passives, ...stat_weapon_passives])
+        }
+        else if (isDeep){
             setSelectedList([
                 ...offensiveRelics, ...deepOffensiveRelics, 
                 ...defensiveRelics, ...deepDefensiveRelics,
@@ -100,7 +99,11 @@ useEffect(() => {
 
     // Offensive 
     if (effectCat === "Offensive" || effectCat === "Off" ){
-        if (isDeep){
+        if (isWeapons){
+            setSelectedList(offensive_weapon_passives)
+            setFilteredEffects(offensive_weapon_passives)
+        }
+        else if (isDeep){
             setSelectedList([...offensiveRelics, ...deepOffensiveRelics])
             setFilteredEffects([...offensiveRelics, ...deepOffensiveRelics])
         }
@@ -112,7 +115,11 @@ useEffect(() => {
 
     // Defensive
     else if (effectCat === "Defensive" || effectCat === "Def" ){
-        if (isDeep){
+        if (isWeapons){
+            setSelectedList(defensive_weapon_passives)
+            setFilteredEffects(defensive_weapon_passives)
+        }
+        else if (isDeep){
             setSelectedList([...defensiveRelics, ...deepDefensiveRelics])
             setFilteredEffects([...defensiveRelics, ...deepDefensiveRelics])
         }
@@ -136,7 +143,11 @@ useEffect(() => {
 
     // Stat Changes
     else if (effectCat === "Stat Changes"){
-        if (isDeep){
+        if (isWeapons){
+            setSelectedList(stat_weapon_passives)
+            setFilteredEffects(stat_weapon_passives)
+        }
+        else if (isDeep){
             setSelectedList([...statRelics, ...deepStatRelics])
             setFilteredEffects([...statRelics, ...deepStatRelics])
         }

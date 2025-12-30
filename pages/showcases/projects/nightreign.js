@@ -20,6 +20,7 @@ import RelicsModal from "../../../components/Nightreign/RelicsModal";
 import BasePlayerSelections from "../../../components/Nightreign/BasePlayerSelections";
 import StatSheet from "../../../components/Nightreign/StatSheet";
 import BossStats from "../../../components/Nightreign/BossStats";
+import WeaponPassiveSelections from "../../../components/Nightreign/WeaponPassiveSelections";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -331,13 +332,11 @@ function renderSelections(deepDisplayed){
         return renderEffectToggles()
     }
     else if (selectionState === "Weapon Passives"){
-        return(
-            <div style={{flex: 7}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Nothing here yet. Please check in again for updates!
-                </p>
-            </div>
-        )
+        return <WeaponPassiveSelections 
+            w1={weapon1} w2={weapon2} w3={weapon3}
+            w4={weapon4} w5={weapon5} w6={weapon6}
+            handleWeaponEffectClick={handleWeaponEffectClick}
+            />
     }
     else if (selectionState === "Talismans"){
         return(
@@ -569,6 +568,7 @@ function renderRelicModal(){
                 closeModal={closeModal} 
                 nightfarer={nightfarer} 
                 isDeep={deepDisplayed}
+                isWeapons={weaponsDisplayed}
                 isCursed={cursedModal}
             />
         </ReactModal>

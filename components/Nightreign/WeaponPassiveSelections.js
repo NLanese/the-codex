@@ -1,6 +1,9 @@
-export default function BasePlayerSelections({
+import { OstCard } from "../../OstrichComponents/Format/OstCard"
+
+export default function WeaponPassiveSelections({
     w1,w2,w3,
     w4,w5,w6,
+    handleWeaponEffectClick,
 }){
 ////////////
 // Consts //
@@ -23,9 +26,9 @@ function renderSingleWeapon(weapon, id){
         <OstCard style={{ flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight }}>
             {renderWeaponHeader(id)}
             <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
-                {renderWeaponEffect(weapon?.slot1 ?? null, `${id}1`, true)}
-                {renderWeaponEffect(weapon?.slot2 ?? null, `${id}2`, true)}
-                {renderWeaponEffect(weapon?.slot3 ?? null, `${id}3`, false)}
+                {renderWeaponEffect(weapon?.slot1 ?? null, `${id}1`, false)}
+                {renderWeaponEffect(weapon?.slot2 ?? null, `${id}2`, false)}
+                {renderWeaponEffect(weapon?.slot3 ?? null, `${id}3`, true)}
             </div>
         </OstCard>
     )
@@ -50,7 +53,7 @@ function renderWeaponEffect(relicSlot, key, isNegative){
     return (
         <OstCard key={key} noShadow={true} rounded={false} 
         style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15, backgroundColor: isNegative ? frenzyTouched : silveredNight}} 
-        onClick={() => handleWeaponEffectClick(key, cons)}
+        onClick={() => handleWeaponEffectClick(key)}
         >
             {relicSlot?.title ? relicSlot?.title : "No Effect"}
         </OstCard>
@@ -64,12 +67,12 @@ function renderWeaponEffect(relicSlot, key, isNegative){
 /////////////////
 return(
     <div style={{ flex: 7, backgroundColor: nightShade, display: 'flex', flexDirection: 'row'}}>
-        <div style={{display: 'flex', flexDirection: 'row', flex: 6}}>
+        <div style={{display: 'flex', flexDirection: 'column', flex: 6}}>
             {renderSingleWeapon(w1, 1)}
             {renderSingleWeapon(w2, 2)}
             {renderSingleWeapon(w3, 3)}
         </div>
-        <div style={{display: 'flex', flexDirection: 'row', flex: 6}}>
+        <div style={{display: 'flex', flexDirection: 'column', flex: 6}}>
             {renderSingleWeapon(w4, 4)}
             {renderSingleWeapon(w5, 5)}
             {renderSingleWeapon(w6, 6)}
