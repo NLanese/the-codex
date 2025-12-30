@@ -687,3 +687,5 @@ const offensive_weapon_passives = [
         }
     }, 
 ]
+
+export default offensive_weapon_passives

@@ -64,12 +64,12 @@ function renderWeaponEffect(relicSlot, key, isNegative){
 /////////////////
 return(
     <div style={{ flex: 7, backgroundColor: nightShade, display: 'flex', flexDirection: 'row'}}>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row', flex: 6}}>
             {renderSingleWeapon(w1, 1)}
             {renderSingleWeapon(w2, 2)}
             {renderSingleWeapon(w3, 3)}
         </div>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row', flex: 6}}>
             {renderSingleWeapon(w4, 4)}
             {renderSingleWeapon(w5, 5)}
             {renderSingleWeapon(w6, 6)}

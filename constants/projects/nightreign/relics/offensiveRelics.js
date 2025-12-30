@@ -316,17 +316,6 @@ const offensiveRelics = [
             always: true,
         }
     },
-    // {
-    //     title: "Improved Throwing Pot/Knife/Stone/Perfuming Arts Damage", 
-    //     desc: "Increases Pot/Knife/Stone/Perfuming Arts damage by 15%",
-    //     stacks: {self: true, selfType: true},
-    //     selfType: "ThrowsUp",
-    //     effect: {
-    //         throwingDamage: 1.15,
-    //         appliesRanged: false,
-    //         always: true,
-    //     }
-    // },
     {
         title: "Improved Throwing Pot Damage", 
         desc: "Increases Pot damage by 15%",

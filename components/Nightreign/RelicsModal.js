@@ -27,13 +27,19 @@ import miscRelics from "../../constants/projects/nightreign/relics/miscRelics";
 
 import characterRelics from "../../constants/projects/nightreign/relics/characterRelics";
 
+// Weapons 
+import defensive_weapon_passives from "../../constants/projects/nightreign/passives/defensive_weapon";
+import stat_weapon_passives from "../../constants/projects/nightreign/passives/stat_weapons";
+import offensive_weapon_passives from "../../constants/projects/nightreign/passives/offensive_weapon";
+
 export default function RelicsModal({
     selectEffect,
     isMobile, 
     closeModal,
     nightfarer,
     isDeep,
-    isCursed
+    isCursed,
+    isWeapons
 }) {
 
 ///////////
@@ -62,6 +68,11 @@ useEffect(() => {
 
 useEffect(() => {
     setSearch("")
+
+    // WEAPONS
+    if (isWeapons){
+
+    }
 
     // All
     if (effectCat === "All"){
@@ -215,6 +226,14 @@ function renderCanStack(eff){
 }
 
 function renderOptions(){
+    if (isWeapons){
+        <OstrichTabBar
+            startingTabByTitle="All"
+            style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
+            tabs={["All", "Offensive", "Defensive", "Stat Changes"]}
+            onTabClick={(tab) => setEffectCat(tab)}
+            />
+    }
     if (isMobile){
         return(
             <FormMultipleChoice

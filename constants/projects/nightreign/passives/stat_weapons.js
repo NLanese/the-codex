@@ -276,3 +276,5 @@ const stat_weapon_passives = [
     },
     
 ]
+
+export default stat_weapon_passives

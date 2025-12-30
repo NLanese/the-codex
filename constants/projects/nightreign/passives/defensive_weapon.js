@@ -236,3 +236,5 @@ const defensive_weapon_passives = [
         }
     },
 ]
+
+export default defensive_weapon_passives
