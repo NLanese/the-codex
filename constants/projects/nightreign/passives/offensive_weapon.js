@@ -686,6 +686,66 @@ const offensive_weapon_passives = [
             always: true,
         }
     }, 
+    {
+        title: "Improved Charged Sorceriey/Incantation Damage +9%", 
+        desc: "Increases All Incantation Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            chargedSpellDamaged: 1.09,
+            appliesRanged: true,
+            always: true,
+        }
+    }, 
+    {
+        title: "Improved Charged Sorceriey/Incantation Damage +13%", 
+        desc: "Increases All Incantation Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            chargedSpellDamaged: 1.13,
+            appliesRanged: true,
+            always: true,
+        }
+    }, 
+    {
+        title: "Improved Charged Sorceriey/Incantation Damage +18%", 
+        desc: "Increases All Incantation Damage",
+        stacks: {self: true, selfType: true},
+        selfType: "incantDamage",
+        effect: {
+            chargedSpellDamaged: 1.18,
+            appliesRanged: true,
+            always: true,
+        }
+    }, 
+    {
+        title: "Improved Spell Casting Speed +1", 
+        desc: "Increases Spell Casting Speed by 30 Dex",
+        stacks: {self: true, selfType: true},
+        selfType: "spellSpeed",
+        effect: {
+            always: true,
+        }
+    }, 
+    {
+        title: "Improved Spell Casting Speed +2", 
+        desc: "Increases Spell Casting Speed by 60 Dex",
+        stacks: {self: true, selfType: true},
+        selfType: "spellSpeed",
+        effect: {
+            always: true,
+        }
+    }, 
+    {
+        title: "Projectile Damage Drop-off Reduced", 
+        desc: "Reduces the amount of attack damage reduction suffered at distances",
+        stacks: {self: true, selfType: true},
+        selfType: "falloff",
+        effect: {
+            always: true,
+        }
+    }, 
 ]
 
 export default offensive_weapon_passives

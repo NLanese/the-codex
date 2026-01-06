@@ -264,13 +264,32 @@ const stat_weapon_passives = [
         }
     },
     {
-        title: "Improved Item Discovery", 
+        title: "Improved Item Discovery +20", 
         desc: "Imrproves Item Discovery",
         stacks: {self: true, selfType: true},
         selfType: "statChange",
         effect: {
-            dex: 9,
-            arcane: 9,
+            itemDiscovery: 1.10,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Item Discovery +30", 
+        desc: "Imrproves Item Discovery",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            itemDiscovery: 1.125,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Item Discovery +40", 
+        desc: "Imrproves Item Discovery",
+        stacks: {self: true, selfType: true},
+        selfType: "statChange",
+        effect: {
+            itemDiscovery: 1.15,
             always: true,
         }
     },
