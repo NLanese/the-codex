@@ -58,7 +58,7 @@ function renderSingleWeapon(weapon, id){
             <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
                 {renderWeaponEffect(weapon?.slot1 ?? null, `${id}1`, false)}
                 {renderWeaponEffect(weapon?.slot2 ?? null, `${id}2`, false)}
-                {renderWeaponEffect(weapon?.slot3 ?? null, `${id}3`, true)}
+                {/* {renderWeaponEffect(weapon?.slot3 ?? null, `${id}3`, true)} */}
             </div>
         </OstCard>
     )
