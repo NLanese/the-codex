@@ -22,6 +22,8 @@ const greyOfNight = "#636478"
 const gloomGlow = "#452d8a"
 const silveredNight = "#7fc7bf"
 const silverLining = "#d4eeff"
+const scarletRot = '#754142'
+
 
 ///////////
 // State //

@@ -1,4 +1,7 @@
 import { OstCard } from "../../OstrichComponents/Format/OstCard"
+import React, {useEffect, useState, useRef} from "react";
+import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
+
 
 export default function WeaponPassiveSelections({
     w1,w2,w3,
@@ -17,13 +20,39 @@ const greyOfNight = "#636478"
 const gloomGlow = "#452d8a"
 const silveredNight = "#7fc7bf"
 const silverLining = "#d4eeff"
+const scarletRot = '#754142'
+
+const [secondSet, setSecondSet] = useState(false)
+
+// Weapon Passives
+const [weapon1, setWeapon1] = useState(w1)
+const [weapon2, setWeapon2] = useState(w2)
+const [weapon3, setWeapon3] = useState(w3)
+const [weapon4, setWeapon4] = useState(w4)
+const [weapon5, setWeapon5] = useState(w5)
+const [weapon6, setWeapon6] = useState(w6)
+
+
+useEffect(() => {
+    setWeapon1(w1)
+    setWeapon2(w2)
+    setWeapon3(w3)
+    setWeapon4(w4)
+    setWeapon5(w5)
+    setWeapon6(w6)
+
+    console.log(w1)
+}, [w1, w2, w3, w4, w5, w6])
 
 ////////////////
 // Renderings //
 ////////////////
 function renderSingleWeapon(weapon, id){
     return(
-        <OstCard style={{ flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight }}>
+        <OstCard style={{ flex: 4, 
+        backgroundColor: greyOfNight, borderColor: silveredNight,
+        padding: 0, overflow: 'hidden', border: "1px solid" 
+        }}>
             {renderWeaponHeader(id)}
             <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
                 {renderWeaponEffect(weapon?.slot1 ?? null, `${id}1`, false)}
@@ -52,7 +81,7 @@ function renderWeaponHeader(key){
 function renderWeaponEffect(relicSlot, key, isNegative){
     return (
         <OstCard key={key} noShadow={true} rounded={false} 
-        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15, backgroundColor: isNegative ? frenzyTouched : silveredNight}} 
+        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15, backgroundColor: isNegative ? scarletRot : silveredNight}} 
         onClick={() => handleWeaponEffectClick(key)}
         >
             {relicSlot?.title ? relicSlot?.title : "No Effect"}
@@ -61,21 +90,39 @@ function renderWeaponEffect(relicSlot, key, isNegative){
     )
 }
 
+function determineCardsShown(){
+    if (!secondSet){
+        return (
+            <div style={{display: 'flex', flexDirection: 'column', width: '100%', height: '100%', flex: 1}}>
+            {renderSingleWeapon(weapon1, 1)}
+            {renderSingleWeapon(weapon2, 2)}
+            {renderSingleWeapon(weapon3, 3)}
+            </div>
+        )
+    }
+    else{
+        <div style={{display: 'flex', flexDirection: 'column', width: '100%', height: '100%', flex: 1}}>
+            {renderSingleWeapon(weapon4, 4)}
+            {renderSingleWeapon(weapon5, 5)}
+            {renderSingleWeapon(weapon6, 6)}
+        </div>
+    }
+}
+
 
 /////////////////
 // Main Render //
 /////////////////
 return(
-    <div style={{ flex: 7, backgroundColor: nightShade, display: 'flex', flexDirection: 'row'}}>
-        <div style={{display: 'flex', flexDirection: 'column', flex: 6}}>
-            {renderSingleWeapon(w1, 1)}
-            {renderSingleWeapon(w2, 2)}
-            {renderSingleWeapon(w3, 3)}
+    <div style={{ flex: 7, backgroundColor: nightShade, display: 'flex', flexDirection: 'column'}}>
+        <div style={{flex: 1}}>
+            <OstrichTabBar
+            tabs={["Weapons 1-3", "Weapons 4-6"]}
+            value={secondSet ? "Weapons 4-6" : "Weapons 1-3"}
+            />
         </div>
-        <div style={{display: 'flex', flexDirection: 'column', flex: 6}}>
-            {renderSingleWeapon(w4, 4)}
-            {renderSingleWeapon(w5, 5)}
-            {renderSingleWeapon(w6, 6)}
+        <div style={{flex: 11, paddingRight: 5}}>
+            {determineCardsShown()}
         </div>
     </div>
 )

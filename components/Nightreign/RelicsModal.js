@@ -34,6 +34,7 @@ import offensive_weapon_passives from "../../constants/projects/nightreign/passi
 
 export default function RelicsModal({
     selectEffect,
+    selectWeaponEffect,
     isMobile, 
     closeModal,
     nightfarer,
@@ -62,10 +63,12 @@ const [search, setSearch] = useState("")
 const [selectedList, setSelectedList] = useState([])
 const [filteredEffects, setFilteredEffects] = useState([])
 
+// On Init
 useEffect(() => {
     setEffectCat("All")
 }, [])
 
+// Chnages Relics Shown in Filters
 useEffect(() => {
     setSearch("")
 
@@ -180,6 +183,7 @@ useEffect(() => {
 
 }, [effectCat])
 
+// On Searchbar Type Input
 useEffect(() => {
     if (search === ""){
         setFilteredEffects([...selectedList])
@@ -201,7 +205,7 @@ useEffect(() => {
 function renderFilteredEffects(){
     return filteredEffects.map(eff => {
         return(
-            <OstCard noShadow={true} rounded={false} onClick={() => selectEffect(eff)}
+            <OstCard noShadow={true} rounded={false} onClick={() => determineChange(eff)}
             style={{
             border: "1px solid black", backgroundColor: traceNight,
             padding: 0, paddingLeft: 10, 
@@ -304,6 +308,15 @@ function renderTitle(){
 // Functions //
 ///////////////
 
+function determineChange(eff){
+    if (isWeapons){
+        console.log("Changing Weapon Effect")
+        selectWeaponEffect(eff)
+    }
+    else{
+        selectEffect(eff)
+    }
+}
 
 /////////////////
 // Main Return //

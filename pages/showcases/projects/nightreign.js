@@ -270,7 +270,14 @@ const silverLining = "#d4eeff"
         effect31, effect32, effect33,
         effect41, effect42, effect43,
         effect51, effect52, effect53,
-        effect61, effect62, effect63
+        effect61, effect62, effect63,
+
+        weaponEffect11, weaponEffect12, weaponEffect13,
+        weaponEffect21, weaponEffect22, weaponEffect23,
+        weaponEffect31, weaponEffect32, weaponEffect33,
+        weaponEffect41, weaponEffect42, weaponEffect43,
+        weaponEffect51, weaponEffect52, weaponEffect53,
+        weaponEffect61, weaponEffect62, weaponEffect63,
     ]);
 
     useEffect(() => {
@@ -564,6 +571,7 @@ function renderRelicModal(){
         >
             <RelicsModal 
                 selectEffect={handleChangeEffect} 
+                selectWeaponEffect={handleChangeWeaponEffect}
                 isMobile={isMobile} 
                 closeModal={closeModal} 
                 nightfarer={nightfarer} 
@@ -842,6 +850,7 @@ function RENDER_MAIN(){
     }
 
     function handleChangeWeaponEffect(effect){
+        console.log("Changing Weapon effect ", currentEditNum, " with effect ", effect.title)
         if (currentEditNum === "11"){
             setWeaponEffect11(effect)
         }
