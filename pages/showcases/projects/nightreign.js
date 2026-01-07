@@ -593,7 +593,7 @@ function renderCredits(pos){
                         Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
                     </p>
                     <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                        Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
+                        Credits for Nightfarer and Boss Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
                     </p>
                 </div>
                 <div style={{flex: 4}}>
@@ -620,7 +620,7 @@ function renderCredits(pos){
                         Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
                     </p>
                     <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                        Credits for Nightfarer Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
+                        Credits for Nightfarer and Boss Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
                     </p>
                 </div>
                 <div style={{flex: 4}}>

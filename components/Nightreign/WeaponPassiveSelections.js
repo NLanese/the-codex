@@ -48,6 +48,7 @@ useEffect(() => {
 ////////////////
 // Renderings //
 ////////////////
+
 function renderSingleWeapon(weapon, id){
     return(
         <OstCard style={{ flex: 4, 
