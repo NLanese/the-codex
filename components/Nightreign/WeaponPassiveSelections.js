@@ -69,7 +69,7 @@ function renderWeaponHeader(key){
         <div style={{height: '12%'}}>
             <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
             <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
-                Weapon
+                Weapon {key}
             </OstCard>
             <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearWeapon(key)}>
                 CLEAR
@@ -102,11 +102,13 @@ function determineCardsShown(){
         )
     }
     else{
-        <div style={{display: 'flex', flexDirection: 'column', width: '100%', height: '100%', flex: 1}}>
+        return(
+            <div style={{display: 'flex', flexDirection: 'column', width: '100%', height: '100%', flex: 1}}>
             {renderSingleWeapon(weapon4, 4)}
             {renderSingleWeapon(weapon5, 5)}
             {renderSingleWeapon(weapon6, 6)}
-        </div>
+            </div>
+        )
     }
 }
 
@@ -120,6 +122,7 @@ return(
             <OstrichTabBar
             tabs={["Weapons 1-3", "Weapons 4-6"]}
             value={secondSet ? "Weapons 4-6" : "Weapons 1-3"}
+            onTabClick={(tab) =>  (tab === "Weapons 1-3" ? setSecondSet(false) : setSecondSet(true))}
             />
         </div>
         <div style={{flex: 11, paddingRight: 5}}>
