@@ -1,4 +1,4 @@
-const day1And2Stats = {
+const day1_stats = {
     DemiQueen: {
         name: 'Demi Queen',
         HP: 8712,
@@ -289,4 +289,4 @@ const day1And2Stats = {
     },
 }
 
-export default day1And2Stats
+export default day1_stats

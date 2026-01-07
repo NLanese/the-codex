@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import { OstCard } from "../../OstrichComponents/Format/OstCard";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
-import day1And2Stats from "../../constants/projects/nightreign/bosses/day1and2";
+import day1_stats from "../../constants/projects/nightreign/bosses/day1";
 
 export default function BossStats({
     isMobile
@@ -65,8 +65,8 @@ export default function BossStats({
 
     function renderBossCard(img, name, color){
         let table = nightlordStats
-        if (screen === "Day 1 and 2 Bosses"){
-            table = day1And2Stats
+        if (screen === "Night 1"){
+            table = day1_stats
         }
         let stats = table[name] ? table[name] : null
         return(
@@ -155,8 +155,8 @@ export default function BossStats({
         if (screen === "Nightlords"){
             return _nightlords()
         }
-        else if (screen === "Day 1 and 2 Bosses"){
-            return _major_field_bosses()
+        else if (screen === "Night 1"){
+            return _night1()
         }
     }
 
@@ -215,7 +215,7 @@ export default function BossStats({
         )
     }
 
-    function _major_field_bosses(){
+    function _night1(){
         if (isMobile){
             return(
                 <div style={{height: 'auto'}}>
@@ -284,7 +284,7 @@ export default function BossStats({
             <div style={{padding: 20}}>
                 <OstrichTabBar style={{width: '100%'}}
                 value={screen}
-                tabs={["Nightlords", "Day 1 and 2 Bosses", "Major Field Bosses", "Minor Field Boss"]}
+                tabs={["Nightlords", "Night 1", "Night 2", "Major Field Bosses", "Minor Field Boss"]}
                 onTabClick={(tab) => setScreen(tab)}
                 />
             </div>

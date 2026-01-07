@@ -36,7 +36,7 @@ const offensive_weapon_passives = [
         }
     },
     {
-        title: "Improved Attack Power When Two-Handings +12%", 
+        title: "Improved Attack Power When Two-Handing +12%", 
         desc: "Two handing any armamemnt causes it to deal more damage. Does not work on bows",
         stacks: {self: true, selfType: true},
         selfType: "powerstanceDam",
@@ -48,7 +48,7 @@ const offensive_weapon_passives = [
         }
     },
     {
-        title: "Improved Attack Power When Two-Handings +15%", 
+        title: "Improved Attack Power When Two-Handing +15%", 
         desc: "Two handing any armamemnt causes it to deal more damage. Does not work on bows",
         stacks: {self: true, selfType: true},
         selfType: "powerstanceDam",
@@ -60,7 +60,7 @@ const offensive_weapon_passives = [
         }
     },
     {
-        title: "Improved Attack Power When Two-Handings +18%", 
+        title: "Improved Attack Power When Two-Handing +18%", 
         desc: "Two handing any armamemnt causes it to deal more damage. Does not work on bows",
         stacks: {self: true, selfType: true},
         selfType: "powerstanceDam",

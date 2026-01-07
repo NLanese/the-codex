@@ -343,6 +343,7 @@ function renderSelections(deepDisplayed){
             w1={weapon1} w2={weapon2} w3={weapon3}
             w4={weapon4} w5={weapon5} w6={weapon6}
             handleWeaponEffectClick={handleWeaponEffectClick}
+            clearWeapon={clearWeapon}
             />
     }
     else if (selectionState === "Talismans"){
