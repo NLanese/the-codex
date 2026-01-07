@@ -579,6 +579,58 @@ const characterRelics = [
             appliesRanged: true
         },
     },
+    {
+        title: "Improved Endurance and Dexterity, Reduced Intelligence and Arcane", 
+        desc: "Endurance +4 and Dexterity +40, intelligence -4, Arcane -20" ,
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
+            dex: 40,
+            end: 4,
+            intl: -4,
+            arcane: -20
+        },
+    },
+    {
+        title: "Improved Mind, Reduced Vigor", 
+        desc: "Vigor -3, Mind +9" ,
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Scholar",
+        effect: {
+            always: true,
+            vigor: -3,
+            mind: 9
+        },
+    },
+    {
+        title: "Improved Dexterity, Reduced Vigor and Strength", 
+        desc: "Dexterity +19, Vigor -5 and Faith -13" ,
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Undertaker",
+        effect: {
+            always: true,
+            vigor: -5,
+            dex: 19,
+            fai: -13,
+        },
+    },
+    {
+        title: "Improved Mind and Faith, Reduced Strength", 
+        desc: "Mind +9, Faith +12 and Strength -15" ,
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Undertaker",
+        effect: {
+            always: true,
+            mind: 9,
+            fai: 12,
+            str: -15,
+        },
+    },
 ]
 
 export default characterRelics
