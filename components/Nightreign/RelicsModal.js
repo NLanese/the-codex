@@ -241,13 +241,16 @@ function renderCanStack(eff){
 }
 
 function renderOptions(){
+    console.log(isWeapons)
     if (isWeapons){
-        <OstrichTabBar
+        return(
+            <OstrichTabBar
             startingTabByTitle="All"
             style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
             tabs={["All", "Offensive", "Defensive", "Stat Changes"]}
             onTabClick={(tab) => setEffectCat(tab)}
             />
+        )
     }
     if (isMobile){
         return(
