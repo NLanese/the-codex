@@ -166,7 +166,7 @@ const defensive_weapon_passives = [
     {
         title: "Taking Attacks Boosts Damage Negation +21%", 
         desc: "Damage Negation boosted for 10 seconds after taking enemy damage.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.21,
@@ -178,7 +178,7 @@ const defensive_weapon_passives = [
     {
         title: "Taking Attacks Boosts Damage Negation +28%", 
         desc: "Damage Negation boosted for 10 seconds after taking enemy damage.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.28,
@@ -190,7 +190,7 @@ const defensive_weapon_passives = [
     {
         title: "Taking Attacks Boosts Damage Negation +36%", 
         desc: "Damage Negation boosted for 10 seconds after taking enemy damage.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.36,
@@ -202,7 +202,7 @@ const defensive_weapon_passives = [
     {
         title: "Damage Negataion Up While Casting Spells +18%", 
         desc: "Damage Negation boosted while in a sorcery or incantation animation.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.18,
@@ -214,7 +214,7 @@ const defensive_weapon_passives = [
     {
         title: "Damage Negataion Up While Casting Spells +24%", 
         desc: "Damage Negation boosted while in a sorcery or incantation animation.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.24,
@@ -226,7 +226,7 @@ const defensive_weapon_passives = [
     {
         title: "Damage Negataion Up While Casting Spells +30%", 
         desc: "Damage Negation boosted while in a sorcery or incantation animation.",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.30,
