@@ -206,7 +206,7 @@ function renderStats(toggles){
                         {renderStat("Fire", "neg", toggles)}
                         {renderStat("Lightning", "neg", toggles)}
                         {renderStat("Holy", "neg", toggles)}
-
+                        {renderStat("Poise ", "neg")}
                         {renderStat("Poise", "malenia_is_overrated_there_I_said_it")}
 
                         {renderStat("Poison", "res", toggles)}
@@ -295,6 +295,7 @@ function renderStats(toggles){
                 {renderStat("Lightning", "neg", toggles)}
                 {renderStat("Holy", "neg", toggles)}
 
+                {renderStat("Poise ", "neg", toggles)}
                 {renderStat("Poise", "malenia_is_overrated_there_I_said_it", toggles)}
 
                 {renderStat("Poison", "res", toggles)}
@@ -533,6 +534,9 @@ function determineRenderedValue(type, variety, toggles){
         }
         else if (type === "Holy"){
             return `${((determineDamModifier(type, variety, toggles) * negationBases.holy) * 100).toFixed(0)}%`
+        }
+        else  if (type === "Poise "){
+            return `${stack_modifiers_ADD("poiseNegation", 0, toggles)}%`
         }
     }
 
@@ -826,6 +830,11 @@ function determineDamModifier(type, relCat=false, toggles){
             totalMod = stack_modifiers('lightningNegation', totalMod, toggles)
             totalMod = stack_modifiers('affNegation', totalMod, toggles)
         }
+        // Finds "Magic Damage Modifiers" and applies
+        else if (type === "Poise "){
+            totalMod = 0
+            totalMod = stack_modifiers_ADD('poiseNegation', totalMod, toggles)
+        }
     }
    
     return totalMod
@@ -844,6 +853,23 @@ function stack_modifiers(key, totalMod, toggles){
             }  
         }
     })  
+    return totalMod
+}
+
+function stack_modifiers_ADD(key, totalMod, toggles){
+    let mods = findDamageTypeFromEffects(key)
+    mods.forEach(dam => {
+        if (determine_if_effect_is_toggled(dam, toggles)){
+            if (dam.effect.conditionCounter){
+                let mod = (( (dam.effect[key] - 1) + toggles[dam.effect.condition] ) + 1)
+                totalMod = totalMod + mod
+            }
+            else if (determine_if_effect_is_active(dam)){
+                totalMod = totalMod + dam.effect[key]
+            }  
+        }
+    })  
+    console.log(totalMod)
     return totalMod
 }
 

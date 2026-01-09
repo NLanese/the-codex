@@ -346,7 +346,7 @@ if (isCursed){
 }
     return(
         <div style={{height: '100%', paddingBottom: 10}}>
-            <div style={{height: '20%'}}>
+            <div style={{height: '15%'}}>
                 <div>
                     {renderTitle()}
                 </div>
@@ -358,7 +358,7 @@ if (isCursed){
                 </div>
             </div>
             
-            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: isMobile ? '20%' : 5, height: isMobile ? "65%" : '80%'}}>
+            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: isMobile ? '20%' : 5, height: isMobile ? "75%" : '85%'}}>
                 {renderFilteredEffects()}
             </div>
         </div>

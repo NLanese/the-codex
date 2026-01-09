@@ -161,6 +161,36 @@ const defensiveRelics = [
             rotRes: 75
         }
     },
+    {
+        title: "Improved Poise", 
+        desc: "THIS DOES NOT INCREASE POISE. This DECREASES poise damage taken by 5%",
+        stacks: {self: true, selfType: true},
+        selfType: "poiseNeg",
+        effect: {
+            poiseNegation: 5,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Poise +1", 
+        desc: "THIS DOES NOT INCREASE POISE. This DECREASES poise damage taken by 10%",
+        stacks: {self: true, selfType: true},
+        selfType: "poiseNeg",
+        effect: {
+            poiseNegation: 10,
+            always: true,
+        }
+    },
+    {
+        title: "Improved Poise +2", 
+        desc: "THIS DOES NOT INCREASE POISE. This DECREASES poise damage taken by 15%",
+        stacks: {self: true, selfType: true},
+        selfType: "poiseNeg",
+        effect: {
+            poiseNegation: 15,
+            always: true,
+        }
+    },
 ]
 
 export default defensiveRelics
