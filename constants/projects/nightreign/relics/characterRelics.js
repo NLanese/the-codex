@@ -606,7 +606,7 @@ const characterRelics = [
         },
     },
     {
-        title: "Improved Dexterity, Reduced Vigor and Strength", 
+        title: "Improved Dexterity, Reduced Vigor and Faith", 
         desc: "Dexterity +19, Vigor -5 and Faith -13" ,
         stacks: {self: false, selfType: true},
         selfType: "statChange",
