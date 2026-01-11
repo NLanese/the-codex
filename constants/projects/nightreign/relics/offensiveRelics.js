@@ -262,7 +262,7 @@ const offensiveRelics = [
     {
         title: "Improved Initial Standard Attack", 
         desc: "Increases standing RB/R1 initial combo chain hit by 15%",
-        stacks: {self: false, selfType: false},
+        stacks: {self: true, selfType: true},
         selfType: "StandardAttack",
         effect: {
             weaponDamage: 1.15,
@@ -297,7 +297,7 @@ const offensiveRelics = [
     {
         title: "Improved Critical Hits", 
         desc: "Increases Critical Hit Damage by 18%",
-        stacks: {self: true, selfType: true},
+        stacks: {self: true, selfType: false},
         selfType: "CritUp",
         effect: {
             critDamage: 1.18,
@@ -308,7 +308,7 @@ const offensiveRelics = [
     {
         title: "Improved Critical Hits +1", 
         desc: "Increases Critical Hit Damage by 23%",
-        stacks: {self: true, selfType: true},
+        stacks: {self: true, selfType: false},
         selfType: "CritUp",
         effect: {
             critDamage: 1.23,
