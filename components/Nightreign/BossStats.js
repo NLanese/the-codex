@@ -269,6 +269,9 @@ export default function BossStats({
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(grafted, "Grafted", graceGiven)}
                     {renderBossCard(revenent, "Revenent", poisonGlow)}
+                    {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(deathKnight, "DeathKnight", "black")}
                 </div>
             </div>
