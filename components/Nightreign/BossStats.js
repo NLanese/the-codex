@@ -39,6 +39,8 @@ export default function BossStats({
     const revenent = "/assets/project_images/nightreign/revenent.png"
     const deathKnight = "/assets/project_images/nightreign/deathKnight.png"
     const ulcerated = "/assets/project_images/nightreign/ulcerated.png"
+    const demons = "/assets/project_images/nightreign/demon.png"
+
 
 
     const nightShade = "#2b2161"
@@ -273,6 +275,7 @@ export default function BossStats({
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(deathKnight, "DeathKnight", "black")}
+                    {renderBossCard(demons, "Demons", frenzyTouched)}
                 </div>
             </div>
         )
