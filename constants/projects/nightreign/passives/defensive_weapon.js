@@ -166,7 +166,7 @@ const defensive_weapon_passives = [
     {
         title: "Taking Attacks Boosts Damage Negation +21%", 
         desc: "Damage Negation boosted for 10 seconds after taking enemy damage.",
-        stacks: {self: true, selfType: true},
+        stacks: {self: false, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.21,
@@ -178,7 +178,7 @@ const defensive_weapon_passives = [
     {
         title: "Taking Attacks Boosts Damage Negation +28%", 
         desc: "Damage Negation boosted for 10 seconds after taking enemy damage.",
-        stacks: {self: true, selfType: true},
+        stacks: {self: false, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.28,
@@ -190,7 +190,7 @@ const defensive_weapon_passives = [
     {
         title: "Taking Attacks Boosts Damage Negation +36%", 
         desc: "Damage Negation boosted for 10 seconds after taking enemy damage.",
-        stacks: {self: true, selfType: true},
+        stacks: {self: false, selfType: true},
         selfType: "BuffOnHit",
         effect: {
             allNegation: 1.36,
@@ -202,8 +202,8 @@ const defensive_weapon_passives = [
     {
         title: "Damage Negataion Up While Casting Spells +18%", 
         desc: "Damage Negation boosted while in a sorcery or incantation animation.",
-        stacks: {self: true, selfType: true},
-        selfType: "BuffOnHit",
+        stacks: {self: false, selfType: true},
+        selfType: "CastNeg",
         effect: {
             allNegation: 1.18,
             always: false,
@@ -214,8 +214,8 @@ const defensive_weapon_passives = [
     {
         title: "Damage Negataion Up While Casting Spells +24%", 
         desc: "Damage Negation boosted while in a sorcery or incantation animation.",
-        stacks: {self: true, selfType: true},
-        selfType: "BuffOnHit",
+        stacks: {self: false, selfType: true},
+        selfType: "CastNeg",
         effect: {
             allNegation: 1.24,
             always: false,
@@ -226,8 +226,8 @@ const defensive_weapon_passives = [
     {
         title: "Damage Negataion Up While Casting Spells +30%", 
         desc: "Damage Negation boosted while in a sorcery or incantation animation.",
-        stacks: {self: true, selfType: true},
-        selfType: "BuffOnHit",
+        stacks: {self: false, selfType: true},
+        selfType: "CastNeg",
         effect: {
             allNegation: 1.30,
             always: false,
@@ -235,6 +235,106 @@ const defensive_weapon_passives = [
             condition: "While casting a spell"
         }
     },
+    {
+        title: "Successive Attacks Negate Damage +38%",
+        desc: "Several consecutive hits provide Damage Negation. This negation is lost after 30 seconds or being hit.",
+        stacks: {self: false, selfType: true},
+        selfType: "successiveHits",
+        effect: {
+            always: false,
+            condition: "After Successive Hits",
+            allNegation: 1.38,
+        }
+    },
+    {
+        title: "Successive Attacks Negate Damage +48%",
+        desc: "Several consecutive hits provide Damage Negation. This negation is lost after 30 seconds or being hit.",
+        stacks: {self: false, selfType: true},
+        selfType: "successiveHits",
+        effect: {
+            always: false,
+            condition: "After Successive Hits",
+            allNegation: 1.48,
+        }
+    },
+    {
+        title: "Successive Attacks Negate Damage +60%",
+        desc: "Several consecutive hits provide Damage Negation. This negation is lost after 30 seconds or being hit.",
+        stacks: {self: false, selfType: true},
+        selfType: "successiveHits",
+        effect: {
+            always: false,
+            condition: "After Successive Hits",
+            allNegation: 1.60,
+        }
+    },
+    {
+        title: "Damage Negation Up upon Landing Charge Attacks +24%", 
+        desc: "Hitting an enemy with a charged RT / R2 Provides Damage Negation for 15 seconds. Persists even if hit",
+        stacks: {self: false, selfType: true},
+        selfType: "chargedNeg",
+        effect: {
+            always: false,
+            condition: "After landing a Charged RT / R2",
+            allNegation: 1.24,
+        }
+    },
+    {
+        title: "Damage Negation Up upon Landing Charge Attacks +32%", 
+        desc: "Hitting an enemy with a charged RT / R2 Provides Damage Negation for 15 seconds. Persists even if hit",
+        stacks: {self: false, selfType: true},
+        selfType: "chargedNeg",
+        effect: {
+            always: false,
+            condition: "After landing a Charged RT / R2",
+            allNegation: 1.32,
+        }
+    },
+    {
+        title: "Damage Negation Up upon Landing Charge Attacks +40%", 
+        desc: "Hitting an enemy with a charged RT / R2 Provides Damage Negation for 15 seconds. Persists even if hit",
+        stacks: {self: false, selfType: true},
+        selfType: "chargedNeg",
+        effect: {
+            always: false,
+            condition: "After landing a Charged RT / R2",
+            allNegation: 1.40,
+        }
+    },
+    {
+        title: "Successful Guarding Ups Damage Negation +14%", 
+        desc: "Successfully blocking an enemy attack grants Damage Negation",
+        stacks: {self: false, selfType: true},
+        selfType: "blockingNeg",
+        effect: {
+            always: false,
+            condition: "After blocking an attack",
+            allNegation: 1.14,
+        }
+    },
+    {
+        title: "Successful Guarding Ups Damage Negation +19%", 
+        desc: "Successfully blocking an enemy attack grants Damage Negation",
+        stacks: {self: false, selfType: true},
+        selfType: "blockingNeg",
+        effect: {
+            always: false,
+            condition: "After blocking an attack",
+            allNegation: 1.19,
+        }
+    },
+    {
+        title: "Successful Guarding Ups Damage Negation +24%", 
+        desc: "Successfully blocking an enemy attack grants Damage Negation",
+        stacks: {self: false, selfType: true},
+        selfType: "blockingNeg",
+        effect: {
+            always: false,
+            condition: "After blocking an attack",
+            allNegation: 1.24,
+        }
+    },
+    
 ]
 
 export default defensive_weapon_passives
