@@ -631,6 +631,32 @@ const characterRelics = [
             str: -15,
         },
     },
+    {
+        title: "Improved Vigor and Endurance, Reduced Arcane", 
+        desc: "Vigor +5, Endurance +6 and Arcane -13" ,
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Executor",
+        effect: {
+            always: true,
+            vigor: 5,
+            end: 6,
+            arcane: -13,
+        },
+    },
+    {
+        title: "Improved Dexterity and Arcane, Reduced Vigor", 
+        desc: "Dexterity +12, Arcane +9 and Vigor -7" ,
+        stacks: {self: false, selfType: true},
+        selfType: "statChange",
+        nightfarer: "Executor",
+        effect: {
+            always: true,
+            arcane: 9,
+            dex: 12,
+            vigor: -7,
+        },
+    },
 ]
 
 export default characterRelics
