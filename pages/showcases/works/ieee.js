@@ -62,7 +62,7 @@ export default function IEEEPage(){
                         The Flaghship app for IEEE, this app reaches millions of users across the world, and it is a priviledge 
                         to say that I have contributed to such a widely used application. During my time at IEEE, I have maintained and 
                         updated forward facing technologies to better the user experience of millions of users, while within my three years
-                        helping to increase total user downloads by about 75,000 a year.
+                        helping to increase total user downloads by 1.25 Million in 2026 (Goal was 750,000)
                     </p>
                     <p style={Styles.Fonts.basicX}>
                         Published in 2014, the app's codebase and support structure was built well before my arrival-- while also being built well before
