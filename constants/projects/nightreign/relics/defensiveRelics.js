@@ -62,8 +62,8 @@ const defensiveRelics = [
     },
     {
         title: "Draw Enemy Attention While Guarding", 
-        desc: "+2 aggro per second on nearby enemies when guarding",
-        stacks: {self: true, selfType: true},
+        desc: "+2 aggro per second on nearby enemies when successfully guarding an attack",
+        stacks: {self: false, selfType: true},
         selfType: "guardAggro",
         effect: {
             always: true,
