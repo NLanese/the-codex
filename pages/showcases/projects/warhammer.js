@@ -11,6 +11,8 @@ import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
+import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice";
+import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -18,6 +20,8 @@ export default function NightreignBuildMaker() {
 ////////////
 
 const votannGreen = "#035241"
+const goldenAge = "#b09902"
+const scorchedGreen = "#11382f"
 
 ///////////
 // State //
@@ -39,12 +43,54 @@ const [currentTab, setCurrentTab] = useAtom(tabBarState)
 // Screen
 const [screen, setScreen] = useState("Main")
 
+// Army Details
+const [armyType, setArmyType] = useState(false)
+const [armySize, setArmySize] = useState(false)
+
+///////////////
+// Rendering //
+///////////////
+
+function renderSelectArmy(){
+    return(
+        <OstrichDropDown 
+        title={"Select the Size of Your Forces"}
+        isInput={true}
+        drawers={[
+            "Leagues of Votann", "Space Wolves", "Tau", "Tyranids"
+        ]}
+    />
+    )
+}
+
+function renderArmySize(){
+    return(
+        <FormMultipleChoice 
+            title={"Select the Size of Your Forces"}
+            itemsPerRow={3}
+            inForm={false}
+            onChange={(op) => {
+                setArmySize(op.value[0])
+            }}
+            fieldTextStyle={{padding: 0, margin: 0}}
+            fieldObj={{
+                id: "2",
+                type: "MC",
+                template: "tabs",
+                options: [
+                    "Combat Patrol (500)", "Incursion (1000)", "Strike Force (2000)", "Onslaught (3000)"
+                ]
+            }}
+        />
+    )
+}
+
 /////////////////
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: 20, backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
-        <p>Warhammer</p>
+    <div style={{paddingTop: 0, backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+        {renderSelectArmy()}
     </div>
 )
 }

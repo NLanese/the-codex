@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 
 export const OstrichDropDown = ({
-    title="ADD TITLE OR OBJECT PROP",
+    title=false,
     isInput=false,
+    canAddCustomInputs=false,
     placeholder="Begin Typing...",
     onChangeWhenInput,
 
@@ -408,6 +409,13 @@ export const OstrichDropDown = ({
         if (onMouseLeave){
             onMouseLeave(obj)
         }
+        if (isInput && !canAddCustomInputs){
+            console.log("Clciked out")
+            if (!drawers.includes(titleX)){
+                console.log("Cleaning imporper input")
+                setTitleX(false)
+            }
+        }
         setIsHovered(false)
     }
 
@@ -524,6 +532,7 @@ export const OstrichDropDown = ({
             return(
                 <input
                 placeholder={placeholder}
+                value={titleX ? titleX : ""}
                 onChange={(e) => {
                     if (onChangeWhenInput){
                         onChangeWhenInput(e.target.value)
