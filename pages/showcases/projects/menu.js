@@ -22,6 +22,7 @@ const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
 const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
 const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
 const NR = "../../../assets/icons/big/Nightreign.png";
+const WH = "../../../assets/icons/big/Warhammer.jpeg"
 
 
 
@@ -165,6 +166,16 @@ export default function ProjectsMenu() {
                         }}
                     >
                         Nightreign Build Calculator 
+                    </OstCard>
+                    <OstCard
+                        templateStyle={1}
+                        imageSrc={WH}
+                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
+                        onClick={() => {
+                        router.push("/showcases/projects/warhammer")
+                        }}
+                    >
+                        Warhammer Army Codex
                     </OstCard>
                 </div>
             </div>
