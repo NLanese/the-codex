@@ -54,7 +54,7 @@ const [armySize, setArmySize] = useState(false)
 function renderSelectArmy(){
     return(
         <OstrichDropDown 
-        title={"Select the Size of Your Forces"}
+        title={"Select Your Army"}
         isInput={true}
         drawers={[
             "Leagues of Votann", "Space Wolves", "Tau", "Tyranids"
@@ -85,12 +85,22 @@ function renderArmySize(){
     )
 }
 
+function renderBasics(){
+    return(
+        <div>
+
+        </div>
+    )
+}
+
 /////////////////
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: 0, backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
-        {renderSelectArmy()}
+    <div style={{paddingTop: -10, backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+        {/* <div style={{}}>
+
+        </div> */}
     </div>
 )
 }

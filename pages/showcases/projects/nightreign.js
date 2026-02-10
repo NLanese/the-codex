@@ -1098,7 +1098,7 @@ function closeModal(){
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: 20, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+    <div style={{paddingTop: 85, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
         {renderCredits("top")}
         {RENDER_MAIN()}
         {renderCredits("bottom")}

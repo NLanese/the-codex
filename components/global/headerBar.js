@@ -121,10 +121,9 @@ export const HeaderBar = ({
                 startedActive={true}
                 tabs={tabs}
                 style={{
-                    height: 55, width: '100%', 
+                    height: 55, width: '100%', borderBottom: 0, padding: 0, margin: 0,
                     boxShadow:'5px 10px 15px 5px rgba(40, 40, 40, 0.4)',
                     boxSizing: 'border-box', position: 'sticky'
-        
                 }}
 
                 titleStyle={{

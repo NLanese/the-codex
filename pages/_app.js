@@ -66,7 +66,7 @@ class MyApp extends App {
                   }}>
                   <HeaderBar />
                 </div>
-                <div style={{zIndex: 1, position: 'relative', marginTop: 65}}>
+                <div style={{zIndex: 1, position: 'relative', marginTop: 0}}>
                   <Component {...pageProps} />
                 </div>
               </div>

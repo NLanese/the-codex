@@ -52,6 +52,8 @@ export const OstrichDropDown = ({
     // States //
     ////////////
 
+    const originalTitle = title
+
     // Status
     const [isOpen, setIsOpen] = useState(open)
     const [lockedOpen, setLockedOpen] = useState(false)
@@ -532,7 +534,7 @@ export const OstrichDropDown = ({
             return(
                 <input
                 placeholder={placeholder}
-                value={titleX ? titleX : ""}
+                value={titleX ? titleX : originalTitle}
                 onChange={(e) => {
                     if (onChangeWhenInput){
                         onChangeWhenInput(e.target.value)
