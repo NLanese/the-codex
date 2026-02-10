@@ -17,7 +17,27 @@ export default function NightreignBuildMaker() {
 // Consts //
 ////////////
 
-    const votannGreen = "#035241"
+const votannGreen = "#035241"
+
+///////////
+// State //
+///////////
+
+// Directory and Tab
+const [directory, setDirectory] = useAtom(directoryDataState)
+setDirectory("Nightreign")
+const [currentTab, setCurrentTab] = useAtom(tabBarState)
+    useEffect(() => {
+        if (currentTab === "Boss" || currentTab === "Maps"){
+            setScreen(currentTab)
+        }
+        else{
+            setScreen("Main")
+        }
+    },[currentTab])
+
+// Screen
+const [screen, setScreen] = useState("Main")
 
 /////////////////
 // Main Return //

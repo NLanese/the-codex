@@ -22,7 +22,7 @@ const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
 const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
 const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
 const NR = "../../../assets/icons/big/Nightreign.png";
-const WH = "../../../assets/icons/big/Warhammer.jpeg"
+const WH = "../../../assets/icons/big/Warhammer.png"
 
 
 
