@@ -163,7 +163,12 @@ export const FormMultipleChoice = ({
         function handleInput(input){
             let tag = input
             if (typeof input === "object"){
-                tag = input.tag
+                if (input.value){
+                    tag = input.value
+                }
+                else{
+                    tag = input.tag
+                }
             }
             if (fieldObj?.onChange){                 // Fires FieldObj Function if present
                 fieldObj.onChange(tag, fieldObj)

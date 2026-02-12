@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 export const OstrichDropDown = ({
     title=false,
+    titleChanges=false,
     isInput=false,
     canAddCustomInputs=false,
     placeholder="Begin Typing...",
@@ -42,6 +43,7 @@ export const OstrichDropDown = ({
     hoverBoxStyle,
     
     noBorder=false,
+    rounded=true,
     noShadow=false,
 
     isTabItem=false,
@@ -180,7 +182,7 @@ export const OstrichDropDown = ({
             // Temporary Object
             let temp = {
                 backgroundColor:"#efefef", 
-                border: "1px solid black", borderRadius: 10,
+                border: "1px solid black", borderRadius: rounded ? 10 : 0,
                 justifyItems: 'center', 
                 position: 'relative',
             }
@@ -199,7 +201,9 @@ export const OstrichDropDown = ({
             // Adds Border if Needed
             if (!noBorder && !boxStyle?.border && !boxStyle?.borderRadius && !boxStyle?.borderWidth){
                 boxStyle.border = "1px solid black"
-                boxStyle.borderRadius = 10
+                if (rounded){
+                    boxStyle.borderRadius = 10
+                }
             }
 
             // Adds Shadow if Needed
@@ -358,10 +362,12 @@ export const OstrichDropDown = ({
             }
         }
 
-        if (drawer.onClick){                // Runs Object OnClick Function 
+
+        // Runs onClick Functions, if attached
+        if (drawer.onClick){
             drawer.onClick(drawer)
         }   
-        if (onDrawerClick){                 // Runs Params OnClick Function 
+        if (onDrawerClick){
             if (drawer?.manualOnClick){
                 return
             }
@@ -371,6 +377,17 @@ export const OstrichDropDown = ({
         }
         else{
             console.warn("There was no onDrawerClick provided into the OstrichDropDown nor was there a onClick provided to the drawer object itself. Please check the OstrichDropDown Documentation")
+        }
+
+        // Changes Dropdown Title to be Value if intended
+        if (titleChanges){
+            if (typeof drawer === "string"){
+                setTitleX(drawer)
+            }
+            else{
+                setTitleX(drawer.title)
+            }
+            setIsOpen(false)
         }
     }
 
@@ -412,9 +429,7 @@ export const OstrichDropDown = ({
             onMouseLeave(obj)
         }
         if (isInput && !canAddCustomInputs){
-            console.log("Clciked out")
             if (!drawers.includes(titleX)){
-                console.log("Cleaning imporper input")
                 setTitleX(false)
             }
         }
@@ -527,17 +542,18 @@ export const OstrichDropDown = ({
     ////////////////
 
     // Renders Obj.Title or Title
-    function renderTitle(){
+    function renderTitle(titleX){
 
         // Title When Input
         if (isInput){
             return(
                 <input
                 placeholder={placeholder}
-                value={titleX ? titleX : originalTitle}
+                value={titleX ? titleX : ""}
                 onChange={(e) => {
                     if (onChangeWhenInput){
                         onChangeWhenInput(e.target.value)
+                        setIsOpen(true)
                     }
                     setTitleX(e.target.value)
                 }}
@@ -555,7 +571,6 @@ export const OstrichDropDown = ({
                     setLockedOpen(true)
                 }}
                 onBlur={() => {
-                    setIsOpen(false)
                     setLockedOpen(false)
                 }}
                 />
@@ -591,7 +606,9 @@ export const OstrichDropDown = ({
                         key={index}
                         style={isActive ? activeDrawerBoxStyleInput : {...determineDrawerStyle(drawer).drawer}}
                         textStyle={isActive ? extractTextStyles(activeDrawerBoxStyleInput) : {...determineDrawerStyle(drawer).text}}
-                        onClick={() => handleDrawerPress(drawer)}
+                        onClick={() => {
+                            handleDrawerPress(drawer)
+                        }}
                         obj={drawerObject}
                         handleDrawerHover={(input) => handleDrawerHover(drawer, input)}
                     />
@@ -607,7 +624,7 @@ export const OstrichDropDown = ({
                         style={isActive ? activeDrawerBoxStyleInput : {...determineDrawerStyle(drawer).drawer}}
                         textStyle={isActive ? extractTextStyles(activeDrawerBoxStyleInput) : {...determineDrawerStyle(drawer).text}}
                         onClick={(event) => {
-                            event.stopPropagation()
+                            event?.stopPropagation()
                             handleDrawerPress(drawer)
                         }}
                         obj={drawerObject}
@@ -624,7 +641,7 @@ export const OstrichDropDown = ({
             return(
                 <div style={{
                     position: 'absolute', top: "102%",
-                    width: '102%',
+                    width: '100%',
                 }}>
                     <div style={{position: 'relative', width: '100%', justifyItems: 'center'}}>
                         {renderDrawers()}
@@ -650,9 +667,9 @@ export const OstrichDropDown = ({
             onMouseEnter={() => handleMouseEnter()}
             >
                 <div style={{height: '100%', width: '100%',  boxSizing: 'border-box', alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
-                    {renderTitle()}
+                    {renderTitle(titleX)}
                 </div>
-                <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '100%',}}>
+                <div style={{display: 'flex',  alignSelf: 'flex-end', justifyContent: 'center', width: '98%',}}>
                     {renderDrawerContainer()}
                 </div>
             </div>

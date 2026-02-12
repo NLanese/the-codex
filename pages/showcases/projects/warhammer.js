@@ -13,6 +13,8 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "../../../OstrichComponents/Format/OstCard";
 import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice";
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
+import determineDetachment from "../../../constants/projects/warhammer/detachments/determineDetachment";
+import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -46,28 +48,118 @@ const [screen, setScreen] = useState("Main")
 // Army Details
 const [armyType, setArmyType] = useState(false)
 const [armySize, setArmySize] = useState(false)
+const [armySizeNum, setArmySizeNum] = useState(false)
+
+// Selections
+const [pts, setPts] = useState(0)
+
+///////////////
+// Functions //
+///////////////
+
+function determineArmySizeName(armySize){
+    if (armySize === 500){
+        return "Combat Patrol"
+    }
+    else if (armySize === 1000){
+        return "Incursion"
+    }
+    else if (armySize === 2000){
+        return "Strike Force"
+    }
+    else if (armySize === 3000){
+        return "Onslaught"
+    }
+}
 
 ///////////////
 // Rendering //
 ///////////////
 
+function renderBar(title, value, max, color){
+    console.log(title, value, max, color)
+    return(
+        <div style={{display: 'flex', flex: 1, flexDirection: 'row', gap: 10, padding: 2, }}>
+                <div style={{flex: 9, backgroundColor: "grey", marginTop: 2, marginBottom: 2}}>
+                    <div style={{backgroundColor: color, height: '100%', width: `${(value / max)}%`, display: "flex", justifyContent: 'center'}} >
+                        {title}: {value}
+                    </div>
+                </div>
+            </div>
+    )
+}
+
 function renderSelectArmy(){
     return(
         <OstrichDropDown 
-        title={"Select Your Army"}
-        isInput={true}
+        boxStyle={{zIndex: 1000}} openOnHover={true}
+        titleStyle={{height: '100%', marginTop: 4, fontSize: 22}}
+        isInput={true} rounded={false} titleChanges={true}
+        placeholder={"Select Your Army"}
         drawers={[
             "Leagues of Votann", "Space Wolves", "Tau", "Tyranids"
         ]}
-    />
+        title={armyType ? armyType : ""} onDrawerClick={(op) => {
+            setArmyType(op)
+        }}
+        />
     )
 }
 
 function renderArmySize(){
     return(
         <FormMultipleChoice 
-            title={"Select the Size of Your Forces"}
-            itemsPerRow={3}
+            titleStyle={{fontSize: 20}}
+            itemsPerRow={1}
+            inForm={false}
+            onChange={(op) => {
+                console.log(op)
+                setArmySize(op.value[0])
+            }}
+            fieldTextStyle={{padding: 0, margin: 0}}
+            fieldObj={{
+                id: "2",
+                type: "MC",
+                template: "tabs",
+                options: [
+                    {tag: "Combat Patrol (500)", value: 500}, 
+                    {tag: "Incursion (1000)", value: 1000}, 
+                    {tag: "Strike Force (2000)", value: 2000}, 
+                    {tag: "Onslaught (3000)", value: 3000}, 
+                ]
+            }}
+        />
+    )
+}
+
+function renderBasics(){
+    return(
+        <div style={{backgroundColor: scorchedGreen, flex: 6}}>
+            <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, padding: 0, color: goldenAge}}>
+                Select your Army
+            </p>
+            <div style={{marginLeft: 10, marginRight: 10, marginTop: 20}}>
+                {renderSelectArmy()}
+            </div>
+            {renderArmySize()}
+        </div>
+    )
+}
+
+function renderDetachment(armyType){
+    if (!armyType){
+        return
+    }
+    let list = determineDetachment(armyType)
+    return(
+        <div style={{backgroundColor: scorchedGreen, marginTop: 0, flex: 6}}>
+            <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, padding: 0, color: goldenAge}}>
+                Select your Detachment
+            </p>
+            <FormMultipleChoice 
+            style={{marginTop: -25}}
+            titleStyle={{fontSize: 20}}
+            itemsPerRow={1}
             inForm={false}
             onChange={(op) => {
                 setArmySize(op.value[0])
@@ -77,18 +169,35 @@ function renderArmySize(){
                 id: "2",
                 type: "MC",
                 template: "tabs",
-                options: [
-                    "Combat Patrol (500)", "Incursion (1000)", "Strike Force (2000)", "Onslaught (3000)"
-                ]
+                options: list
             }}
         />
+        </div>
     )
 }
 
-function renderBasics(){
+function renderMAIN_DESKTOP(armyType, armySize, pts){
     return(
-        <div>
-
+        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10}}>
+            <div style={{display: 'flex', gap: 10, flex: 5, flexDirection: 'column'}}>
+                <div style={{display: 'flex', gap: 10, flex: 2, flexDirection: 'row'}}>
+                    {renderBasics()}
+                    {renderDetachment(armyType)}
+                </div>
+            </div>
+            <div style={{display: 'flex', gap: 10, flex: 7, flexDirection: 'column', backgroundColor: scorchedGreen, padding: 10}}>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
+                        Fill out your Ranks
+                    </p>
+                    <div style={{display: 'flex', flex: 8}}>
+                        {renderBar(determineArmySizeName(armySize), pts, armySize, "red")}
+                    </div>
+                </div>
+                <OstrichTabBar
+                tabs={["Characters", "Battleline", "Transports", "Other"]}
+                />
+            </div>
         </div>
     )
 }
@@ -97,10 +206,8 @@ function renderBasics(){
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: -10, backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
-        {/* <div style={{}}>
-
-        </div> */}
+    <div style={{paddingTop: '3.5%', backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+        {renderMAIN_DESKTOP(armyType, armySize, pts)}
     </div>
 )
 }
