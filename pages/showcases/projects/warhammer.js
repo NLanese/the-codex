@@ -74,9 +74,17 @@ function determineArmySizeName(armySize){
     else return "No Army Size Selected"
 }
 
+function handleUnitTypeTabClick(type){
+    console.log(type)
+}
+
 ///////////////
 // Rendering //
 ///////////////
+
+
+
+// BASICS //
 
 function renderBar(title, value, max, color){
     console.log(title, value, max, color)
@@ -116,7 +124,7 @@ function renderSelectArmy(){
     )
 }
 
-function renderArmySize(armySize){
+function renderArmySize(armySizeNum){
     return(
         <FormMultipleChoice 
             titleStyle={{fontSize: 20}}
@@ -152,7 +160,7 @@ function renderBasics(){
             <div style={{marginLeft: 10, marginRight: 10, marginTop: 20}}>
                 {renderSelectArmy()}
             </div>
-            {renderArmySize(armySize)}
+            {renderArmySize(armySizeNum)}
         </div>
     )
 }
@@ -187,16 +195,41 @@ function renderDetachment(armyType){
     )
 }
 
+
+// UNIT SELECTION //
+
+function renderUnitTypeTabBar(){
+    return(
+        <div style={{ flex: 3}}>
+            <OstrichTabBar
+            openOnHover={true}
+            tabs={["Characters", "Battleline", "Transports", "Other"]}
+            onTabClick={() => handleUnitTypeTabClick(type)}
+            />
+        </div>  
+    )
+}
+
+function renderUnitCards(){
+
+}
+
+
 function renderMAIN_DESKTOP(armyType, armySize, pts){
     return(
         <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10}}>
+
+            {/* Select Army and Detachment */}
             <div style={{display: 'flex', gap: 10, flex: 5, flexDirection: 'column'}}>
                 <div style={{display: 'flex', gap: 10, flex: 2, flexDirection: 'row'}}>
                     {renderBasics()}
                     {renderDetachment(armyType)}
                 </div>
             </div>
+
+            {/* Select Units */}
             <div style={{display: 'flex', gap: 10, flex: 7, flexDirection: 'column', backgroundColor: scorchedGreen, padding: 10}}>
+                {/* Title and Fill Bar */}
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
                         Fill out your Ranks
@@ -205,10 +238,12 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
                         {renderBar(determineArmySizeName(armySize), pts, armySize, "red")}
                     </div>
                 </div>
-                <OstrichTabBar
-                openOnHover={true}
-                tabs={["Characters", "Battleline", "Transports", "Other"]}
-                />
+
+                {/* Unit Selection */}
+                <div>
+                    {renderUnitTypeTabBar()}
+                    {renderUnitCards()}
+                </div>
             </div>
         </div>
     )

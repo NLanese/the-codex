@@ -187,16 +187,13 @@ export const FormMultipleChoice = ({
 
             // Multiple Answers
             else{
-                console.log("Multi Answer")     
                 // If Below the Limit or the Limit does not exist
                 if (
                     (limit && limit <= value.length) ||
                     (!limit)
                 ){
-                    console.log("Limit is not an issue")
                     // If the values array currently includes the selected value
                     if (value.includes(tag)){
-                        console.log("Removing ", tag, " from values")
                         let newSelected = value
 
                         // Remove selected value from current values
@@ -394,7 +391,6 @@ export const FormMultipleChoice = ({
 
                 // Tabs Template
                 if (fieldObj?.template === "tabs"){
-                    console.log(value)
                    return(
                         <TabItem 
                             title={typeof opt === "object" ? opt.tag : opt}
