@@ -1,4 +1,4 @@
-import eval from "../../../../public/assets/project_images/warhammer/units/votann/eval.png"
+import evalu from "../../../../public/assets/project_images/warhammer/units/votann/eval.png"
 import buri from "../../../../public/assets/project_images/warhammer/units/votann/buri.png"
 import champ from "../../../../public/assets/project_images/warhammer/units/votann/champ.png"
 import grim from "../../../../public/assets/project_images/warhammer/units/votann/grim.png"
@@ -17,7 +17,7 @@ const votann_army = [
         army: "votann",
         class: "character",
         name: "Arkanyst Evaluator",
-        img: eval,
+        img: evalu,
         base_stats: {
             move: 5,
             tough: 5,
@@ -153,3 +153,6 @@ const votann_army = [
         },
     },
 ]
+
+
+export default votann_army

@@ -15,9 +15,11 @@ import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipl
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 import determineDetachment from "../../../constants/projects/warhammer/detachments/determineDetachment";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-import { validate } from "graphql";
 
-export default function NightreignBuildMaker() {
+// WarHammer Functions 
+import determineUnits from "../../../constants/projects/warhammer/army_units/determineUnits"
+
+export default function Warhammer() {
 ////////////
 // Consts //
 ////////////
@@ -50,6 +52,7 @@ const [screen, setScreen] = useState("Main")
 const [armyType, setArmyType] = useState(false)
 const [armySize, setArmySize] = useState(false)
 const [armySizeNum, setArmySizeNum] = useState(false)
+const [detachment, setDetachment] = useState(false)
 
 // Unit Selection
 const [selectType, setSelectType] = useState(false) 
@@ -82,7 +85,7 @@ function handleUnitTypeTabClick(type){
 }
 
 function determineVisibleUnitCards(){
-    
+
 }
 
 ///////////////
@@ -94,7 +97,6 @@ function determineVisibleUnitCards(){
 // BASICS //
 
 function renderBar(title, value, max, color){
-    console.log(title, value, max, color)
     if (max === 0){
         color = "grey"
     }
@@ -138,7 +140,6 @@ function renderArmySize(armySizeNum){
             itemsPerRow={1}
             inForm={false}
             onChange={(op) => {
-                console.log(op)
                 setArmySize(op.value[0])
             }}
             fieldTextStyle={{padding: 0, margin: 0}}
@@ -188,7 +189,7 @@ function renderDetachment(armyType){
             itemsPerRow={1}
             inForm={false}
             onChange={(op) => {
-                setArmySize(op.value[0])
+                setDetachment(op.value[0])
             }}
             fieldTextStyle={{padding: 0, margin: 0}}
             fieldObj={{
@@ -215,6 +216,24 @@ function renderUnitTypeTabBar(){
             />
         </div>  
     )
+}
+
+function renderUnitTags(){
+    return determineUnits(armyType, selectType).map( unit => {
+        return(
+            <div style={{display: 'flex', flexDirection: 'row', flex: 1, gap: 5}}>
+                <p style={{borderRight: "1px solid black"}}>
+                    {unit.name}
+                </p>
+                <p style={{borderRight: "1px solid black"}}>
+                    {unit.move}
+                </p>
+                <p style={{borderRight: "1px solid black"}}>
+                    {unit.tough}
+                </p>
+            </div>
+        )
+    })
 }
 
 function renderUnitCards(){
@@ -249,7 +268,9 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
                 {/* Unit Selection */}
                 <div>
                     {renderUnitTypeTabBar()}
-                    {renderUnitCards()}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5}}>
+                        {renderUnitTags()}
+                    </div>
                 </div>
             </div>
         </div>
