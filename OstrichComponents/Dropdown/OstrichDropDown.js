@@ -405,7 +405,7 @@ export const OstrichDropDown = ({
     function handleMouseEnter(){
         if (openOnHover){
             if (drawers.length > 0){
-                setIsOpen(!isOpen)
+                setIsOpen(true)
             }
         }
         else{

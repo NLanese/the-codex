@@ -15,6 +15,7 @@ import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipl
 import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
 import determineDetachment from "../../../constants/projects/warhammer/detachments/determineDetachment";
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
+import { validate } from "graphql";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -70,6 +71,7 @@ function determineArmySizeName(armySize){
     else if (armySize === 3000){
         return "Onslaught"
     }
+    else return "No Army Size Selected"
 }
 
 ///////////////
@@ -78,11 +80,19 @@ function determineArmySizeName(armySize){
 
 function renderBar(title, value, max, color){
     console.log(title, value, max, color)
+    if (max === 0){
+        color = "grey"
+    }
     return(
         <div style={{display: 'flex', flex: 1, flexDirection: 'row', gap: 10, padding: 2, }}>
                 <div style={{flex: 9, backgroundColor: "grey", marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: color, height: '100%', width: `${(value / max)}%`, display: "flex", justifyContent: 'center'}} >
-                        {title}: {value}
+                    <div style={{ 
+                        backgroundColor: color, height: 25, 
+                        width: `${(value / max) * 100}%`, maxWidth: '100%', 
+                    }}>
+                        <p style={{padding: 0, paddingLeft: 10, paddingTop: 2, margin: 0, overflow: "visible", width: '1000%', textWrap: "overflow", whiteSpace: 'nowrap', overflow: 'visible', flexShrink: 0}}>
+                            {title}: {value} / {!!max ? max : 0}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -93,7 +103,7 @@ function renderSelectArmy(){
     return(
         <OstrichDropDown 
         boxStyle={{zIndex: 1000}} openOnHover={true}
-        titleStyle={{height: '100%', marginTop: 4, fontSize: 22}}
+        titleStyle={{height: '70%', marginTop: 5, fontSize: 22}}
         isInput={true} rounded={false} titleChanges={true}
         placeholder={"Select Your Army"}
         drawers={[
@@ -106,7 +116,7 @@ function renderSelectArmy(){
     )
 }
 
-function renderArmySize(){
+function renderArmySize(armySize){
     return(
         <FormMultipleChoice 
             titleStyle={{fontSize: 20}}
@@ -121,6 +131,7 @@ function renderArmySize(){
                 id: "2",
                 type: "MC",
                 template: "tabs",
+                value: armySizeNum,
                 options: [
                     {tag: "Combat Patrol (500)", value: 500}, 
                     {tag: "Incursion (1000)", value: 1000}, 
@@ -141,7 +152,7 @@ function renderBasics(){
             <div style={{marginLeft: 10, marginRight: 10, marginTop: 20}}>
                 {renderSelectArmy()}
             </div>
-            {renderArmySize()}
+            {renderArmySize(armySize)}
         </div>
     )
 }
@@ -195,11 +206,23 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
                     </div>
                 </div>
                 <OstrichTabBar
+                openOnHover={true}
                 tabs={["Characters", "Battleline", "Transports", "Other"]}
                 />
             </div>
         </div>
     )
+}
+
+/////////////////////
+// Mini Components //
+/////////////////////
+
+function UnitCard({
+    canAfford,
+    unitObject
+}){
+
 }
 
 /////////////////

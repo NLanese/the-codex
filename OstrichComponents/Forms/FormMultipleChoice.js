@@ -394,12 +394,13 @@ export const FormMultipleChoice = ({
 
                 // Tabs Template
                 if (fieldObj?.template === "tabs"){
+                    console.log(value)
                    return(
                         <TabItem 
                             title={typeof opt === "object" ? opt.tag : opt}
                             tabObj={opt}
                             index={index}
-                            isActive={typeof opt === "object" ? (value.includes(opt.tag)) : value.includes(opt)}
+                            isActive={typeof opt === "object" ? (value?.includes(opt.tag) || value?.includes(opt.value)) : value.includes(opt)}
                             showsHover={true}
                             onPress={handleInput}
                             style={tabStyle ? tabStyle : null}
