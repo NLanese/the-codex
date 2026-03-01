@@ -51,6 +51,9 @@ const [armyType, setArmyType] = useState(false)
 const [armySize, setArmySize] = useState(false)
 const [armySizeNum, setArmySizeNum] = useState(false)
 
+// Unit Selection
+const [selectType, setSelectType] = useState(false) 
+
 // Selections
 const [pts, setPts] = useState(0)
 
@@ -75,7 +78,11 @@ function determineArmySizeName(armySize){
 }
 
 function handleUnitTypeTabClick(type){
-    console.log(type)
+    setSelectType(type)
+}
+
+function determineVisibleUnitCards(){
+    
 }
 
 ///////////////
@@ -204,7 +211,7 @@ function renderUnitTypeTabBar(){
             <OstrichTabBar
             openOnHover={true}
             tabs={["Characters", "Battleline", "Transports", "Other"]}
-            onTabClick={() => handleUnitTypeTabClick(type)}
+            onTabClick={(tab) => handleUnitTypeTabClick(tab)}
             />
         </div>  
     )
