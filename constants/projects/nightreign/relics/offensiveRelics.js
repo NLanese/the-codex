@@ -590,7 +590,7 @@ const offensiveRelics = [
             allDamage: 1.10,
             appliesRanged: true,
             always: false,
-            condition: "Attacking a rotted enemy"
+            condition: "Attacking a Rotted enemy"
          }
     },
     {
