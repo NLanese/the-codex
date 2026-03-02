@@ -79,6 +79,47 @@ const votann_weapons = {
         dam: 1,
         abilities: []
     },
+    bolt_cannon: {
+        name: "Bolt Cannon",
+        type: "ranged",
+        range: 36,
+        attacks: 3,
+        b_save: 4,
+        str: 6,
+        AP: 1,
+        dam: 2,
+        abilities: [
+            weapon_abilities.sustained_hits.ranks[2]
+        ]
+    },
+    graviton_blast_cannon: {
+        name: "Graviton Blast Cannon",
+        type: "ranged",
+        range: 24,
+        attacks: 3,
+        b_save: 4,
+        str: 5,
+        AP: 2,
+        dam: 3,
+        abilities: [
+            weapon_abilities.anti_monster.ranks[3],
+            weapon_abilities.anti_vehicle.ranks[3]
+        ]
+    },
+    sp_conversion_beamer: {
+        name: "SP Conversion Beamer",
+        type: "ranged",
+        range: 24,
+        attacks: 2,
+        b_save: 4,
+        str: 7,
+        AP: 2,
+        dam: 3,
+        abilities: [
+            weapon_abilities.conversion,
+            weapon_abilities.lethal_hits
+        ]
+    },
 
 
     close_combat_weapons: {
@@ -86,6 +127,17 @@ const votann_weapons = {
         type: "melee",
         range: 0,
         attacks: 1,
+        b_save: 4,
+        str: 3,
+        AP: 0,
+        dam: 1,
+        abilities: []
+    },
+    close_combat_weapons_THUNDERKYN: {
+        name: "Close Combat Weapons",
+        type: "melee",
+        range: 0,
+        attacks: 2,
         b_save: 4,
         str: 3,
         AP: 0,
@@ -105,6 +157,17 @@ const votann_weapons = {
             weapon_abilities.anti_monster.ranks[3],
             weapon_abilities.anti_vehicle.ranks[3]
         ]
+    },
+    concussion_gauntlet: {
+        name: "Concussion Gauntlet",
+        type: "melee",
+        range: 0,
+        attacks: 2,
+        b_save: 3,
+        str: 8,
+        AP: 2,
+        dam: 2,
+        abilities: []
     }
 }
 
