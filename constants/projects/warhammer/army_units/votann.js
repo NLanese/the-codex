@@ -1,11 +1,11 @@
-import evalu from "../../../../public/assets/project_images/warhammer/units/votann/eval.png"
-import buri from "../../../../public/assets/project_images/warhammer/units/votann/buri.png"
-import champ from "../../../../public/assets/project_images/warhammer/units/votann/champ.png"
-import grim from "../../../../public/assets/project_images/warhammer/units/votann/grim.png"
-import iron from "../../../../public/assets/project_images/warhammer/units/votann/iron.png"
-import kahl from "../../../../public/assets/project_images/warhammer/units/votann/kahl.png"
-import mem from "../../../../public/assets/project_images/warhammer/units/votann/mem.png"
-import uthar from "../../../../public/assets/project_images/warhammer/units/votann/uthar.png"
+const evalu =  "/assets/project_images/warhammer/units/votann/eval.png"
+const buri = "/assets/project_images/warhammer/units/votann/buri.png"
+const champ = "/assets/project_images/warhammer/units/votann/champ.png"
+const grim = "/assets/project_images/warhammer/units/votann/grim.png"
+const iron = "/assets/project_images/warhammer/units/votann/iron.png"
+const kahl = "/assets/project_images/warhammer/units/votann/kahl.png"
+const mem = "/assets/project_images/warhammer/units/votann/mem.png"
+const uthar = "/assets/project_images/warhammer/units/votann/uthar.png"
 
 
 

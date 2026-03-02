@@ -82,7 +82,7 @@ function determineArmySizeName(armySize){
 }
 
 function determineTagActive(unit){
-    if (shownUnit === unit.name){
+    if (shownUnit === unit){
         return true
     }
     return false
@@ -233,7 +233,14 @@ function renderUnitTags(armyType, selectType){
             borderRight: "1px solid black",  borderLeft: "1px solid black"
         }
         return(
-            <div style={{display: 'flex', flex: 1,flexDirection: 'row', gap: 5, height: '70%', backgroundColor: determineTagActive(unit) ? goldenAge : "#efefef"}}>
+            <OstCard  noShadow={true} rounded={false}
+            onClick={() => {setShownUnit(unit)}}
+            style={{
+                display: 'flex', flex: 1, flexDirection: 'row', gap: 5, 
+                height: '70%', backgroundColor: determineTagActive(unit) ? goldenAge : "#efefef",
+                padding: 0
+            }}
+            >
                 <p style={{..._style, flex: 3}}>
                     {unit.name} ({unit.pts})
                 </p>
@@ -258,15 +265,10 @@ function renderUnitTags(armyType, selectType){
                 <p style={{..._style, flex: 2}}>
                     {unit.base_stats.invuln ? ("Invuln: " + unit.base_stats.invuln) : "No Invulnerability"}
                 </p>
-            </div>
+            </OstCard>
         )
     })
 }
-
-function renderUnitCards(){
-
-}
-
 
 function renderMAIN_DESKTOP(armyType, armySize, pts){
     const upperCardsStyle = {
@@ -274,11 +276,12 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
         padding: 7.5, height: '40vh', 
     }
     return(
-        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10, height: '40vh'}}>
+
+        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10}}>
 
             {/* Select Army and Detachment */}
             <div style={{...upperCardsStyle}}>
-                <div style={{display: 'flex', gap: 10, flex: 2, flexDirection: 'row'}}>
+                <div style={{display: 'flex', gap: 10, flex: 2, flexDirection: 'column'}}>
                     {renderBasics()}
                     {renderDetachment(armyType)}
                 </div>
@@ -286,23 +289,31 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
 
             {/* Select Units */}
             <div style={{...upperCardsStyle, flex: 7, backgroundColor: scorchedGreen, paddingLeft: 10}}>
-                {/* Title and Fill Bar */}
-                <div style={{display: 'flex', flexDirection: 'row', flex: 1, height: "5vh"}}>
-                    <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
-                        Fill out your Ranks
-                    </p>
-                    <div style={{display: 'flex', flex: 8}}>
-                        {renderBar(determineArmySizeName(armySize), pts, armySize, "red")}
+
+                {/* All Units */}
+                <div style={{height: '40vh'}}>
+                    {/* Title and Fill Bar */}
+                    <div style={{display: 'flex', flexDirection: 'row', flex: 1, height: "4vh"}}>
+                        <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
+                            Fill out your Ranks
+                        </p>
+                        <div style={{display: 'flex', flex: 8}}>
+                            {renderBar(determineArmySizeName(armySize), pts, armySize, "red")}
+                        </div>
+                    </div>
+
+                    {/* Unit Selection */}
+                    <div style={{display: 'flex', flex: 11, flexDirection: 'column', height: '36vh', paddingBottom: 15}}>
+                        {renderUnitTypeTabBar()}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 10, paddingTop: 10, overflowY: 'scroll', height: '34vh'}}>
+                            {renderUnitTags(armyType, selectType)}
+                        </div>
                     </div>
                 </div>
 
-                {/* Unit Selection */}
-                <div style={{display: 'flex', flex: 11, flexDirection: 'column', height: '34vh', paddingBottom: 15}}>
-                    {renderUnitTypeTabBar()}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 10, paddingTop: 10, overflowY: 'scroll', height: '34vh'}}>
-                        {renderUnitTags(armyType, selectType)}
-                    </div>
-                </div>
+                {/* Selected Unit */}
+                <UnitCard unit={shownUnit} />
+
             </div>
         </div>
     )
@@ -313,10 +324,81 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
 /////////////////////
 
 function UnitCard({
-    canAfford,
-    unitObject
+    unit
 }){
+    const [shownDetails, setShownDetails] = useState(false)
 
+    function MAIN(unit, shownDetails){
+        return(
+            <div style={{height: '50vh', backgroundColor: scorchedGreen, display: 'flex', flexDirection: 'row'}}>
+                <OstCard noShadow={true}
+                    templateStyle={1}
+                    imageSrc={unit.img}
+                    style={{flex: 4}}
+                />
+                <div style={{flex:8}}>
+                <p style={{padding: 5, margin: 0, textAlign: 'center', fontSize: 22, color: goldenAge}}>{unit.name}</p>
+                <div style={{display: 'flex', flexDirection: 'row', padding: 5, gap: 10}}>
+                    <div style={{display: 'flex', flex: 3}}>
+                        {renderUnitDetailSelections(shownDetails)}
+                    </div>
+                    <div style={{display: 'flex', flex: 8}}>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+        )
+    }
+
+    function renderUnitDetailSelections(shownDetails){
+        return(
+            <FormMultipleChoice 
+                style={{padding: 0, margin: 0}}
+                tabStyle={{width: '110%', margin: 0}}
+                titleStyle={{fontSize: 20}}
+                itemsPerRow={1}
+                inForm={false}
+                fieldTextStyle={{padding: 0, margin: 0}}
+                value={shownDetails}
+                onChange={(op) => {
+                    setShownDetails(op.value[0])
+                }}
+                fieldObj={{
+                    id: "2",
+                    type: "MC",
+                    template: "tabs",
+                    value: armySizeNum,
+                    options: [
+                        "Melee Weapons", "Ranged Weapons", "Abilities", "Wargear", "Weapon Options", "Wargear Options"
+                    ]
+                }}
+            />
+        )
+    }
+
+    function renderMeleeWeapons(){
+    }
+
+    function renderRangedWeapons(){
+    }
+
+    function renderAbilities(){
+    }
+
+    function renderDetails(){
+        if (shownDetails === "Melee Weapons"){
+            return renderMeleeWeapons()
+        }
+        else if (shownDetails === "Ranged Weapons"){
+            return renderRangedWeapons()
+        }
+        else if (shownDetails === "Abilities"){
+            return renderAbilities()
+        }
+    }
+    
+    return MAIN(unit, shownDetails)
 }
 
 /////////////////
