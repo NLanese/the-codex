@@ -208,7 +208,7 @@ function renderDetachment(armyType){
 
 function renderUnitTypeTabBar(){
     return(
-        <div style={{ flex: 3}}>
+        <div style={{ flex: 1}}>
             <OstrichTabBar
             openOnHover={true}
             tabs={["Characters", "Battleline", "Transports", "Other"]}
@@ -218,18 +218,37 @@ function renderUnitTypeTabBar(){
     )
 }
 
-function renderUnitTags(){
+function renderUnitTags(armyType, selectType){
     return determineUnits(armyType, selectType).map( unit => {
+        const _style={ marign: 0,
+            justifyItems: 'center', alignContent: 'center', textAlign: 'center',
+            borderRight: "1px solid black",  borderLeft: "1px solid black"
+        }
         return(
-            <div style={{display: 'flex', flexDirection: 'row', flex: 1, gap: 5}}>
-                <p style={{borderRight: "1px solid black"}}>
-                    {unit.name}
+            <div style={{display: 'flex', flexDirection: 'row', gap: 5, height: '70%', backgroundColor: 'cyan'}}>
+                <p style={{..._style, flex: 3}}>
+                    {unit.name} ({unit.pts})
                 </p>
-                <p style={{borderRight: "1px solid black"}}>
-                    {unit.move}
+                <p style={{..._style, flex: 1}}>
+                    M: {unit.base_stats.move}
                 </p>
-                <p style={{borderRight: "1px solid black"}}>
-                    {unit.tough}
+                <p style={{..._style, flex: 1}}>
+                    T: {unit.base_stats.tough}
+                </p>
+                <p style={{..._style, flex: 1}}>
+                    S: {unit.base_stats.saving}
+                </p>
+                <p style={{..._style, flex: 1}}>
+                    W: {unit.base_stats.wounds}
+                </p>
+                <p style={{..._style, flex: 1}}>
+                    L: {unit.base_stats.leader}
+                </p>
+                <p style={{..._style, flex: 1}}>
+                    OC: {unit.base_stats.control}
+                </p>
+                <p style={{..._style, flex: 2}}>
+                    {unit.base_stats.invuln ? ("Invuln: " + unit.base_stats.invuln) : "No Invulnerability"}
                 </p>
             </div>
         )
@@ -243,7 +262,7 @@ function renderUnitCards(){
 
 function renderMAIN_DESKTOP(armyType, armySize, pts){
     return(
-        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10}}>
+        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10, height: '40vh', overflow: 'hidden'}}>
 
             {/* Select Army and Detachment */}
             <div style={{display: 'flex', gap: 10, flex: 5, flexDirection: 'column'}}>
@@ -254,9 +273,9 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
             </div>
 
             {/* Select Units */}
-            <div style={{display: 'flex', gap: 10, flex: 7, flexDirection: 'column', backgroundColor: scorchedGreen, padding: 10}}>
+            <div style={{display: 'flex', gap: 10, flex: 7, flexDirection: 'column', backgroundColor: scorchedGreen, paddingLeft: 10}}>
                 {/* Title and Fill Bar */}
-                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{display: 'flex', flexDirection: 'row', flex: 1}}>
                     <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
                         Fill out your Ranks
                     </p>
@@ -266,10 +285,10 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
                 </div>
 
                 {/* Unit Selection */}
-                <div>
+                <div style={{display: 'flex', flex: 11, flexDirection: 'column', height: '40vh'}}>
                     {renderUnitTypeTabBar()}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5}}>
-                        {renderUnitTags()}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 9, height: '70%', paddingTop: 10, paddingBottom: 50, overflowY: 'scroll'}}>
+                        {renderUnitTags(armyType, selectType)}
                     </div>
                 </div>
             </div>

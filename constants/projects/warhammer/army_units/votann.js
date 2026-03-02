@@ -17,6 +17,7 @@ const votann_army = [
         army: "votann",
         class: "character",
         name: "Arkanyst Evaluator",
+        pts: 65,
         img: evalu,
         base_stats: {
             move: 5,
@@ -33,6 +34,7 @@ const votann_army = [
         army: "votann",
         class: "character",
         name: "Brokhyr Iron-Master",
+        pts: 105,
         img: iron,
         base_stats: {
             move: 5,
@@ -49,6 +51,7 @@ const votann_army = [
         class: "character",
         name: "Buri Aegnirssen",
         img: buri,
+        pts: 95,
         base_stats: {
             move: 5,
             tough: 6,
@@ -64,6 +67,7 @@ const votann_army = [
         class: "character",
         name: "Einhyr Champion",
         img: champ,
+        pts: 70,
         base_stats: {
             move: 5,
             tough: 5,
@@ -79,6 +83,7 @@ const votann_army = [
         class: "character",
         name: "Grimnyr",
         img: grim,
+        pts: 65,
         base_stats: {
             move: 5,
             tough: 5,
@@ -94,6 +99,7 @@ const votann_army = [
         class: "character",
         name: "Kahl",
         img: kahl,
+        pts: 65,
         base_stats: {
             move: 5,
             tough: 5,
@@ -109,6 +115,7 @@ const votann_army = [
         class: "character",
         name: "Uthar the Destined",
         img: uthar,
+        pts: 95,
         base_stats: {
             move: 5,
             tough: 5,
@@ -124,6 +131,7 @@ const votann_army = [
         class: "character",
         name: "Memnyr",
         img: mem,
+        pts: 45,
         base_stats: {
             move: 5,
             tough: 5,
@@ -142,6 +150,7 @@ const votann_army = [
         class: "battleline",
         name: "Uthar the Destined",
         img: grim,
+        pts: 100,
         base_stats: {
             move: 5,
             tough: 5,
