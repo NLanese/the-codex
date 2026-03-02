@@ -56,6 +56,7 @@ const [detachment, setDetachment] = useState(false)
 
 // Unit Selection
 const [selectType, setSelectType] = useState(false) 
+const [shownUnit, setShownUnit] = useState(false)
 
 // Selections
 const [pts, setPts] = useState(0)
@@ -78,6 +79,13 @@ function determineArmySizeName(armySize){
         return "Onslaught"
     }
     else return "No Army Size Selected"
+}
+
+function determineTagActive(unit){
+    if (shownUnit === unit.name){
+        return true
+    }
+    return false
 }
 
 function handleUnitTypeTabClick(type){
@@ -225,7 +233,7 @@ function renderUnitTags(armyType, selectType){
             borderRight: "1px solid black",  borderLeft: "1px solid black"
         }
         return(
-            <div style={{display: 'flex', flexDirection: 'row', gap: 5, height: '70%', backgroundColor: 'cyan'}}>
+            <div style={{display: 'flex', flex: 1,flexDirection: 'row', gap: 5, height: '70%', backgroundColor: determineTagActive(unit) ? goldenAge : "#efefef"}}>
                 <p style={{..._style, flex: 3}}>
                     {unit.name} ({unit.pts})
                 </p>
@@ -261,11 +269,15 @@ function renderUnitCards(){
 
 
 function renderMAIN_DESKTOP(armyType, armySize, pts){
+    const upperCardsStyle = {
+        display: 'flex', gap: 10, flexDirection: 'column',
+        padding: 7.5, height: '40vh', 
+    }
     return(
-        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10, height: '40vh', overflow: 'hidden'}}>
+        <div style={{display: 'flex', paddingTop: "5%", flexDirection: 'row', padding: 10, gap: 10, height: '40vh'}}>
 
             {/* Select Army and Detachment */}
-            <div style={{display: 'flex', gap: 10, flex: 5, flexDirection: 'column'}}>
+            <div style={{...upperCardsStyle}}>
                 <div style={{display: 'flex', gap: 10, flex: 2, flexDirection: 'row'}}>
                     {renderBasics()}
                     {renderDetachment(armyType)}
@@ -273,9 +285,9 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
             </div>
 
             {/* Select Units */}
-            <div style={{display: 'flex', gap: 10, flex: 7, flexDirection: 'column', backgroundColor: scorchedGreen, paddingLeft: 10}}>
+            <div style={{...upperCardsStyle, flex: 7, backgroundColor: scorchedGreen, paddingLeft: 10}}>
                 {/* Title and Fill Bar */}
-                <div style={{display: 'flex', flexDirection: 'row', flex: 1}}>
+                <div style={{display: 'flex', flexDirection: 'row', flex: 1, height: "5vh"}}>
                     <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
                         Fill out your Ranks
                     </p>
@@ -285,9 +297,9 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
                 </div>
 
                 {/* Unit Selection */}
-                <div style={{display: 'flex', flex: 11, flexDirection: 'column', height: '40vh'}}>
+                <div style={{display: 'flex', flex: 11, flexDirection: 'column', height: '34vh', paddingBottom: 15}}>
                     {renderUnitTypeTabBar()}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 9, height: '70%', paddingTop: 10, paddingBottom: 50, overflowY: 'scroll'}}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: 10, paddingTop: 10, overflowY: 'scroll', height: '34vh'}}>
                         {renderUnitTags(armyType, selectType)}
                     </div>
                 </div>
