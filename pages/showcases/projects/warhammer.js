@@ -378,6 +378,11 @@ function UnitCard({
     }
 
     function renderMeleeWeapons(){
+        return(
+            <div>
+                
+            </div>
+        )
     }
 
     function renderRangedWeapons(){
