@@ -19,14 +19,17 @@ import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 // WarHammer Functions 
 import determineUnits from "../../../constants/projects/warhammer/army_units/determineUnits"
 
+// Colors
+const votannGreen = "#035241"
+const goldenAge = "#b09902"
+const scorchedGreen = "#11382f"
+const wornViridium = "#1d2923"
+
 export default function Warhammer() {
 ////////////
 // Consts //
 ////////////
 
-const votannGreen = "#035241"
-const goldenAge = "#b09902"
-const scorchedGreen = "#11382f"
 
 ///////////
 // State //
@@ -319,6 +322,16 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
     )
 }
 
+/////////////////
+// Main Return //
+/////////////////
+    return(
+        <div style={{paddingTop: '3.5%', backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+            {renderMAIN_DESKTOP(armyType, armySize, pts)}
+        </div>
+    )
+}
+
 /////////////////////
 // Mini Components //
 /////////////////////
@@ -342,8 +355,8 @@ function UnitCard({
                     <div style={{display: 'flex', flex: 3}}>
                         {renderUnitDetailSelections(shownDetails)}
                     </div>
-                    <div style={{display: 'flex', flex: 8}}>
-
+                    <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column'}}>
+                        {renderDetails(unit)}
                     </div>
                 </div>
                 </div>
@@ -368,7 +381,7 @@ function UnitCard({
                     id: "2",
                     type: "MC",
                     template: "tabs",
-                    value: armySizeNum,
+                    value: shownDetails,
                     options: [
                         "Melee Weapons", "Ranged Weapons", "Abilities", "Wargear", "Weapon Options", "Wargear Options"
                     ]
@@ -377,41 +390,66 @@ function UnitCard({
         )
     }
 
-    function renderMeleeWeapons(){
-        return(
-            <div>
-                
-            </div>
-        )
+    function renderMeleeWeapons(unit){
+        return unit.meleeWeapons.map(wep => {
+            return renderWeaponTag(wep)
+        })
     }
 
     function renderRangedWeapons(){
+        return unit.rangedWeapons.map(wep => {
+            return renderWeaponTag(wep)
+        })
+    }
+
+    function renderWeaponTag(weapon){
+        const _style={ marign: 0,
+            justifyItems: 'center', alignContent: 'center', textAlign: 'center', padding: 0, margin: 0
+        }
+        return(
+            <OstCard noShadow={true} rounded={false}
+            style={{display: "flex", flexDirection: 'column', width: '95%', height: '6vh'}}>
+                <div style={{display: 'flex', flex: 5, flexDirection: 'row', backgroundColor: "grey", textAlign: 'center', justifyContent: 'center'}}>
+                    {weapon.name}
+                </div>
+                <div style={{display: 'flex', flex: 7, flexDirection: 'row', backgroundColor: "white", gap: 10, justifyContent: 'space-evenly'}}>
+                    <p style={_style}>
+                        Range: {weapon.range}
+                    </p>
+                    <p style={_style}>
+                        Attacks: {weapon.attacks}
+                    </p>
+                    <p style={_style}>
+                        Save: {weapon.b_save}
+                    </p>
+                    <p style={_style}>
+                        Str: {weapon.str}
+                    </p>
+                    <p style={_style}>
+                        AP: {weapon.AP}
+                    </p>
+                    <p style={_style}>
+                        Dam: {weapon.dam}
+                    </p>
+                </div>
+            </OstCard>
+        )
     }
 
     function renderAbilities(){
     }
 
-    function renderDetails(){
+    function renderDetails(unit){
         if (shownDetails === "Melee Weapons"){
-            return renderMeleeWeapons()
+            return renderMeleeWeapons(unit)
         }
         else if (shownDetails === "Ranged Weapons"){
-            return renderRangedWeapons()
+            return renderRangedWeapons(unit)
         }
         else if (shownDetails === "Abilities"){
-            return renderAbilities()
+            return renderAbilities(unit)
         }
     }
     
     return MAIN(unit, shownDetails)
-}
-
-/////////////////
-// Main Return //
-/////////////////
-return(
-    <div style={{paddingTop: '3.5%', backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
-        {renderMAIN_DESKTOP(armyType, armySize, pts)}
-    </div>
-)
 }
