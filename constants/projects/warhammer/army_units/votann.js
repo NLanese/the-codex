@@ -7,6 +7,8 @@ const kahl = "/assets/project_images/warhammer/units/votann/kahl.png"
 const mem = "/assets/project_images/warhammer/units/votann/mem.png"
 const uthar = "/assets/project_images/warhammer/units/votann/uthar.png"
 
+import votann_weapons from "../weapons/votann"
+
 
 
 const votann_army = [
@@ -28,6 +30,14 @@ const votann_army = [
             control: 1,
             invuln: false
         },
+        startingMelee: [
+            votann_weapons.close_combat_weapons
+        ],
+        startingRanged: [
+            votann_weapons.transmitter_inverter_half_charge,
+            votann_weapons.transmitter_inverter_full_charge,
+            votann_weapons.transmitter_inverter_over_charge,
+        ]
         
     },
     {
@@ -45,6 +55,15 @@ const votann_army = [
             control: 1,
             invuln: false
         },
+        startingMelee: [
+            votann_weapons.close_combat_weapons,
+            votann_weapons.gravitron_hammer
+        ],
+        startingRanged: [
+            votann_weapons.autoch_pattern_bolt_pistol,
+            votann_weapons.graviton_rifle,
+            votann_weapons.las_beam_cutter
+        ]
     },
     {
         army: "votann",
