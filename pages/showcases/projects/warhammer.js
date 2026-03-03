@@ -24,6 +24,7 @@ const votannGreen = "#035241"
 const goldenAge = "#b09902"
 const scorchedGreen = "#11382f"
 const wornViridium = "#1d2923"
+const seaOfWar = '#445459'
 
 export default function Warhammer() {
 ////////////
@@ -340,19 +341,17 @@ function UnitCard({
     unit
 }){
     const [shownDetails, setShownDetails] = useState(false)
+    const [shownAbility, setShownAbility] = useState(false)
 
     function MAIN(unit, shownDetails){
         return(
             <div style={{height: '50vh', backgroundColor: scorchedGreen, display: 'flex', flexDirection: 'row'}}>
-                <OstCard noShadow={true}
-                    templateStyle={1}
-                    imageSrc={unit.img}
-                    style={{flex: 4}}
-                />
+                
                 <div style={{flex:8}}>
                 <p style={{padding: 5, margin: 0, textAlign: 'center', fontSize: 22, color: goldenAge}}>{unit.name}</p>
                 <div style={{display: 'flex', flexDirection: 'row', padding: 5, gap: 10}}>
-                    <div style={{display: 'flex', flex: 3}}>
+                    {renderImgOrAbility()}
+                    <div style={{display: 'flex', flex: 2}}>
                         {renderUnitDetailSelections(shownDetails)}
                     </div>
                     <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column'}}>
@@ -362,6 +361,25 @@ function UnitCard({
                 </div>
             </div>
         )
+    }
+
+    function renderImgOrAbility(){
+        if (shownAbility){
+            return renderShownAbility()
+        }
+        else{
+            return(
+                <OstCard noShadow={true}
+                    templateStyle={1}
+                    imageSrc={unit.img}
+                    style={{flex: 3}}
+                />
+            )
+        }
+    }
+
+    function renderShownAbility(){
+
     }
 
     function renderUnitDetailSelections(shownDetails){
@@ -432,7 +450,26 @@ function UnitCard({
                         Dam: {weapon.dam}
                     </p>
                 </div>
+                {renderWeaponAbilities(weapon)}
             </OstCard>
+        )
+    }
+
+    function renderWeaponAbilities(weapon){
+        if (weapon.abilities.length === 0){
+            return
+        }
+        return(
+            <div style={{display: 'flex', flex: 7, flexDirection: 'row', backgroundColor: seaOfWar, gap: 10, justifyContent: 'flex-start', alignItems: 'center'}}>
+                <p style={{margin: 0, padding: 0, paddingLeft: 5, color: goldenAge, fontSize: 18}}>Abilities</p>
+                {weapon.abilities.map(ab => {
+                    return(
+                        <OstCard rounded={false} style={{backgroundColor: 'grey', padding: 5, margin: 4}}>
+                            {ab.name}
+                        </OstCard>
+                    )
+                })}
+            </div>
         )
     }
 

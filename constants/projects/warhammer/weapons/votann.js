@@ -11,7 +11,7 @@ const votann_weapons = {
         AP: 1,
         dam: 1,
         abilities: [
-            weapon_abilities.rapid_fire.ranks[1]
+            weapon_abilities.rapid_fire(1),
         ],
     },
     transmitter_inverter_full_charge: {
@@ -24,7 +24,7 @@ const votann_weapons = {
         AP: 2,
         dam: 2,
         abilities: [
-            weapon_abilities.rapid_fire.ranks[2], 
+            weapon_abilities.rapid_fire(2),
             weapon_abilities.hazardous
         ]
     },
@@ -38,7 +38,7 @@ const votann_weapons = {
         AP: 3,
         dam: 3,
         abilities: [
-            weapon_abilities.rapid_fire.ranks[3], 
+            weapon_abilities.rapid_fire(3),
             weapon_abilities.hazardous, 
             weapon_abilities.overcharge
         ]
@@ -64,8 +64,8 @@ const votann_weapons = {
         AP: 1,
         dam: 3,
         abilities: [
-            weapon_abilities.anti_monster.ranks[3],
-            weapon_abilities.anti_vehicle.ranks[3]
+            weapon_abilities.anti_monster(3),
+            weapon_abilities.anti_vehicle(3)
         ]
     },
     las_beam_cutter: {
@@ -89,7 +89,7 @@ const votann_weapons = {
         AP: 1,
         dam: 2,
         abilities: [
-            weapon_abilities.sustained_hits.ranks[2]
+            weapon_abilities.sustained_hits(2)
         ]
     },
     graviton_blast_cannon: {
@@ -102,8 +102,8 @@ const votann_weapons = {
         AP: 2,
         dam: 3,
         abilities: [
-            weapon_abilities.anti_monster.ranks[3],
-            weapon_abilities.anti_vehicle.ranks[3]
+            weapon_abilities.anti_monster(3),
+            weapon_abilities.anti_vehicle(3)
         ]
     },
     sp_conversion_beamer: {
@@ -116,8 +116,8 @@ const votann_weapons = {
         AP: 2,
         dam: 3,
         abilities: [
-            weapon_abilities.conversion,
-            weapon_abilities.lethal_hits
+            weapon_abilities.conversion(),
+            weapon_abilities.lethal_hits()
         ]
     },
 
@@ -154,8 +154,8 @@ const votann_weapons = {
         AP: 1,
         dam: 3,
         abilities: [
-            weapon_abilities.anti_monster.ranks[3],
-            weapon_abilities.anti_vehicle.ranks[3]
+            weapon_abilities.anti_monster(3),
+            weapon_abilities.anti_vehicle(3)
         ]
     },
     concussion_gauntlet: {
