@@ -14,6 +14,20 @@ const weapon_abilities = {
         })
     },
 
+    heavy: () =>  {
+        return({
+            name: "Heavy",
+            desc: "When attacking with Heavy weapons, if the attacking unit did not move during the Movement Phase, add 1 to the Hit Rolls",  
+        })
+    },
+
+    twin_linked: () =>  {
+        return({
+            name: "Twin Linked",
+            desc: "Any Wound Rolls can be rerolled once when attacking with Twin Linked Weapons",
+        })
+    },
+
     conversion: () =>  {
         return({
             name: "Conversion",
@@ -25,6 +39,20 @@ const weapon_abilities = {
         return({
             name: "Lethal Hits",
             desc: "A weapon with Lethal Hits automatically wounds its target on a Critical Hit",  
+        })
+    },
+
+    blast: () =>  {
+        return({
+            name: "Blast",
+            desc: "When rolling a die to determine how many attacks are made, add 1 to the result for every 5 models in the targetted unit. For example, if attacking an consisting of 9 models, add 1 to the total attack roll. Blast Weapons can never be used on enemies within engagement range of one or more allied units.",  
+        })
+    },
+
+    indirect_fire: () =>  {
+        return({
+            name: "Indirect Fire",
+            desc: "Indirect Fire Weapons can destory enemy units and models without needing to have direct line of fire. If a single model in the unit is visible, treat all the models in the target unit normally. If none are visible, all models being attacked have the benefit of cover and Attack rolls of 1-3 automatically miss. Additionally, the attacker must subtract 1 on all Hit Rolls.",  
         })
     },
 

@@ -120,7 +120,50 @@ const votann_weapons = {
             weapon_abilities.lethal_hits()
         ]
     },
-
+    mole_grenade_launcher: {
+        name: "Mole Grenade Launcher",
+        type: "ranged",
+        range: 18,
+        attacks: 'D6',
+        b_save: 5,
+        str: 5,
+        AP: 1,
+        dam: 1,
+        abilities: [
+            weapon_abilities.blast(),
+            weapon_abilities.indirect_fire()
+        ]
+    },
+    breacher_ordnance: {
+        name: "Breacher Ordnance",
+        type: "ranged",
+        range: 24,
+        attacks: 'D6 + 1',
+        b_save: 5,
+        str: 10,
+        AP: 1,
+        dam: 2,
+        abilities: [
+            weapon_abilities.blast(),
+            weapon_abilities.indirect_fire(),
+            weapon_abilities.heavy()
+        ]
+    },
+    tremor_shells: {
+        name: "Tremor Shells",
+        type: "ranged",
+        range: 36,
+        attacks: 'D6 + 4',
+        b_save: 5,
+        str: 6,
+        AP: 1,
+        dam: 1,
+        abilities: [
+            weapon_abilities.blast(),
+            weapon_abilities.indirect_fire(),
+            weapon_abilities.heavy()
+        ]
+    },
 
     close_combat_weapons: {
         name: "Close Combat Weapons",
@@ -168,7 +211,55 @@ const votann_weapons = {
         AP: 2,
         dam: 2,
         abilities: []
-    }
+    },
+    twin_concussion_gauntlet: {
+        name: "Twin Concussion Gauntlet",
+        type: "melee",
+        range: 0,
+        attacks: 4,
+        b_save: 4,
+        str: 9,
+        AP: 2,
+        dam: 2,
+        abilities: []
+    },
+    concussion_maul: {
+        name: "Concussion Maul",
+        type: "melee",
+        range: 0,
+        attacks: 3,
+        b_save: 4,
+        str: 5,
+        AP: 2,
+        dam: 3,
+        abilities: [
+            weapon_abilities.anti_monster(3),
+            weapon_abilities.anti_vehicle(3)
+        ]
+    },
+    heavy_plasma_axe: {
+        name: "Heavy Plasma Axe",
+        type: "melee",
+        range: 0,
+        attacks: 3,
+        b_save: 4,
+        str: 7,
+        AP: 2,
+        dam: 3,
+        abilities: []
+    },
+    plasma_picks: {
+        name: "Plasma Picks",
+        type: "melee",
+        range: 0,
+        attacks: 4,
+        b_save: 3,
+        str: 5,
+        AP: 2,
+        dam:13,
+        abilities: []
+    },
+    
 }
 
 
