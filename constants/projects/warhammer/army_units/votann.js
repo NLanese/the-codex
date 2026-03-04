@@ -358,6 +358,46 @@ const votann_army = [
         }
     },
 
+        {
+        army: "votann",
+        class: "other",
+        name: "Einhyr Hearthguard",
+        img: grim,
+        pts: 110,
+        units: 5,
+        leader: false,
+        warlord: false,
+        base_stats: {
+            move: 5,
+            tough: 5,
+            saving: 2,
+            wounds: 2,
+            leader: 7,
+            control: 1,
+            invuln: false,
+        },
+        meleeWeapons: [
+            votann_weapons.concussion_gauntlet,
+            votann_weapons.gravitron_hammer,
+        ],
+        rangedWeapons: [
+            votann_weapons.eta_carn_plasma_gun,
+            votann_weapons.exoarmor_grenade_launcher,
+            votann_weapons.volkanite_disintegrator,
+        ],
+        weapon_options: {
+            slot1: [
+                {...votann_weapons.autoch_pattern_bolt_pistol, selected: true},
+            ],
+            slot2: [
+                {...votann_weapons.plasma_picks, selected: true},
+            ],
+            slot2: [
+                {...votann_weapons.breacher_ordnance, selected: true},
+                {...votann_weapons.tremor_shells, selected: false},
+            ]
+        }
+    },
 ]
 
 

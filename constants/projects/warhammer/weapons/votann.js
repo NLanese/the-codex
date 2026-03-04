@@ -164,6 +164,47 @@ const votann_weapons = {
             weapon_abilities.heavy()
         ]
     },
+    eta_carn_plasma_gun: {
+        name: "EtaCarn Plasma Gun",
+        type: "ranged",
+        range: 24,
+        attacks: 1,
+        b_save: 3,
+        str: 7,
+        AP: 3,
+        dam: 2,
+        abilities: [
+            weapon_abilities.rapid_fire(1)
+        ]
+    },
+    exoarmor_grenade_launcher: {
+        name: "Exoarmor Grenade Launcher",
+        type: "ranged",
+        range: 24,
+        attacks: "D3",
+        b_save: 3,
+        str: 3,
+        AP: 0,
+        dam: 1,
+        abilities: [
+            weapon_abilities.blast()
+        ]
+    },
+    volkanite_disintegrator: {
+        name: "Volkanite Disintegrator",
+        type: "ranged",
+        range: 24,
+        attacks: 3,
+        b_save: 3,
+        str: 5,
+        AP: 0,
+        dam: 1,
+        abilities: [
+            weapon_abilities.devastating_wounds()
+        ]
+    },
+
+
 
     close_combat_weapons: {
         name: "Close Combat Weapons",

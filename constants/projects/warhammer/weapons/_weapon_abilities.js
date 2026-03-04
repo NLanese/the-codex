@@ -49,6 +49,13 @@ const weapon_abilities = {
         })
     },
 
+    devastating_wounds: () =>  {
+        return({
+            name: "Devastating Wounds",
+            desc: "Whenever an attack from a weapon with Devastating Wounds lands a Critical Wound, that wounding damamge is automatically applied and cannot be canceled out via scucessful saving rolls or other effects.",  
+        })
+    },
+
     indirect_fire: () =>  {
         return({
             name: "Indirect Fire",
