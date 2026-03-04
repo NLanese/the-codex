@@ -18,6 +18,7 @@ import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 // WarHammer Functions 
 import determineUnits from "../../../constants/projects/warhammer/army_units/determineUnits"
+import { show } from "react-modal/lib/helpers/ariaAppHider";
 
 // Colors
 const votannGreen = "#035241"
@@ -25,6 +26,8 @@ const goldenAge = "#b09902"
 const scorchedGreen = "#11382f"
 const wornViridium = "#1d2923"
 const seaOfWar = '#445459'
+const skiesOfSage = '#87948d'
+const brassWarriors = '#472f08'
 
 export default function Warhammer() {
 ////////////
@@ -348,16 +351,16 @@ function UnitCard({
             <div style={{height: '50vh', backgroundColor: scorchedGreen, display: 'flex', flexDirection: 'row'}}>
                 
                 <div style={{flex:8}}>
-                <p style={{padding: 5, margin: 0, textAlign: 'center', fontSize: 22, color: goldenAge}}>{unit.name}</p>
-                <div style={{display: 'flex', flexDirection: 'row', padding: 5, gap: 10}}>
-                    {renderImgOrAbility()}
-                    <div style={{display: 'flex', flex: 2}}>
-                        {renderUnitDetailSelections(shownDetails)}
+                    <p style={{padding: 5, margin: 0, textAlign: 'center', fontSize: 22, color: goldenAge}}>{unit.name}</p>
+                    <div style={{display: 'flex', flexDirection: 'row', padding: 5, gap: 10}}>
+                        {renderImgOrAbility()}
+                        <div style={{display: 'flex', flex: 2}}>
+                            {renderUnitDetailSelections(shownDetails)}
+                        </div>
+                        <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column', justifyContent: 'space-evenly'}}>
+                            {renderDetails(unit)}
+                        </div>
                     </div>
-                    <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column'}}>
-                        {renderDetails(unit)}
-                    </div>
-                </div>
                 </div>
             </div>
         )
@@ -379,7 +382,22 @@ function UnitCard({
     }
 
     function renderShownAbility(){
-
+        return(
+            <OstCard style={{backgroundColor: skiesOfSage, flex: 3}}>
+                <OstCard noShadow={true} rounded={false} 
+                onClick={() => setShownAbility(false)}
+                style={{justifySelf: 'flex-end', 
+                    height: 35, width: 35, fontSize: 32, padding: 0, margin: 0,
+                    backgroundColor: votannGreen, color: goldenAge,  textAlign: 'center'
+                }}>
+                    X
+                </OstCard>
+                <p style={{color: brassWarriors, fontSize: 24, textAlign: 'center'}}>
+                    {shownAbility.name}
+                </p>
+                <p>{shownAbility.desc}</p>
+            </OstCard>
+        )
     }
 
     function renderUnitDetailSelections(shownDetails){
@@ -425,12 +443,12 @@ function UnitCard({
             justifyItems: 'center', alignContent: 'center', textAlign: 'center', padding: 0, margin: 0
         }
         return(
-            <OstCard noShadow={true} rounded={false}
-            style={{display: "flex", flexDirection: 'column', width: '95%', height: '6vh'}}>
-                <div style={{display: 'flex', flex: 5, flexDirection: 'row', backgroundColor: "grey", textAlign: 'center', justifyContent: 'center'}}>
+            <OstCard noShadow={true} rounded={true}
+            style={{display: "flex", flexDirection: 'column', width: '95%', minHeight: '6vh', maxHeight: '8vh', marginBottom: 2, overflow:'hidden'}}>
+                <div style={{display: 'flex', flex: 2, flexDirection: 'row', backgroundColor: skiesOfSage, textAlign: 'center', justifyContent: 'center'}}>
                     {weapon.name}
                 </div>
-                <div style={{display: 'flex', flex: 7, flexDirection: 'row', backgroundColor: "white", gap: 10, justifyContent: 'space-evenly'}}>
+                <div style={{display: 'flex', flex: 5, flexDirection: 'row', backgroundColor: "white", gap: 10, justifyContent: 'space-evenly'}}>
                     <p style={_style}>
                         Range: {weapon.range}
                     </p>
@@ -460,11 +478,18 @@ function UnitCard({
             return
         }
         return(
-            <div style={{display: 'flex', flex: 7, flexDirection: 'row', backgroundColor: seaOfWar, gap: 10, justifyContent: 'flex-start', alignItems: 'center'}}>
-                <p style={{margin: 0, padding: 0, paddingLeft: 5, color: goldenAge, fontSize: 18}}>Abilities</p>
+            <div style={{
+                display: 'flex', flex: 7, flexDirection: 'row', gap: 10,
+                justifyContent: 'flex-start', alignItems: 'center', padding: 5,
+                backgroundColor: skiesOfSage, height: '2.5vh' 
+            }}>
+                <p style={{margin: 0, padding: 0, paddingLeft: 5, color: brassWarriors, fontSize: 18}}>Abilities</p>
                 {weapon.abilities.map(ab => {
                     return(
-                        <OstCard rounded={false} style={{backgroundColor: 'grey', padding: 5, margin: 4}}>
+                        <OstCard rounded={false} 
+                            style={{backgroundColor: shownAbility === ab ? goldenAge : 'grey', height: '40%', height: '1vh', paddingTop: 0}}
+                            onClick={() => {setShownAbility(ab)}}
+                        >
                             {ab.name}
                         </OstCard>
                     )

@@ -25,7 +25,7 @@ const votann_weapons = {
         dam: 2,
         abilities: [
             weapon_abilities.rapid_fire(2),
-            weapon_abilities.hazardous
+            weapon_abilities.hazardous()
         ]
     },
     transmitter_inverter_over_charge: {
@@ -39,8 +39,8 @@ const votann_weapons = {
         dam: 3,
         abilities: [
             weapon_abilities.rapid_fire(3),
-            weapon_abilities.hazardous, 
-            weapon_abilities.overcharge
+            weapon_abilities.hazardous(), 
+            weapon_abilities.overcharge()
         ]
     },
     autoch_pattern_bolt_pistol: {
