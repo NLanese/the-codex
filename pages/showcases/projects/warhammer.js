@@ -234,6 +234,9 @@ function renderUnitTypeTabBar(){
 }
 
 function renderUnitTags(armyType, selectType){
+    if (!selectType){
+        return
+    }
     return determineUnits(armyType, selectType).map( unit => {
         const _style={ marign: 0,
             justifyItems: 'center', alignContent: 'center', textAlign: 'center',
@@ -357,7 +360,7 @@ function UnitCard({
                         <div style={{display: 'flex', flex: 2}}>
                             {renderUnitDetailSelections(shownDetails)}
                         </div>
-                        <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column', justifyContent: 'space-evenly'}}>
+                        <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column', justifyContent: 'space-evenly', maxHeight: '30vh', overflow: 'scroll'}}>
                             {renderDetails(unit)}
                         </div>
                     </div>
@@ -396,8 +399,8 @@ function UnitCard({
                     {shownAbility.name}
                 </p>
                 <p style={{fontSize: 16, textAlign: 'center', marginTop: 0}}>
-                    {shownAbility.desc
-                }</p>
+                    {shownAbility.desc}
+                </p>
             </OstCard>
         )
     }
@@ -446,7 +449,7 @@ function UnitCard({
         }
         return(
             <OstCard noShadow={true} rounded={true}
-            style={{display: "flex", flexDirection: 'column', width: '95%', minHeight: '6vh', maxHeight: '8vh', marginBottom: 2, overflow:'hidden'}}>
+            style={{display: "flex", flexDirection: 'column', width: '95%', minHeight: '7vh', maxHeight: '8vh', marginBottom: 2, overflow:'hidden'}}>
                 <div style={{display: 'flex', flex: 2, flexDirection: 'row', backgroundColor: skiesOfSage, textAlign: 'center', justifyContent: 'center'}}>
                     {weapon.name}
                 </div>

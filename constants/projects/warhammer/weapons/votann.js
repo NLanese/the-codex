@@ -203,6 +203,105 @@ const votann_weapons = {
             weapon_abilities.devastating_wounds()
         ]
     },
+    cyclic_ion_cannon: {
+        name: "Cyclic Ion Cannon",
+        type: "ranged",
+        range: 24,
+        attacks: "D6 + 2",
+        b_save: 4,
+        str: 7,
+        AP: 2,
+        dam: 2,
+        abilities: [
+            weapon_abilities.blast()
+        ]
+    },
+    heavy_magna_rail_cannon: {
+        name: "Heavy Magna Rail Cannon",
+        type: "ranged",
+        range: 30,
+        attacks: "2",
+        b_save: 4,
+        str: 18,
+        AP: 4,
+        dam: "D6+4",
+        abilities: [
+            weapon_abilities.devastating_wounds(),
+            weapon_abilities.heavy()
+        ]
+    },
+    hekaton_warhead: {
+        name: "Hekaton Warhead",
+        type: "ranged",
+        range: 36,
+        attacks: "D6 + 3",
+        b_save: 4,
+        str: 7,
+        AP: 2,
+        dam: 2,
+        abilities: [
+            weapon_abilities.blast(),
+            weapon_abilities.heavy()
+        ]
+    },
+    matr_autocannon: {
+        name: "MATR Auto Cannon",
+        type: "ranged",
+        range: 24,
+        attacks: 6,
+        b_save: 4,
+        str: 7,
+        AP: 1,
+        dam: 2,
+        abilities: [
+            weapon_abilities.sustained_hits(1),
+            weapon_abilities.heavy()
+        ]
+    },
+    sp_heavy_conversion_beamer: {
+        name: "SP Heavy Conversion Beamer",
+        type: "ranged",
+        range: 24,
+        attacks: 4,
+        b_save: 4,
+        str: 10,
+        AP: 2,
+        dam: 4,
+        abilities: [
+            weapon_abilities.conversion(),
+            weapon_abilities.lethal_hits()
+        ]
+    },
+    twin_bolt_cannon: {
+        name: "Twin Bolt Cannon",
+        type: "ranged",
+        range: 36,
+        attacks: 3,
+        b_save: 4,
+        str: 6,
+        AP: 1,
+        dam: 2,
+        abilities: [
+            weapon_abilities.sustained_hits(2),
+            weapon_abilities.twin_linked()
+        ]
+    },
+    twin_ion_beamer: {
+        name: "Twin Ion Beamerr",
+        type: "ranged",
+        range: 18,
+        attacks: 'D3+1',
+        b_save: 4,
+        str: 8,
+        AP: 2,
+        dam: 1,
+        abilities: [
+            weapon_abilities.blast(),
+            weapon_abilities.twin_linked()
+        ]
+    },
+
+
 
 
 
@@ -262,7 +361,9 @@ const votann_weapons = {
         str: 9,
         AP: 2,
         dam: 2,
-        abilities: []
+        abilities: [
+            weapon_abilities.twin_linked()
+        ]
     },
     concussion_maul: {
         name: "Concussion Maul",
@@ -297,7 +398,18 @@ const votann_weapons = {
         b_save: 3,
         str: 5,
         AP: 2,
-        dam:13,
+        dam:1,
+        abilities: []
+    },
+    armored_wheels: {
+        name: "Armored Wheels",
+        type: "melee",
+        range: 0,
+        attacks: 6,
+        b_save: 4,
+        str: 8,
+        AP: 0,
+        dam:1,
         abilities: []
     },
     

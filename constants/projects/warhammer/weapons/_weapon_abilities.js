@@ -7,6 +7,15 @@ const weapon_abilities = {
         })
     },
 
+    oneshot: () =>  {
+        return({
+            name: "One Shot",
+            desc: "This Weapon may only be used once per battle." ,
+            toggle: "Attack Used",
+            effect: {canUse: false}
+        })
+    },
+
     overcharge: () =>  {
         return({
             name: "Overcharge",
@@ -18,6 +27,13 @@ const weapon_abilities = {
         return({
             name: "Heavy",
             desc: "When attacking with Heavy weapons, if the attacking unit did not move during the Movement Phase, add 1 to the Hit Rolls",  
+        })
+    },
+
+    heavy: () =>  {
+        return({
+            name: "Assault",
+            desc: "Weapons with Assault can be fired even after Advancing ",  
         })
     },
 

@@ -23,7 +23,7 @@ const votann_army = [
 
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Arkanyst Evaluator",
         pts: 65,
         units: 1,
@@ -64,7 +64,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Brokhyr Iron-Master",
         pts: 105,
         units: 5,
@@ -113,7 +113,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Buri Aegnirssen",
         img: buri,
         pts: 95,
@@ -132,7 +132,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Einhyr Champion",
         img: champ,
         pts: 70,
@@ -151,7 +151,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Grimnyr",
         img: grim,
         pts: 65,
@@ -170,7 +170,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Kahl",
         img: kahl,
         pts: 65,
@@ -189,7 +189,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Uthar the Destined",
         img: uthar,
         pts: 95,
@@ -208,7 +208,7 @@ const votann_army = [
     },
     {
         army: "votann",
-        class: "character",
+        class: "characters",
         name: "Memnyr",
         img: mem,
         pts: 45,
@@ -231,7 +231,7 @@ const votann_army = [
     {
         army: "votann",
         class: "battleline",
-        name: "Uthar the Destined",
+        name: "Hearthkyn Warriors",
         img: grim,
         pts: 100,
         units: 10,
@@ -364,7 +364,7 @@ const votann_army = [
         }
     },
 
-        {
+    {
         army: "votann",
         class: "other",
         name: "Einhyr Hearthguard",
@@ -390,6 +390,50 @@ const votann_army = [
             votann_weapons.eta_carn_plasma_gun,
             votann_weapons.exoarmor_grenade_launcher,
             votann_weapons.volkanite_disintegrator,
+        ],
+        weapon_options: {
+            slot1: [
+                {...votann_weapons.autoch_pattern_bolt_pistol, selected: true},
+            ],
+            slot2: [
+                {...votann_weapons.plasma_picks, selected: true},
+            ],
+            slot2: [
+                {...votann_weapons.breacher_ordnance, selected: true},
+                {...votann_weapons.tremor_shells, selected: false},
+            ]
+        }
+    },
+
+    {
+        army: "votann",
+        class: "other",
+        name: "Hekaton Land Fortress",
+        img: hearth,
+        pts: 240,
+        units: 5,
+        leader: false,
+        warlord: false,
+        base_stats: {
+            move: 10,
+            tough: 12,
+            saving: 2,
+            wounds: 16,
+            leader: 7,
+            control: 5,
+            invuln: false,
+        },
+        meleeWeapons: [
+            votann_weapons.armored_wheels,
+        ],
+        rangedWeapons: [
+            votann_weapons.cyclic_ion_cannon,
+            votann_weapons.heavy_magna_rail_cannon,
+            votann_weapons.matr_autocannon,
+            votann_weapons.sp_heavy_conversion_beamer,
+            votann_weapons.hekaton_warhead,
+            votann_weapons.twin_bolt_cannon,
+            votann_weapons.twin_ion_beamer,
         ],
         weapon_options: {
             slot1: [
