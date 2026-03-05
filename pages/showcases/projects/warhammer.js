@@ -392,10 +392,12 @@ function UnitCard({
                 }}>
                     X
                 </OstCard>
-                <p style={{color: brassWarriors, fontSize: 24, textAlign: 'center'}}>
+                <p style={{color: brassWarriors, fontSize: 24, textAlign: 'center', marginTop: -15, marginBottom: 2}}>
                     {shownAbility.name}
                 </p>
-                <p>{shownAbility.desc}</p>
+                <p style={{fontSize: 16, textAlign: 'center', marginTop: 0}}>
+                    {shownAbility.desc
+                }</p>
             </OstCard>
         )
     }

@@ -6,6 +6,12 @@ const iron = "/assets/project_images/warhammer/units/votann/iron.png"
 const kahl = "/assets/project_images/warhammer/units/votann/kahl.png"
 const mem = "/assets/project_images/warhammer/units/votann/mem.png"
 const uthar = "/assets/project_images/warhammer/units/votann/uthar.png"
+const beserks = "/assets/project_images/warhammer/units/votann/beserks.png"
+const shaker = "/assets/project_images/warhammer/units/votann/shaker.png"
+const brok = "/assets/project_images/warhammer/units/votann/brokhyr.png"
+const hearth = "/assets/project_images/warhammer/units/votann/hearth.png"
+
+
 
 import votann_weapons from "../weapons/votann"
 
@@ -248,7 +254,7 @@ const votann_army = [
         army: "votann",
         class: "other",
         name: "Brokhyr Thunderkyn",
-        img: grim,
+        img: brok,
         pts: 100,
         units: 3,
         leader: false,
@@ -286,7 +292,7 @@ const votann_army = [
         army: "votann",
         class: "other",
         name: "Cthonian Beserks",
-        img: grim,
+        img: beserks,
         pts: 100,
         units: 5,
         leader: false,
@@ -322,7 +328,7 @@ const votann_army = [
         army: "votann",
         class: "other",
         name: "Cthonian Earthshakers",
-        img: grim,
+        img: shaker,
         pts: 110,
         units: 2,
         leader: false,
@@ -362,7 +368,7 @@ const votann_army = [
         army: "votann",
         class: "other",
         name: "Einhyr Hearthguard",
-        img: grim,
+        img: hearth,
         pts: 110,
         units: 5,
         leader: false,
