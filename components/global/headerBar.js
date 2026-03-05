@@ -94,6 +94,26 @@ export const HeaderBar = ({
                 {
                     title: "Boss Stats",
                     onClick: (() => setActiveTabBar("Boss"))
+                },
+                {
+                    title: "Saved Relic Lineups (BETA)",
+                    onClick: (() => setActiveTabBar("Boss"))
+                }
+            ]
+        }
+        else if (directory === "Warhammer"){
+            return [
+                {
+                    title: "Build Your Army",
+                    onClick: (() => setActiveTabBar("Main"))
+                },
+                {
+                    title: "Use Your Army",
+                    onClick: (() => setActiveTabBar("Boss"))
+                },
+                {
+                    title: "Saved Armies (BETA)",
+                    onClick: (() => setActiveTabBar("Boss"))
                 }
             ]
         }

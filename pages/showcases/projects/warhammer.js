@@ -41,7 +41,7 @@ export default function Warhammer() {
 
 // Directory and Tab
 const [directory, setDirectory] = useAtom(directoryDataState)
-setDirectory("Nightreign")
+setDirectory("Warhammer")
 const [currentTab, setCurrentTab] = useAtom(tabBarState)
     useEffect(() => {
         if (currentTab === "Boss" || currentTab === "Maps"){
@@ -360,7 +360,7 @@ function UnitCard({
                         <div style={{display: 'flex', flex: 2}}>
                             {renderUnitDetailSelections(shownDetails)}
                         </div>
-                        <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column', justifyContent: 'space-evenly', maxHeight: '30vh', overflow: 'scroll'}}>
+                        <div style={{display: 'flex', flex: 8, backgroundColor: wornViridium, flexDirection: 'column', justifyContent: 'space-evenly', maxHeight: '38vh', overflow: 'scroll'}}>
                             {renderDetails(unit)}
                         </div>
                     </div>
@@ -424,7 +424,8 @@ function UnitCard({
                     template: "tabs",
                     value: shownDetails,
                     options: [
-                        "Melee Weapons", "Ranged Weapons", "Abilities", "Wargear", "Weapon Options", "Wargear Options"
+                        "Melee Weapons", "Ranged Weapons", "Abilities", "Wargear", "Weapon Options", "Wargear Options", 
+                        {tag: "Add to Army", doesNotFireParent: true, onPress: (tag) => console.log(tag)}
                     ]
                 }}
             />

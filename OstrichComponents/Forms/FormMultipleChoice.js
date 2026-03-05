@@ -169,9 +169,18 @@ export const FormMultipleChoice = ({
                 else{
                     tag = input.tag
                 }
+
+                if (input.onPress){
+                    input.onPress(tag)
+                }
             }
-            if (fieldObj?.onChange){                 // Fires FieldObj Function if present
-                fieldObj.onChange(tag, fieldObj)
+            if (!input.doesNotDireParent){
+                if (fieldObj?.onChange){                 // Fires FieldObj Function if present
+                    fieldObj.onChange(tag, fieldObj)
+                }
+            }
+            else{
+                return
             }
             
             // Single Answer
