@@ -186,6 +186,9 @@ export default function BossStats({
                         {renderBossCard(caligo, "Caligo", traceNight)}
                         {renderBossCard(heolster, "Heolster", "black")}
                     </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
+                        {renderBossCard(heolster, "Heolster2", "black")}
+                    </div>
                 </div>
 
             )
@@ -210,6 +213,7 @@ export default function BossStats({
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(heolster, "Heolster", "black")}
+                    {renderBossCard(heolster, "Heolster2", "black")}
                     {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
                     {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
                 </div>
