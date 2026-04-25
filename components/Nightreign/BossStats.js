@@ -248,25 +248,121 @@ export default function BossStats({
         if (isMobile){
             return(
                 <div style={{height: 'auto'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
                         {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
                         {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
                         {renderBossCard(wormFace, "WormFace", greyOfNight)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
                         {renderBossCard(freja, "DearFreja", poisonGlow)}
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 450, marginBottom: 40}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(cavalry, "NightsCavalry", "black")}
                         {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(commander, "Commander", scarletRot)}
+                        {renderBossCard(centipede, "Centipede", poisonGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(tibia, "Tibia", silverLining)}
+                        {renderBossCard(grafted, "Grafted", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(revenent, "Revenent", poisonGlow)}
+                        {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(deathKnight, "DeathKnight", "black")}
+                        {renderBossCard(demons, "Demons", frenzyTouched)}
+                    </div>
+                </div>
+
+            )
+        }
+        return(
+            <div style={{height: 'auto'}}>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
+                    {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
+                    {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
+                    {renderBossCard(wormFace, "WormFace", greyOfNight)}
+                    {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(freja, "DearFreja", poisonGlow)}
+                    {renderBossCard(cavalry, "NightsCavalry", "black")}
+                    {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
+                    
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(commander, "Commander", scarletRot)}
+                    {renderBossCard(centipede, "Centipede", poisonGlow)}
+                    {renderBossCard(tibia, "Tibia", silverLining)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(grafted, "Grafted", graceGiven)}
+                    {renderBossCard(revenent, "Revenent", poisonGlow)}
+                    {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(deathKnight, "DeathKnight", "black")}
+                    {renderBossCard(demons, "Demons", frenzyTouched)}
+                </div>
+            </div>
+        )
+    }
+
+    function _night2(){
+        if (isMobile){
+            return(
+                <div style={{height: 'auto'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
+                        {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
+                        {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
+                        {renderBossCard(wormFace, "WormFace", greyOfNight)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
+                        {renderBossCard(freja, "DearFreja", poisonGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(cavalry, "NightsCavalry", "black")}
+                        {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(commander, "Commander", scarletRot)}
+                        {renderBossCard(centipede, "Centipede", poisonGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(tibia, "Tibia", silverLining)}
+                        {renderBossCard(grafted, "Grafted", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(revenent, "Revenent", poisonGlow)}
+                        {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(deathKnight, "DeathKnight", "black")}
+                        {renderBossCard(demons, "Demons", frenzyTouched)}
                     </div>
                 </div>
 
