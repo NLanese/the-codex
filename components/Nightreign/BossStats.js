@@ -21,7 +21,7 @@ export default function BossStats({
     const caligo = "/assets/project_images/nightreign/caligo.png"
     const heolster = "/assets/project_images/nightreign/heolster.png"
     const harmonia = "/assets/project_images/nightreign/harmonia.png"
-    const strag = "/assets/project_images/nightreign/strag.png"
+    const strag = "/assets/project_images/nightreign/greg.png"
 
     const demiQueen = "/assets/project_images/nightreign/demiQueen.png"
     const demiSwordmaster = "/assets/project_images/nightreign/demiSwordmaster.png"
@@ -71,8 +71,9 @@ export default function BossStats({
             table = day1_stats
         }
         let stats = table[name] ? table[name] : null
+        let height = isMobile? 330 : 480;
         return(
-            <OstCard style={{flex: 3, padding: 0, height: 'auto', paddingBottom: 6, margin: 0, backgroundColor: slateMiasma}}>
+            <OstCard style={{flex: 3, padding: 0, height: height, paddingBottom: 6, margin: 0, backgroundColor: slateMiasma}}>
                     <OstCard rounded={false} noShadow={true} imageSrc={img} templateStyle={1} style={{height: '50%', width: '100%', padding: 0, margin: 0, backgroundColor: color}}/>
                     <p style={{textAlign: 'center', fontSize: isMobile ? 15 : 24, padding: 0, margin: 3}}>
                         {stats?.name ? stats.name : "NA"}
@@ -115,6 +116,7 @@ export default function BossStats({
     function renderResistances(stats){
         return(
             <div style={{ width: '94%', marginLeft: '3%', backgroundColor: slateMiasma}}>
+                {renderHealth(stats)}
                 {renderSingleResist("Poison", stats)}
                 {renderSingleResist("Rot", stats)}
                 {renderSingleResist("Frostbite", stats)}
@@ -147,6 +149,21 @@ export default function BossStats({
                     {type}: 
                 </p>
                 <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color: value === "---" ? frenzyTouched : value > 500 ? frenzyTouched : value > 250 ? 'black' : silveredNight}}>
+                    {value} 
+                </p>
+            </OstCard>
+        )
+    }
+
+    function renderHealth(stats){
+        console.log(stats)
+        let value = stats ? stats.HP : 0
+        return(
+            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black', backgroundColor: slateMiasma}}>
+                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
+                    HP: 
+                </p>
+                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color:'black'}}>
                     {value} 
                 </p>
             </OstCard>
@@ -188,6 +205,10 @@ export default function BossStats({
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
                         {renderBossCard(heolster, "Heolster2", "black")}
+                        {renderBossCard(harmonia, "Balancers", silverLining)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
+                        {renderBossCard(strag, "Dreglord", scarletRot)}
                     </div>
                 </div>
 
@@ -214,8 +235,10 @@ export default function BossStats({
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(heolster, "Heolster", "black")}
                     {renderBossCard(heolster, "Heolster2", "black")}
-                    {/* {renderBossCard(harmonia, "The Balancers", silverLining)} */}
-                    {/* {renderBossCard(strag, "Traitorous Straghess (The Dreglord)", scarletRot)} */}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(harmonia, "Balancers", silverLining)}
+                    {renderBossCard(strag, "Dreglord", scarletRot)}
                 </div>
             </div>
         )
