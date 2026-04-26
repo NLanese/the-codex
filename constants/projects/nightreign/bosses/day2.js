@@ -72,7 +72,7 @@ const day2_stats = {
         Madness: "---", 
     },
     Hippo: {
-        name: 'Crucible Knight',
+        name: 'Golden Hippo',
         HP: 12960,
         Physical: 0,
         Strike: 0,
@@ -288,3 +288,5 @@ const day2_stats = {
         Madness: "---", 
     }
 }
+
+export default day2_stats

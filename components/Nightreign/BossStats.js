@@ -3,6 +3,7 @@ import { OstCard } from "../../OstrichComponents/Format/OstCard";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
 import day1_stats from "../../constants/projects/nightreign/bosses/day1";
+import day2_stats from "../../constants/projects/nightreign/bosses/day2"
 
 export default function BossStats({
     isMobile
@@ -44,6 +45,19 @@ export default function BossStats({
     const divine = "/assets/project_images/nightreign/divine.png"
     const bear = "/assets/project_images/nightreign/bear.png"
 
+    const omen = "/assets/project_images/nightreign/omen.png"
+    const sentinel = "/assets/project_images/nightreign/sentinel.png"
+    const dragon = "/assets/project_images/nightreign/ancient.png"
+    const crucible = "/assets/project_images/nightreign/crucible.png"
+    const hippo = "/assets/project_images/nightreign/hippo.png"
+    const outland = "/assets/project_images/nightreign/outland2.png"
+    const wyrm = "/assets/project_images/nightreign/wyrm.png"
+    const nox = "/assets/project_images/nightreign/dragonkin.png"
+    const draconic = "/assets/project_images/nightreign/draconic.png"
+    const star = "/assets/project_images/nightreign/star.png"
+    const skinny = "/assets/project_images/nightreign/skinny.png"
+    const fatty = "/assets/project_images/nightreign/fatty.png"
+
 
 
     const nightShade = "#2b2161"
@@ -72,6 +86,9 @@ export default function BossStats({
         let table = nightlordStats
         if (screen === "Night 1"){
             table = day1_stats
+        }
+        else if (screen === "Night 2"){
+            table = day2_stats
         }
         let stats = table[name] ? table[name] : null
         let height = isMobile? 330 : 480;
@@ -179,6 +196,9 @@ export default function BossStats({
         }
         else if (screen === "Night 1"){
             return _night1()
+        }
+        else if (screen === "Night 2"){
+            return _night2()
         }
     }
 
@@ -344,40 +364,28 @@ export default function BossStats({
             return(
                 <div style={{height: 'auto'}}>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
-                        {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
+                        {renderBossCard(omen, "Margit", graceGiven)}
+                        {renderBossCard(sentinel, "Sentinel", graceGiven)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
-                        {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
+                        {renderBossCard(dragon, "Dragon", scarletRot)}
+                        {renderBossCard(crucible, "Crucible", graceGiven)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
-                        {renderBossCard(wormFace, "WormFace", greyOfNight)}
+                        {renderBossCard(hippo, "Hippo", "black")}
+                        {renderBossCard(outland, "Commander", greyOfNight)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
-                        {renderBossCard(freja, "DearFreja", poisonGlow)}
+                        {renderBossCard(wyrm, "Wyrm", scarletRot)}
+                        {renderBossCard(nox, "Nox", gloomGlow)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(cavalry, "NightsCavalry", "black")}
-                        {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
+                        {renderBossCard(draconic, "Draconic", scarletRot)}
+                        {renderBossCard(star, "Fallingstar", gloomGlow)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(commander, "Commander", scarletRot)}
-                        {renderBossCard(centipede, "Centipede", poisonGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(tibia, "Tibia", silverLining)}
-                        {renderBossCard(grafted, "Grafted", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(revenent, "Revenent", poisonGlow)}
-                        {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(deathKnight, "DeathKnight", "black")}
-                        {renderBossCard(demons, "Demons", frenzyTouched)}
+                        {renderBossCard(skinny, "Apostle", "black")}
+                        {renderBossCard(fatty, "Noble", "black")}
                     </div>
                 </div>
 
@@ -386,34 +394,24 @@ export default function BossStats({
         return(
             <div style={{height: 'auto'}}>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
-                    {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
-                    {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
+                    {renderBossCard(omen, "Margit", graceGiven)}
+                    {renderBossCard(sentinel, "Sentinel", graceGiven)}
+                    {renderBossCard(dragon, "Dragon", scarletRot)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
-                    {renderBossCard(wormFace, "WormFace", greyOfNight)}
-                    {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
+                    {renderBossCard(crucible, "Crucible", graceGiven)}
+                    {renderBossCard(hippo, "Hippo", "black")}
+                    {renderBossCard(outland, "Commander", greyOfNight)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(freja, "DearFreja", poisonGlow)}
-                    {renderBossCard(cavalry, "NightsCavalry", "black")}
-                    {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
-                    
+                    {renderBossCard(wyrm, "Wyrm", scarletRot)}
+                    {renderBossCard(nox, "Nox", gloomGlow)}
+                    {renderBossCard(draconic, "Draconic", scarletRot)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(commander, "Commander", scarletRot)}
-                    {renderBossCard(centipede, "Centipede", poisonGlow)}
-                    {renderBossCard(tibia, "Tibia", silverLining)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(grafted, "Grafted", graceGiven)}
-                    {renderBossCard(revenent, "Revenent", poisonGlow)}
-                    {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(deathKnight, "DeathKnight", "black")}
-                    {renderBossCard(demons, "Demons", frenzyTouched)}
+                    {renderBossCard(star, "Fallingstar", gloomGlow)}
+                    {renderBossCard(skinny, "Apostle", "black")}
+                    {renderBossCard(fatty, "Noble", "black")}
                 </div>
             </div>
         )
