@@ -140,7 +140,7 @@ export default function BossStats({
         )
     }
 
-    function renderResistances(stats, showsQuality=false){
+    function renderResistances(stats){
         return(
             <div style={{ width: '94%', marginLeft: '3%', backgroundColor: slateMiasma}}>
                 {renderHealth(stats)}
@@ -150,7 +150,6 @@ export default function BossStats({
                 {renderSingleResist("Bleed", stats)}
                 {renderSingleResist("Madness", stats)}
                 {renderSingleResist("Sleep", stats)}
-                {showsQuality ?? }
             </div>
         )
     }
@@ -196,8 +195,6 @@ export default function BossStats({
             </OstCard>
         )
     }
-
-    function renderLootQuality(stats)
 
     function main_screen_render(){
         if (screen === "Nightlords"){
