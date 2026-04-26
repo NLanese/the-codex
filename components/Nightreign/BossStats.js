@@ -61,7 +61,9 @@ export default function BossStats({
     const namelessBird = "/assets/project_images/nightreign/namelessBird.png"
     const nameless = "/assets/project_images/nightreign/nameless.png"
     const dancer = "/assets/project_images/nightreign/dancer.png"
-    const artorias = "/assets/project_images/nightreign/dancer.png"
+    const artorias = "/assets/project_images/nightreign/artorias.png"
+    const mohg = "/assets/project_images/nightreign/mohg.png"
+    const prince = "/assets/project_images/nightreign/prince.png"
 
 
 
@@ -401,8 +403,11 @@ export default function BossStats({
                         {renderBossCard(dancer, "Dancer", gloomGlow)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(artorias, "Knight", graceGiven)}
-                        {renderBossCard(dancer, "Dancer", gloomGlow)}
+                        {renderBossCard(artorias, "Knight", "black")}
+                        {renderBossCard(prince, "Prince", scarletRot)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(mohg, "Mohg", "red")}
                     </div>
                 </div>
 
@@ -429,6 +434,16 @@ export default function BossStats({
                     {renderBossCard(star, "Fallingstar", gloomGlow)}
                     {renderBossCard(skinny, "Apostle", "black")}
                     {renderBossCard(fatty, "Noble", "black")}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(bird, "Bird", "black")}
+                    {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
+                    {renderBossCard(nameless, "Nameless", graceGiven)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(artorias, "Knight", "black")}
+                    {renderBossCard(prince, "Prince", scarletRot)}
+                    {renderBossCard(mohg, "Mohg", "red")}
                 </div>
             </div>
         )
