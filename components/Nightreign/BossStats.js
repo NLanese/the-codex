@@ -206,6 +206,9 @@ export default function BossStats({
         else if (screen === "Night 2"){
             return _night2()
         }
+        else if (screen === "Minor Field Boss"){
+            // return _minor()
+        }
     }
 
     function _nightlords(){
@@ -444,6 +447,110 @@ export default function BossStats({
                     {renderBossCard(prince, "Prince", scarletRot)}
                     {renderBossCard(mohg, "Mohg", "red")}
                 </div>
+            </div>
+        )
+    }
+
+    function _minor(){
+        let content
+        if (isMobile){
+            content = (
+                <div style={{height: 'auto'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(omen, "Margit", graceGiven)}
+                        {renderBossCard(sentinel, "Sentinel", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(dragon, "Dragon", scarletRot)}
+                        {renderBossCard(crucible, "Crucible", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(hippo, "Hippo", "black")}
+                        {renderBossCard(outland, "Commander", greyOfNight)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(wyrm, "Wyrm", scarletRot)}
+                        {renderBossCard(nox, "Nox", gloomGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(draconic, "Draconic", scarletRot)}
+                        {renderBossCard(star, "Fallingstar", gloomGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(skinny, "Apostle", "black")}
+                        {renderBossCard(fatty, "Noble", "black")}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(bird, "Bird", "black")}
+                        {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(nameless, "Nameless", graceGiven)}
+                        {renderBossCard(dancer, "Dancer", gloomGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(artorias, "Knight", "black")}
+                        {renderBossCard(prince, "Prince", scarletRot)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(mohg, "Mohg", "red")}
+                    </div>
+                </div>
+
+            )
+        }
+        else{
+            content =(
+            <div style={{height: 'auto'}}>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(omen, "Margit", graceGiven)}
+                    {renderBossCard(sentinel, "Sentinel", graceGiven)}
+                    {renderBossCard(dragon, "Dragon", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(crucible, "Crucible", graceGiven)}
+                    {renderBossCard(hippo, "Hippo", "black")}
+                    {renderBossCard(outland, "Commander", greyOfNight)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(wyrm, "Wyrm", scarletRot)}
+                    {renderBossCard(nox, "Nox", gloomGlow)}
+                    {renderBossCard(draconic, "Draconic", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(star, "Fallingstar", gloomGlow)}
+                    {renderBossCard(skinny, "Apostle", "black")}
+                    {renderBossCard(fatty, "Noble", "black")}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(bird, "Bird", "black")}
+                    {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
+                    {renderBossCard(nameless, "Nameless", graceGiven)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(artorias, "Knight", "black")}
+                    {renderBossCard(prince, "Prince", scarletRot)}
+                    {renderBossCard(mohg, "Mohg", "red")}
+                </div>
+            </div>
+            )
+        }
+        return(
+            <div>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, margin: 20}}>
+                        <p style={{padding: 0, margin: 2}}>
+                            Minor Field Bosses provide 22500 Runes and Weak Reward Pools
+                        </p>
+                        <p style={{padding: 0, margin: 2}}>
+                            Castle Basement Bosses provide 37500 Runes and Weak Reward Pools
+                        </p>
+                        <p style={{padding: 0, margin: 2}}>
+                            Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes ({`${22500 * 1.65}`} or {`${37500 * 1.65}`})
+                        </p>
+                    </OstCard>
+                </div>
+                {content}
             </div>
         )
     }
