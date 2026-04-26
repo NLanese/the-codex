@@ -57,6 +57,11 @@ export default function BossStats({
     const star = "/assets/project_images/nightreign/star.png"
     const skinny = "/assets/project_images/nightreign/skinny.png"
     const fatty = "/assets/project_images/nightreign/fatty.png"
+    const bird = "/assets/project_images/nightreign/deathBird.png"
+    const namelessBird = "/assets/project_images/nightreign/namelessBird.png"
+    const nameless = "/assets/project_images/nightreign/nameless.png"
+    const dancer = "/assets/project_images/nightreign/dancer.png"
+    const artorias = "/assets/project_images/nightreign/dancer.png"
 
 
 
@@ -386,6 +391,18 @@ export default function BossStats({
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(skinny, "Apostle", "black")}
                         {renderBossCard(fatty, "Noble", "black")}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(bird, "Bird", "black")}
+                        {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(nameless, "Nameless", graceGiven)}
+                        {renderBossCard(dancer, "Dancer", gloomGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(artorias, "Knight", graceGiven)}
+                        {renderBossCard(dancer, "Dancer", gloomGlow)}
                     </div>
                 </div>
 

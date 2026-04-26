@@ -251,7 +251,7 @@ const day2_stats = {
         Sleep: "---", 
         Madness: "---", 
     },
-    NamelessBird: {
+    Nameless: {
         name: 'Nameless King',
         HP: 16983,
         Physical: 20,
@@ -284,6 +284,24 @@ const day2_stats = {
         Rot: 252,
         Bleed: 252, 
         Frostbite: "---", 
+        Sleep: "---", 
+        Madness: "---", 
+    },
+    Knight: {
+        name: 'Knight Artorias',
+        HP: "NA",
+        Physical: 0,
+        Strike: -10,
+        Slash: 10,
+        Pierce: 0,
+        Magic: 15,
+        Fire: 10,
+        Lightning: -10,
+        Holy: -10,
+        Poison: 543,  
+        Rot: 252,
+        Bleed: 252, 
+        Frostbite: 542, 
         Sleep: "---", 
         Madness: "---", 
     }
