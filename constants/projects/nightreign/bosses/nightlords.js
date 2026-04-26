@@ -163,7 +163,7 @@ const nightlordStats = {
     },
     Heolster: {
         name: 'Heolster (Night Aspect P1)',
-        HP: 36024,
+        HP: 14935,
         Physical: 0,
         Strike: 10,
         Slash: -15,
@@ -181,7 +181,7 @@ const nightlordStats = {
     },
     Heolster2: {
         name: 'Heolster (Night Aspect P2)',
-        HP: 36024,
+        HP: 30588,
         Physical: 0,
         Strike: -10,
         Slash: 15,
@@ -217,7 +217,7 @@ const nightlordStats = {
     },
     Dreglord: {
         name: 'Dreglord (Traitorous Strahgess)',
-        HP: 34662,
+        HP: "34662 Each Phase",
         Physical: 0,
         Strike: 0,
         Slash: -10,

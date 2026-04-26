@@ -40,6 +40,9 @@ export default function BossStats({
     const deathKnight = "/assets/project_images/nightreign/deathKnight.png"
     const ulcerated = "/assets/project_images/nightreign/ulcerated.png"
     const demons = "/assets/project_images/nightreign/demon.png"
+    const curse = "/assets/project_images/nightreign/curseBlade.png"
+    const divine = "/assets/project_images/nightreign/divine.png"
+    const bear = "/assets/project_images/nightreign/bear.png"
 
 
 
@@ -284,6 +287,13 @@ export default function BossStats({
                         {renderBossCard(deathKnight, "DeathKnight", "black")}
                         {renderBossCard(demons, "Demons", frenzyTouched)}
                     </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(curse, "Curseblade", "black")}
+                        {renderBossCard(divine, "DivineWarrior", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(bear, "Bear", scarletRot)}
+                    </div>
                 </div>
 
             )
@@ -319,6 +329,11 @@ export default function BossStats({
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
                     {renderBossCard(deathKnight, "DeathKnight", "black")}
                     {renderBossCard(demons, "Demons", frenzyTouched)}
+                    {renderBossCard(bear, "Bear", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(curse, "Curseblade", "black")}
+                    {renderBossCard(divine, "DivineWarrior", graceGiven)}
                 </div>
             </div>
         )

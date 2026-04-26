@@ -340,6 +340,24 @@ const day1_stats = {
         Frostbite: 112,
         Sleep: 63,
         Madness: "---", 
+    },
+    Bear: {
+        name: 'Great Red Bear',
+        HP: "NA",
+        Physical: 0,
+        Strike: 0,
+        Slash: -10,
+        Pierce: 0,
+        Magic: 0,
+        Fire: -20,
+        Lightning: 0,
+        Holy: 0,
+        Poison: 154,
+        Rot: 154,
+        Bleed: 252,
+        Frostbite: 252,
+        Sleep: 84,
+        Madness: "---", 
     }
 }
 
