@@ -102,6 +102,49 @@ export default async function getAllWarhammerData(){
     const Tau = await fetch('https://openhammer-api-production.up.railway.app/units?faction=T%27au%20Empire');
     const TauUnits = await Tau.json();
 
+return {
+    // CHAOS
+    ChaosDemons: ChaosDemonsUnits,
+    ChaosMarines: ChaosMarinesUnits,
+    ChaosKnights: ChaosKnightsUnits,
+    DeathGuard: DeathGuardUnits,
+    ThousandSons: ThousandSonsUnits,
+    WorldEaters: WorldEatersUnits,
+    AgentsOfChaos: AgentsOfChaosUnits,
 
-    console.log(VotannUnits);
+    // IMPERIUM
+    AdeptaSororitas: AdeptaSororitasUnits,
+    AdeptusCustodes: AdeptusCustodesUnits,
+    AdeptusMechanicus: AdeptusMechanicusUnits,
+    AdeptusTitanicus: AdeptusTitanicusUnits,
+    AstraMilitarum: AstraMilitarumUnits,
+    BlackTemplars: BlackTemplarsUnits,
+    BloodAngels: BloodAngelsUnits,
+    DarkAngels: DarkAngelsUnits,
+    Deathwatch: DeathwatchUnits,
+    GreyKnights: GreyKnightsUnits,
+    ImperialAgents: ImperialAgentsUnits,
+    ImperialKnights: ImperialKnightsUnits,
+    IronHands: IronHandsUnits,
+    RavenGuard: RavenGuardUnits,
+    Salamanders: SalamandersUnits,
+    SpaceMarines: SpaceMarinesUnits,
+    SpaceWolves: SpaceWolvesUnits,
+    Ultramarines: UltramarinesUnits,
+
+    // UNALIGNED
+    ImperialArmour: ImperialArmourUnits,
+    Legends: LegendsUnits,
+
+    // XENOS
+    Aeldari: AeldariUnits,
+    Drukhari: DrukhariUnits,
+    GenestealerCults: GenestealerCultsUnits,
+    Votann: VotannUnits,
+    Necrons: NecronsUnits,
+    Orks: OrksUnits,
+    Tau: TauUnits
+}
+
+
 }
