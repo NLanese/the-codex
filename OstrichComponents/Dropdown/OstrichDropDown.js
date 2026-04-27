@@ -80,10 +80,15 @@ export const OstrichDropDown = ({
         if (isInput){
             const newDrawers = drawers.filter(d => {
                 if (typeof d === "object"){
-                    if (d.tag && d.tag.includes(titleX)){
-                        return d
+                    if (titleX){
+                        if (d.tag && d.tag.toUpperCase().includes(titleX.toUpperCase())){
+                            return d
+                        }
+                        else if (d.title && d.title.toUpperCase().includes(titleX.toUpperCase())){
+                            return d
+                        }
                     }
-                    else if (d.title && d.title.includes(titleX)){
+                    else{
                         return d
                     }
                 }
@@ -557,6 +562,7 @@ export const OstrichDropDown = ({
                     }
                     setTitleX(e.target.value)
                 }}
+                onClick={(e) => e.stopPropagation()}
                 style={ 
                     {
                         margin: 0, height: '100%', flex: 1,
