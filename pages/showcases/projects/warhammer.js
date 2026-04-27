@@ -17,7 +17,31 @@ import determineDetachment from "../../../constants/projects/warhammer/detachmen
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 // WarHammer Functions 
-import getAllWarhammerData from "../../../constants/projects/warhammer/functions/getAllData";
+import { 
+    ChaosDemonsUnits, ChaosMarinesUnits, ChaosKnightsUnits,
+    DeathGuardUnits, ThousandSonsUnits, WorldEatersUnits, 
+    AdeptaSororitasUnits, AdeptusCustodesUnits, AdeptusMechanicusUnits,
+    AdeptusTitanicusUnits, AstraMilitarumUnits, BlackTemplarsUnits,
+    BloodAngelsUnits, DarkAngelsUnits, DeathwatchUnits,
+    GreyKnightsUnits,
+    ImperialAgentsUnits,
+    ImperialKnightsUnits,
+    IronHandsUnits,
+    RavenGuardUnits,
+    SalamandersUnits,
+    SpaceMarinesUnits,
+    SpaceWolvesUnits,
+    UltramarinesUnits,
+    ImperialArmourUnits,
+    LegendsUnits,
+    AeldariUnits,
+    DrukhariUnits,
+    GenestealerCultsUnits,
+    NecronsUnits,
+    OrksUnits,
+    TauUnits,
+    VotannUnits
+} from "../../../constants/projects/warhammer/functions/getAllData";
 import determineUnits from "../../../constants/projects/warhammer/army_units/determineUnits"
 
 // Colors
@@ -34,7 +58,76 @@ export default function Warhammer() {
 // Consts //
 ////////////
 
-getAllWarhammerData()
+    const ALL_ARMIES = []
+
+    const chaosDemons = {name: "Chaos Demons", getUnits: ChaosDemonsUnits}
+    ALL_ARMIES.append(chaosDemons)
+    const chaosMarines = {name: "Chaos Marines", getUnits: ChaosMarinesUnits}
+    ALL_ARMIES.append(chaosMarines)
+    const ChaosKnights = {name: "Chaos Knights", getUnits: ChaosKnightsUnits}
+    ALL_ARMIES.append(ChaosKnights)
+    const DeathGuard = {name: "Death Guard", getUnits: DeathGuardUnits}
+    ALL_ARMIES.append(DeathGuard)
+    const ThousandSons = {name: "Thousand Sons", getUnits: ThousandSonsUnits}
+    ALL_ARMIES.append(ThousandSons)
+    const WorldEaters = {name: "World Eaters", getUnits: WorldEatersUnits}
+    ALL_ARMIES.append(WorldEaters)
+    const AgentsOfChaos = {name: "Agents of Chaos", getUnits: DeathGuardUnits}
+    ALL_ARMIES.append(AgentsOfChaos)
+    const AdeptaSororitas = {name: "Adepta Sororitas", getUnits: AdeptaSororitasUnits}
+    ALL_ARMIES.append(AdeptaSororitas)
+    const AdeptusCustodes = {name: "Adeptus Custodes", getUnits: AdeptusCustodesUnits}
+    ALL_ARMIES.append(AdeptusCustodes)
+    const AdeptusMechanicus = {name: "Adeptus Mechanicus", getUnits: AdeptusMechanicusUnits}
+    ALL_ARMIES.append(AdeptusMechanicus)
+    const AdeptusTitanicus = {name: "Adeptus Titanicus", getUnits: AdeptusTitanicusUnits}
+    ALL_ARMIES.append(AdeptusTitanicus)
+    const AstraMilitarum = {name: "Astra Militarum", getUnits: AstraMilitarumUnits}
+    ALL_ARMIES.append(AstraMilitarum)
+    const BlackTemplars = {name: "Black Templars", getUnits: BlackTemplarsUnits}
+    ALL_ARMIES.append(BlackTemplars)
+    const BloodAngels = {name: "Blood Angels", getUnits: BloodAngelsUnits}
+    ALL_ARMIES.append(BloodAngels)
+    const DarkAngels = {name: "Dark Angels", getUnits: DarkAngelsUnits}
+    ALL_ARMIES.append(DarkAngels)
+    const Deathwatch = {name: "Death Watch", getUnits: DeathwatchUnits}
+    ALL_ARMIES.append(Deathwatch)
+    const GreyKnights = {name: "Grey Knights", getUnits: GreyKnightsUnits}
+    ALL_ARMIES.append(GreyKnights)
+    const ImperialAgents = {name: "Imperial Agents", getUnits: ImperialAgentsUnits}
+    ALL_ARMIES.append(ImperialAgents)
+    const ImperialKnights = {name: "Imperial Knightd", getUnits: ImperialKnightsUnits}
+    ALL_ARMIES.append(ImperialKnights)
+    const IronHands = {name: "Iron Hands", getUnits: IronHandsUnits}
+    ALL_ARMIES.append(IronHands)
+    const RavenGuard = {name: "Raven Guard", getUnits: RavenGuardUnits}
+    ALL_ARMIES.append(RavenGuard)
+    const Salamanders = {name: "Salamanders", getUnits: SalamandersUnits}
+    ALL_ARMIES.append(Salamanders)
+    const SpaceMarines = {name: "Space Marines", getUnits: SpaceMarinesUnits}
+    ALL_ARMIES.append(SpaceMarines)
+    const SpaceWolves = {name: "Space Wolves", getUnits: SpaceWolvesUnits}
+    ALL_ARMIES.append(SpaceWolves)
+    const Ultramarines = {name: "Ultra Marines", getUnits: UltramarinesUnits}
+    ALL_ARMIES.append(Ultramarines)
+    const ImperialArmour = {name: "Imperial Armour", getUnits: ImperialArmourUnits}
+    ALL_ARMIES.append(ImperialArmour)
+    const Legends = {name: "Legends", getUnits: LegendsUnits}
+    ALL_ARMIES.append(Legends)
+    const Aeldari = {name: "Aeldari", getUnits: AeldariUnits}
+    ALL_ARMIES.append(Aeldari)
+    const Drukhari = {name: "Drukhari", getUnits: DrukhariUnits}
+    ALL_ARMIES.append(Drukhari)
+    const GenestealerCults = {name: "Genestealer Cults", getUnits: GenestealerCultsUnits}
+    ALL_ARMIES.append(GenestealerCults)
+    const Necrons = {name: "Necrons", getUnits: NecronsUnits}
+    ALL_ARMIES.append(Necrons)
+    const Orks = {name: "Orks", getUnits: OrksUnits}
+    ALL_ARMIES.append(Orks)
+    const Tau = {name: "Tau", getUnits: TauUnits}
+    ALL_ARMIES.append(Tau)
+    const Votann = {name: "Leagues of Votann", getUnits: VotannUnits}
+    ALL_ARMIES.append(Votann)
 
 ///////////
 // State //
@@ -43,6 +136,8 @@ getAllWarhammerData()
 // Directory and Tab
 const [directory, setDirectory] = useAtom(directoryDataState)
 setDirectory("Warhammer")
+
+// Tab Bar
 const [currentTab, setCurrentTab] = useAtom(tabBarState)
     useEffect(() => {
         if (currentTab === "Boss" || currentTab === "Maps"){
