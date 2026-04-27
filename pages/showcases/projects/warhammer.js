@@ -17,8 +17,8 @@ import determineDetachment from "../../../constants/projects/warhammer/detachmen
 import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 // WarHammer Functions 
+import getAllWarhammerData from "../../../constants/projects/warhammer/functions/getAllData";
 import determineUnits from "../../../constants/projects/warhammer/army_units/determineUnits"
-import { show } from "react-modal/lib/helpers/ariaAppHider";
 
 // Colors
 const votannGreen = "#035241"
@@ -34,6 +34,7 @@ export default function Warhammer() {
 // Consts //
 ////////////
 
+getAllWarhammerData()
 
 ///////////
 // State //
