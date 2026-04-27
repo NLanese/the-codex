@@ -71,6 +71,7 @@ export const OstrichDropDown = ({
     useEffect(() => {
         setTitleX(title)
     }, [title])
+    
 
     const [drawersX, setDrawersX] = useState(drawers)
     useEffect(() => {

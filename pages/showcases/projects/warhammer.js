@@ -153,6 +153,9 @@ const [screen, setScreen] = useState("Main")
 
 // Army Details
 const [armyType, setArmyType] = useState(false)
+useEffect(() => {
+    console.log(armyType)
+}, [armyType])
 const [armySize, setArmySize] = useState(false)
 const [armySizeNum, setArmySizeNum] = useState(false)
 const [detachment, setDetachment] = useState(false)
@@ -235,8 +238,10 @@ function renderSelectArmy(){
         isInput={true} rounded={false} titleChanges={true}
         placeholder={"Select Your Army"}
         drawers={ALL_ARMIES}
-        title={armyType ? armyType : ""} onDrawerClick={(op) => {
-            setArmyType(op)
+        title={armyType.title ? armyType.title : ""} onDrawerClick={(op) => {
+            console.log(op)
+            console.log(op.title)
+            setArmyType(op.title)
         }}
         />
     )
