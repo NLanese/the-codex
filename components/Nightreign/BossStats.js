@@ -65,7 +65,11 @@ export default function BossStats({
     const mohg = "/assets/project_images/nightreign/mohg.png"
     const prince = "/assets/project_images/nightreign/prince.png"
 
-
+    const scion = "/assets/project_images/nightreign/scion.png"
+    const black = "/assets/project_images/nightreign/black.png"
+    const wolf = "/assets/project_images/nightreign/wolf.png"
+    const zamor = "/assets/project_images/nightreign/zamor.png"
+    const leonine = "/assets/project_images/nightreign/leonine.png"
 
     const nightShade = "#2b2161"
     const graceGiven = "#f2e144"
@@ -207,7 +211,7 @@ export default function BossStats({
             return _night2()
         }
         else if (screen === "Minor Field Boss"){
-            // return _minor()
+            return _minor()
         }
     }
 
@@ -537,20 +541,29 @@ export default function BossStats({
         }
         return(
             <div>
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, margin: 20}}>
-                        <p style={{padding: 0, margin: 2}}>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                             Minor Field Bosses provide 22500 Runes and Weak Reward Pools
                         </p>
-                        <p style={{padding: 0, margin: 2}}>
-                            Castle Basement Bosses provide 37500 Runes and Weak Reward Pools
+                    </OstCard>
+                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Castle Basement Bosses have 45% more HP, provide 37500 Runes and Strong Reward Pools
                         </p>
-                        <p style={{padding: 0, margin: 2}}>
-                            Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes ({`${22500 * 1.65}`} or {`${37500 * 1.65}`})
+                    </OstCard>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: greyOfNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
                         </p>
                     </OstCard>
                 </div>
-                {content}
+                {/* {content} */}
             </div>
         )
     }

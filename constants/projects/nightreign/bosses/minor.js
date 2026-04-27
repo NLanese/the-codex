@@ -2,7 +2,6 @@ const minor_stats = {
     scion: {
         name: 'Grafted Scion',
         HP: 5446,
-        CursedHP: (5446 * 1.65),
         Physical: 0,
         Strike: 0,
         Slash: -10,
@@ -17,21 +16,10 @@ const minor_stats = {
         Frostbite: 112, 
         Sleep: 112, 
         Madness: "---", 
-        runes: {
-            field: 22500,
-            curseField: (22500 * 1.65),
-            basement: 37500,
-            cursedBasement: (37500 * 1.65),
-        },
-        rewards: {
-            field: "weak",
-            basement: "strong"
-        }
     },
     black: {
         name: 'Black Knife Assassin',
-        HP: 5446,
-        CursedHP: (5446 * 1.65),
+        HP: 2718,
         Physical: 10,
         Strike: 10,
         Slash: 10,
@@ -46,21 +34,10 @@ const minor_stats = {
         Frostbite: 154, 
         Sleep: "---", 
         Madness: "---", 
-        runes: {
-            field: 22500,
-            curseField: (22500 * 1.65),
-            basement: 37500,
-            cursedBasement: (37500 * 1.65),
-        },
-        rewards: {
-            field: "weak",
-            basement: "strong"
-        }
     },
     wolf: {
         name: 'Red Wolf',
-        HP: 5446,
-        CursedHP: (5446 * 1.65),
+        HP: 3504,
         Physical: 10,
         Strike: 0,
         Slash: -10,
@@ -75,21 +52,10 @@ const minor_stats = {
         Frostbite: 252, 
         Sleep: 154, 
         Madness: "---", 
-        runes: {
-            field: 22500,
-            curseField: (22500 * 1.65),
-            basement: 37500,
-            cursedBasement: (37500 * 1.65),
-        },
-        rewards: {
-            field: "weak",
-            basement: "strong"
-        }
     },
     zamor: {
         name: 'Hero of Zamor',
-        HP: 5446,
-        CursedHP: (5446 * 1.65),
+        HP: 4264,
         Physical: 10,
         Strike: 0,
         Slash: -10,
@@ -104,15 +70,59 @@ const minor_stats = {
         Frostbite: 252, 
         Sleep: 154, 
         Madness: "---", 
-        runes: {
-            field: 22500,
-            curseField: (22500 * 1.65),
-            basement: 37500,
-            cursedBasement: (37500 * 1.65),
-        },
-        rewards: {
-            field: "weak",
-            basement: "strong"
-        }
+    },
+    leonine: {
+        name: 'Leonine Misbegotten',
+        HP: 3730,
+        Physical: 10,
+        Strike: 10,
+        Slash: 0,
+        Pierce: 10,
+        Magic: 20,
+        Fire: 0,
+        Lightning: 20,
+        Holy: 20,
+        Poison: 154,  
+        Rot: 154,
+        Bleed: 154, 
+        Frostbite: 154, 
+        Sleep: 154, 
+        Madness: "---", 
+    },
+    elder: {
+        name: 'Elder Lion',
+        HP: 3464,
+        Physical: 0,
+        Strike: 0,
+        Slash: -10,
+        Pierce: 10,
+        Magic: 0,
+        Fire: -20,
+        Lightning: 0,
+        Holy: 0,
+        Poison: 154,  
+        Rot: 154,
+        Bleed: 252, 
+        Frostbite: 252, 
+        Sleep: 112, 
+        Madness: "---", 
+    },
+    hippo: {
+        name: 'Golden Hippo',
+        HP: 3464,
+        Physical: 0,
+        Strike: 0,
+        Slash: -10,
+        Pierce: 10,
+        Magic: 0,
+        Fire: -20,
+        Lightning: 0,
+        Holy: 0,
+        Poison: 154,  
+        Rot: 154,
+        Bleed: 252, 
+        Frostbite: 252, 
+        Sleep: 112, 
+        Madness: "---", 
     }
 }
