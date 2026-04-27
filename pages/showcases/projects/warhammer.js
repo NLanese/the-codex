@@ -60,74 +60,74 @@ export default function Warhammer() {
 
     const ALL_ARMIES = []
 
-    const chaosDemons = {name: "Chaos Demons", getUnits: ChaosDemonsUnits}
-    ALL_ARMIES.append(chaosDemons)
-    const chaosMarines = {name: "Chaos Marines", getUnits: ChaosMarinesUnits}
-    ALL_ARMIES.append(chaosMarines)
-    const ChaosKnights = {name: "Chaos Knights", getUnits: ChaosKnightsUnits}
-    ALL_ARMIES.append(ChaosKnights)
-    const DeathGuard = {name: "Death Guard", getUnits: DeathGuardUnits}
-    ALL_ARMIES.append(DeathGuard)
-    const ThousandSons = {name: "Thousand Sons", getUnits: ThousandSonsUnits}
-    ALL_ARMIES.append(ThousandSons)
-    const WorldEaters = {name: "World Eaters", getUnits: WorldEatersUnits}
-    ALL_ARMIES.append(WorldEaters)
-    const AgentsOfChaos = {name: "Agents of Chaos", getUnits: DeathGuardUnits}
-    ALL_ARMIES.append(AgentsOfChaos)
-    const AdeptaSororitas = {name: "Adepta Sororitas", getUnits: AdeptaSororitasUnits}
-    ALL_ARMIES.append(AdeptaSororitas)
-    const AdeptusCustodes = {name: "Adeptus Custodes", getUnits: AdeptusCustodesUnits}
-    ALL_ARMIES.append(AdeptusCustodes)
-    const AdeptusMechanicus = {name: "Adeptus Mechanicus", getUnits: AdeptusMechanicusUnits}
-    ALL_ARMIES.append(AdeptusMechanicus)
-    const AdeptusTitanicus = {name: "Adeptus Titanicus", getUnits: AdeptusTitanicusUnits}
-    ALL_ARMIES.append(AdeptusTitanicus)
-    const AstraMilitarum = {name: "Astra Militarum", getUnits: AstraMilitarumUnits}
-    ALL_ARMIES.append(AstraMilitarum)
-    const BlackTemplars = {name: "Black Templars", getUnits: BlackTemplarsUnits}
-    ALL_ARMIES.append(BlackTemplars)
-    const BloodAngels = {name: "Blood Angels", getUnits: BloodAngelsUnits}
-    ALL_ARMIES.append(BloodAngels)
-    const DarkAngels = {name: "Dark Angels", getUnits: DarkAngelsUnits}
-    ALL_ARMIES.append(DarkAngels)
-    const Deathwatch = {name: "Death Watch", getUnits: DeathwatchUnits}
-    ALL_ARMIES.append(Deathwatch)
-    const GreyKnights = {name: "Grey Knights", getUnits: GreyKnightsUnits}
-    ALL_ARMIES.append(GreyKnights)
-    const ImperialAgents = {name: "Imperial Agents", getUnits: ImperialAgentsUnits}
-    ALL_ARMIES.append(ImperialAgents)
-    const ImperialKnights = {name: "Imperial Knightd", getUnits: ImperialKnightsUnits}
-    ALL_ARMIES.append(ImperialKnights)
-    const IronHands = {name: "Iron Hands", getUnits: IronHandsUnits}
-    ALL_ARMIES.append(IronHands)
-    const RavenGuard = {name: "Raven Guard", getUnits: RavenGuardUnits}
-    ALL_ARMIES.append(RavenGuard)
-    const Salamanders = {name: "Salamanders", getUnits: SalamandersUnits}
-    ALL_ARMIES.append(Salamanders)
-    const SpaceMarines = {name: "Space Marines", getUnits: SpaceMarinesUnits}
-    ALL_ARMIES.append(SpaceMarines)
-    const SpaceWolves = {name: "Space Wolves", getUnits: SpaceWolvesUnits}
-    ALL_ARMIES.append(SpaceWolves)
-    const Ultramarines = {name: "Ultra Marines", getUnits: UltramarinesUnits}
-    ALL_ARMIES.append(Ultramarines)
-    const ImperialArmour = {name: "Imperial Armour", getUnits: ImperialArmourUnits}
-    ALL_ARMIES.append(ImperialArmour)
-    const Legends = {name: "Legends", getUnits: LegendsUnits}
-    ALL_ARMIES.append(Legends)
-    const Aeldari = {name: "Aeldari", getUnits: AeldariUnits}
-    ALL_ARMIES.append(Aeldari)
-    const Drukhari = {name: "Drukhari", getUnits: DrukhariUnits}
-    ALL_ARMIES.append(Drukhari)
-    const GenestealerCults = {name: "Genestealer Cults", getUnits: GenestealerCultsUnits}
-    ALL_ARMIES.append(GenestealerCults)
-    const Necrons = {name: "Necrons", getUnits: NecronsUnits}
-    ALL_ARMIES.append(Necrons)
-    const Orks = {name: "Orks", getUnits: OrksUnits}
-    ALL_ARMIES.append(Orks)
-    const Tau = {name: "Tau", getUnits: TauUnits}
-    ALL_ARMIES.append(Tau)
-    const Votann = {name: "Leagues of Votann", getUnits: VotannUnits}
-    ALL_ARMIES.append(Votann)
+    const chaosDemons = {title: "Chaos Demons", getUnits: ChaosDemonsUnits}
+    ALL_ARMIES.push(chaosDemons)
+    const chaosMarines = {title: "Chaos Marines", getUnits: ChaosMarinesUnits}
+    ALL_ARMIES.push(chaosMarines)
+    const ChaosKnights = {title: "Chaos Knights", getUnits: ChaosKnightsUnits}
+    ALL_ARMIES.push(ChaosKnights)
+    const DeathGuard = {title: "Death Guard", getUnits: DeathGuardUnits}
+    ALL_ARMIES.push(DeathGuard)
+    const ThousandSons = {title: "Thousand Sons", getUnits: ThousandSonsUnits}
+    ALL_ARMIES.push(ThousandSons)
+    const WorldEaters = {title: "World Eaters", getUnits: WorldEatersUnits}
+    ALL_ARMIES.push(WorldEaters)
+    const AgentsOfChaos = {title: "Agents of Chaos", getUnits: DeathGuardUnits}
+    ALL_ARMIES.push(AgentsOfChaos)
+    const AdeptaSororitas = {title: "Adepta Sororitas", getUnits: AdeptaSororitasUnits}
+    ALL_ARMIES.push(AdeptaSororitas)
+    const AdeptusCustodes = {title: "Adeptus Custodes", getUnits: AdeptusCustodesUnits}
+    ALL_ARMIES.push(AdeptusCustodes)
+    const AdeptusMechanicus = {title: "Adeptus Mechanicus", getUnits: AdeptusMechanicusUnits}
+    ALL_ARMIES.push(AdeptusMechanicus)
+    const AdeptusTitanicus = {title: "Adeptus Titanicus", getUnits: AdeptusTitanicusUnits}
+    ALL_ARMIES.push(AdeptusTitanicus)
+    const AstraMilitarum = {title: "Astra Militarum", getUnits: AstraMilitarumUnits}
+    ALL_ARMIES.push(AstraMilitarum)
+    const BlackTemplars = {title: "Black Templars", getUnits: BlackTemplarsUnits}
+    ALL_ARMIES.push(BlackTemplars)
+    const BloodAngels = {title: "Blood Angels", getUnits: BloodAngelsUnits}
+    ALL_ARMIES.push(BloodAngels)
+    const DarkAngels = {title: "Dark Angels", getUnits: DarkAngelsUnits}
+    ALL_ARMIES.push(DarkAngels)
+    const Deathwatch = {title: "Death Watch", getUnits: DeathwatchUnits}
+    ALL_ARMIES.push(Deathwatch)
+    const GreyKnights = {title: "Grey Knights", getUnits: GreyKnightsUnits}
+    ALL_ARMIES.push(GreyKnights)
+    const ImperialAgents = {title: "Imperial Agents", getUnits: ImperialAgentsUnits}
+    ALL_ARMIES.push(ImperialAgents)
+    const ImperialKnights = {title: "Imperial Knightd", getUnits: ImperialKnightsUnits}
+    ALL_ARMIES.push(ImperialKnights)
+    const IronHands = {title: "Iron Hands", getUnits: IronHandsUnits}
+    ALL_ARMIES.push(IronHands)
+    const RavenGuard = {title: "Raven Guard", getUnits: RavenGuardUnits}
+    ALL_ARMIES.push(RavenGuard)
+    const Salamanders = {title: "Salamanders", getUnits: SalamandersUnits}
+    ALL_ARMIES.push(Salamanders)
+    const SpaceMarines = {title: "Space Marines", getUnits: SpaceMarinesUnits}
+    ALL_ARMIES.push(SpaceMarines)
+    const SpaceWolves = {title: "Space Wolves", getUnits: SpaceWolvesUnits}
+    ALL_ARMIES.push(SpaceWolves)
+    const Ultramarines = {title: "Ultra Marines", getUnits: UltramarinesUnits}
+    ALL_ARMIES.push(Ultramarines)
+    const ImperialArmour = {title: "Imperial Armour", getUnits: ImperialArmourUnits}
+    ALL_ARMIES.push(ImperialArmour)
+    const Legends = {title: "Legends", getUnits: LegendsUnits}
+    ALL_ARMIES.push(Legends)
+    const Aeldari = {title: "Aeldari", getUnits: AeldariUnits}
+    ALL_ARMIES.push(Aeldari)
+    const Drukhari = {title: "Drukhari", getUnits: DrukhariUnits}
+    ALL_ARMIES.push(Drukhari)
+    const GenestealerCults = {title: "Genestealer Cults", getUnits: GenestealerCultsUnits}
+    ALL_ARMIES.push(GenestealerCults)
+    const Necrons = {title: "Necrons", getUnits: NecronsUnits}
+    ALL_ARMIES.push(Necrons)
+    const Orks = {title: "Orks", getUnits: OrksUnits}
+    ALL_ARMIES.push(Orks)
+    const Tau = {title: "Tau", getUnits: TauUnits}
+    ALL_ARMIES.push(Tau)
+    const Votann = {title: "Leagues of Votann", getUnits: VotannUnits}
+    ALL_ARMIES.push(Votann)
 
 ///////////
 // State //
@@ -234,9 +234,7 @@ function renderSelectArmy(){
         titleStyle={{height: '70%', marginTop: 5, fontSize: 22}}
         isInput={true} rounded={false} titleChanges={true}
         placeholder={"Select Your Army"}
-        drawers={[
-            "Leagues of Votann", "Space Wolves", "Tau", "Tyranids"
-        ]}
+        drawers={ALL_ARMIES}
         title={armyType ? armyType : ""} onDrawerClick={(op) => {
             setArmyType(op)
         }}

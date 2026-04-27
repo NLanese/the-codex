@@ -80,10 +80,10 @@ export const OstrichDropDown = ({
         if (isInput){
             const newDrawers = drawers.filter(d => {
                 if (typeof d === "object"){
-                    if (d.tag.includes(titleX)){
+                    if (d.tag && d.tag.includes(titleX)){
                         return d
                     }
-                    else if (d.title.includes(titleX)){
+                    else if (d.title && d.title.includes(titleX)){
                         return d
                     }
                 }
