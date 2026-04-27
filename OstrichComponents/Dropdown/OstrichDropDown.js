@@ -61,6 +61,8 @@ export const OstrichDropDown = ({
     const [lockedOpen, setLockedOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [isHovered, setIsHovered] = useState(false)
+
+    // Tracks Hover Status
     const hoverRef = useRef(isHovered)
     useEffect(() => {
         hoverRef.current = isHovered
@@ -72,11 +74,14 @@ export const OstrichDropDown = ({
         setTitleX(title)
     }, [title])
     
-
+    // Dropdown Drawer Items
     const [drawersX, setDrawersX] = useState(drawers)
     useEffect(() => {
         setDrawersX(drawers)
     }, [drawers])
+
+
+    // Filter for Drawers if Title is an Input
     useEffect(() => {
         if (isInput){
             const newDrawers = drawers.filter(d => {
@@ -435,7 +440,11 @@ export const OstrichDropDown = ({
             onMouseLeave(obj)
         }
         if (isInput && !canAddCustomInputs){
-            if (!drawers.includes(titleX)){
+            const drawerTitles = drawers.map(d => 
+                typeof d === "string" ? d : d.title ? d.title : d.tag
+            )
+            if (!drawerTitles.includes(titleX)){
+                console.warn("Resetting Title to Null")
                 setTitleX(false)
             }
         }

@@ -238,7 +238,7 @@ function renderSelectArmy(){
         isInput={true} rounded={false} titleChanges={true}
         placeholder={"Select Your Army"}
         drawers={ALL_ARMIES}
-        title={armyType.title ? armyType.title : ""} onDrawerClick={(op) => {
+        title={armyType ? armyType : ""} onDrawerClick={(op) => {
             console.log(op)
             console.log(op.title)
             setArmyType(op.title)
