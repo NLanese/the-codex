@@ -1,103 +1,169 @@
+export const ChaosDemonsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Chaos%20Daemons');
+    return res.json();
+};
 
-const ChaosDemons = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Chaos%20Daemons');
-export const ChaosDemonsUnits = await ChaosDemons.json();
+export const ChaosMarinesUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Chaos%20Space%20Marines');
+    return res.json();
+};
 
-const ChaosMarines = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Chaos%20Space%20Marines');
-export const ChaosMarinesUnits = await ChaosMarines.json();
+export const ChaosKnightsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Chaos%20Knights');
+    return res.json();
+};
 
-const ChaosKnights = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Chaos%20Knights');
-export const ChaosKnightsUnits = await ChaosKnights.json();
+export const VotannUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Leagues%20of%20Votann');
+    return res.json();
+};
 
-const Votann = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Leagues%20of%20Votann');
-export const VotannUnits = await Votann.json();
+export const DeathGuardUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Death%20Guard');
+    return res.json();
+};
 
-const DeathGuard = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Death%20Guard');
-export const DeathGuardUnits = await DeathGuard.json();
+export const ThousandSonsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Thousand%20Sons');
+    return res.json();
+};
 
-const ThousandSons = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Thousand%20Sons');
-export const ThousandSonsUnits = await ThousandSons.json();
+export const WorldEatersUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=World%20Eaters');
+    return res.json();
+};
 
-const WorldEaters = await fetch('https://openhammer-api-production.up.railway.app/units?faction=World%20Eaters');
-export const WorldEatersUnits = await WorldEaters.json();
+export const AgentsOfChaosUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Agents%20of%20Chaos');
+    return res.json();
+};
 
-const AgentsOfChaos = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Agents%20of%20Chaos');
-export const AgentsOfChaosUnits = await AgentsOfChaos.json();
+export const AdeptaSororitasUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adepta%20Sororitas');
+    return res.json();
+};
 
-const AdeptaSororitas = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adepta%20Sororitas');
-export const AdeptaSororitasUnits = await AdeptaSororitas.json();
+export const AdeptusCustodesUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adeptus%20Custodes');
+    return res.json();
+};
 
-const AdeptusCustodes = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adeptus%20Custodes');
-export const AdeptusCustodesUnits = await AdeptusCustodes.json();
+export const AdeptusMechanicusUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adeptus%20Mechanicus');
+    return res.json();
+};
 
-const AdeptusMechanicus = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adeptus%20Mechanicus');
-export const AdeptusMechanicusUnits = await AdeptusMechanicus.json();
+export const AdeptusTitanicusUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adeptus%20Titanicus');
+    return res.json();
+};
 
-const AdeptusTitanicus = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Adeptus%20Titanicus');
-export const AdeptusTitanicusUnits = await AdeptusTitanicus.json();
+export const AstraMilitarumUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Astra%20Militarum');
+    return res.json();
+};
 
-const AstraMilitarum = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Astra%20Militarum');
-export const AstraMilitarumUnits = await AstraMilitarum.json();
+export const BlackTemplarsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Black%20Templars');
+    return res.json();
+};
 
-const BlackTemplars = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Black%20Templars');
-export const BlackTemplarsUnits = await BlackTemplars.json();
+export const BloodAngelsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Blood%20Angels');
+    return res.json();
+};
 
-const BloodAngels = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Blood%20Angels');
-export const BloodAngelsUnits = await BloodAngels.json();
+export const DarkAngelsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Dark%20Angels');
+    return res.json();
+};
 
-const DarkAngels = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Dark%20Angels');
-export const DarkAngelsUnits = await DarkAngels.json();
+export const DeathwatchUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Deathwatch');
+    return res.json();
+};
 
-const Deathwatch = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Deathwatch');
-export const DeathwatchUnits = await Deathwatch.json();
+export const GreyKnightsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Grey%20Knights');
+    return res.json();
+};
 
-const GreyKnights = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Grey%20Knights');
-export const GreyKnightsUnits = await GreyKnights.json();
+export const ImperialAgentsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Imperial%20Agents');
+    return res.json();
+};
 
-const ImperialAgents = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Imperial%20Agents');
-export const ImperialAgentsUnits = await ImperialAgents.json();
+export const ImperialKnightsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Imperial%20Knights');
+    return res.json();
+};
 
-const ImperialKnights = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Imperial%20Knights');
-export const ImperialKnightsUnits = await ImperialKnights.json();
+export const IronHandsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Iron%20Hands');
+    return res.json();
+};
 
-const IronHands = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Iron%20Hands');
-export const IronHandsUnits = await IronHands.json();
+export const RavenGuardUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Raven%20Guard');
+    return res.json();
+};
 
-const RavenGuard = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Raven%20Guard');
-export const RavenGuardUnits = await RavenGuard.json();
+export const SalamandersUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Salamanders');
+    return res.json();
+};
 
-const Salamanders = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Salamanders');
-export const SalamandersUnits = await Salamanders.json();
+export const SpaceMarinesUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Space%20Marines');
+    return res.json();
+};
 
-const SpaceMarines = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Space%20Marines');
-export const SpaceMarinesUnits = await SpaceMarines.json();
+export const SpaceWolvesUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Space%20Wolves');
+    return res.json();
+};
 
-const SpaceWolves = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Space%20Wolves');
-export const SpaceWolvesUnits = await SpaceWolves.json();
+export const UltramarinesUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Ultramarines');
+    return res.json();
+};
 
-const Ultramarines = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Ultramarines');
-export const UltramarinesUnits = await Ultramarines.json();
+export const ImperialArmourUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Imperial%20Armour');
+    return res.json();
+};
 
-const ImperialArmour = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Imperial%20Armour');
-export const ImperialArmourUnits = await ImperialArmour.json();
+export const LegendsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Legends');
+    return res.json();
+};
 
-const Legends = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Legends');
-export const LegendsUnits = await Legends.json();
+export const AeldariUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Aeldari');
+    return res.json();
+};
 
-const Aeldari = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Aeldari');
-export const AeldariUnits = await Aeldari.json();
+export const DrukhariUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Drukhari');
+    return res.json();
+};
 
-const Drukhari = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Drukhari');
-export const DrukhariUnits = await Drukhari.json();
+export const GenestealerCultsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Genestealer%20Cults');
+    return res.json();
+};
 
-const GenestealerCults = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Genestealer%20Cults');
-export const GenestealerCultsUnits = await GenestealerCults.json();
+export const NecronsUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Necrons');
+    return res.json();
+};
 
-const Necrons = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Necrons');
-export const NecronsUnits = await Necrons.json();
+export const OrksUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Orks');
+    return res.json();
+};
 
-const Orks = await fetch('https://openhammer-api-production.up.railway.app/units?faction=Orks');
-export const OrksUnits = await Orks.json();
-
-const Tau = await fetch('https://openhammer-api-production.up.railway.app/units?faction=T%27au%20Empire');
-export const TauUnits = await Tau.json();
-
+export const TauUnits = async () => {
+    const res = await fetch('https://openhammer-api-production.up.railway.app/units?faction=T%27au%20Empire');
+    return res.json();
+};
