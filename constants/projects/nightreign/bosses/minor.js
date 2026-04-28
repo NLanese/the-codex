@@ -1,5 +1,5 @@
 const minor_stats = {
-    scion: {
+    Scion: {
         name: 'Grafted Scion',
         HP: 5446,
         Physical: 0,
@@ -17,7 +17,7 @@ const minor_stats = {
         Sleep: 112, 
         Madness: "---", 
     },
-    black: {
+    Black: {
         name: 'Black Knife Assassin',
         HP: 2718,
         Physical: 10,
@@ -35,7 +35,7 @@ const minor_stats = {
         Sleep: "---", 
         Madness: "---", 
     },
-    wolf: {
+    Wolf: {
         name: 'Red Wolf',
         HP: 3504,
         Physical: 10,
@@ -53,7 +53,7 @@ const minor_stats = {
         Sleep: 154, 
         Madness: "---", 
     },
-    zamor: {
+    Zamor: {
         name: 'Hero of Zamor',
         HP: 4264,
         Physical: 10,
@@ -71,7 +71,7 @@ const minor_stats = {
         Sleep: 154, 
         Madness: "---", 
     },
-    leonine: {
+    Leonine: {
         name: 'Leonine Misbegotten',
         HP: 3730,
         Physical: 10,
@@ -89,7 +89,7 @@ const minor_stats = {
         Sleep: 154, 
         Madness: "---", 
     },
-    elder: {
+    Elder: {
         name: 'Elder Lion',
         HP: 3464,
         Physical: 0,
@@ -107,7 +107,7 @@ const minor_stats = {
         Sleep: 112, 
         Madness: "---", 
     },
-    hippo: {
+    Hippo: {
         name: 'Golden Hippo',
         HP: 3464,
         Physical: 0,
@@ -124,5 +124,43 @@ const minor_stats = {
         Frostbite: 252, 
         Sleep: 112, 
         Madness: "---", 
-    }
+    },
+    DemiQueen: {
+        name: 'Demi Queen',
+        HP: 2739,
+        Physical: 0,
+        Strike: 0,
+        Slash: -10,
+        Pierce: 0,
+        Magic: 0,
+        Fire: -20,
+        Lightning: 0,
+        Holy: 0,
+        Poison: 84,
+        Rot: 84,
+        Bleed: 112,
+        Frostbite: 112,
+        Sleep: 112,
+        Madness: "---", 
+    },
+    Miranda: {
+        name: 'Miranda Blossom',
+        HP: 3676,
+        Physical: 0,
+        Strike: 35,
+        Slash: -40,
+        Pierce: 0,
+        Magic: 0,
+        Fire: -40,
+        Lightning: 40,
+        Holy: 40,
+        Poison: 542,
+        Rot: 252,
+        Bleed: 252,
+        Frostbite: 63,
+        Sleep: 112,
+        Madness: "---", 
+    },
 }
+
+export default minor_stats

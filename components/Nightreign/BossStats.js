@@ -4,6 +4,7 @@ import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
 import day1_stats from "../../constants/projects/nightreign/bosses/day1";
 import day2_stats from "../../constants/projects/nightreign/bosses/day2"
+import minor_stats from "../../constants/projects/nightreign/bosses/minor";
 
 export default function BossStats({
     isMobile
@@ -70,6 +71,11 @@ export default function BossStats({
     const wolf = "/assets/project_images/nightreign/wolf.png"
     const zamor = "/assets/project_images/nightreign/zamor.png"
     const leonine = "/assets/project_images/nightreign/leonine.png"
+    const elder = "/assets/project_images/nightreign/elder.png"
+    const flower = "/assets/project_images/nightreign/elder.png"
+
+
+
 
     const nightShade = "#2b2161"
     const graceGiven = "#f2e144"
@@ -100,6 +106,9 @@ export default function BossStats({
         }
         else if (screen === "Night 2"){
             table = day2_stats
+        }
+         else if (screen === "Minor Field Boss"){
+            table = minor_stats
         }
         let stats = table[name] ? table[name] : null
         let height = isMobile? 330 : 480;
@@ -461,43 +470,23 @@ export default function BossStats({
             content = (
                 <div style={{height: 'auto'}}>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(omen, "Margit", graceGiven)}
-                        {renderBossCard(sentinel, "Sentinel", graceGiven)}
+                        {renderBossCard(scion, "Scion", poisonGlow)}
+                        {renderBossCard(black, "Black", "black")}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(dragon, "Dragon", scarletRot)}
-                        {renderBossCard(crucible, "Crucible", graceGiven)}
+                        {renderBossCard(wolf, "Wolf", scarletRot)}
+                        {renderBossCard(zamor, "Zamor", silveredNight)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(hippo, "Hippo", "black")}
-                        {renderBossCard(outland, "Commander", greyOfNight)}
+                        {renderBossCard(leonine, "Leonine", graceGiven)}
+                        {renderBossCard(elder, "Elder", slateMiasma)}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(wyrm, "Wyrm", scarletRot)}
-                        {renderBossCard(nox, "Nox", gloomGlow)}
+                        {renderBossCard(hippo, "Hippo", graceGiven)}
+                        {renderBossCard(demiQueen, "DemiQueen", "black")}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(draconic, "Draconic", scarletRot)}
-                        {renderBossCard(star, "Fallingstar", gloomGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(skinny, "Apostle", "black")}
-                        {renderBossCard(fatty, "Noble", "black")}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bird, "Bird", "black")}
-                        {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(nameless, "Nameless", graceGiven)}
-                        {renderBossCard(dancer, "Dancer", gloomGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(artorias, "Knight", "black")}
-                        {renderBossCard(prince, "Prince", scarletRot)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(mohg, "Mohg", "red")}
+                        {renderBossCard(flower, "Miranda", poisonGlow)}
                     </div>
                 </div>
 
@@ -507,34 +496,19 @@ export default function BossStats({
             content =(
             <div style={{height: 'auto'}}>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(omen, "Margit", graceGiven)}
-                    {renderBossCard(sentinel, "Sentinel", graceGiven)}
-                    {renderBossCard(dragon, "Dragon", scarletRot)}
+                    {renderBossCard(scion, "Scion", poisonGlow)}
+                    {renderBossCard(black, "Black", "black")}
+                    {renderBossCard(wolf, "Wolf", scarletRot)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(crucible, "Crucible", graceGiven)}
-                    {renderBossCard(hippo, "Hippo", "black")}
-                    {renderBossCard(outland, "Commander", greyOfNight)}
+                    {renderBossCard(zamor, "Zamor", silveredNight)}
+                    {renderBossCard(leonine, "Leonine", graceGiven)}
+                    {renderBossCard(elder, "Elder", slateMiasma)}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(wyrm, "Wyrm", scarletRot)}
-                    {renderBossCard(nox, "Nox", gloomGlow)}
-                    {renderBossCard(draconic, "Draconic", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(star, "Fallingstar", gloomGlow)}
-                    {renderBossCard(skinny, "Apostle", "black")}
-                    {renderBossCard(fatty, "Noble", "black")}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(bird, "Bird", "black")}
-                    {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
-                    {renderBossCard(nameless, "Nameless", graceGiven)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(artorias, "Knight", "black")}
-                    {renderBossCard(prince, "Prince", scarletRot)}
-                    {renderBossCard(mohg, "Mohg", "red")}
+                    {renderBossCard(hippo, "Hippo", graceGiven)}
+                    {renderBossCard(demiQueen, "DemiQueen", "black")}
+                    {renderBossCard(flower, "Miranda", poisonGlow)}
                 </div>
             </div>
             )
@@ -563,7 +537,7 @@ export default function BossStats({
                         </p>
                     </OstCard>
                 </div>
-                {/* {content} */}
+                {content}
             </div>
         )
     }
