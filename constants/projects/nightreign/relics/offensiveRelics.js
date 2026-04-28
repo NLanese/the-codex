@@ -644,11 +644,11 @@ const offensiveRelics = [
     },
     {
         title: "Attack Power permamently Increased for each Night Invader Defeated", 
-        desc: "Increases all damage output by 8% per Night Invader Defeated",
+        desc: "Increases all damage output by 7% per Night Invader Defeated",
         stacks: {self: false, selfType: true},
         selfType: "defeatBonus",
         effect: { 
-            allDamage: 1.08,
+            allDamage: 1.07,
             appliesRanged: true,
             always: false,
             condition: "Night Invader Defeated",

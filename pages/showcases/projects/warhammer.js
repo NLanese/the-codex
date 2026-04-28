@@ -189,6 +189,7 @@ function renderBasics(){
     )
 }
 
+// Renders Detachment Options based on Selected Army
 function renderDetachment(armyType){
     if (!armyType){
         return
