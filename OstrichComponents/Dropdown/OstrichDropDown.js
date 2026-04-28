@@ -37,6 +37,7 @@ export const OstrichDropDown = ({
     drawerStyle,
     activeDrawerStyle,
     hoverDrawerStyle,
+    maxDrawerContainerHeight,
 
     boxStyle,
     activeBoxStyle,
@@ -659,7 +660,12 @@ export const OstrichDropDown = ({
                     position: 'absolute', top: "102%",
                     width: '100%',
                 }}>
-                    <div style={{position: 'relative', width: '100%', justifyItems: 'center'}}>
+                    <div style={{
+                        position: 'relative', width: '100%', 
+                        justifyItems: 'center',
+                        maxHeight: maxDrawerContainerHeight ?? 500,
+                        overflowY: 'scroll'
+                    }}>
                         {renderDrawers()}
                     </div>
                 </div> 

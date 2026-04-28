@@ -47,23 +47,20 @@ setDirectory("Warhammer")
 
 // Tab Bar
 const [currentTab, setCurrentTab] = useAtom(tabBarState)
-    useEffect(() => {
-        if (currentTab === "Boss" || currentTab === "Maps"){
-            setScreen(currentTab)
-        }
-        else{
-            setScreen("Main")
-        }
-    },[currentTab])
+useEffect(() => {
+    if (currentTab === "Boss" || currentTab === "Maps"){
+        setScreen(currentTab)
+    }
+    else{
+        setScreen("Main")
+    }
+},[currentTab])
 
 // Screen
 const [screen, setScreen] = useState("Main")
 
 // Army Details
 const [armyType, setArmyType] = useState(false)
-useEffect(() => {
-    console.log(armyType)
-}, [armyType])
 const [armySize, setArmySize] = useState(false)
 const [armySizeNum, setArmySizeNum] = useState(false)
 const [detachment, setDetachment] = useState(false)
