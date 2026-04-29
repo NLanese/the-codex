@@ -5,6 +5,7 @@ import nightlordStats from "../../constants/projects/nightreign/bosses/nightlord
 import day1_stats from "../../constants/projects/nightreign/bosses/day1";
 import day2_stats from "../../constants/projects/nightreign/bosses/day2"
 import minor_stats from "../../constants/projects/nightreign/bosses/minor";
+import major_stats from "../../constants/projects/nightreign/bosses/major";
 
 export default function BossStats({
     isMobile
@@ -72,7 +73,13 @@ export default function BossStats({
     const zamor = "/assets/project_images/nightreign/zamor.png"
     const leonine = "/assets/project_images/nightreign/leonine.png"
     const elder = "/assets/project_images/nightreign/elder.png"
-    const flower = "/assets/project_images/nightreign/elder.png"
+    const flower = "/assets/project_images/nightreign/flower.png"
+
+    const flying = "/assets/project_images/nightreign/flying.png"
+    const avatar = "/assets/project_images/nightreign/avatar.png"
+    const ancestor = "/assets/project_images/nightreign/ancestor.png"
+    const loretta = "/assets/project_images/nightreign/loretta.png"
+    const bbk = "/assets/project_images/nightreign/bbk.png"
 
 
 
@@ -107,8 +114,11 @@ export default function BossStats({
         else if (screen === "Night 2"){
             table = day2_stats
         }
-         else if (screen === "Minor Field Boss"){
+        else if (screen === "Minor Field Boss"){
             table = minor_stats
+        }
+        else if (screen === "Major Field Boss"){
+            table = major_stats
         }
         let stats = table[name] ? table[name] : null
         let height = isMobile? 330 : 480;
@@ -221,6 +231,9 @@ export default function BossStats({
         }
         else if (screen === "Minor Field Boss"){
             return _minor()
+        }
+        else if (screen === "Major Field Bosses"){
+            return _major()
         }
     }
 
@@ -487,10 +500,42 @@ export default function BossStats({
                     </div>
                     <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
                         {renderBossCard(flower, "Miranda", poisonGlow)}
+                        {renderBossCard(revenent, "Revenent", poisonGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(cavalry, "NightsCavalry", "black")}
                     </div>
                 </div>
-
             )
+                return(<div>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Minor Field Bosses provide 22500 Runes and Weak Reward Pools
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Castle Basement Bosses have 45% more HP, provide 37500 Runes and Strong Reward Pools
+                        </p>
+                    </OstCard>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: greyOfNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
+                        </p>
+                    </OstCard>
+                </div>
+                {content}
+            </div>
+            )
+
         }
         else{
             content =(
@@ -510,11 +555,13 @@ export default function BossStats({
                     {renderBossCard(demiQueen, "DemiQueen", "black")}
                     {renderBossCard(flower, "Miranda", poisonGlow)}
                 </div>
-            </div>
-            )
-        }
-        return(
-            <div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(revenent, "Revenent", poisonGlow)}
+                    {renderBossCard(cavalry, "NightsCavalry", "black")}
+                </div>
+            </div>)
+
+            return(<div>
                 <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
                     <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
@@ -539,7 +586,137 @@ export default function BossStats({
                 </div>
                 {content}
             </div>
-        )
+            )
+        }
+    }
+
+    function _major(){
+        let content
+        if (isMobile){
+            content = (
+                <div style={{height: 'auto'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(flying, "Flying", scarletRot)}
+                        {renderBossCard(ulcerated, "Ulcerated", poisonGlow)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
+                        {renderBossCard(avatar, "Avatar", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(ancestor, "Ancestor", silveredNight)}
+                        {renderBossCard(sentinel, "Sentinel", graceGiven)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(wyrm, "Wyrm", scarletRot)}
+                        {renderBossCard(loretta, "Loretta", silverLining)}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(bird, "Bird", "black")}
+                        {renderBossCard(bbk, "BBK", 'red')}
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
+                        {renderBossCard(draconic, "Draconic", "red")}
+                    </div>
+                </div>
+            )
+            return(
+            <div>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                           MOST Major Field Bosses provide 30000 Runes and Strong Reward Pools
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                           Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools.
+                            The previous exceptions still apply
+                        </p>
+                    </OstCard>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: gloomGlow, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
+                        </p>
+                    </OstCard>
+                </div>
+                {content}
+            </div>
+            )
+
+        }
+        else{
+            content =(
+            <div style={{height: 'auto'}}>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(flying, "Flying", scarletRot)}
+                    {renderBossCard(ulcerated, "Ulcerated", poisonGlow)}
+                    {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(avatar, "Avatar", graceGiven)}
+                    {renderBossCard(ancestor, "Ancestor", silveredNight)}
+                    {renderBossCard(sentinel, "Sentinel", graceGiven)}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(wyrm, "Wyrm", scarletRot)}
+                    {renderBossCard(loretta, "Loretta", silverLining)}
+                    {renderBossCard(bird, "Bird", "black")}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
+                    {renderBossCard(bbk, "BBK", 'red')}
+                    {renderBossCard(draconic, "Draconic", "red")}
+                </div>
+            </div>)
+
+            return(
+            <div>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                           MOST Major Field Bosses provide 30000 Runes and Strong Reward Pools
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                           Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools.
+                            The previous exceptions still apply
+                        </p>
+                    </OstCard>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes
+                        </p>
+                    </OstCard>
+                    <OstCard style={{backgroundColor: gloomGlow, padding: 7.5, flex: 3}}>
+                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
+                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
+                        </p>
+                    </OstCard>
+                </div>
+                {content}
+            </div>
+            )
+        }
     }
 
     /////////////////
