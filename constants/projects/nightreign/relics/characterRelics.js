@@ -482,8 +482,8 @@ const characterRelics = [
         },
     },
     {
-        title: "While Character Skill is active, Unlocking use of Cursed Sword Restores HP", 
-        desc: "Restores 15% of HP for Self and Allies on Roar while in Crucible Beast Form",
+        title: "Roaring Restores HP while art is active", 
+        desc: "Crucible Beast Form Roars heal 15% max HP of self and allies hit by the roar",
         stacks: {self: false, selfType: true},
         selfType: "healOnRoar",
         nightfarer: "Executor",

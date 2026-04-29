@@ -114,10 +114,10 @@ export default function BossStats({
         else if (screen === "Night 2"){
             table = day2_stats
         }
-        else if (screen === "Minor Field Boss"){
+        else if (screen === "Minor Field Bosses"){
             table = minor_stats
         }
-        else if (screen === "Major Field Boss"){
+        else if (screen === "Major Field Bosses"){
             table = major_stats
         }
         let stats = table[name] ? table[name] : null
@@ -229,7 +229,7 @@ export default function BossStats({
         else if (screen === "Night 2"){
             return _night2()
         }
-        else if (screen === "Minor Field Boss"){
+        else if (screen === "Minor Field Bosses"){
             return _minor()
         }
         else if (screen === "Major Field Bosses"){
@@ -623,7 +623,7 @@ export default function BossStats({
             return(
             <div>
                 <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
+                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                            MOST Major Field Bosses provide 30000 Runes and Strong Reward Pools
                         </p>
@@ -633,7 +633,7 @@ export default function BossStats({
                            Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes
                         </p>
                     </OstCard>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                             Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools.
                             The previous exceptions still apply
@@ -646,7 +646,7 @@ export default function BossStats({
                             Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes
                         </p>
                     </OstCard>
-                    <OstCard style={{backgroundColor: gloomGlow, padding: 7.5, flex: 3}}>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                             The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
                         </p>
@@ -689,12 +689,12 @@ export default function BossStats({
                            MOST Major Field Bosses provide 30000 Runes and Strong Reward Pools
                         </p>
                     </OstCard>
-                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                            Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes
                         </p>
                     </OstCard>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
+                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                             Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools.
                             The previous exceptions still apply
@@ -707,7 +707,7 @@ export default function BossStats({
                             Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes
                         </p>
                     </OstCard>
-                    <OstCard style={{backgroundColor: gloomGlow, padding: 7.5, flex: 3}}>
+                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
                         <p style={{padding: 0, margin: 2, textAlign: "center"}}>
                             The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
                         </p>
@@ -728,7 +728,7 @@ export default function BossStats({
             <div style={{padding: 20}}>
                 <OstrichTabBar style={{width: '100%'}}
                 value={screen}
-                tabs={["Nightlords", "Night 1", "Night 2", "Major Field Bosses", "Minor Field Boss"]}
+                tabs={["Nightlords", "Night 1", "Night 2", "Major Field Bosses", "Minor Field Bosses"]}
                 onTabClick={(tab) => setScreen(tab)}
                 />
             </div>
