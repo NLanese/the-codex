@@ -478,8 +478,9 @@ function renderSingleToggle(keysOfEffects){
         return(
             <OstCard 
             noShadow={true} 
-            style={{width: '85%', display: 'flex', flexDirection: 'row', gap: 10, backgroundColor: '#efefef'}}
-            >
+            style={{width: '85%', display: 'flex', flexDirection: 'row', 
+                    gap: 10, backgroundColor: '#efefef', marginBottom: 5
+            }}>
                 <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
                     {eff}
                 </p>
