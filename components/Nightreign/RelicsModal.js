@@ -289,11 +289,14 @@ function renderOptions(){
 function renderTitle(){
     if (isMobile){
         return(
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '60%',  alignItems: 'center'}}>
-                <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven}}>Select an Effect</p>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', gap: isMobile ? '20%' : '40%',  alignItems: 'center'}}>
+                <div style={{flex: 6}}>
+                    <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven, width: '100%'}}>Select an Effect</p>
+                </div>
                 <OstCard noShadow={true} style={{
+                    flex: 6,
                     color: frenzyTouched, backgroundColor: depthColor, 
-                    padding: 4, margin: 0, flex: 2.5, height: 40,
+                    padding: 4, margin: 0, height: 40,
                     textAlign: 'center', dispklay: 'flex',
                     justifyContent: 'center', alignContent: 'center'
                 }} onClick={() => closeModal()}>
