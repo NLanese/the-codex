@@ -349,7 +349,7 @@ if (isCursed){
 }
     return(
         <div style={{height: '100%', paddingBottom: 10}}>
-            <div style={{height: '15%'}}>
+            <div style={{height: isMobile? '25%' : '15%'}}>
                 <div>
                     {renderTitle()}
                 </div>
