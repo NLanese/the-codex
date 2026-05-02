@@ -600,6 +600,7 @@ function determineDamModifier(type, relCat=false, toggles){
             // Ranged Weapon Damage
             else if (type === "Ranged"){
                 let mods = findDamageTypeFromEffects("weaponDamage")
+                // totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
                 mods.forEach(dam => {
                     if (determine_if_effect_is_active(dam, toggles)){
                         if (dam.effect.appliesRanged){
@@ -607,6 +608,7 @@ function determineDamModifier(type, relCat=false, toggles){
                         }
                     }
                 }) 
+                totalMod = stack_modifiers('rangedDamage', totalMod, toggles)
             }
 
             // Bestial Incantaions Damage 
