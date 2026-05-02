@@ -482,6 +482,17 @@ const offensiveRelics = [
         }
     },
     {
+        title: "Improved Dragon Communion Incantations", 
+        desc: "Increases Dragon Communion damage by 12%",
+        stacks: {self: true, selfType: true},
+        selfType: "dragonUp",
+        effect: {
+            frenzyDamage: 1.12,
+            appliesRanged: false,
+            always: true,
+        }
+    },
+    {
         title: "Improved Godslayer Incantation", 
         desc: "Increases Black Flame Incantation damage by 12%",
         stacks: {self: true, selfType: true},

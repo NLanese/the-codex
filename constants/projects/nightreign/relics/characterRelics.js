@@ -107,6 +107,18 @@ const characterRelics = [
         },
     },
     {
+        title: "Successful Guards send out Shockwaves while Ability is active", 
+        desc: "Successful blocks during Iron Guard cause shockwaves that damage enemies and revive allies. Base 100 physical damage.",
+        stacks: {self: false, selfType: false},
+        selfType: "alliesNeg",
+        nightfarer: "Guardian",
+       effect: {
+            always: false,
+            condition: "After Using Guardian Character Skill",
+            allNegation: 1.12,
+        }
+    },
+    {
         title: "Improved Strength and Dexterity, Reduced Vigor", 
         desc: "Dexterity +19, Strength +9, Vigor -8 (160 HP)",
         stacks: {self: false, selfType: true},
