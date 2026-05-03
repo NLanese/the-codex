@@ -354,14 +354,14 @@ if (isCursed){
                     {renderTitle()}
                 </div>
                     {renderOptions()}
-                <div style={{marginLeft: '10%', display: 'flex', flexDirection: 'row'}}>
+                <div style={{marginLeft:  isMobile ? '0%' : '10%', display: 'flex', flexDirection: 'row'}}>
                     <p style={{...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: silverLining}}>Search for Effect: </p>
                     <input style={{width: '62%'}} onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
             </div>
             
-            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: isMobile ? '20%' : 5, height: isMobile ? "75%" : '85%'}}>
+            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: isMobile ? '20%' : 5, height: isMobile ? "75%" : '85%', paddingBottom: isMobile? '15%' : '0%'}}>
                 {renderFilteredEffects()}
             </div>
         </div>
