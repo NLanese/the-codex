@@ -18,10 +18,9 @@ const listing2 = "../../../assets/showcase_images/ieee/ieeeAppListing.png";
 const new_ppl_and_events = "../../../assets/showcase_images/ieee/new_dash_poeple_and_events.png";
 const old_events = "../../../assets/showcase_images/ieee/old_events.png";
 const old_people = "../../../assets/showcase_images/ieee/old_people.png";
-const therCal = "../../../assets/showcase_images/knm/therCalView.png"
-const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
-const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
-const modelStruc = "../../../assets/showcase_images/knm/modelStructure.png"
+const gSearch = "../../../assets/showcase_images/ieee/gSearch.png";
+const gSearchPeople = "../../../assets/showcase_images/ieee/gSearch_people.png";
+const gSearchEvents = "../../../assets/showcase_images/ieee/gSearch_events.png";
 
 
 
@@ -135,7 +134,9 @@ export default function IEEEPage(){
             )
             
         }
-        function renderAccountTypes(){
+
+        // Renders Dashboard Changes Section
+        function renderDashboardElements(){
             const renderCardOne = () =>{
                 if (!card1){
                     return(
@@ -269,38 +270,38 @@ export default function IEEEPage(){
                     <p style={Styles.Fonts.basicX}>
                         Users can also change their profile Avatar (seen in the top right of each screen) and have a 'change password' email sent to them if 
                         they desire a new password. Similarly, if they forgot their password they can request a temporary by entering their email, where a 
-                        a link will be provided that redirects users to the site where they can change thier password. .
+                        a link will be provided that redirects users to the site where they can change thier password.
                     </p>
                 </div>
             )
         }
 
         // Fourth Part ( Calendar )
-        function renderCalendarDetails(){
+        function renderGlobalSearch(){
             return(
             <div>
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
                     <div style={{flex: 4}}>
                         <OstCard
                             templateStyle={1}
-                            imageSrc={therCal}
+                            imageSrc={gSearch}
                             style={{height: 700}}
                         >
                         </OstCard>
                     </div>
                     <div style={{flex: 8, padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
-                            As previously covered, Therapists can create 'assignments' and 'meetings' for their clients. These events will be marked on both the Therapist
-                            as well as the Child and the Guardians' accounts. 
+                           Two of IEEE's Core Values are <strong>supporting the development of technology and professionals</strong> and <strong> Connecting technical professionals worldwide</strong>. As such, providing users worldwide 
+                           a massive swath of data as well as a strong way to filter through this data. This is where the Global Search feature of our IEEE App comes into play. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            In our Calendar Image to the Left, we are currently in a Therapist account using the Pink Color Palette. This makes assignment due dates appear as 
-                            lighter pink dots beneath the date and darker fuschia dots as markers for meetups. In this example, you can see an assignment is 
-                            due on the 28th with a meeting on the 23rd. 
+                            Our app hosts hundreds of thousands of different pieces of content; spread between poeple, events, news, media and magazines. The Global Search 
+                            feature enables users to look for and filter content by type, title or keywords. 
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            Again in this screen, you will see that the user currently has August 28th selected. This shows that there is an assignment with 3 work out videos;
-                            Rolling, Toe Touches, and Squat, due on August 28th. 
+                            The screen to the left shows what Users will see upon their landing to Global Search. An empty Search Bar with 
+                            recently released and user recommended content displayed already. In this case, our user's most immediate interests align with the 
+                            news items shown below the searchbar.
                         </p>
                         <p style={Styles.Fonts.basicX}>
                             Users, unless they disable the following feature, will also get a Push Notification sent to their device (Powered by Firebase) whenever one of the following occurrs. 
@@ -345,13 +346,13 @@ export default function IEEEPage(){
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <OstCard
                                 templateStyle={1}
-                                imageSrc={allAssign}
+                                imageSrc={gSearchEvents}
                                 style={{height: 700}}
                             >
                             </OstCard>
                             <OstCard
                                 templateStyle={1}
-                                imageSrc={assignOpened}
+                                imageSrc={gSearchPeople}
                                 style={{height: 700}}
                             >
                             </OstCard>
@@ -442,7 +443,9 @@ export default function IEEEPage(){
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Dashboard Element Redesigns</div>
-                        {renderAccountTypes()}
+                        {renderDashboardElements()}
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Global Search Feature</div>
+                        {renderGlobalSearch()}
 
                     <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
                     
