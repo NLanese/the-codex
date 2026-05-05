@@ -154,6 +154,11 @@ export default function BoardGameMasterAIProjectPage() {
                             <p style={Styles.Fonts.basicXL}>
                             The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
                             </p>
+
+                            <p style={{...Styles.Fonts.basicXL, color: 'red'}}>
+                                Unfortunately, keeping this service running was costing me close to $200-300 a month, so it had to be taken down.
+                                If anyone would like a functioning demo, please email me
+                            </p>
                         </div>
                     </OstCard>
                 </div>

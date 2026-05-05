@@ -359,6 +359,11 @@ export default function BetBotProjectPage() {
                         <p style={Styles.Fonts.basicX}>
                         I'm pretty sure I have to say something about responsible gambling here... so gamble responsibly, I'm not endorsing gambling. You get it.  
                         </p>
+
+                        <p style={{...Styles.Fonts.basicXL, color: 'red'}}>
+                            Unfortunately, keeping this service running was costing me close to $200-300 a month, so it had to be taken down.
+                            If anyone would like a functioning demo, please email me
+                        </p>
                     </div>
                     
                 </div>

@@ -285,11 +285,11 @@ export default function IEEEPage(){
                         <OstCard
                             templateStyle={1}
                             imageSrc={gSearch}
-                            style={{height: 700}}
+                            style={{height: 500}}
                         >
                         </OstCard>
                     </div>
-                    <div style={{flex: 8, padding: 20, paddingTop: 0}}>
+                    <div style={{flex: 8, padding: 20, paddingTop: 20}}>
                         <p style={Styles.Fonts.basicX}>
                            Two of IEEE's Core Values are <strong>supporting the development of technology and professionals</strong> and <strong> Connecting technical professionals worldwide</strong>. As such, providing users worldwide 
                            a massive swath of data as well as a strong way to filter through this data. This is where the Global Search feature of our IEEE App comes into play. 
@@ -304,33 +304,14 @@ export default function IEEEPage(){
                             news items shown below the searchbar.
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            Users, unless they disable the following feature, will also get a Push Notification sent to their device (Powered by Firebase) whenever one of the following occurrs. 
+                            Once users begin to type in the Searchbar, they are able to select which (if any) type of content they would
+                            like to filter the results by. You will see this in the images below. 
                         </p>
-                        <ol>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The Child and/or Guardian recieve an assignment or if a meeting has been scheduled
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The Start Date of an assignment is today. (Notifications sent at 9am)
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The End Date of an assignment is today. (Notifications sent at 9am)
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The End Date of an assignment has passed, and the assignment was not completed. 
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                Guardians and Therapists can get notifications when a child completes an assignment
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                A meeting is today. (Notifications sent at 9am)
-                            </p></li>
-                        </ol>
                     </div>
                 </div>
                 <div style={{paddingTop: 0, padding: 20}}>
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4, padding: 20, paddingTop: 0}}>
+                    <div style={{flex: 4, padding: 20, paddingTop: 20}}>
                         <p style={Styles.Fonts.basicX}>
                             From the Calendar Menu you are also able to click "View All", bringing you to the "View All" screen. 
                             From here, users are able to parse through all assignments and meetings, past and present. As you see in the first
@@ -442,9 +423,9 @@ export default function IEEEPage(){
                         {renderInitialRambling()}
                     <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
                         {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Dashboard Element Redesigns</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Dashboard Element Redesigns</div>
                         {renderDashboardElements()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 0}}>Global Search Feature</div>
+                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Global Search Feature</div>
                         {renderGlobalSearch()}
 
                     <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
