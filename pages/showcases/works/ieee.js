@@ -311,30 +311,35 @@ export default function IEEEPage(){
                 </div>
                 <div style={{paddingTop: 0, padding: 20}}>
                 <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4, padding: 20, paddingTop: 20}}>
+                    <div style={{flex: 4, padding: 20, paddingTop: 0}}>
                         <p style={Styles.Fonts.basicX}>
-                            From the Calendar Menu you are also able to click "View All", bringing you to the "View All" screen. 
-                            From here, users are able to parse through all assignments and meetings, past and present. As you see in the first
-                            image, 'Show Expired' is selected, and returns every assignment the Child has ever had. 
+                            In the two exmaples to the right you will see two of the many pieces I specifically worked on for the Global Search.
+                            Foremost, the addition of category buttons to filter your search results to further assist users in finding the specific content they desire. This is 
+                            particularly important considering many Events will be named after the Magazine that hosts them, or many 
+                            news posts will have media attached thus they have the same title. This feature enables users to more quickly locate
+                            the content they desire, reduces frustration and asissted greatly in user retention.
                         </p>
                         <p style={Styles.Fonts.basicX}>
-                            Clicking on an individual assignment will open up a module that shows the due date, start date, and all videos assigned. If 
-                            the assigned child completes any of the workouts while the assignment is active the video will return with a green background
-                            as opposed to a red one. This allows therapists, children, and guardians alike  to check the progress of the assignment.
+                            The second aspect of work shown here is the Login Checker when looking up People Profiles. To protect user privacy,
+                            Guest Users (anyone not signed in) will be unable to look up or view any specific profiles. Placing the Check to verify users 
+                            were Authenticated was the simple part. The difficult aspect of this was implementing the ability to login through this screen,
+                            Our login is handled in an SSO page accessed through an In App Browser, and originally our app had issues populating the user profile and 
+                            updating the pages when users logged in from pages outside of the main dashboard. Through reworking the lifecycle of the Global Search page
+                            as well as retooling our Nrgx dispatchers enabled login to work seemlessly on this page as well as others. 
                         </p>
                     </div>
                     <div style={{flex: 8}}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <div style={{display: 'flex', flexDirection: 'row', paddingTop: 100}}>
                             <OstCard
                                 templateStyle={1}
                                 imageSrc={gSearchEvents}
-                                style={{height: 700}}
+                                style={{height: 800}}
                             >
                             </OstCard>
                             <OstCard
                                 templateStyle={1}
                                 imageSrc={gSearchPeople}
-                                style={{height: 700}}
+                                style={{height: 800}}
                             >
                             </OstCard>
                         </div>
