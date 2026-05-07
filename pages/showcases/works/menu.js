@@ -29,6 +29,7 @@ const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
 const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
 const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
+const niterain = "../../../assets/icons/big/Nightreign.png";
 
 const left = "../../../assets/boughtIcons/004-left.png"
 const right = "../../../assets/boughtIcons/003-right-arrow.png"
@@ -64,7 +65,8 @@ export default function WorksMenu() {
         {img: BoardGameAI, url: "/showcases/projects/boardgame_master_ai", name: "Boardgame Wizard AI", internal: true},
         {img: OstCompImg, url: "/showcases/ostrich-components/menu", name: "Ostrich Components", internal: true},
         {img: BetBotImg, url: "/showcases/projects/betbot", name: "NBA Bet Bot", internal: true},
-        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3", internal: true}
+        {img: CandyBox3, url: "/showcases/projects/candybox_3", name: "CandyBox 3", internal: true},
+        {img: niterain, url: "/showcases/projects/nightreign", name: "Nightreign Guide", internal: true}
     ]
 
     ////////////////

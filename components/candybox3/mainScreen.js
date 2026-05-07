@@ -25,7 +25,7 @@ export default function CandyBox3MainScreen({
 
     const [showThrow, setShowThrow] = useState(false)
     const [showNewFeature, setShowNewFeature] = useState(false)
-    const [newFeatureCost, setNewFeatureCost] = useState([10, 10, 45, 50, 1000, 50000])
+    const [newFeatureCost, setNewFeatureCost] = useState([20, 45, 50, 1000, 50000])
 
     const [localState, setLocalState] = useState({
         candies: candies,
@@ -45,7 +45,7 @@ export default function CandyBox3MainScreen({
         if (localState.candies > 10){
             setShowThrow(true)
         }
-        if (localState.candies > 25){
+        if (localState.candies > 19){
             setShowNewFeature(true)
         }
     }, [localState])
