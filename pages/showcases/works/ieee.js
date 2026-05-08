@@ -329,7 +329,7 @@ export default function IEEEPage(){
                         </p>
                     </div>
                     <div style={{flex: 8}}>
-                        <div style={{display: 'flex', flexDirection: 'row', paddingTop: 100}}>
+                        <div style={{display: 'flex', flexDirection: 'row', paddingTop: 100, gap: 20}}>
                             <OstCard
                                 templateStyle={1}
                                 imageSrc={gSearchEvents}

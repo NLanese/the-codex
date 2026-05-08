@@ -19,10 +19,10 @@ function handleLessonTestLabDrawerClick(type, unit, LTL, finalPath, router){
 }
 
 // Portfolio
-export const portfolioTabs = (setTabBar, router) => { 
+export const portfolioTabs = (setTabBar, router, isMobile) => { 
     return ([
         {
-        title: "Ostrich Components", 
+        title: isMobile ? "OstComponents" : "Ostrich Components", 
         onClick: () => {
             router.push("/showcases/ostrich-components/menu")
         },
@@ -68,7 +68,7 @@ export const portfolioTabs = (setTabBar, router) => {
 }
 
 // Guest
-export const guestTabs = (setTabBar, router) => { 
+export const guestTabs = (setTabBar, router, isMobile) => { 
     return ([
         {
         title: "Concepts", 
@@ -110,7 +110,7 @@ export const guestTabs = (setTabBar, router) => {
         title: "Back End", 
     },
     {
-        title: "Return to Portfolio Home", 
+        title: isMobile ? "Home" : "Return to Portfolio Home", 
         onClick: () => {
             setTabBar(false)
             router.push("/")
@@ -132,7 +132,7 @@ export const guestTabs = (setTabBar, router) => {
 }
 
 // User
-export const userTabs = (setTabBar, router)  => {
+export const userTabs = (setTabBar, router, isMobile)  => {
     return([
         {
             title: "Concepts", 
@@ -174,7 +174,7 @@ export const userTabs = (setTabBar, router)  => {
             title: "Back End", 
         },
         {
-            title: "Return to Portfolio Home", 
+            title: isMobile ? "Home" : "Return to Portfolio Home", 
             onClick: () => {
                 setTabBar(false)
                 router.push("/")

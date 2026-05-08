@@ -13,6 +13,7 @@ import { OstrichTabBar } from "@Ostrich/Tabs/OstrichTabBar";
 
 // Constants
 import { guestTabs, userTabs, basicsTabs, portfolioTabs } from "../../constants/tabBars";
+import useViewport from "../../constants/functions/useViewport";
 
 export const HeaderBar = ({
     // directory
@@ -21,6 +22,9 @@ export const HeaderBar = ({
 ///////////
 // State //
 ///////////
+
+    const { width } = useViewport()
+    const isMobile = width < 900
 
     const [token, setToken] = useAtom(tokenState)
 
@@ -49,7 +53,7 @@ export const HeaderBar = ({
 
     useEffect(() => {
         setLoading(true)
-        setTabs(determineTabs())
+        setTabs(determineTabs(isMobile))
     }, [directory])
 
     useEffect(() => {
@@ -77,10 +81,12 @@ export const HeaderBar = ({
 ///////////////
 
     // Determines which set of Tabs should render on the TabBar
-    function determineTabs(){
+    function determineTabs(isMobile){
         if (directory === "Portfolio"){
-            return portfolioTabs(setActiveTabBar, router)
+            return portfolioTabs(setActiveTabBar, router, isMobile)
         }
+
+        // Nightreign Specific Tab Bar
         else if (directory === "Nightreign"){
             return [
                 {
@@ -101,6 +107,8 @@ export const HeaderBar = ({
                 }
             ]
         }
+
+        // WarHammer Specific Tab Bar
         else if (directory === "Warhammer"){
             return [
                 {
@@ -117,11 +125,15 @@ export const HeaderBar = ({
                 }
             ]
         }
+
+        // User
         else if (token){
-            return userTabs(setActiveTabBar, router)
+            return userTabs(setActiveTabBar, router, isMobile)
         }
+
+        // Guest
         else if (!token){
-            return guestTabs(setActiveTabBar, router)
+            return guestTabs(setActiveTabBar, router, isMobile)
         }
     }
 
@@ -141,7 +153,7 @@ export const HeaderBar = ({
                 startedActive={true}
                 tabs={tabs}
                 style={{
-                    height: 55, width: '100%', borderBottom: 0, padding: 0, margin: 0,
+                    height: 55, width: '100%', borderBottom: 0, padding: 0, margin: 0, marginBottom: 20,
                     boxShadow:'5px 10px 15px 5px rgba(40, 40, 40, 0.4)',
                     boxSizing: 'border-box', position: 'sticky'
                 }}
