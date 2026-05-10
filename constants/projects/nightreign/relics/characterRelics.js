@@ -259,7 +259,7 @@ const characterRelics = [
             always: true,
             mind: -14,
             vigor: 3,
-            strength: 24
+            str: 24
         },
     },
     {
