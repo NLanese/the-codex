@@ -1021,47 +1021,47 @@ function RENDER_MAIN(){
 
     }
 
-function findConditions(){
-    let objOfToggles = {}
-    all_relic_effects.forEach(eff => {
-        if (!eff.effect.always){
-            if (eff.effect.condition){
-                if (objOfToggles[eff.effect.condition] === null || objOfToggles[eff.effect.condition] === undefined){
-                    if (eff.effect.conditionCounter){
-                        objOfToggles[eff.effect.condition] = 0
-                    }
-                    else{
-                        objOfToggles[eff.effect.condition] = true
+    function findConditions(){
+        let objOfToggles = {}
+        all_relic_effects.forEach(eff => {
+            if (!eff.effect.always){
+                if (eff.effect.condition){
+                    if (objOfToggles[eff.effect.condition] === null || objOfToggles[eff.effect.condition] === undefined){
+                        if (eff.effect.conditionCounter){
+                            objOfToggles[eff.effect.condition] = 0
+                        }
+                        else{
+                            objOfToggles[eff.effect.condition] = true
+                        }
                     }
                 }
             }
-        }
-    })
-    set_relic_effect_toggles(objOfToggles) 
-}
+        })
+        set_relic_effect_toggles(objOfToggles) 
+    }
 
-function handleEffectState(effect, all, types){
-    if (effect) {
-        if (!effect.stacks.selfType){
-            let selfType = effect.selfType
-            if (types.includes(selfType)){
-                all.push({...effect, active: false});
+    function handleEffectState(effect, all, types){
+        if (effect) {
+            if (!effect.stacks.selfType){
+                let selfType = effect.selfType
+                if (types.includes(selfType)){
+                    all.push({...effect, active: false});
+                }
+                else{
+                    all.push({...effect, active: true});
+                }
             }
             else{
                 all.push({...effect, active: true});
+                types.push(effect.selfType);
             }
         }
-        else{
-            all.push({...effect, active: true});
-            types.push(effect.selfType);
-        }
+        return [all, types]
     }
-    return [all, types]
-}
 
-function closeModal(){
-    setRelicsModal(false)
-}
+    function closeModal(){
+        setRelicsModal(false)
+    }
 
 //////////////
 // Resizing //

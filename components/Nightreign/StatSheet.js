@@ -123,6 +123,7 @@ function renderAttribute(atr){
     )
 }
 
+// Renders Nightfarer Attributes
 function renderAttributes(){
     return(
         <OstCard noShadow={true} rounded={false} style={{flex: 7, borderLeft: '2px solid', borderColor: greyOfNight, padding: 0}}>
@@ -144,6 +145,7 @@ function renderAttributes(){
     )
 } 
 
+// Renders Stat Bars
 function renderBars(all_relic_effects){
     let hpVal = hp + findVitalsMods("HP")
     let fpVal = fp + findVitalsMods("FP")
@@ -174,6 +176,7 @@ function renderBars(all_relic_effects){
     )
 }
 
+// Called Above, Renders Individual Bar
 function renderBar(title, value, max, color){
     if (title.length > 5){
         title = `${title[0]}${title[1]}${title[2]}`
@@ -585,6 +588,7 @@ function getBaseNegations(){
     return bases
 }
 
+// Renders Title and Modifier for a Damage Type
 function determineDamModifier(type, relCat=false, toggles){
 
     // Total Damage Modifier
@@ -600,7 +604,6 @@ function determineDamModifier(type, relCat=false, toggles){
             // Ranged Weapon Damage
             else if (type === "Ranged"){
                 let mods = findDamageTypeFromEffects("weaponDamage")
-                // totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
                 mods.forEach(dam => {
                     if (determine_if_effect_is_active(dam, toggles)){
                         if (dam.effect.appliesRanged){

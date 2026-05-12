@@ -115,7 +115,7 @@ const deepOffensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "affUp",
         effect: {
-            affDamag: 1.05,
+            affDamage: 1.05,
             appliesRanged: false,
         }
     },
@@ -125,7 +125,7 @@ const deepOffensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "affUp",
         effect: {
-            affDamag: 1.08,
+            affDamage: 1.08,
             appliesRanged: false,
         }
     },
@@ -135,7 +135,7 @@ const deepOffensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "affUp",
         effect: {
-            affDamag: 1.1,
+            affDamage: 1.1,
             appliesRanged: false,
         }
     },
