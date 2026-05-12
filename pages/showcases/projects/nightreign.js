@@ -20,6 +20,7 @@ import RelicsModal from "../../../components/Nightreign/RelicsModal";
 import BasePlayerSelections from "../../../components/Nightreign/BasePlayerSelections";
 import StatSheet from "../../../components/Nightreign/StatSheet";
 import BossStats from "../../../components/Nightreign/BossStats";
+import SavedBuilds from "../../../components/Nightreign/SavedBuilds";
 import WeaponPassiveSelections from "../../../components/Nightreign/WeaponPassiveSelections";
 
 export default function NightreignBuildMaker() {
@@ -46,7 +47,7 @@ const silverLining = "#d4eeff"
     setDirectory("Nightreign")
     const [currentTab, setCurrentTab] = useAtom(tabBarState)
     useEffect(() => {
-        if (currentTab === "Boss" || currentTab === "Maps"){
+        if (currentTab === "Boss" || currentTab === "Saved"){
             setScreen(currentTab)
         }
         else{
@@ -655,6 +656,9 @@ function RENDER_MAIN(){
     }
     else if (screen === "Boss"){
         return  <BossStats isMobile={isMobile}/>
+    }
+    else if (screen === "Saved"){
+
     }
 }
 

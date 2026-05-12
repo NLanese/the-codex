@@ -103,7 +103,7 @@ export const HeaderBar = ({
                 },
                 {
                     title: "Saved Relic Lineups (BETA)",
-                    onClick: (() => setActiveTabBar("Boss"))
+                    onClick: (() => setActiveTabBar("Saved"))
                 }
             ]
         }
