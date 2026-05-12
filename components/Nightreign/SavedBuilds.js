@@ -3,7 +3,15 @@ import Styles from "../../styles/styles";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 
 export default function SavedBuilds({
-    isMobile
+    isMobile,
+    effect11, effect12, effect13,
+    effect21, effect22, effect23,
+    effect31, effect32, effect33,
+    effect41, effect42, effect43,
+    effect51, effect52, effect53,
+    effect61, effect62, effect63,
+    relic1, relic2, relic3,
+    relic4, relic5, relic6
 }){
 
 ////////////
@@ -19,7 +27,7 @@ export default function SavedBuilds({
     const silveredNight = "#7fc7bf"
     const silverLining = "#d4eeff"
 
-    const [screen, setScreen] = useState("Nightlords")
+    const [screen, setScreen] = useState("Save Current Build")
 
 ///////////////
 // Rendering //
@@ -44,7 +52,7 @@ export default function SavedBuilds({
 // Main //
 //////////
     return(
-        <div style={{marginTop: -40}}>
+        <div style={{marginTop: 10}}>
             <OstrichTabBar style={{width: '100%'}}
                 value={screen}
                 tabs={["Load Saved Builds", "Save Current Build"]}

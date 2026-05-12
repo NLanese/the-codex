@@ -627,7 +627,16 @@ function RENDER_MAIN(){
         return  <BossStats isMobile={isMobile}/>
     }
     else if (screen === "Saved"){
-        return <SavedBuilds isMobile={isMobile}/>
+        return <SavedBuilds isMobile={isMobile}
+            effect11={effect11} effect12={effect12} effect13={effect13}
+            effect21={effect21} effect22={effect22} effect23={effect23}
+            effect31={effect31} effect32={effect32} effect33={effect33}
+            effect41={effect41} effect42={effect42} effect43={effect43}
+            effect51={effect51} effect52={effect52} effect53={effect53}
+            effect61={effect61} effect62={effect62} effect63={effect63}
+            relic1={relic1} relic2={relic2} relic3={relic3}
+            relic4={relic4} relic5={relic5} relic6={relic6}
+        />
     }
 }
 
