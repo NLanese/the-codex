@@ -35,14 +35,22 @@ export default function SavedBuilds({
         )
     }
 
+    function renderContent(){
+
+    }
+
+
+//////////
+// Main //
+//////////
     return(
-        <div style={{}}>
+        <div style={{marginTop: -40}}>
             <OstrichTabBar style={{width: '100%'}}
                 value={screen}
                 tabs={["Load Saved Builds", "Save Current Build"]}
                 onTabClick={(tab) => setScreen(tab)}
             />
-           
+           {renderContent()}
         </div>
     )
 }
