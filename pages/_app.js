@@ -3,8 +3,9 @@
 import App from "next/app";
 import React from "react";
 import { DefaultSeo } from "next-seo";
-import Script from "next/script";
 import Head from "next/head";
+import { Analytics } from '@vercel/analytics/next';
+
 
 // Apollo GraphQL
 import { ApolloProvider } from "@apollo/client";
@@ -68,6 +69,7 @@ class MyApp extends App {
                 </div>
                 <div style={{zIndex: 1, position: 'relative', paddingTop: 40}}>
                   <Component {...pageProps} />
+                  <Analytics />
                 </div>
               </div>
               {/* </Layout> */}
