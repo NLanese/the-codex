@@ -117,6 +117,7 @@ const deepOffensiveRelics = [
         effect: {
             affDamage: 1.05,
             appliesRanged: false,
+            always: true,
         }
     },
     {
@@ -127,6 +128,7 @@ const deepOffensiveRelics = [
         effect: {
             affDamage: 1.08,
             appliesRanged: false,
+            always: true,
         }
     },
     {
@@ -137,6 +139,7 @@ const deepOffensiveRelics = [
         effect: {
             affDamage: 1.1,
             appliesRanged: false,
+            always: true,
         }
     },
     {

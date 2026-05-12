@@ -881,6 +881,7 @@ function stack_modifiers_ADD(key, totalMod, toggles){
 function findDamageTypeFromEffects(type){
     return all_relic_effects.filter(eff => {
         if (eff.effect[type]){
+            console.log(type)
             return eff
         }
     })
