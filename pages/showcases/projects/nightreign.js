@@ -658,7 +658,7 @@ function RENDER_MAIN(){
         return  <BossStats isMobile={isMobile}/>
     }
     else if (screen === "Saved"){
-
+        return <SavedBuilds isMobile={isMobile}/>
     }
 }
 
