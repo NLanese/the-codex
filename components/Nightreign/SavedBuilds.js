@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import Styles from "../../styles/styles";
 import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
+import { OstCard } from "../../OstrichComponents/Format/OstCard";
 
 export default function SavedBuilds({
     isMobile,
@@ -44,7 +45,75 @@ export default function SavedBuilds({
     }
 
     function renderContent(){
+        if (screen === "Load Saved Builds"){
 
+        }
+        else if (screen === "Save Current Build"){
+            return(
+                <div>
+                    {renderRelics()}
+                </div>
+            )
+        }
+    }
+
+    function renderRelics(){
+        return(
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
+                    <Relic relic={relic1} id={1} depth={false}/>
+                    <Relic relic={relic2} id={2} depth={false}/>
+                    <Relic relic={relic3} id={3} depth={false}/>
+                </div>
+                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
+                    <Relic relic={relic4} id={4} depth={true}/>
+                    <Relic relic={relic5} id={5} depth={true}/>
+                    <Relic relic={relic6} id={6} depth={true}/>
+                </div>
+            </div>
+        )
+    }
+
+    function renderRelicHeader(key, depth, cons, setCons){
+        return(
+            <div style={{height: '12%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
+                <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
+                    RELIC
+                </OstCard>
+                {/* {renderFlipRelic(depth, setCons, cons)} */}
+                <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearRelic(key)}>
+                    CLEAR
+                </OstCard>
+                </div>
+            </div>
+        )
+    }
+
+    function Relic({ relic, id, depth }) {
+        const [cons, setCons] = useState(false)
+    
+        return (
+            <OstCard style={{ flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight }}>
+                {renderRelicHeader(id, depth, cons, setCons)}
+                <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
+                    {renderRelicEffect(relic?.slot1 ?? null, `${id}1`, cons)}
+                    {renderRelicEffect(relic?.slot2 ?? null, `${id}2`, cons)}
+                    {renderRelicEffect(relic?.slot3 ?? null, `${id}3`, cons)}
+                </div>
+            </OstCard>
+        )
+    }
+
+    function renderRelicEffect(relicSlot, key, cons){
+        return (
+            <OstCard key={key} noShadow={true} rounded={false} 
+            style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15, backgroundColor: 'white'}} 
+            >
+                {relicSlot?.title ? relicSlot?.title : "No Effect"}
+            </OstCard>
+            
+        )
     }
 
 
