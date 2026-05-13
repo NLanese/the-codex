@@ -74,7 +74,7 @@ export default function SavedBuilds({
         )
     }
 
-    function renderRelicHeader(key, depth, cons, setCons){
+    function renderRelicHeader(key){
         return(
             <div style={{height: '12%'}}>
                 <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
@@ -90,12 +90,12 @@ export default function SavedBuilds({
         )
     }
 
-    function Relic({ relic, id, depth }) {
+    function Relic({ relic, id }) {
         const [cons, setCons] = useState(false)
     
         return (
             <OstCard style={{ flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight }}>
-                {renderRelicHeader(id, depth, cons, setCons)}
+                {renderRelicHeader(id)}
                 <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
                     {renderRelicEffect(relic?.slot1 ?? null, `${id}1`, cons)}
                     {renderRelicEffect(relic?.slot2 ?? null, `${id}2`, cons)}
