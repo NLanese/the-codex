@@ -50,8 +50,14 @@ export default function SavedBuilds({
         }
         else if (screen === "Save Current Build"){
             return(
-                <div>
-                    {renderRelics()}
+                <div style={{display: 'flex', flexDirection: 'row', width: '95%', marginLeft: '1%', gap: '1.5%'}}>
+                    <div style={{flex: 7}}>
+                        <p style={{...Styles.Fonts.lessonHeader, width: '90%', color: silverLining}}>Your Current Relics</p>
+                        {renderRelics()}
+                    </div>
+                    <div  style={{flex: 5, paddingTop: 40}}>
+                        {renderNameInput()}
+                    </div>
                 </div>
             )
         }
@@ -60,12 +66,12 @@ export default function SavedBuilds({
     function renderRelics(){
         return(
             <div style={{display: 'flex', flexDirection: 'row'}}>
-                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
+                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 500, flex: 6}}>
                     <Relic relic={relic1} id={1} depth={false}/>
                     <Relic relic={relic2} id={2} depth={false}/>
                     <Relic relic={relic3} id={3} depth={false}/>
                 </div>
-                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
+                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 500, flex: 6}}>
                     <Relic relic={relic4} id={4} depth={true}/>
                     <Relic relic={relic5} id={5} depth={true}/>
                     <Relic relic={relic6} id={6} depth={true}/>
@@ -74,21 +80,9 @@ export default function SavedBuilds({
         )
     }
 
-    function renderRelicHeader(key){
-        return(
-            <div style={{height: '12%'}}>
-                <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
-                <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
-                    RELIC
-                </OstCard>
-                {/* {renderFlipRelic(depth, setCons, cons)} */}
-                <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearRelic(key)}>
-                    CLEAR
-                </OstCard>
-                </div>
-            </div>
-        )
-    }
+///////////
+// RELIC //
+///////////
 
     function Relic({ relic, id }) {
         const [cons, setCons] = useState(false)
@@ -102,6 +96,19 @@ export default function SavedBuilds({
                     {renderRelicEffect(relic?.slot3 ?? null, `${id}3`, cons)}
                 </div>
             </OstCard>
+        )
+    }
+
+    function renderRelicHeader(key){
+        return(
+            <div style={{height: '12%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
+                <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
+                    RELIC
+                </OstCard>
+                {/* {renderFlipRelic(depth, setCons, cons)} */}
+                </div>
+            </div>
         )
     }
 
