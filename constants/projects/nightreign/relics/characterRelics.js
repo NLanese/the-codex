@@ -216,7 +216,11 @@ const characterRelics = [
         selfType: "boomArt",
         nightfarer: "Duchess",
         effect: {
-            always: true,
+            allDamage: 1.15,
+            appliesRanged: true,
+            always: false,
+            condition: "Enemies Killed During Ult",
+            conditionCounter: true
         },
     },
     {
