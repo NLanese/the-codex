@@ -29,6 +29,32 @@ export default function SavedBuilds({
     const silverLining = "#d4eeff"
 
     const [screen, setScreen] = useState("Save Current Build")
+    const [buildName, setBuildName] = useState("")
+    const [localBuildData, setLocalBuildData] = useState()
+
+    useEffect(() => {
+
+    }, [])
+
+///////////////
+// Functions //
+///////////////
+
+    const saveBuild = () => {
+        const data = {
+            relic1, relic2, relic3,
+            effect11, effect12, effect13,
+            effect21, effect22, effect23,
+            effect31, effect32, effect33,
+            relic4, relic5, relic6,
+            effect41, effect42, effect43,
+            effect51, effect52, effect53,
+            effect61, effect62, effect63,
+            buildName
+        };
+
+        localStorage.setItem("nightreignRelics", JSON.stringify(data));
+    };
 
 ///////////////
 // Rendering //
@@ -36,9 +62,11 @@ export default function SavedBuilds({
 
     function renderNameInput(){
         return(
-            <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div style={{display: 'flex', flexDirection: 'row', marginTop: '10%'}}>
                 <p style={{...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: silverLining}}>Enter a Name for your Build: </p>
-                <input style={{width: '62%'}} onChange={(e) => setSearch(e.target.value)}
+                <input style={{width: '62%'}} 
+                    onChange={(e) => setBuildName(e.target.value)} 
+                    value={buildName}
                 />
             </div>
         )
@@ -129,11 +157,11 @@ export default function SavedBuilds({
 //////////
     return(
         <div style={{marginTop: 10}}>
-            <OstrichTabBar style={{width: '100%'}}
+            {/* <OstrichTabBar style={{width: '100%'}}
                 value={screen}
                 tabs={["Load Saved Builds", "Save Current Build"]}
                 onTabClick={(tab) => setScreen(tab)}
-            />
+            /> */}
            {renderContent()}
         </div>
     )
