@@ -30,10 +30,12 @@ export default function SavedBuilds({
 
     const [screen, setScreen] = useState("Save Current Build")
     const [buildName, setBuildName] = useState("")
-    const [localBuildData, setLocalBuildData] = useState()
+    const [localBuildData, setLocalBuildData] = useState([])
 
     useEffect(() => {
-
+        const existing = JSON.parse(localStorage.getItem("nightreignRelics")) || [];
+        console.log(existing)
+        setLocalBuildData(existing)
     }, [])
 
 ///////////////
@@ -41,7 +43,8 @@ export default function SavedBuilds({
 ///////////////
 
     const saveBuild = () => {
-        const data = {
+        const newBuild = {
+            buildName,
             relic1, relic2, relic3,
             effect11, effect12, effect13,
             effect21, effect22, effect23,
@@ -49,11 +52,20 @@ export default function SavedBuilds({
             relic4, relic5, relic6,
             effect41, effect42, effect43,
             effect51, effect52, effect53,
-            effect61, effect62, effect63,
-            buildName
+            effect61, effect62, effect63
         };
 
-        localStorage.setItem("nightreignRelics", JSON.stringify(data));
+        // Add new build
+        setLocalBuildData(localBuildData => ([...localBuildData, newBuild]))
+
+        console.log("Saving with...")
+        console.log(localBuildData)
+
+        // Save back to localStorage
+        localStorage.setItem("nightreignRelics", JSON.stringify(localBuildData));
+
+        console.log("Saved...")
+        console.log(JSON.parse(localStorage.getItem("nightreignRelics")))
     };
 
 ///////////////
@@ -64,12 +76,36 @@ export default function SavedBuilds({
         return(
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '10%'}}>
                 <p style={{...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: silverLining}}>Enter a Name for your Build: </p>
-                <input style={{width: '62%'}} 
+                <input style={{width: '60%', marginRight: '5.5%'}} 
                     onChange={(e) => setBuildName(e.target.value)} 
                     value={buildName}
                 />
+                <OstCard rounded={false}
+                style={{width: '50'}} onClick={() => saveBuild()}>
+                    Save
+                </OstCard>
             </div>
         )
+    }
+
+    function renderLocalSaves(data){
+        return data.map(save => {
+            return(
+                <OstCard style={{backgroundColor: silverLining, padding: 2, marginTop: 10}}>
+                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <div style={{flex: 8}}>
+                            <p style={{...Styles.Fonts.basicX, padding: 1, paddingTop: 5, paddingLeft: 5, margin: 1, height: '100%'}}>{save.buildName}</p>
+                        </div>
+                        <div style={{flex: 4}}>
+                            <OstCard rounded={false}
+                            style={{width: '50', marginRight: 10, justifyContent: 'center', textAlign: 'center'}} onClick={() => saveBuild()}>
+                                Load
+                            </OstCard>
+                        </div>
+                    </div>
+                </OstCard>
+            )
+        })
     }
 
     function renderContent(){
@@ -85,6 +121,7 @@ export default function SavedBuilds({
                     </div>
                     <div  style={{flex: 5, paddingTop: 40}}>
                         {renderNameInput()}
+                        {renderLocalSaves(localBuildData)}
                     </div>
                 </div>
             )
