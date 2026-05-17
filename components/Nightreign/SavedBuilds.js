@@ -71,6 +71,30 @@ export default function SavedBuilds({
         console.log(JSON.parse(localStorage.getItem("nightreignRelics")))
     };
 
+    const deleteBuild = (buildObj) => {
+        
+
+        let toUpdate = [...localBuildData];
+
+        toUpdate = toUpdate.filter(build => {
+            if (build !== buildObj){
+                return build
+            }
+        })
+
+        // Add new build
+        setLocalBuildData(toUpdate)
+
+        console.log("Saving with...")
+        console.log(toUpdate)
+
+        // Save back to localStorage
+        localStorage.setItem("nightreignRelics", JSON.stringify(toUpdate));
+
+        console.log("Saved...")
+        console.log(JSON.parse(localStorage.getItem("nightreignRelics")))
+    };
+
 ///////////////
 // Rendering //
 ///////////////
@@ -96,12 +120,16 @@ export default function SavedBuilds({
             return(
                 <OstCard style={{backgroundColor: silverLining, padding: 2, marginTop: 10}}>
                     <div style={{display: 'flex', flexDirection: 'row'}}>
-                        <div style={{flex: 8}}>
+                        <div style={{flex: 7}}>
                             <p style={{...Styles.Fonts.basicX, padding: 1, paddingTop: 5, paddingLeft: 5, margin: 1, height: '100%'}}>{save.buildName}</p>
                         </div>
-                        <div style={{flex: 4}}>
+                        <div style={{flex: 5, display: 'flex', flexDirection: 'row', gap: 5.5}}>
                             <OstCard rounded={false}
-                            style={{width: '50', marginRight: 10, justifyContent: 'center', textAlign: 'center'}} onClick={() => saveBuild()}>
+                            style={{width: '50', marginRight: 10, justifyContent: 'center', textAlign: 'center', color: frenzyTouched}} onClick={() => deleteBuild(save)}>
+                                Delete
+                            </OstCard>
+                            <OstCard rounded={false}
+                            style={{width: '50', marginRight: 10, justifyContent: 'center', textAlign: 'center'}} onClick={() => console.log("Bingo")}>
                                 Load
                             </OstCard>
                         </div>
