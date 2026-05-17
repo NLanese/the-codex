@@ -44,25 +44,28 @@ export default function SavedBuilds({
 
     const saveBuild = () => {
         const newBuild = {
-            buildName,
-            relic1, relic2, relic3,
-            effect11, effect12, effect13,
-            effect21, effect22, effect23,
-            effect31, effect32, effect33,
-            relic4, relic5, relic6,
-            effect41, effect42, effect43,
-            effect51, effect52, effect53,
-            effect61, effect62, effect63
+            buildName: buildName,
+            relic1:relic1, relic2:relic2, relic3:relic3,
+            effect11:effect11, effect12:effect12, effect13:effect13,
+            effect21:effect21, effect22:effect22, effect23:effect23,
+            effect31:effect31, effect32:effect32, effect33:effect33,
+            relic4:relic4, relic5:relic5, relic6:relic6,
+            effect41:effect41, effect42:effect42, effect43:effect43,
+            effect51:effect51, effect52:effect52, effect53:effect53,
+            effect61:effect61, effect62:effect62, effect63:effect63
         };
 
+        // Compute updated array FIRST
+        const updated = [...localBuildData, newBuild];
+
         // Add new build
-        setLocalBuildData(localBuildData => ([...localBuildData, newBuild]))
+        setLocalBuildData(updated)
 
         console.log("Saving with...")
-        console.log(localBuildData)
+        console.log(updated)
 
         // Save back to localStorage
-        localStorage.setItem("nightreignRelics", JSON.stringify(localBuildData));
+        localStorage.setItem("nightreignRelics", JSON.stringify(updated));
 
         console.log("Saved...")
         console.log(JSON.parse(localStorage.getItem("nightreignRelics")))
@@ -194,11 +197,6 @@ export default function SavedBuilds({
 //////////
     return(
         <div style={{marginTop: 10}}>
-            {/* <OstrichTabBar style={{width: '100%'}}
-                value={screen}
-                tabs={["Load Saved Builds", "Save Current Build"]}
-                onTabClick={(tab) => setScreen(tab)}
-            /> */}
            {renderContent()}
         </div>
     )
