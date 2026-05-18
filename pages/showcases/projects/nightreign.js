@@ -636,6 +636,8 @@ function RENDER_MAIN(){
             effect61={effect61} effect62={effect62} effect63={effect63}
             relic1={relic1} relic2={relic2} relic3={relic3}
             relic4={relic4} relic5={relic5} relic6={relic6}
+            setRelic1={setRelic1} setRelic2={setRelic2} setRelic3={setRelic3}
+            setRelic4={setRelic4} setRelic5={setRelic5} setRelic6={setRelic6}
         />
     }
 }

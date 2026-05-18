@@ -12,7 +12,9 @@ export default function SavedBuilds({
     effect51, effect52, effect53,
     effect61, effect62, effect63,
     relic1, relic2, relic3,
-    relic4, relic5, relic6
+    relic4, relic5, relic6,
+    setRelic1, setRelic2, setRelic3,
+    setRelic4, setRelic5, setRelic6,
 }){
 
 ////////////
@@ -95,6 +97,16 @@ export default function SavedBuilds({
         console.log(JSON.parse(localStorage.getItem("nightreignRelics")))
     };
 
+    const loadBuild = (buildObj) => {
+        console.log(buildObj)
+        setRelic1(buildObj.relic1)
+        setRelic2(buildObj.relic2)
+        setRelic3(buildObj.relic3)
+        setRelic4(buildObj.relic4)
+        setRelic5(buildObj.relic5)
+        setRelic6(buildObj.relic6)
+    };
+
 ///////////////
 // Rendering //
 ///////////////
@@ -129,7 +141,7 @@ export default function SavedBuilds({
                                 Delete
                             </OstCard>
                             <OstCard rounded={false}
-                            style={{width: '50', marginRight: 10, justifyContent: 'center', textAlign: 'center'}} onClick={() => console.log("Bingo")}>
+                            style={{width: '50', marginRight: 10, justifyContent: 'center', textAlign: 'center'}} onClick={() => loadBuild(save)}>
                                 Load
                             </OstCard>
                         </div>
