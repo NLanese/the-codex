@@ -618,8 +618,8 @@ function RENDER_MAIN(){
     if (screen  === "Main"){
         return(
             <div style={{flex: 11}}>
-            {renderRelicModal()}
-            {renderSelectionsContainer(relics_effect_toggles, all_relic_effects)}
+                {renderRelicModal()}
+                {renderSelectionsContainer(relics_effect_toggles, all_relic_effects)}
             </div>
         )
     }
@@ -1085,7 +1085,7 @@ function RENDER_MAIN(){
 return(
     <div style={{paddingTop: 15, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
         {RENDER_MAIN()}
-        {renderCredits()}
+        {!isMobile ? renderCredits() : null}
     </div>
 )
 }
