@@ -126,6 +126,10 @@ export const HeaderBar = ({
             ]
         }
 
+        else if (directory === "foodbusinessgroup"){
+            return null
+        }
+
         // User
         else if (token){
             return userTabs(setActiveTabBar, router, isMobile)
@@ -144,6 +148,9 @@ export const HeaderBar = ({
 
     function MAIN(){
         if (loading){
+            return
+        }
+        if (!tabs || tabs == []){
             return
         }
         else{

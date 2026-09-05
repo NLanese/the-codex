@@ -4,7 +4,8 @@ const onGoing = (router) => [
     {title: "Ostrich Component Library", onClick: () => router.push("/showcases/ostrich-components/showcase"), manualOnClick: true},
     "CandyBox 3",
     {title: "Nightreign Build Calculator", onClick: () => router.push("/showcases/projects/nightreign"), manualOnClick: true},
-    {title: "Warhammer 40k Army Tester", onClick: () => router.push("/showcases/projects/warhammer"), manualOnClick: true}
+    {title: "Warhammer 40k Army Tester", onClick: () => router.push("/showcases/projects/warhammer"), manualOnClick: true},
+    {title: "Food Business Group", onClick: () => router.push("https://foodbusinessgroup.vercel.app/"), manualOnClick: true}
 
 ]
 
