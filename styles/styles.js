@@ -140,13 +140,14 @@ const Styles = {
     },
 
     Sections: {
-        sideMenu: {position: 'sticky', top: 10},
+        sideMenu: {position: 'sticky', top: 0},
         subContentBubble: {
-            marginTop: 45,
+            marginTop: 5,
             padding: 5,
-            justifyContent: 'center', 
+            // justifyContent: 'center', 
             borderRadius: 12,
             backgroundColor: "#ebf4ff",
+            // backgroundColor: 'blue',
             boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.1)'
         },
 

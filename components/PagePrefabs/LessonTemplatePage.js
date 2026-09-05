@@ -33,7 +33,9 @@ export const LessonTemplatePage = ({
 
         function renderLessonsList(){
             return(
-                <div style={{height: '100vh', alignContent: 'center'}}>
+                <div style={{height: '100vh', marginTop: 100
+                // alignContent: 'center'
+                }}>
                     <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                         Lessons
@@ -53,10 +55,12 @@ export const LessonTemplatePage = ({
 
         function renderLabsAndTests(){
             return(
-                <div style={{height: '100vh', alignContent: 'center'}}>
+                <div style={{height: '100vh', marginTop: 100
+                // alignContent: 'center'
+                }}>
                     <div style={Styles.Sections.subContentBubble}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                        Labs
+                            Labs
                         </div>
                         <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
                         <ListPage 
@@ -67,7 +71,7 @@ export const LessonTemplatePage = ({
                         </div>
                     </div>
 
-                    <div style={Styles.Sections.subContentBubble}>
+                    <div style={{...Styles.Sections.subContentBubble, marginTop: 30}}>
                         <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
                             Tests
                         </div>
@@ -112,7 +116,7 @@ export const LessonTemplatePage = ({
             height: '100vh',
             width: '200px',
             backgroundColor: '#f0f0f0',
-            padding: 20,
+            paddingLeft: 20, paddingRight: 20,
             overflowY: 'auto',
             flex: 2.5
         }}>
@@ -135,7 +139,7 @@ export const LessonTemplatePage = ({
             height: '100vh',
             width: '200px',
             backgroundColor: '#f0f0f0',
-            padding: 20,
+            paddingLeft: 20, paddingRight: 20,
             overflowY: 'auto',
             flex: 2.5
         }}>

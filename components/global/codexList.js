@@ -76,7 +76,8 @@ export default function CodexList({
                 backgroundColor: determineColor(itm), 
                 width: width, minHeight: height, borderColor: 'black', 
                 display: 'flex', flexDirection: 'column',
-                justifyContent: 'center', alignItems: 'center', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
                 borderRadius: 15, borderWidth: 1, marginTop: 10
             }
         }
@@ -115,7 +116,8 @@ export default function CodexList({
         return(
             <div style={{
                 display: 'flex',
-                flexDirection: 'column',       // or 'row' if horizontal
+                flexDirection: 'column',       // or 'row' if horizontal,
+                // backgroundColor: 'red',
                 justifyContent: 'center',      // centers along the main axis
                 alignItems: 'center',          // centers along the cross axis
               }}>
