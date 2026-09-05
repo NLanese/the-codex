@@ -19,7 +19,7 @@ const DDAImg = "../../../assets/icons/big/DDAImg.jpeg";
 const DDScreen = "../../../assets/icons/big/DDScreen.png";
 const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
 const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
-const BudgetBotImg = "../../../assets/icons/big/BudgetBot.jpeg";
+const Food = "../../../assets/icons/big/foodbusiness.png";
 const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
 const NR = "../../../assets/icons/big/Nightreign.png";
 const WH = "../../../assets/icons/big/Warhammer.png"
@@ -130,10 +130,13 @@ export default function ProjectsMenu() {
                     </OstCard>
                     <OstCard
                         templateStyle={1}
-                        imageSrc={BudgetBotImg}
+                        imageSrc={Food}
                         style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
+                        onClick={() => {
+                        router.push("https://foodbusinessgroup.vercel.app/")
+                        }}
                     >
-                        Budget Guard (AWS)
+                        Food Business Group
                     </OstCard>
                     <OstCard
                         templateStyle={1}
