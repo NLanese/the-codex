@@ -14,7 +14,7 @@ import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
-import { ODef } from "../../../../OstrichComponents/Text/OstrichDefinition";
+import { ODef } from "@ostrich_development/ostrich-components";
 import { ODefContnet } from "../../../../constants/oDefContent";
 
 // Next JS

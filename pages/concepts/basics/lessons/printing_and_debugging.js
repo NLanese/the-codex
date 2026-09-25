@@ -5,8 +5,8 @@ import React, {useEffect, useState} from "react";
 import Styles from "../../../../styles/styles";
 
 // Ostrich
-import {ODef} from "../../../../OstrichComponents/Text/OstrichDefinition";
-import {ODefContnet}  from "../../../../constants/oDefContent";
+import { ODef } from "@ostrich_development/ostrich-components";
+import { ODefContnet } from "../../../../constants/oDefContent";
  
 // Recoil
 import { useAtom } from "jotai";
@@ -20,7 +20,7 @@ import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/le
 
 // Next JS
 import { useRouter } from "next/router";
-import { OstCard } from "../../../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 // Images
 const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";

@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import Styles from "../../../../styles/styles";
 
 // Ostrich
-import {ODef} from "../../../../OstrichComponents/Text/OstrichDefinition";
+import { ODef } from "@ostrich_development/ostrich-components";
 import {ODefContnet}  from "../../../../constants/oDefContent";
  
 // Recoil

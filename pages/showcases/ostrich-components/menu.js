@@ -9,17 +9,8 @@ import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atom
 
 // Styles 
 import Styles from "../../../styles/styles";
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice"
-
-// Ostrich
-// import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-// import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
-// import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
-// import { HeaderBar } from "../../../components/Global/headerBar";
-
-// Assets
-// const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { FormMultipleChoice } from "@ostrich_development/ostrich-components";
 
 export default function OstrichShowcaseMenu() {
 

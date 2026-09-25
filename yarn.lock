@@ -946,10 +946,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@ostrich_development/ostrich-components@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/@ostrich_development/ostrich-components/-/ostrich-components-1.1.1.tgz"
-  integrity sha512-BcOTk6qPGB0f8mWWb3+t30te7EnQAaiUcJZ2Er2fS7COlU1bQj4rHkWIcJP0JJxNQ4LaEr/j6OLbrzmjlHeW/g==
+"@ostrich_development/ostrich-components@^1.1.11":
+  version "1.1.11"
+  resolved "https://registry.npmjs.org/@ostrich_development/ostrich-components/-/ostrich-components-1.1.11.tgz"
+  integrity sha512-wf/OgfW/3CHVO+KnG/eAnFAeH7/7MsIMOhxg8/UMepvWY8LSVt6P4rY++JgWX+R/wSbgPWbOzvtEdAlwiBTqjw==
   dependencies:
     prop-types "^15.8.1"
     tinycolor2 "^1.6.0"

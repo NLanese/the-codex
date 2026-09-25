@@ -13,7 +13,7 @@ import { TestTemplatePage } from "../../../../components/PagePrefabs/TestTemplat
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Ostirch
-import { OstrichForm } from "../../../../OstrichComponents/Forms/OstrichForm";
+import { OstrichForm } from "@ostrich_development/ostrich-components";
 
 // Local
 import Styles from "../../../../styles/styles";
