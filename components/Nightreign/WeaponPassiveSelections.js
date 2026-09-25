@@ -1,6 +1,6 @@
-import { OstCard } from "../../OstrichComponents/Format/OstCard"
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 import React, {useEffect, useState, useRef} from "react";
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
 
 
 export default function WeaponPassiveSelections({

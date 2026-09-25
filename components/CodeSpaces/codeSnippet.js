@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 
 // Ostrich
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 
 // Local
 import Styles from "../../styles/styles";

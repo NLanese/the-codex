@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 
 // Components
 import ListPage from "../global/codexList";
-import DefinitionList from "../../OstrichComponents/DefinitionsList/DefinitionList";
+import { DefinitionList } from "@ostrich_development/ostrich-components";
 
 export const MenuPage = ({
     onLessonClick, 

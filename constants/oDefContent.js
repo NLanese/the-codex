@@ -1,4 +1,4 @@
-import DefinitionRow from "../OstrichComponents/DefinitionsList/DefinitionRow"
+import { DefinitionRow } from "@ostrich_development/ostrich-components"
 import Styles from "../styles/styles"
 
 export const ODefContnet = ({

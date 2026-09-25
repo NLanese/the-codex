@@ -12,7 +12,7 @@ import { tokenState, tabBarState, directoryDataState } from "../jotai/atoms";
 import Styles from "../styles/styles";
 
 // Ostrich
-import { OstCard } from "../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 // Assets
 const OstCompImg = "/assets/icons/big/OstrichComponentsLogo.png";

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Styles from "../../styles/styles";
-import { OstrichDropDown } from "../../OstrichComponents/Dropdown/OstrichDropDown";
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
+import { OstrichDropDown } from "@ostrich_development/ostrich-components";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 
 export default function DropdownShowcase(){

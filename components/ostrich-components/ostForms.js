@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Styles from "../../styles/styles";
 
-import { OstrichForm } from "../../OstrichComponents/Forms/OstrichForm";
-import { OstrichDropDown } from "../../OstrichComponents/Dropdown/OstrichDropDown";
+import { OstrichForm } from "@ostrich_development/ostrich-components";
+import { OstrichDropDown } from "@ostrich_development/ostrich-components";
 
 export default function OstFormsShowcase(){
 

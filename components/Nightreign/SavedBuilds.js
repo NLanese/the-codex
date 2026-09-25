@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import Styles from "../../styles/styles";
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 export default function SavedBuilds({
     isMobile,

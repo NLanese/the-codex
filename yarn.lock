@@ -946,6 +946,15 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@ostrich_development/ostrich-components@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@ostrich_development/ostrich-components/-/ostrich-components-1.1.1.tgz"
+  integrity sha512-BcOTk6qPGB0f8mWWb3+t30te7EnQAaiUcJZ2Er2fS7COlU1bQj4rHkWIcJP0JJxNQ4LaEr/j6OLbrzmjlHeW/g==
+  dependencies:
+    prop-types "^15.8.1"
+    tinycolor2 "^1.6.0"
+    typescript "5.7.3"
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
@@ -5728,10 +5737,10 @@ typed-array-length@^1.0.6:
     is-typed-array "^1.1.13"
     possible-typed-array-names "^1.0.0"
 
-typescript@^5:
-  version "5.5.3"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.3.tgz"
-  integrity sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==
+typescript@^5, typescript@5.7.3:
+  version "5.7.3"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.7.3.tgz"
+  integrity sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==
 
 typescript@4.9.5:
   version "4.9.5"

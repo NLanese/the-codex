@@ -1,7 +1,8 @@
 // React + Next
 import React, {useEffect, useState, useRef} from "react";
 import Styles from "../../styles/styles";
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
+// import { OstCard } from "../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 export default function WhatIsCandyBox() {
 

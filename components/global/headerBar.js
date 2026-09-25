@@ -9,7 +9,7 @@ import { tokenState, tabBarState, directoryDataState } from "../../jotai/atoms";
 import { useRouter } from "next/router";
 
 // Components
-import { OstrichTabBar } from "@Ostrich/Tabs/OstrichTabBar";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 
 // Constants
 import { guestTabs, userTabs, basicsTabs, portfolioTabs } from "../../constants/tabBars";

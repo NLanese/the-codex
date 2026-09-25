@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useRef} from "react";
 import Styles from "../../styles/styles";
 
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 import determineBaseNegations from "../../constants/projects/nightreign/nightfarers/determineBaseNegations";
 
 export default function StatSheet({

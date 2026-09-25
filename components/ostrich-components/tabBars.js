@@ -5,8 +5,8 @@ import { HeaderBar } from "../global/headerBar";
  
 
 // Ostrich
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 
 export default function TabBarsShowcase(){
 

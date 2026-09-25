@@ -6,12 +6,11 @@ import { useAtom } from "jotai";
 import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
-import DefinitionList from "../../../OstrichComponents/DefinitionsList/DefinitionList";
+import { DefinitionList } from "@ostrich_development/ostrich-components";
 
 // Varibales Definitions 
 import BasicDefinitionsList from "../../../constants/basicDefinitions";
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 const VariableDefinitions = ({}) => {
 

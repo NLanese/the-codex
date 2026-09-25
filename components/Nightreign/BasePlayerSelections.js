@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
-import { FormMultipleChoice } from "../../OstrichComponents/Forms/FormMultipleChoice";
+import { FormMultipleChoice } from "@ostrich_development/ostrich-components";
 
 export default function BasePlayerSelections({
     _nightfarer, setNightfarer,

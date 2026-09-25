@@ -4,10 +4,8 @@ import Styles from "../../styles/styles";
 // Assets
 const OstCompImg = "../../assets/icons/big/OstrichComponentsLogo.png";
 
-
-
 // Ostrich
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 export default function OstCardShowcase(){
     return(

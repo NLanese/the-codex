@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from "react";
-import { OstCard } from "../../OstrichComponents/Format/OstCard";
-import { OstrichTabBar } from "../../OstrichComponents/Tabs/OstrichTabBar";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
 import day1_stats from "../../constants/projects/nightreign/bosses/day1";
 import day2_stats from "../../constants/projects/nightreign/bosses/day2"

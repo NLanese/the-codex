@@ -18,11 +18,11 @@ import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
-import { OstrichForm } from "../../../../OstrichComponents/Forms/OstrichForm";
+import { OstrichForm } from "@ostrich_development/ostrich-components";
 
 // Next JS
 import { useRouter } from "next/router";
-import { OstCard } from "../../../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 // Images
 const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";
