@@ -10,11 +10,11 @@ import { directoryDataState, tabBarState } from "../../../jotai/atoms";
 import Styles from "../../../styles/styles";
 
 // Ostrich
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { FormMultipleChoice } from "../../../OstrichComponents/Forms/FormMultipleChoice";
-import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { FormMultipleChoice } from "@ostrich_development/ostrich-components";
+import { OstrichDropDown } from "@ostrich_development/ostrich-components";
 import determineDetachment from "../../../constants/projects/warhammer/detachments/determineDetachment";
-import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 
 // WarHammer Functions 
 

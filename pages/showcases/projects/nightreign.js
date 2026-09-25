@@ -10,7 +10,7 @@ import { directoryDataState, tabBarState } from "../../../jotai/atoms";
 import Styles from "../../../styles/styles";
 
 // Ostrich
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 // Nighteign Functions
 import determineBaseVitals from "../../../constants/projects/nightreign/nightfarers/determineBaseVitals";

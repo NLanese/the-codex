@@ -10,9 +10,8 @@ import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atom
 import Styles from "../../../styles/styles";
 
 // Ostrich
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { OstrichButton } from "../../../OstrichComponents/Buttons/OstrichButton";
-
+import { OstCard } from "@ostrich_development/ostrich-components";
+import OstrichButton from "@ostrich_development/ostrich-components"
 
 // Assets
 const KNM = "../../../assets/icons/big/KNM.png";

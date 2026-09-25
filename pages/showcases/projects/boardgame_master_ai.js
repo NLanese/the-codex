@@ -9,8 +9,8 @@ import { directoryDataState } from "../../../jotai/atoms";
 import Styles from "../../../styles/styles";
 
 // Ostrich
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
-import { OstrichDropDown } from "../../../OstrichComponents/Dropdown/OstrichDropDown";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstrichDropDown } from "@ostrich_development/ostrich-components";
 
 // Images
 const  S3Strcuture = '../../../assets/showcase_images/boardGameWizard/S3Structure.png'

@@ -7,10 +7,10 @@ import { useAtom } from "jotai";
 import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 import CandyBox3MainScreen from "../../../components/candybox3/mainScreen";
 import Map from "../../../components/candybox3/map";
-import { OstrichTabBar } from "../../../OstrichComponents/Tabs/OstrichTabBar";
 
 
 // Other

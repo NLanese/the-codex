@@ -10,7 +10,7 @@ import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atom
 import Styles from "../../../styles/styles";
 
 // Ostrich
-import { OstCard } from "../../../OstrichComponents/Format/OstCard";
+import { OstCard } from "@ostrich_development/ostrich-components";
 
 // Assets
 const listing = "../../../assets/showcase_images/ieee/ieeeAndListing.png";
