@@ -3,27 +3,25 @@ import React, {useEffect, useState} from "react";
 
 // Styles
 import Styles from "../../../../styles/styles";
+import Colors from "../../../../styles/colors";
 
 // Ostrich
-import { ODef } from "@ostrich_development/ostrich-components";
-import {ODefContnet}  from "../../../../constants/oDefContent";
- 
-// Recoil
+import { ODef, OstrichForm } from "@ostrich_development/ostrich-components";
+import { ODefContnet } from "../../../../constants/oDefContent";
+
+// Jotai
 import { useAtom } from "jotai";
 import { directoryDataState, tabBarState } from "../../../../jotai/atoms";
-
-// Images
-import imageA from "@lessonAssets/variables/codeExample.png"
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
+import { Callout, VariableBox, Recap, NextLesson, lessonText, sideBySide } from "../../../../components/LessonParts/lessonParts";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Next JS
 import { useRouter } from "next/router";
-import Image from 'next/image';
 
 
 const VariablesLesson = ({}) => {
@@ -74,21 +72,20 @@ const VariablesLesson = ({}) => {
         function handleLabsClick(lab){
             router.push(`/concepts/basics/labs/${lab.toLowerCase().replaceAll(" ", "_")}`)
         }
- 
+
     ////////////////////
     // Code Rendering //
     ////////////////////
 
+    // Language Tabs //
 
-    // First Code Snippet // 
-
-        function renderVariablesJS(){
+        function renderJavaScript(){
             return(
                 <div>
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 0</span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21</span>
                     </p>
 
                     <p style={Styles.Code.code}>
@@ -104,43 +101,72 @@ const VariablesLesson = ({}) => {
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.bool}>false</span>
                     </p>
-
                 </div>
             )
         }
 
-        function renderVariableJavaAndC(){
+        function renderJava(){
             return(
                 <div>
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 0;</span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>String </span>
                     <span style={Styles.Code.var}>name </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill";</span>
+                    <span style={Styles.Code.str}>"Hank Hill"</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>boolean </span>
+                    <span style={Styles.Code.var}>isEarthFlat </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.bool}>false</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
+                </div>
+            )
+        }
+
+        function renderCs(){
+            return(
+                <div>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21;</span>
+                    </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>string </span>
+                    <span style={Styles.Code.var}>name </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.str}>"Hank Hill"</span>
+                    <span style={Styles.Code.reg}>;</span>
                     </p>
 
                     <p style={Styles.Code.code}>
                     <span style={Styles.Code.keyword}>bool </span>
                     <span style={Styles.Code.var}>isEarthFlat </span>
                     <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>false;</span>
+                    <span style={Styles.Code.bool}>false</span>
+                    <span style={Styles.Code.reg}>;</span>
                     </p>
                 </div>
             )
         }
 
-        function renderVariablesPython(){
+        function renderPython(){
             return(
                 <div>
                     <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>x </span>
-                    <span style={Styles.Code.reg}>= 0</span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21</span>
                     </p>
 
                     <p style={Styles.Code.code}>
@@ -148,6 +174,22 @@ const VariablesLesson = ({}) => {
                     <span style={Styles.Code.reg}>= </span>
                     <span style={Styles.Code.str}>"Hank Hill"</span>
                     </p>
+
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>isEarthFlat </span>
+                    <span style={Styles.Code.reg}>= </span>
+                    <span style={Styles.Code.bool}>False</span>
+                    </p>
+                </div>
+            )
+        }
+
+    // Small Code Blocks //
+
+        function renderCodeBlock(lines, width = 230){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: width, minWidth: width, margin: 0}}>
+                    {lines}
                 </div>
             )
         }
@@ -159,131 +201,86 @@ const VariablesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-                    <div style={Styles.Fonts.lessonHeader}>What is a Variable</div>
-                        <p style={Styles.Fonts.basic}>
-                            Variables are one of the most important base concepts of Computer Science. Every method of coding will involve the use of variables. So, first thing is first; what IS a variable?
+                    <div style={Styles.Fonts.lessonHeader}>What is a Variable?</div>
+                    <div style={{marginTop: 16}}>
+                        <p style={lessonText}>
+                            Every program you have ever used is built on variables, so they are the perfect place to start.
                         </p>
-                        <div style={Styles.Sections.importantNote}>
-                            <p style={Styles.Fonts.basic}>
-                                <strong>A Variable is essentially a container for information that be stored, changed, referenced, checked or otherwise used in the future.</strong> For example, a user on a website may have a firstName and a lastName variable associated with their account. The value of that variable would change from user to user. Another example could be on a shopping website, as you add items to your cart you may notice a little counter over your cart icon, indicating how many items you have added. This counter shows the value of a variable that keeps track of this data.
+
+                        <Callout type="key">
+                            <p style={{...lessonText, marginBottom: 0}}>
+                                <strong>A variable is a named container for a value.</strong> You can store a value in it, change that value, and use it later.
                             </p>
+                        </Callout>
+
+                        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', margin: '24px 0 10px 0'}}>
+                            <VariableBox name="score" value="21" caption="a number"/>
+                            <VariableBox name="name" value={'"Hank Hill"'} valueStyle={Styles.Code.str} caption="some text"/>
+                            <VariableBox name="isEarthFlat" value="false" valueStyle={Styles.Code.bool} caption="true or false"/>
                         </div>
-                        <p style={Styles.Fonts.basic}>
-                            Let's go over some of the specifics of what exactly a variable can do, again considering that their role is to store, change, reference, or check the data given to them.
+
+                        <p style={{...lessonText, marginTop: 14}}>
+                            You use variables constantly without noticing. The little number over the cart icon on a shopping site? That is a variable counting your items.
+                            Your username, your high score, the volume slider in a game: all variables.
                         </p>
-                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <li>
-                                <strong>Variables Store Data -- </strong> This is the most fundamental ability a variable has. Just like in basic math, variable hold a value. For example, variable X can hold numeric data such as the number 2; others can take decimal numbers like 2.4. Variables can also hold text data, such as a <span>
-                                <ODef 
-                                text="string" 
-                                modalContent={
-                                <ODefContnet 
-                                    color="#bef576" 
-                                    word="String" 
-                                    definition= "A string is a list of chars in consequtive order. For example, 'Hello World' is a string, but that really means it is just a list of 'H' followed by 'e' followed by 'l' and so on."
-                                    />} 
-                                />  
-                                </span>
-                                which is how we refer to text in computer science. A variable, for example could contain a name like "Jeff Winger"
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Variables can have their Data changed -- </strong>More times than not, when working with a technical project, you will have more values that can change than not. For example, if we were developing a game, we would need a variable to keep score. This score would need to be changed quite frequently. Similarly, a user may have a username associated with an account, and they will need the ability to change that. Sometimes, variables will not change and SHOULD not change, and as such these variables are actually created differently than others, and are often referred to as <strong>constants</strong> but these will be covered later.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Variables will have their Data referenced -- </strong> What's the point in storing data if you don't use it? In most previous examples, the variable we mention ends up being referenced when it is displayed to the user. The score is displayed, the amount of items in a cart is displayed, and so is a username. However, they can be referenced by the code itself. For example, a game will know to end when a score reaches a certain number. In a pickup game for example, if you play to 21 points, the app would check every time a team scores to see if their score is 21. If the score is 21 the game ends. <strong>We will go into this deeper in the future when we learn about conditionals</strong>
-                            </li>
-                    </div>
-                    <div style={Styles.Fonts.lessonHeader}>How to use a Variable</div>
-                    <div>
-                    <p style={Styles.Fonts.basic}>
-                        Essentially, every bit of data that is used on any software system will be saved in a variable at some point in time. There are different kinds of variables and different computer languages have different ways of creating and interacting with variables, but the concept is consistent throughout all apsects of Computer Scinece.
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        There can be a few parts of a Variable's lifecycle in computer science. 
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        The first part is called <strong>Declaration</strong>. This step is in just creating the variable. To us it is a simple process, but it informs the compiler to kickstart the variable life cycle.
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                        Once we as the developer                                 
-                        <ODef 
-                        text="declare" 
-                        modalContent={
-                        <ODefContnet 
-                            color="#88fccc" 
-                            word="Declaration" 
-                            definition="Creating a variable in Computer Science is referred to as 'Declaring.' If I wanted to create and use a new variable, x, I would first have to declare it. In most languages, there will be a keyword immediately proceeding the variable name. For instance, in JavaScript, if I wanted to declare an empty variable x, I could do so by entering 'let x' or 'var x', as 'let' and 'var' are keywords for creating variables in JavaScript."
-                            />} 
-                        />   
-                        a variable, the computer compiler actually sections off a dedicated part of its memory for this value. This is called the <strong>Initialization</strong> phase of the Variable Lifecycle
-                    </p>
-                    <div style={Styles.Sections.importantNote}>
-                        <p style={Styles.Fonts.basic}>
-                            Declaration can look as simple as this
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            </p>
+
+                        <div style={{...Styles.Fonts.h3, marginTop: 24, marginBottom: 6}}>What variables do</div>
+                        <div style={{display: 'flex', flexDirection: 'row', gap: 14, flexWrap: 'wrap'}}>
+                            {renderAbilityCard(
+                                "Store",
+                                <>
+                                    They hold a value: a number, true or false, or some text, which code calls a
+                                    <ODef
+                                    text="string"
+                                    modalContent={
+                                    <ODefContnet
+                                        color="#bef576"
+                                        word="String"
+                                        definition="A string is a list of characters in order. 'Hello World' is a string: an 'H', followed by an 'e', followed by an 'l', and so on."
+                                        />}
+                                    />
+                                </>,
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>let </span>
+                                <span style={Styles.Code.var}>name </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.str}>"Jeff"</span>
+                                </p>
+                            )}
+                            {renderAbilityCard(
+                                "Change",
+                                "Their value can be updated while the program runs, like a score going up every time a team scores.",
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.var}>score </span>
+                                <span style={Styles.Code.reg}>= </span>
+                                <span style={Styles.Code.var}>score </span>
+                                <span style={Styles.Code.reg}>+ 1</span>
+                                </p>
+                            )}
+                            {renderAbilityCard(
+                                "Get Used",
+                                "Code can read a variable to display it, or to make decisions. In a game to 21, the app checks the score after every point.",
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>if </span>
+                                <span style={Styles.Code.reg}>(</span>
+                                <span style={Styles.Code.var}>score </span>
+                                <span style={Styles.Code.reg}>== 21)</span>
+                                </p>
+                            )}
                         </div>
-                        <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable that will be referred to as "x", The computer compiler knows the portion off a segment of memory dedicated to whatever value will eventually go into "x" in the <strong>Initialization</strong> Phase that automatically follows.
-                        </p>
                     </div>
-                    <p style={Styles.Fonts.basic}>
-                        The final part of the lifecycle is the <strong>Assignment</strong> Phase. This is where we assign a value to the newly created variable. This then saves that value in the section of memory that was segmented off during the <strong>Initialization</strong> Phase
-                    </p>
-                    <div style={Styles.Sections.importantNote}>
-                        <p style={Styles.Fonts.basic}>
-                            <strong>Assignment</strong> can come after the <strong>Declaration</strong> of a variable
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            </p>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.var}>x </span>
-                            <span style={Styles.Code.reg}>= 4</span>
-                            </p>
-                        </div>
-                        <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable and then on the next line we are <strong>assigning</strong> the numeric value of 4 to the variable. 
-                        </p>
-                    </div>
-                    <div style={Styles.Sections.importantNote}>
-                        
-                        <p style={Styles.Fonts.basic}>
-                            <strong>Assignment</strong> can also come during the <strong>Declaration</strong> of a variable, keeping things all on one line of code
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            <span style={Styles.Code.reg}>= 4</span>
-                            </p>
-                        </div>
-                        <p style={Styles.Fonts.basic}>
-                            Here, we are simply <strong>declaring</strong> a variable and  simultaneously we are <strong>assigning</strong> the numeric value of 4 to the variable. 
-                        </p>
-                    </div>
-                    <p style={Styles.Fonts.basic}>
-                        Below, we will go over how to <strong>declaring</strong> and <strong>assign</strong> a variable in four different 
-                        <ODef 
-                        text="programming language" 
-                        modalContent={
-                        <ODefContnet 
-                            color="#88fccc" 
-                            word="Programming Language" 
-                            definition= "Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we have created systems of 'syntax' to form a bridge between human comprehension and computer binary code. This means we created 'languages' with their own syntax, or 'grammer' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in rela life, each language will have its own quirks, its own rules words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#."
-                            />} 
-                        />  
-                        We will go over these in more depth later; for now all you need to know is that each programming language, much like regular spoken languages, each have their own different rules. <strong>Keywords, syntax, and overall structure</strong> will differ between languages although the general concepts of Computer Science remain consistent between them.   
-                    </p>
                 </div>
+            )
+        }
+
+        function renderAbilityCard(title, text, code){
+            return(
+                <div style={{...Styles.Sections.subContentBubble, flex: 1, minWidth: 200, padding: '14px 16px', display: 'flex', flexDirection: 'column'}}>
+                    <div style={{...Styles.Fonts.h3, marginBottom: 4}}>{title}</div>
+                    <p style={{...lessonText, fontSize: 15.5, flex: 1}}>{text}</p>
+                    <div style={{...Styles.Sections.simpleLessonCode, width: 'auto', maxWidth: 'none', margin: 0}}>
+                        {code}
+                    </div>
                 </div>
             )
         }
@@ -291,60 +288,212 @@ const VariablesLesson = ({}) => {
         function renderSecond(){
             return(
                 <div>
-                    <p style={Styles.Fonts.basic}>
-                    Above, you saw that most languages are a bit different from each other in how the <strong>declare and assign</strong> a variable, but they all have the same basic pattern and premise. 
-                    </p>
-                    <p style={Styles.Fonts.basic}>
-                    Let's break down a few of the things we're seeing above...
-                    </p>
-                    <div style={Styles.Sections.importantNote}>
-                        <p style={Styles.Fonts.basic}>
-                        In each language, we are declaring and assigning three variables, each one has a different <strong>Datatype</strong>.
-                        </p>
-                        <p style={Styles.Fonts.basic}>
-                        A <strong>Datatype</strong> is a category for the kind of value that a variable may store. We've already covered two basic datatypes, <strong>Integers</strong> and <strong>Strings</strong>.
-                        </p>
-                        <p style={Styles.Fonts.basic}>
-                        As you may have already seen, <strong>some programming languages like C# and Java</strong> require you to declare the Datatype that will be stored in the variable before you assign the value. We will cover Datatypes in more detail in the next lesson.
-                        </p>
-                        <p style={Styles.Fonts.basic}>
-                        Even still, some programming languages like <strong>JavaScript</strong> have dynamic variables that can change data types, but the variable still needs a <strong>keyword</strong> to let the compiler know a variable declaration is taking place. JavaScript uses <strong>'let'</strong> as the keyword in our example, but developers can also use <strong>'var'</strong>
+                    <div style={{...Styles.Fonts.lessonHeader, marginTop: 40}}>Creating a Variable</div>
+                    <div style={{marginTop: 16}}>
+                        <p style={lessonText}>
+                            Creating a variable takes two steps: you <strong>declare</strong> it (give it a name), and you <strong>assign</strong> it (give it a value).
                         </p>
 
-                    </div>
-                    <div style={Styles.Fonts.lessonHeader}>Changing a Variable's Value</div>
-                    <div>
-                        <p style={Styles.Fonts.basic}>
-                            Most times, a variable will be intended to have its value changed. In previous examples, we have mentioned Variables that hold values like a score or a cart total. Lets go over how we would make some of those changes
-                        </p>
-                        <p style={Styles.Fonts.basic}>
-                            Again, imagine we create (declare and assign) a variabe similarly to how we've done so in the past.
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>var </span>
-                            <span style={Styles.Code.var}>x </span>
-                            <span style={Styles.Code.reg}>= 5</span>
+                        <div style={sideBySide}>
+                            {renderCodeBlock(
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>x</span>
+                                </p>
+                            )}
+                            <p style={{...lessonText, marginBottom: 0}}>
+                                <ODef
+                                text="Declaring"
+                                modalContent={
+                                <ODefContnet
+                                    color="#88fccc"
+                                    word="Declaration"
+                                    definition="Creating a variable is called 'declaring' it. Most languages use a keyword right before the name to signal this. In JavaScript, 'let x' or 'var x' both declare a variable named x."
+                                    />}
+                                />
+                                creates the variable and gives it a name. Right now, x is an empty box.
                             </p>
                         </div>
-                        <p style={Styles.Fonts.basic}>
-                            We can now simply reassign a new value to the variable to have it changed
-                        </p>
-                        <div style={Styles.Sections.simpleLessonCode}>
-                            <p style={Styles.Code.code}>
-                            <span style={Styles.Code.var}>x </span>
-                            <span style={Styles.Code.reg}>= 50</span>
+
+                        <div style={sideBySide}>
+                            {renderCodeBlock(
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>= 4</span>
+                                </p>
+                            )}
+                            <p style={{...lessonText, marginBottom: 0}}>
+                                <strong>Assigning</strong> puts a value in the box using the <strong>=</strong> sign. Now x holds 4.
                             </p>
                         </div>
-                        <p style={Styles.Fonts.basic}>
-                            In the next lesson, we will go over the <strong>types</strong> of variables, as well as how and when to combine them, and have one variable influence the value of another!
+
+                        <div style={sideBySide}>
+                            {renderCodeBlock(
+                                <p style={Styles.Code.code}>
+                                <span style={Styles.Code.keyword}>var </span>
+                                <span style={Styles.Code.var}>x </span>
+                                <span style={Styles.Code.reg}>= 4</span>
+                                </p>
+                            )}
+                            <p style={{...lessonText, marginBottom: 0}}>
+                                Most of the time, you will do <strong>both at once</strong>, on one line.
+                            </p>
+                        </div>
+
+                        <p style={{...lessonText, marginTop: 24}}>
+                            Every
+                            <ODef
+                            text="programming language"
+                            modalContent={
+                            <ODefContnet
+                                color="#88fccc"
+                                word="Programming Language"
+                                definition="Computers only understand binary, which people can't easily read or write. Programming languages bridge that gap: each one has its own 'grammar' (called syntax) that we can write and the computer can translate. In these lessons we use JavaScript, Java, C# and Python."
+                                />}
+                            />
+                            writes this a little differently. Click through the tabs below to see the same three variables from the diagram above in each language.
                         </p>
                     </div>
                 </div>
             )
         }
 
-        
+        function renderThird(){
+            return(
+                <div>
+                    <Callout type="example" title="Reading the tabs">
+                        <ul style={{margin: 0, paddingLeft: 22}}>
+                            <li style={{...lessonText, marginBottom: 6}}>
+                                <strong>JavaScript</strong> starts with a <strong>keyword</strong>, <span style={{color: Styles.Code.keyword.color}}>let</span>, to announce a new variable.
+                            </li>
+                            <li style={{...lessonText, marginBottom: 6}}>
+                                <strong>Java and C#</strong> make you state what kind of value goes in the box first: <span style={{color: Styles.Code.keyword.color}}>int</span> for whole numbers, <span style={{color: Styles.Code.keyword.color}}>String</span> for text, and so on.
+                            </li>
+                            <li style={{...lessonText, marginBottom: 0}}>
+                                <strong>Python</strong> skips all of that. You just write the name and the value.
+                            </li>
+                        </ul>
+                    </Callout>
+
+                    <p style={lessonText}>
+                        That "kind of value" is called a <strong>data type</strong>, and it gets its own lesson soon. The takeaway for now: the syntax changes between languages, but the idea of a named box holding a value is the same everywhere.
+                    </p>
+
+                    <div style={{...Styles.Fonts.lessonHeader, marginTop: 40}}>Changing a Variable's Value</div>
+                    <div style={{marginTop: 16}}>
+                        <p style={lessonText}>
+                            To change a variable, assign it a new value. The old value is thrown away and replaced.
+                        </p>
+
+                        <div style={sideBySide}>
+                            {renderCodeBlock(
+                                <>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.keyword}>let </span>
+                                    <span style={Styles.Code.var}>score </span>
+                                    <span style={Styles.Code.reg}>= 0</span>
+                                    </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.var}>score </span>
+                                    <span style={Styles.Code.reg}>= 5</span>
+                                    </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.var}>score </span>
+                                    <span style={Styles.Code.reg}>= </span>
+                                    <span style={Styles.Code.var}>score </span>
+                                    <span style={Styles.Code.reg}>+ 1</span>
+                                    </p>
+                                    <p style={Styles.Code.code}>
+                                    <span style={Styles.Code.comment}>// score is now 6</span>
+                                    </p>
+                                </>
+                            , 260)}
+                            <div>
+                                <p style={lessonText}>
+                                    Line 2 replaces 0 with 5.
+                                </p>
+                                <p style={{...lessonText, marginBottom: 0}}>
+                                    Line 3 is the interesting one. The computer works out the right side first (5 + 1), then stores the result back in score.
+                                    This is how every score counter, cart total and timer works.
+                                </p>
+                            </div>
+                        </div>
+
+                        <Callout type="watch" title="= means store, not equals">
+                            <p style={{...lessonText, marginBottom: 0}}>
+                                In math, <strong>x = x + 1</strong> is impossible. In code it is completely normal, because = means "store the value on the right in the variable on the left."
+                                Checking whether two things are <em>equal</em> uses a different symbol, <strong>==</strong>, which you will meet in the next lesson.
+                            </p>
+                        </Callout>
+
+                        <p style={lessonText}>
+                            Some values should never change, like the number of days in a week. Those are created as <strong>constants</strong> instead (using <span style={{color: Styles.Code.keyword.color}}>const</span> in JavaScript), and trying to reassign one causes an error.
+                        </p>
+                    </div>
+                </div>
+            )
+        }
+
+        function renderWrapUp(){
+            return(
+                <div>
+                    <Recap
+                        points={[
+                            "A variable is a named container that holds a value.",
+                            "Declaring creates it, assigning gives it a value, and you can do both on one line.",
+                            "Each language writes it differently, but the idea is the same everywhere.",
+                            "Assigning a new value replaces the old one. The = sign means \"store\", not \"equals\".",
+                        ]}
+                    />
+
+                    <div style={{marginTop: 30}}>
+                        <OstrichForm
+                            style={{
+                                backgroundColor: Colors.offWhiteContent,
+                                boxShadow:'2px 2px 10px 2px rgba(20, 20, 15, 0.1)',
+                                borderRadius: 15
+                            }}
+                            title={"Check your Understanding"}
+                            fieldTextStyles={{fontSize: 16}}
+                            fields={[
+                                {
+                                    id: '1',
+                                    title: "1. After running  let score = 3  and then  score = score + 2 , what is the value of score?",
+                                    type: "MC",
+                                    options: ["3", "2", "5", "Nothing, an Error is thrown"],
+                                    correctValue: "5"
+                                },
+                                {
+                                    id: '2',
+                                    title: "2. Which line declares a variable WITHOUT assigning it a value?",
+                                    type: "MC",
+                                    options: ["var x", "var x = 4", "x = 4"],
+                                    correctValue: "var x"
+                                },
+                                {
+                                    id: '3',
+                                    title: "3. Which of these creates a variable called name in Python?",
+                                    type: "MC",
+                                    options: ["let name = \"Hank\"", "String name = \"Hank\";", "name = \"Hank\""],
+                                    correctValue: "name = \"Hank\""
+                                },
+                                {
+                                    id: '4',
+                                    title: "4. In code, what does a single = sign do?",
+                                    type: "MC",
+                                    options: ["Checks if two values are equal", "Stores the value on the right in the variable on the left"],
+                                    correctValue: "Stores the value on the right in the variable on the left"
+                                },
+                            ]}
+                        />
+                    </div>
+
+                    <NextLesson lesson="Operators" onClick={handleLessonClick}/>
+                </div>
+            )
+        }
+
+
     /////////////////
     // Main Return //
     /////////////////
@@ -354,13 +503,15 @@ const VariablesLesson = ({}) => {
             <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Variables")}
                 {renderFirst()}
-                <CodeSnippet
-                    js={renderVariablesJS()}
-                    java={renderVariableJavaAndC()}
-                    cs={renderVariableJavaAndC()}
-                    py={renderVariablesPython()}
-                />
                 {renderSecond()}
+                <CodeSnippet
+                    js={renderJavaScript()}
+                    java={renderJava()}
+                    cs={renderCs()}
+                    py={renderPython()}
+                />
+                {renderThird()}
+                {renderWrapUp()}
             </div>
         )
     }

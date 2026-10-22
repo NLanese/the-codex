@@ -5,10 +5,9 @@ import React, {useEffect, useState} from "react";
 import Styles from "../../../../styles/styles";
 
 // Ostrich
-import { ODef } from "@ostrich_development/ostrich-components";
-import { ODefContnet } from "../../../../constants/oDefContent";
- 
-// Recoil
+import { OstCard } from "@ostrich_development/ostrich-components";
+
+// Jotai
 import { useAtom } from "jotai";
 import { directoryDataState, tabBarState } from "../../../../jotai/atoms";
 
@@ -20,10 +19,7 @@ import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/le
 
 // Next JS
 import { useRouter } from "next/router";
-import { OstCard } from "@ostrich_development/ostrich-components";
 
-// Images
-const pseudoImage = "/assets/lesson_images/conditionals/pseudo1.png";
 
 const PrintingLesson = ({}) => {
 
@@ -73,230 +69,117 @@ const PrintingLesson = ({}) => {
         function handleLabsClick(lab){
             router.push(`/concepts/basics/labs/${lab.toLowerCase().replaceAll(" ", "_")}`)
         }
- 
+
     ////////////////////
     // Code Rendering //
     ////////////////////
 
-        // First Code Snippet // 
+    // First Code Snippet //
+
         function renderJavaScript(){
             return(
                 <div>
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>let </span>
-                        <span style={Styles.Code.var}>count </span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>let </span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>count </span>
-                        <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput </span>
-                        </p>
+                    <br></br>
 
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>console</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.func}>log(</span>
+                    <span style={Styles.Code.var}>score</span>
+                    <span style={Styles.Code.func}>)</span>
+                    </p>
 
-                        <br></br>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>if </span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>count </span>
-                            <span style={Styles.Code.reg}>% 2 </span>
-                            <span style={Styles.Code.reg}>== 0)</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.func}>log(</span>
-                            <span style={Styles.Code.str}>"Number is Even"</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>else </span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.func}>log(</span>
-                            <span style={Styles.Code.str}>"Number is Odd"</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// The terminal would show: 21</span>
+                    </p>
                 </div>
             )
         }
 
-        // First Code Snippet // 
         function renderJava(){
             return(
                 <div>
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>int </span>
-                        <span style={Styles.Code.var}>count</span>
-                        <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21;</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>count </span>
-                        <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput</span>
-                        <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <br></br>
 
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>System</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.var}>out</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.func}>println(</span>
+                    <span style={Styles.Code.var}>score</span>
+                    <span style={Styles.Code.func}>)</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
 
-                        <br></br>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>if </span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>count </span>
-                            <span style={Styles.Code.reg}>% 2 </span>
-                            <span style={Styles.Code.reg}>== 0)</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.func}>log(</span>
-                            <span style={Styles.Code.str}>"Number is Even"</span>
-                            <span style={Styles.Code.func}>)</span>
-                            <span style={Styles.Code.reg}>;</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>else </span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.func}>log(</span>
-                            <span style={Styles.Code.str}>"Number is Odd"</span>
-                            <span style={Styles.Code.func}>)</span>
-                            <span style={Styles.Code.reg}>;</span>
-                        </p>
-
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// The terminal would show: 21</span>
+                    </p>
                 </div>
             )
         }
 
-        // First Code Snippet // 
         function renderCs(){
             return(
                 <div>
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.keyword}>int </span>
-                        <span style={Styles.Code.var}>count</span>
-                        <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.keyword}>int </span>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21;</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>count </span>
-                        <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput</span>
-                        <span style={Styles.Code.reg}>;</span>
-                        </p>
+                    <br></br>
 
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>Console</span>
+                    <span style={Styles.Code.reg}>.</span>
+                    <span style={Styles.Code.func}>WriteLine(</span>
+                    <span style={Styles.Code.var}>score</span>
+                    <span style={Styles.Code.func}>)</span>
+                    <span style={Styles.Code.reg}>;</span>
+                    </p>
 
-                        <br></br>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>if </span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>count </span>
-                            <span style={Styles.Code.reg}>% 2 </span>
-                            <span style={Styles.Code.reg}>== 0)</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Even"</span>
-                            <span style={Styles.Code.func}>)</span>
-                            <span style={Styles.Code.reg}>;</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>else </span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Odd"</span>
-                            <span style={Styles.Code.func}>)</span>
-                            <span style={Styles.Code.reg}>;</span>
-                        </p>
-
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}>// The terminal would show: 21</span>
+                    </p>
                 </div>
             )
         }
 
-        // First Code Snippet // 
         function renderPython(){
             return(
                 <div>
-                        <p style={Styles.Code.code}>
-                        <span style={Styles.Code.var}>count </span>
-                        <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.var}>userInput </span>
-                        </p>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.var}>score </span>
+                    <span style={Styles.Code.reg}>= 21</span>
+                    </p>
 
+                    <br></br>
 
-                        <br></br>
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.func}>print(</span>
+                    <span style={Styles.Code.var}>score</span>
+                    <span style={Styles.Code.func}>)</span>
+                    </p>
 
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>if </span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.var}>count </span>
-                            <span style={Styles.Code.reg}>% 2 </span>
-                            <span style={Styles.Code.reg}>== 0)</span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Even"</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.func}>{"}"}</span>
-                        </p>
-
-                        <p style={Styles.Code.code}>
-                            <span style={Styles.Code.keyword}>else </span>
-                            <span style={Styles.Code.func}>{"{"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, marginLeft: 20}}>
-                            <span style={Styles.Code.func}>print(</span>
-                            <span style={Styles.Code.str}>"Number is Odd"</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-
+                    <p style={Styles.Code.code}>
+                    <span style={Styles.Code.comment}># The terminal would show: 21</span>
+                    </p>
                 </div>
             )
         }
-
 
     //////////////////////
     // Lesson Rendering //
@@ -306,51 +189,31 @@ const PrintingLesson = ({}) => {
             return(
                 <div>
                     <div style={Styles.Fonts.lessonHeader}>What is Printing?</div>
-                    <div style={Styles.Sections.lessonContent}>
-                    <div style={{...Styles.Fonts.basic}}>
-
-                        <p>
-                        <strong>First, lets go over 'printing'</strong>. Printing is one of the best tools available to developers, as it is the most basic but often
-                        most crucial line of defense against errors. What printing does is it takes any variable 
-                        and prints its value to your terminal at any given time. This allows developers to see where
-                        and when values are changing in their code, which helps us pin down where any errors may be. 
-                        </p>
-                        
-
-                        <p>
-                        In JavaScript and Java, you accomplish this by calling (typing) 
-                        <strong> console.log()</strong> with the variable who's value you want printed placed inside the parethesis. 
+                    <div>
+                        <p style={Styles.Fonts.basic}>
+                            <strong>First, let's go over 'printing'</strong>. Printing is one of the best tools available to developers, as it is the most basic but often
+                            most crucial line of defense against errors. What printing does is it takes any variable
+                            and prints its value to your terminal at any given time. This allows developers to see where
+                            and when values are changing in their code, which helps us pin down where any errors may be.
                         </p>
 
-                        <p>
-                        In C# and Python, you accomplish this by calling (typing) 
-                        <strong> print()</strong> with the variable who's value you want printed placed inside the parethesis. 
-                        </p>
-
-                        <p>
-                        If you are developing in an IDE like Eclipse or Visual Studio Code, the terminal will be on the bottom of 
-                        your screen. This is where any errors or printed statements will appear. However, you can also have websites print statements. 
-                        To clarify, this is <strong>a far different process than rendering things on the screen.</strong> Everything you see here is 
-                        rendered on the webpage, none of this content is printed. 
-                        </p>
-
-                        <p>
-                        To test this, please right click on your screen and select the option "Inspect" if you are on Google Chrome and "Inspect Element"
-                        on Internet Explorer windows. <strong>if this is not working for you, click this <a href="https://zapier.com/blog/inspect-element-tutorial/">here</a></strong>
-                        </p>
-
-                        Once you are able to Inspect, switch the new tab (which will be on the left of your screen on Google and the bottom on Explorer) switch to the 'console' tab. 
-                        Now, you are able to hit the button below and see the console fill up with printed statements!
-
-                        <OstCard
-                            style={{marginLeft: '30%', marginRight: '30%', marginTop: 30}}
-                            onClick={() => console.log("Good job! Noow look at these printed statements!")}
-                        >
-                            <p style={{textAlign: 'center'}}>
-                            Click me to Test Printing
+                        <div style={Styles.Sections.importantNote}>
+                            <p style={Styles.Fonts.basic}>
+                                Every language has its own way of printing, but they all work the same way: you call (type) the print command with the variable whose value you want printed placed inside the parentheses.
                             </p>
-                        </OstCard>
-                    </div>
+                            <li style={Styles.Fonts.basic}>
+                                In <strong>JavaScript</strong>, you call <strong>console.log()</strong>
+                            </li>
+                            <li style={Styles.Fonts.basic}>
+                                In <strong>Java</strong>, you call <strong>System.out.println()</strong>
+                            </li>
+                            <li style={Styles.Fonts.basic}>
+                                In <strong>C#</strong>, you call <strong>Console.WriteLine()</strong>
+                            </li>
+                            <li style={Styles.Fonts.basic}>
+                                In <strong>Python</strong>, you call <strong>print()</strong>
+                            </li>
+                        </div>
                     </div>
                 </div>
             )
@@ -359,15 +222,48 @@ const PrintingLesson = ({}) => {
         function renderSecond(){
             return(
                 <div>
-                    <div style={Styles.Fonts.lessonHeader}>How do we USE printing?</div>
-                    <div style={Styles.Sections.lessonContent}>
-                        <div style={{...Styles.Fonts.basic}}>
-                            <p>
-                            Many times in development, you will run into some unexpected issues. Maybe a simple function will error out, claiming that you are trying to 
-                            access a variable that doesnt exist. Other times the varibale may exist but not have the value you are expecting. These issues will cause your 
-                            application to function improperly. Let's look at the code snippet below and explore this concept.
+                    <p style={Styles.Fonts.basic}>
+                        If you are developing in an IDE like Eclipse or Visual Studio Code, the terminal will be on the bottom of
+                        your screen. This is where any errors or printed statements will appear. However, you can also have websites print statements.
+                        To clarify, this is <strong>a far different process than rendering things on the screen.</strong> Everything you see here is
+                        rendered on the webpage; none of this content is printed.
+                    </p>
+
+                    <div style={Styles.Fonts.lessonHeader}>Try it Yourself</div>
+                    <div>
+                        <p style={Styles.Fonts.basic}>
+                            To test this, right click on your screen and select the option "Inspect" (in Chrome, Edge, or Firefox).
+                            <strong> If this is not working for you, click <a href="https://zapier.com/blog/inspect-element-tutorial/" target="_blank" rel="noopener noreferrer">here</a>.</strong>
+                        </p>
+
+                        <p style={Styles.Fonts.basic}>
+                            Once you are able to Inspect, switch to the 'Console' tab in the new panel that opens. Now, you are able to hit the button below and see the console fill up with printed statements!
+                        </p>
+
+                        <OstCard
+                            style={{marginLeft: '30%', marginRight: '30%', marginTop: 30}}
+                            onClick={() => console.log("Good job! Now look at these printed statements!")}
+                        >
+                            <p style={{...Styles.Fonts.basic, textAlign: 'center'}}>
+                            Click me to Test Printing
                             </p>
-                        </div>
+                        </OstCard>
+                    </div>
+                </div>
+            )
+        }
+
+        // TODO: Unfinished section, not rendered yet. Add it back to MAIN() once complete.
+        function renderThird(){
+            return(
+                <div>
+                    <div style={Styles.Fonts.lessonHeader}>How do we USE printing?</div>
+                    <div>
+                        <p style={Styles.Fonts.basic}>
+                            Many times in development, you will run into some unexpected issues. Maybe a simple function will error out, claiming that you are trying to
+                            access a variable that doesn't exist. Other times the variable may exist but not have the value you are expecting. These issues will cause your
+                            application to function improperly. Let's look at the code snippet below and explore this concept.
+                        </p>
                         <div style={Styles.Sections.simpleLessonCode}>
                             <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>let </span>
@@ -377,32 +273,37 @@ const PrintingLesson = ({}) => {
                             <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>let </span>
                             <span style={Styles.Code.var}>y </span>
-                            <span style={Styles.Code.reg}>= "5"</span>
+                            <span style={Styles.Code.reg}>= </span>
+                            <span style={Styles.Code.str}>"5"</span>
                             </p>
                             <p style={Styles.Code.code}>
                             <span style={Styles.Code.keyword}>let </span>
                             <span style={Styles.Code.var}>z </span>
                             <span style={Styles.Code.reg}>= 50</span>
                             </p>
-
-                            <br></br>
-                            
                         </div>
                     </div>
                 </div>
             )
         }
-        
+
+
     /////////////////
     // Main Return //
     /////////////////
 
     function MAIN(){
         return (
-            <div style={{marginTop: '-3.2%'}}>
+            <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Printing and Debugging")}
                 {renderFirst()}
-                {/* {renderSecond()} */}
+                <CodeSnippet
+                    js={renderJavaScript()}
+                    java={renderJava()}
+                    cs={renderCs()}
+                    py={renderPython()}
+                />
+                {renderSecond()}
             </div>
         )
     }
@@ -415,7 +316,7 @@ const PrintingLesson = ({}) => {
             labs={basicsLabs}
             onTestsClick={handleTestClick}
             tests={basicsTests}
-            current={"Data Types"}
+            current={"Printing and Debugging"}
         >
             {MAIN()}
         </LessonTemplatePage>
