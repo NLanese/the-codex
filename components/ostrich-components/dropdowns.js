@@ -1,1036 +1,286 @@
-import React, {useEffect, useState} from "react";
-import Styles from "../../styles/styles";
+import React, { useState } from "react";
 import { OstrichDropDown } from "@ostrich_development/ostrich-components";
-import { OstCard } from "@ostrich_development/ostrich-components";
+import { DocPage, Section, SubHeading, P, C, Note, Example, ExampleRow, PropGrid, style } from "./docKit";
 
+const DROPDOWN_PROPS = [
+    {
+        title: "Content",
+        props: [
+            { name: "label", type: "String", desc: "The text shown on the dropdown itself.", old: "title" },
+            { name: "drawers", type: "Array", desc: "The items in the menu. Strings or numbers work, or drawer objects (see below) to style and program each one." },
+            { name: "obj", type: "Object", desc: "Pass the whole dropdown as one object ({ title, drawers, style, onDrawerClick... }). Handy for data-driven menus." },
+            { name: "labelChanges", type: "Boolean", def: false, desc: "The label becomes the title of the drawer that was picked.", old: "titleChanges" },
+            { name: "isInput", type: "Boolean", def: false, desc: "The label becomes a text box that filters the drawers as you type." },
+            { name: "canAddCustomInputs", type: "Boolean", def: false, desc: "isInput only: keep typed text even when it matches no drawer." },
+            { name: "placeholder", type: "String", def: "\"Begin Typing...\"", desc: "isInput only: the empty text box's placeholder." },
+            { name: "inputProps", type: "Object", desc: "isInput only: extra attributes for the <input> (name, autoComplete, maxLength...)." },
+        ],
+    },
+    {
+        title: "Opening and closing",
+        props: [
+            { name: "openOnHover", type: "Boolean", def: true, desc: "Opens as soon as the cursor enters. false means it opens on click." },
+            { name: "closeOnLeave", type: "Boolean", def: true, desc: "Closes when the cursor leaves both the dropdown and its menu." },
+            { name: "defaultOpen", type: "Boolean", def: false, desc: "Starts open.", old: "open" },
+            { name: "manualOpen", type: "Boolean", def: false, desc: "Clicking and hovering never toggle the menu; only defaultOpen does." },
+            { name: "maxMenuHeight", type: "Number", def: 500, desc: "Tallest the open menu gets before it scrolls.", old: "maxDrawerContainerHeight" },
+        ],
+    },
+    {
+        title: "Look",
+        props: [
+            { name: "showsHover", type: "Boolean", def: true, desc: "false: the dropdown keeps its normal style when hovered.", old: "boxHovers" },
+            { name: "showsActive", type: "Boolean", def: true, desc: "false: the dropdown keeps its normal style while open.", old: "boxActivates" },
+            { name: "drawersShowHover", type: "Boolean", def: true, desc: "false: drawers don't change when hovered.", old: "drawersHover" },
+            { name: "drawersShowActive", type: "Boolean", def: true, desc: "false: drawers don't stay highlighted after being picked.", old: "drawersActivate" },
+            { name: "rounded", type: "Boolean", def: true, desc: "Rounded corners." },
+            { name: "noBorder", type: "Boolean", def: false, desc: "Removes the default border." },
+            { name: "noShadow", type: "Boolean", def: false, desc: "Removes the default shadow." },
+        ],
+    },
+    {
+        title: "Events",
+        props: [
+            { name: "onDrawerClick", type: "Function", desc: "Runs when any drawer is picked. Receives the drawer you passed in (string, number or object)." },
+            { name: "onClick", type: "Function", desc: "Runs when the dropdown itself is clicked." },
+            { name: "onMouseEnter", type: "Function", desc: "Runs when the cursor enters the dropdown." },
+            { name: "onMouseLeave", type: "Function", desc: "Runs when the cursor leaves the dropdown." },
+            { name: "onInputChange", type: "Function", desc: "isInput only: runs on every keystroke with the typed text.", old: "onChangeWhenInput" },
+            { name: "onLabelChange", type: "Function", desc: "Runs whenever the shown label changes (typing, picking or clearing).", old: "onTitleChange" },
+        ],
+    },
+    {
+        title: "Styles",
+        note: "Hover and active styles only need the differences; they're layered over the normal style.",
+        props: [
+            style("style", "The dropdown.", "boxStyle"),
+            style("hoverStyle", "The dropdown, when hovered.", "hoverBoxStyle"),
+            style("activeStyle", "The dropdown, while open.", "activeBoxStyle"),
+            style("labelStyle", "The label text.", "titleStyle"),
+            style("hoverLabelStyle", "The label text, when hovered.", "hoverTitleStyle"),
+            style("activeLabelStyle", "The label text, while open.", "activeTitleStyle"),
+            style("labelAreaStyle", "The box around the label or text box."),
+            style("inputStyle", "isInput only: the text box (layered over labelStyle)."),
+            style("drawerStyle", "Every drawer."),
+            style("hoverDrawerStyle", "Every drawer, when hovered."),
+            style("activeDrawerStyle", "Every drawer, after being picked."),
+            style("drawerLabelStyle", "The text inside every drawer."),
+            style("menuStyle", "The box the drawers sit in (this is what scrolls).", "drawerContainerStyle"),
+            style("menuContainerStyle", "The box that positions the menu. Default: just below, full width, zIndex 10."),
+            style("menuAreaStyle", "The space under the label that holds the menu."),
+        ],
+    },
+]
 
-export default function DropdownShowcase(){
-    const [titleForDrop3, setTitleForDrop3] = useState("Dynamic Title")
-    const [colorForDrop4, setColorForDrop4] = useState("white")
-    const [totalForDrop5, setTotalForDrop5] = useState(0)
+const DRAWER_PROPS = [
+    {
+        title: "Each drawer object",
+        note: "Anything else you add (value, type, id...) is handed back to your click functions untouched.",
+        props: [
+            { name: "title", type: "String", desc: "Text in the drawer." },
+            { name: "onClick", type: "Function", desc: "Runs when this drawer is picked, in addition to the dropdown's onDrawerClick." },
+            { name: "manualOnClick", type: "Boolean", def: false, desc: "true: skip the dropdown's onDrawerClick for this drawer." },
+            { name: "clickable", type: "Boolean", def: true, desc: "false: this drawer ignores clicks." },
+            { name: "tag", type: "String", desc: "Extra text that isInput searches match against." },
+            { name: "value", type: "Any", desc: "Any data you want back when it's clicked." },
+            style("style", "This drawer."),
+            style("hoverStyle", "This drawer, when hovered."),
+            style("activeStyle", "This drawer, after being picked."),
+            style("labelStyle", "This drawer's text."),
+        ],
+    },
+]
 
+export default function DropdownShowcase() {
+    const [dynamicLabel, setDynamicLabel] = useState("Dynamic Title")
+    const [color, setColor] = useState("white")
+    const [total, setTotal] = useState(0)
+    const [typed, setTyped] = useState("")
 
-    return(
-        <div style={{marginBottom: 30}}>
-        <div style={{...Styles.Sections.lessonContent, marginLeft: '5%', width: '80%'}}>
-            <div style={Styles.Fonts.lessonHeader}>Ostrich Dropdown Menus (OstrichDropDowns)</div>
-            
-            {/* Preamble */}
-            <p style={Styles.Fonts.basic}>
-            Ostrich Components provide a means for consolidating many selections or a collection of information via the OstrichDropDown. Without any styling or advanced tuning needed, 
-            OstrichDropDowns simply take an object or an array representing some data and processes it into a well rendered dropdown, with its own onHover features and clickability.     
-            </p>
+    return (
+        <DocPage
+            title="Ostrich Dropdowns"
+            component="<OstrichDropDown />"
+            imports="OstrichDropDown"
+            intro={<>Give an <C>OstrichDropDown</C> a label and an array, and it renders a styled dropdown with hover effects, clickable drawers, and keyboard support (arrow keys, Enter and Escape) out of the box.</>}
+            sections={["Basics", "Programming each drawer", "Search box dropdowns", "Props", "Drawer objects"]}
+        >
+            <Section title="Basics">
+                <ExampleRow>
+                    <Example
+                        title="Vanilla dropdown"
+                        description="Opens on hover."
+                        previewStyle={{ minHeight: 200, alignItems: "flex-start", alignContent: "flex-start" }}
+                        code={`
+                            <OstrichDropDown
+                                label="Vanilla Dropdown"
+                                drawers={[1, 2, 3]}
+                            />
+                        `}
+                    >
+                        <OstrichDropDown label="Vanilla Dropdown" drawers={[1, 2, 3]} />
+                    </Example>
+                    <Example
+                        title="Click to open"
+                        previewStyle={{ minHeight: 200, alignItems: "flex-start", alignContent: "flex-start" }}
+                        code={`
+                            <OstrichDropDown
+                                label="Click to Open"
+                                openOnHover={false}
+                                drawers={[1, 2, 3]}
+                            />
+                        `}
+                    >
+                        <OstrichDropDown label="Click to Open" openOnHover={false} drawers={[1, 2, 3]} />
+                    </Example>
+                    <Example
+                        title="Label follows the pick"
+                        description="Use labelChanges, or set the label yourself in onDrawerClick."
+                        previewStyle={{ minHeight: 200, alignItems: "flex-start", alignContent: "flex-start" }}
+                        code={`
+                            const [label, setLabel] = useState("Dynamic Title")
 
-            <p style={Styles.Fonts.basic}>
-            Let's check out some examples
-            </p>
+                            <OstrichDropDown
+                                label={label}
+                                drawers={[1, 2, 3]}
+                                onDrawerClick={(drawer) => setLabel(drawer)}
+                            />
+                        `}
+                    >
+                        <OstrichDropDown label={String(dynamicLabel)} drawers={[1, 2, 3]} onDrawerClick={(drawer) => setDynamicLabel(drawer)} />
+                    </Example>
+                </ExampleRow>
+            </Section>
 
-            {/* Ost Dropdown Example Row One */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
+            <Section title="Programming each drawer">
+                <P>Drawers can be objects instead of plain values. Each one can carry its own styles and click function, plus any data you want handed back when it's picked.</P>
+                <ExampleRow>
+                    <Example
+                        title="Unique drawer styles"
+                        size="wide"
+                        previewStyle={{ minHeight: 230, alignItems: "flex-start", alignContent: "flex-start" }}
+                        code={`
+                            const [color, setColor] = useState("white")
 
-                    {/* Vanilla Dropdown */}
-                    <OstrichDropDown
-                        title="Vanilla Dropdown"
-                        drawers={[1, 2, 3]}
-                    />
+                            <OstrichDropDown
+                                label="Unique Drawer Styles"
+                                style={{ width: 350, backgroundColor: color }}
+                                activeStyle={{ backgroundColor: color }}
+                                onDrawerClick={(drawer) => setColor(drawer.style.color)}
+                                drawers={[
+                                    {
+                                        title: "Red",
+                                        style: { color: "red" },
+                                        hoverStyle: { backgroundColor: "pink", color: "black" },
+                                        activeStyle: { backgroundColor: "red", color: "black" },
+                                    },
+                                    {
+                                        title: "Blue",
+                                        style: { color: "blue" },
+                                        hoverStyle: { backgroundColor: "cyan", color: "black" },
+                                        activeStyle: { backgroundColor: "blue", color: "black" },
+                                    },
+                                    {
+                                        title: "Green",
+                                        style: { color: "green" },
+                                        hoverStyle: { backgroundColor: "lime", color: "black" },
+                                        activeStyle: { backgroundColor: "green", color: "black" },
+                                    },
+                                ]}
+                            />
+                        `}
+                    >
+                        <OstrichDropDown
+                            label="Unique Drawer Styles"
+                            style={{ width: 350, maxWidth: "100%", backgroundColor: color }}
+                            activeStyle={{ backgroundColor: color }}
+                            onDrawerClick={(drawer) => setColor(drawer.style.color)}
+                            drawers={[
+                                { title: "Red", style: { color: "red" }, hoverStyle: { backgroundColor: "pink", color: "black" }, activeStyle: { backgroundColor: "red", color: "black" } },
+                                { title: "Blue", style: { color: "blue" }, hoverStyle: { backgroundColor: "cyan", color: "black" }, activeStyle: { backgroundColor: "blue", color: "black" } },
+                                { title: "Green", style: { color: "green" }, hoverStyle: { backgroundColor: "lime", color: "black" }, activeStyle: { backgroundColor: "green", color: "black" } },
+                            ]}
+                        />
+                    </Example>
+                    <Example
+                        title="A click function per drawer"
+                        description="drawersShowActive={false} keeps a drawer from staying highlighted, which suits buttons."
+                        previewStyle={{ minHeight: 230, alignItems: "flex-start", alignContent: "flex-start" }}
+                        code={`
+                            const [total, setTotal] = useState(0)
 
-                    {/* Click to Open Dropdown */}
-                    <OstrichDropDown
-                        title="Click to Open"
-                        openOnHover={false}
-                        drawers={[1, 2, 3]}
-                    />
+                            <OstrichDropDown
+                                label={\`Total: \${total}\`}
+                                drawersShowActive={false}
+                                drawers={[
+                                    {
+                                        title: "Increase By One",
+                                        onClick: () => setTotal(total + 1),
+                                    },
+                                    {
+                                        title: "Decrease By Two",
+                                        onClick: () => setTotal(total - 2),
+                                    },
+                                    {
+                                        title: "Double the total",
+                                        onClick: () => setTotal(total * 2),
+                                    },
+                                ]}
+                            />
+                        `}
+                    >
+                        <OstrichDropDown
+                            label={`Total: ${total}`}
+                            style={{ width: 300, maxWidth: "100%" }}
+                            drawersShowActive={false}
+                            drawers={[
+                                { title: "Increase By One", onClick: () => setTotal(total + 1) },
+                                { title: "Decrease By Two", onClick: () => setTotal(total - 2) },
+                                { title: "Double the total", onClick: () => setTotal(total * 2) },
+                            ]}
+                        />
+                    </Example>
+                </ExampleRow>
+            </Section>
 
-                    {/* Click to Open Dropdown */}
-                    <OstrichDropDown
-                        title={titleForDrop3}
-                        drawers={[1, 2, 3]}
-                        onDrawerClick={(drawer) => setTitleForDrop3(drawer)}
-                    />
-            </div>
-
-            {/* Ost Dropdown Code Row One */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    {/* Template One */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '33%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>"Vanilla Dropdown"</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawers</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>1, 2, 3</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-
-                    {/* Click to Open Dropdown */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>"Click to Open"</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawers</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>1, 2, 3</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>openOnHover</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.bool}>false</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-
-                    {/* Dynamic Title  Dropdown */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '33%'}}>
-                    <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
-                        <span style={Styles.Code.keyword}>const [</span>
-                        <span style={Styles.Code.var}>title</span>
-                        <span style={Styles.Code.reg}>,</span>
-                        <span style={Styles.Code.func}> setTitle</span>
-                        <span style={Styles.Code.keyword}>] </span>
-                        <span style={Styles.Code.reg}> = </span>
-                        <span style={Styles.Code.var}>useState</span>
-                        <span style={Styles.Code.keyword}>{"("}</span>
-                        <span style={Styles.Code.str}>"Dynamic Title"</span>
-                        <span style={Styles.Code.keyword}>{")"}</span>
-                    </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawers</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>1, 2, 3</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>onDrawerClick</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"("}</span>
-                            <span style={Styles.Code.var}>input</span>
-                            <span style={Styles.Code.str}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => {"}</span>
-                            <span style={Styles.Code.func}>setTitle(</span>
-                            <span style={Styles.Code.var}>input</span>
-                            <span style={Styles.Code.func}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-            </div>
-
-            {/* Preamble */}
-            <p style={{...Styles.Fonts.basic, marginTop: 50}}>
-            As shown above, the <strong>Ostrich Dropdown menu</strong> can quickly and easily generate a dropdown menu for an array of items. They produce a sleak and responsive Drop menu as well as drawers, but that's not all you can do with OstrichDropDowns.
-            You can add unique styles or functionalities to individual drawers by adding properties to the `drawers` array's items. 
-            </p>
-
-            <p style={Styles.Fonts.basic}>
-            Let's check out some examples
-            </p>
-
-            {/* Ost Dropdown Example Row One */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    <OstrichDropDown 
-                        title={"Unique Drawer Styles"}
-                        boxStyle={{width: 350, backgroundColor: colorForDrop4}}
-                        activeBoxStyle={{backgroundColor: colorForDrop4}}
-                        onDrawerClick={(drawer) => setColorForDrop4(drawer.style.color)}
-                        drawers={[
-                            {
-                                title: "Red", 
-                                style: {color: 'red'}, 
-                                activeStyle: {backgroundColor: 'red', color: 'black'},
-                                hoverStyle: {backgroundColor: 'pink', color: 'black'}
-                            },
-                            {
-                                title: "Blue", 
-                                style: {color: 'blue'}, 
-                                activeStyle: {backgroundColor: 'blue', color: 'black'},
-                                hoverStyle: {backgroundColor: 'cyan', color: 'black'}
-                            },
-                            {
-                                title: "Green", 
-                                style: {color: 'green'}, 
-                                activeStyle: {backgroundColor: 'green', color: 'black'},
-                                hoverStyle: {backgroundColor: 'lime', color: 'black'}
-                            }
-                        ]}
-                    />
-                    <OstrichDropDown 
-                        title={(`Total: ${totalForDrop5}`)}
-                        boxStyle={{width: 350}}
-                        drawersActivate={false}
-                        drawers={[
-                            {
-                                title: "Increase By One", 
-                                onClick: () => setTotalForDrop5(totalForDrop5 + 1)
-                            },
-                            {
-                                title: "Decrease By Two", 
-                                onClick: () => setTotalForDrop5(totalForDrop5 - 2)
-                            },
-                            {
-                                title: "Double the total", 
-                                onClick: () => setTotalForDrop5(totalForDrop5 * 2)
-                            }
-                        ]}
-                    />
-            </div>
-
-            {/* Ost Dropdown Code Row Two */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    {/* Unique Drawer Styles Code */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
-                    <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
-                        <span style={Styles.Code.keyword}>const [</span>
-                        <span style={Styles.Code.var}>pickedColor</span>
-                        <span style={Styles.Code.reg}>,</span>
-                        <span style={Styles.Code.func}> setPickedColor</span>
-                        <span style={Styles.Code.keyword}>] </span>
-                        <span style={Styles.Code.reg}> = </span>
-                        <span style={Styles.Code.var}>useState</span>
-                        <span style={Styles.Code.keyword}>{"("}</span>
-                        <span style={Styles.Code.str}>"white"</span>
-                        <span style={Styles.Code.keyword}>{")"}</span>
-                    </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>"Unique Drawer Styles"</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>boxStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>width: </span>
-                            <span style={Styles.Code.reg}>350, </span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.var}>pickedColor</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>activeBoxStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.var}>pickedColor</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>onDrawerClick</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"("}</span>
-                            <span style={Styles.Code.var}>drawer</span>
-                            <span style={Styles.Code.str}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{" => {"}</span>
-                            <span style={Styles.Code.func}>setColor(</span>
-                            <span style={Styles.Code.var}>drawer.style.color</span>
-                            <span style={Styles.Code.func}>{")"}</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawers</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title: </span>
-                            <span style={Styles.Code.str}>"Red"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>style: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"red"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>activeStyle: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.str}>"red"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"black"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>hoverStyle: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.str}>"pink"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"black"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"},"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title: </span>
-                            <span style={Styles.Code.str}>"Blue"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>style: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"blue"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>activeStyle: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.str}>"blue"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"black"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>hoverStyle: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.str}>"cyan"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"black"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"},"}</span>
-                        </p>
-
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title: </span>
-                            <span style={Styles.Code.str}>"Green"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>style: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"green"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>activeStyle: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.str}>"green"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"black"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>hoverStyle: </span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>backgroundColor: </span>
-                            <span style={Styles.Code.str}>"lime"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                            <span style={Styles.Code.var}>color: </span>
-                            <span style={Styles.Code.str}>"black"</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-
-
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.keyword}>{"]"}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 0}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-
-                    {/* Unique Drawer onClicks */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '45%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginBottom: 15}}>
-                            <span style={Styles.Code.keyword}>const [</span>
-                            <span style={Styles.Code.var}>total</span>
-                            <span style={Styles.Code.reg}>,</span>
-                            <span style={Styles.Code.func}> setTotal</span>
-                            <span style={Styles.Code.keyword}>] </span>
-                            <span style={Styles.Code.reg}> = </span>
-                            <span style={Styles.Code.var}>useState</span>
-                            <span style={Styles.Code.keyword}>{"("}</span>
-                            <span style={Styles.Code.reg}>0</span>
-                            <span style={Styles.Code.keyword}>{")"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstrichDropDown</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>`</span>
-                            <span style={Styles.Code.str}>Total: </span>
-                            <span style={Styles.Code.keyword}>{"${"}</span>
-                            <span style={Styles.Code.var}>total</span>
-                            <span style={Styles.Code.keyword}>{"}`"}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>boxStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"{"}</span>
-                            <span style={Styles.Code.var}>width: </span>
-                            <span style={Styles.Code.reg}>350 </span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.keyword}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawersActivate</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.bool}>false</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>drawers</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.keyword}>{"["}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title: </span>
-                            <span style={Styles.Code.str}>"Increase By One"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>onClick: </span>
-                            <span style={Styles.Code.keyword}>{"() => "}</span>
-                            <span style={Styles.Code.func}>setTotal(</span>
-                            <span style={Styles.Code.var}>total</span>
-                            <span style={Styles.Code.reg}> + 1</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"},"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title: </span>
-                            <span style={Styles.Code.str}>"Decrease By Two"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>onClick: </span>
-                            <span style={Styles.Code.keyword}>{"() => "}</span>
-                            <span style={Styles.Code.func}>setTotal(</span>
-                            <span style={Styles.Code.var}>total</span>
-                            <span style={Styles.Code.reg}> - 2</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"},"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title: </span>
-                            <span style={Styles.Code.str}>"Double Total"</span>
-                            <span style={Styles.Code.reg}>,</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>onClick: </span>
-                            <span style={Styles.Code.keyword}>{"() => "}</span>
-                            <span style={Styles.Code.func}>setTotal(</span>
-                            <span style={Styles.Code.var}>total</span>
-                            <span style={Styles.Code.reg}> * 2</span>
-                            <span style={Styles.Code.func}>)</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"},"}</span>
-                        </p>
-
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-
-            </div>
-
-            {/* Props Header */}
-            <div style={{...Styles.Fonts.lessonSubHeader, marginTop: 60}}>
-                OstrichDropDown Props
-            </div>
-
-            {/* Props Row One */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardStr}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>title</span>
-                            <span style={Styles.Fonts.h2}> - String</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            A string value that will be shown on the dropdown tab itself
-                        </p>
-                    </div>
-                </OstCard>
-               
-                <OstCard style={Styles.Sections.propCardFunc}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>onClick</span>
-                            <span style={Styles.Fonts.h2}> - Function</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> A function that fires every time the Dropdown Tab is clicked
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardFunc}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>onMouseEnter</span>
-                            <span style={Styles.Fonts.h2}> - Function</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> A function that fires every time the user's cursor enters the Dropdown Tab's dimensions
-                        </p>
-                    </div>
-                </OstCard>
-            </div>
-
-            {/* Props Row Two */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardFunc}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>onMouseLeave</span>
-                            <span style={Styles.Fonts.h2}> - Function</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> A function that fires every time the user's cursor leaves the Dropdown Tab's dimensions
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>openOnHover</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                          DEFAULTS TO TRUE. If true, the Dropdown Tab will open its drawers as soon as the user's cursor enters its dimensions
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>closeOnLeave</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                          DEFAULTS TO TRUE. If true, the Dropdown Tab will close its drawers as soon as the user's cursor leaves the dimensions of both the Dropdown tab as well as its drawers.
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Three */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>boxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided.
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>hoverBoxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while hovered. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>activeBoxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                        <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while the drawers are opened. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Four */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>titleStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the text in the Dropdown Tab itself. If nothing is provided, then the default styles alone will apply. 
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>hoverTitleStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the text in the Dropdown Tab itself while hovered. If nothing is provided, then the default styles alone will apply. Only the differences between this and the titleStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>activeBoxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                        <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while the drawers are opened. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided.
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Five */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>boxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided.
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>hoverBoxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while hovered. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>activeBoxStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                        <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Tab itself while the drawers are opened. If nothing is provided, then the default styles alone will apply. It is recommended at least that a backgroundColor be provided. Only the differences between this and the boxStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Six */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>drawerStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Drawers when not hovered and not active. If nothing is provided, then the default styles alone will apply. 
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>hoverDrawerStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Drawers when not hovered and not active. If nothing is provided, then the default styles alone will apply. Only the differences between this and the drawerStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardObj}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>activeDrawerStyle</span>
-                            <span style={Styles.Fonts.h2}> - Object</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> Style of the Dropdown Drawers when not hovered and not active. If nothing is provided, then the default styles alone will apply. Only the differences between this and the drawerStyle will need to be includes, as this will inherit
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-             {/* Props Row Seven */}
-             <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>drawerStyle</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                          DEFAULTS TO FALSE. If true, the Dropdown Tab will ONLY open when the 'open' prop is set to true. This means hovering over it and clicking it will not open it unless otherwise specified through the appropriate props. 
-                        </p>
-                    </div>
-                </OstCard>
-                
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>open</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            <span style={{fontWeight: 600}}>(Optional)</span> If this value is 'true' then the drawers will be open. If this value is false AND 'manualOpen' is true, then the drawers will be closed. If this value is not provided, the Dropdown will behave normally, opening on hover unless openOnHover is false; in which case users will have to click the Dropdown Tab to open it
-                        </p>
-                    </div>
-                </OstCard>
-               
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>boxHovers</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                          DEFAULTS TO TRUE. If false, hovering over a dropdown tab will not change its Style. This does not change anything if openOnHover is true, as Dropdowns display their aciveBoxStyle when opened.
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Eight */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>boxActivates</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                          DEFAULTS TO TRUE. If false, clicking on a dropdown tab or hovering over it while openOnHover is true will not change its Style. 
-                        </p>
-                    </div>
-                </OstCard>
-
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>drawersActivate</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                          DEFAULTS TO TRUE. If false, clicking on a dropdown drawer will not change its Style. 
-                        </p>
-                    </div>
-                </OstCard>
-
-               
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>noShadow</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            DEFAULTS TO FALSE. If true, then the default boxShadow rules will not be applied
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Nine */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 15,
-                height: 140,
-                gap: 15
-            }}>
-
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>noBorder</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            DEFAULTS TO FALSE. If true, then the default border rules will not be applied
-                        </p>
-                    </div>
-                </OstCard>
-
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>drawersHover</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            DEFAULTS TO TRUE. If false, then the Dropdown Drawers will not change style when hovered.
-                        </p>
-                    </div>
-                </OstCard>
-               
-                <OstCard style={Styles.Sections.propCardBool}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>drawersHover</span>
-                            <span style={Styles.Fonts.h2}> - Boolean</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            DEFAULTS TO TRUE. If false, then the Dropdown Drawers will not change style when activated / clicked.
-                        </p>
-                    </div>
-                </OstCard>
-                
-            </div>
-
-            {/* Props Row Ten */}
-            <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: 15,
-                height: 320,
-                width: '60%',
-                paddingLeft: '20%'
-            }}>
-
-                <OstCard style={{...Styles.Sections.propCardArr, paddingRight: 15, paddingLeft: 15}}>
-                    <div>
-                        <p style={{textAlign: 'center'}}>
-                            <span style={Styles.Fonts.h3}>drawers</span>
-                            <span style={Styles.Fonts.h2}> - Array</span>
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            This is the value that dictates not only what the value of the drawers are, but also how each drawer will operate or be sytled uniquely from the others. 
-                            There are several examples of different 'tabs' values in the showcase Dropdowns above.  
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            The 'tabs' value can simply be an array of strings or numbers; in which case the dropdown drawers will all inherit the styles and click functions that were provided to the Dropdown directly (through props like onClick, onMouseEnter, etc.)
-                        </p>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            Additionally, the 'tabs' value can be an array of objects, and each object will mirror the props of the dropdown. To be specific, acceptable object values are as follows...
-                        </p>
-                        <div style={{width: '10%', paddingLeft: '42.5%'}}>
-                            <ul style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                                <li>title</li>
-                                <li>style</li>
-                                <li>activeStyle</li>
-                                <li>hoverStyle</li>
-                                <li>onClick</li>
-                                <li>clickable</li>
-                                <li>manualOnClick</li>
-                            </ul>
+            <Section title="Search box dropdowns">
+                <P>With <C>isInput</C>, the label becomes a text box and the drawers narrow down as you type. Arrow keys move through the matches and Enter picks one.</P>
+                <ExampleRow>
+                    <Example
+                        title="Type to filter"
+                        size="wide"
+                        previewStyle={{ minHeight: 260, alignItems: "flex-start", alignContent: "flex-start" }}
+                        code={`
+                            <OstrichDropDown
+                                isInput
+                                placeholder="Search numbers..."
+                                onLabelChange={(text) => setTyped(text)}
+                                drawers={["1", "12", "123", "4", "45", "456", "567", "67890", "90"]}
+                            />
+                        `}
+                    >
+                        <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
+                            <OstrichDropDown
+                                isInput
+                                placeholder="Search numbers..."
+                                onLabelChange={(text) => setTyped(text)}
+                                drawers={["1", "12", "123", "4", "45", "456", "567", "67890", "90"]}
+                            />
+                            <span style={{ fontSize: 14, color: "#5f656e" }}>Current text: "{typed}"</span>
                         </div>
-                        <p style={{...Styles.Fonts.basic, marginTop: 10, textAlign: 'center', fontSize: 15}}>
-                            While the above values are all the values that the Ostrich Components are built to expect and utilize, that does not mean you cannot add more properties to the objects in the 'tabs' array.
-                            The functions that may fire, 'OnMouseEnter', 'OnMouseLeave', and 'OnClick' all expect the tab object itself as an optional input parameter. This means the entire object and all its properties are available for developers
-                            to use in the functions that are passed through as props. For example, {"'OnMouseEnter: (tab) => {console.log(tab.customKeyValue)}'"} would allow you to access any custom key value pair you put into a tab object.
-                        </p>
-                            
-                    </div>
-                </OstCard>
-                
-            </div>
+                    </Example>
+                </ExampleRow>
+            </Section>
 
-        </div>
-        </div>
+            <Section title="Props">
+                <PropGrid title="OstrichDropDown props" groups={DROPDOWN_PROPS} />
+                <Note>The old prop names (shown on each card) still work, so existing code doesn't break.</Note>
+            </Section>
+
+            <Section title="Drawer objects">
+                <P>Every item in <C>drawers</C> can be a string, a number, or an object with these keys.</P>
+                <PropGrid title="Drawer keys" groups={DRAWER_PROPS} />
+            </Section>
+        </DocPage>
     )
 }

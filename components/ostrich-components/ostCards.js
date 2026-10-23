@@ -1,597 +1,292 @@
-import React, {useEffect, useState} from "react";
-import Styles from "../../styles/styles";
-
-// Assets
-const OstCompImg = "../../assets/icons/big/OstrichComponentsLogo.png";
-
-// Ostrich
+import React from "react";
 import { OstCard } from "@ostrich_development/ostrich-components";
+import { DocPage, Section, SubHeading, P, C, Note, Example, ExampleRow, PropGrid, style } from "./docKit";
 
-export default function OstCardShowcase(){
-    return(
-        <div style={{marginBottom: 30}}>
-        <div style={{...Styles.Sections.lessonContent, marginLeft: '5%', width: '80%'}}>
-            <div style={Styles.Fonts.lessonHeader}>Ostrich Cards (OstCards)</div>
-                
-                {/* Preamble */}
-                <p style={Styles.Fonts.basicX}>
-                Ostrich Cards are the Ostrich Framework's take on a View. They have predetermined padding and a box shadow to add an elevated visual effect. They are meant to be 
-                versatile compoonents for a wide variety of uses, so by adding an 'onClick' function to an OstCard component you automatically make it behave and animate like a button. 
-                </p>
-                <p style={Styles.Fonts.basicX}>
-                Let's look at some examples
-                </p>
+const OstCompImg = "/assets/icons/big/OstrichComponentsLogo.png";
 
-                {/* Ost Cards Example Row One */}
-                <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    <OstCard>
-                        Vanilla Ostrich Card
-                    </OstCard>
-                    <OstCard
-                    onClick={() => {console.log("Button Clicked")}}
+const CARD_PROPS = [
+    {
+        title: "Content",
+        props: [
+            { name: "children", type: "Node", desc: "Whatever goes inside the card. In templates 1-3 it becomes the text block." },
+            { name: "template", type: "Number", desc: "A premade layout: 1 image over text, 2 text over image, 3 title / image beside text / caption, 4 title / two columns / caption.", old: "templateStyle" },
+            { name: "imageSrc", type: "String", desc: "The image used by templates 1-3." },
+            { name: "imageAlt", type: "String", desc: "Describes the image for screen readers. Use \"\" for a decorative image." },
+            { name: "details", type: "Object", desc: "Extra template data: { title, caption, columnLeft, columnRight, pictureFlexSize }." },
+        ],
+    },
+    {
+        title: "Behavior",
+        props: [
+            { name: "onClick", type: "Function", desc: "Turns the card into a button: it gets hover and press effects, a pointer cursor, and works with Enter / Space." },
+            { name: "rounded", type: "Boolean", def: true, desc: "Rounded corners. false gives square corners." },
+            { name: "noShadow", type: "Boolean", def: false, desc: "Removes the default drop shadow." },
+            { name: "...HTML attributes", type: "Any", desc: "className, id, aria-*, data-*, onMouseEnter, ref and any other div attribute are passed to the card." },
+        ],
+    },
+    {
+        title: "Styles",
+        note: "Your styles are layered over the defaults, so you only write what you want to change.",
+        props: [
+            style("style", "The card itself."),
+            style("hoverStyle", "Clickable cards while hovered. Default: the background darkens."),
+            style("pressedStyle", "Clickable cards while pressed. Default: { transform: \"scale(0.95)\" }."),
+            style("contentStyle", "Templates: the outer layout box."),
+            style("imageAreaStyle", "Templates: the box the image sits in."),
+            style("imageStyle", "Templates: the image."),
+            style("textStyle", "Templates: the text block (children)."),
+            style("titleStyle", "Templates 3 and 4: the title."),
+            style("captionStyle", "Templates 3 and 4: the caption."),
+            style("bodyStyle", "Templates 3 and 4: the middle row."),
+            style("columnStyle", "Template 4: each column."),
+        ],
+    },
+]
+
+export default function OstCardShowcase() {
+    return (
+        <DocPage
+            title="Ostrich Cards"
+            component="<OstCard />"
+            imports="OstCard"
+            intro={<>Ostrich Cards are the library's take on a View: a box with padding, rounded corners and a soft shadow. Give one an <C>onClick</C> and it becomes a button, complete with hover and press animations.</>}
+            sections={["Basics", "Templates", "Styling the parts", "Props"]}
+        >
+            <Section title="Basics">
+                <P>A card needs nothing but its content. Styles you pass are added on top of the defaults, so a custom color doesn't cost you the padding or the shadow.</P>
+                <ExampleRow>
+                    <Example
+                        title="Vanilla card"
+                        code={`
+                            <OstCard>
+                                Vanilla Ostrich Card
+                            </OstCard>
+                        `}
                     >
-                        Ostrich Card Button
-                    </OstCard>
-                    <OstCard
-                    style={{width: 300, backgroundColor: 'blue', color: 'white', alignContent: 'center', textAlign: 'center'}}
+                        <OstCard>Vanilla Ostrich Card</OstCard>
+                    </Example>
+                    <Example
+                        title="Card as a button"
+                        description="Adding onClick adds hover, press and keyboard support."
+                        code={`
+                            <OstCard
+                                onClick={() => console.log("Clicked")}
+                            >
+                                Ostrich Card Button
+                            </OstCard>
+                        `}
                     >
-                        Custom Styled Card
-                    </OstCard>
-                </div>
-
-                {/* Ost Cards Code Row One */}
-                <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Vanilla Ostrich Card</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>onClick</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>()</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.keyword}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.var}>log</span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.str}>"Button Pressed"</span>
-                            <span style={Styles.Code.reg}>)</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Ostrich Card Button</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>style</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.var}>width: </span>
-                            <span style={Styles.Code.reg}>300, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>backgroundColor</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>'blue'</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>color</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>'white'</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>alignContent</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>'center'</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>textAlign</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>'center'</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Custom Styled Card</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-                </div>
-
-                {/* Ost Cards Example Row Two */}
-                <div style={{paddingTop: 40}}>
-
-                    {/* Preamble */}
-                    <p style={Styles.Fonts.basicX}>
-                        As you see, adding an <strong>onClick</strong> property automatically transfroms the entire component into a button.
-                        Additionally, you see that developers can still add their own custom styles to Ostrich Cards, while not removing the padding or shadow features the card has by default. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Ostrich Cards are also a great way to display pictures, as they take image inputs and have several different template options to help your image be 
-                        displayed exactly how you would like it to be
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Let's take a look at some Ostrich Cards that use Templates
-                    </p>
-
-
-                    <div style={{display: 'flex', 
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                    }}>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={OstCompImg}
-                            style={{width: '30%', margin: 5}}
-                        >
-                            Template One
+                        <OstCard onClick={() => console.log("Button Clicked")}>Ostrich Card Button</OstCard>
+                    </Example>
+                    <Example
+                        title="Custom styled"
+                        code={`
+                            <OstCard
+                                style={{
+                                    width: 300,
+                                    backgroundColor: "blue",
+                                    color: "white",
+                                    textAlign: "center",
+                                }}
+                            >
+                                Custom Styled Card
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard style={{ width: 300, maxWidth: "100%", backgroundColor: "blue", color: "white", textAlign: "center" }}>
+                            Custom Styled Card
                         </OstCard>
-                        <OstCard
-                            templateStyle={2}
-                            imageSrc={OstCompImg}
-                            style={{width: '30%', margin: 5}}
-                            onClick={() => {  console.log("Button Pressed") }}   
-                        >
+                    </Example>
+                </ExampleRow>
+            </Section>
+
+            <Section title="Templates">
+                <P>Cards are a quick way to show pictures. Pick a <C>template</C> and pass an <C>imageSrc</C>; templates 3 and 4 also read a title and caption from <C>details</C>.</P>
+                <ExampleRow>
+                    <Example
+                        title="Template 1"
+                        description="Image on top, text below."
+                        code={`
+                            <OstCard template={1} imageSrc="/path/to/image.png">
+                                Template One
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard template={1} imageSrc={OstCompImg} imageAlt="Ostrich Components logo" style={{ width: 240 , maxWidth: "100%" }}>Template One</OstCard>
+                    </Example>
+                    <Example
+                        title="Template 2"
+                        description="Text on top, image below. Clickable too."
+                        code={`
+                            <OstCard
+                                template={2}
+                                imageSrc="/path/to/image.png"
+                                onClick={() => console.log("Clicked")}
+                            >
+                                Template Two
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard template={2} imageSrc={OstCompImg} imageAlt="Ostrich Components logo" style={{ width: 240 , maxWidth: "100%" }} onClick={() => console.log("Button Pressed")}>
                             Template Two
                         </OstCard>
-                        <OstCard
-                            templateStyle={3}
-                            imageSrc={OstCompImg}
-                            style={{width: '30%', margin: 5}}
-                            details={{title: 'Template Three', caption: "Number 3"}}
-                        >
-                            Inside wrapped content of Template Three.
-                            The 'Title' section is provided via the details prop
+                    </Example>
+                    <Example
+                        title="Template 3"
+                        description="Title, image beside the content, caption."
+                        code={`
+                            <OstCard
+                                template={3}
+                                imageSrc="/path/to/image.png"
+                                details={{ title: "Template Three", caption: "Number 3" }}
+                            >
+                                Inside wrapped content of Template Three.
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard template={3} imageSrc={OstCompImg} imageAlt="Ostrich Components logo" style={{ width: 280 , maxWidth: "100%" }} details={{ title: "Template Three", caption: "Number 3" }}>
+                            Inside wrapped content of Template Three. The title comes from the details prop.
                         </OstCard>
-                    </div>
-                </div>
-
-                {/* Ost Cards Code Row Two */}
-                <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    {/* Template One */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>templateStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{1}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>imageSrc</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
-                            <span style={Styles.Code.var}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template One</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-
-                    {/* Template Two */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>templateStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{2}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>imageSrc</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
-                            <span style={Styles.Code.var}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>onClick</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>()</span>
-                            <span style={Styles.Code.keyword}>{" => "}</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.keyword}>console</span>
-                            <span style={Styles.Code.reg}>.</span>
-                            <span style={Styles.Code.var}>log</span>
-                            <span style={Styles.Code.reg}>(</span>
-                            <span style={Styles.Code.str}>"Button Pressed"</span>
-                            <span style={Styles.Code.reg}>)</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template Two</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-
-                    {/* Template Three */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>templateStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{3}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>imageSrc</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
-                            <span style={Styles.Code.var}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>details</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"Template Three"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>caption</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"Number 3"</span>
-
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Inside wrapped content of ...</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
-                </div>
-
-                {/* Ost Cards Example Row Three */}
-                <div style={{paddingTop: 40}}>
-                    <div style={{display: 'flex', 
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                    }}>
-                        {/* Template Three no 'details' */}
-                        <OstCard
-                            templateStyle={3}
-                            imageSrc={OstCompImg}
-                            style={{width: '30%', margin: 5}}
-                        >
-                            Template Three with no 'details' prop
+                    </Example>
+                </ExampleRow>
+                <ExampleRow>
+                    <Example
+                        title="Template 3 without details"
+                        description="Title and caption are optional."
+                        code={`
+                            <OstCard template={3} imageSrc="/path/to/image.png">
+                                Template Three with no details prop
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard template={3} imageSrc={OstCompImg} imageAlt="Ostrich Components logo" style={{ width: 280 , maxWidth: "100%" }}>
+                            Template Three with no details prop
                         </OstCard>
-
-                        {/* Template Four */}
+                    </Example>
+                    <Example
+                        title="Template 4"
+                        description="Title, two columns that take text or components, caption."
+                        code={`
+                            <OstCard
+                                template={4}
+                                details={{
+                                    title: "Template Four",
+                                    caption: "Number 4",
+                                    columnLeft: (
+                                        <div style={{ backgroundColor: "pink", height: 40 }}>
+                                            Text or Component
+                                        </div>
+                                    ),
+                                    columnRight: "Text or Component",
+                                }}
+                            />
+                        `}
+                    >
                         <OstCard
-                        templateStyle={4}
-                        style={{width: '30%', margin: 5}}
-                        details={{
-                            title: "Template Four",
-                            caption: "Number 4",
-                            columnRight: "Text or Component",
-                            columnLeft: (
-                                <div style={{backgroundColor: 'pink', height: 40}}>
-                                    Text or Component
-                                </div>
-                            )
-                        }}  
+                            template={4}
+                            style={{ width: 320 , maxWidth: "100%" }}
+                            details={{
+                                title: "Template Four",
+                                caption: "Number 4",
+                                columnLeft: <div style={{ backgroundColor: "pink", height: 40, padding: 4 }}>Text or Component</div>,
+                                columnRight: "Text or Component",
+                            }}
                         />
-
-                        {/* Template Four With no Title or Caption */}
+                    </Example>
+                    <Example
+                        title="Template 4, columns only"
+                        code={`
+                            <OstCard
+                                template={4}
+                                details={{
+                                    columnLeft: (
+                                        <div style={{ backgroundColor: "cyan", height: 40 }}>
+                                            Template Four
+                                        </div>
+                                    ),
+                                    columnRight: "With no Title or Caption",
+                                }}
+                            />
+                        `}
+                    >
                         <OstCard
-                        templateStyle={4}
-                        style={{width: '30%', margin: 5}}
-                        details={{
-                            columnRight: "With no Title or Caption",
-                            columnLeft: (
-                                <div style={{backgroundColor: 'cyan', height: 40}}>
-                                    Template Four
-                                </div>
-                            )
-                        }}  
+                            template={4}
+                            style={{ width: 320 , maxWidth: "100%" }}
+                            details={{
+                                columnLeft: <div style={{ backgroundColor: "cyan", height: 40, padding: 4 }}>Template Four</div>,
+                                columnRight: "With no Title or Caption",
+                            }}
                         />
-                    </div>
-                </div>
+                    </Example>
+                </ExampleRow>
+            </Section>
 
-                {/* Ost Cards Code Row Three */}
-                <div style={{display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                }}>
-                    {/* Template Three no 'details' */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>templateStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{3}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>imageSrc</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.var}>{"{"}</span>
-                            <span style={Styles.Code.str}>"../../ExampleImagePath"</span>
-                            <span style={Styles.Code.var}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template Three with no 'details' prop</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                    </div>
+            <Section title="Styling the parts">
+                <P>Every piece a template draws has its own style prop, and the hover and press effects can be changed or turned off.</P>
+                <ExampleRow>
+                    <Example
+                        title="Restyled template"
+                        size="wide"
+                        code={`
+                            <OstCard
+                                template={3}
+                                imageSrc="/path/to/image.png"
+                                details={{ title: "Restyled", caption: "Every part has a style prop" }}
+                                titleStyle={{ fontSize: 22, fontWeight: 700, color: "#11013b" }}
+                                captionStyle={{ fontSize: 14, color: "grey" }}
+                                imageStyle={{ borderRadius: "50%" }}
+                                textStyle={{ fontStyle: "italic" }}
+                            >
+                                Custom text block
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard
+                            template={3}
+                            imageSrc={OstCompImg}
+                            imageAlt="Ostrich Components logo"
+                            style={{ width: 300 , maxWidth: "100%" }}
+                            details={{ title: "Restyled", caption: "Every part has a style prop" }}
+                            titleStyle={{ fontSize: 22, fontWeight: 700, color: "#11013b" }}
+                            captionStyle={{ fontSize: 14, color: "grey" }}
+                            imageStyle={{ borderRadius: "50%" }}
+                            textStyle={{ fontStyle: "italic" }}
+                        >
+                            Custom text block
+                        </OstCard>
+                    </Example>
+                    <Example
+                        title="Custom hover and press"
+                        code={`
+                            <OstCard
+                                onClick={() => {}}
+                                hoverStyle={{ backgroundColor: "#d1ffdc" }}
+                                pressedStyle={{ transform: "none", opacity: 0.6 }}
+                            >
+                                Hover and press me
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard onClick={() => {}} hoverStyle={{ backgroundColor: "#d1ffdc" }} pressedStyle={{ transform: "none", opacity: 0.6 }}>
+                            Hover and press me
+                        </OstCard>
+                    </Example>
+                    <Example
+                        title="Flat card"
+                        code={`
+                            <OstCard noShadow rounded={false} style={{ border: "1px solid #ccc" }}>
+                                No shadow, square corners
+                            </OstCard>
+                        `}
+                    >
+                        <OstCard noShadow rounded={false} style={{ border: "1px solid #ccc" }}>No shadow, square corners</OstCard>
+                    </Example>
+                </ExampleRow>
+            </Section>
 
-                    {/* Template Four */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>templateStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{4}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>details</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>title</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"Template Three"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>caption</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"Number 3"</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>columnLeft</span>
-                            <span style={Styles.Code.reg}>: (</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>div </span>
-                            <span style={Styles.Code.var}>style</span>
-                            <span style={Styles.Code.reg}>= </span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.var}>backgroundColor</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"pink"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.var}>height</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.reg}>40</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Text or Component</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>div </span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.reg}>),</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>columnRight</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"Text or Component" </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-
-                    {/* Template Three */}
-                    <div style={{...Styles.Sections.simpleLessonCode, width: '30%'}}>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>OstCard</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>templateStyle</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{4}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.var}>details</span>
-                            <span style={Styles.Code.reg}>=</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>columnRight</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"With no Details" </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.var}>columnLeft</span>
-                            <span style={Styles.Code.reg}>: (</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.reg}>{"<"}</span>
-                            <span style={Styles.Code.keyword}>div </span>
-                            <span style={Styles.Code.var}>style</span>
-                            <span style={Styles.Code.reg}>= </span>
-                            <span style={Styles.Code.reg}>{"{"}</span>
-                            <span style={Styles.Code.str}>{"{"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.var}>backgroundColor</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.str}>"cyan"</span>
-                            <span style={Styles.Code.reg}>, </span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={Styles.Code.var}>height</span>
-                            <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.reg}>40</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 80}}>
-                            <span style={{...Styles.Code.reg, marginLeft: 10}}>Template Four</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 60}}>
-                            <span style={Styles.Code.reg}>{"</"}</span>
-                            <span style={Styles.Code.keyword}>div </span>
-                            <span style={Styles.Code.reg}>{">"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 40}}>
-                            <span style={Styles.Code.reg}>),</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18, marginLeft: 20}}>
-                            <span style={Styles.Code.str}>{"}"}</span>
-                            <span style={Styles.Code.reg}>{"}"}</span>
-                        </p>
-                        <p style={{...Styles.Code.code, fontSize: 18}}>
-                            <span style={Styles.Code.reg}>{"/>"}</span>
-                        </p>
-                    </div>
-                </div>
-        </div>
-        </div>
+            <Section title="Props">
+                <PropGrid title="OstCard props" groups={CARD_PROPS} />
+            </Section>
+        </DocPage>
     )
 }

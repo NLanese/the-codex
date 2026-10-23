@@ -1,120 +1,76 @@
 // React
-import React, {useEffect, useState} from "react";
+import React, { useEffect } from "react";
 
-// Recoil
+// Jotai
 import { useAtom } from "jotai";
-import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
-
-// Styles 
-import Styles from "../../../styles/styles";
+import { directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
-import { OstCard } from "@ostrich_development/ostrich-components";
+import { OstCard, OstrichButton } from "@ostrich_development/ostrich-components";
+import { DOC } from "../../../components/ostrich-components/docKit";
+import { DOC_PAGES } from "../../../components/ostrich-components/docPages";
 
 // Showcase Elements
-import TabBarsShowcase from "../../../components/ostrich-components/tabBars";
 import OstCardShowcase from "../../../components/ostrich-components/ostCards";
-import DropdownShowcase from "../../../components/ostrich-components/dropdowns";  
+import ButtonsShowcase from "../../../components/ostrich-components/buttons";
+import DropdownShowcase from "../../../components/ostrich-components/dropdowns";
+import TabBarsShowcase from "../../../components/ostrich-components/tabBars";
 import OstFormsShowcase from "../../../components/ostrich-components/ostForms";
+import FormFieldsShowcase from "../../../components/ostrich-components/formFields";
+import DefinitionsShowcase from "../../../components/ostrich-components/definitions";
+import ThemingShowcase from "../../../components/ostrich-components/theming";
+
+const SHOWCASES = {
+    ostcards: OstCardShowcase,
+    buttons: ButtonsShowcase,
+    dropdowns: DropdownShowcase,
+    tabbars: TabBarsShowcase,
+    ostrich_forms: OstFormsShowcase,
+    form_fields: FormFieldsShowcase,
+    definitions: DefinitionsShowcase,
+    theming: ThemingShowcase,
+}
 
 export default function OstrichShowcase() {
 
-  ///////////
-  // State //
-  ///////////
-
-  const [directory, setDirectory] = useAtom(directoryDataState)
-
-  const [titleForDrop3, setTitleForDrop3] = useState("Dynamic Title")
-  const [colorForDrop4, setColorForDrop4] = useState("white")
-  const [totalForDrop5, setTotalForDrop5] = useState(0)
-
-
-
-  ////////////////
-  // UseEffects //
-  ////////////////
+    const [directory, setDirectory] = useAtom(directoryDataState)
 
     // Sets Directory
     useEffect(() => {
-        setDirectory("Portfolio")            
+        setDirectory("Portfolio")
     }, [])
 
-  ////////////////
-  // Renderings //
-  ////////////////
+    return (
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 30, padding: '2.5% 3%' }}>
+            <div style={{ flex: 10, minWidth: 0 }}>
+                {DOC_PAGES.map((page) => {
+                    const Showcase = SHOWCASES[page.route]
+                    return Showcase ? (
+                        <div key={page.route} id={`page-${page.route}`} style={{ scrollMarginTop: 20 }}>
+                            <Showcase />
+                        </div>
+                    ) : null
+                })}
+            </div>
 
-
-  // OSTRICH CARD SECTION
-  function renderOstrichCards(){
-    return <OstCardShowcase />
-  }
-
-
-  // OSTRICH BUTTON SECTION
-  function renderOstrichButtons(){
-    return(
-        <div style={{marginBottom: 30}}>
-        <div style={Styles.Fonts.lessonHeader}>Ostrich Buttons (OstrichButton)</div>
-            
-            {/* Preamble */}
-            <p style={Styles.Fonts.basic}>
-            Ostrich Cards can work as buttons, but if you want an out-of-the-box componnt that in its Vanilla-most behavior acts as a button, then the <strong>OstrichButton</strong> component is for you. 
-            </p>
+            {/* Side Menu */}
+            <OstCard style={{ flex: 2, minWidth: 180, position: 'sticky', top: 20, marginTop: 20, padding: '16px 18px' }}>
+                <div style={{ fontFamily: DOC.font, fontSize: 13, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', color: DOC.muted, marginBottom: 8 }}>
+                    Components
+                </div>
+                <nav aria-label="Components" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    {DOC_PAGES.map((page) => (
+                        <OstrichButton
+                            key={page.route}
+                            label={page.title}
+                            onClick={() => document.getElementById(`page-${page.route}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                            style={{ backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-start', padding: '6px 8px', borderRadius: 8, height: 'auto' }}
+                            hoverStyle={{ backgroundColor: '#ebf4ff' }}
+                            labelStyle={{ fontFamily: DOC.font, fontSize: 16, color: DOC.ink }}
+                        />
+                    ))}
+                </nav>
+            </OstCard>
         </div>
     )
-  }
-
-  // OSTRICH TOGGLE BUTTON SECTION
-  function renderOstrichToggles(){
-    
-  }
-
-  // OSTRICH DROPDOWN SECTION
-  function renderOstrichDropDown(){
-    return <DropdownShowcase />
-  }
-
-  // OSTRICH TAB BAR SECTION
-  function renderOstrichTabBar(){
-    return <TabBarsShowcase />
-  }
-
-  /////////////////
-  // Main Return //
-  /////////////////
-
-  return (
-    <div style={{marginTop: 20}}>
-     <div style={Styles.Fonts.pageTitle}>The Ostrich React Component Library</div>
-     <div style={{display: 'flex', flexDirection: 'row'}}>
-        <OstCard style={{margin: "30px", flex: 10}}>
-            <div style={Styles.Sections.lessonContent}>
-                <p style={Styles.Fonts.basic}>
-                This entire Site has been made using the Ostrich React Component Library and regular Vanilla React tags. 
-                This means no other frameworks were used and this means developers who import our Ostrich Component Library can easily create a well designed site 
-                of their own!
-                </p>
-
-                <p style={Styles.Fonts.basic}>
-                Ostrich Components were made with the intent of heavily reducing the amount of time new developers have to spend on certain Front End aspects of development. 
-                Using a multitude of optional props for each component, developers can have everything from extremely high functionality components with minimal development to extremely simple and low level components that come already styled. 
-                </p>
-
-                {renderOstrichCards()}  
-                {renderOstrichDropDown()}            
-                {renderOstrichTabBar()}  
-                <OstFormsShowcase />
-            </div>
-            
-        </OstCard>
-
-
-        {/* Side Menu */}
-        <OstCard style={{marginTop: 30, marginRight: 30, flex: 2}}>
-
-        </OstCard>
-     </div>
-    </div>
-  );
 }

@@ -1,106 +1,69 @@
 // React
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
-
-// Recoil
+// Jotai
 import { useAtom } from "jotai";
-import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
+import { directoryDataState } from "../../../jotai/atoms";
 
-// Styles 
-import Styles from "../../../styles/styles";
+// Ostrich
 import { OstCard } from "@ostrich_development/ostrich-components";
-import { FormMultipleChoice } from "@ostrich_development/ostrich-components";
+import { DocPage, P, C, DOC } from "../../../components/ostrich-components/docKit";
+import { DOC_PAGES } from "../../../components/ostrich-components/docPages";
 
 export default function OstrichShowcaseMenu() {
-
-///////////
-// State //
-///////////
 
     const [directory, setDirectory] = useAtom(directoryDataState)
     const router = useRouter()
 
-  ////////////////
-  // UseEffects //
-  ////////////////
-
     // Sets Directory
     useEffect(() => {
-        setDirectory("Portfolio")            
+        setDirectory("Portfolio")
     }, [])
 
-  ///////////////
-  // Functions //
-  ///////////////
+    const go = (route) => router.push(`/showcases/ostrich-components/${route}`)
 
-    function determineRoute(tag){
-      let dest = ""
-      if (tag === "Cards"){
-        dest = "ostcards"
-      }
-      else if (tag === "Dropdowns"){
-        dest = "dropdowns"
-      }
-      else if (tag === "Tab Bars"){
-        dest = "tabbars"
-      }
-      else if (tag === "Forms"){
-        dest = "ostrich_forms"
-      }
-      else if (tag === "All"){
-        dest = "showcase"
-      }
-      router.push(`/showcases/ostrich-components/${dest}`)
-    }
-
-  ////////////////
-  // Renderings //
-  ////////////////
-
-  function renderMAIN(){
-    return(
-      <div>
-        <div style={Styles.Fonts.pageTitle}>Ostrich Component Library</div>
-            <p style={Styles.Fonts.basicX}>
-            While there are a plethora of React friendly Front End Component Libraries, none quite seemed to 
-            work as fluidly as I would like. As such, I was prompted to create my own Front End Component Library.
-            My mission was to create single components capable of rendering complicated series of HTML elements, while 
-            simulteanously providing sleak default styles and maintaining full customizability. Nearly every part of this 
-            website is constructed using the Ostrich Component Library which will be published to npm when completed.
-            </p>
-            <p style={Styles.Fonts.basicX}>
-            Click one of the buttons below to check out specific Components, how they work and how to properly use them.
-            </p>
-            <OstCard >
-              <FormMultipleChoice 
-                inForm={false}
-                onChange={(op) => {
-                  determineRoute(op.value[0])
-                }}
-                fieldObj={
-                  {
-                    id: "2",
-                    type: "MC",
-                    template: "tabs",
-                    options: ["Cards", "Dropdowns", "Tab Bars", "Forms", "All"],
-                    textStyle: {fontSize: 18},
-                  }
-                }
-              />
-            </OstCard>
-      </div>
-    )
-  }
-
-
-  //////////
-  // Main //
-  //////////
-
-    return(
-      <div style={{width: '80%', marginLeft: '10%'}}>
-        {renderMAIN()}
-      </div>
+    return (
+        <div style={{ paddingRight: '8%', paddingLeft: '8%', paddingTop: '2.5%' }}>
+            <DocPage
+                title="Ostrich Component Library"
+                intro={<>
+                    While there are a plethora of React friendly Front End Component Libraries, none quite seemed to work as fluidly as I would like,
+                    so I created my own. My mission was to create single components capable of rendering complicated series of HTML elements, while
+                    simultaneously providing sleek default styles and maintaining full customizability. Nearly every part of this website is built
+                    with it.
+                </>}
+            >
+                <div style={{ marginTop: 28 }}>
+                    <P>Pick a component to see how it works, live examples you can copy, and every prop it takes.</P>
+                    <P style={{ fontSize: 16, color: DOC.muted }}>Install with <C>npm install @ostrich_development/ostrich-components</C></P>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 18, marginTop: 18 }}>
+                    {DOC_PAGES.map((page) => (
+                        <OstCard
+                            key={page.route}
+                            onClick={() => go(page.route)}
+                            aria-label={`${page.title} docs`}
+                            style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 6 }}
+                            hoverStyle={{ backgroundColor: "#ebf4ff" }}
+                        >
+                            <div style={{ fontFamily: DOC.font, fontSize: 22, fontWeight: 700, color: DOC.ink }}>{page.title}</div>
+                            <div style={{ fontFamily: DOC.mono, fontSize: 13, color: DOC.accentDeep }}>{page.component}</div>
+                            <div style={{ fontFamily: DOC.font, fontSize: 15.5, lineHeight: 1.45, color: DOC.text }}>{page.blurb}</div>
+                        </OstCard>
+                    ))}
+                    <OstCard
+                        onClick={() => go("showcase")}
+                        aria-label="All components on one page"
+                        style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 6, backgroundColor: DOC.ink }}
+                        hoverStyle={{ backgroundColor: "#2a1a6e" }}
+                    >
+                        <div style={{ fontFamily: DOC.font, fontSize: 22, fontWeight: 700, color: "white" }}>Everything</div>
+                        <div style={{ fontFamily: DOC.mono, fontSize: 13, color: "lime" }}>All pages, one scroll</div>
+                        <div style={{ fontFamily: DOC.font, fontSize: 15.5, lineHeight: 1.45, color: "#eeeaff" }}>Every component's docs on a single page, with a side menu to jump around.</div>
+                    </OstCard>
+                </div>
+            </DocPage>
+        </div>
     )
 }
