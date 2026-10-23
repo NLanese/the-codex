@@ -11,7 +11,6 @@ import Styles from "../../../styles/styles";
 
 // Ostrich
 import { OstCard } from "@ostrich_development/ostrich-components";
-import OstrichButton from "@ostrich_development/ostrich-components"
 
 // Assets
 const KNM = "../../../assets/icons/big/KNM.png";
@@ -32,6 +31,23 @@ const niterain = "../../../assets/icons/big/Nightreign.png";
 
 const left = "../../../assets/boughtIcons/004-left.png"
 const right = "../../../assets/boughtIcons/003-right-arrow.png"
+
+
+// Carousel arrow (OstrichButton isn't exported by ostrich-components 1.1.11)
+const ArrowButton = ({imgSrc, onClick}) => (
+    <button
+        type="button"
+        onClick={onClick}
+        style={{
+            height: 30, width: 30, padding: 5,
+            borderRadius: 100, border: 'none',
+            backgroundColor: "#9cc6f0", cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}
+    >
+        <img src={imgSrc} alt="" style={{width: '100%', height: '100%', objectFit: 'contain'}}/>
+    </button>
+)
 
 
 
@@ -106,11 +122,9 @@ export default function WorksMenu() {
                     gap: 20
                     }}> 
                         <div style={{flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                            <OstrichButton
-                            style={{height: 30, width: 30, borderRadius: 100, boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.0)'}}
-                            imgOnly={true}
+                            <ArrowButton
                             imgSrc={left}
-                            onSubmit={() => {
+                            onClick={() => {
                                 if (carosel > 0){
                                     setCarosel(carosel - 1)
                                 }
@@ -123,11 +137,9 @@ export default function WorksMenu() {
                         </div>
 
                         <div style={{flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                            <OstrichButton
-                            style={{height: 30, width: 30, borderRadius: 100, boxShadow:'2px 2px 2px 2px rgba(40, 40, 40, 0.0)'}}
-                            imgOnly={true}
+                            <ArrowButton
                             imgSrc={right}
-                            onSubmit={() => {
+                            onClick={() => {
                                 if (carosel < 2){
                                     setCarosel(carosel + 1)
                                 }
