@@ -221,6 +221,7 @@ export default function CandyBox3() {
                     setInventory={setInventory}
                     thingsDone={thingsDone}
                     setThingsDone={setThingsDone}
+                    candies={candies}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
                     health={health}

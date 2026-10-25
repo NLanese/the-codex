@@ -16,10 +16,15 @@ export default function NewOldsvilleForge({
     setSelectedMap,
     thingsDone, 
     setThingsDone,
+    candies,
     setCandies,
     setLollipops,
 }){
 
+
+    ///////////////////////////////
+    // Hidden Lollipop Functions //
+    ///////////////////////////////
     const [lolliPresent, setLolliPresent] = useState(determineLolliState())
 
     function renderLolli(){
@@ -47,6 +52,12 @@ export default function NewOldsvilleForge({
         setLolliPresent(false)
     }
 
+
+
+    /////////////////////////////
+    // Dialog and Menu Buttons //
+    /////////////////////////////
+
     function renderLeave(){
         return(
             <button onClick={() => setSelectedMap("New Oldsville")}>
@@ -55,12 +66,14 @@ export default function NewOldsvilleForge({
         )
     }
 
+    const [tooBroke, setTooBroke] = useState(false)
     function renderDialogue(){
         return(
             <div>
                 <div style={{height: '70%', paddingRight: '7.5%'}}>
                     <p>Welcome to the Forge!</p>
                     <p>Feel free to take a look at my wares. Purchase what you like, but remember I only take payment in candies!</p>
+                    {tooBroke ?? <p>Sorry, you don't have enough candies for that item!</p>}
                 </div>
                 <div>
                     {renderWeaponsPurchase()}
@@ -85,29 +98,29 @@ export default function NewOldsvilleForge({
         }
         else if (checkInvFor(inventory, "sword2")){
             return(
-                <button>
+                <button onClick={() => {handlePurchase(NewOldsForgeItems[0])}}>
                     Purchase Mace (5,000,000 candies)
                 </button>
             )
         }
         else if (checkInvFor(inventory, "axe")){
             return(
-                <button>
+                <button onClick={() => {handlePurchase(NewOldsForgeItems[1])}}>
                     Silver Sword (10,000 candies)
                 </button>
             )
         }
         else if (checkInvFor(inventory, "sword1")){
            return(
-                <button>
+                <button onClick={() => {handlePurchase(NewOldsForgeItems[2])}}>
                     Iron Axe (1500 candies)
                 </button>
             )
         }
         else{
             return(
-                <button>
-                Wooden Sword (350 candies)
+                <button onClick={() => {handlePurchase(NewOldsForgeItems[3])}}>
+                    Wooden Sword (350 candies)
                 </button>
             )
         }
@@ -121,26 +134,42 @@ export default function NewOldsvilleForge({
         }
         else if (checkInvFor(inventory, "iron")){
             return(
-                <button>
+                <button onClick={() => {handlePurchase(NewOldsForgeItems[6])}}>
                     Space Age Steel Armor (10,000,000 candies)
                 </button>
             )
         }
         else if (checkInvFor(inventory, "leather")){
            return(
-                <button>
+            <button onClick={() => {handlePurchase(NewOldsForgeItems[5])}}>
                     Iron Armor (115,000 candies)
                 </button>
             )
         }
         else{
             return(
-                <button>
+                <button onClick={() => {handlePurchase(NewOldsForgeItems[4])}}>
                     Leather Armor (10,000 candies)
                 </button>
             )
         }
     }
+
+    function handlePurchase(itm){
+        if (candies >= itm.cost){
+            setTooBroke(false)
+            setThingsDone((prev) => [...prev, {title: ("Bought " + itm.name)}])
+            setInventory((prev) => [...prev, itm])
+            setCandies((prev) => prev - itm.cost)
+        }
+        else{
+            setTooBroke(true)
+        }
+    }
+
+    /////////////////
+    // Room Render //
+    /////////////////
 
     function renderForgeRoom(){
         return(

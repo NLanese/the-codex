@@ -26,6 +26,7 @@ export default function Map({
     setInventory,
     thingsDone, 
     setThingsDone,
+    candies,
     setCandies,
     setLollipops,
     health,
@@ -67,6 +68,7 @@ export default function Map({
                     setSelectedMap={setSelectedMap}
                     thingsDone={thingsDone}
                     setThingsDone={setThingsDone}
+                    candies={candies}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
                 />
