@@ -8,7 +8,21 @@ const NewOldsForgeItems = [
         type: "weapon",
         damage: 25,
         speed: 1200,
-        status: 'inactive'
+        status: 'inactive',
+        icon:
+        (<div>
+                 ___^___
+                /  ^ ^  \  
+              {`<`}=|  ^   ^  |={`>`}
+              {`<`}=|  ^   ^  |={`>`}
+                \_______/
+                   |x|     
+                   |x|      
+                   |x|
+                   |x|
+                   |x|
+                   |x|
+        </div>)
     },
     {
         name: "Silver Sword",
@@ -19,7 +33,20 @@ const NewOldsForgeItems = [
         type: "weapon",
         damage: 9,
         speed: 600,
-        status: 'inactive'
+        status: 'inactive',
+        icon:  (<div>
+                   / \
+                  | ^ |
+                  | | |
+                  | | |
+                  | | |
+                  | | |
+                  | @ |
+              #===|___|===#
+                   |x|
+                   |x|
+                  ( * )
+        </div>)
     },
     {
         name: "Iron Axe",
@@ -30,7 +57,21 @@ const NewOldsForgeItems = [
         type: "weapon",
         damage: 5,
         speed: 900,
-        status: 'inactive'
+        status: 'inactive',
+        icon:
+        (<div>
+           _________^_______
+          /        | |       \
+         /         | |        \
+        |          | |         |
+        |    ______| |_____    |
+         \  /      |x|     \  /
+          \/       |x|      \/
+                   |x|
+                   |x|
+                   |x|
+                   |x|
+        </div>)
     },
     {
         name: "Wooden Sword",
@@ -41,7 +82,21 @@ const NewOldsForgeItems = [
         type: "weapon",
         damage: 2,
         speed: 750,
-        status: 'inactive'
+        status: 'inactive',
+        icon:
+        (<div>
+                   / \
+                  |  .|
+                  |   |
+                  {`>`}   |
+                  |.  |
+                  |   {`<`}
+                  | . |
+               o__|___|___o
+                   |x|
+                   |x|
+                   |x|
+        </div>)
     },
     {
         name: "Leather Armor",
