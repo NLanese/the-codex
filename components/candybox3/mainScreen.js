@@ -25,7 +25,7 @@ export default function CandyBox3MainScreen({
 
     const [showThrow, setShowThrow] = useState(false)
     const [showNewFeature, setShowNewFeature] = useState(false)
-    const [newFeatureCost, setNewFeatureCost] = useState([20, 45, 50, 1000, 50000])
+    const [newFeatureCost, setNewFeatureCost] = useState([20, 25, 35, 50, 1000, 50000])
 
     const [localState, setLocalState] = useState({
         candies: candies,

@@ -6,7 +6,7 @@ const wasp = new Enemy({
     name: "wasp",
     health: 2,
     atk: 5,
-    atkSpeed: 1500,
+    atkSpeed: 300,
     render: ( 
     <div>
         <p style={{...candyBoxStyles.mapStyle, fontWeight: 700}}>
@@ -27,7 +27,7 @@ const wasp = new Enemy({
     name: "Millipede",
     health: 5,
     atk:2,
-    atkSpeed: 2000,
+    atkSpeed: 800,
     render: (
         <div>
             <p style={{...candyBoxStyles.mapStyle, fontWeight: 700}}>

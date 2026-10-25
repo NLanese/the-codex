@@ -27,7 +27,7 @@ export default function CandyBox3() {
         const router = useRouter()
 
         // Accumulation and Basic Stats
-        const [candies, setCandies] = useState(0)
+        const [candies, setCandies] = useState(300)
         const [candiesRate, setCandiesRate] = useState(1)
         const [candiesEaten, setCandiesEaten] = useState(0)
         const [candiesThrown, setCandiesThrown] = useState(0)
@@ -97,8 +97,9 @@ export default function CandyBox3() {
 
         // Health Updates
         useEffect(() => {
-
-        }, [])
+            const pct = maxHealth > 0 ? Math.max(0, Math.min(100, (health / maxHealth) * 100)) : 0
+            setHealthPercent(`${pct}%`)
+        }, [health, maxHealth])
 
     ///////////////
     // Functions //
@@ -219,6 +220,9 @@ export default function CandyBox3() {
                     setThingsDone={setThingsDone}
                     setCandies={setCandies}
                     setLollipops={setLollipops}
+                    health={health}
+                    setHealth={setHealth}
+                    maxHealth={maxHealth}
                     />
                 )
             }

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 
 // Battle Track
-import BATTLE_TRACK from "./battle_track";
+import BATTLE_TRACK from "./battle_track_v2";
 
 // Battle Tracks
 import easternForest from "./battle_track_maps/newOldsVilleTracks/easternForest";
@@ -27,7 +27,10 @@ export default function Map({
     thingsDone, 
     setThingsDone,
     setCandies,
-    setLollipops
+    setLollipops,
+    health,
+    setHealth,
+    maxHealth
 }) {
 
     ///////////
@@ -114,6 +117,9 @@ export default function Map({
                     setCandies={setCandies}
                     setLollipops={setLollipops}
                     selectedTrinkets={selectedTrinkets}
+                    health={health}
+                    setHealth={setHealth}
+                    maxHealth={maxHealth}
                     
                 />
             )

@@ -29,10 +29,11 @@ const easternForest = {
         </div>
     ),
     enemies: [
-        {...wasp, posX: 245 * 7.7, posY: 682}, {...millipede, posX: (230*7), posY: 730}
+        {...wasp, rowsAboveFloor: 1}, {...millipede}
     ],
     spawnTick: 1900,
     maxSpawnWeight: 7,
+    maximumEnemySpawns: 18,
 }
 
 export default easternForest

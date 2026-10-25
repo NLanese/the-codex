@@ -633,6 +633,15 @@ export default function NewOldsville({
                     {renderLilForest2()}
                     {renderLilForest1()}
                 </div>
+
+                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 160
+                }}>
+                    SPOON
+                    SPOON
+                    SPOON
+                    SPOON
+                    SPOON
+                </div>
             </div>
 
             {/* Lake and Southbound Road */}

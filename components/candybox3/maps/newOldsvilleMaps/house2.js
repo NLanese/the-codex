@@ -252,7 +252,7 @@ export default function NewOldsvilleHouse2({
                             "Take Care of it yourself"
                         </button>
                         <button style={{flex: 6}}>
-                            "Just wait it out"
+                            "Sit tight, I can help you out once I get a weapon"
                         </button>
                        {renderHelpButton()}
                     </div>
