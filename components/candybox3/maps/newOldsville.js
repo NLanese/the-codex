@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 
 import {candyBoxStyles} from "../const/styles"
+import { hasDone } from "../func/thingsDone";
 
 
 export default function NewOldsville({
@@ -33,6 +34,7 @@ export default function NewOldsville({
         useEffect(() => {
             const interval = setInterval(() => {
                 setTimer(prev => {
+                    console.log(thingsDone)
                     const next = prev < 5 ? prev + 1 : 0;
                     return next;
                 });
@@ -154,6 +156,10 @@ export default function NewOldsville({
 
         function handleForgeClick(){
             setSelectedMap("New Oldsville -- Forge")
+        }
+
+        function goToWishingWell(){
+            setSelectedMap("New Oldsville -- WishingWell")
         }
 
     ///////////////
@@ -393,6 +399,7 @@ export default function NewOldsville({
         )
     }
 
+    // Renders SMoke Stack from Forge
     function renderSmokeStack(row){
         if (row === 0){
             if (timer === 0 || timer === 3){
@@ -451,6 +458,7 @@ export default function NewOldsville({
         }
     }
 
+    // Renders inputted house objects's message
     function renderHouseMessage(houseObj, show){
         if (show){
             return(
@@ -476,6 +484,7 @@ export default function NewOldsville({
     }
 
 
+    // Renders Crocodile Lake
     function renderLake(show, setShow, show2, setShow2){
         return(
             <div>
@@ -493,6 +502,19 @@ export default function NewOldsville({
                 <p style={candyBoxStyles.mapStyle}>      <span onClick={() => handleLakeClick()}> \ _____              {renderWaves()}                         \</span></p>
                 <p style={candyBoxStyles.mapStyle}>              <span onClick={() => handleLakeClick()}>\_                                  {renderWaves()}  /</span></p>
                 <p style={candyBoxStyles.mapStyle}>                <span onClick={() => handleLakeClick()}>\______________________________________ /</span></p>
+            </div>
+        )
+    }
+
+    function renderWishingWell(){
+        if (hasDone(thingsDone, "CrossedEasternForest"))
+        return(
+            <div onClick={() => {goToWishingWell()}}>
+               /-----\
+              /_______\ 
+              ||     ||
+              ||_____||
+              |_|_|_|_|
             </div>
         )
     }

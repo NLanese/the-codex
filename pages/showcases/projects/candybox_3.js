@@ -70,6 +70,9 @@ export default function CandyBox3() {
         useEffect(() => {
             const secondsInterval = setInterval(() => {
               setCandies(prev => prev + candiesRate);
+              if (health < maxHealth){
+                setHealth(health + 1)
+              }
               if (lollipopsInSeconds) {
                 setLollipops(prev => prev + lollipopsRate);
               }

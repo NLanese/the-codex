@@ -8,6 +8,7 @@ import { useAtom } from "jotai";
 import {candyBoxStyles} from "../../const/styles"
 import NewOldsForgeItems from "../../const/items/NewOldsVilleForge";
 import checkInvFor from "../../func/checkInventoryFor";
+import { hasDone, markDone } from "../../func/thingsDone";
 
 export default function NewOldsvilleForge({
     inventory,
@@ -31,7 +32,7 @@ export default function NewOldsvilleForge({
     }
 
     function determineLolliState(){
-        if (thingsDone.includes("forgeLolliGrabbed")){
+        if (hasDone(thingsDone, "forgeLolliGrabbed")){
             return (false)
         }
         else{
@@ -41,7 +42,7 @@ export default function NewOldsvilleForge({
 
     function grabLolli(){
         console.log("grab?")
-        setThingsDone(prev => [...prev, "forgeLolliGrabbed"])
+        markDone(setThingsDone, "forgeLolliGrabbed")
         setLollipops(prev => prev + 1)
         setLolliPresent(false)
     }

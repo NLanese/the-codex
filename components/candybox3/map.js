@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 
 // Battle Track
-import BATTLE_TRACK from "./battle_track_v2";
+import BATTLE_TRACK from "./battle_track";
 
 // Battle Tracks
 import easternForest from "./battle_track_maps/newOldsVilleTracks/easternForest";

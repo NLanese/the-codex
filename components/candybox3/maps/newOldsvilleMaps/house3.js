@@ -8,6 +8,7 @@ import { useAtom } from "jotai";
 // Candybox
 import {candyBoxStyles} from "../../const/styles"
 import checkInvFor from "../../func/checkInventoryFor";
+import { hasDone, markDone } from "../../func/thingsDone";
 
 
 
@@ -34,7 +35,7 @@ export default function NewOldsvilleHouse3({
     function checkAnswer(){
         if (manInHouse3 === 'q1'){
             if (ans === ans1){
-                setThingsDone(prev => [...prev, "house3ManQ1"])
+                markDone(setThingsDone, "house3ManQ1")
                 setManInHouse3('q2')
                 setAnsResp("")
                 setCandies(prev => prev + 55)
@@ -45,7 +46,7 @@ export default function NewOldsvilleHouse3({
         }
         if (manInHouse3 === 'q2'){
             if (ans === ans2){
-                setThingsDone(prev => [...prev, "house3ManQ2"])
+                markDone(setThingsDone, "house3ManQ2")
                 setManInHouse3('q3')
                 setAnsResp("")
                 setCandies(prev => prev + 150)
@@ -64,12 +65,12 @@ export default function NewOldsvilleHouse3({
 
     function grabDeskLolli(){
         setLollipops(prev => prev + 1)
-        setThingsDone(prev => [...prev, "house3FlowerDeskGrabbed"])
+        markDone(setThingsDone, "house3FlowerDeskGrabbed")
         setDeskFlowerGrabbed(true)
     }
 
     function determineLolliState(){
-        if (thingsDone.includes("house3FlowerDeskGrabbed")){
+        if (hasDone(thingsDone, "house3FlowerDeskGrabbed")){
             return (true)
         }
         else{
@@ -95,16 +96,16 @@ export default function NewOldsvilleHouse3({
 
     // Sets initial Man State
     function determineManInHouseState(){
-        if (thingsDone.includes("house3ManQ3")){
+        if (hasDone(thingsDone, "house3ManQ3")){
             return ("q4")
         }
-        else if (thingsDone.includes("house3ManQ2")){
+        else if (hasDone(thingsDone, "house3ManQ2")){
             return ("q3")
         }
-        else if (thingsDone.includes("house3ManQ1")){
+        else if (hasDone(thingsDone, "house3ManQ1")){
             return ("q2")
         }
-        else if (thingsDone.includes("house3OK")){
+        else if (hasDone(thingsDone, "house3OK")){
             return ("q1")
         }
         else{
@@ -115,7 +116,7 @@ export default function NewOldsvilleHouse3({
     // Tells man Okay init
     function tellManOkay(){
         setManInHouse3("q1")
-        setThingsDone(prev => [...prev, "house3OK"])
+        markDone(setThingsDone, "house3OK")
     }  
 
     /////////////

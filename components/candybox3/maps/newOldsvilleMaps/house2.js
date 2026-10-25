@@ -8,6 +8,7 @@ import { useAtom } from "jotai";
 // Candybox
 import {candyBoxStyles} from "../../const/styles"
 import checkInvFor from "../../func/checkInventoryFor";
+import { hasDone, markDone } from "../../func/thingsDone";
 
 
 
@@ -30,11 +31,11 @@ export default function NewOldsvilleHouse2({
     function openDrawer(){
         console.log("Door Opened")
         setDrawerOpened(true)
-        setThingsDone(prev => [...prev, "hosue2DrawerOpened"])
+        markDone(setThingsDone, "house2DrawerOpened")
     }
 
     function determinedDrawerState(){
-        if (thingsDone.includes("hosue2DrawerOpened")){
+        if (hasDone(thingsDone, "house2DrawerOpened")){
             return true
         }
         else{
@@ -51,12 +52,12 @@ export default function NewOldsvilleHouse2({
 
     function grabFlowerLolli(){
         setLollipops(prev => prev + 1)
-        setThingsDone(prev => [...prev, "house2FlowerPotGrabbed"])
+        markDone(setThingsDone, "house2FlowerPotGrabbed")
         setPotFlowerGrabbed(true)
     }
 
     function determineLolliState(){
-        if (thingsDone.includes("house2FlowerPotGrabbed")){
+        if (hasDone(thingsDone, "house2FlowerPotGrabbed")){
             return (true)
         }
         else{
@@ -84,12 +85,12 @@ export default function NewOldsvilleHouse2({
 
     function grabDrawerLolli(){
         setLollipops(prev => prev + 1)
-        setThingsDone(prev => [...prev, "house2DrawerLolliGrabbed"])
+        markDone(setThingsDone, "house2DrawerLolliGrabbed")
         setDrawerFlowerGrabbed(true)
     }
 
     function determineDrawerLolliState(){
-        if (thingsDone.includes("house2DrawerLolliGrabbed")){
+        if (hasDone(thingsDone, "house2DrawerLolliGrabbed")){
             return (true)
         }
         else{
@@ -113,16 +114,16 @@ export default function NewOldsvilleHouse2({
     const [manInHouse2, setManInHouse2] = useState(determineManInHouseState())
 
     function determineManInHouseState(){
-        if (thingsDone.includes("house2ManDead")){
+        if (hasDone(thingsDone, "house2ManDead")){
             return ("Dead")
         }
-        else if (thingsDone.includes("house2ManToldToFight")){
+        else if (hasDone(thingsDone, "house2ManToldToFight")){
             return ("Downstairs")
         }
-        else if (thingsDone.includes("house2ManToldToWait")){
+        else if (hasDone(thingsDone, "house2ManToldToWait")){
             return ("Waiting")
         }
-        else if (thingsDone.includes("house2ManHelped")){
+        else if (hasDone(thingsDone, "house2ManHelped")){
             return ("Happy")
         }
         else{

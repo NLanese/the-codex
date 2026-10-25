@@ -28,7 +28,7 @@ const fists = {
     id: "fists",
     status: "base",
     type: "weapon",
-    damage: 1,
+    damage: 2,
     speed: 500,
     status: 'active'
 }
