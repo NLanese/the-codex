@@ -11,6 +11,7 @@ import { OstCard } from "@ostrich_development/ostrich-components";
 import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 import CandyBox3MainScreen from "../../../components/candybox3/mainScreen";
 import Map from "../../../components/candybox3/map";
+import Inventory from "../../../components/candybox3/inventory";
 
 
 // Other
@@ -71,7 +72,7 @@ export default function CandyBox3() {
             const secondsInterval = setInterval(() => {
               setCandies(prev => prev + candiesRate);
               if (health < maxHealth){
-                setHealth(health + 1)
+                setHealth((prev) => prev + 1)
               }
               if (lollipopsInSeconds) {
                 setLollipops(prev => prev + lollipopsRate);
@@ -166,7 +167,7 @@ export default function CandyBox3() {
             if (featuresUnlocked >= 3){
                 return(
                     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                        <p>Candies: {candies}</p> 
+                        <p> Candies: {candies}</p> 
                         <p> Lollipops: {lollipops}</p>
                         <p> Chocolate Bars: {chocolateBars}</p>
                         <p> Pains Au Chocolat: {pocs}</p>
@@ -232,6 +233,18 @@ export default function CandyBox3() {
             }
             else if (screenShown === "What is this?"){
                 return <WhatIsCandyBox />
+            }
+            else if (screenShown === "Inventory"){
+                return(
+                    <Inventory 
+                    inventory={inventory}
+                    thingsDone={thingsDone}
+                    setThingsDone={setThingsDone}
+                    setHealth={setHealth}
+                    maxHealth={maxHealth}
+                    setMaxHealth={setMaxHealth}
+                    />
+                )
             }
         }
 

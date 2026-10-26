@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 
 import {candyBoxStyles} from "../const/styles"
-import { hasDone } from "../func/thingsDone";
+import findIfDone from "../func/findIfDone";
 
 
 export default function NewOldsville({
@@ -506,15 +506,47 @@ export default function NewOldsville({
         )
     }
 
-    function renderWishingWell(){
-        if (hasDone(thingsDone, "CrossedEasternForest"))
+
+
+    function renderPastEasternForest(){
+        if (findIfDone(thingsDone, "CrossedEasternForest")){
+            return(
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    {renderNorthEastCoastLine()}
+                    <div style={{marginTop: 95, marginLeft: 150}}>
+                        {renderWishingWell()}
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    function renderNorthEastCoastLine(){
         return(
-            <div onClick={() => {goToWishingWell()}}>
-               /-----\
-              /_______\ 
-              ||     ||
-              ||_____||
-              |_|_|_|_|
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+                <span>  {renderWaves()}           {renderWaves()}                                                                         {renderWaves()} </span>
+                    <span>      {renderWaves()}             {renderWaves()}                           {renderWaves()} </span>
+                    <span>-----------------          {renderWaves()}    </span>
+                    <span>             ,    \_____________________________________        {renderWaves()}                                  ____________________</span>                          
+                    <span>     *                         ;. '':'";  ,';           \   {renderWaves()}                                     /                    \</span>
+                    <span>                                     .                   \                 {renderWaves()}      {renderWaves()}         /                       \</span>
+                    <span>            ,.          *                                 \__________________________________________/</span>
+            </div>
+        )
+    }
+
+
+    function renderWishingWell(){
+        return(
+            <div style={{display: 'flex', flexDirection: "column"}}
+            onClick={() => {goToWishingWell()}}>
+            <span> /-----\</span> 
+            <span>/_______\ </span>
+            <span>||     ||</span>
+            <span>||_____||</span>
+            <span>|_|_|_|_|</span>
+            <span>|_|_|_|_|</span>
+            <span>|_|_|_|_|</span>
             </div>
         )
     }
@@ -607,6 +639,8 @@ export default function NewOldsville({
     }
 
 
+    function renderPastEasternForest(){}
+
 
     //////////
     // MAIN //
@@ -656,13 +690,9 @@ export default function NewOldsville({
                     {renderLilForest1()}
                 </div>
 
-                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 160
+                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 40, marginTop: 20
                 }}>
-                    SPOON
-                    SPOON
-                    SPOON
-                    SPOON
-                    SPOON
+                    
                 </div>
             </div>
 
