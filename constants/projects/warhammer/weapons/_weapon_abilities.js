@@ -30,7 +30,7 @@ const weapon_abilities = {
         })
     },
 
-    heavy: () =>  {
+    assault: () =>  {
         return({
             name: "Assault",
             desc: "Weapons with Assault can be fired even after Advancing ",  
@@ -112,6 +112,82 @@ const weapon_abilities = {
             desc: `Any wound roll of ${x}+ is a critical wound against Vehicles`,
             toggle_amount: "Criticals Hits",
             effect: {crit_wounds: x},
+        })
+    },
+
+    // Any other "Anti-X" keyword, e.g. anti("Infantry", 4)
+    anti: (target, x) => {
+        return({
+            name: `Anti-${target} ${x}`,
+            desc: `Any wound roll of ${x}+ is a critical wound against ${target} units`,
+            toggle_amount: "Criticals Hits",
+            effect: {crit_wounds: x},
+        })
+    },
+
+    pistol: () =>  {
+        return({
+            name: "Pistol",
+            desc: "Pistols can be fired even while the unit is within Engagement Range of enemy units, but only at a unit it is engaged with. A unit firing Pistols can't fire its other ranged weapons that turn (Monsters and Vehicles excepted).",
+        })
+    },
+
+    torrent: () =>  {
+        return({
+            name: "Torrent",
+            desc: "Attacks made with Torrent weapons automatically hit their target - no Hit Roll needed.",
+        })
+    },
+
+    ignores_cover: () =>  {
+        return({
+            name: "Ignores Cover",
+            desc: "Targets of Ignores Cover weapons don't get the Benefit of Cover against its attacks.",
+        })
+    },
+
+    psychic: () =>  {
+        return({
+            name: "Psychic",
+            desc: "This is a Psychic weapon. Some rules and abilities affect Psychic attacks differently.",
+        })
+    },
+
+    precision: () =>  {
+        return({
+            name: "Precision",
+            desc: "When a Precision attack lands a Critical Hit against a unit with an attached Character that is visible to the attacker, the attacker can choose to allocate that attack to the Character.",
+        })
+    },
+
+    lance: () =>  {
+        return({
+            name: "Lance",
+            desc: "If the attacking unit made a Charge move this turn, add 1 to the Wound Rolls of Lance weapons.",
+        })
+    },
+
+    extra_attacks: () =>  {
+        return({
+            name: "Extra Attacks",
+            desc: "Extra Attacks weapons are used in addition to the model's other melee weapons rather than instead of them, and their number of attacks can't be changed by other rules.",
+        })
+    },
+
+    melta: (x) => {
+        return({
+            name: `Melta ${x}`,
+            desc: `When attacking a target within half this weapon's range, add ${x} to the Damage of each attack`,
+            toggle: "Within Half Range",
+            effect: {moreDamage: x}
+        })
+    },
+
+    // Faction-specific weapon rules the generator doesn't have a write-up for yet
+    other: (name) => {
+        return({
+            name: name,
+            desc: "Faction-specific weapon rule - see this unit's datasheet for details.",
         })
     },
 

@@ -18,7 +18,7 @@ import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 
 // WarHammer Functions 
 
-import determineUnits from "../../../constants/projects/warhammer/army_units/determineUnits"
+import determineUnits, { loadArmyUnits } from "../../../constants/projects/warhammer/army_units/determineUnits"
 import getAllArmies from "../../../constants/projects/warhammer/functions/getallUnits";
 
 // Colors
@@ -68,6 +68,37 @@ const [detachment, setDetachment] = useState(false)
 // Unit Selection
 const [selectType, setSelectType] = useState(false) 
 const [shownUnit, setShownUnit] = useState(false)
+
+// Army Data (loaded from the generated files when an army is picked - no API calls)
+const [armyUnits, setArmyUnits] = useState([])
+const [detachmentList, setDetachmentList] = useState([])
+const [armyLoading, setArmyLoading] = useState(false)
+useEffect(() => {
+    if (!armyType){
+        return
+    }
+    let cancelled = false
+    setArmyLoading(true)
+    setShownUnit(false)
+    setDetachment(false)
+    Promise.all([loadArmyUnits(armyType), determineDetachment(armyType)])
+        .then(([units, detachments]) => {
+            if (cancelled) return
+            setArmyUnits(units)
+            setDetachmentList(detachments)
+        })
+        .catch((err) => {
+            console.error(`Couldn't load ${armyType}`, err)
+            if (!cancelled){
+                setArmyUnits([])
+                setDetachmentList([])
+            }
+        })
+        .finally(() => {
+            if (!cancelled) setArmyLoading(false)
+        })
+    return () => { cancelled = true }
+}, [armyType])
 
 // Selections
 const [pts, setPts] = useState(0)
@@ -194,7 +225,10 @@ function renderDetachment(armyType){
     if (!armyType){
         return
     }
-    let list = determineDetachment(armyType)
+    let list = detachmentList
+    if (list.length === 0){
+        return
+    }
     return(
         <div style={{backgroundColor: scorchedGreen, marginTop: 0, flex: 6}}>
             <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, padding: 0, color: goldenAge}}>
@@ -239,13 +273,16 @@ function renderUnitTags(armyType, selectType){
     if (!selectType){
         return
     }
-    return determineUnits(armyType, selectType).map( unit => {
+    if (armyLoading){
+        return <p style={{color: goldenAge, margin: 5}}>Loading {armyType}...</p>
+    }
+    return determineUnits(armyUnits, selectType).map( unit => {
         const _style={ marign: 0,
             justifyItems: 'center', alignContent: 'center', textAlign: 'center',
             borderRight: "1px solid black",  borderLeft: "1px solid black"
         }
         return(
-            <OstCard  noShadow={true} rounded={false}
+            <OstCard  key={unit.name} noShadow={true} rounded={false}
             onClick={() => {setShownUnit(unit)}}
             style={{
                 display: 'flex', flex: 1, flexDirection: 'row', gap: 5, 
@@ -379,7 +416,7 @@ function UnitCard({
             return(
                 <OstCard noShadow={true}
                     templateStyle={1}
-                    imageSrc={unit.img}
+                    imageSrc={unit.img || "/assets/icons/big/Warhammer.png"}
                     style={{flex: 3}}
                 />
             )
@@ -435,13 +472,13 @@ function UnitCard({
     }
 
     function renderMeleeWeapons(unit){
-        return unit.meleeWeapons.map(wep => {
+        return (unit.meleeWeapons || []).map(wep => {
             return renderWeaponTag(wep)
         })
     }
 
     function renderRangedWeapons(){
-        return unit.rangedWeapons.map(wep => {
+        return (unit.rangedWeapons || []).map(wep => {
             return renderWeaponTag(wep)
         })
     }
@@ -482,7 +519,7 @@ function UnitCard({
     }
 
     function renderWeaponAbilities(weapon){
-        if (weapon.abilities.length === 0){
+        if (!weapon.abilities || weapon.abilities.length === 0){
             return
         }
         return(

@@ -241,7 +241,7 @@ const votann_weapons = {
         dam: 2,
         abilities: [
             weapon_abilities.blast(),
-            weapon_abilities.heavy()
+            weapon_abilities.oneshot()
         ]
     },
     matr_autocannon: {
@@ -255,7 +255,7 @@ const votann_weapons = {
         dam: 2,
         abilities: [
             weapon_abilities.sustained_hits(1),
-            weapon_abilities.heavy()
+            weapon_abilities.assault()
         ]
     },
     sp_heavy_conversion_beamer: {
