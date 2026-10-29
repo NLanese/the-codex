@@ -513,7 +513,7 @@ export default function NewOldsville({
             return(
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     {renderNorthEastCoastLine()}
-                    <div style={{marginTop: 95, marginLeft: 150}}>
+                    <div style={{marginTop: 0, marginLeft: 70}}>
                         {renderWishingWell()}
                     </div>
                 </div>
@@ -526,14 +526,20 @@ export default function NewOldsville({
 
     function renderNorthEastCoastLine(){
         return(
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                <span>  {renderWaves()}           {renderWaves()}                                                                         {renderWaves()} </span>
-                    <span>      {renderWaves()}             {renderWaves()}                           {renderWaves()} </span>
-                    <span>-----------------          {renderWaves()}    </span>
-                    <span>             ,    \_____________________________________        {renderWaves()}                                  ____________________</span>                          
-                    <span>     *                         ;. '':'";  ,';           \   {renderWaves()}                                     /                    \</span>
-                    <span>                                     .                   \                 {renderWaves()}      {renderWaves()}         /                       \</span>
-                    <span>            ,.          *                                 \__________________________________________/</span>
+            <div style={{display: 'flex', flexDirection: 'column', marginTop: -40}}>
+                <span>  {renderWaves()} \</span>
+                <span>          \</span>
+                <span>{renderWaves()}     \</span>
+                <span>            \________________________________________________</span>
+                <span>                                                             \</span>
+                <span>              {renderWaves()}                   {renderWaves()}                 \  </span>
+                <span>  {renderWaves()}           {renderWaves()}             {renderWaves()}                   \                        _______/</span>
+                    <span>      {renderWaves()}             {renderWaves()}                    {renderWaves()}       \______________________/</span>
+                    <span>-----------------          {renderWaves()}                                           [__]</span>
+                    <span>             ,    \_____________________________________              {renderWaves()}[__]                           ____________________</span>                          
+                    <span>     *                         ;. '':'";  ,';           \   {renderWaves()}          [__]                          /                    \</span>
+                    <span>                                     .                   \                  [__]{renderWaves()}                  /                       \</span>
+                    <span>            ,.          *                                 \_________________[__]_______________________/</span>
             </div>
         )
     }
@@ -541,15 +547,20 @@ export default function NewOldsville({
 
     function renderWishingWell(){
         return(
-            <div style={{display: 'flex', flexDirection: "column"}}
-            onClick={() => {goToWishingWell()}}>
-            <span> /-----\</span> 
-            <span>/_______\ </span>
-            <span>||     ||</span>
-            <span>||_____||</span>
-            <span>|_|_|_|_|</span>
-            <span>|_|_|_|_|</span>
-            <span>|_|_|_|_|</span>
+            <div style={{display: 'flex', flexDirection: "column"}}>
+            <span>      /-----\                                                      |  |</span> 
+            <span>     /_______\                                                     |  |</span>
+            <span onClick={() => {goToWishingWell()}}>     ||     ||                                     ____________    |  |</span>
+            <span onClick={() => {goToWishingWell()}}>     ||_____||                                    | Teh Bridge |   |  |</span>
+            <span onClick={() => {goToWishingWell()}}>     |_|_|_|_|                                    |____________|   |  |</span>
+            <span onClick={() => {goToWishingWell()}}>     |_|_|_|_|                                         |x|         |  |</span>
+            <span onClick={() => {goToWishingWell()}}>   . |_|_|_|_| .                                                   |  |</span>
+            <span>     . . . . .                                                     |  |</span>
+            <span>      \     /                                                      |  |</span>
+            <span>       |   |                                                       |  |</span>
+            <span>_______|   |_______________________________________________________|  |</span>
+            <span>_________________________________________________________________________</span>
+            <span>          </span>
             </div>
         )
     }
@@ -689,7 +700,7 @@ export default function NewOldsville({
                     {renderLilForest1()}
                 </div>
 
-                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 40, marginTop: 20
+                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 40, marginTop: 0
                 }}>
                     {renderPastEasternForest()}
                 </div>
