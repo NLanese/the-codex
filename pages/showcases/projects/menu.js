@@ -2,29 +2,15 @@
 import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
-// Recoil
+// Jotai
 import { useAtom } from "jotai";
-import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
+import { tabBarState, directoryDataState } from "../../../jotai/atoms";
 
-// Styles 
-import Styles from "../../../styles/styles";
+// Showcase Kit
+import { Page, Hero, ActionButton, PillTabs, Section, CardGrid, ProjectCard } from "../../../components/Showcase/showcaseKit";
+import { PROJECTS, PROJECT_GROUPS } from "../../../constants/showcaseProjects";
 
-// Ostrich
-import { OstCard } from "@ostrich_development/ostrich-components";
-
-// Assets
-const BoardGameAI = "../../../assets/icons/big/BoardGameWizardIcon.jpeg";
-const BetBotImg = "../../../assets/icons/big/BetBot.jpeg";
-const DDAImg = "../../../assets/icons/big/DDAImg.jpeg";
-const DDScreen = "../../../assets/icons/big/DDScreen.png";
-const OstCompImg = "../../../assets/icons/big/OstrichComponentsLogo.png";
-const WandererImg = "../../../assets/icons/big/WandererImg.jpeg";
-const Food = "../../../assets/icons/big/foodbusiness.png";
-const CandyBox3 = "../../../assets/icons/big/CandyBox3.png";
-const NR = "../../../assets/icons/big/Nightreign.png";
-const WH = "../../../assets/icons/big/Warhammer.png"
-
-
+const ALL = "All Projects"
 
 
 export default function ProjectsMenu() {
@@ -34,154 +20,97 @@ export default function ProjectsMenu() {
     ///////////
 
       const [directory, setDirectory] = useAtom(directoryDataState)
+      const [activeTab, setActiveTab] = useAtom(tabBarState)
       const router = useRouter()
 
-      ////////////////
-      // UseEffects //
-      ////////////////
-    
+      // Which group of projects is showing
+      const [filter, setFilter] = useState(ALL)
+
+    ////////////////
+    // UseEffects //
+    ////////////////
+
       useEffect(() => {
-        setDirectory("Portfolio")            
+        setDirectory("Portfolio")
+        setActiveTab("Ongoing Projects")
       }, [])
 
+    ////////////////
+    // Renderings //
+    ////////////////
+
+      function renderGroup(group){
+        const projects = PROJECTS.filter((p) => p.group === group.id)
+        if (!projects.length){
+            return null
+        }
+        return(
+            <Section
+                key={group.id}
+                id={`projects-${group.id}`}
+                eyebrow={group.eyebrow}
+                title={group.title}
+                subtitle={group.subtitle}
+            >
+                <CardGrid>
+                    {projects.map((p) => (
+                        <ProjectCard
+                            key={p.id}
+                            image={p.image}
+                            fit={p.fit}
+                            tileBg={p.tileBg}
+                            title={p.title}
+                            blurb={p.blurb}
+                            tags={p.tags}
+                            status={p.status}
+                            href={p.href}
+                            onClick={p.route ? () => router.push(p.route) : undefined}
+                        />
+                    ))}
+                </CardGrid>
+            </Section>
+        )
+      }
+
+      const shownGroups = filter === ALL ? PROJECT_GROUPS : PROJECT_GROUPS.filter((g) => g.title === filter)
+
+
+    /////////////////
+    // Main Return //
+    /////////////////
+
     return(
-        <div style={{marginTop: 20}}>
-            <div style={Styles.Fonts.pageTitle}>Nick Lanese's Ongoing Projects</div>
+        <Page>
+            <Hero
+                eyebrow="Ongoing Projects"
+                title="Things I'm building"
+                intro={<>
+                    Personal projects, experiments and tools I build in my free time. Some are live, some are still in the workshop,
+                    and all of them are built with the same fundamentals taught in The Codex's lessons.
+                </>}
+            />
 
-            <div style={{...Styles.Sections.lessonContent, margin: "30px"}}>
-                <div style={{
-                    display: 'flex', 
-                    flexDirection: 'row',
-                    alignContent: 'space-evenly',
-                    width: '90%',
-                    marginLeft: '5%',
-                    height: 300,
-                    gap: 20
-                }}>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={BoardGameAI}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.push("/showcases/projects/boardgame_master_ai")
-                        }}
-                    >
-                        The Board Game Wizard AI
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={BetBotImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.push("/showcases/projects/betbot")
-                        }}
-                    >
-                        NBA BetBot AI
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={DDAImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
-                    >
-                        Dungeons, Dragons, and AI
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={OstCompImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.push("/showcases/ostrich-components/showcase")
-                        }}
-                    >
-                        The Ostrich Component Library
-                    </OstCard>
-                </div>
+            <div style={{marginTop: 28}}>
+                <PillTabs
+                    tabs={[ALL, ...PROJECT_GROUPS.map((g) => g.title)]}
+                    value={filter}
+                    onChange={setFilter}
+                    ariaLabel="Filter projects"
+                />
             </div>
 
-            <div style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b", paddingTop: 30}}>
-                <div style={{
-                    display: 'flex', 
-                    flexDirection: 'row',
-                    alignContent: 'space-evenly',
-                    width: '90%',
-                    marginLeft: '5%',
-                    height: 300,
-                    gap: 20
-                }}>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={DDScreen}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
-                        // onClick={() => {
-                        // router.push("/showcases/projects/boardgameMasterAI")
-                        // }}
-                    >
-                        Dungeon Dash (Unity Project)
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={WandererImg}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
-                        // onClick={() => {
-                        // router.push("/showcases/projects/betbot")
-                        // }}
-                    >
-                        Wanderer
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={Food}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600, backgroundColor: "#969696"}}
-                        onClick={() => {
-                        router.push("https://foodbusinessgroup.vercel.app/")
-                        }}
-                    >
-                        Food Business Group
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={CandyBox3}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.push("/showcases/projects/candybox_3")
-                        }}
-                    >
-                        Candy Box 3
-                    </OstCard>
-                </div>
+            {shownGroups.map(renderGroup)}
+
+            <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}>
+                <ActionButton
+                    label="← Back to Portfolio"
+                    variant="dark"
+                    onClick={() => {
+                        setActiveTab("Official Works")
+                        router.push("/showcases/works/menu")
+                    }}
+                />
             </div>
-            <div style={{...Styles.Sections.lessonContent, margin: "30px", borderTop: "4px solid #11013b", paddingTop: 30}}>
-                <div style={{
-                    display: 'flex', 
-                    flexDirection: 'row',
-                    alignContent: 'space-evenly',
-                    width: '90%',
-                    marginLeft: '5%',
-                    height: 300,
-                    gap: 20
-                }}>
-                     <OstCard
-                        templateStyle={1}
-                        imageSrc={NR}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.push("/showcases/projects/nightreign")
-                        }}
-                    >
-                        Nightreign Build Calculator 
-                    </OstCard>
-                    <OstCard
-                        templateStyle={1}
-                        imageSrc={WH}
-                        style={{flex: 3, margin: 5, fontFamily: "Gilroy", fontWeight: 600}}
-                        onClick={() => {
-                        router.push("/showcases/projects/warhammer")
-                        }}
-                    >
-                        Warhammer Army Codex
-                    </OstCard>
-                </div>
-            </div>
-        </div>
+        </Page>
     )
 }
