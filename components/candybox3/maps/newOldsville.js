@@ -32,9 +32,9 @@ export default function NewOldsville({
         // Environment Timer \\
         const [timer, setTimer] = useState(0)
         useEffect(() => {
+            console.log(thingsDone)
             const interval = setInterval(() => {
                 setTimer(prev => {
-                    console.log(thingsDone)
                     const next = prev < 5 ? prev + 1 : 0;
                     return next;
                 });
@@ -511,13 +511,16 @@ export default function NewOldsville({
     function renderPastEasternForest(){
         if (findIfDone(thingsDone, "CrossedEasternForest")){
             return(
-                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
                     {renderNorthEastCoastLine()}
                     <div style={{marginTop: 95, marginLeft: 150}}>
                         {renderWishingWell()}
                     </div>
                 </div>
             )
+        }
+        else{
+            console.log("Moo Im an annoying cow")
         }
     }
 
@@ -638,10 +641,6 @@ export default function NewOldsville({
         }
     }
 
-
-    function renderPastEasternForest(){}
-
-
     //////////
     // MAIN //
     //////////
@@ -692,7 +691,7 @@ export default function NewOldsville({
 
                 <div style={{display: 'flex', flexDirection: 'column', marginLeft: 40, marginTop: 20
                 }}>
-                    
+                    {renderPastEasternForest()}
                 </div>
             </div>
 
