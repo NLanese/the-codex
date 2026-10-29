@@ -3,10 +3,9 @@ import React, {useEffect, useState} from "react";
 
 // Styles
 import Styles from "../../../../styles/styles";
-import Colors from "../../../../styles/colors";
 
 // Ostrich
-import { ODef, OstrichForm } from "@ostrich_development/ostrich-components";
+import { ODef } from "@ostrich_development/ostrich-components";
 import { ODefContnet } from "../../../../constants/oDefContent";
 
 // Jotai
@@ -17,7 +16,7 @@ import { directoryDataState, tabBarState } from "../../../../jotai/atoms";
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
 import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
-import { Callout, VariableBox, Recap, NextLesson, lessonText, sideBySide } from "../../../../components/LessonParts/lessonParts";
+import { Callout, VariableBox, Recap, NextLesson, CheckYourUnderstanding, lessonText, sideBySide } from "../../../../components/LessonParts/lessonParts";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Next JS
@@ -446,47 +445,30 @@ const VariablesLesson = ({}) => {
                         ]}
                     />
 
-                    <div style={{marginTop: 30}}>
-                        <OstrichForm
-                            style={{
-                                backgroundColor: Colors.offWhiteContent,
-                                boxShadow:'2px 2px 10px 2px rgba(20, 20, 15, 0.1)',
-                                borderRadius: 15
-                            }}
-                            title={"Check your Understanding"}
-                            fieldTextStyles={{fontSize: 16}}
-                            fields={[
-                                {
-                                    id: '1',
-                                    title: "1. After running  let score = 3  and then  score = score + 2 , what is the value of score?",
-                                    type: "MC",
-                                    options: ["3", "2", "5", "Nothing, an Error is thrown"],
-                                    correctValue: "5"
-                                },
-                                {
-                                    id: '2',
-                                    title: "2. Which line declares a variable WITHOUT assigning it a value?",
-                                    type: "MC",
-                                    options: ["var x", "var x = 4", "x = 4"],
-                                    correctValue: "var x"
-                                },
-                                {
-                                    id: '3',
-                                    title: "3. Which of these creates a variable called name in Python?",
-                                    type: "MC",
-                                    options: ["let name = \"Hank\"", "String name = \"Hank\";", "name = \"Hank\""],
-                                    correctValue: "name = \"Hank\""
-                                },
-                                {
-                                    id: '4',
-                                    title: "4. In code, what does a single = sign do?",
-                                    type: "MC",
-                                    options: ["Checks if two values are equal", "Stores the value on the right in the variable on the left"],
-                                    correctValue: "Stores the value on the right in the variable on the left"
-                                },
-                            ]}
-                        />
-                    </div>
+                    <CheckYourUnderstanding
+                        questions={[
+                            {
+                                question: "After running  let score = 3  and then  score = score + 2 , what is the value of score?",
+                                options: ["3", "2", "5", "Nothing, an Error is thrown"],
+                                answer: "5",
+                            },
+                            {
+                                question: "Which line declares a variable WITHOUT assigning it a value?",
+                                options: ["var x", "var x = 4", "x = 4"],
+                                answer: "var x",
+                            },
+                            {
+                                question: "Which of these creates a variable called name in Python?",
+                                options: ["let name = \"Hank\"", "String name = \"Hank\";", "name = \"Hank\""],
+                                answer: "name = \"Hank\"",
+                            },
+                            {
+                                question: "In code, what does a single = sign do?",
+                                options: ["Checks if two values are equal", "Stores the value on the right in the variable on the left"],
+                                answer: "Stores the value on the right in the variable on the left",
+                            },
+                        ]}
+                    />
 
                     <NextLesson lesson="Operators" onClick={handleLessonClick}/>
                 </div>

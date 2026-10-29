@@ -14,12 +14,149 @@ import { directoryDataState, tabBarState } from "../../../../jotai/atoms";
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
-import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
+import {
+    Callout, VariableBox, Recap, NextLesson, SectionHeader, LessonCode, TryIt,
+    ConceptCard, CardRow, KeyTerms, CheckYourUnderstanding, lessonText
+} from "../../../../components/LessonParts/lessonParts";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Next JS
 import { useRouter } from "next/router";
+
+
+///////////////////
+// Code Examples //
+///////////////////
+
+const DECLARE_CODE = {
+    JavaScript: `
+        let age = 16            // number
+        let price = 4.99        // also "number": JS has one number type
+        let name = "Hank"       // string
+        let isMember = true     // boolean
+
+        age = "sixteen"         // allowed: the type can change later
+    `,
+    Java: `
+        int age = 16;
+        double price = 4.99;
+        char grade = 'A';
+        String name = "Hank";
+        boolean isMember = true;
+
+        age = "sixteen";        // ERROR: age was declared as an int
+    `,
+    "C#": `
+        int age = 16;
+        double price = 4.99;
+        char grade = 'A';
+        string name = "Hank";
+        bool isMember = true;
+
+        age = "sixteen";        // ERROR: age was declared as an int
+    `,
+    Python: `
+        age = 16                # int
+        price = 4.99            # float
+        name = "Hank"           # str (string)
+        isMember = True         # bool
+
+        age = "sixteen"         # allowed: the type can change later
+    `,
+}
+
+const MIXING_CODE = {
+    JavaScript: `
+        let num = 4
+        let num2 = 5
+        let txt = "4"
+        let txt2 = "5"
+
+        num + num2      // 9     numbers are added
+        txt + txt2      // "45"  strings are joined end to end
+        num + txt       // "44"  the number becomes a string first
+        num + 1.5       // 5.5   every number is the same "number" type
+    `,
+    Java: `
+        int num = 4;
+        int num2 = 5;
+        String txt = "4";
+        String txt2 = "5";
+
+        int combinedNums = num + num2;      // 9
+        String combinedTxt = txt + txt2;    // "45"
+        String mixed = num + txt;           // "44"  stored as a String
+        int broken = num + txt;             // ERROR: a String can't go in an int
+        double numberType = num + 1.5;      // 5.5   Java turns the int into a double
+    `,
+    "C#": `
+        int num = 4;
+        int num2 = 5;
+        string txt = "4";
+        string txt2 = "5";
+
+        int combinedNums = num + num2;      // 9
+        string combinedTxt = txt + txt2;    // "45"
+        string mixed = num + txt;           // "44"  stored as a string
+        int broken = num + txt;             // ERROR: a string can't go in an int
+        double numberType = num + 1.5;      // 5.5
+    `,
+    Python: `
+        num = 4
+        num2 = 5
+        txt = "4"
+        txt2 = "5"
+
+        num + num2      # 9
+        txt + txt2      # "45"
+        num + txt       # TypeError! Python won't guess what you meant
+        str(num) + txt  # "44"   convert (cast) the number first
+        num + 1.5       # 5.5    ints and floats mix happily
+    `,
+}
+
+const CASTING_CODE = {
+    JavaScript: `
+        String(5)          // "5"   number → string
+        Number("5")        // 5     string → number
+        Number("five")     // NaN   ("Not a Number"): the text isn't a number
+    `,
+    Java: `
+        String.valueOf(5)          // "5"   int → String
+        Integer.parseInt("5")      // 5     String → int
+        (int) 4.99                 // 4     double → int (the decimal is cut off)
+    `,
+    "C#": `
+        5.ToString()           // "5"   int → string
+        int.Parse("5")         // 5     string → int
+        (int) 4.99             // 4     double → int (the decimal is cut off)
+    `,
+    Python: `
+        str(5)        # "5"   int → str
+        int("5")      # 5     str → int
+        int(4.99)     # 4     float → int (the decimal is cut off)
+    `,
+}
+
+const BOOLEAN_CODE = {
+    JavaScript: `
+        4 + true          // 5        true becomes 1 (false would be 0)
+        true + "true"     // "truetrue"
+    `,
+    Java: `
+        int a = 4 + true;           // ERROR: Java never treats true as 1
+        String b = true + "true";   // "truetrue"  anything + a String is a String
+    `,
+    "C#": `
+        int a = 4 + true;           // ERROR: C# never treats true as 1
+        string b = true + "true";   // "Truetrue"  note the capital T
+    `,
+    Python: `
+        4 + True          # 5   like JavaScript, True counts as 1
+        True + "true"     # TypeError! use str(True) + "true" instead
+    `,
+}
 
 
 const DataTypesLesson = ({}) => {
@@ -71,700 +208,6 @@ const DataTypesLesson = ({}) => {
             router.push(`/concepts/basics/labs/${lab.toLowerCase().replaceAll(" ", "_")}`)
         }
 
-    ////////////////////
-    // Code Rendering //
-    ////////////////////
-
-    // First Code Snippet //
-
-        function renderJavaScript(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>num2 </span>
-                    <span style={Styles.Code.reg}>= 5</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"4"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>txt2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"5"</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>combinedNums </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num2 </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>combinedTxt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt2 </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Strings are not added together like numbers, they are joined end to end.</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of combinedTxt would be "45".</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>mixedDataTypes </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// In JavaScript, mixing a number and a string will automatically convert</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// the number into a string, and then join the two together.</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// This makes the value of mixedDataTypes "44"</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>num3 </span>
-                    <span style={Styles.Code.reg}>= 1.5</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>numberType </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num3 </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of numberType would be 5.5</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// JavaScript is different than most languages in that 'int', 'float' and 'double' do</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// not actually exist. Instead, every numerical value in JavaScript is of data type 'number'.</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// This makes working with numbers easier in JavaScript, but less memory efficient,</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// since every 'number' takes up as much space as a double.</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderJava(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>num2 </span>
-                    <span style={Styles.Code.reg}>= 5;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"4"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>txt2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"5"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>combinedNums </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num2</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>combinedTxt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt2</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Strings are joined end to end. The value of combinedTxt would be "45".</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>mixedDataTypes </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// When one side of a + is a String, Java converts the other side into a String.</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of mixedDataTypes would be "44". Notice that we still had to</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// declare mixedDataTypes as a String; storing it in an int would throw an error.</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>double </span>
-                    <span style={Styles.Code.var}>num3 </span>
-                    <span style={Styles.Code.reg}>= 1.5;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>double </span>
-                    <span style={Styles.Code.var}>numberType </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num3</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of numberType would be 5.5</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Java can easily convert ints to doubles when needed, so you can run</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// the code above without needing to cast anything.</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderCs(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>num2 </span>
-                    <span style={Styles.Code.reg}>= 5;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"4"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>txt2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"5"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>combinedNums </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num2</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>combinedTxt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt2</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Strings are joined end to end. The value of combinedTxt would be "45".</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>mixedDataTypes </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Just like Java, when one side of a + is a string, C# converts the other side</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// into a string. The value of mixedDataTypes would be "44".</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>double </span>
-                    <span style={Styles.Code.var}>num3 </span>
-                    <span style={Styles.Code.reg}>= 1.5;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>double </span>
-                    <span style={Styles.Code.var}>numberType </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num3</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of numberType would be 5.5</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderPython(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>num2 </span>
-                    <span style={Styles.Code.reg}>= 5</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"4"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>txt2 </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"5"</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>combinedNums </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num2 </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># The value of combinedNums would be 9</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>combinedTxt </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt2 </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># Strings are joined end to end. The value of combinedTxt would be "45".</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>mixedDataTypes </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.func}>str(</span>
-                    <span style={Styles.Code.var}>num</span>
-                    <span style={Styles.Code.func}>) </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>txt </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># Unlike JavaScript, Python will NOT mix a number and a string for you.</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># Writing num + txt would throw a TypeError. Instead, we convert (cast)</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># num into a string with str(). The value of mixedDataTypes would be "44"</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>num3 </span>
-                    <span style={Styles.Code.reg}>= 1.5</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>numberType </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>num3 </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># The value of numberType would be 5.5. Python happily mixes ints and floats.</span>
-                    </p>
-                </div>
-            )
-        }
-
-    // Second Code Snippet //
-
-        function renderJavaScriptTypes(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>true</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>boolAndNumber </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of boolAndNumber would be 5</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// This is because true becomes 1 when converted to a number</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// false would become 0</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>stringValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"true"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>boolAndString </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>stringValue </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of boolAndString would be "truetrue"</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// This is because JavaScript converts easily to Strings</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderJavaTypes(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>boolean </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>true</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>boolAndNumber </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>boolValue</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// This would throw an error</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Unlike JavaScript, Java does not treat true as 1, so you cannot add a boolean to a number</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>stringValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"true"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>boolAndString </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>stringValue</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of boolAndString would be "truetrue"</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Anything added to a String gets converted into a String</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderCsTypes(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>bool </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>true</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>boolAndNumber </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>boolValue</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// This would throw an error</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Just like Java, C# does not treat true as 1</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>stringValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"true"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>boolAndString </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>stringValue</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// The value of boolAndString would be "Truetrue"</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}>// Notice C# writes the boolean with a capital T when converting it to a string</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderPythonTypes(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>= 4</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>True</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>boolAndNumber </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>num </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># The value of boolAndNumber would be 5</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># Like JavaScript, Python treats True as 1 and False as 0</span>
-                    </p>
-
-                    <br></br>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>stringValue </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"true"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>boolAndString </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.var}>boolValue </span>
-                    <span style={Styles.Code.reg}>+ </span>
-                    <span style={Styles.Code.var}>stringValue </span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># This would throw a TypeError</span>
-                    </p>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.comment}># Python will not convert to a string for you; str(boolValue) + stringValue would work</span>
-                    </p>
-                </div>
-            )
-        }
-
-
     //////////////////////
     // Lesson Rendering //
     //////////////////////
@@ -772,377 +215,247 @@ const DataTypesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-                    <div style={Styles.Fonts.lessonHeader}>What are Data Types?</div>
-                    <div>
-                        <p style={Styles.Fonts.basic}>
-                            As briefly covered in the <strong>Variables Lesson</strong>, every variable will have an attached 'DataType.' This describes what kind of value is being stored inside of the variable. This concept matters a lot more in some
-                            <ODef
-                            text="programming languages"
-                            modalContent={
-                            <ODefContnet
-                                color="#88fccc"
-                                word="Programming Language"
-                                definition="Computers do not understand written (or typed) language. Rather, they speak in binary. To the human eye, binary language cannot be processed, so we have created systems of 'syntax' to form a bridge between human comprehension and computer binary code. This means we created 'languages' with their own syntax, or 'grammar' that the computer compiler can understand well enough to translate into binary. This allows developers to create the files that we know of. Like in real life, each language will have its own quirks, its own rules, words and structure. Some Programming languages we will cover are Python, Java, JavaScript and C#."
-                                />}
-                            />
-                            than it does in others. For example, in <strong>Java and C#</strong>, variables of different data types are very strict about how they can interact with each other, and often the developer needs to make some changes so that their data types match.
-                            For example, in Java, if we add x, which has a value of 2 (the datatype 'integer'), to y, which has a value of 2.5 (the data type 'double'), and try to store the result in an integer variable, the compiler will throw an error.
+                    <SectionHeader first>What is a Data Type?</SectionHeader>
+                    <p style={lessonText}>
+                        In the Variables lesson you saw that a variable is a box holding a value. But not every value is the same <em>kind</em> of thing.
+                        21 is a number, "Hank Hill" is text, and false is a yes-or-no answer.
+                    </p>
+
+                    <Callout type="key">
+                        <p style={{...lessonText, marginBottom: 0}}>
+                            <strong>A data type is the kind of value a variable holds.</strong> It decides what you can do with that value, and what operators like + will do to it.
                         </p>
-                        <p style={Styles.Fonts.basic}>
-                            <strong>Let's go over some basic Data Types</strong>
-                        </p>
-                        <div style={{...Styles.Sections.importantNote, ...Styles.Fonts.basic}}>
-                            <li>
-                                <strong>Integer (int) -- </strong> Any whole number. Integers do not have decimals. Furthermore, there is a maximum (and minimum) number that integers are allowed to represent. You cannot have integer variables store any value above 2,147,483,647 or below -2,147,483,648. This makes the Integer, or int, one of the smallest numeric data types in terms of memory it takes up.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Double (double) -- </strong> A Double is a variable that functions much like an Integer but takes up an increased amount of memory in storage. As such, its range is larger and it is able to be used with decimal point numbers, unlike the int. A double is one of the largest numeric datatypes, taking up 64 bits of storage per variable of this type.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Float (float) -- </strong> A Float is a variable that functions much like a Double but takes up less storage, operating at only 32 bits. This means you can still have decimal numbers represented as a Float data type, but when handling massive numbers or searching for precision to the 15th decimal, you may be better off using the Double data type.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Character (char) -- </strong> A single typed character. This could be a letter, a symbol (such as + - * ! etc.) or even a number. However the char data type cannot be manipulated the same way as a numeric data type. This means to say that 5 (int) and '5' (char) will behave differently.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>String (String) -- </strong> A series of connected characters. A String in computer science is essentially how all text is recorded. A string does have a few different behaviors than a character, despite them being very similar. We will go over more on this later on.
-                            </li>
-                            <br></br>
-                            <li>
-                                <strong>Boolean (bool) -- </strong> A true or false value. Takes up minimal computer memory and can be used to quickly identify if conditions are met. More on this later as well!
-                            </li>
-                        </div>
+                    </Callout>
+
+                    <p style={lessonText}>
+                        Here is why that matters. These three boxes all look like they hold a 4, but to the computer they are completely different things:
+                    </p>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', margin: '24px 0 10px 0'}}>
+                        <VariableBox name="num" value="4" caption="a number you can do math with"/>
+                        <VariableBox name="txt" value={'"4"'} valueStyle={Styles.Code.str} caption="text that happens to be a 4"/>
+                        <VariableBox name="grade" value={"'4'"} valueStyle={Styles.Code.str} caption="a single character"/>
                     </div>
 
-                    <div style={Styles.Fonts.lessonHeader}>Why are Data Types Important?</div>
-                    <div>
-                        <p style={Styles.Fonts.basic}>
-                            Data types help segment different kinds of variables and minimize storage. Their importance depends on the language, as some languages like <strong>Java and C#</strong> require a data type be provided the moment a variable is declared; whereas the compilers in languages like <strong>JavaScript and Python</strong> can determine the data type based on the value provided during initialization. In these languages the data type can also change, whereas in stricter languages once a data type is set it cannot be easily altered.
-                        </p>
-
-                        <p style={Styles.Fonts.basic}>
-                            Regardless of the language however, all data types behave a little differently. Let's take a look at some simple examples...
-                        </p>
-
-                        <div style={Styles.Sections.importantNote}>
-                            <p style={Styles.Fonts.basic}>
-                                Below we
-                                <ODef
-                                text="declare"
-                                modalContent={
-                                <ODefContnet
-                                    color="#88fccc"
-                                    word="Declaration"
-                                    definition="Creating a variable in Computer Science is referred to as 'Declaring.' If I wanted to create and use a new variable, x, I would first have to declare it. In most languages, there will be a keyword immediately preceding the variable name. For instance, in JavaScript, if I wanted to declare an empty variable x, I could do so by entering 'let x' or 'var x', as 'let' and 'var' are keywords for creating variables in JavaScript."
-                                    />}
-                                />
-                                and
-                                <ODef
-                                text="initialize"
-                                modalContent={
-                                <ODefContnet
-                                    color="#88fccc"
-                                    word="Initializing a Variable"
-                                    definition="In most languages, we can declare and initialize a variable at the same time. To initialize a variable simply means to assign a value to it. In our previous example, 'let x', we would simply need to add a value to the statement to consider x initialized. 'let x = 5' is an example of full variable initialization."
-                                    />}
-                                />
-                                variables that look like they have a similar value, but are of different data types. We will first initialize two ints, and then two Strings.
-                            </p>
-                            <div style={Styles.Sections.simpleLessonCode}>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>int </span>
-                                <span style={Styles.Code.var}>num </span>
-                                <span style={Styles.Code.reg}>= 4;</span>
-                                </p>
-
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>int </span>
-                                <span style={Styles.Code.var}>num2 </span>
-                                <span style={Styles.Code.reg}>= 5;</span>
-                                </p>
-
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>String </span>
-                                <span style={Styles.Code.var}>txt </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.str}>"4"</span>
-                                <span style={Styles.Code.reg}>;</span>
-                                </p>
-
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>String </span>
-                                <span style={Styles.Code.var}>txt2 </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.str}>"5"</span>
-                                <span style={Styles.Code.reg}>;</span>
-                                </p>
-                            </div>
-
-                            <p style={Styles.Fonts.basic}>
-                                Now we will compare how they interact with each other as well as between themselves.
-                            </p>
-                            <div style={{...Styles.Sections.simpleLessonCode, width: 750}}>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>int </span>
-                                <span style={Styles.Code.var}>combinedNums </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.var}>num </span>
-                                <span style={Styles.Code.reg}>+ </span>
-                                <span style={Styles.Code.var}>num2</span>
-                                <span style={Styles.Code.reg}>;</span>
-                                </p>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.comment}>// The value of combinedNums would be 9</span>
-                                </p>
-                                <br></br>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.keyword}>String </span>
-                                <span style={Styles.Code.var}>combinedTxt </span>
-                                <span style={Styles.Code.reg}>= </span>
-                                <span style={Styles.Code.var}>txt </span>
-                                <span style={Styles.Code.reg}>+ </span>
-                                <span style={Styles.Code.var}>txt2</span>
-                                <span style={Styles.Code.reg}>;</span>
-                                </p>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.comment}>// Strings are not added like numbers. Instead, they are joined end to end.</span>
-                                </p>
-                                <p style={Styles.Code.code}>
-                                <span style={Styles.Code.comment}>// The value of combinedTxt would be "45".</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <p style={Styles.Fonts.basic}>
-                            As previously mentioned, data types are more important in some languages than in others. Below we will show how different languages may have some limitations that others don't.
-                        </p>
-
-                        <CodeSnippet
-                            js={renderJavaScript()}
-                            java={renderJava()}
-                            cs={renderCs()}
-                            py={renderPython()}
-                        />
-
-                        <br></br>
-
-                        <p style={Styles.Fonts.basic}>
-                            Let's go over a bit of what we saw above. Foremost, you can see clearly in these small code snippets some of the bigger differences between languages. <strong>Python</strong>, for example, does not even have developers use a
-                            <span>
-                            <ODef
-                            text="keyword"
-                            modalContent={
-                            <ODefContnet
-                                color="#ffd591"
-                                word="Keywords"
-                                definition="Keywords are phrases or words that have an inherent definition in whatever language you are currently using, and thus cannot be used as variable names. For example, words like 'if', 'else', 'let', and 'public' are some examples of keywords in JavaScript. These words cannot be used as variable names."
-                            />}
-                            />
-                            </span>
-                            to announce the creation of a variable. <strong>JavaScript</strong> just uses the keywords 'let', 'var', and 'const' to create variables and constants. Stricter, lower-level programming languages like <strong>Java and C#</strong> require developers to specify the variable's data type at the moment of declaration.
-                        </p>
-
-                        <p style={Styles.Fonts.basic}>
-                            As you can see, in most cases you will be able to switch the data type of a variable (or create a new variable to do so) when mixing data types in operations. While some languages rely on the developer guiding the compiler through the process of mixing data types, others can figure out what the developer wants and automatically make the adjustments.
-                        </p>
-                    </div>
+                    <p style={{...lessonText, marginTop: 14}}>
+                        The quotation marks are the giveaway. Anything in quotes is text, even if it is made of digits. You can't divide "4" by 2, just like you can't divide the word "four".
+                    </p>
                 </div>
             )
         }
 
-        function renderSecond(){
+        function renderTypes(){
             return(
                 <div>
-                    <div style={Styles.Fonts.lessonHeader}>More on Mixing Data Types and using Operators</div>
-                    <div>
-                        <p style={Styles.Fonts.basic}>
-                            There are times when two or more variables of different data types may be compared against one another, and not just added to one another like in the examples above.
-                            This means sometimes you may need to add an <strong>integer</strong> with a <strong>string</strong>, and sometimes you may need to see if a date (saved as a number) is before or after a date saved as a string.
-                            Other times, you will need to change the data type of one variable entirely in order to make it interact with another. Let's cover some of those cases, as well as some of the examples shown above, in more detail.
-                        </p>
+                    <SectionHeader>The Basic Data Types</SectionHeader>
+                    <p style={lessonText}>
+                        Almost every language is built on the same handful of types. The names change slightly between languages, but the ideas don't.
+                    </p>
 
-                        <p style={Styles.Fonts.basic}>
-                            First, we will cover simple operations between two different data types. As shown in the example above, languages handle adding a string and a number together very differently.
-                            Some languages, like <strong>JavaScript</strong>, will automatically convert the number into a string for you, whereas others, like <strong>Python</strong>, refuse to guess and require
-                            developers to tell the machine what variable's type to change and what to change it to. This is done through a process called
+                    <CardRow>
+                        <ConceptCard title="Integer (int)" code={`let lives = 3`}>
+                            A <strong>whole number</strong>, with no decimal point: 3, 0, -42.
+                        </ConceptCard>
+                        <ConceptCard title="Double / Float" code={`let price = 4.99`}>
+                            A number <strong>with a decimal point</strong>. A double holds bigger and more precise numbers than a float.
+                        </ConceptCard>
+                        <ConceptCard title="Boolean (bool)" code={`let isOpen = true`}>
+                            Only ever <strong>true or false</strong>. Every comparison from the Operators lesson produces one.
+                        </ConceptCard>
+                    </CardRow>
+                    <CardRow>
+                        <ConceptCard title="Character (char)" code={`char grade = 'A';`} language="java">
+                            <strong>One single character</strong>, like 'A', '+' or '5', usually in single quotes. Java and C# have it; JavaScript and Python just use a one-letter string.
+                        </ConceptCard>
+                        <ConceptCard title="String" code={`let name = "Hank"`}>
+                            A <strong>series of characters in order</strong>. It's how all text is stored, from a username to this sentence.
+                        </ConceptCard>
+                    </CardRow>
+
+                    <Callout type="watch" title="Numbers have limits">
+                        <p style={{...lessonText, marginBottom: 0}}>
+                            Types take up memory, so each one has a size limit. An <strong>int</strong> in Java and C# can't store anything above 2,147,483,647 or below -2,147,483,648.
+                            A <strong>double</strong> uses twice the memory of a <strong>float</strong> (64 bits instead of 32), which lets it hold larger numbers with more decimal places.
+                        </p>
+                    </Callout>
+                </div>
+            )
+        }
+
+        function renderStrictness(){
+            return(
+                <div>
+                    <SectionHeader>Strict and Relaxed Languages</SectionHeader>
+                    <p style={lessonText}>
+                        How much data types matter depends on the
+                        <ODef
+                        text="programming language"
+                        modalContent={
+                        <ODefContnet
+                            color="#88fccc"
+                            word="Programming Language"
+                            definition="Computers only understand binary, which people can't easily read or write. Programming languages bridge that gap: each one has its own 'grammar' (called syntax) that we can write and the computer can translate. In these lessons we use JavaScript, Java, C# and Python."
+                            />}
+                        />
+                        . Click through the tabs to compare.
+                    </p>
+
+                    <LessonCode languages={DECLARE_CODE}/>
+
+                    <CardRow>
+                        <ConceptCard title="Strict: Java and C#">
+                            You state the type when you
                             <ODef
-                            text="casting"
+                            text="declare"
                             modalContent={
                             <ODefContnet
-                                color="#a3fc2d"
-                                word="Casting"
-                                definition="The process of manually telling the compiler to change the data type of a variable to a different one. For example, one could cast an integer x = 4 to be a string which = '4'"
+                                color="#88fccc"
+                                word="Declaration"
+                                definition="Creating a variable is called 'declaring' it. In Java and C#, the declaration includes the data type, like 'int age'."
+                                />}
+                            />
+                            the variable (<strong>int</strong>, <strong>String</strong>...), and it can never hold a different type afterward. Mistakes are caught before the program runs.
+                        </ConceptCard>
+                        <ConceptCard title="Relaxed: JavaScript and Python">
+                            The language works out the type from the value you give it, and the same variable can hold a number now and text later. Quicker to write, but easier to make a mix-up.
+                        </ConceptCard>
+                    </CardRow>
+                </div>
+            )
+        }
+
+        function renderMixing(){
+            return(
+                <div>
+                    <SectionHeader>Same Operator, Different Result</SectionHeader>
+                    <p style={lessonText}>
+                        Remember <strong>+</strong> from the Operators lesson? What it does depends on the data types on either side of it.
+                        Between two numbers, it <strong>adds</strong>. Between two strings, it <strong>joins</strong> them end to end.
+                    </p>
+
+                    <LessonCode languages={MIXING_CODE}/>
+
+                    <Callout type="example" title="Reading the tabs">
+                        <ul style={{margin: 0, paddingLeft: 22}}>
+                            <li style={{...lessonText, marginBottom: 6}}>
+                                <strong>JavaScript</strong> assumes that if a string is involved, you want a string, so 4 + "4" quietly becomes "44".
+                            </li>
+                            <li style={{...lessonText, marginBottom: 6}}>
+                                <strong>Java and C#</strong> do the same joining, but you must store the result in a variable of the right type, or you get an error.
+                            </li>
+                            <li style={{...lessonText, marginBottom: 0}}>
+                                <strong>Python</strong> refuses to guess. Adding a number to a string is an error until you convert one of them yourself.
+                            </li>
+                        </ul>
+                    </Callout>
+
+                    <TryIt
+                        title="Add or join?"
+                        starter={`console.log(4 + 5)\nconsole.log("4" + "5")\nconsole.log(4 + "5")`}
+                        expectedOutput={"9\n45\n45"}
+                    >
+                        <p style={{...lessonText, marginBottom: 4}}>
+                            Predict what each line prints, then press <strong>Run</strong>. Notice the last two print the same thing for very different reasons.
+                        </p>
+                    </TryIt>
+                </div>
+            )
+        }
+
+        function renderCasting(){
+            return(
+                <div>
+                    <SectionHeader>Changing a Value's Type</SectionHeader>
+                    <p style={lessonText}>
+                        Values often arrive as the wrong type. Anything a user types into a box on a website, even their age, comes in as a string.
+                        Before you can do math with it, you convert it. Telling the computer to change a value's type is called
+                        <ODef
+                        text="casting"
+                        modalContent={
+                        <ODefContnet
+                            color="#a3fc2d"
+                            word="Casting"
+                            definition="Manually telling the computer to change the data type of a value. For example, casting the number 4 to a string gives you '4'."
                             />}
-                            />.
-                        </p>
-
-                        <div style={Styles.Sections.importantNote}>
-                            <p style={Styles.Fonts.basic}>
-                                Both <strong>JavaScript and Python</strong> are higher level languages that do not rely on type declarations, but they disagree on what to do when we add a number to a string.
-                                JavaScript assumes we want the new value to be a string. Python throws an error unless we cast the number ourselves with <strong>str()</strong>.
-                            </p>
-                            <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.comment}>// JavaScript</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>let </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>= 5</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>let </span>
-                                    <span style={Styles.Code.var}>stringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.str}>"4"</span>
-                                    </p>
-                                    <br></br>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>let </span>
-                                    <span style={Styles.Code.var}>combinedStringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>+ </span>
-                                    <span style={Styles.Code.var}>stringValue </span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.comment}>// "54"</span>
-                                    </p>
-                                </div>
-                                <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.comment}># Python</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>= 5</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.var}>stringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.str}>"4"</span>
-                                    </p>
-                                    <br></br>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.var}>combinedStringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.func}>str(</span>
-                                    <span style={Styles.Code.var}>numberValue</span>
-                                    <span style={Styles.Code.func}>) </span>
-                                    <span style={Styles.Code.reg}>+ </span>
-                                    <span style={Styles.Code.var}>stringValue </span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.comment}># "54"</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style={Styles.Sections.importantNote}>
-                            <p style={Styles.Fonts.basic}>
-                                For the <strong>Lower Level Programming Languages</strong>, the computer does not do as much assuming as it does in the higher levels. In C for example, "5" + 4 would not give you "54" at all; it would return either an error or some long gibberish text.
-                            </p>
-                            <p style={Styles.Fonts.basic}>
-                                Luckily, we are not working in any languages that low level. While both Java and C# are lower level when compared to Python and JavaScript, they do have
-                                some modern advancements that allow implicit conversions. They do, however, rely on the developer to tell the computer what data type the resulting variable will be. For example,
-                                when combining "4" and 5, we would want the result to be a string, since turning a number into a string is far easier than the other way around.
-                            </p>
-
-                            <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.comment}>// Java</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>int </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>= 5;</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>String </span>
-                                    <span style={Styles.Code.var}>stringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.str}>"4"</span>
-                                    <span style={Styles.Code.reg}>;</span>
-                                    </p>
-                                    <br></br>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>String </span>
-                                    <span style={Styles.Code.var}>combinedStringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>+ </span>
-                                    <span style={Styles.Code.var}>stringValue</span>
-                                    <span style={Styles.Code.reg}>;</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>int </span>
-                                    <span style={Styles.Code.var}>thisWouldThrowAnError </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>+ </span>
-                                    <span style={Styles.Code.var}>stringValue</span>
-                                    <span style={Styles.Code.reg}>;</span>
-                                    </p>
-                                </div>
-                                <div style={{...Styles.Sections.simpleLessonCode, flex: 3, marginLeft: 10}}>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.comment}>// C#</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>int </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>= 5;</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>string </span>
-                                    <span style={Styles.Code.var}>stringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.str}>"4"</span>
-                                    <span style={Styles.Code.reg}>;</span>
-                                    </p>
-                                    <br></br>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>string </span>
-                                    <span style={Styles.Code.var}>combinedStringValue </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>+ </span>
-                                    <span style={Styles.Code.var}>stringValue</span>
-                                    <span style={Styles.Code.reg}>;</span>
-                                    </p>
-                                    <p style={Styles.Code.code}>
-                                    <span style={Styles.Code.keyword}>int </span>
-                                    <span style={Styles.Code.var}>thisWouldThrowAnError </span>
-                                    <span style={Styles.Code.reg}>= </span>
-                                    <span style={Styles.Code.var}>numberValue </span>
-                                    <span style={Styles.Code.reg}>+ </span>
-                                    <span style={Styles.Code.var}>stringValue</span>
-                                    <span style={Styles.Code.reg}>;</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p style={Styles.Fonts.basic}>
-                            Some data types are easier to convert to than others. For example, JavaScript, Java and C# all assume that when you combine anything with a string, you want the result to be a string.
-                            Python is the exception of the four, and will ask you to convert things yourself. There are some other weird cases too, especially with booleans.
-                            We will go over some of them below.
-                        </p>
-
-                        <CodeSnippet
-                            js={renderJavaScriptTypes()}
-                            java={renderJavaTypes()}
-                            cs={renderCsTypes()}
-                            py={renderPythonTypes()}
                         />
-                    </div>
+                        .
+                    </p>
+
+                    <LessonCode languages={CASTING_CODE}/>
+
+                    <p style={lessonText}>
+                        Turning a number into text always works. Going the other way only works when the text really is a number: "5" can become 5, but "five" can't.
+                    </p>
+
+                    <div style={{...Styles.Fonts.h3, marginTop: 30, marginBottom: 8}}>A strange case: booleans</div>
+                    <p style={lessonText}>
+                        Behind the scenes, some languages store <strong>true</strong> as 1 and <strong>false</strong> as 0, which leads to some surprising results:
+                    </p>
+
+                    <LessonCode languages={BOOLEAN_CODE}/>
+
+                    <p style={lessonText}>
+                        You won't add booleans to numbers on purpose very often, but knowing this explains some confusing bugs later.
+                    </p>
+                </div>
+            )
+        }
+
+        function renderWrapUp(){
+            return(
+                <div>
+                    <KeyTerms
+                        terms={[
+                            {term: "Data type", definition: "The kind of value a variable holds, which decides what you can do with it."},
+                            {term: "Integer (int)", definition: "A whole number with no decimal point."},
+                            {term: "Double / Float", definition: "A number with a decimal point. A double is bigger and more precise than a float."},
+                            {term: "String", definition: "Text: a series of characters in order, written in quotes."},
+                            {term: "Boolean", definition: "A value that is only ever true or false."},
+                            {term: "Casting", definition: "Converting a value from one data type to another, like \"5\" into 5."},
+                        ]}
+                    />
+
+                    <Recap
+                        points={[
+                            "A data type is the kind of value a variable holds: a whole number, a decimal, text, or true / false.",
+                            "Anything in quotes is a string, even \"4\", so it behaves like text, not a number.",
+                            "Java and C# make you state the type up front. JavaScript and Python work it out for you.",
+                            "+ adds numbers but joins strings, and each language handles mixing them differently.",
+                            "Casting converts a value to a new type, like turning a user's typed \"16\" into the number 16.",
+                        ]}
+                    />
+
+                    <CheckYourUnderstanding
+                        questions={[
+                            {
+                                question: "What data type is the value \"42\" (with the quotes)?",
+                                options: ["Integer", "Double", "String", "Boolean"],
+                                answer: "String",
+                            },
+                            {
+                                question: "In JavaScript, what does  \"3\" + \"4\"  produce?",
+                                options: ["7", "\"34\"", "An error"],
+                                answer: "\"34\"",
+                            },
+                            {
+                                question: "In Python, what happens with  5 + \"5\" ?",
+                                options: ["10", "\"55\"", "A TypeError"],
+                                answer: "A TypeError",
+                            },
+                            {
+                                question: "Which data type should hold a price like 4.99?",
+                                options: ["int", "double", "boolean", "char"],
+                                answer: "double",
+                            },
+                            {
+                                question: "A user types their age into a box, and it arrives as the string \"16\". What do you need to do before adding 1 to it?",
+                                options: ["Nothing, it already works", "Cast it to a number", "Cast it to a boolean"],
+                                answer: "Cast it to a number",
+                            },
+                        ]}
+                    />
+
+                    <NextLesson lesson="Conditionals" onClick={handleLessonClick}/>
                 </div>
             )
         }
@@ -1157,7 +470,11 @@ const DataTypesLesson = ({}) => {
             <div style={{...Styles.Sections.lessonContent, marginTop: '3.2%'}}>
                 {renderTitle("Data Types")}
                 {renderFirst()}
-                {renderSecond()}
+                {renderTypes()}
+                {renderStrictness()}
+                {renderMixing()}
+                {renderCasting()}
+                {renderWrapUp()}
             </div>
         )
     }

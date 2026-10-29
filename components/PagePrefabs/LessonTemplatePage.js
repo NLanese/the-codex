@@ -2,15 +2,14 @@
 import React from "react";
 
 // Constants
-import Styles from "../../styles/styles";
-import Colors from "../../styles/colors";
+import { comingSoon as comingSoonPages } from "../../constants/lessonLists";
 
 // Components
-import ListPage from "../global/codexList";
+import { SidePanel } from "./SidePanel";
 
 export const LessonTemplatePage = ({
     children,
-    onLessonClick, 
+    onLessonClick,
     lessons,
 
     current,
@@ -19,13 +18,11 @@ export const LessonTemplatePage = ({
     tests,
 
     onLabsClick,
-    labs
+    labs,
+
+    // Names listed without a page yet; shown as "Coming soon"
+    comingSoon = comingSoonPages,
 }) => {
-
-    ///////////
-    // State //
-    ///////////
-
 
     ////////////////
     // Renderings //
@@ -33,72 +30,36 @@ export const LessonTemplatePage = ({
 
         function renderLessonsList(){
             return(
-                <div style={{height: '100vh', marginTop: 100
-                // alignContent: 'center'
-                }}>
-                    <div style={Styles.Sections.subContentBubble}>
-                        <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                        Lessons
-                        </div>
-                        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-                        <ListPage 
-                            items={lessons}
-                            onClick={onLessonClick}
-                            size="md"
-                        />
-                        </div>
-                    </div>
-
+                <div style={{paddingTop: 100, paddingBottom: 30}}>
+                    <SidePanel
+                        title="Lessons"
+                        items={lessons}
+                        onClick={onLessonClick}
+                        current={current}
+                        comingSoon={comingSoon}
+                    />
                 </div>
             )
         }
 
         function renderLabsAndTests(){
             return(
-                <div style={{height: '100vh', marginTop: 100
-                // alignContent: 'center'
-                }}>
-                    <div style={Styles.Sections.subContentBubble}>
-                        <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                            Labs
-                        </div>
-                        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-                        <ListPage 
-                            items={labs}
-                            onClick={onLabsClick}
-                            size="md"
-                        />
-                        </div>
-                    </div>
-
-                    <div style={{...Styles.Sections.subContentBubble, marginTop: 30}}>
-                        <div style={{...Styles.Fonts.h1, textAlign: 'center'}}>
-                            Tests
-                        </div>
-                        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-                        <ListPage 
-                            items={tests}
-                            onClick={onTestsClick}
-                            size="md"
-                        />
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-
-        function renderSideMenu(){
-            return(
-                <div style={Styles.Sections.sideMenu}>
-                    {renderLessonsList()}
-                </div>
-            )
-        }
-
-        function renderOtherSideMenu(){
-            return(
-                <div style={Styles.Sections.sideMenu}>
-                    {renderLabsAndTests()}
+                <div style={{paddingTop: 100, paddingBottom: 30}}>
+                    <SidePanel
+                        title="Labs"
+                        items={labs}
+                        onClick={onLabsClick}
+                        current={current}
+                        comingSoon={comingSoon}
+                    />
+                    <SidePanel
+                        title="Tests"
+                        items={tests}
+                        onClick={onTestsClick}
+                        current={current}
+                        comingSoon={comingSoon}
+                        style={{marginTop: 30}}
+                    />
                 </div>
             )
         }
@@ -110,41 +71,40 @@ export const LessonTemplatePage = ({
     return(
     <div style={{ display: 'flex', minHeight: '100vh' }}>
         {/* Left Sticky Sidebar */}
-        <div style={{
-            position: 'sticky',
-            top: 0,
-            height: '100vh',
-            width: '200px',
-            backgroundColor: '#f0f0f0',
-            paddingLeft: 20, paddingRight: 20,
-            overflowY: 'auto',
-            flex: 2.5
-        }}>
-            {renderOtherSideMenu()}
-        </div>
+        <aside style={sidebar}>
+            {renderLabsAndTests()}
+        </aside>
 
         {/* Main Scrollable Content */}
         <div style={{
             flex: 7,
             padding: 30,
             overflowY: 'auto',
+            minWidth: 0,
         }}>
             {children}
         </div>
 
         {/* Right Sticky Sidebar */}
-        <div style={{
-            position: 'sticky',
-            top: 0,
-            height: '100vh',
-            width: '200px',
-            backgroundColor: '#f0f0f0',
-            paddingLeft: 20, paddingRight: 20,
-            overflowY: 'auto',
-            flex: 2.5
-        }}>
-            {renderSideMenu()}
-        </div>
+        <aside style={sidebar}>
+            {renderLessonsList()}
+        </aside>
     </div>
     )
+}
+
+
+////////////
+// Styles //
+////////////
+
+const sidebar = {
+    position: 'sticky',
+    top: 0,
+    height: '100vh',
+    width: '200px',
+    backgroundColor: '#f0f0f0',
+    paddingLeft: 20, paddingRight: 20,
+    overflowY: 'auto',
+    flex: 2.5,
 }

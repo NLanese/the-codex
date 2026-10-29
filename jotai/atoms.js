@@ -17,3 +17,7 @@ export const directoryDataState = atom(false);
 
 // Determines what Main Directory you are in
 export const activeTabDataState = atom(false);
+
+
+// Remembers which language the reader picked in lesson code blocks, so every block follows it
+export const codeLanguageState = atom("JavaScript");
