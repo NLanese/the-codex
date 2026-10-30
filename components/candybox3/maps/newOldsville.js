@@ -526,7 +526,9 @@ export default function NewOldsville({
 
     function renderNorthEastCoastLine(){
         return(
-            <div style={{display: 'flex', flexDirection: 'column', marginTop: -40}}>
+            <div style={{display: 'flex', flexDirection: 'column', marginTop: -60}}>
+                <span>       \</span>
+                <span>{renderWaves()}  \</span>
                 <span>  {renderWaves()} \</span>
                 <span>          \</span>
                 <span>{renderWaves()}     \</span>
@@ -535,9 +537,9 @@ export default function NewOldsville({
                 <span>              {renderWaves()}                   {renderWaves()}                 \  </span>
                 <span>  {renderWaves()}           {renderWaves()}             {renderWaves()}                   \                        _______/</span>
                     <span>      {renderWaves()}             {renderWaves()}                    {renderWaves()}       \______________________/</span>
-                    <span>-----------------          {renderWaves()}                                           [__]</span>
-                    <span>             ,    \_____________________________________              {renderWaves()}[__]                           ____________________</span>                          
-                    <span>     *                         ;. '':'";  ,';           \   {renderWaves()}          [__]                          /                    \</span>
+                    <span>     \____________        {renderWaves()}                                            [__]</span>
+                    <span>             ,    \_____________________________________              {renderWaves()}[__]                          ____________________</span>                          
+                    <span>     *                         ;. '':'";  ,';           \   {renderWaves()}          [__]                         /                    \</span>
                     <span>                                     .                   \                  [__]{renderWaves()}                  /                       \</span>
                     <span>            ,.          *                                 \_________________[__]_______________________/</span>
             </div>
@@ -558,8 +560,9 @@ export default function NewOldsville({
             <span>     . . . . .                                                     |  |</span>
             <span>      \     /                                                      |  |</span>
             <span>       |   |                                                       |  |</span>
-            <span>_______|   |_______________________________________________________|  |</span>
-            <span>_________________________________________________________________________</span>
+            <span>  _____|   |_______________________________________________________|  |</span>
+            <span>                                                                       </span>
+            <span>  _______________________________________________________________________</span>
             <span>          </span>
             </div>
         )
