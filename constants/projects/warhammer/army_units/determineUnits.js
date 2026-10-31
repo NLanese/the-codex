@@ -9,10 +9,13 @@ export async function loadArmyUnits(armyTitle){
     return army.loadUnits()
 }
 
-// Filters an army's units down to one tab: "Characters", "Battleline", "Transports", "Other"
+// Filters an army's units down to one tab: "All", "Characters", "Battleline", "Transports", "Other"
 export default function determineUnits(units, type){
     if (!units || !type){
         return []
+    }
+    if (type.toUpperCase() === "ALL"){
+        return units
     }
     return units.filter((unit) => unit.class.toUpperCase() === type.toUpperCase())
 }

@@ -15,6 +15,7 @@ import { FormMultipleChoice } from "@ostrich_development/ostrich-components";
 import { OstrichDropDown } from "@ostrich_development/ostrich-components";
 import determineDetachment from "../../../constants/projects/warhammer/detachments/determineDetachment";
 import { OstrichTabBar } from "@ostrich_development/ostrich-components";
+import { OstrichButton } from "@ostrich_development/ostrich-components";
 
 // WarHammer Functions 
 
@@ -73,6 +74,7 @@ const [shownUnit, setShownUnit] = useState(false)
 const [armyUnits, setArmyUnits] = useState([])
 const [detachmentList, setDetachmentList] = useState([])
 const [armyLoading, setArmyLoading] = useState(false)
+
 useEffect(() => {
     if (!armyType){
         return
@@ -81,6 +83,7 @@ useEffect(() => {
     setArmyLoading(true)
     setShownUnit(false)
     setDetachment(false)
+    setSelectType((type) => type || "All")   // Open a tab so the unit list fills in right away
     Promise.all([loadArmyUnits(armyType), determineDetachment(armyType)])
         .then(([units, detachments]) => {
             if (cancelled) return
@@ -208,7 +211,7 @@ function renderArmySize(armySizeNum){
 
 function renderBasics(){
     return(
-        <div style={{backgroundColor: scorchedGreen, flex: 6}}>
+        <div style={{backgroundColor: scorchedGreen, flex: 4}}>
             <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, padding: 0, color: goldenAge}}>
                 Select your Army
             </p>
@@ -230,12 +233,13 @@ function renderDetachment(armyType){
         return
     }
     return(
-        <div style={{backgroundColor: scorchedGreen, marginTop: 0, flex: 6}}>
-            <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, padding: 0, color: goldenAge}}>
+        <div style={{backgroundColor: scorchedGreen, marginTop: 0, flex: 8, display: 'flex', flexDirection: 'column', maxHeight: '50vh', paddingBottom: 20}}>
+            <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 5, padding: 2.5, color: goldenAge}}>
                 Select your Detachment
             </p>
+            {/* Scrolls when an army has too many detachments to fit */}
+            <div style={{flex: 1, minHeight: 0, overflowY: 'auto', marginTop: -25}}>
             <FormMultipleChoice 
-            style={{marginTop: -25}}
             titleStyle={{fontSize: 20}}
             itemsPerRow={1}
             inForm={false}
@@ -250,6 +254,7 @@ function renderDetachment(armyType){
                 options: list
             }}
         />
+            </div>
         </div>
     )
 }
@@ -262,7 +267,8 @@ function renderUnitTypeTabBar(){
         <div style={{ flex: 1}}>
             <OstrichTabBar
             openOnHover={true}
-            tabs={["Characters", "Battleline", "Transports", "Other"]}
+            tabs={["All", "Characters", "Battleline", "Transports", "Other"]}
+            value={selectType || undefined}
             onTabClick={(tab) => handleUnitTypeTabClick(tab)}
             />
         </div>  
@@ -343,7 +349,7 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
                 <div style={{height: '40vh'}}>
                     {/* Title and Fill Bar */}
                     <div style={{display: 'flex', flexDirection: 'row', flex: 1, height: "4vh"}}>
-                        <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 3}}>
+                        <p style={{...Styles.Fonts.basicXL, margin: 5, marginTop: 0, marginBottom: 0, padding: 0, color: goldenAge, flex: 2}}>
                             Fill out your Ranks
                         </p>
                         <div style={{display: 'flex', flex: 8}}>
@@ -446,28 +452,40 @@ function UnitCard({
 
     function renderUnitDetailSelections(shownDetails){
         return(
-            <FormMultipleChoice 
-                style={{padding: 0, margin: 0}}
-                tabStyle={{width: '110%', margin: 0}}
-                titleStyle={{fontSize: 20}}
-                itemsPerRow={1}
-                inForm={false}
-                fieldTextStyle={{padding: 0, margin: 0}}
-                value={shownDetails}
-                onChange={(op) => {
-                    setShownDetails(op.value[0])
+            <div style={{display: 'flex', flexDirection: 'column', gap: 12, width: '100%'}}>
+                <OstrichButton
+                label="+ Add to Army"
+                disabled={!unit}
+                onClick={() => console.log("Add to Army", unit)}
+                style={{
+                    backgroundColor: goldenAge, color: wornViridium,
+                    border: `2px solid ${brassWarriors}`, borderRadius: 6,
+                    padding: 12, textAlign: 'center',
+                    fontSize: 18, fontWeight: 'bold', letterSpacing: 0.5,
                 }}
-                fieldObj={{
-                    id: "2",
-                    type: "MC",
-                    template: "tabs",
-                    value: shownDetails,
-                    options: [
-                        "Melee Weapons", "Ranged Weapons", "Abilities", "Wargear", "Weapon Options", "Wargear Options", 
-                        {tag: "Add to Army", doesNotFireParent: true, onPress: (tag) => console.log(tag)}
-                    ]
-                }}
-            />
+                />
+                <FormMultipleChoice 
+                    style={{padding: 0, margin: 0}}
+                    tabStyle={{width: '110%', margin: 0}}
+                    titleStyle={{fontSize: 20}}
+                    itemsPerRow={1}
+                    inForm={false}
+                    fieldTextStyle={{padding: 0, margin: 0}}
+                    value={shownDetails}
+                    onChange={(op) => {
+                        setShownDetails(op.value[0])
+                    }}
+                    fieldObj={{
+                        id: "2",
+                        type: "MC",
+                        template: "tabs",
+                        value: shownDetails,
+                        options: [
+                            "Melee Weapons", "Ranged Weapons", "Abilities", "Wargear", "Weapon Options", "Wargear Options",
+                        ]
+                    }}
+                />
+            </div>
         )
     }
 
