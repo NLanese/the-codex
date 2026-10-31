@@ -13,8 +13,8 @@ export default function SavedBuilds({
     effect61, effect62, effect63,
     relic1, relic2, relic3,
     relic4, relic5, relic6,
-    setRelic1, setRelic2, setRelic3,
-    setRelic4, setRelic5, setRelic6,
+    weaponEffects,
+    applyBuild,
 }){
 
 ////////////
@@ -54,7 +54,8 @@ export default function SavedBuilds({
             relic4:relic4, relic5:relic5, relic6:relic6,
             effect41:effect41, effect42:effect42, effect43:effect43,
             effect51:effect51, effect52:effect52, effect53:effect53,
-            effect61:effect61, effect62:effect62, effect63:effect63
+            effect61:effect61, effect62:effect62, effect63:effect63,
+            weaponEffects: weaponEffects
         };
 
         // Compute updated array FIRST
@@ -98,13 +99,8 @@ export default function SavedBuilds({
     };
 
     const loadBuild = (buildObj) => {
-        console.log(buildObj)
-        setRelic1(buildObj.relic1)
-        setRelic2(buildObj.relic2)
-        setRelic3(buildObj.relic3)
-        setRelic4(buildObj.relic4)
-        setRelic5(buildObj.relic5)
-        setRelic6(buildObj.relic6)
+        // Restores the effect slots in the parent; relics and stats are derived from them
+        applyBuild(buildObj)
     };
 
 ///////////////

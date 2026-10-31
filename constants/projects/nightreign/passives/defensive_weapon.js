@@ -5,7 +5,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicNegation: 1.12,
+            magicNeg: 1.12,
             always: true,
         }
     },
@@ -15,7 +15,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicNegation: 1.16,
+            magicNeg: 1.16,
             always: true,
         }
     },
@@ -25,7 +25,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicNegation: 1.20 ,
+            magicNeg: 1.20 ,
             always: true,
         }
     },
@@ -35,7 +35,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningNegation: 1.12,
+            lightningNeg: 1.12,
             always: true,
         }
     },
@@ -45,7 +45,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningNegation: 1.16,
+            lightningNeg: 1.16,
             always: true,
         }
     },
@@ -55,7 +55,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningNegation: 1.20,
+            lightningNeg: 1.20,
             always: true,
         }
     },
@@ -65,7 +65,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            holyNegation: 1.12,
+            holyNeg: 1.12,
             always: true,
         }
     },
@@ -75,7 +75,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            holyNegation: 1.16,
+            holyNeg: 1.16,
             always: true,
         }
     },
@@ -85,7 +85,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            holyNegation: 1.20,
+            holyNeg: 1.20,
             always: true,
         }
     },
@@ -95,7 +95,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "fireNeg",
         effect: {
-            fireNegation: 1.12,
+            fireNeg: 1.12,
             always: true,
         }
     },
@@ -105,7 +105,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "fireNeg",
         effect: {
-            fireNegation: 1.16,
+            fireNeg: 1.16,
             always: true,
         }
     },
@@ -115,7 +115,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "fireNeg",
         effect: {
-            fireNegation: 1.20,
+            fireNeg: 1.20,
             always: true,
         }
     },
@@ -125,7 +125,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allNegation: 1.23,
+            allNeg: 1.23,
             always: false,
             condition: "Below 40% Health"
         }
@@ -136,7 +136,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allNegation: 1.30,
+            allNeg: 1.30,
             always: false,
             condition: "Below 40% Health"
         }
@@ -147,7 +147,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allNegation: 1.37,
+            allNeg: 1.37,
             always: false,
             condition: "Below 40% Health"
         }
@@ -158,7 +158,7 @@ const defensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allNegation: 1.16,
+            allNeg: 1.16,
             always: false,
             condition: "Below 40% Health"
         }
@@ -169,7 +169,7 @@ const defensive_weapon_passives = [
         stacks: {self: false, selfType: true},
         selfType: "BuffOnHit",
         effect: {
-            allNegation: 1.21,
+            allNeg: 1.21,
             always: false,
             appliesRanged: true,
             condition: "10 seconds active after taking damage from an enemy"
@@ -181,7 +181,7 @@ const defensive_weapon_passives = [
         stacks: {self: false, selfType: true},
         selfType: "BuffOnHit",
         effect: {
-            allNegation: 1.28,
+            allNeg: 1.28,
             always: false,
             appliesRanged: true,
             condition: "10 seconds active after taking damage from an enemy"
@@ -193,7 +193,7 @@ const defensive_weapon_passives = [
         stacks: {self: false, selfType: true},
         selfType: "BuffOnHit",
         effect: {
-            allNegation: 1.36,
+            allNeg: 1.36,
             always: false,
             appliesRanged: true,
             condition: "10 seconds active after taking damage from an enemy"
@@ -205,7 +205,7 @@ const defensive_weapon_passives = [
         stacks: {self: false, selfType: true},
         selfType: "CastNeg",
         effect: {
-            allNegation: 1.18,
+            allNeg: 1.18,
             always: false,
             appliesRanged: true,
             condition: "While casting a spell"
@@ -217,7 +217,7 @@ const defensive_weapon_passives = [
         stacks: {self: false, selfType: true},
         selfType: "CastNeg",
         effect: {
-            allNegation: 1.24,
+            allNeg: 1.24,
             always: false,
             appliesRanged: true,
             condition: "While casting a spell"
@@ -229,7 +229,7 @@ const defensive_weapon_passives = [
         stacks: {self: false, selfType: true},
         selfType: "CastNeg",
         effect: {
-            allNegation: 1.30,
+            allNeg: 1.30,
             always: false,
             appliesRanged: true,
             condition: "While casting a spell"
@@ -243,7 +243,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After Successive Hits",
-            allNegation: 1.38,
+            allNeg: 1.38,
         }
     },
     {
@@ -254,7 +254,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After Successive Hits",
-            allNegation: 1.48,
+            allNeg: 1.48,
         }
     },
     {
@@ -265,7 +265,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After Successive Hits",
-            allNegation: 1.60,
+            allNeg: 1.60,
         }
     },
     {
@@ -276,7 +276,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After landing a Charged RT / R2",
-            allNegation: 1.24,
+            allNeg: 1.24,
         }
     },
     {
@@ -287,7 +287,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After landing a Charged RT / R2",
-            allNegation: 1.32,
+            allNeg: 1.32,
         }
     },
     {
@@ -298,7 +298,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After landing a Charged RT / R2",
-            allNegation: 1.40,
+            allNeg: 1.40,
         }
     },
     {
@@ -309,7 +309,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After blocking an attack",
-            allNegation: 1.14,
+            allNeg: 1.14,
         }
     },
     {
@@ -320,7 +320,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After blocking an attack",
-            allNegation: 1.19,
+            allNeg: 1.19,
         }
     },
     {
@@ -331,7 +331,7 @@ const defensive_weapon_passives = [
         effect: {
             always: false,
             condition: "After blocking an attack",
-            allNegation: 1.24,
+            allNeg: 1.24,
         }
     },
     

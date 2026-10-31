@@ -115,7 +115,7 @@ const characterRelics = [
        effect: {
             always: false,
             condition: "After Using Guardian Character Skill",
-            allNegation: 1.12,
+            allNeg: 1.12,
         }
     },
     {
@@ -206,7 +206,7 @@ const characterRelics = [
             always: true,
             dex: -13,
             vigor: 5,
-            strength: 20
+            str: 20
         },
     },
     {
@@ -220,7 +220,7 @@ const characterRelics = [
             appliesRanged: true,
             always: false,
             condition: "Enemies Killed During Ult",
-            conditionCounter: true
+            conditionCount: true
         },
     },
     {

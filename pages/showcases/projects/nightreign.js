@@ -206,10 +206,7 @@ const silverLining = "#d4eeff"
         let all = [];
         let types = [];
     
-        if (effect11) { 
-            all.push({...effect11, active: true}) 
-            types.push(effect11.selfType)
-        }
+        [all, types] = handleEffectState(effect11, all, types);
         [all, types] = handleEffectState(effect12, all, types);
         [all, types] = handleEffectState(effect13, all, types);
         [all, types] = handleEffectState(effect21, all, types);
@@ -636,8 +633,8 @@ function RENDER_MAIN(){
             effect61={effect61} effect62={effect62} effect63={effect63}
             relic1={relic1} relic2={relic2} relic3={relic3}
             relic4={relic4} relic5={relic5} relic6={relic6}
-            setRelic1={setRelic1} setRelic2={setRelic2} setRelic3={setRelic3}
-            setRelic4={setRelic4} setRelic5={setRelic5} setRelic6={setRelic6}
+            weaponEffects={{weaponEffect11, weaponEffect12, weaponEffect13, weaponEffect21, weaponEffect22, weaponEffect23, weaponEffect31, weaponEffect32, weaponEffect33, weaponEffect41, weaponEffect42, weaponEffect43, weaponEffect51, weaponEffect52, weaponEffect53, weaponEffect61, weaponEffect62, weaponEffect63}}
+            applyBuild={applyBuild}
         />
     }
 }
@@ -1008,10 +1005,10 @@ function RENDER_MAIN(){
     function findConditions(){
         let objOfToggles = {}
         all_relic_effects.forEach(eff => {
-            if (!eff.effect.always){
+            if (eff.effect && !eff.effect.always){
                 if (eff.effect.condition){
                     if (objOfToggles[eff.effect.condition] === null || objOfToggles[eff.effect.condition] === undefined){
-                        if (eff.effect.conditionCounter){
+                        if (eff.effect.conditionCount){
                             objOfToggles[eff.effect.condition] = 0
                         }
                         else{
@@ -1021,26 +1018,83 @@ function RENDER_MAIN(){
                 }
             }
         })
-        set_relic_effect_toggles(objOfToggles) 
+        // Keep values the user already set; only add new conditions / drop removed ones
+        set_relic_effect_toggles(prev => {
+            let merged = {}
+            Object.keys(objOfToggles).forEach(cond => {
+                const kept = prev?.[cond]
+                merged[cond] = (kept !== undefined && typeof kept === typeof objOfToggles[cond])
+                    ? kept
+                    : objOfToggles[cond]
+            })
+            return merged
+        })
     }
 
+    // Decides whether an effect is active given the effects already applied.
+    // stacks.self     -> an exact duplicate (same title) still applies
+    // stacks.selfType -> a different effect of the same selfType still applies
     function handleEffectState(effect, all, types){
-        if (effect) {
-            if (!effect.stacks.selfType){
-                let selfType = effect.selfType
-                if (types.includes(selfType)){
-                    all.push({...effect, active: false});
-                }
-                else{
-                    all.push({...effect, active: true});
-                }
-            }
-            else{
-                all.push({...effect, active: true});
-                types.push(effect.selfType);
-            }
+        if (!effect) return [all, types]
+        const stacks = effect.stacks || {}
+        const dupTitle = all.some(e => e.active && e.title === effect.title)
+        const dupType = types.includes(effect.selfType)
+
+        let active = true
+        if (dupTitle){
+            active = !!stacks.self
+        }
+        else if (dupType){
+            active = !!stacks.selfType
+        }
+
+        all.push({...effect, active: active})
+        if (active && !dupType){
+            types.push(effect.selfType)
         }
         return [all, types]
+    }
+
+    // Loads a saved build by restoring every effect slot.
+    // relic1-6 / weapon1-6 and the stat sheet are rebuilt from these by the effects useEffect.
+    function applyBuild(build){
+        setEffect11(build?.effect11 ?? false)
+        setEffect12(build?.effect12 ?? false)
+        setEffect13(build?.effect13 ?? false)
+        setEffect21(build?.effect21 ?? false)
+        setEffect22(build?.effect22 ?? false)
+        setEffect23(build?.effect23 ?? false)
+        setEffect31(build?.effect31 ?? false)
+        setEffect32(build?.effect32 ?? false)
+        setEffect33(build?.effect33 ?? false)
+        setEffect41(build?.effect41 ?? false)
+        setEffect42(build?.effect42 ?? false)
+        setEffect43(build?.effect43 ?? false)
+        setEffect51(build?.effect51 ?? false)
+        setEffect52(build?.effect52 ?? false)
+        setEffect53(build?.effect53 ?? false)
+        setEffect61(build?.effect61 ?? false)
+        setEffect62(build?.effect62 ?? false)
+        setEffect63(build?.effect63 ?? false)
+        const w = build?.weaponEffects || {}
+        setWeaponEffect11(w.weaponEffect11 ?? false)
+        setWeaponEffect12(w.weaponEffect12 ?? false)
+        setWeaponEffect13(w.weaponEffect13 ?? false)
+        setWeaponEffect21(w.weaponEffect21 ?? false)
+        setWeaponEffect22(w.weaponEffect22 ?? false)
+        setWeaponEffect23(w.weaponEffect23 ?? false)
+        setWeaponEffect31(w.weaponEffect31 ?? false)
+        setWeaponEffect32(w.weaponEffect32 ?? false)
+        setWeaponEffect33(w.weaponEffect33 ?? false)
+        setWeaponEffect41(w.weaponEffect41 ?? false)
+        setWeaponEffect42(w.weaponEffect42 ?? false)
+        setWeaponEffect43(w.weaponEffect43 ?? false)
+        setWeaponEffect51(w.weaponEffect51 ?? false)
+        setWeaponEffect52(w.weaponEffect52 ?? false)
+        setWeaponEffect53(w.weaponEffect53 ?? false)
+        setWeaponEffect61(w.weaponEffect61 ?? false)
+        setWeaponEffect62(w.weaponEffect62 ?? false)
+        setWeaponEffect63(w.weaponEffect63 ?? false)
     }
 
     function closeModal(){

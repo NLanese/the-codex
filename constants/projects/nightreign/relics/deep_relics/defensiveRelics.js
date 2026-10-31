@@ -5,7 +5,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "allNeg",
         effect: {
-            physNegation: 1.105,
+            physNeg: 1.105,
             always: true,
         }
     },
@@ -15,7 +15,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "allNeg",
         effect: {
-            physNegation: 1.12,
+            physNeg: 1.12,
             always: true,
         }
     },
@@ -25,7 +25,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicNegation: 1.15,
+            magicNeg: 1.15,
             always: true,
         }
     },
@@ -35,7 +35,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicNegation: 1.16,
+            magicNeg: 1.16,
             always: true,
         }
     },
@@ -45,7 +45,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningNegation: 1.15,
+            lightningNeg: 1.15,
             always: true,
         }
     },
@@ -55,7 +55,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningNegation: 1.16,
+            lightningNeg: 1.16,
             always: true,
         }
     },
@@ -65,7 +65,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            holyNegation: 1.15,
+            holyNeg: 1.15,
             always: true,
         }
     },
@@ -75,7 +75,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            holyNegation: 1.16,
+            holyNeg: 1.16,
             always: true,
         }
     },
@@ -85,7 +85,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "affNeg",
         effect: {
-            affNegation: 1.06,
+            affNeg: 1.06,
             always: true,
         }
     },
@@ -95,7 +95,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "affNeg",
         effect: {
-            affNegation: 1.105,
+            affNeg: 1.105,
             always: true,
         }
     },
@@ -105,7 +105,7 @@ const deepDefensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "affNeg",
         effect: {
-            affNegation: 1.12,
+            affNeg: 1.12,
             always: true,
         }
     },

@@ -162,7 +162,7 @@ const curses = [
         effect: {
             frostRes: -80,
             bleedRes: -80,
-            blightRes: -80,
+            deathRes: -80,
             poisonRes: -80,
             rotRes: -80,
             sleepRes: -80,

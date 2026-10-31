@@ -5,7 +5,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "physNeg",
         effect: {
-            physNegation: 1.10,
+            physNeg: 1.10,
             always: true,
         }
     },
@@ -15,7 +15,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "magicNeg",
         effect: {
-            magicNegation: 1.10,
+            magicNeg: 1.10,
             always: true,
         }
     },
@@ -25,7 +25,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "lightningNeg",
         effect: {
-            lightningNegation: 1.10,
+            lightningNeg: 1.10,
             always: true,
         }
     },
@@ -35,7 +35,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "holyNeg",
         effect: {
-            holyNegation: 1.10,
+            holyNeg: 1.10,
             always: true,
         }
     },
@@ -45,7 +45,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "fireNeg",
         effect: {
-            fireNegation: 1.10,
+            fireNeg: 1.10,
             always: true,
         }
     },
@@ -55,7 +55,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "lowHealth",
         effect: {
-            allNegation: 1.16,
+            allNeg: 1.16,
             always: false,
             condition: "Below 40% Health"
         }
@@ -75,7 +75,7 @@ const defensiveRelics = [
         stacks: {self: false, selfType: true},
         selfType: "knockBack",
         effect: {
-            allNegation: 1.20,
+            allNeg: 1.20,
             always: false,
             condition: "20 seconds after being knocked down"
         }
@@ -167,7 +167,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "poiseNeg",
         effect: {
-            poiseNegation: 5,
+            poiseNeg: 5,
             always: true,
         }
     },
@@ -177,7 +177,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "poiseNeg",
         effect: {
-            poiseNegation: 10,
+            poiseNeg: 10,
             always: true,
         }
     },
@@ -187,7 +187,7 @@ const defensiveRelics = [
         stacks: {self: true, selfType: true},
         selfType: "poiseNeg",
         effect: {
-            poiseNegation: 15,
+            poiseNeg: 15,
             always: true,
         }
     },

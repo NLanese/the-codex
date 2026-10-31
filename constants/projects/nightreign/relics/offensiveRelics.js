@@ -650,7 +650,7 @@ const offensiveRelics = [
             appliesRanged: true,
             always: false,
             condition: "Evergaol Prisoners Defeated",
-            conditionCounter: true
+            conditionCount: true
          }
     },
     {
@@ -663,7 +663,7 @@ const offensiveRelics = [
             appliesRanged: true,
             always: false,
             condition: "Night Invader Defeated",
-            conditionCounter: true
+            conditionCount: true
          }
     },
 ]

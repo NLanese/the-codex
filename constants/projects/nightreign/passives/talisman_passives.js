@@ -101,7 +101,7 @@ const talismans = [
         effect: {
             always: true,
             magicDamage: 1.15,
-            physNegation: 0.97
+            physNeg: 0.97
         }
     },
     {
@@ -112,7 +112,7 @@ const talismans = [
         effect: {
             always: true,
             fireDamage: 1.15,
-            physNegation: 0.97
+            physNeg: 0.97
         }
     },
     {
@@ -123,7 +123,7 @@ const talismans = [
         effect: {
             always: true,
             lightningDamage: 1.15,
-            physNegation: 0.97
+            physNeg: 0.97
         }
     },
     {
@@ -134,7 +134,7 @@ const talismans = [
         effect: {
             always: true,
             holyDamage: 1.15,
-            physNegation: 0.97
+            physNeg: 0.97
         }
     },
     {
@@ -184,7 +184,7 @@ const talismans = [
         selfType: "critDamage",
         effect: {
             always: true,
-            critDamage
+            critDamage: 1.24
         }
     },
     {

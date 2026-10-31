@@ -209,8 +209,8 @@ function renderStats(toggles){
                         {renderStat("Fire", "neg", toggles)}
                         {renderStat("Lightning", "neg", toggles)}
                         {renderStat("Holy", "neg", toggles)}
-                        {renderStat("Poise ", "neg")}
-                        {renderStat("Poise", "malenia_is_overrated_there_I_said_it")}
+                        {renderStat("Poise ", "neg", toggles)}
+                        {renderStat("Poise", "malenia_is_overrated_there_I_said_it", toggles)}
 
                         {renderStat("Poison", "res", toggles)}
                         {renderStat("Sleep", "res", toggles)}
@@ -457,21 +457,7 @@ function renderExtras(type, variety, toggles, expandedType){
 ///////////////
 
 function findAttributeTypeFromEffects(attr){
-    let mods =  all_relic_effects.filter(eff => {
-        if (eff.effect[attr]){
-            return eff.effect[attr]
-        }
-    })
-    if (mods?.length > 0){
-        let totalMod = 0
-        mods.forEach((eff) => {
-            totalMod = totalMod + eff.effect[attr]
-        })
-        return(totalMod)
-    }
-    else{
-        return 0
-    }
+    return stack_modifiers_ADD(attr, 0, toggles)
 }
 
 function findVitalsMods(vital){
@@ -486,27 +472,9 @@ function findVitalsMods(vital){
     }
 }
 
-function return_modified_vital(vital, vitalVal, all_relic_effects){
-    let foundModifiers = findPercentEffectFromEffects(vital, all_relic_effects)
-    if (foundModifiers.length > 0){
-        foundModifiers.forEach(percentInc => {
-            vitalVal = vitalVal * percentInc.effect[vital]
-        })
-    }
+function return_modified_vital(vital, vitalVal){
+    vitalVal = stack_modifiers(vital, vitalVal, toggles, eff => eff.selfType === "statPercent")
     return Math.round(vitalVal)
-}
-
-function findPercentEffectFromEffects(type, all_relic_effects){
-    if (!all_relic_effects || all_relic_effects.length < 1){
-        return 1
-    }
-    return all_relic_effects.filter(eff => {
-        if (eff.selfType === "statPercent"){
-            if (eff.effect[type]){
-                return eff.effect[type]
-            }
-        }
-    })
 }
 
 function determineRenderedValue(type, variety, toggles){
@@ -539,7 +507,7 @@ function determineRenderedValue(type, variety, toggles){
             return `${((determineDamModifier(type, variety, toggles) * negationBases.holy) * 100).toFixed(0)}%`
         }
         else  if (type === "Poise "){
-            return `${stack_modifiers_ADD("poiseNegation", 0, toggles)}%`
+            return `${stack_modifiers_ADD("poiseNeg", 0, toggles)}%`
         }
     }
 
@@ -603,14 +571,7 @@ function determineDamModifier(type, relCat=false, toggles){
 
             // Ranged Weapon Damage
             else if (type === "Ranged"){
-                let mods = findDamageTypeFromEffects("weaponDamage")
-                mods.forEach(dam => {
-                    if (determine_if_effect_is_active(dam, toggles)){
-                        if (dam.effect.appliesRanged){
-                            totalMod = totalMod * dam.effect.weaponDamage
-                        }
-                    }
-                }) 
+                totalMod = stack_modifiers('weaponDamage', totalMod, toggles, dam => dam.effect.appliesRanged)
                 totalMod = stack_modifiers('rangedDamage', totalMod, toggles)
             }
 
@@ -642,7 +603,6 @@ function determineDamModifier(type, relCat=false, toggles){
             // Magic Skill
             else if (type === "Magic / Gravity Skill"){
                 totalMod = stack_modifiers('affDamage', totalMod, toggles)
-                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('skillDamage', totalMod, toggles)
             }
@@ -666,6 +626,7 @@ function determineDamModifier(type, relCat=false, toggles){
                 totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('glintDamage', totalMod, toggles)
+                totalMod = stack_modifiers('stoneDamage', totalMod, toggles)
             }
             // Gravity Sorcery
             else if (type === "Gravity Sorcery"){
@@ -673,13 +634,14 @@ function determineDamModifier(type, relCat=false, toggles){
                 totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
                 totalMod = stack_modifiers('gravDamage', totalMod, toggles)
+                totalMod = stack_modifiers('stoneDamage', totalMod, toggles)
             }
             // Glintblade Sorcery
             else if (type === "Stonedigger Sorcery"){
                 totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
-                totalMod = stack_modifiers('diggerDamage', totalMod, toggles)
+                totalMod = stack_modifiers('digDamage', totalMod, toggles)
             }
             // Standard Sorcery
             else if (type === "Standard Sorcery"){
@@ -785,6 +747,14 @@ function determineDamModifier(type, relCat=false, toggles){
 
 
 
+            // Sorceries summary row (applies to all sorceries)
+            else if (type === "Sorceries"){
+                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
+            }
+            // Incantations summary row (applies to all incantations)
+            else if (type === "Incantations"){
+                totalMod = stack_modifiers('incantDamage', totalMod, toggles)
+            }
             // Finds "Skill Damage Modifiers" and applies
             else if (type === "Skill"){
                 totalMod = stack_modifiers('skillDamage', totalMod, toggles)
@@ -796,10 +766,7 @@ function determineDamModifier(type, relCat=false, toggles){
             }
             // Finds "Guard Counter Damage Modifiers" and applies
             else if (type === "Counter"){
-                let weaponDams = findDamageTypeFromEffects("counterDamage")
-                weaponDams.forEach(dam => {
-                    totalMod = totalMod * dam.effect.counterDamage
-                })
+                totalMod = stack_modifiers('counterDamage', totalMod, toggles)
                 totalMod = stack_modifiers('weaponDamage', totalMod, toggles)
             }
 
@@ -809,72 +776,76 @@ function determineDamModifier(type, relCat=false, toggles){
     else if (relCat === "neg"){
 
         // Finds All Negations and Applies
-        totalMod = stack_modifiers('allNegation', totalMod, toggles)   
+        totalMod = stack_modifiers('allNeg', totalMod, toggles)   
 
         // Finds "Physical Damage Modifiers" and applies
         if (type === "Physical"){
-            totalMod = stack_modifiers('physNegation', totalMod, toggles)
+            totalMod = stack_modifiers('physNeg', totalMod, toggles)
         }
         // Finds "Holy Damage Modifiers" and applies
         if (type === "Holy"){
-            totalMod = stack_modifiers('holyNegation', totalMod, toggles)
-            totalMod = stack_modifiers('affNegation', totalMod, toggles)
+            totalMod = stack_modifiers('holyNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNeg', totalMod, toggles)
         }
         // Finds "Holy Damage Modifiers" and applies
         else if (type === "Fire"){
-            totalMod = stack_modifiers('fireNegation', totalMod, toggles)
-            totalMod = stack_modifiers('affNegation', totalMod, toggles)
+            totalMod = stack_modifiers('fireNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNeg', totalMod, toggles)
         }
         // Finds "Magic Damage Modifiers" and applies
         else if (type === "Magic"){
-            totalMod = stack_modifiers('magicNegation', totalMod, toggles)
-            totalMod = stack_modifiers('affNegation', totalMod, toggles)
+            totalMod = stack_modifiers('magicNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNeg', totalMod, toggles)
         }
         // Finds "Magic Damage Modifiers" and applies
         else if (type === "Lightning"){
-            totalMod = stack_modifiers('lightningNegation', totalMod, toggles)
-            totalMod = stack_modifiers('affNegation', totalMod, toggles)
+            totalMod = stack_modifiers('lightningNeg', totalMod, toggles)
+            totalMod = stack_modifiers('affNeg', totalMod, toggles)
         }
         // Finds "Magic Damage Modifiers" and applies
         else if (type === "Poise "){
             totalMod = 0
-            totalMod = stack_modifiers_ADD('poiseNegation', totalMod, toggles)
+            totalMod = stack_modifiers_ADD('poiseNeg', totalMod, toggles)
         }
     }
    
     return totalMod
 }
 
-function stack_modifiers(key, totalMod, toggles){
+// Multiplies totalMod by every active, toggled effect with this key.
+// Counter effects scale linearly: 5% per stack -> 1 + 0.05 * count
+function stack_modifiers(key, totalMod, toggles, filterFn=null){
     let mods = findDamageTypeFromEffects(key)
     mods.forEach(dam => {
-        if (determine_if_effect_is_toggled(dam, toggles)){
-            if (dam.effect.conditionCounter){
-                let mod = (( (dam.effect[key] - 1) * toggles[dam.effect.condition] ) + 1)
-                totalMod = totalMod * mod
-            }
-            else if (determine_if_effect_is_active(dam)){
-                totalMod = totalMod * dam.effect[key]
-            }  
+        if (filterFn && !filterFn(dam)) return
+        if (!determine_if_effect_is_active(dam)) return
+        if (!determine_if_effect_is_toggled(dam, toggles)) return
+        if (dam.effect.conditionCount){
+            let count = Number(toggles?.[dam.effect.condition]) || 0
+            totalMod = totalMod * (((dam.effect[key] - 1) * count) + 1)
         }
-    })  
+        else{
+            totalMod = totalMod * dam.effect[key]
+        }
+    })
     return totalMod
 }
 
+// Adds every active, toggled effect with this key to totalMod (flat bonuses).
+// Counter effects add value * count
 function stack_modifiers_ADD(key, totalMod, toggles){
     let mods = findDamageTypeFromEffects(key)
     mods.forEach(dam => {
-        if (determine_if_effect_is_toggled(dam, toggles)){
-            if (dam.effect.conditionCounter){
-                let mod = (( (dam.effect[key] - 1) + toggles[dam.effect.condition] ) + 1)
-                totalMod = totalMod + mod
-            }
-            else if (determine_if_effect_is_active(dam)){
-                totalMod = totalMod + dam.effect[key]
-            }  
+        if (!determine_if_effect_is_active(dam)) return
+        if (!determine_if_effect_is_toggled(dam, toggles)) return
+        if (dam.effect.conditionCount){
+            let count = Number(toggles?.[dam.effect.condition]) || 0
+            totalMod = totalMod + (dam.effect[key] * count)
         }
-    })  
-    console.log(totalMod)
+        else{
+            totalMod = totalMod + dam.effect[key]
+        }
+    })
     return totalMod
 }
 
@@ -888,50 +859,12 @@ function findDamageTypeFromEffects(type){
 }
 
 function findResistance(type){
-    let totalMod = 0
-    if (type === "Poison"){
-        let resMods = findDamageTypeFromEffects("poisonRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.poisonRes
-        })
+    const resKeys = {
+        Poison: "poisonRes", Rot: "rotRes", Sleep: "sleepRes",
+        Frostbite: "frostRes", Bleed: "bleedRes", Madness: "madRes", Blight: "deathRes",
     }
-    else if (type === "Rot"){
-        let resMods = findDamageTypeFromEffects("rotRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.rotRes
-        })
-    }
-    else if (type === "Sleep"){
-        let resMods = findDamageTypeFromEffects("sleepRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.sleepRes
-        })
-    }
-    else if (type === "Frostbite"){
-        let resMods = findDamageTypeFromEffects("frostRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.frostRes
-        })
-    }
-    else if (type === "Bleed"){
-        let resMods = findDamageTypeFromEffects("bleedRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.bleedRes
-        })
-    }
-    else if (type === "Madness"){
-        let resMods = findDamageTypeFromEffects("madRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.madRes
-        })
-    }
-    else if (type === "Blight"){
-        let resMods = findDamageTypeFromEffects("deathRes")
-        resMods.forEach(dam => {
-            totalMod = totalMod + dam.effect.deathRes
-        })
-    }
-    return totalMod
+    if (!resKeys[type]) return 0
+    return stack_modifiers_ADD(resKeys[type], 0, toggles)
 }
 
 function determine_if_effect_is_active(effect){

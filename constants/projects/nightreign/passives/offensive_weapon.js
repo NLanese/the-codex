@@ -692,7 +692,7 @@ const offensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "incantDamage",
         effect: {
-            chargedSpellDamaged: 1.09,
+            chargedSpellDamage: 1.09,
             appliesRanged: true,
             always: true,
         }
@@ -703,7 +703,7 @@ const offensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "incantDamage",
         effect: {
-            chargedSpellDamaged: 1.13,
+            chargedSpellDamage: 1.13,
             appliesRanged: true,
             always: true,
         }
@@ -714,7 +714,7 @@ const offensive_weapon_passives = [
         stacks: {self: true, selfType: true},
         selfType: "incantDamage",
         effect: {
-            chargedSpellDamaged: 1.18,
+            chargedSpellDamage: 1.18,
             appliesRanged: true,
             always: true,
         }
