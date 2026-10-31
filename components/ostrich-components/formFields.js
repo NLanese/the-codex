@@ -79,11 +79,11 @@ const MC_PROPS = [
         title: "FormMultipleChoice",
         props: [
             { name: "options", type: "Array", desc: "The choices: strings, or { tag, value, onPress, labelStyle, markerStyle }. Defaults to fieldObj.options." },
-            { name: "singleOption", type: "Boolean", def: true, desc: "One answer (true) or many (false). Note: inside an OstrichForm, fields default to many unless fieldObj.singleOption is true." },
+            { name: "singleOption", type: "Boolean", def: true, desc: "One answer (true) or many (false). A limit above 1 also allows many. Reads fieldObj.singleOption when not given." },
             { name: "allowDeselect", type: "Boolean", desc: "Single answer: clicking the picked option un-picks it. Default true for bubbles, false for tabs." },
             { name: "value", type: "Any", desc: "Controlled: the picked value(s). Changing it changes the selection." },
             { name: "inputValue", type: "Any", desc: "The starting value." },
-            { name: "limit", type: "Number", desc: "Many answers: the most that can be picked." },
+            { name: "limit", type: "Number", desc: "The most answers that can be picked. Above 1, several answers are allowed (unless singleOption is true)." },
             { name: "min", type: "Number", desc: "Many answers: the fewest that count as valid." },
             { name: "itemsPerRow", type: "Number", def: 3, desc: "Options per row." },
             { name: "markerType", type: "String", def: "\"bubble\"", desc: "\"bubble\" or \"box\".", old: "type" },
@@ -287,19 +287,16 @@ export default function FormFieldsShowcase() {
                                     title: "Toppings",
                                     caption: "Up to two",
                                     type: "MC",
-                                    singleOption: false,
                                     limit: 2,
                                     options: ["Cheese", "Basil", "Olives", "Peppers"],
                                 }}
-                                singleOption={false}
                                 markerType="box"
                                 itemsPerRow={2}
                             />
                         `}
                     >
                         <FormMultipleChoice
-                            fieldObj={{ title: "Toppings", caption: "Up to two", type: "MC", singleOption: false, limit: 2, options: ["Cheese", "Basil", "Olives", "Peppers"] }}
-                            singleOption={false}
+                            fieldObj={{ title: "Toppings", caption: "Up to two", type: "MC", limit: 2, options: ["Cheese", "Basil", "Olives", "Peppers"] }}
                             markerType="box"
                             itemsPerRow={2}
                         />

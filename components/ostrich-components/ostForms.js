@@ -40,7 +40,6 @@ const SIGN_UP_FIELDS = [
         caption: "What kind of Account will you be signing up with?",
         moreText: "This cannot be changed later on",
         type: "MC",
-        singleOption: true,
         options: ["Personal", "Business", "Government"],
     },
     {
@@ -58,7 +57,6 @@ const QUIZ_FIELDS = [
         id: "1",
         title: "Question 1: What is 2 + 2?",
         type: "MC",
-        singleOption: true,
         options: ["1", "2", "3", "4", "5", "6"],
         correctResponse: ["4"],
     },
@@ -108,7 +106,7 @@ const FORM_PROPS = [
     {
         title: "Grading",
         props: [
-            { name: "correctResponse", type: "Object", desc: "An answer key for the whole form: { [fieldId]: answer }. A field's own correctResponse wins." },
+            { name: "correctResponse", type: "Object", desc: "An answer key for the whole form: { [fieldId]: answer }. Checked first, then each field's own correctResponse / correctValue. Matching either counts as correct." },
             { name: "reviewOnSubmit", type: "Boolean", def: false, desc: "After submitting, shows how many answers were right (\"2 / 3 correct\")." },
             { name: "showsAnswer", type: "Boolean", def: false, desc: "After a wrong submission, highlights or shows the correct answer. Fields can override this." },
             { name: "showErrors", type: "Boolean", def: true, desc: "false: never explain why a field is invalid." },
@@ -174,9 +172,9 @@ const FIELD_OBJECT_PROPS = [
         title: "Choices",
         props: [
             { name: "options", type: "Array", desc: "MC and DropDownText: the choices. Strings, or { tag, value, labelStyle, markerStyle } objects." },
-            { name: "singleOption", type: "Boolean", def: false, desc: "MC: one answer (true) or many (false). Inside a form, fields allow many answers unless this is true." },
+            { name: "singleOption", type: "Boolean", def: true, desc: "MC: one answer (true) or many (false). Setting a limit above 1 also allows many." },
             { name: "template", type: "String", desc: "MC: \"tabs\" shows the options as a row of tabs instead of bubbles." },
-            { name: "limit", type: "Number", desc: "MC and MultiText: the most answers allowed." },
+            { name: "limit", type: "Number", desc: "MC and MultiText: the most answers allowed. On MC, a limit above 1 allows several answers even without singleOption: false." },
             { name: "min", type: "Number", desc: "MC and MultiText: the fewest answers that count as valid. minLength works too." },
             { name: "itemsPerRow", type: "Number", def: 3, desc: "MC: options per row." },
         ],
@@ -188,7 +186,8 @@ const FIELD_OBJECT_PROPS = [
             { name: "validResponse", type: "Function", desc: "(value) => true | false | \"why it's wrong\". A string marks the field invalid and is shown to the person. Can also be a boolean, or a string the value must match." },
             { name: "invalidMessage", type: "String", def: "\"This answer isn't valid.\"", desc: "Shown when validResponse says no." },
             { name: "requiredMessage", type: "String", def: "\"This field is required.\"", desc: "Shown when a required field is empty." },
-            { name: "correctResponse", type: "Any", desc: "The right answer: a value, an array of values, or (field) => boolean. After submitting, the field turns green or red." },
+            { name: "correctResponse", type: "Any", desc: "The right answer: a value, an array of values, or (field) => boolean. Checked after the form's correctResponse answer key; matching either counts as correct. 175 and \"175\" are the same answer." },
+            { name: "correctValue", type: "Any", desc: "Same as correctResponse, for fields that use this name. If both are set, correctResponse is used." },
             { name: "showsAnswer", type: "Boolean", desc: "Overrides the form's showsAnswer for this field." },
         ],
     },
@@ -275,7 +274,6 @@ export default function OstFormsShowcase() {
                                 caption: "What kind of Account will you be signing up with?",
                                 moreText: "This cannot be changed later on",
                                 type: "MC",
-                                singleOption: true,
                                 options: ["Personal", "Business", "Government"],
                             },
                             {
@@ -318,7 +316,6 @@ export default function OstFormsShowcase() {
                                 id: "1",
                                 title: "Question 1: What is 2 + 2?",
                                 type: "MC",
-                                singleOption: true,
                                 options: ["1", "2", "3", "4", "5", "6"],
                                 correctResponse: ["4"],
                             },
@@ -343,8 +340,8 @@ export default function OstFormsShowcase() {
                         ]}
                     />
                 `} />
-                <SubHeading>Keeping the answers separate</SubHeading>
-                <P>If your questions and answers live in different places, pass an answer key to the form instead. Keys are field ids (or positions, starting at 1, when fields have no id).</P>
+                <SubHeading>An answer key for the whole form</SubHeading>
+                <P>If your questions and answers live in different places, pass the form an answer key as <C>correctResponse</C>: <C>{"{ [fieldId]: answer }"}</C>. Keys are field ids, or positions starting at 1 when fields have no id.</P>
                 <CodeBlock code={`
                     <OstrichForm
                         title="Data Types Test"
@@ -356,6 +353,52 @@ export default function OstFormsShowcase() {
                         ]}
                     />
                 `} />
+                <SubHeading>How answers are checked</SubHeading>
+                <P>A question can have an answer in two places: the form's answer key, and the field's own <C>correctResponse</C> (or <C>correctValue</C>). The form checks both, in this order:</P>
+                <ol style={{ fontFamily: "Gilroy, system-ui, sans-serif", fontSize: 18, lineHeight: 1.6, margin: "6px 0 10px", paddingLeft: 26, maxWidth: 900 }}>
+                    <li>The form's <C>correctResponse</C> answer key, if it has an entry for the question.</li>
+                    <li>The field's own <C>correctResponse</C> or <C>correctValue</C>.</li>
+                </ol>
+                <P>Matching either one counts as correct. When <C>showsAnswer</C> reveals the answer after a wrong submission, multiple choice highlights every accepted answer, and the "Correct answer" text shows the answer key's entry first. Numbers and text are compared as the same, so <C>175</C> matches the option <C>"175"</C>.</P>
+                <ExampleRow>
+                    <Example
+                        title="Answers in two places"
+                        description="The key accepts 4 for question 1; the field also accepts 2 + 2. Question 2 only has a field answer, and question 3 only has a key entry."
+                        size="full"
+                        previewStyle={{ display: "block", background: "white" }}
+                        code={`
+                            <OstrichForm
+                                title="Two Answer Sources"
+                                reviewOnSubmit
+                                showsAnswer
+                                allowResubmission
+                                correctResponse={{ 1: ["4"], 3: [175] }}
+                                fields={[
+                                    { id: "1", title: "1. What is 2 + 2?", type: "MC",
+                                      options: ["4", "2 + 2", "22"], correctValue: "2 + 2" },
+                                    { id: "2", title: "2. Which is a string?", type: "MC",
+                                      options: ["5", "'5'", "true"], correctValue: "'5'" },
+                                    { id: "3", title: "3. What is 100 + 75?", type: "MC",
+                                      options: ["125", "175", "10075"] },
+                                ]}
+                            />
+                        `}
+                    >
+                        <OstrichForm
+                            title="Two Answer Sources"
+                            style={{ maxWidth: 760, margin: "0 auto" }}
+                            reviewOnSubmit
+                            showsAnswer
+                            allowResubmission
+                            correctResponse={{ 1: ["4"], 3: [175] }}
+                            fields={[
+                                { id: "1", title: "1. What is 2 + 2?", type: "MC", options: ["4", "2 + 2", "22"], correctValue: "2 + 2" },
+                                { id: "2", title: "2. Which is a string?", type: "MC", options: ["5", "'5'", "true"], correctValue: "'5'" },
+                                { id: "3", title: "3. What is 100 + 75?", type: "MC", options: ["125", "175", "10075"] },
+                            ]}
+                        />
+                    </Example>
+                </ExampleRow>
             </Section>
 
             <Section title="Saved answers">
@@ -407,7 +450,7 @@ export default function OstFormsShowcase() {
                                 fieldProps={{ bubbleStyle: { display: "none" } }}
                                 fields={[
                                     { id: "name", title: "Your name", type: "text" },
-                                    { id: "color", title: "Favorite color", type: "MC", singleOption: true, options: ["Red", "Green", "Blue"] },
+                                    { id: "color", title: "Favorite color", type: "MC", options: ["Red", "Green", "Blue"] },
                                 ]}
                             />
                         `}
@@ -424,7 +467,7 @@ export default function OstFormsShowcase() {
                             fieldProps={{ bubbleStyle: { display: "none" } }}
                             fields={[
                                 { id: "name", title: "Your name", type: "text" },
-                                { id: "color", title: "Favorite color", type: "MC", singleOption: true, options: ["Red", "Green", "Blue"] },
+                                { id: "color", title: "Favorite color", type: "MC", options: ["Red", "Green", "Blue"] },
                             ]}
                         />
                     </Example>

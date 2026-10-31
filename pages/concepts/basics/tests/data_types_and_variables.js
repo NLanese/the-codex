@@ -122,7 +122,7 @@ const DataTypesTest = ({}) => {
                         <span style={Styles.Code.keyword}>string </span>
                         <span style={Styles.Code.var}>stringValue </span>
                         <span style={Styles.Code.reg}>= </span>
-                        <span style={Styles.Code.str}>"5" </span>
+                        <span style={Styles.Code.str}>"4" </span>
                         <span style={Styles.Code.reg}>; </span>
                     </p>
                     <br></br>
@@ -323,7 +323,12 @@ const DataTypesTest = ({}) => {
             3: ["Double"],
             4: ["String"],
             5: ["Integer"],
-            6: ["Double"]
+            6: ["Double"],
+            7: ['54'],
+            8: ['1005'],
+            9: [175],
+            10: ['Leela150']
+
         }
 
     //////////////////////
