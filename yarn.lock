@@ -946,11 +946,12 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@ostrich_development/ostrich-components@^1.1.14":
-  version "1.1.14"
-  resolved "https://registry.npmjs.org/@ostrich_development/ostrich-components/-/ostrich-components-1.1.14.tgz"
-  integrity sha512-TfkXXt4O1vrHuBLAgYwCSB+6TR4bbBqouwQOgqep1LK++eW+IXzTfj12NYcY9ofUzDICk+pHFAhPP4tiqFabKA==
+"@ostrich_development/ostrich-components@^1.1.15":
+  version "1.1.15"
+  resolved "https://registry.npmjs.org/@ostrich_development/ostrich-components/-/ostrich-components-1.1.15.tgz"
+  integrity sha512-fwukUFQOa3ME1OjA6q3TvGJoLK3/h0tZwhRYn6gLEjcgeSGj2xMh4zRFwuO7VbniVGIxBJM4Xns11rZdCY8/xg==
   dependencies:
+    date-fns "^4.1.0"
     tinycolor2 "^1.6.0"
 
 "@pkgjs/parseargs@^0.11.0":
@@ -2703,6 +2704,11 @@ data-view-byte-offset@^1.0.0:
     call-bind "^1.0.6"
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
+
+date-fns@^4.1.0:
+  version "4.4.0"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-4.4.0.tgz"
+  integrity sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==
 
 debug@^3.2.7:
   version "3.2.7"
