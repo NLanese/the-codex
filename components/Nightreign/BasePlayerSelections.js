@@ -12,9 +12,13 @@ export default function BasePlayerSelections({
     isMobile
 }) {
 
+    // columns = 0 lets the chips size to their text and wrap
     function renderChips(options, current, onPick, columns, compact = false){
+        const layout = columns
+            ? {display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`}
+            : {display: 'flex', flexWrap: 'wrap'}
         return (
-            <div style={{display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 6}}>
+            <div style={{...layout, gap: 6}}>
                 {options.map(op => (
                     <button
                         key={op}
@@ -33,7 +37,7 @@ export default function BasePlayerSelections({
     return(
         <div style={{display: 'flex', flexDirection: 'column', width: isMobile ? '100%' : 230, flexShrink: 0}}>
             <SectionLabel style={{marginTop: 0}}>Edit</SectionLabel>
-            {renderChips(SELECTIONS, _selectionState, (op) => setSelectionState(op), 2)}
+            {renderChips(SELECTIONS, _selectionState, (op) => setSelectionState(op), 0)}
 
             <SectionLabel style={{marginTop: 18}}>Nightfarer</SectionLabel>
             {renderChips(NIGHTFARERS, _nightfarer, (op) => setNightfarer(op), isMobile ? 3 : 2)}

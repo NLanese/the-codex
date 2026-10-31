@@ -65,7 +65,7 @@ function renderSingleWeapon(weapon, id){
 function renderWeaponHeader(key){
     return(
         <div style={{display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px 6px 12px', backgroundColor: gloomGlow}}>
-            <span style={{color: graceGiven, fontSize: 15, fontWeight: 600, flex: 1}}>
+            <span style={{color: graceGiven, fontSize: 15, fontWeight: 600, flex: 1, whiteSpace: 'nowrap'}}>
                 Weapon {key}
             </span>
             <button type="button" style={textButtonStyle(frenzyTouched)} onClick={() => clearWeapon(key)}>

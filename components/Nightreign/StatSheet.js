@@ -3,6 +3,9 @@ import Styles from "../../styles/styles";
 
 import { OstCard } from "@ostrich_development/ostrich-components";
 import { OstrichTabBar } from "@ostrich_development/ostrich-components";
+import {
+    panelStyle, SectionLabel, boostColor, penaltyColor, neutralColor,
+} from "./nightreignTheme";
 import determineBaseNegations from "../../constants/projects/nightreign/nightfarers/determineBaseNegations";
 
 export default function StatSheet({
@@ -23,6 +26,7 @@ const gloomGlow = "#452d8a"
 const silveredNight = "#7fc7bf"
 const silverLining = "#d4eeff"
 const scarletRot = '#754142'
+const traceNight = '#9b9fbf'
 
 
 ///////////
@@ -40,8 +44,8 @@ const [expandedStat, setExpandedStat] = useState(false)
 function renderVitals(all_relic_effects){
     return(
         <div style={{
-            display: 'flex', flexDirection: isMobile ? 'column' : 'row',
-            border: '2px solid', borderColor: greyOfNight
+            display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '5fr 7fr',
+            gap: isMobile ? 4 : 24,
         }}>
             {renderBars(all_relic_effects)}
             {renderAttributes()}
@@ -49,24 +53,26 @@ function renderVitals(all_relic_effects){
     )
 }
 
+// Renders Nightfarer Attributes
 function renderAttributes(){
     return(
-        <OstCard noShadow={true} rounded={false} style={{flex: 7, borderLeft: '2px solid', borderColor: greyOfNight, padding: 0}}>
-            <div style={{display: 'flex', flexDirection: 'row', padding: 5}}>
-                <div style={{flex: 6, paddingRight: 10}}>
+        <div>
+            <SectionLabel>Attributes</SectionLabel>
+            <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 18}}>
+                <div>
                     {renderAttribute("Vigor")}
                     {renderAttribute("Endurance")}
                     {renderAttribute("Mind")}
                     {renderAttribute("Arcane")}
                 </div>
-                <div style={{flex: 6, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
+                <div>
                     {renderAttribute("Strength")}
                     {renderAttribute("Dexterity")}
                     {renderAttribute("Intelligence")}
                     {renderAttribute("Faith")}
                 </div>
             </div>
-        </OstCard>
+        </div>
     )
 }   
 
@@ -77,7 +83,7 @@ function renderAttribute(atr){
     if (atr === "Strength") {
         state = str + findAttributeTypeFromEffects("str")
         max = .68
-        color = "#9c2400"
+        color = "#c4471f"
     }
     else if (atr === "Dexterity") {
         state = dex + findAttributeTypeFromEffects("dex")
@@ -97,7 +103,7 @@ function renderAttribute(atr){
     else if (atr === "Intelligence") {
         state = intl + findAttributeTypeFromEffects("intl")
         max = .72
-        color = "#0352ff"
+        color = "#4f86ff"
     }
     else if (atr === "Faith") {
         state = fai + findAttributeTypeFromEffects("fai")
@@ -107,43 +113,16 @@ function renderAttribute(atr){
     else if (atr === "Mind") {
         state = mind + findAttributeTypeFromEffects("mind")
         max = .45
-        color = "#a510e6"
+        color = "#b44cf0"
     }
     else if (atr === "Arcane") {
         state = arcane + findAttributeTypeFromEffects("arcane")
-        max = .60,
-        color = "#87174f"
+        max = .60
+        color = "#c2387e"
     }
 
-
-    return (
-        <div>
-            {renderBar(atr, state, max, color)}
-        </div>
-    )
+    return renderBar(atr, state, max, color)
 }
-
-// Renders Nightfarer Attributes
-function renderAttributes(){
-    return(
-        <OstCard noShadow={true} rounded={false} style={{flex: 7, borderLeft: '2px solid', borderColor: greyOfNight, padding: 0}}>
-            <div style={{display: 'flex', flexDirection: 'row', padding: 5}}>
-                <div style={{flex: 6, paddingRight: 10}}>
-                    {renderAttribute("Vigor")}
-                    {renderAttribute("Endurance")}
-                    {renderAttribute("Mind")}
-                    {renderAttribute("Arcane")}
-                </div>
-                <div style={{flex: 6, paddingLeft: 10, borderLeft: '1px solid', borderColor: silverLining}}>
-                    {renderAttribute("Strength")}
-                    {renderAttribute("Dexterity")}
-                    {renderAttribute("Intelligence")}
-                    {renderAttribute("Faith")}
-                </div>
-            </div>
-        </OstCard>
-    )
-} 
 
 // Renders Stat Bars
 function renderBars(all_relic_effects){
@@ -151,46 +130,36 @@ function renderBars(all_relic_effects){
     let fpVal = fp + findVitalsMods("FP")
     let stamVal = stam + findVitalsMods("Stam")
     return(
-        <div style={{flex: 5}}>
-            <div style={{width: '90%', marginTop: '6%'}}>
-            {renderBar(
-                "HP", 
-                return_modified_vital("HP", hpVal, all_relic_effects),
-                17.5, 
-                'red'
-            )}
-            {renderBar(
-                "FP", 
-                return_modified_vital("FP", fpVal, all_relic_effects),
-                2.5, 
-                'cyan'
-            )}     
-            {renderBar(
-                "Stam", 
-                return_modified_vital("Stam", stamVal, all_relic_effects),
-                2.5, 
-                'lime'
-            )}
-            </div>
+        <div>
+            <SectionLabel>Vitals</SectionLabel>
+            {renderBar("HP", return_modified_vital("HP", hpVal, all_relic_effects), 17.5, '#f2463a', true)}
+            {renderBar("FP", return_modified_vital("FP", fpVal, all_relic_effects), 2.5, '#4fc3f7', true)}
+            {renderBar("Stamina", return_modified_vital("Stam", stamVal, all_relic_effects), 2.5, '#68d12e', true)}
         </div>
     )
 }
 
-// Called Above, Renders Individual Bar
-function renderBar(title, value, max, color){
-    if (title.length > 5){
-        title = `${title[0]}${title[1]}${title[2]}`
+// Called Above, Renders Individual Bar (width is value / max, as a percentage)
+function renderBar(title, value, max, color, large=false){
+    let label = title
+    if (isMobile && !large && title.length > 5){
+        label = title.slice(0, 3)
     }
+    const pct = Math.max(0, Math.min(100, value / max))
 
     return(
-        <div style={{display: 'flex', flex: 1, flexDirection: 'row', gap: 10, padding: 2, }}>
-                <p style={{flex: 3, alignSelf: 'flex-start', textAlign: 'center', ...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: color}}>{title}</p>
-                <div style={{flex: 9, backgroundColor: greyOfNight, marginTop: 2, marginBottom: 2}}>
-                    <div style={{backgroundColor: color, height: '100%', width: `${(value / max)}%`, display: "flex", justifyContent: 'center'}} >
-                        {(value > 2) ? value : 2}
-                    </div>
-                </div>
+        <div style={{
+            display: 'grid', gridTemplateColumns: large ? '62px 1fr 46px' : (isMobile ? '34px 1fr 26px' : '84px 1fr 28px'),
+            alignItems: 'center', gap: 8, height: large ? 28 : 24,
+        }}>
+            <span style={{color: silverLining, fontSize: large ? 15 : 14}}>{label}</span>
+            <div style={{height: large ? 10 : 7, backgroundColor: depthColor, borderRadius: 5, overflow: 'hidden'}}>
+                <div style={{width: `${pct}%`, height: '100%', backgroundColor: color, borderRadius: 5}}/>
             </div>
+            <span style={{color: silverLining, fontSize: large ? 15 : 14, textAlign: 'right', fontVariantNumeric: 'tabular-nums', fontWeight: large ? 600 : 400}}>
+                {value}
+            </span>
+        </div>
     )
 }
 
@@ -201,6 +170,7 @@ function renderStats(toggles){
             if (statsShown === "Negations"){
                 return(
                     <div>
+                        <SectionLabel>Damage negation</SectionLabel>
                         {renderStat("Physical", "neg", toggles)}
                         {renderStat("Slash", "neg", toggles)}
                         {renderStat("Strike", "neg", toggles)}
@@ -212,6 +182,7 @@ function renderStats(toggles){
                         {renderStat("Poise ", "neg", toggles)}
                         {renderStat("Poise", "malenia_is_overrated_there_I_said_it", toggles)}
 
+                        <SectionLabel>Status resistance</SectionLabel>
                         {renderStat("Poison", "res", toggles)}
                         {renderStat("Sleep", "res", toggles)}
                         {renderStat("Blight", "res", toggles)}
@@ -226,59 +197,25 @@ function renderStats(toggles){
                 return(
                     <div>
                         <OstrichTabBar
-                            style={{width: '80%', marginLeft: '10%', marginBottom: 10}}
+                            style={{width: '100%', marginBottom: 10}}
                             tabs={["Incantations", "Sorceries", "Skill", "Items"]}
                             onTabClick={(tab) => {setExpandedStat(tab)}}
                         />
-                        {renderExtras("Fire Incants", "off", toggles, "Incantations")}
-                        {renderExtras("Giant's Fire", "off", toggles, "Incantations")}
-                        {renderExtras("Black Flame", "off", toggles, "Incantations")}
-                        {renderExtras("Flame of Frenzy", "off", toggles, "Incantations")}
-                        {renderExtras("Holy Incants", "off", toggles, "Incantations")}
-                        {renderExtras("Golden Incants", "off", toggles, "Incantations")}
-                        {renderExtras("Lightning Incants", "off", toggles, "Incantations")}
-                        {renderExtras("Dragon Incants", "off", toggles, "Incantations")}
-                        {renderExtras("Bestial Incants", "off", toggles, "Incantations")}
-
-                        {renderExtras("Crystalian Sorcery", "off", toggles, "Sorceries")}
-                        {renderExtras("Carian Sorcery", "off", toggles, "Sorceries")}
-                        {renderExtras("Glintblade Sorcery", "off", toggles, "Sorceries")}
-                        {renderExtras("Gravity Sorcery", "off", toggles, "Sorceries")}
-                        {renderExtras("Stonedigger Sorcery", "off", toggles, "Sorceries")}
-                        {renderExtras("Standard Sorcery", "off", toggles, "Sorceries")}
-
-                        {renderExtras("Physical Skill", "off", toggles, "Skill")}
-                        {renderExtras("Roaring Skill", "off", toggles, "Skill")}
-                        {renderExtras("Magic / Gravity Skill", "off", toggles, "Skill")}
-                        {renderExtras("Fire Skill", "off", toggles, "Skill")}
-                        {renderExtras("Lightning Skill", "off", toggles, "Skill")}
-                        {renderExtras("Holy Skill", "off", toggles, "Skill")}
+                        {renderBreakdown(toggles)}
                     </div>
                 )
             }
             return(
                 <div>
-                    {renderStat("Melee", "off", toggles)}
-                    {renderStat("Ranged", "off", toggles)}
-                    {renderStat("Magic", "off", toggles)}
-                    {renderStat("Lightning", "off", toggles)}
-                    {renderStat("Fire", "off", toggles)}
-                    {renderStat("Holy", "off", toggles)}
-                    
-                    {renderStat("Critical", "off", toggles)}
-                    {renderStat("Counter", "off", toggles)}
-                    {renderStat("Poise", "off", toggles)}
-                    {renderStat("Skill", "off", toggles, true)}
-                    {renderStat("Sorceries", 'off', toggles, true)}
-                    {renderStat("Incantations", 'off', toggles, true)}
-                    {renderStat("Consumables", "off", toggles, true)}
+                    <SectionLabel>Damage</SectionLabel>
+                    {renderDamageList(toggles)}
                 </div>
             )
         }
         return(
-            <div style={{paddingRight: 10, paddingLeft: 10}}>
+            <div>
                 <OstrichTabBar
-                    style={{width: '80%', marginLeft: '10%', marginTop: 10, marginBottom: 10}}
+                    style={{width: '100%', marginTop: 14, marginBottom: 4}}
                     tabs={["Damage", "Negations", "Compound"]}
                     onTabClick={(tab) => {setStatsShown(tab)}}
                 />
@@ -287,8 +224,9 @@ function renderStats(toggles){
         )
     }
     return(
-        <div style={{display: 'flex', flexDirection: 'row', gap: 5}}>
-            <div style={{flex: 4, backgroundColor: gloomGlow, height: '100%'}}>
+        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 22, marginTop: 6}}>
+            <div>
+                <SectionLabel>Damage negation</SectionLabel>
                 {renderStat("Physical", "neg", toggles)}
                 {renderStat("Slash", "neg", toggles)}
                 {renderStat("Strike", "neg", toggles)}
@@ -297,10 +235,10 @@ function renderStats(toggles){
                 {renderStat("Fire", "neg", toggles)}
                 {renderStat("Lightning", "neg", toggles)}
                 {renderStat("Holy", "neg", toggles)}
-
                 {renderStat("Poise ", "neg", toggles)}
                 {renderStat("Poise", "malenia_is_overrated_there_I_said_it", toggles)}
 
+                <SectionLabel>Status resistance</SectionLabel>
                 {renderStat("Poison", "res", toggles)}
                 {renderStat("Sleep", "res", toggles)}
                 {renderStat("Blight", "res", toggles)}
@@ -309,145 +247,147 @@ function renderStats(toggles){
                 {renderStat("Rot", "res", toggles)}
                 {renderStat("Bleed", "res", toggles)}
             </div>
-            <div style={{flex: 4}}>
-                {renderStat("Melee", "off", toggles)}
-                {renderStat("Ranged", "off", toggles)}
-                {renderStat("Magic", "off", toggles)}
-                {renderStat("Lightning", "off", toggles)}
-                {renderStat("Fire", "off", toggles)}
-                {renderStat("Holy", "off", toggles)}
-                
-                {renderStat("Critical", "off", toggles)}
-                {renderStat("Counter", "off", toggles)}
-                {renderStat("Poise", "off", toggles)}
-                {renderStat("Skill", "off", toggles, true)}
-                {renderStat("Sorceries", 'off', toggles, true)}
-                {renderStat("Incantations", 'off', toggles, true)}
-                {renderStat("Consumables", "off", toggles, true)}
+            <div>
+                <SectionLabel>Damage</SectionLabel>
+                {renderDamageList(toggles)}
             </div>
-            <div style={{flex: 4}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining, margin: 0, textAlign: 'center'}}>{expandedStat ? expandedStat : ""}</p>
-                {renderExtras("Fire Incants", "off", toggles, "Incantations")}
-                {renderExtras("Giant's Fire", "off", toggles, "Incantations")}
-                {renderExtras("Black Flame", "off", toggles, "Incantations")}
-                {renderExtras("Flame of Frenzy", "off", toggles, "Incantations")}
-                {renderExtras("Holy Incants", "off", toggles, "Incantations")}
-                {renderExtras("Golden Incants", "off", toggles, "Incantations")}
-                {renderExtras("Lightning Incants", "off", toggles, "Incantations")}
-                {renderExtras("Dragon Incants", "off", toggles, "Incantations")}
-                {renderExtras("Bestial Incants", "off", toggles, "Incantations")}
-
-                {renderExtras("Crystalian Sorcery", "off", toggles, "Sorceries")}
-                {renderExtras("Carian Sorcery", "off", toggles, "Sorceries")}
-                {renderExtras("Glintblade Sorcery", "off", toggles, "Sorceries")}
-                {renderExtras("Gravity Sorcery", "off", toggles, "Sorceries")}
-                {renderExtras("Stonedigger Sorcery", "off", toggles, "Sorceries")}
-                {renderExtras("Standard Sorcery", "off", toggles, "Sorceries")}
-
-                {renderExtras("Physical Skill", "off", toggles, "Skill")}
-                {renderExtras("Roaring Skill", "off", toggles, "Skill")}
-                {renderExtras("Magic / Gravity Skill", "off", toggles, "Skill")}
-                {renderExtras("Fire Skill", "off", toggles, "Skill")}
-                {renderExtras("Lightning Skill", "off", toggles, "Skill")}
-                {renderExtras("Holy Skill", "off", toggles, "Skill")}
+            <div>
+                <SectionLabel>{expandedStat ? `${expandedStat} breakdown` : "Breakdown"}</SectionLabel>
+                {expandedStat
+                    ? renderBreakdown(toggles)
+                    : <p style={{color: traceNight, fontSize: 13, lineHeight: 1.45, margin: '6px 0'}}>
+                        Choose Skill, Sorceries, Incantations or Consumables to see damage for each type.
+                      </p>
+                }
             </div>
         </div>
     )
 }
 
+function renderDamageList(toggles){
+    return(
+        <div>
+            {renderStat("Melee", "off", toggles)}
+            {renderStat("Ranged", "off", toggles)}
+            {renderStat("Magic", "off", toggles)}
+            {renderStat("Lightning", "off", toggles)}
+            {renderStat("Fire", "off", toggles)}
+            {renderStat("Holy", "off", toggles)}
+            {renderStat("Critical", "off", toggles)}
+            {renderStat("Counter", "off", toggles)}
+            {renderStat("Poise", "off", toggles)}
+            {renderStat("Skill", "off", toggles, true)}
+            {renderStat("Sorceries", 'off', toggles, true)}
+            {renderStat("Incantations", 'off', toggles, true)}
+            {renderStat("Consumables", "off", toggles, true)}
+        </div>
+    )
+}
+
+function renderBreakdown(toggles){
+    return(
+        <div>
+            {renderExtras("Fire Incants", "off", toggles, "Incantations")}
+            {renderExtras("Giant's Fire", "off", toggles, "Incantations")}
+            {renderExtras("Black Flame", "off", toggles, "Incantations")}
+            {renderExtras("Flame of Frenzy", "off", toggles, "Incantations")}
+            {renderExtras("Holy Incants", "off", toggles, "Incantations")}
+            {renderExtras("Golden Incants", "off", toggles, "Incantations")}
+            {renderExtras("Lightning Incants", "off", toggles, "Incantations")}
+            {renderExtras("Dragon Incants", "off", toggles, "Incantations")}
+            {renderExtras("Bestial Incants", "off", toggles, "Incantations")}
+
+            {renderExtras("Crystalian Sorcery", "off", toggles, "Sorceries")}
+            {renderExtras("Carian Sorcery", "off", toggles, "Sorceries")}
+            {renderExtras("Glintblade Sorcery", "off", toggles, "Sorceries")}
+            {renderExtras("Gravity Sorcery", "off", toggles, "Sorceries")}
+            {renderExtras("Stonedigger Sorcery", "off", toggles, "Sorceries")}
+            {renderExtras("Standard Sorcery", "off", toggles, "Sorceries")}
+
+            {renderExtras("Physical Skill", "off", toggles, "Skill")}
+            {renderExtras("Roaring Skill", "off", toggles, "Skill")}
+            {renderExtras("Magic / Gravity Skill", "off", toggles, "Skill")}
+            {renderExtras("Fire Skill", "off", toggles, "Skill")}
+            {renderExtras("Lightning Skill", "off", toggles, "Skill")}
+            {renderExtras("Holy Skill", "off", toggles, "Skill")}
+        </div>
+    )
+}
+
+// Row label shown for each stat (sections already say Damage / Negation / Resistance)
+function statLabel(type, variety){
+    if (type === "Poise " && variety === "neg") return "Poise negation"
+    if (type === "Poise" && variety === "off") return "Poise damage"
+    return type
+}
+
+// Gold when your build raises a stat, orange when it lowers it
+function valueColor(type, variety, toggles){
+    let change = 0
+    if (variety === "off" || variety === "neg"){
+        if (type === "Poise "){
+            change = stack_modifiers_ADD("poiseNeg", 0, toggles)
+        }
+        else{
+            change = determineDamModifier(type, variety, toggles) - 1
+        }
+    }
+    else if (variety === "res"){
+        change = findResistance(type)
+    }
+    if (change > 0.0001) return boostColor
+    if (change < -0.0001) return penaltyColor
+    return neutralColor
+}
+
+function statRowStyle(clickable, selected){
+    return {
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8,
+        width: '100%', boxSizing: 'border-box', minHeight: 26, padding: '3px 6px',
+        borderBottom: `1px solid ${gloomGlow}`, fontFamily: 'inherit', textAlign: 'left',
+        background: selected ? gloomGlow : 'transparent',
+        border: 'none', borderRadius: selected ? 6 : 0,
+        cursor: clickable ? 'pointer' : 'default',
+    }
+}
+
 function renderStat(type, variety, toggles, extras=false){
-    // Style Stuff
-    let color = "white"
-    let caption = ""
-    if (variety === "off"){
-        color = graceGiven
-        caption = "Damage"
-    }
-    else{
-        color = silveredNight
-        caption = "Negation"
-        if (type === "Poise"){
-            caption = ""
-        }
-        else if (type === "Poison" || type ===  "Sleep" || type ===  "Blight" || type ===  "Frostbite" || type ===  "Madness" || type === "Rot" || type === "Bleed"){
-            caption = "Resist"
-        }
-    }
-    if ((type === "Skill" || type === "Sorceries" || type === "Incantations" || type === "Consumables") && !isMobile){
-        caption = caption + " (Expand)"
-    }
-    let cardStyle = {
-        border: '1px solid black', display: 'flex', 
-        flexDirection: 'row', flex: 3, 
-        backgroundColor: gloomGlow, padding: 5,
-        justifyContent: 'space-between'
-    }
-
-
-
+    const label = statLabel(type, variety)
+    const value = determineRenderedValue(type, variety, toggles)
+    const color = valueColor(type, variety, toggles)
+    const valueEl = (
+        <span style={{color, fontSize: 14, fontVariantNumeric: 'tabular-nums'}}>{value}</span>
+    )
 
     if (extras){
+        const selected = expandedStat === type
         return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0}} onClick={() => {setExpandedStat(type)}}>
-                <div style={cardStyle}>
-                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
-                        {type} {caption} - 
-                    </p>
-                    <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                        determineRenderedValue(type, variety, toggles)}
-                    </p>
-                </div>
-            </OstCard>
+            <button type="button" aria-pressed={selected} onClick={() => {setExpandedStat(type)}}
+                style={{...statRowStyle(true, selected), borderBottom: `1px solid ${gloomGlow}`}}>
+                <span style={{color: silverLining, fontSize: 14}}>
+                    {label} {!isMobile && <span style={{color: selected ? graceGiven : traceNight}}>&rsaquo;</span>}
+                </span>
+                {valueEl}
+            </button>
         )
     }
     return(
-        <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0}}>
-            <div style={cardStyle}>
-                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
-                    {type} {caption} - 
-                </p>
-                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                    determineRenderedValue(type, variety, toggles)}
-                </p>
-            </div>
-        </OstCard>
+        <div style={{...statRowStyle(false, false), borderBottom: `1px solid ${gloomGlow}`}}>
+            <span style={{color: silverLining, fontSize: 14}}>{label}</span>
+            {valueEl}
+        </div>
     )
 }
 
 function renderExtras(type, variety, toggles, expandedType){
     if (expandedStat === expandedType){
-        // Style Stuff
-        let color = "white"
-        let caption = ""
-        if (variety === "off"){
-            color = graceGiven
-            caption = "Damage"
-        }
-        else{
-            color = silveredNight
-            caption = "Negation"
-            if (type === "Poise"){
-                caption = ""
-            }
-            else if (type === "Poison" || type ===  "Sleep" || type ===  "Blight" || type ===  "Frostbite" || type ===  "Madness" || type === "Rot" || type === "Bleed"){
-                caption = "Resist"
-            }
-        }
-        let cardStyle = {
-            border: '1px solid black', display: 'flex', 
-            flexDirection: 'row', flex: 3, 
-            backgroundColor: gloomGlow, padding: 5,
-            justifyContent: 'space-between'
-        }
         return(
-            <OstCard noShadow={true} rounded={false} style={cardStyle}>
-                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-start'}}>
-                    {type} {caption} - 
-                </p>
-                <p style={{display: 'flex', color: color, fontSize: 13, margin: 0, alignSelf: 'flex-end'}}>{
-                    determineRenderedValue(type, variety, toggles)}
-                </p>
-            </OstCard>
+            <div key={type} style={{...statRowStyle(false, false), borderBottom: `1px solid ${gloomGlow}`}}>
+                <span style={{color: silverLining, fontSize: 14}}>{type}</span>
+                <span style={{color: valueColor(type, variety, toggles), fontSize: 14, fontVariantNumeric: 'tabular-nums'}}>
+                    {determineRenderedValue(type, variety, toggles)}
+                </span>
+            </div>
         )
     }
 }
@@ -895,7 +835,7 @@ function determine_if_effect_is_toggled(effect, toggles){
 // Main Return //
 /////////////////
     return(
-        <div style={{flex: 7, backgroundColor: nightShade, height: 600}}>
+        <div style={panelStyle({flex: 7, minWidth: 0, padding: isMobile ? '4px 12px 14px' : '6px 20px 18px'})}>
             {renderVitals(all_relic_effects)}
             {renderStats(toggles)}
         </div>

@@ -397,7 +397,7 @@ function renderRelic(relic, id, depth, displayNum){
 function renderRelicHeader(key, depth, cons, displayNum){
     return(
         <div style={{display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px 6px 12px', backgroundColor: gloomGlow}}>
-            <span style={{color: graceGiven, fontSize: 15, fontWeight: 600, flex: 1}}>
+            <span style={{color: graceGiven, fontSize: 15, fontWeight: 600, flex: 1, whiteSpace: 'nowrap'}}>
                 Relic {displayNum}
             </span>
             {renderFlipRelic(depth, key, cons)}
@@ -569,7 +569,7 @@ function renderCredits(){
     const link = {color: graceGiven}
     return(
         <div style={{
-            margin: isMobile ? '24px 10px 30px' : '28px 25px 40px', display: 'flex',
+            margin: isMobile ? '20px 10px 8px' : '24px 25px 8px', display: 'flex',
             flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center',
             justifyContent: 'space-between', gap: 14,
         }}>
@@ -1123,7 +1123,7 @@ function RENDER_MAIN(){
 // Main Return //
 /////////////////
 return(
-    <div style={{paddingTop: 15, backgroundColor: depthColor,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+    <div style={{paddingTop: isMobile ? 24 : 36, paddingBottom: 16, backgroundColor: depthColor, boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
         {RENDER_MAIN()}
         {!isMobile ? renderCredits() : null}
     </div>

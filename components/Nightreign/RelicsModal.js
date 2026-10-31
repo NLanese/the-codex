@@ -203,45 +203,59 @@ useEffect(() => {
 // Renderings //
 ////////////////
 function renderFilteredEffects(){
+    if (filteredEffects.length === 0){
+        return (
+            <p style={{color: traceNight, fontSize: 15, padding: '12px 4px'}}>
+                {search ? `No effects match "${search}". Try a shorter search or another category.` : "No effects in this category."}
+            </p>
+        )
+    }
     return filteredEffects.map(eff => {
         return(
-            <OstCard noShadow={true} rounded={false} onClick={() => determineChange(eff)}
+            <button key={eff.title} type="button" onClick={() => determineChange(eff)}
             style={{
-            border: "1px solid black", backgroundColor: traceNight,
-            padding: 0, paddingLeft: 10, 
-            display: 'flex', flexDirection: 'row'}}
+                display: 'flex', alignItems: 'flex-start', gap: 12, width: '100%', textAlign: 'left',
+                padding: isMobile ? '10px 10px' : '12px 14px', marginBottom: 6, cursor: 'pointer',
+                fontFamily: 'inherit', borderRadius: 10,
+                border: `1px solid ${gloomGlow}`, backgroundColor: depthColor,
+            }}
             >
-                <div style={{display: 'flex', flexDirection: 'column', flex: 10}}>
-                    <p style={{...Styles.Fonts.basicX, marginBottom: 0, fontSize: isMobile ? 16 : 22,}}>
+                <div style={{flex: 1, minWidth: 0}}>
+                    <div style={{color: silverLining, fontSize: isMobile ? 15 : 17, fontWeight: 600, lineHeight: 1.25}}>
                         {eff.title}
-                    </p>
-                    <p style={{...Styles.Fonts.basic, fontSize: isMobile ? 12 : 14, marginTop: 0}}>
+                    </div>
+                    <div style={{color: traceNight, fontSize: isMobile ? 12.5 : 14, lineHeight: 1.4, marginTop: 3}}>
                         {eff.desc}
-                    </p>
+                    </div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'column', flex: 2, fontSize: 12}}>
-                    {renderCanStack(eff)}
-                </div>
-                
-            </OstCard>
+                {renderCanStack(eff)}
+            </button>
         )
     })
 }
 
 function renderCanStack(eff){
+    let text = "Doesn't stack"
+    let color = frenzyTouched
     if (eff.stacks.self){
-        return <p style={{color: graceGiven, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Stacks with self</p>
+        text = "Stacks with itself"
+        color = graceGiven
     }
     else if (!eff.stacks.self && eff.stacks.selfType){
-        return<p style={{color: silverLining, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Stacks with similar type</p>
+        text = "Stacks with similar"
+        color = silverLining
     }
-    else{
-        return <p style={{color: frenzyTouched, backgroundColor: nightShade, padding: 5, marginRight: 5}}>Does not stack</p>
-    }
+    return (
+        <span style={{
+            flexShrink: 0, fontSize: 12, color: color, whiteSpace: 'nowrap',
+            border: `1px solid ${color}`, borderRadius: 999, padding: '2px 8px', marginTop: 2,
+        }}>
+            {text}
+        </span>
+    )
 }
 
 function renderOptions(){
-    console.log(isWeapons)
     if (isWeapons){
         return(
             <OstrichTabBar
@@ -287,27 +301,19 @@ function renderOptions(){
 }
 
 function renderTitle(){
-    if (isMobile){
-        return(
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', gap: isMobile ? '10%' : '40%',  alignItems: 'center'}}>
-                <div style={{flex: 8}}>
-                    <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven, width: '100%'}}>Select an Effect</p>
-                </div>
-                <OstCard noShadow={true} style={{
-                    flex: 4,
-                    color: frenzyTouched, backgroundColor: depthColor, 
-                    padding: 4, margin: 0, height: 40,
-                    textAlign: 'center', dispklay: 'flex',
-                    justifyContent: 'center', alignContent: 'center'
-                }} onClick={() => closeModal()}>
-                    CLOSE
-                </OstCard>
-            </div>
-        )
-    }
-    else{
-        return <p style={{...Styles.Fonts.h2, margin: 0, color: graceGiven}}>Select an Effect</p>
-    }
+    return(
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10}}>
+            <h2 style={{margin: 0, color: graceGiven, fontSize: isMobile ? 20 : 24, fontWeight: 600}}>
+                {isWeapons ? "Choose a weapon passive" : "Choose an effect"}
+            </h2>
+            <button type="button" onClick={() => closeModal()} style={{
+                background: 'none', border: `1px solid ${gloomGlow}`, borderRadius: 8, cursor: 'pointer',
+                color: silverLining, fontFamily: 'inherit', fontSize: 14, padding: '5px 12px',
+            }}>
+                Close
+            </button>
+        </div>
+    )
 }
 
 ///////////////
@@ -328,40 +334,28 @@ function determineChange(eff){
 // Main Return //
 /////////////////
 if (isCursed){
-    if (isMobile){
-        return (
-            <div>
-                <p style={{...Styles.Fonts.basicXL, color: silverLining}}>Cursed Relic Effectcs coming soon</p>
-                <OstCard noShadow={true} style={{
-                color: frenzyTouched, backgroundColor: depthColor, 
-                padding: 4, margin: 0, wisth: 120, height: 40,
-                textAlign: 'center', dispklay: 'flex',
-                justifyContent: 'center', alignContent: 'center'
-                }} onClick={() => closeModal()}>
-                    CLOSE
-                </OstCard>
-            </div>
-        )
-    }
-    return(
-        <p style={{...Styles.Fonts.basicXL, color: silverLining}}>Cursed Relic Effectcs coming soon</p>
+    return (
+        <div>
+            {renderTitle()}
+            <p style={{color: silverLining, fontSize: 17}}>Curse effects aren't in the calculator yet. Check back for updates.</p>
+        </div>
     )
 }
     return(
-        <div style={{height: '100%', paddingBottom: 10}}>
-            <div style={{height: isMobile? '25%' : '15%'}}>
-                <div>
-                    {renderTitle()}
-                </div>
-                    {renderOptions()}
-                <div style={{marginLeft:  isMobile ? '0%' : '10%', display: 'flex', flexDirection: 'row'}}>
-                    <p style={{...Styles.Fonts.basic, marginTop: 0, marginBottom: 0, color: silverLining}}>Search for Effect: </p>
-                    <input style={{width: '62%'}} onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
+        <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+            <div style={{flexShrink: 0}}>
+                {renderTitle()}
+                {renderOptions()}
+                <input type="search" placeholder="Search effects" aria-label="Search effects"
+                    onChange={(e) => setSearch(e.target.value)} value={search}
+                    style={{
+                        width: '100%', boxSizing: 'border-box', margin: '4px 0 12px', padding: '8px 12px',
+                        borderRadius: 8, border: `1px solid ${gloomGlow}`, backgroundColor: depthColor,
+                        color: silverLining, fontFamily: 'inherit', fontSize: 15,
+                    }}
+                />
             </div>
-            
-            <div style={{overflowY: 'auto', overflowX: 'hidden', marginTop: isMobile ? '20%' : 5, height: isMobile ? "75%" : '85%', paddingBottom: isMobile? '15%' : '0%'}}>
+            <div style={{overflowY: 'auto', overflowX: 'hidden', flex: 1, minHeight: 0, paddingRight: 4}}>
                 {renderFilteredEffects()}
             </div>
         </div>
