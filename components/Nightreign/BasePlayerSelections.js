@@ -1,5 +1,9 @@
-import React, {useEffect, useState, useRef} from "react";
-import { FormMultipleChoice } from "@ostrich_development/ostrich-components";
+import React from "react";
+import { SectionLabel, chipStyle } from "./nightreignTheme";
+
+const SELECTIONS = ["Relics", "Deep Relics", "Effects", "Weapon Passives", "Talismans"]
+const NIGHTFARERS = ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executor", "Scholar", "Undertaker"]
+const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 export default function BasePlayerSelections({
     _nightfarer, setNightfarer,
@@ -7,81 +11,35 @@ export default function BasePlayerSelections({
     _selectionState, setSelectionState,
     isMobile
 }) {
-    const [nightfarer] = useState(_nightfarer)
-    const [lvl] = useState(_lvl)
-    const [selectionState] = useState(_selectionState) 
-    const graceGiven = "#f2e144"
-    const gloomGlow = "#452d8a"
+
+    function renderChips(options, current, onPick, columns, compact = false){
+        return (
+            <div style={{display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 6}}>
+                {options.map(op => (
+                    <button
+                        key={op}
+                        type="button"
+                        aria-pressed={current === op}
+                        onClick={() => onPick(op)}
+                        style={chipStyle(current === op, compact ? {padding: '6px 0', textAlign: 'center'} : {})}
+                    >
+                        {op}
+                    </button>
+                ))}
+            </div>
+        )
+    }
 
     return(
-        <div style={{
-            display: 'flex', flexDirection: 'column', flex: 5, 
-            paddingRight: 10
-        }}>
-            <FormMultipleChoice 
-                title={"Selection"}
-                style={{width: '100%'}}
-                titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven}}
-                itemsPerRow={3}
-                inForm={false}
-                fieldTextStyle={{padding: 0, paddingLeft: 3, paddingRight: 3, margin: 0, fontSize: 14}}
-                onChange={(op) => {
-                    setSelectionState(op.value[0])
-                }}
-                fieldObj={
-                  {
-                    id: "2",
-                    type: "MC",
-                    template: "tabs",
-                    options: [
-                        "Relics", "Deep Relics", "Effects",
-                        "Weapon Passives", "Talismans"
-                        ],
-                }}
-                inputValue={selectionState}
-            />
-            <FormMultipleChoice 
-                title={"Nightfarer"}
-                titleStyle={{marginBottom: 0, paddingBottom: 0, backgroundColor: gloomGlow, padding: 2.5, paddingLeft: 5, color: graceGiven,}}
-                itemsPerRow={2}
-                inForm={false}
-                onChange={(op) => {
-                    setNightfarer(op.value[0])
-                }}
-                fieldTextStyle={{padding: 0, margin: 0}}
-                fieldObj={
-                  {
-                    id: "2",
-                    type: "MC",
-                    template: "tabs",
-                    options: ["Wylder", "Guardian", "Ironeye", "Duchess", "Raider", "Revenant", "Recluse", "Executor", "Scholar", {tag: "Undertaker", fontSize: isMobile ? 12 : 16}],
-                    textStyle: {fontSize: 12, padding: 0},
-                  }
-                }
-              />
-              <FormMultipleChoice 
-                title={"Level"}
-                titleStyle={{
-                    marginBottom: 0, paddingBottom: 0, 
-                    backgroundColor: gloomGlow, color: graceGiven,
-                    padding: 2.5, paddingLeft: 5
-                }}
-                itemsPerRow={8}
-                inForm={false}
-                fieldTextStyle={{padding: 0, margin: 0}}
-                onChange={(op) => {
-                    setLvl(false)
-                    setLvl(op.value[0])
-                }}
-                fieldObj={
-                  {
-                    id: "2",
-                    type: "MC",
-                    template: "tabs",
-                    options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-                    textStyle: {fontSize: 16},
-                }}
-              />
+        <div style={{display: 'flex', flexDirection: 'column', width: isMobile ? '100%' : 230, flexShrink: 0}}>
+            <SectionLabel style={{marginTop: 0}}>Edit</SectionLabel>
+            {renderChips(SELECTIONS, _selectionState, (op) => setSelectionState(op), 2)}
+
+            <SectionLabel style={{marginTop: 18}}>Nightfarer</SectionLabel>
+            {renderChips(NIGHTFARERS, _nightfarer, (op) => setNightfarer(op), isMobile ? 3 : 2)}
+
+            <SectionLabel style={{marginTop: 18}}>Level</SectionLabel>
+            {renderChips(LEVELS, _lvl, (op) => { setLvl(false); setLvl(op) }, isMobile ? 8 : 5, true)}
         </div>
     )
 }

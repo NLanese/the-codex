@@ -1,5 +1,4 @@
-import { OstCard } from "@ostrich_development/ostrich-components";
-import { OstrichTabBar } from "@ostrich_development/ostrich-components";
+import { SectionLabel, chipStyle, textButtonStyle } from "./nightreignTheme";
 import React, {useEffect, useState, useRef} from "react";
 
 
@@ -22,6 +21,7 @@ const gloomGlow = "#452d8a"
 const silveredNight = "#7fc7bf"
 const silverLining = "#d4eeff"
 const scarletRot = '#754142'
+const traceNight = '#9b9fbf'
 
 const [secondSet, setSecondSet] = useState(false)
 
@@ -51,66 +51,56 @@ useEffect(() => {
 
 function renderSingleWeapon(weapon, id){
     return(
-        <OstCard style={{ flex: 4, 
-        backgroundColor: greyOfNight, borderColor: silveredNight,
-        padding: 0, overflow: 'hidden', border: "1px solid" 
-        }}>
+        <div key={id} style={{borderRadius: 10, overflow: 'hidden', border: `1px solid ${gloomGlow}`, backgroundColor: depthColor}}>
             {renderWeaponHeader(id)}
-            <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
+            <div style={{display: 'flex', flexDirection: 'column', gap: 6, padding: 8}}>
                 {renderWeaponEffect(weapon?.slot1 ?? null, `${id}1`, false)}
                 {renderWeaponEffect(weapon?.slot2 ?? null, `${id}2`, false)}
                 {/* {renderWeaponEffect(weapon?.slot3 ?? null, `${id}3`, true)} */}
-            </div>
-        </OstCard>
-    )
-}
-
-function renderWeaponHeader(key){
-    return(
-        <div style={{height: '12%'}}>
-            <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
-            <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
-                Weapon {key}
-            </OstCard>
-            <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearWeapon(key)}>
-                CLEAR
-            </OstCard>
             </div>
         </div>
     )
 }
 
+function renderWeaponHeader(key){
+    return(
+        <div style={{display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px 6px 12px', backgroundColor: gloomGlow}}>
+            <span style={{color: graceGiven, fontSize: 15, fontWeight: 600, flex: 1}}>
+                Weapon {key}
+            </span>
+            <button type="button" style={textButtonStyle(frenzyTouched)} onClick={() => clearWeapon(key)}>
+                Clear
+            </button>
+        </div>
+    )
+}
+
 function renderWeaponEffect(relicSlot, key, isNegative){
+    const filled = !!relicSlot?.title
     return (
-        <OstCard key={key} noShadow={true} rounded={false} 
-        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15, backgroundColor: isNegative ? scarletRot : silveredNight}} 
+        <button key={key} type="button"
         onClick={() => handleWeaponEffectClick(key)}
+        style={{
+            textAlign: 'left', fontFamily: 'inherit', fontSize: 14, lineHeight: 1.3,
+            padding: '8px 10px', borderRadius: 7, cursor: 'pointer', minHeight: 36,
+            border: filled ? `1px solid ${isNegative ? scarletRot : gloomGlow}` : `1px dashed ${greyOfNight}`,
+            backgroundColor: filled ? (isNegative ? scarletRot : nightShade) : 'transparent',
+            color: filled ? silverLining : traceNight,
+        }}
         >
-            {relicSlot?.title ? relicSlot?.title : "No Effect"}
-        </OstCard>
-        
+            {filled ? relicSlot.title : "+ Add a passive"}
+        </button>
     )
 }
 
 function determineCardsShown(){
-    if (!secondSet){
-        return (
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%', height: '100%', flex: 1}}>
-            {renderSingleWeapon(weapon1, 1)}
-            {renderSingleWeapon(weapon2, 2)}
-            {renderSingleWeapon(weapon3, 3)}
-            </div>
-        )
-    }
-    else{
-        return(
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%', height: '100%', flex: 1}}>
-            {renderSingleWeapon(weapon4, 4)}
-            {renderSingleWeapon(weapon5, 5)}
-            {renderSingleWeapon(weapon6, 6)}
-            </div>
-        )
-    }
+    const ids = secondSet ? [4, 5, 6] : [1, 2, 3]
+    const weapons = {1: weapon1, 2: weapon2, 3: weapon3, 4: weapon4, 5: weapon5, 6: weapon6}
+    return (
+        <div style={{display: 'flex', flexDirection: 'column', gap: 12}}>
+            {ids.map(id => renderSingleWeapon(weapons[id], id))}
+        </div>
+    )
 }
 
 
@@ -118,17 +108,18 @@ function determineCardsShown(){
 // Main Render //
 /////////////////
 return(
-    <div style={{ flex: 7, backgroundColor: nightShade, display: 'flex', flexDirection: 'column'}}>
-        <div style={{flex: 1}}>
-            <OstrichTabBar
-            tabs={["Weapons 1-3", "Weapons 4-6"]}
-            value={secondSet ? "Weapons 4-6" : "Weapons 1-3"}
-            onTabClick={(tab) =>  (tab === "Weapons 1-3" ? setSecondSet(false) : setSecondSet(true))}
-            />
+    <div style={{flex: 1, minWidth: 0}}>
+        <SectionLabel style={{marginTop: 0}}>Weapon passives</SectionLabel>
+        <div style={{display: 'flex', gap: 6, marginBottom: 12}}>
+            {[["Weapons 1-3", false], ["Weapons 4-6", true]].map(([label, value]) => (
+                <button key={label} type="button" aria-pressed={secondSet === value}
+                    onClick={() => setSecondSet(value)}
+                    style={chipStyle(secondSet === value, {flex: 1})}>
+                    {label}
+                </button>
+            ))}
         </div>
-        <div style={{flex: 11, paddingRight: 5}}>
-            {determineCardsShown()}
-        </div>
+        {determineCardsShown()}
     </div>
 )
 }

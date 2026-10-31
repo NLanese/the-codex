@@ -22,6 +22,9 @@ import StatSheet from "../../../components/Nightreign/StatSheet";
 import BossStats from "../../../components/Nightreign/BossStats";
 import SavedBuilds from "../../../components/Nightreign/SavedBuilds";
 import WeaponPassiveSelections from "../../../components/Nightreign/WeaponPassiveSelections";
+import {
+    panelStyle, SectionLabel, chipStyle, textButtonStyle,
+} from "../../../components/Nightreign/nightreignTheme";
 
 export default function NightreignBuildMaker() {
 ////////////
@@ -33,6 +36,7 @@ const nightShade = "#2b2161"
 const graceGiven = "#f2e144"
 const frenzyTouched = "#ff5100"
 const greyOfNight = "#636478"
+const traceNight = '#9b9fbf'
 const gloomGlow = "#452d8a"
 const silveredNight = "#7fc7bf"
 const silverLining = "#d4eeff"
@@ -129,6 +133,9 @@ const silverLining = "#d4eeff"
     const [effect61, setEffect61] = useState(false)
     const [effect62, setEffect62] = useState(false)
     const [effect63, setEffect63] = useState(false)
+
+    // Deep relics: which ones are flipped to show curses (keyed by relic id)
+    const [flippedRelics, setFlippedRelics] = useState({})
 
     // Relics Toggle Effects
     const [relics_effect_toggles, set_relic_effect_toggles] = useState({})
@@ -304,14 +311,14 @@ const silverLining = "#d4eeff"
 function renderSelectionsContainer(toggles, all_relic_effects){
     return(
         <div style={{
-        display: 'flex', flexDirection: isMobile ? 'column' : 'row',
-        gap: 30, height: 500, padding: isMobile ? 5 : 25,
+            display: 'flex', flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? 14 : 22, alignItems: 'stretch',
+            padding: isMobile ? '0 10px' : '0 25px',
         }}>
-            <div style={{
-                flex: 5, display: 'flex', flexDirection: 'row', 
-                backgroundColor: nightShade, height: 600, 
-                borderRadius: 20
-            }}>
+            <div style={panelStyle({
+                flex: 5, display: 'flex', flexDirection: isMobile ? 'column' : 'row',
+                gap: isMobile ? 16 : 20, padding: isMobile ? 12 : 18, minWidth: 0,
+            })}>
                 <BasePlayerSelections 
                 _nightfarer={nightfarer} _lvl={lvl} _selectionState={selectionState}
                 setNightfarer={setNightfarer} setLvl={setLvl} setSelectionState={setSelectionState}
@@ -325,6 +332,15 @@ function renderSelectionsContainer(toggles, all_relic_effects){
                 hp={hp} fp={fp} stam={stam} vigor={vigor} end={end} dex={dex} 
                 str={str} intl={intl} fai={fai} mind={mind} arcane={arcane}
             />
+        </div>
+    )
+}
+
+function renderPlaceholder(text){
+    return(
+        <div style={{flex: 1, minWidth: 0}}>
+            <SectionLabel style={{marginTop: 0}}>{selectionState}</SectionLabel>
+            <p style={{color: traceNight, fontSize: 15, lineHeight: 1.45, margin: '8px 0'}}>{text}</p>
         </div>
     )
 }
@@ -344,110 +360,91 @@ function renderSelections(deepDisplayed){
             clearWeapon={clearWeapon}
             />
     }
-    else if (selectionState === "Talismans"){
-        return(
-            <div style={{flex: 7}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Nothing here yet. Please check in again for updates!
-                </p>
-            </div>
-        )
-    }
     else{
-        return(
-            <div style={{flex: 7}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Nothing here yet. Please check in again for updates!
-                </p>
-            </div>
-        )
+        return renderPlaceholder("Talismans aren't in the calculator yet. Check back for updates.")
     }
 }
 
 
 // RELICS // 
 function renderRelics(deepDisplayed){
-    if (deepDisplayed){
-        return(
-            <div style={{ flex: 7, backgroundColor: nightShade}}>
-                <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                    <Relic relic={relic4} id={4} depth={true}/>
-                    <Relic relic={relic5} id={5} depth={true}/>
-                    <Relic relic={relic6} id={6} depth={true}/>
-                </div>
-            </div>
-            
-        )
-    }
+    const ids = deepDisplayed ? [4, 5, 6] : [1, 2, 3]
+    const relics = {1: relic1, 2: relic2, 3: relic3, 4: relic4, 5: relic5, 6: relic6}
     return(
-        <div style={{ flex: 7, backgroundColor: nightShade}}>
-            <div style={{display: 'flex', gap: 10, flexDirection: 'column', height: 590,}}>
-                <Relic relic={relic1} id={1} depth={false}/>
-                <Relic relic={relic2} id={2} depth={false}/>
-                <Relic relic={relic3} id={3} depth={false}/>
+        <div style={{flex: 1, minWidth: 0}}>
+            <SectionLabel style={{marginTop: 0}}>{deepDisplayed ? "Deep of Night relics" : "Relics"}</SectionLabel>
+            <div style={{display: 'flex', gap: 12, flexDirection: 'column'}}>
+                {ids.map((id, i) => renderRelic(relics[id], id, deepDisplayed, i + 1))}
             </div>
         </div>
-        
     )
 }
 
-function Relic({ relic, id, depth }) {
-    const [cons, setCons] = useState(false)
-
+function renderRelic(relic, id, depth, displayNum){
+    const cons = !!flippedRelics[id]
     return (
-        <OstCard style={{ flex: 4, backgroundColor: greyOfNight, padding: 0, overflow: 'hidden', border: "1px solid", borderColor: silveredNight }}>
-            {renderRelicHeader(id, depth, cons, setCons)}
-            <div style={{ height: '88%', display: 'flex', flexDirection: 'column', backgroundColor: depthColor }}>
+        <div key={id} style={{borderRadius: 10, overflow: 'hidden', border: `1px solid ${gloomGlow}`, backgroundColor: depthColor}}>
+            {renderRelicHeader(id, depth, cons, displayNum)}
+            <div style={{display: 'flex', flexDirection: 'column', gap: 6, padding: 8}}>
                 {renderRelicEffect(relic?.slot1 ?? null, `${id}1`, cons)}
                 {renderRelicEffect(relic?.slot2 ?? null, `${id}2`, cons)}
                 {renderRelicEffect(relic?.slot3 ?? null, `${id}3`, cons)}
             </div>
-        </OstCard>
-    )
-}
-
-function renderRelicHeader(key, depth, cons, setCons){
-    return(
-        <div style={{height: '12%'}}>
-            <div style={{display: 'flex', flexDirection: 'row', backgroundColor: gloomGlow, overflow: 'hidden', gap: 10, padding: 2, paddingBottom: 0}}>
-            <OstCard noShadow={true} style={{color: graceGiven, padding: 0, paddingLeft: 5, margin: 0, flex: 7 }}>
-                RELIC
-            </OstCard>
-            {renderFlipRelic(depth, setCons, cons)}
-            <OstCard noShadow={true} style={{color: frenzyTouched, backgroundColor: depthColor, padding: 0, margin: 0, flex: 2.5, textAlign: 'center'}} onClick={() => clearRelic(key)}>
-                CLEAR
-            </OstCard>
-            </div>
         </div>
     )
 }
 
-function renderFlipRelic(depth, setCons, cons){
-    if (!depth){
-        return
-    }
-    let text = "POSITIVES"
-    let color = "lime"
-    if (cons){
-        text = "NEGATIVES"
-        color = "red"
-    }
+function renderRelicHeader(key, depth, cons, displayNum){
     return(
-        <OstCard noShadow={true} style={{color: color, backgroundColor: depthColor, paddingLeft: 2, paddingRight: 2, paddingTop: 0, paddingBottom: 0, margin: 0, flex: 2.5, fontSize: 14, textAlign: 'center', alignContent: 'center'}} onClick={() => setCons(!cons)}>
-            {text}
-        </OstCard> 
+        <div style={{display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px 6px 12px', backgroundColor: gloomGlow}}>
+            <span style={{color: graceGiven, fontSize: 15, fontWeight: 600, flex: 1}}>
+                Relic {displayNum}
+            </span>
+            {renderFlipRelic(depth, key, cons)}
+            <button type="button" style={textButtonStyle(frenzyTouched)} onClick={() => clearRelic(key)}>
+                Clear
+            </button>
+        </div>
+    )
+}
+
+// Deep relics: choose whether clicking a slot picks a positive effect or a curse
+function renderFlipRelic(depth, key, cons){
+    if (!depth){
+        return null
+    }
+    const setCons = (value) => setFlippedRelics(prev => ({...prev, [key]: value}))
+    return(
+        <div style={{display: 'flex', borderRadius: 7, overflow: 'hidden', border: `1px solid ${depthColor}`}}>
+            {[["Positives", false], ["Curses", true]].map(([label, value]) => (
+                <button key={label} type="button" aria-pressed={cons === value} onClick={() => setCons(value)}
+                    style={{
+                        border: 'none', padding: '3px 8px', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12,
+                        backgroundColor: cons === value ? (value ? frenzyTouched : silveredNight) : depthColor,
+                        color: cons === value ? depthColor : traceNight,
+                    }}>
+                    {label}
+                </button>
+            ))}
+        </div>
     )
 }
 
 function renderRelicEffect(relicSlot, key, cons){
+    const filled = !!relicSlot?.title
     return (
-        <OstCard key={key} noShadow={true} rounded={false} 
-        style={{border: '1px solid black', minHeight: 25, padding: 3, flex: 4, fontSize: 15}} 
+        <button key={key} type="button"
         onClick={() => handleRelicEffectClick(key, cons)}
+        style={{
+            textAlign: 'left', fontFamily: 'inherit', fontSize: 14, lineHeight: 1.3,
+            padding: '8px 10px', borderRadius: 7, cursor: 'pointer', minHeight: 36,
+            border: filled ? `1px solid ${gloomGlow}` : `1px dashed ${greyOfNight}`,
+            backgroundColor: filled ? nightShade : 'transparent',
+            color: filled ? silverLining : traceNight,
+        }}
         >
-            {relicSlot?.title ? relicSlot?.title : "No Effect"}
-        </OstCard>
-        
+            {filled ? relicSlot.title : (cons ? "+ Add a curse" : "+ Add an effect")}
+        </button>
     )
 }
 
@@ -455,74 +452,62 @@ function renderRelicEffect(relicSlot, key, cons){
 function renderEffectToggles(){
     let keysOfEffects = Object.keys({...relics_effect_toggles})
     if (!keysOfEffects || keysOfEffects.length < 1){
-        return(
-            <div style={{flex: 7, marginBottom: 10}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    All Relic Effects are always active. No Effects to toggle.
-                </p>
-            </div>
-        )
+        return renderPlaceholder("None of your effects have conditions, so they're all active. Effects that only apply in certain situations will appear here to switch on or off.")
     }
     return(
-        <div style={{flex: 7, paddingTop: 10, paddingBottom: 10}}>
-            {renderSingleToggle(keysOfEffects)}
+        <div style={{flex: 1, minWidth: 0}}>
+            <SectionLabel style={{marginTop: 0}}>Conditional effects</SectionLabel>
+            <p style={{color: traceNight, fontSize: 13, margin: '0 0 10px'}}>
+                Switch on the conditions that apply. Counters take the number of stacks.
+            </p>
+            <div style={{display: 'flex', flexDirection: 'column', gap: 6}}>
+                {renderSingleToggle(keysOfEffects)}
+            </div>
         </div>
     )
 }
 
 function renderSingleToggle(keysOfEffects){
-    return keysOfEffects.map((eff, i) => {
+    return keysOfEffects.map((eff) => {
         let type = (typeof relics_effect_toggles[eff])
         return(
-            <OstCard 
-            noShadow={true} 
-            style={{width: '85%', display: 'flex', flexDirection: 'row', 
-                    gap: 10, backgroundColor: '#efefef', marginBottom: 5
+            <div key={eff} style={{
+                display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px',
+                borderRadius: 8, backgroundColor: depthColor, border: `1px solid ${gloomGlow}`,
             }}>
-                <p style={{margin: 0, padding: 0, fontSize: 13.5, flex: 10}}>
+                <span style={{flex: 1, color: silverLining, fontSize: 14, lineHeight: 1.3}}>
                     {eff}
-                </p>
-                <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
-                    {renderToggle_Check_Or_Counter(eff, relics_effect_toggles, type)}
-                </div>
-            </OstCard>
+                </span>
+                {renderToggle_Check_Or_Counter(eff, relics_effect_toggles, type)}
+            </div>
     )})
 }
 
 function renderToggle_Check_Or_Counter(eff, relics_effect_toggles, type){
     if (type !== 'number'){
+        const on = !!relics_effect_toggles[eff]
         return(
-            <OstCard 
+            <button type="button" role="switch" aria-checked={on} aria-label={eff}
             onClick={() => set_relic_effect_toggles(prev => ({...prev, [eff]: !prev[eff]}))}
             style={{
-                display: 'flex', justifySelf: 'center', alignSelf: 'center', 
-                border: "2px solid #f2e144", borderRadius: 4, 
-                height: 35, width: 35, margin: 0, padding: 0,
-                backgroundColor: depthColor, fontSize: 13.5
+                position: 'relative', width: 42, height: 24, borderRadius: 12, flexShrink: 0, cursor: 'pointer',
+                border: `1px solid ${on ? graceGiven : greyOfNight}`,
+                backgroundColor: on ? graceGiven : nightShade, padding: 0,
             }}>
-                {fillOrInput(eff, relics_effect_toggles[eff], type)}
-            </OstCard>
+                {fill(on)}
+            </button>
         )
     }
     else{
-        return(
-            <OstCard 
-            style={{
-                display: 'flex', justifySelf: 'center', alignSelf: 'center', 
-                border: "2px solid #f2e144", borderRadius: 4, 
-                height: 35, width: 35, margin: 0, padding: 0,
-                backgroundColor: depthColor, fontSize: 13.5
-            }}>
-                {fillOrInput(eff, relics_effect_toggles[eff], type)}
-            </OstCard>
-        )
+        return fillOrInput(eff, relics_effect_toggles[eff], type)
     }
 }
 
 function fill(filled){
-    if (filled){
-        return <div style={{display: 'flex', flex: 1, backgroundColor: graceGiven, margin: '25%'}}/>
-    }
+    return <span style={{
+        position: 'absolute', top: 2, left: filled ? 20 : 2, width: 18, height: 18, borderRadius: 9,
+        backgroundColor: filled ? depthColor : traceNight, transition: 'left 120ms ease',
+    }}/>
 }
 
 function fillOrInput(eff, effVal, type){
@@ -531,7 +516,12 @@ function fillOrInput(eff, effVal, type){
     }
     else{
         return(
-            <input type="number" style={{height: 30, width: 30}}
+            <input type="number" min={0} aria-label={eff}
+                value={Number.isFinite(effVal) ? effVal : ""}
+                style={{
+                    width: 56, padding: '4px 6px', borderRadius: 6, fontFamily: 'inherit', fontSize: 14,
+                    border: `1px solid ${graceGiven}`, backgroundColor: nightShade, color: silverLining,
+                }}
                 onChange={(e) => {
                     set_relic_effect_toggles(prev => 
                         ({...prev, [eff]: parseInt(e.target.value, 10)}))
@@ -544,17 +534,9 @@ function fillOrInput(eff, effVal, type){
 
 // RELIC MODAL //
 function renderRelicModal(){
-    const nonMobileStyle={
-        backgroundColor: nightShade,
-        width: '50%', marginLeft: '20%', minWidth: 300,
-        height: '82%', marginTop: '0%', minHeight: 220,
-        borderRadius: 20, borderColor: silveredNight
-    }
-    const mobileStyle={
-        backgroundColor: nightShade,
-        width: '85%', marginLeft: '-5%', minWidth: 300,
-        height: '82%', marginTop: '0%', minHeight: 220,
-        borderRadius: 20, borderColor: silveredNight
+    const contentStyle = {
+        backgroundColor: nightShade, border: `1px solid ${gloomGlow}`, borderRadius: 16,
+        inset: isMobile ? '4% 3%' : '6% 20%', padding: isMobile ? 12 : 22,
     }
     return(
         <ReactModal
@@ -566,7 +548,7 @@ function renderRelicModal(){
             zIndex: 9999,
             backgroundColor: 'rgba(17, 3, 64, 0.85)',
         },
-        content: (isMobile ? mobileStyle : nonMobileStyle)
+        content: contentStyle
         }}
         >
             <RelicsModal 
@@ -584,29 +566,33 @@ function renderRelicModal(){
 }
 
 function renderCredits(){
+    const link = {color: graceGiven}
     return(
-        <div style={{alignSelf: 'flex-end', marginTop: 90, flex: 1, display: 'flex', flexDirection: 'row'}}>
-            <div style={{flex: 8}}>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Credits for Relic Effects and Nightfarer Negations <a style={{color: graceGiven}} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">HERE</a>
-                </p>
-                <p style={{...Styles.Fonts.basicX, color: silverLining}}>
-                    Credits for Nightfarer and Boss Attributes <a style={{color: graceGiven}} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">HERE</a>
-                </p>
+        <div style={{
+            margin: isMobile ? '24px 10px 30px' : '28px 25px 40px', display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center',
+            justifyContent: 'space-between', gap: 14,
+        }}>
+            <div style={{color: traceNight, fontSize: 14, lineHeight: 1.6}}>
+                <div>
+                    Relic effects and nightfarer negations from <a style={link} href="https://docs.google.com/spreadsheets/d/1meXOw4jR1hh7YXVMeijWwSDIXnCw6Tk4hTZPq2qvyK4/edit?gid=1078794188#gid=1078794188">this community spreadsheet</a>
+                </div>
+                <div>
+                    Nightfarer and boss attributes from <a style={link} href="https://eldenringnightreign.wiki.fextralife.com/Nightfarers+(Classes)">the Fextralife wiki</a>
+                </div>
             </div>
-            <div style={{flex: 4}}>
-                <OstCard style={{backgroundColor: silveredNight, height: '100%', width: '60%', marginLeft: '20%', fontSize: 30, textAlign: 'center', paddingBottom: 0, marginBottom: 0}}
-                    onClick={() => {
-                        window.open(
-                            "https://www.reddit.com/r/Nightreign/comments/1ppvb4w/build_calculator_released/",
-                            "_blank",
-                            "noopener,noreferrer"
-                        )
-                        }}
-                >
-                    Bugs or Comments? Post Here
-                </OstCard>
-            </div>
+            <button type="button"
+                style={chipStyle(false, {padding: '10px 16px', fontSize: 15, borderColor: silveredNight, color: silveredNight})}
+                onClick={() => {
+                    window.open(
+                        "https://www.reddit.com/r/Nightreign/comments/1ppvb4w/build_calculator_released/",
+                        "_blank",
+                        "noopener,noreferrer"
+                    )
+                }}
+            >
+                Report a bug or leave a comment
+            </button>
         </div>
     )
 }
