@@ -1,722 +1,411 @@
-import React, {useEffect, useState, useRef} from "react";
-import { OstCard } from "@ostrich_development/ostrich-components";
+import React, { useState } from "react";
 import { OstrichTabBar } from "@ostrich_development/ostrich-components";
 import nightlordStats from "../../constants/projects/nightreign/bosses/nightlords";
 import day1_stats from "../../constants/projects/nightreign/bosses/day1";
-import day2_stats from "../../constants/projects/nightreign/bosses/day2"
+import day2_stats from "../../constants/projects/nightreign/bosses/day2";
 import minor_stats from "../../constants/projects/nightreign/bosses/minor";
 import major_stats from "../../constants/projects/nightreign/bosses/major";
 
-export default function BossStats({
-    isMobile
-}){
+///////////////
+// Constants //
+///////////////
 
-    ///////////////
-    // Constants //
-    ///////////////
+const img = (file) => `/assets/project_images/nightreign/${file}`
 
-    const gladius = "/assets/project_images/nightreign/gladius.png"
-    const adel = "/assets/project_images/nightreign/adel.png"
-    const pest = "/assets/project_images/nightreign/pest.png"
-    const maris = "/assets/project_images/nightreign/maris.png"
-    const libra = "/assets/project_images/nightreign/libra.png"
-    const fulghor = "/assets/project_images/nightreign/fulghor.png"
-    const caligo = "/assets/project_images/nightreign/caligo.png"
-    const heolster = "/assets/project_images/nightreign/heolster.png"
-    const harmonia = "/assets/project_images/nightreign/harmonia.png"
-    const strag = "/assets/project_images/nightreign/greg.png"
+const depthColor = '#161754'
+const nightShade = "#2b2161"
+const graceGiven = "#f2e144"
+const frenzyTouched = "#ff5100"
+const greyOfNight = "#636478"
+const gloomGlow = "#452d8a"
+const silveredNight = "#7fc7bf"
+const silverLining = "#d4eeff"
+const slateMiasma = "#595d6b"
+const traceNight = '#9b9fbf'
+const scarletRot = '#754142'
+const poisonGlow = "#506e51"
 
-    const demiQueen = "/assets/project_images/nightreign/demiQueen.png"
-    const demiSwordmaster = "/assets/project_images/nightreign/demiSwordmaster.png"
-    const bellBearing = "/assets/project_images/nightreign/bellBearing.png"
-    const gapingDragon = "/assets/project_images/nightreign/gapingDragon.png"
-    const wormFace = "/assets/project_images/nightreign/wormface.png"
-    const gargoyle = "/assets/project_images/nightreign/valiantGargoyle.png"
-    const cavalry = "/assets/project_images/nightreign/cavalry.png"
-    const freja = "/assets/project_images/nightreign/freja.png"
-    const smelter = "/assets/project_images/nightreign/smelter.png"
-    const commander = "/assets/project_images/nightreign/commander.png"
-    const tibia = "/assets/project_images/nightreign/tibia.png"
-    const centipede = "/assets/project_images/nightreign/centipede.png"
-    const grafted = "/assets/project_images/nightreign/grafted.png"
-    const revenent = "/assets/project_images/nightreign/revenent.png"
-    const deathKnight = "/assets/project_images/nightreign/deathKnight.png"
-    const ulcerated = "/assets/project_images/nightreign/ulcerated.png"
-    const demons = "/assets/project_images/nightreign/demon.png"
-    const curse = "/assets/project_images/nightreign/curseBlade.png"
-    const divine = "/assets/project_images/nightreign/divine.png"
-    const bear = "/assets/project_images/nightreign/bear.png"
+const NEGATIONS = ["Physical", "Strike", "Slash", "Pierce", "Magic", "Fire", "Lightning", "Holy"]
+const RESISTANCES = ["Poison", "Rot", "Bleed", "Frostbite", "Madness", "Sleep"]
 
-    const omen = "/assets/project_images/nightreign/omen.png"
-    const sentinel = "/assets/project_images/nightreign/sentinel.png"
-    const dragon = "/assets/project_images/nightreign/ancient.png"
-    const crucible = "/assets/project_images/nightreign/crucible.png"
-    const hippo = "/assets/project_images/nightreign/hippo.png"
-    const outland = "/assets/project_images/nightreign/outland2.png"
-    const wyrm = "/assets/project_images/nightreign/wyrm.png"
-    const nox = "/assets/project_images/nightreign/dragonkin.png"
-    const draconic = "/assets/project_images/nightreign/draconic.png"
-    const star = "/assets/project_images/nightreign/star.png"
-    const skinny = "/assets/project_images/nightreign/skinny.png"
-    const fatty = "/assets/project_images/nightreign/fatty.png"
-    const bird = "/assets/project_images/nightreign/deathBird.png"
-    const namelessBird = "/assets/project_images/nightreign/namelessBird.png"
-    const nameless = "/assets/project_images/nightreign/nameless.png"
-    const dancer = "/assets/project_images/nightreign/dancer.png"
-    const artorias = "/assets/project_images/nightreign/artorias.png"
-    const mohg = "/assets/project_images/nightreign/mohg.png"
-    const prince = "/assets/project_images/nightreign/prince.png"
+// Negation bar scale: data ranges roughly -40 to +80, zero sits a third of the way in
+const NEG_MIN = -40
+const NEG_MAX = 80
+const RES_MAX = 600
 
-    const scion = "/assets/project_images/nightreign/scion.png"
-    const black = "/assets/project_images/nightreign/black.png"
-    const wolf = "/assets/project_images/nightreign/wolf.png"
-    const zamor = "/assets/project_images/nightreign/zamor.png"
-    const leonine = "/assets/project_images/nightreign/leonine.png"
-    const elder = "/assets/project_images/nightreign/elder.png"
-    const flower = "/assets/project_images/nightreign/flower.png"
+// Each tab: its stat table, the bosses in display order, and any notes
+const TABS = {
+    "Nightlords": {
+        table: nightlordStats,
+        bosses: [
+            ["Gladius", "gladius.png", frenzyTouched],
+            ["Adel", "adel.png", gloomGlow],
+            ["Maris", "maris.png", nightShade],
+            ["Gnoster", "pest.png", silveredNight],
+            ["Faurtis", "pest.png", silveredNight],
+            ["Animus", "pest.png", silveredNight],
+            ["Libra", "libra.png", graceGiven],
+            ["Fulghor", "fulghor.png", greyOfNight],
+            ["Caligo", "caligo.png", traceNight],
+            ["Heolster", "heolster.png", "black"],
+            ["Heolster2", "heolster.png", "black"],
+            ["Balancers", "harmonia.png", silverLining],
+            ["Dreglord", "greg.png", scarletRot],
+        ],
+        notes: [],
+    },
+    "Night 1": {
+        table: day1_stats,
+        bosses: [
+            ["DemiQueen", "demiQueen.png", gloomGlow],
+            ["DemiSwordmaster", "demiSwordmaster.png", silverLining],
+            ["BellBearingHunter", "bellBearing.png", scarletRot],
+            ["GapingDragon", "gapingDragon.png", poisonGlow],
+            ["WormFace", "wormface.png", greyOfNight],
+            ["ValiantGargoyle", "valiantGargoyle.png", scarletRot],
+            ["DearFreja", "freja.png", poisonGlow],
+            ["NightsCavalry", "cavalry.png", "black"],
+            ["SmelterDemon", "smelter.png", frenzyTouched],
+            ["Commander", "commander.png", scarletRot],
+            ["Centipede", "centipede.png", poisonGlow],
+            ["Tibia", "tibia.png", silverLining],
+            ["Grafted", "grafted.png", graceGiven],
+            ["Revenent", "revenent.png", poisonGlow],
+            ["Ulcerated", "ulcerated.png", scarletRot],
+            ["DeathKnight", "deathKnight.png", "black"],
+            ["Demons", "demon.png", frenzyTouched],
+            ["Bear", "bear.png", scarletRot],
+            ["Curseblade", "curseblade.png", "black"],
+            ["DivineWarrior", "divine.png", graceGiven],
+        ],
+        notes: [],
+    },
+    "Night 2": {
+        table: day2_stats,
+        bosses: [
+            ["Margit", "omen.png", graceGiven],
+            ["Sentinel", "sentinel.png", graceGiven],
+            ["Dragon", "ancient.png", scarletRot],
+            ["Crucible", "crucible.png", graceGiven],
+            ["Hippo", "hippo.png", "black"],
+            ["Commander", "outland2.png", greyOfNight],
+            ["Wyrm", "wyrm.png", scarletRot],
+            ["Nox", "dragonkin.png", gloomGlow],
+            ["Draconic", "draconic.png", scarletRot],
+            ["Fallingstar", "star.png", gloomGlow],
+            ["Apostle", "skinny.png", "black"],
+            ["Noble", "fatty.png", "black"],
+            ["Bird", "deathBird.png", "black"],
+            ["NamelessBird", "namelessBird.png", slateMiasma],
+            ["Nameless", "nameless.png", graceGiven],
+            ["Dancer", "dancer.png", gloomGlow],
+            ["Knight", "artorias.png", "black"],
+            ["Prince", "prince.png", scarletRot],
+            ["Mohg", "mohg.png", "red"],
+        ],
+        notes: [],
+    },
+    "Major Field Bosses": {
+        table: major_stats,
+        bosses: [
+            ["Flying", "flying.png", scarletRot],
+            ["Ulcerated", "ulcerated.png", poisonGlow],
+            ["BellBearingHunter", "bellBearing.png", scarletRot],
+            ["Avatar", "avatar.png", graceGiven],
+            ["Ancestor", "ancestor.png", silveredNight],
+            ["Sentinel", "sentinel.png", graceGiven],
+            ["Wyrm", "wyrm.png", scarletRot],
+            ["Loretta", "loretta.png", silverLining],
+            ["Bird", "deathBird.png", "black"],
+            ["BBK", "bbk.png", "red"],
+            ["Draconic", "draconic.png", "red"],
+        ],
+        notes: [
+            "Most Major Field Bosses provide 30000 Runes and Strong Reward Pools",
+            "Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes",
+            "Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools. The previous exceptions still apply",
+            "Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes",
+            "The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field",
+        ],
+    },
+    "Minor Field Bosses": {
+        table: minor_stats,
+        bosses: [
+            ["Scion", "scion.png", poisonGlow],
+            ["Black", "black.png", "black"],
+            ["Wolf", "wolf.png", scarletRot],
+            ["Zamor", "zamor.png", silveredNight],
+            ["Leonine", "leonine.png", graceGiven],
+            ["Elder", "elder.png", slateMiasma],
+            ["Hippo", "hippo.png", graceGiven],
+            ["DemiQueen", "demiQueen.png", "black"],
+            ["Miranda", "flower.png", poisonGlow],
+            ["Revenent", "revenent.png", poisonGlow],
+            ["NightsCavalry", "cavalry.png", "black"],
+        ],
+        notes: [
+            "Minor Field Bosses provide 22500 Runes and Weak Reward Pools",
+            "Castle Basement Bosses have 45% more HP, provide 37500 Runes and Strong Reward Pools",
+            "Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes",
+            "The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field",
+        ],
+    },
+}
 
-    const flying = "/assets/project_images/nightreign/flying.png"
-    const avatar = "/assets/project_images/nightreign/avatar.png"
-    const ancestor = "/assets/project_images/nightreign/ancestor.png"
-    const loretta = "/assets/project_images/nightreign/loretta.png"
-    const bbk = "/assets/project_images/nightreign/bbk.png"
+/////////////
+// Helpers //
+/////////////
 
+function formatHP(hp){
+    if (typeof hp === "number") return hp.toLocaleString("en-US")
+    if (!hp || hp === "NA") return "Not recorded"
+    return String(hp).replace(/^(\d+)/, (n) => Number(n).toLocaleString("en-US"))
+}
 
+function formatSigned(value){
+    if (typeof value !== "number") return value ?? "—"
+    if (value > 0) return `+${value}`
+    if (value < 0) return `−${Math.abs(value)}`
+    return "0"
+}
 
+// The lowest negation(s), only if the boss actually takes extra damage from them
+function findWeaknesses(stats){
+    const values = NEGATIONS.map(type => [type, stats?.[type]]).filter(([, v]) => typeof v === "number")
+    if (values.length === 0) return []
+    const lowest = Math.min(...values.map(([, v]) => v))
+    if (lowest >= 0) return []
+    return values.filter(([, v]) => v === lowest).map(([type]) => type)
+}
 
-    const nightShade = "#2b2161"
-    const graceGiven = "#f2e144"
-    const frenzyTouched = "#ff5100"
-    const greyOfNight = "#636478"
-    const gloomGlow = "#452d8a"
-    const silveredNight = "#7fc7bf"
-    const silverLining = "#d4eeff"
-    const slateMiasma = "#595d6b"
-    const traceNight = '#9b9fbf'
-    const scarletRot = '#754142'
-    const poisonGlow = "#506e51"
+export default function BossStats({ isMobile }){
 
     ///////////
     // State //
     ///////////
 
     const [screen, setScreen] = useState("Nightlords")
+    const [search, setSearch] = useState("")
+
+    const tab = TABS[screen]
+    const query = search.trim().toLowerCase()
+    const shown = tab.bosses.filter(([key]) => {
+        if (!query) return true
+        const name = tab.table[key]?.name || key
+        return name.toLowerCase().includes(query) || key.toLowerCase().includes(query)
+    })
+
+    // Card grid: 3 per row on desktop, 2 on mobile
+    const perRow = isMobile ? 2 : 3
+    const gridGap = isMobile ? 12 : 22
+    const cardWidth = `calc((100% - ${gridGap * (perRow - 1)}px) / ${perRow})`
+    const loneWidth = `max(40%, ${cardWidth})`
+
+    const fontSmall = isMobile ? 11 : 13
+    const fontBody = isMobile ? 12 : 14
 
     /////////////
     // Renders //
     /////////////
 
-    function renderBossCard(img, name, color){
-        let table = nightlordStats
-        if (screen === "Night 1"){
-            table = day1_stats
-        }
-        else if (screen === "Night 2"){
-            table = day2_stats
-        }
-        else if (screen === "Minor Field Bosses"){
-            table = minor_stats
-        }
-        else if (screen === "Major Field Bosses"){
-            table = major_stats
-        }
-        let stats = table[name] ? table[name] : null
-        let height = isMobile? 330 : 480;
-        return(
-            <OstCard style={{flex: 3, padding: 0, height: height, paddingBottom: 6, margin: 0, backgroundColor: slateMiasma}}>
-                    <OstCard rounded={false} noShadow={true} imageSrc={img} templateStyle={1} style={{height: '50%', width: '100%', padding: 0, margin: 0, backgroundColor: color}}/>
-                    <p style={{textAlign: 'center', fontSize: isMobile ? 15 : 24, padding: 0, margin: 3}}>
-                        {stats?.name ? stats.name : "NA"}
-                    </p>
-                    {renderNegationTable(stats)}
-            </OstCard>
+    function renderSectionLabel(text){
+        return (
+            <div style={{display: 'flex', alignItems: 'center', gap: 8, margin: '12px 0 6px'}}>
+                <span style={{color: traceNight, fontSize: fontSmall, whiteSpace: 'nowrap'}}>{text}</span>
+                <span style={{flex: 1, height: 1, backgroundColor: gloomGlow}}/>
+            </div>
         )
     }
 
-    function renderNegationTable(stats){
-        return(
-            <div style={{display: 'flex', flexDirection: 'row', height: 'auto', backgroundColor: slateMiasma}}>
-                <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                    <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: silverLining, fontSize: isMobile ? 16 :20}}>Negations</p>
-                    {renderNegations(stats)}
+    // Diverging bar: gold to the left of zero (takes extra damage), orange to the right (resists)
+    function renderNegationRow(type, value){
+        const v = typeof value === "number" ? Math.max(NEG_MIN, Math.min(NEG_MAX, value)) : 0
+        const span = NEG_MAX - NEG_MIN
+        const zero = (-NEG_MIN / span) * 100
+        const fillStart = v < 0 ? ((v - NEG_MIN) / span) * 100 : zero
+        const fillWidth = (Math.abs(v) / span) * 100
+        const color = v < 0 ? graceGiven : v > 0 ? frenzyTouched : traceNight
+
+        return (
+            <div key={type} style={{display: 'grid', gridTemplateColumns: isMobile ? '62px 1fr 34px' : '78px 1fr 40px', alignItems: 'center', gap: 8, height: isMobile ? 18 : 21}}>
+                <span style={{color: silverLining, fontSize: fontBody}}>{type}</span>
+                <div style={{position: 'relative', height: 6, backgroundColor: depthColor, borderRadius: 3}}>
+                    <div style={{position: 'absolute', left: `${zero}%`, top: -3, bottom: -3, width: 1, backgroundColor: greyOfNight}}/>
+                    {v !== 0 && (
+                        <div style={{position: 'absolute', left: `${fillStart}%`, width: `${fillWidth}%`, top: 0, bottom: 0, backgroundColor: color, borderRadius: 3}}/>
+                    )}
                 </div>
-                <div style={{flex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid black'}}>
-                <p style={{padding: 0, margin: 0, border: '1px solid black', width: '100%', textAlign: 'center', backgroundColor: gloomGlow, color: silverLining, fontSize: isMobile ? 16 :20}}>Resistances</p>
-                    {renderResistances(stats)}
-               </div>
+                <span style={{color, fontSize: fontBody, textAlign: 'right', fontVariantNumeric: 'tabular-nums'}}>{formatSigned(value)}</span>
             </div>
         )
     }
 
-    function renderNegations(stats){
-        return(
-            <div style={{ width: '94%', marginLeft: '3%', backgroundColor: slateMiasma}}>
-                {renderSingleNegation("Physical", stats)}
-                {renderSingleNegation("Strike", stats)}
-                {renderSingleNegation("Pierce", stats)}
-                {renderSingleNegation("Slash", stats)}
-                {renderSingleNegation("Fire", stats)}
-                {renderSingleNegation("Magic", stats)}
-                {renderSingleNegation("Holy", stats)}
-                {renderSingleNegation("Lightning", stats)}
+    function renderResistRow(type, value){
+        const immune = value === "---"
+        const pct = typeof value === "number" ? Math.min(value / RES_MAX, 1) * 100 : 0
+
+        return (
+            <div key={type} style={{display: 'grid', gridTemplateColumns: isMobile ? '62px 1fr 44px' : '78px 1fr 52px', alignItems: 'center', gap: 8, height: isMobile ? 18 : 21}}>
+                <span style={{color: silverLining, fontSize: fontBody}}>{type}</span>
+                <div style={{position: 'relative', height: 6, backgroundColor: depthColor, borderRadius: 3}}>
+                    {immune
+                        ? <div style={{position: 'absolute', inset: 0, borderRadius: 3, border: `1px dashed ${frenzyTouched}`}}/>
+                        : <div style={{position: 'absolute', left: 0, top: 0, bottom: 0, width: `${pct}%`, backgroundColor: silveredNight, borderRadius: 3}}/>
+                    }
+                </div>
+                <span style={{color: immune ? frenzyTouched : silverLining, fontSize: fontBody, textAlign: 'right', fontVariantNumeric: 'tabular-nums'}}>
+                    {immune ? "Immune" : (value ?? "—")}
+                </span>
             </div>
         )
     }
 
-    function renderResistances(stats){
-        return(
-            <div style={{ width: '94%', marginLeft: '3%', backgroundColor: slateMiasma}}>
-                {renderHealth(stats)}
-                {renderSingleResist("Poison", stats)}
-                {renderSingleResist("Rot", stats)}
-                {renderSingleResist("Frostbite", stats)}
-                {renderSingleResist("Bleed", stats)}
-                {renderSingleResist("Madness", stats)}
-                {renderSingleResist("Sleep", stats)}
-            </div>
+    function renderWeakness(stats){
+        const weak = findWeaknesses(stats)
+        if (weak.length === 0){
+            return <span style={{color: traceNight, fontSize: fontBody}}>No elemental weakness</span>
+        }
+        return (
+            <span style={{color: graceGiven, fontSize: fontBody}}>
+                Weak to {weak.join(" and ")} ({formatSigned(stats[weak[0]])})
+            </span>
         )
     }
 
-    function renderSingleNegation(type, stats){
-        let value = stats ? stats[type] : 0
-        return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black', backgroundColor: slateMiasma}}>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
-                    {type}: 
-                </p>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color: value > 0 ? frenzyTouched : value === 0 ? 'black' : silveredNight}}>
-                    {value} 
-                </p>
-            </OstCard>
-        )
-    }
+    function renderBossCard([key, file, accent], width){
+        const stats = tab.table[key]
+        const name = stats?.name || key
+        const alone = width !== cardWidth
 
-    function renderSingleResist(type, stats){
-        let value = stats ? stats[type] : 0
-        return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black', backgroundColor: slateMiasma}}>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
-                    {type}: 
-                </p>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color: value === "---" ? frenzyTouched : value > 500 ? frenzyTouched : value > 250 ? 'black' : silveredNight}}>
-                    {value} 
-                </p>
-            </OstCard>
-        )
-    }
-
-    function renderHealth(stats){
-        let value = stats ? stats.HP : 0
-        return(
-            <OstCard noShadow={true} rounded={false} style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flex: 1, borderBottom: '1px solid black', backgroundColor: slateMiasma}}>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 :20}}>
-                    HP: 
-                </p>
-                <p style={{padding: 0, margin: 0, fontSize: isMobile ? 13 : 20, color:'black'}}>
-                    {value} 
-                </p>
-            </OstCard>
-        )
-    }
-
-    function main_screen_render(){
-        if (screen === "Nightlords"){
-            return _nightlords()
-        }
-        else if (screen === "Night 1"){
-            return _night1()
-        }
-        else if (screen === "Night 2"){
-            return _night2()
-        }
-        else if (screen === "Minor Field Bosses"){
-            return _minor()
-        }
-        else if (screen === "Major Field Bosses"){
-            return _major()
-        }
-    }
-
-    function _nightlords(){
-        if (isMobile){
-            return(
-                <div style={{height: 'auto'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(gladius, "Gladius", frenzyTouched)}
-                        {renderBossCard(adel, "Adel", gloomGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(pest, "Gnoster", silveredNight)}
-                        {renderBossCard(pest, "Faurtis", silveredNight)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(pest, "Animus", silveredNight)}
-                        {renderBossCard(maris, "Maris", nightShade)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(libra, "Libra", graceGiven)}
-                        {renderBossCard(fulghor, "Fulghor", greyOfNight)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(caligo, "Caligo", traceNight)}
-                        {renderBossCard(heolster, "Heolster", "black")}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(heolster, "Heolster2", "black")}
-                        {renderBossCard(harmonia, "Balancers", silverLining)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 'auto', marginBottom: 40}}>
-                        {renderBossCard(strag, "Dreglord", scarletRot)}
-                    </div>
+        return (
+            <article key={`${screen}-${key}`} style={{
+                backgroundColor: nightShade, borderRadius: 14, overflow: 'hidden',
+                border: `1px solid ${gloomGlow}`, display: 'flex', flexDirection: 'column',
+                width: width, boxSizing: 'border-box',
+                // A lone card on the last row is centred
+                marginLeft: alone ? 'auto' : 0, marginRight: alone ? 'auto' : 0,
+            }}>
+                <div style={{
+                    position: 'relative', aspectRatio: '4 / 3', overflow: 'hidden',
+                    background: `radial-gradient(ellipse at 50% 40%, ${accent} 0%, ${nightShade} 78%)`,
+                }}>
+                    <img src={img(file)} alt={name} loading="lazy"
+                        style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block'}}
+                    />
+                    <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: '45%', background: `linear-gradient(to bottom, transparent, ${nightShade})`}}/>
+                    <h3 style={{
+                        position: 'absolute', left: 14, right: 14, bottom: 8, margin: 0,
+                        color: silverLining, fontSize: isMobile ? 15 : 20, fontWeight: 600, lineHeight: 1.2,
+                        textShadow: `0 1px 6px ${depthColor}`,
+                    }}>
+                        {name}
+                    </h3>
                 </div>
 
+                <div style={{padding: isMobile ? '8px 10px 12px' : '10px 14px 16px'}}>
+                    {!stats ? (
+                        <p style={{color: traceNight, fontSize: fontBody, margin: '8px 0'}}>No stats recorded for this boss yet.</p>
+                    ) : (
+                        <>
+                            <div style={{display: 'flex', alignItems: 'baseline', gap: 6}}>
+                                <span style={{color: silverLining, fontSize: isMobile ? 18 : 24, fontWeight: 600, fontVariantNumeric: 'tabular-nums'}}>
+                                    {formatHP(stats.HP)}
+                                </span>
+                                <span style={{color: traceNight, fontSize: fontSmall}}>HP</span>
+                            </div>
+                            <div style={{marginTop: 2}}>{renderWeakness(stats)}</div>
+
+                            {renderSectionLabel("Damage negation")}
+                            {NEGATIONS.map(type => renderNegationRow(type, stats[type]))}
+
+                            {renderSectionLabel("Status resistance")}
+                            {RESISTANCES.map(type => renderResistRow(type, stats[type]))}
+                        </>
+                    )}
+                </div>
+            </article>
+        )
+    }
+
+    function renderNotes(){
+        if (tab.notes.length === 0) return null
+        return (
+            <ul style={{
+                listStyle: 'none', margin: '0 0 24px', padding: isMobile ? 12 : '14px 18px',
+                backgroundColor: nightShade, borderRadius: 14, border: `1px solid ${gloomGlow}`,
+                display: 'grid', gap: 8, maxWidth: 900,
+            }}>
+                {tab.notes.map(note => (
+                    <li key={note} style={{
+                        color: silverLining, fontSize: fontBody, lineHeight: 1.45,
+                        borderLeft: `2px solid ${graceGiven}`, paddingLeft: 10,
+                    }}>
+                        {note}
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+
+    function renderLegend(){
+        const swatch = (color, dashed) => (
+            <span style={{display: 'inline-block', width: 14, height: 6, borderRadius: 3, marginRight: 6, verticalAlign: 'middle',
+                backgroundColor: dashed ? 'transparent' : color, border: dashed ? `1px dashed ${color}` : 'none'}}/>
+        )
+        return (
+            <div style={{display: 'flex', flexWrap: 'wrap', gap: isMobile ? 10 : 18, color: traceNight, fontSize: fontSmall}}>
+                <span>{swatch(graceGiven)}Takes extra damage</span>
+                <span>{swatch(frenzyTouched)}Resists damage</span>
+                <span>{swatch(silveredNight)}Status buildup needed</span>
+                <span>{swatch(frenzyTouched, true)}Immune</span>
+            </div>
+        )
+    }
+
+    function renderToolbar(){
+        return (
+            <div style={{display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center', justifyContent: 'space-between', gap: 12, marginBottom: 18}}>
+                <label style={{display: 'flex', alignItems: 'center', gap: 10, color: silverLining, fontSize: fontBody}}>
+                    Find a boss
+                    <input
+                        type="search"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Name, e.g. Gladius"
+                        style={{
+                            flex: 1, minWidth: isMobile ? 0 : 240, padding: '7px 10px', borderRadius: 8,
+                            border: `1px solid ${gloomGlow}`, backgroundColor: nightShade, color: silverLining, fontSize: fontBody,
+                        }}
+                    />
+                </label>
+                {renderLegend()}
+            </div>
+        )
+    }
+
+    function renderGrid(){
+        if (shown.length === 0){
+            return (
+                <div style={{padding: 24, color: silverLining, fontSize: fontBody}}>
+                    No {screen.toLowerCase()} match &ldquo;{search}&rdquo;.{" "}
+                    <button onClick={() => setSearch("")} style={{
+                        background: 'none', border: 'none', padding: 0, color: graceGiven,
+                        textDecoration: 'underline', cursor: 'pointer', fontSize: fontBody,
+                    }}>
+                        Clear search
+                    </button>
+                </div>
             )
         }
-        return(
-            <div style={{height: 'auto'}}>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(gladius, "Gladius", frenzyTouched)}
-                    {renderBossCard(adel, "Adel", gloomGlow)}
-                    {renderBossCard(maris, "Maris", nightShade)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(pest, "Gnoster", silveredNight)}
-                    {renderBossCard(pest, "Faurtis", silveredNight)}
-                    {renderBossCard(pest, "Animus", silveredNight)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(libra, "Libra", graceGiven)}
-                    {renderBossCard(fulghor, "Fulghor", greyOfNight)}
-                    {renderBossCard(caligo, "Caligo", traceNight)}
-                    
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(heolster, "Heolster", "black")}
-                    {renderBossCard(heolster, "Heolster2", "black")}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(harmonia, "Balancers", silverLining)}
-                    {renderBossCard(strag, "Dreglord", scarletRot)}
-                </div>
+        // A card left alone on the last row is widened to at least 40%
+        const loneLast = shown.length % perRow === 1
+        return (
+            <div style={{display: 'flex', flexWrap: 'wrap', gap: gridGap}}>
+                {shown.map((boss, i) =>
+                    renderBossCard(boss, (loneLast && i === shown.length - 1) ? loneWidth : cardWidth)
+                )}
             </div>
         )
-    }
-
-    function _night1(){
-        if (isMobile){
-            return(
-                <div style={{height: 'auto'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
-                        {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
-                        {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
-                        {renderBossCard(wormFace, "WormFace", greyOfNight)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
-                        {renderBossCard(freja, "DearFreja", poisonGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(cavalry, "NightsCavalry", "black")}
-                        {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(commander, "Commander", scarletRot)}
-                        {renderBossCard(centipede, "Centipede", poisonGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(tibia, "Tibia", silverLining)}
-                        {renderBossCard(grafted, "Grafted", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(revenent, "Revenent", poisonGlow)}
-                        {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(deathKnight, "DeathKnight", "black")}
-                        {renderBossCard(demons, "Demons", frenzyTouched)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(curse, "Curseblade", "black")}
-                        {renderBossCard(divine, "DivineWarrior", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bear, "Bear", scarletRot)}
-                    </div>
-                </div>
-
-            )
-        }
-        return(
-            <div style={{height: 'auto'}}>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(demiQueen, "DemiQueen", gloomGlow)}
-                    {renderBossCard(demiSwordmaster, "DemiSwordmaster", silverLining)}
-                    {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(gapingDragon, "GapingDragon", poisonGlow)}
-                    {renderBossCard(wormFace, "WormFace", greyOfNight)}
-                    {renderBossCard(gargoyle, "ValiantGargoyle", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(freja, "DearFreja", poisonGlow)}
-                    {renderBossCard(cavalry, "NightsCavalry", "black")}
-                    {renderBossCard(smelter, "SmelterDemon", frenzyTouched)}
-                    
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(commander, "Commander", scarletRot)}
-                    {renderBossCard(centipede, "Centipede", poisonGlow)}
-                    {renderBossCard(tibia, "Tibia", silverLining)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(grafted, "Grafted", graceGiven)}
-                    {renderBossCard(revenent, "Revenent", poisonGlow)}
-                    {renderBossCard(ulcerated, "Ulcerated", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(deathKnight, "DeathKnight", "black")}
-                    {renderBossCard(demons, "Demons", frenzyTouched)}
-                    {renderBossCard(bear, "Bear", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(curse, "Curseblade", "black")}
-                    {renderBossCard(divine, "DivineWarrior", graceGiven)}
-                </div>
-            </div>
-        )
-    }
-
-    function _night2(){
-        if (isMobile){
-            return(
-                <div style={{height: 'auto'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(omen, "Margit", graceGiven)}
-                        {renderBossCard(sentinel, "Sentinel", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(dragon, "Dragon", scarletRot)}
-                        {renderBossCard(crucible, "Crucible", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(hippo, "Hippo", "black")}
-                        {renderBossCard(outland, "Commander", greyOfNight)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(wyrm, "Wyrm", scarletRot)}
-                        {renderBossCard(nox, "Nox", gloomGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(draconic, "Draconic", scarletRot)}
-                        {renderBossCard(star, "Fallingstar", gloomGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(skinny, "Apostle", "black")}
-                        {renderBossCard(fatty, "Noble", "black")}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bird, "Bird", "black")}
-                        {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(nameless, "Nameless", graceGiven)}
-                        {renderBossCard(dancer, "Dancer", gloomGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(artorias, "Knight", "black")}
-                        {renderBossCard(prince, "Prince", scarletRot)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(mohg, "Mohg", "red")}
-                    </div>
-                </div>
-
-            )
-        }
-        return(
-            <div style={{height: 'auto'}}>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(omen, "Margit", graceGiven)}
-                    {renderBossCard(sentinel, "Sentinel", graceGiven)}
-                    {renderBossCard(dragon, "Dragon", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(crucible, "Crucible", graceGiven)}
-                    {renderBossCard(hippo, "Hippo", "black")}
-                    {renderBossCard(outland, "Commander", greyOfNight)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(wyrm, "Wyrm", scarletRot)}
-                    {renderBossCard(nox, "Nox", gloomGlow)}
-                    {renderBossCard(draconic, "Draconic", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(star, "Fallingstar", gloomGlow)}
-                    {renderBossCard(skinny, "Apostle", "black")}
-                    {renderBossCard(fatty, "Noble", "black")}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(bird, "Bird", "black")}
-                    {renderBossCard(namelessBird, "NamelessBird", slateMiasma)}
-                    {renderBossCard(nameless, "Nameless", graceGiven)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(artorias, "Knight", "black")}
-                    {renderBossCard(prince, "Prince", scarletRot)}
-                    {renderBossCard(mohg, "Mohg", "red")}
-                </div>
-            </div>
-        )
-    }
-
-    function _minor(){
-        let content
-        if (isMobile){
-            content = (
-                <div style={{height: 'auto'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(scion, "Scion", poisonGlow)}
-                        {renderBossCard(black, "Black", "black")}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(wolf, "Wolf", scarletRot)}
-                        {renderBossCard(zamor, "Zamor", silveredNight)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(leonine, "Leonine", graceGiven)}
-                        {renderBossCard(elder, "Elder", slateMiasma)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(hippo, "Hippo", graceGiven)}
-                        {renderBossCard(demiQueen, "DemiQueen", "black")}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(flower, "Miranda", poisonGlow)}
-                        {renderBossCard(revenent, "Revenent", poisonGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(cavalry, "NightsCavalry", "black")}
-                    </div>
-                </div>
-            )
-                return(<div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Minor Field Bosses provide 22500 Runes and Weak Reward Pools
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Castle Basement Bosses have 45% more HP, provide 37500 Runes and Strong Reward Pools
-                        </p>
-                    </OstCard>
-                </div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: greyOfNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
-                        </p>
-                    </OstCard>
-                </div>
-                {content}
-            </div>
-            )
-
-        }
-        else{
-            content =(
-            <div style={{height: 'auto'}}>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(scion, "Scion", poisonGlow)}
-                    {renderBossCard(black, "Black", "black")}
-                    {renderBossCard(wolf, "Wolf", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(zamor, "Zamor", silveredNight)}
-                    {renderBossCard(leonine, "Leonine", graceGiven)}
-                    {renderBossCard(elder, "Elder", slateMiasma)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(hippo, "Hippo", graceGiven)}
-                    {renderBossCard(demiQueen, "DemiQueen", "black")}
-                    {renderBossCard(flower, "Miranda", poisonGlow)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(revenent, "Revenent", poisonGlow)}
-                    {renderBossCard(cavalry, "NightsCavalry", "black")}
-                </div>
-            </div>)
-
-            return(<div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Minor Field Bosses provide 22500 Runes and Weak Reward Pools
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Castle Basement Bosses have 45% more HP, provide 37500 Runes and Strong Reward Pools
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Depth of the Night Cursed Variants deal 65% more damage, have 65% more health and drop 65% more Runes
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: greyOfNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
-                        </p>
-                    </OstCard>
-                </div>
-                {content}
-            </div>
-            )
-        }
-    }
-
-    function _major(){
-        let content
-        if (isMobile){
-            content = (
-                <div style={{height: 'auto'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(flying, "Flying", scarletRot)}
-                        {renderBossCard(ulcerated, "Ulcerated", poisonGlow)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
-                        {renderBossCard(avatar, "Avatar", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(ancestor, "Ancestor", silveredNight)}
-                        {renderBossCard(sentinel, "Sentinel", graceGiven)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(wyrm, "Wyrm", scarletRot)}
-                        {renderBossCard(loretta, "Loretta", silverLining)}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(bird, "Bird", "black")}
-                        {renderBossCard(bbk, "BBK", 'red')}
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', gap: 15, height: 380, marginBottom: 5}}>
-                        {renderBossCard(draconic, "Draconic", "red")}
-                    </div>
-                </div>
-            )
-            return(
-            <div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                           MOST Major Field Bosses provide 30000 Runes and Strong Reward Pools
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                           Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: silveredNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools.
-                            The previous exceptions still apply
-                        </p>
-                    </OstCard>
-                </div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
-                        </p>
-                    </OstCard>
-                </div>
-                {content}
-            </div>
-            )
-
-        }
-        else{
-            content =(
-            <div style={{height: 'auto'}}>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(flying, "Flying", scarletRot)}
-                    {renderBossCard(ulcerated, "Ulcerated", poisonGlow)}
-                    {renderBossCard(bellBearing, "BellBearingHunter", scarletRot)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(avatar, "Avatar", graceGiven)}
-                    {renderBossCard(ancestor, "Ancestor", silveredNight)}
-                    {renderBossCard(sentinel, "Sentinel", graceGiven)}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(wyrm, "Wyrm", scarletRot)}
-                    {renderBossCard(loretta, "Loretta", silverLining)}
-                    {renderBossCard(bird, "Bird", "black")}
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row', gap: 35, height: 530, marginBottom: 20}}>
-                    {renderBossCard(bbk, "BBK", 'red')}
-                    {renderBossCard(draconic, "Draconic", "red")}
-                </div>
-            </div>)
-
-            return(
-            <div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                           MOST Major Field Bosses provide 30000 Runes and Strong Reward Pools
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                           Death Rite Bird, Royal Carian Knight, Black Blade Kindred and the Draconic Tree Sentinel drop 50% more runes
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: silverLining, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Castle Rooftop Bosses have 20% more HP, do 20% more damage, and provide 60k Runes and Strong Reward Pools.
-                            The previous exceptions still apply
-                        </p>
-                    </OstCard>
-                </div>
-                <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: 20, gap: 12.5}}>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            Depth of the Night Cursed Variants deal 15% more damage, have 15% more health and drop 15% more Runes
-                        </p>
-                    </OstCard>
-                    <OstCard style={{backgroundColor: traceNight, padding: 7.5, flex: 3}}>
-                        <p style={{padding: 0, margin: 2, textAlign: "center"}}>
-                            The Health, Runes, and Damage Done by these bosses are different if they are in a POI as opposed to the field
-                        </p>
-                    </OstCard>
-                </div>
-                {content}
-            </div>
-            )
-        }
     }
 
     /////////////////
@@ -724,15 +413,19 @@ export default function BossStats({
     /////////////////
 
     return(
-        <div style={{padding: 20}}>
-            <div style={{padding: 20}}>
+        <div style={{padding: isMobile ? 10 : 20}}>
+            <div style={{padding: isMobile ? '10px 0 16px' : '10px 20px 20px'}}>
                 <OstrichTabBar style={{width: '100%'}}
                 value={screen}
-                tabs={["Nightlords", "Night 1", "Night 2", "Major Field Bosses", "Minor Field Bosses"]}
-                onTabClick={(tab) => setScreen(tab)}
+                tabs={Object.keys(TABS)}
+                onTabClick={(t) => setScreen(t)}
                 />
             </div>
-            {main_screen_render()}
+            <div style={{padding: isMobile ? 0 : '0 20px'}}>
+                {renderNotes()}
+                {renderToolbar()}
+                {renderGrid()}
+            </div>
         </div>
     )
 }
