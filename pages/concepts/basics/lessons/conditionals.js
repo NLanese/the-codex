@@ -345,7 +345,7 @@ const ConditionalsLesson = ({}) => {
                         </p>
                     </Callout>
 
-                    <div style={sideBySide}>
+                    <div className="codex-side-by-side" style={sideBySide}>
                         <LessonCode languages={SHAPE_CODE} width={380} style={{margin: 0}}/>
                         <div>
                             <p style={lessonText}>

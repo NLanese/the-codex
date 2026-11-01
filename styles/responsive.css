@@ -1,0 +1,145 @@
+/*
+  Phone and small-tablet layout fixes for The Codex.
+
+  Most of the site is styled with inline styles, which a stylesheet can only
+  override with !important. Every rule here sits inside the media query below,
+  so nothing changes on screens wider than 900px.
+
+  Components opt in by adding one of these class names:
+    codex-desktop-only / codex-mobile-only   show on one size only
+    codex-lesson-layout, codex-lesson-main, codex-sidebar   lesson and test templates
+    codex-side-by-side, codex-fixed-col      two-column rows that should stack
+    codex-page-title, codex-section-header   big headings
+    codex-menu-layout                        concept menu pages (Basics, Functions...)
+    codex-list-button                        big buttons on the Concepts / Frameworks lists
+    codex-showcase-*                         Official Works and project write-ups
+*/
+
+.codex-mobile-only { display: none !important; }
+
+@media (max-width: 900px) {
+
+    /* Never let a page scroll sideways */
+    html, body { overflow-x: clip; }
+
+    .codex-desktop-only { display: none !important; }
+    .codex-mobile-only { display: block !important; }
+
+    /* Lesson and test templates: drop the side columns, content goes full width */
+    .codex-lesson-layout { display: block !important; }
+    .codex-sidebar { display: none !important; }
+    .codex-lesson-main { padding: 34px 16px 30px 16px !important; overflow: visible !important; min-width: 0 !important; }
+    .codex-lesson-main > div { padding-left: 0 !important; padding-right: 0 !important; margin-top: 4px !important; }
+
+    /* Headings sized for a phone */
+    .codex-page-title {
+        font-size: 32px !important;
+        padding: 6px 18px 2px 18px !important;
+        margin: 6px 0 10px 0 !important;
+        text-align: center;
+    }
+    .codex-section-header {
+        font-size: 24px !important;
+        line-height: 1.25 !important;
+        margin-top: 30px !important;
+        padding: 4px 12px 2px 12px !important;
+    }
+
+    /* Two-column rows stack: code first, explanation underneath */
+    .codex-side-by-side {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+    .codex-fixed-col { flex: 1 1 auto !important; width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
+    .codex-side-by-side > * { min-width: 0 !important; max-width: 100% !important; }
+
+    /* Concept menu pages (Basics, Functions, Arrays and Lists) */
+    .codex-menu-layout {
+        flex-direction: column !important;
+        max-height: none !important;
+        padding: 10px 14px 30px 14px !important;
+        gap: 18px;
+    }
+    .codex-menu-layout > * { flex: 1 1 auto !important; width: 100% !important; margin: 0 !important; overflow: visible !important; }
+    .codex-menu-layout > * > div { width: 100% !important; box-sizing: border-box; }
+
+    /* Concepts / Frameworks list buttons */
+    .codex-list-button {
+        width: calc(100vw - 32px) !important;
+        max-width: 500px !important;
+        min-height: 72px !important;
+    }
+    .codex-list-button > div { font-size: 24px !important; }
+
+    /* Official Works and project write-ups */
+    .codex-showcase-row { flex-direction: column !important; align-items: stretch !important; }
+    .codex-showcase-row > * { width: 100% !important; max-width: 100% !important; min-width: 0 !important; flex: 1 1 auto !important; margin-left: 0 !important; margin-right: 0 !important; }
+    .codex-showcase-gutter { display: none !important; }
+    .codex-showcase-main { padding-left: 16px !important; padding-right: 16px !important; width: 100% !important; box-sizing: border-box; }
+    .codex-showcase-main img { max-width: 100% !important; height: auto !important; }
+}
+
+@media (max-width: 900px) {
+    .codex-next-lesson { margin-left: 0 !important; margin-right: 0 !important; }
+}
+
+@media (max-width: 900px) {
+    /* Concept menus sit below the fixed header */
+    .codex-menu-layout { padding-top: 26px !important; }
+    .codex-menu-layout .codex-list-button { width: 100% !important; }
+}
+
+@media (max-width: 900px) {
+    .codex-list { padding: 22px 0 30px 0 !important; }
+}
+
+@media (max-width: 900px) {
+    /* Official Works write-ups: full-width column, rows stacked, images fit the screen */
+    .codex-showcase-main { margin-left: 0 !important; margin-right: 0 !important; }
+    .codex-showcase-main > div { padding-left: 16px !important; padding-right: 16px !important; }
+    .codex-showcase-main div[style*="flex-direction: row"] {
+        flex-direction: column !important;
+        gap: 18px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .codex-showcase-main div[style*="flex-direction: row"] > * {
+        width: 100% !important; max-width: 100% !important; min-width: 0 !important;
+        flex: 1 1 auto !important; padding-left: 0 !important; padding-right: 0 !important;
+        box-sizing: border-box;
+    }
+    .codex-showcase-main div[style*="font-size: 32px"] { font-size: 24px !important; line-height: 1.25 !important; }
+    .codex-showcase-main p[style*="font-size: 20px"], .codex-showcase-main div[style*="font-size: 20px"] { font-size: 17px !important; line-height: 1.55 !important; }
+    .codex-showcase-main img { max-width: 100% !important; object-fit: contain; }
+}
+
+@media (max-width: 900px) {
+    /* Long write-ups with their own outer column (Board Game Master) */
+    .codex-writeup { margin: 26px 0 0 0 !important; width: 100% !important; padding: 0 14px; box-sizing: border-box; }
+    .codex-writeup div[style*="flex-direction: row"] { flex-direction: column !important; }
+    .codex-writeup [style*="min-width"] { min-width: 0 !important; max-width: 100% !important; overflow-x: auto !important; box-sizing: border-box; }
+    .codex-writeup [style*="width: 400px"] { width: 100% !important; }
+    .codex-writeup p[style*="font-size: 24px"], .codex-writeup div[style*="font-size: 24px"] { font-size: 18px !important; line-height: 1.5 !important; }
+    .codex-writeup img { max-width: 100% !important; height: auto !important; }
+
+    /* Interactive tools built for desktop (Warhammer): rows wrap instead of running off-screen */
+    .codex-tool-page { padding: 34px 8px 20px 8px !important; }
+    .codex-tool-page div[style*="flex-direction: row"] { flex-wrap: wrap !important; }
+    .codex-tool-page div[style*="flex-direction: row"] > * { min-width: 0 !important; max-width: 100% !important; }
+    .codex-tool-page > div > div[style*="flex-direction: row"] > * { flex: 1 1 100% !important; }
+}
+
+@media (max-width: 900px) {
+    .codex-writeup div[style*="font-size: 44px"] { font-size: 28px !important; }
+    .codex-tool-page [style*="height: 40vh"], .codex-tool-page [style*="height: 50vh"], .codex-tool-page [style*="height: 4vh"] { height: auto !important; min-height: 0 !important; }
+}
+
+@media (max-width: 900px) {
+    /* The site's older black code boxes (Styles.Sections.simpleLessonCode) scroll sideways like the newer ones */
+    [style*="border: 2px solid rgb(156, 161, 158)"][style*="background-color: black"] {
+        max-width: 100% !important; overflow-x: auto !important; box-sizing: border-box;
+    }
+    /* Very long words (code names in prose) may break instead of running off the screen */
+    .codex-showcase-main, .codex-writeup, .codex-lesson-main { overflow-wrap: anywhere; }
+}

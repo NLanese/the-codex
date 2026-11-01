@@ -84,3 +84,70 @@ const itemText = {
     textAlign: 'center',
     lineHeight: 1.2,
 }
+
+
+//////////////////////
+// Phone Navigation //
+//////////////////////
+
+// A swipeable row of lesson buttons shown above the lesson on phones.
+// The current lesson is highlighted and scrolled into view.
+export const LessonStrip = ({items = [], onClick, current, comingSoon = []}) => {
+    const rowRef = React.useRef(null)
+
+    React.useEffect(() => {
+        const row = rowRef.current
+        const active = row?.querySelector('[aria-current="page"]')
+        if (row && active){
+            row.scrollLeft = active.offsetLeft - (row.clientWidth - active.offsetWidth) / 2
+        }
+    }, [current])
+
+    return(
+        <nav aria-label="Lessons" className="codex-mobile-only" style={{margin: '0 -16px 6px -16px'}}>
+            <div style={{...Styles.Fonts.basic, fontSize: 12.5, fontWeight: 700, letterSpacing: 1.5, color: '#5f656e', padding: '0 16px 6px 16px'}}>
+                LESSONS
+            </div>
+            <div ref={rowRef} style={{display: 'flex', gap: 8, overflowX: 'auto', padding: '2px 16px 10px 16px', scrollbarWidth: 'none'}}>
+                {items.filter(item => !comingSoon.includes(item)).map(item => {
+                    const isCurrent = item === current
+                    return(
+                        <OstrichButton
+                            key={item}
+                            label={item}
+                            onClick={() => { if (!isCurrent) onClick?.(item) }}
+                            aria-current={isCurrent ? "page" : undefined}
+                            style={{
+                                flex: '0 0 auto', borderRadius: 999, padding: '8px 16px', height: 'auto',
+                                backgroundColor: isCurrent ? Colors.selectedColor : Colors.inactiveGrey,
+                                boxShadow: '1px 1px 2px 1px rgba(40, 40, 40, 0.12)',
+                                cursor: isCurrent ? 'default' : 'pointer',
+                            }}
+                            hoverStyle={isCurrent ? undefined : {backgroundColor: Colors.activeColor}}
+                            labelStyle={{fontFamily: 'Gilroy', fontSize: 15.5, whiteSpace: 'nowrap', color: isCurrent ? 'white' : 'black', fontWeight: isCurrent ? 600 : 500}}
+                        />
+                    )
+                })}
+            </div>
+        </nav>
+    )
+}
+
+// The full Lessons / Labs / Tests panels, stacked at the bottom of the page on phones
+export const MobilePanels = ({sections = [], current, comingSoon = []}) => {
+    return(
+        <div className="codex-mobile-only" style={{marginTop: 30}}>
+            {sections.map((s, i) => (
+                <SidePanel
+                    key={s.title}
+                    title={s.title}
+                    items={s.items}
+                    onClick={s.onClick}
+                    current={current}
+                    comingSoon={comingSoon}
+                    style={{marginTop: i === 0 ? 0 : 18}}
+                />
+            ))}
+        </div>
+    )
+}

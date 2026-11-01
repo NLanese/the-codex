@@ -378,7 +378,7 @@ function renderMAIN_DESKTOP(armyType, armySize, pts){
 // Main Return //
 /////////////////
     return(
-        <div style={{paddingTop: '3.5%', backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
+        <div className="codex-tool-page" style={{paddingTop: '3.5%', backgroundColor: votannGreen,  minHeight: '100vh', boxSizing: 'border-box', width: '100%', flex: 1, justifyContent: 'space-between'}}>
             {renderMAIN_DESKTOP(armyType, armySize, pts)}
         </div>
     )

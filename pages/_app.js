@@ -14,6 +14,7 @@ import client from "@graphql/Apollo/apolloClient";
 // Local Components
 import { HeaderBar } from "../components/global/headerBar";
 import "../styles/fonts.css"
+import "../styles/responsive.css"
 
 ////////////////
 // App Loader //

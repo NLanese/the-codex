@@ -18,6 +18,9 @@ import {
 import { useAtom } from "jotai";
 import { codeLanguageState } from "../../jotai/atoms";
 
+// Hooks
+import useViewport from "../../constants/functions/useViewport";
+
 
 ///////////////////
 // Shared Styles //
@@ -51,7 +54,7 @@ const LANGUAGE_ORDER = ["JavaScript", "Java", "C#", "Python"]
 // A lesson section title. The first one on a page sits closer to the page title.
 export const SectionHeader = ({children, first = false}) => {
     return(
-        <div style={{...Styles.Fonts.lessonHeader, marginTop: first ? 20 : 40, marginBottom: 16}}>
+        <div className="codex-section-header" style={{...Styles.Fonts.lessonHeader, marginTop: first ? 20 : 40, marginBottom: 16}}>
             {children}
         </div>
     )
@@ -147,14 +150,21 @@ export const LessonCode = ({
                 ...style
             }}
             // Small one-language snippets don't need a header bar
-            headerStyle={compact && !tabbed ? {display: 'none'} : undefined}
+            headerStyle={compact && !tabbed ? {display: 'none'} : {gap: 6, padding: '6px 8px 6px 8px'}}
+            // Tabs only as wide as their names, so Copy still fits on a phone
+            tabBarProps={{
+                style: {minWidth: 0, overflowX: 'auto'},
+                tabStyle: {flex: '0 0 auto', width: 'auto', minWidth: 'max-content', padding: '0 10px'},
+                labelStyle: {whiteSpace: 'nowrap'},
+                activeLabelStyle: {whiteSpace: 'nowrap'},
+            }}
             codeStyle={{fontSize: compact ? 14 : 15, ...codeStyle}}
         />
     )
 
     // A fixed width keeps the block from squeezing text beside it
     if (width){
-        return <div style={{flex: `0 0 ${typeof width === 'number' ? width + 'px' : width}`, maxWidth: '100%'}}>{block}</div>
+        return <div className="codex-fixed-col" style={{flex: `0 0 ${typeof width === 'number' ? width + 'px' : width}`, maxWidth: '100%', minWidth: 0}}>{block}</div>
     }
     return block
 }
@@ -303,9 +313,15 @@ export const VariableBox = ({name, value, valueStyle = Styles.Code.reg, caption}
 // End-of-lesson check using OstrichForm.
 // questions: [{ question, options, answer, perRow? }]. Graded on submit, wrong answers show the right one.
 export const CheckYourUnderstanding = ({title = "Check your Understanding", questions}) => {
+    // On phones every answer gets its own row
+    const { width } = useViewport()
+    const narrow = width !== null && width < 600
+
     return(
         <div style={{marginTop: 30}}>
             <OstrichForm
+                // Rebuilds once the screen width is known, so the answer layout fits
+                key={narrow ? "narrow" : "wide"}
                 title={title}
                 style={{
                     backgroundColor: Colors.offWhiteContent,
@@ -325,7 +341,7 @@ export const CheckYourUnderstanding = ({title = "Check your Understanding", ques
                     type: "MC",
                     options: q.options,
                     correctResponse: q.answer,
-                    itemsPerRow: q.perRow ?? (q.options.some(o => String(o).length > 14) ? 1 : 2),
+                    itemsPerRow: narrow ? 1 : (q.perRow ?? (q.options.some(o => String(o).length > 14) ? 1 : 2)),
                 }))}
             />
         </div>
@@ -353,6 +369,7 @@ export const Recap = ({points}) => {
 export const NextLesson = ({lesson, onClick}) => {
     return(
         <OstCard
+            className="codex-next-lesson"
             style={{marginLeft: '25%', marginRight: '25%', marginTop: 30, marginBottom: 40, cursor: 'pointer'}}
             onClick={() => onClick(lesson)}
         >

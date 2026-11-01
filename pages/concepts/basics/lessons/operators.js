@@ -322,7 +322,7 @@ const OperatorsLesson = ({}) => {
                     </Callout>
 
                     <div style={{...Styles.Fonts.h3, marginTop: 30, marginBottom: 8}}>The Modulo Operator: %</div>
-                    <div style={sideBySide}>
+                    <div className="codex-side-by-side" style={sideBySide}>
                         <LessonCode
                             compact
                             code={`

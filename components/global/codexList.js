@@ -114,7 +114,7 @@ export default function CodexList({
 
    
         return(
-            <div style={{
+            <div className={size === "large" ? "codex-list" : undefined} style={{
                 display: 'flex',
                 flexDirection: 'column',       // or 'row' if horizontal,
                 // backgroundColor: 'red',
@@ -124,6 +124,7 @@ export default function CodexList({
                 {items.map((itm, i) => (
                   <div
                     key={i}
+                    className={size === "large" ? "codex-list-button" : undefined}
                     style={{ ...determineStyle(itm) }}
                     onMouseEnter={() => handleMouseEnter(itm)}
                     onMouseLeave={() => handleMouseLeave()}

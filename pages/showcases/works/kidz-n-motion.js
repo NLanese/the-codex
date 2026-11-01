@@ -534,7 +534,7 @@ export default function KNMPage(){
 
     return(
         <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
-            <div style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
+            <div className="codex-showcase-main" style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
                 <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
 
                     {/*  Init */}

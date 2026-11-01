@@ -539,8 +539,8 @@ export default function BoardGameMasterAIProjectPage() {
        
 
 return (
-    <div style={{marginTop: 20, marginLeft: '10%', width: '80%'}}>
-        <div style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
+    <div className="codex-writeup" style={{marginTop: 20, marginLeft: '10%', width: '80%'}}>
+        <div className="codex-page-title" style={Styles.Fonts.pageTitle}>The Board Game Master AI</div>
 
         {renderINTRO_REGION()}
 

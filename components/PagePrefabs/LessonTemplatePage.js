@@ -5,7 +5,7 @@ import React from "react";
 import { comingSoon as comingSoonPages } from "../../constants/lessonLists";
 
 // Components
-import { SidePanel } from "./SidePanel";
+import { SidePanel, LessonStrip, MobilePanels } from "./SidePanel";
 
 export const LessonTemplatePage = ({
     children,
@@ -69,24 +69,38 @@ export const LessonTemplatePage = ({
     /////////////////
 
     return(
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-        {/* Left Sticky Sidebar */}
-        <aside style={sidebar}>
+    <div className="codex-lesson-layout" style={{ display: 'flex', minHeight: '100vh' }}>
+        {/* Left Sticky Sidebar (hidden on phones) */}
+        <aside className="codex-sidebar" style={sidebar}>
             {renderLabsAndTests()}
         </aside>
 
         {/* Main Scrollable Content */}
-        <div style={{
+        <div className="codex-lesson-main" style={{
             flex: 7,
             padding: 30,
             overflowY: 'auto',
             minWidth: 0,
         }}>
+            {/* Phones: lessons as a swipeable row up top */}
+            <LessonStrip items={lessons} onClick={onLessonClick} current={current} comingSoon={comingSoon}/>
+
             {children}
+
+            {/* Phones: the full menus at the bottom, where the sidebars would be */}
+            <MobilePanels
+                current={current}
+                comingSoon={comingSoon}
+                sections={[
+                    {title: "Lessons", items: lessons, onClick: onLessonClick},
+                    {title: "Labs", items: labs, onClick: onLabsClick},
+                    {title: "Tests", items: tests, onClick: onTestsClick},
+                ]}
+            />
         </div>
 
-        {/* Right Sticky Sidebar */}
-        <aside style={sidebar}>
+        {/* Right Sticky Sidebar (hidden on phones) */}
+        <aside className="codex-sidebar" style={sidebar}>
             {renderLessonsList()}
         </aside>
     </div>

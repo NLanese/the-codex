@@ -108,7 +108,7 @@ export const MenuPage = ({
     /////////////////
 
     return(
-        <div style={{display: 'flex', flexDirection: 'row', maxHeight: '90vh'}}>
+        <div className="codex-menu-layout" style={{display: 'flex', flexDirection: 'row', maxHeight: '90vh'}}>
             {renderLessonsList()}
             {renderDefinitions()}
             {renderLabsAndTests()}

@@ -180,7 +180,11 @@ export const HeaderBar = ({
                     borderLeft: "1px solid white", borderRight: "1px solid white",
                     backgroundColor: '#11013b', color: "#efefef",
                     borderRadius: 0, padding: 0,
+                    // Phones: each tab only as wide as its name, and the bar swipes sideways
+                    ...(isMobile ? {flex: '0 0 auto', width: 'auto', minWidth: 'max-content', padding: '0 16px'} : {}),
                 }}
+                tabListStyle={isMobile ? {overflowX: 'auto', flexWrap: 'nowrap', scrollbarWidth: 'none', backgroundColor: '#11013b'} : undefined}
+                labelStyle={isMobile ? {whiteSpace: 'nowrap'} : undefined}
                 hoverTabStyle={{
                     backgroundColor: '#11013b', 
                     color: 'lime'

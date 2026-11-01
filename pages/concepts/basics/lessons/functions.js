@@ -351,7 +351,7 @@ const FunctionsLesson = ({}) => {
             return(
                 <div>
                     <SectionHeader>The Parts of a Function</SectionHeader>
-                    <div style={sideBySide}>
+                    <div className="codex-side-by-side" style={sideBySide}>
                         <LessonCode languages={DECLARE_CODE} width={420} style={{margin: 0}}/>
                         <div>
                             <p style={lessonText}>

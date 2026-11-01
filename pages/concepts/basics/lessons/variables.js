@@ -14,14 +14,41 @@ import { directoryDataState, tabBarState } from "../../../../jotai/atoms";
 
 // Components and Functions
 import renderTitle from "../../../../components/CodeSpaces/renderTitle";
-import CodeSnippet from "../../../../components/CodeSpaces/codeSnippet";
 import { LessonTemplatePage } from "../../../../components/PagePrefabs/LessonTemplatePage";
-import { Callout, VariableBox, Recap, NextLesson, CheckYourUnderstanding, lessonText, sideBySide } from "../../../../components/LessonParts/lessonParts";
+import { Callout, VariableBox, Recap, NextLesson, CheckYourUnderstanding, LessonCode, lessonText, sideBySide } from "../../../../components/LessonParts/lessonParts";
 import { basicsLessons, basicsLabs, basicsTests } from "../../../../constants/lessonLists";
 
 // Next JS
 import { useRouter } from "next/router";
 
+
+
+///////////////////
+// Code Examples //
+///////////////////
+
+const DECLARE_CODE = {
+    JavaScript: `
+        let score = 21
+        let name = "Hank Hill"
+        let isEarthFlat = false
+    `,
+    Java: `
+        int score = 21;
+        String name = "Hank Hill";
+        boolean isEarthFlat = false;
+    `,
+    "C#": `
+        int score = 21;
+        string name = "Hank Hill";
+        bool isEarthFlat = false;
+    `,
+    Python: `
+        score = 21
+        name = "Hank Hill"
+        isEarthFlat = False
+    `,
+}
 
 const VariablesLesson = ({}) => {
 
@@ -76,118 +103,11 @@ const VariablesLesson = ({}) => {
     // Code Rendering //
     ////////////////////
 
-    // Language Tabs //
-
-        function renderJavaScript(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>score </span>
-                    <span style={Styles.Code.reg}>= 21</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>name </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>let </span>
-                    <span style={Styles.Code.var}>isEarthFlat </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>false</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderJava(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>score </span>
-                    <span style={Styles.Code.reg}>= 21;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>String </span>
-                    <span style={Styles.Code.var}>name </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>boolean </span>
-                    <span style={Styles.Code.var}>isEarthFlat </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>false</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderCs(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>int </span>
-                    <span style={Styles.Code.var}>score </span>
-                    <span style={Styles.Code.reg}>= 21;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>string </span>
-                    <span style={Styles.Code.var}>name </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill"</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.keyword}>bool </span>
-                    <span style={Styles.Code.var}>isEarthFlat </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>false</span>
-                    <span style={Styles.Code.reg}>;</span>
-                    </p>
-                </div>
-            )
-        }
-
-        function renderPython(){
-            return(
-                <div>
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>score </span>
-                    <span style={Styles.Code.reg}>= 21</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>name </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.str}>"Hank Hill"</span>
-                    </p>
-
-                    <p style={Styles.Code.code}>
-                    <span style={Styles.Code.var}>isEarthFlat </span>
-                    <span style={Styles.Code.reg}>= </span>
-                    <span style={Styles.Code.bool}>False</span>
-                    </p>
-                </div>
-            )
-        }
-
     // Small Code Blocks //
 
         function renderCodeBlock(lines, width = 230){
             return(
-                <div style={{...Styles.Sections.simpleLessonCode, width: width, minWidth: width, margin: 0}}>
+                <div className="codex-fixed-col" style={{...Styles.Sections.simpleLessonCode, width: width, minWidth: width, margin: 0, boxSizing: 'border-box'}}>
                     {lines}
                 </div>
             )
@@ -200,7 +120,7 @@ const VariablesLesson = ({}) => {
         function renderFirst(){
             return(
                 <div>
-                    <div style={Styles.Fonts.lessonHeader}>What is a Variable?</div>
+                    <div className="codex-section-header" style={Styles.Fonts.lessonHeader}>What is a Variable?</div>
                     <div style={{marginTop: 16}}>
                         <p style={lessonText}>
                             Every program you have ever used is built on variables, so they are the perfect place to start.
@@ -287,13 +207,13 @@ const VariablesLesson = ({}) => {
         function renderSecond(){
             return(
                 <div>
-                    <div style={{...Styles.Fonts.lessonHeader, marginTop: 40}}>Creating a Variable</div>
+                    <div className="codex-section-header" style={{...Styles.Fonts.lessonHeader, marginTop: 40}}>Creating a Variable</div>
                     <div style={{marginTop: 16}}>
                         <p style={lessonText}>
                             Creating a variable takes two steps: you <strong>declare</strong> it (give it a name), and you <strong>assign</strong> it (give it a value).
                         </p>
 
-                        <div style={sideBySide}>
+                        <div className="codex-side-by-side" style={sideBySide}>
                             {renderCodeBlock(
                                 <p style={Styles.Code.code}>
                                 <span style={Styles.Code.keyword}>var </span>
@@ -314,7 +234,7 @@ const VariablesLesson = ({}) => {
                             </p>
                         </div>
 
-                        <div style={sideBySide}>
+                        <div className="codex-side-by-side" style={sideBySide}>
                             {renderCodeBlock(
                                 <p style={Styles.Code.code}>
                                 <span style={Styles.Code.var}>x </span>
@@ -326,7 +246,7 @@ const VariablesLesson = ({}) => {
                             </p>
                         </div>
 
-                        <div style={sideBySide}>
+                        <div className="codex-side-by-side" style={sideBySide}>
                             {renderCodeBlock(
                                 <p style={Styles.Code.code}>
                                 <span style={Styles.Code.keyword}>var </span>
@@ -378,13 +298,13 @@ const VariablesLesson = ({}) => {
                         That "kind of value" is called a <strong>data type</strong>, and it gets its own lesson soon. The takeaway for now: the syntax changes between languages, but the idea of a named box holding a value is the same everywhere.
                     </p>
 
-                    <div style={{...Styles.Fonts.lessonHeader, marginTop: 40}}>Changing a Variable's Value</div>
+                    <div className="codex-section-header" style={{...Styles.Fonts.lessonHeader, marginTop: 40}}>Changing a Variable's Value</div>
                     <div style={{marginTop: 16}}>
                         <p style={lessonText}>
                             To change a variable, assign it a new value. The old value is thrown away and replaced.
                         </p>
 
-                        <div style={sideBySide}>
+                        <div className="codex-side-by-side" style={sideBySide}>
                             {renderCodeBlock(
                                 <>
                                     <p style={Styles.Code.code}>
@@ -486,12 +406,7 @@ const VariablesLesson = ({}) => {
                 {renderTitle("Variables")}
                 {renderFirst()}
                 {renderSecond()}
-                <CodeSnippet
-                    js={renderJavaScript()}
-                    java={renderJava()}
-                    cs={renderCs()}
-                    py={renderPython()}
-                />
+                <LessonCode languages={DECLARE_CODE}/>
                 {renderThird()}
                 {renderWrapUp()}
             </div>
