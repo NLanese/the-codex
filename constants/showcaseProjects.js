@@ -143,9 +143,10 @@ export const PROJECTS = [
         group: "workshop",
         title: "Dungeon Dash",
         image: `${ICONS}/DDScreen.png`, fit: "cover",
-        blurb: "A game built in Unity.",
-        tags: ["Unity"],
-        status: "soon",
+        blurb: "A 2D action platformer built in Unity. Level One is playable in your browser.",
+        tags: ["Unity", "C#", "WebGL"],
+        status: "beta",
+        route: "/showcases/projects/dungeondash",
     },
     {
         id: "wanderer",
