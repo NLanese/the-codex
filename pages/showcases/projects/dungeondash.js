@@ -16,7 +16,7 @@ const CONTROLS = [
     { keys: "↑ ↓ / W S", action: "Climb ladders" },
     { keys: "Space", action: "Jump" },
     { keys: "Shift", action: "Roll (dodge)" },
-    { keys: "1", action: "Attack (release to swing, keep tapping to combo)" },
+    { keys: "1", action: "Attack (tap 3 times quickly for a combo)" },
     { keys: "Q", action: "Switch weapon" },
 ]
 
