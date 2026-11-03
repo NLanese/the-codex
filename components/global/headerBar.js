@@ -132,12 +132,14 @@ export const HeaderBar = ({
 
         // User
         else if (token){
-            return userTabs(setActiveTabBar, router, isMobile)
+            // return userTabs(setActiveTabBar, router, isMobile)
+            return portfolioTabs(setActiveTabBar, router, isMobile)
         }
 
         // Guest
         else if (!token){
-            return guestTabs(setActiveTabBar, router, isMobile)
+            // return guestTabs(setActiveTabBar, router, isMobile)
+            return portfolioTabs(setActiveTabBar, router, isMobile)
         }
     }
 

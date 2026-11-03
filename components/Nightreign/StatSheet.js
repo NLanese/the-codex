@@ -584,7 +584,8 @@ function determineDamModifier(type, relCat=false, toggles){
                 totalMod = stack_modifiers('digDamage', totalMod, toggles)
             }
             // Standard Sorcery
-            else if (type === "Standard Sorcery"){
+            // The Sorceries summary row always matches Standard Sorcery
+            else if (type === "Standard Sorcery" || type === "Sorceries"){
                 totalMod = stack_modifiers('affDamage', totalMod, toggles)
                 totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
                 totalMod = stack_modifiers('magicDamage', totalMod, toggles)
@@ -687,10 +688,6 @@ function determineDamModifier(type, relCat=false, toggles){
 
 
 
-            // Sorceries summary row (applies to all sorceries)
-            else if (type === "Sorceries"){
-                totalMod = stack_modifiers('sorcDamage', totalMod, toggles)
-            }
             // Incantations summary row (applies to all incantations)
             else if (type === "Incantations"){
                 totalMod = stack_modifiers('incantDamage', totalMod, toggles)
