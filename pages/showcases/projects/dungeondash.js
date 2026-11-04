@@ -8,16 +8,18 @@ import { directoryDataState, tabBarState } from "../../../jotai/atoms";
 // Showcase Kit
 import { Page, Hero, ActionButton, Section, Chip, Notice, DOC } from "../../../components/Showcase/showcaseKit";
 
-// Unity WebGL build of Level One, written here by DungeonDash's "Build Level One for The Codex" menu item
-const GAME_SRC = "/games/dungeondash/level-one/index.html"
+// Unity WebGL build of the first three levels, written here by DungeonDash's "Build Levels 1-3 for The Codex" menu item
+const GAME_SRC = "/games/dungeondash/game/index.html"
 
 const CONTROLS = [
     { keys: "← → / A D", action: "Move" },
     { keys: "↑ ↓ / W S", action: "Climb ladders" },
-    { keys: "Space", action: "Jump" },
-    { keys: "Shift", action: "Roll (dodge)" },
+    { keys: "Space", action: "Jump (hold longer to jump higher)" },
+    { keys: "Shift", action: "Roll (dodge through enemies)" },
     { keys: "1", action: "Attack (tap 3 times quickly for a combo)" },
     { keys: "Q", action: "Switch weapon" },
+    { keys: "3", action: "Drink a health potion (blue)" },
+    { keys: "Space (at a door)", action: "Walk through to the world map" },
 ]
 
 
@@ -78,7 +80,7 @@ export default function DungeonDashProjectPage() {
             if (buildFound === false){
                 return (
                     <Notice>
-                        The playable build isn't uploaded yet. In Unity, run <b>DungeonDash → Build Level One for The Codex</b>, then deploy.
+                        The playable build isn't uploaded yet. In Unity, run <b>DungeonDash → Build Levels 1-3 for The Codex</b>, then deploy.
                     </Notice>
                 )
             }
@@ -90,7 +92,7 @@ export default function DungeonDashProjectPage() {
                                 key={frameKey}
                                 ref={frameRef}
                                 src={GAME_SRC}
-                                title="Dungeon Dash: Level One"
+                                title="Dungeon Dash"
                                 onLoad={focusGame}
                                 allow="fullscreen; autoplay; gamepad"
                                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
@@ -130,10 +132,10 @@ export default function DungeonDashProjectPage() {
                 <Hero
                     eyebrow="In the Workshop · Unity"
                     title="Dungeon Dash"
-                    intro="A 2D action platformer I'm building in Unity. Climb, roll and fight your way through goblins, bats and traps. This is an early build of Level One, playable right in your browser."
+                    intro="A 2D action platformer I'm building in Unity. Climb, roll and fight your way through goblins, bats and traps. This early build has the first three levels, linked by a world map, playable right in your browser."
                 />
 
-                <Section id="play" eyebrow="Play" title="Level One">
+                <Section id="play" eyebrow="Play" title="Levels 1–3">
                     {renderGame()}
                 </Section>
 
