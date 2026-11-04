@@ -209,6 +209,15 @@ const regenRelics = [
             always: true,
         }
     },
+    {
+        title: "Stamina Recovery upon Landing Attacks",
+        desc: "Restores 2 Stamina every time a weapon makes contact on a non-guarding enemy",
+        stacks: {self: false, selfType: true},
+        selfType: "stamOnHit",
+        effect: {
+            always: true,
+        }
+    },
 ]
 
 export default regenRelics
