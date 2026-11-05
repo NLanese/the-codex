@@ -12,11 +12,11 @@ import { Page, Hero, ActionButton, Section, Chip, Notice, DOC } from "../../../c
 const GAME_SRC = "/games/dungeondash/game/index.html"
 
 const CONTROLS = [
-    { keys: "← → / A D", action: "Move" },
-    { keys: "↑ ↓ / W S", action: "Climb ladders" },
+    { keys: "A D", action: "Move left / right" },
+    { keys: "W S", action: "Climb ladders" },
     { keys: "Space", action: "Jump (hold longer to jump higher)" },
     { keys: "Shift", action: "Roll (dodge through enemies)" },
-    { keys: "1", action: "Attack (tap 3 times quickly for a combo)" },
+    { keys: "P", action: "Attack (tap 3 times quickly for a combo; in the air for a jump attack)" },
     { keys: "Q", action: "Switch weapon" },
     { keys: "3", action: "Drink a health potion (blue)" },
     { keys: "Space (at a door)", action: "Walk through to the world map" },
