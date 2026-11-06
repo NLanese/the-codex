@@ -1,10 +1,11 @@
 const votann_detachments = [
-    "Brandfest Oathband",
-    "Devle Assault Shift",
     "Hearthband",
+    "Persecution Prospect",
+    "Needgaârd Oathband",
     "Hearthfyre Arsenal",
-    "Needguard Oathband",
-    "Persecution Prospect"
+    "Dêlve Assault Shift",
+    "Brandfast Oathband",
+    "Mercenary Oathband",
 ]
 
 export default votann_detachments
