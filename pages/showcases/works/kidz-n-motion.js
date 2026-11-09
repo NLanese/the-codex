@@ -1,33 +1,34 @@
 // React + Next
-import React, {useEffect, useState} from "react";
-import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
-// Recoil
+// Jotai
 import { useAtom } from "jotai";
-import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
+import { tabBarState, directoryDataState } from "../../../jotai/atoms";
 
-// Styles 
-import Styles from "../../../styles/styles";
-
-// Ostrich
-import { OstCard } from "@ostrich_development/ostrich-components";
+// Showcase Kit
+import { Hero, ActionButton, Section, DOC } from "../../../components/Showcase/showcaseKit";
+import { CaseStudyPage, P, Code, SubHeading, FactRow, Phone, PhoneRow, WideShot, Split, FeatureTabs, Checklist, FieldGroups } from "../../../components/Showcase/caseStudyKit";
 
 // Assets
-const listing = "../../../assets/showcase_images/knm/AppListing.png";
-const chiScreen = "../../../assets/showcase_images/knm/chiScreen.png";
-const parScreen = "../../../assets/showcase_images/knm/parScreen.png";
-const therScreen = "../../../assets/showcase_images/knm/therScreen.png";
-const therCal = "../../../assets/showcase_images/knm/therCalView.png"
-const allAssign = "../../../assets/showcase_images/knm/allAssign.png"
-const assignOpened = "../../../assets/showcase_images/knm/assignOpened.png"
-const modelStruc = "../../../assets/showcase_images/knm/modelStructure.png"
+const IMG = "/assets/showcase_images/knm"
+const listing = `${IMG}/AppListing.png`
+const chiScreen = `${IMG}/chiScreen.png`
+const parScreen = `${IMG}/parScreen.png`
+const therScreen = `${IMG}/therScreen.png`
+const therCal = `${IMG}/therCalView.png`
+const allAssign = `${IMG}/allAssign.png`
+const assignOpened = `${IMG}/assignOpened.png`
+const modelStruc = `${IMG}/modelStructure.png`
 
-const chevdown = "../../../assets/icons/clickIcons/down.png"
-const chevup = "../../../assets/icons/clickIcons/up.png"
+const IOS_LISTING = "https://apps.apple.com/us/app/kidz-n-motion/id1661352847"
+const WEBSITE = "https://kidz-n-motion.app/"
+const FOUNDER = "https://www.linkedin.com/in/dr-lafonda-beneby-pt-dpt-982255134/"
 
+// Navy into Kidz-N-Motion orange
+const HERO_BG = "linear-gradient(135deg, #11013b 0%, #3b1440 45%, #8a3d0c 100%)"
 
-
-
+const open = (url) => window.open(url, "_blank", "noopener,noreferrer")
+const link = { color: DOC.accentDeep, fontWeight: 600 }
 
 
 export default function KNMPage(){
@@ -38,558 +39,335 @@ export default function KNMPage(){
 
         const [directory, setDirectory] = useAtom(directoryDataState)
         const [activeTab, setActiveTab] = useAtom(tabBarState)
-        const router = useRouter()
-
-        const [renderListing, setRenderListing] = useState(true)
-        const [renderAccTypes, setRenderAccTypes] = useState(true)
-        const [renderCal, setRenderCal] = useState(true)
-        const [renderAccStruc, setRenderAccStruc] = useState(true)
-
 
     ////////////////
     // UseEffects //
     ////////////////
 
         useEffect(() => {
-            setDirectory("Portfolio")            
-        }, [])
-
-        useEffect(() => {
+            setDirectory("Portfolio")
             setActiveTab("Official Works")
         }, [])
 
-    ////////////////
-    // Renderings //
-    ////////////////
+    ///////////////
+    // Constants //
+    ///////////////
 
+        const accountTypes = [
+            {
+                title: "Child",
+                image: chiScreen,
+                alt: "The Kidz-N-Motion home screen on a child account",
+                caption: "Child account home screen",
+                body: <>
+                    <P>
+                        Children get a deliberately small set of features, so the app stays simple and they can't get lost in it.
+                        They can only watch and complete workout videos their Physical Therapist has assigned, which keeps them from
+                        trying an exercise they aren't ready for yet.
+                    </P>
+                    <Checklist
+                        title="After each one-minute video, the child answers three questions"
+                        items={[
+                            "Were you able to complete the workout without help from a parent?",
+                            "Were you able to complete the workout without leaning on something for support?",
+                            "How long did you keep going: the full minute, at least 30 seconds, or less than 30 seconds?",
+                        ]}
+                    />
+                    <P>
+                        Their answers earn a Gold, Silver or Bronze medal. Children can also check their calendar to see when
+                        assignments are due and when appointments are scheduled.
+                    </P>
+                </>,
+            },
+            {
+                title: "Parent",
+                image: parScreen,
+                alt: "The Kidz-N-Motion home screen on a parent account",
+                caption: "Parent account home screen",
+                body: <>
+                    <P>
+                        Parents can do everything children can, plus a few more things. The first is switching which child is
+                        currently active. Parents can watch the workout videos too, and the active child is the one awarded the
+                        medal for finishing a video.
+                    </P>
+                    <P>
+                        Like children, parents can see when assignments are due and when appointments are scheduled. They can also
+                        pick a date and request an appointment; their Physical Therapist then gets an email and a push notification
+                        and can confirm or decline it.
+                    </P>
+                    <P>
+                        If a child doesn't have a device of their own, parents can switch to child mode and hand over their phone.
+                        Switching back to the parent account needs a password.
+                    </P>
+                </>,
+            },
+            {
+                title: "Therapist",
+                image: therScreen,
+                alt: "The Kidz-N-Motion home screen on a therapist account",
+                caption: "Therapist account home screen",
+                body: <>
+                    <P>
+                        Therapists have the most features of the three account types. They can create or approve appointments,
+                        meetings and workout assignments for their clients, and their calendar shows every assignment's start and
+                        end dates along with every appointment.
+                    </P>
+                    <P>
+                        Therapists can send and receive messages, but only with parent accounts. For obvious reasons, the app never
+                        lets an adult message a child directly.
+                    </P>
+                    <P>
+                        Therapists can also invite new clients from inside the app. They enter the parent's email address and some
+                        basic details, such as names and the child's motor function level. Once the invite is accepted, accounts for
+                        the parent and their child are created automatically with temporary passwords.
+                    </P>
+                </>,
+            },
+        ]
 
-        // First Paragraph
-        function renderInitialRambling(){
-            return(
-                <div style={{paddingTop: 20}}>
-                    <p style={Styles.Fonts.basicX}>
-                        The Flaghship app for Therapy in Motion PA, the Kidz-N-Motion app is designed to 
-                        connect children facing disabilities to their own professional Physical Therapist.
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Founded by <a href="https://www.linkedin.com/in/dr-lafonda-beneby-pt-dpt-982255134/">Dr Lafonda Benelby</a>, Kidz-N-Motion was created during covid, as Dr LaFonda and her 
-                        in-school Physial Therapist peers found themselves unable to give their clients the critical 
-                        services they needed. While relaying instructions for exercises and other activities to parents
-                        was possible, there existed no way to <strong>show</strong> the children the exercises they should 
-                        be doing, nor was there way way to actually confirm whether the activities were completed.
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        In order to reconect with children who desperately needed her and her peers' assistance, Dr LaFonda 
-                        founded Therapy In Motion and began the creation of her Kidz-N-Motion app. This app allows clients and their 
-                        parents to be able to reach their Physical Therapists at the click of a button through in-app instant messaging. 
-                        Therapists can assign work outs to their clients, and each work out comes with its own pre-rendered animation 
-                        of a child doing the exercise in order for the client to follow along. Therapists can also record the client 
-                        during in-person sessions and is able to easily send the videos over to the parent through the app's record feature.
-                        This allows parents to see how their child progresses along their Physial Therapy journey. 
-                    </p>
-                </div>
-            )
-        }
+        const userFields = [
+            {
+                title: "Therapist specific",
+                fields: [
+                    ["occationTitle", "The therapist's title"],
+                    ["enableAppointmentNotifications", "True if the therapist is notified about confirmed appointments"],
+                    ["clientCarePlans", "Every client belonging to the therapist"],
+                ],
+            },
+            {
+                title: "Guardian specific",
+                fields: [
+                    ["messagesAreMuted", "True if the therapist has muted this client's messages"],
+                    ["appointmentsAreMuted", "True if the therapist has muted this client's appointments"],
+                    ["enableMissedDateNotifications", "True if the client has muted missed-assignment notifications"],
+                    ["soloUser", "True if the client uses the app without a therapist"],
+                    ["soloUserStripeID", "Payment IDs for solo users who paid for full access"],
+                    ["childCarePlans", "Every child connected to the guardian"],
+                ],
+            },
+            {
+                title: "Child specific",
+                fields: [
+                    ["canAccessSettings", "True if the guardian lets the child change their settings"],
+                    ["canAccessMessages", "True if the guardian lets the child message the therapist"],
+                    ["leaveApp", "True if the guardian lets the child leave the app or sign out"],
+                    ["carePlan", "The child's care plan"],
+                ],
+            },
+        ]
 
-        // Second Part ( Distribution )
-        function renderAppListing(){
-            if (!renderListing){
-                return 
-            }
-            return(
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 6}}>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={listing}
-                        >
-                            <a href="https://apps.apple.com/us/app/kidz-n-motion/id1661352847">iOS Listing</a> / <a href="">Android Listing</a>
-                        </OstCard>
-                    </div>
-                    <div style={{flex: 6, padding: 20, paddingTop: 0}}>
-                        <p style={Styles.Fonts.basicX}>
-                            Released to App Stores (iOS and Google Play) in 2021, the Kidz-N-Motion app has many users, 
-                            therapists and clients and their parents alike. Created using React Native (Vanilla) and up to date 
-                            with modern SKDs, APIs, and compliances; I have been the sole architect of the Kidz-N-Motion app, overseeing 
-                            its production, development, and publication. I am also in charge of both the Google Play and Apple 
-                            Developer Accounts. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            This was my very first professional endaever as a computer scientist, and as such it came with its fair share 
-                            of issues and complications. For example, this application was my first forray into Gradle Build Errors on Android's side 
-                            and Pod issues on Apple's side. Having no senior member to turn to-- as well as no chatbot assistants yet to asisst me; 
-                            I was able to solve all compatability issues and always managed to successfully build and distribute the app. 
-                        </p>
-                    </div>
-                </div>
-            )
-        }
-
-        // Third Part ( Account Types )
-        const[card1, setCard1] = useState(false)
-        const[card2, setCard2] = useState(false)
-        const[card3, setCard3] = useState(false)
-        const cardStyle = (flipped) => {
-            return(
-                {
-                    flex: 4,
-                    transformStyle: "preserve-3d",
-                    transition: "transform 0.6s",
-                    transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 600, overflowY: "auto"
-                }
-            )
-            
-        }
-        function renderAccountTypes(){
-
-            // Cards
-            const renderCardOne = () =>{
-                if (!card1){
-                    return(
-                        <OstCard
-                        templateStyle={1}
-                        imageSrc={chiScreen}
-                        onClick={() => setCard1(!card1)}
-                        style={cardStyle(card1)}
-                        >
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard1(!card1)}
-                        style={cardStyle(card1)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Child Account</div>
-                                <p style={Styles.Fonts.basic}>
-                                    Children have pretty minimal functionality in order to maintain simplicity and prevent 
-                                    the Children from getting lost within the app. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    They are able to watch and complete workout videos only when their Physical Therapist has assigned it 
-                                    to them. This prevents the child from attempting an exercise they may not be ready for. Upon completion
-                                    of the 1 minute video, the child is asked 3 question. 
-                                </p>
-                                <ol>
-                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without help from a parent</li>
-                                    <li style={Styles.Fonts.basic}>Were you able to complete the workout without leaning on something for support</li>
-                                    <li style={Styles.Fonts.basic}>How long were you able to complete the video for the full minute, at least 30 seconds, or less than 30 seconds</li>
-                                </ol>
-                                <p style={Styles.Fonts.basic}>
-                                    Depending on these answers, the child is awarded one of three medals-- Gold, Silver, or Bronze. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Finally, the Child is also able to check their calendar which indicates when assignments are due or when appointments are scheduled. 
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
-            const renderCardTwo = () => {
-                if (!card2){
-                    return(
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={therScreen}
-                            onClick={() => setCard2(!card2)}
-                            style={cardStyle(card2)}
-                        >
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard2(!card2)}
-                        style={cardStyle(card2)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'fuchsia'}}>Therapist Account</div>
-                                <p style={Styles.Fonts.basic}>
-                                    Therapists have the most functionality out of the three account type. A therapist can create or approve 
-                                    appointments, meetings, and workout assignments for their clients. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Just like the Parent and the Child Accounts, the Therapist is able to check their calendar and see all
-                                    assignment start / end dates, as well as all appointment dates and times. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Similarly to the parent, the Physical Therpist has the ability to send a recieve messages. This is limitied to 
-                                    parent accounts, as for obvious reasons we did not want to facilitate communication between and adult and a child. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Finally, the Therapist is able to send invites to porespective clients from in the app. Through the 'invite clients' 
-                                    option, Therapists need to just enter in the email address of the individual they want to invite, along with some 
-                                    other basic information such as names and the child's motor function level. Upon the accecpting of that
-                                    invite, an account for the Guardian and their child is automatically created with temporary passwords. 
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
-            const renderCardThree = () => {
-                if (!card3){
-                    return(
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={parScreen}
-                            onClick={() => setCard3(!card3)}
-                            style={cardStyle(card3)}
-                        >
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard3(!card3)}
-                        style={cardStyle(card3)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'orange'}}>Parent Account</div>
-                                <p style={Styles.Fonts.basic}>
-                                    Parents have all the functionality that Children do, as well as some more functionality. The first of which is 
-                                    the ability to switch between which 'child' is currently active. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Videos can also be watched on the parent's account and as previously mentioned, whichever child is 'active' will be
-                                    the one who is awarded the medals for a video's completion. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    Again like the child, the Parent is also able to check their calendar which indicates when assignments are due or when 
-                                    appointments are scheduled. They may also choose a specific date to request an appointment for. Once a request for an 
-                                    appointment is made, the Physcal Therapist will get an email and push notification and can confirm or deny it.
-                                </p>
-                                <p>
-                                    Parents can also switch to child mode and hand the phone off to their child if the child does not have a device of 
-                                    his or her own. When trying to switch back to the parent account from a child account, a password will need to be entered. 
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
-
-            if (!renderAccTypes){
-                return false
-            }
-
-            // Render
-            return(
-                <div>
-                    <p style={Styles.Fonts.basicX}>
-                        As previously mentioned there are three different expected user types for this app. Clients (Children needing Physical Therapy), Parents, and Therapist / Administrators. 
-                        Each user type will have a different in-app experience, as they each come to the app with a different purpose in mind. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
-                    </p>
-                    <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 40}}>
-                        {renderCardOne()}
-                        {renderCardTwo()}
-                        {renderCardThree()}
-                    </div>
-                    <p style={Styles.Fonts.basicX}>
-                        Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 
-                        that will allow users even with color blindness to find a palette that works for them and is visible in for their specific type of color
-                        blindness. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Users can also change their profile Avatar (seen in the top right of each screen) and have a 'change password' email sent to them if 
-                        they desire a new password. Similarly, if they forgot their password they can request a temporary by entering their email, where a 
-                        a link will be provided that redirects users to the site where they can change thier password. .
-                    </p>
-                </div>
-            )
-        }
-
-        // Fourth Part ( Calendar )
-        function renderCalendarDetails(){
-            if (!renderCal){
-                return
-            }
-            return(
-            <div>
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4}}>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={therCal}
-                            style={{height: 700}}
-                        >
-                        </OstCard>
-                    </div>
-                    <div style={{flex: 8, padding: 20, paddingTop: 0}}>
-                        <p style={Styles.Fonts.basicX}>
-                            As previously covered, Therapists can create 'assignments' and 'meetings' for their clients. These events will be marked on both the Therapist
-                            as well as the Child and the Guardians' accounts. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            In our Calendar Image to the Left, we are currently in a Therapist account using the Pink Color Palette. This makes assignment due dates appear as 
-                            lighter pink dots beneath the date and darker fuschia dots as markers for meetups. In this example, you can see an assignment is 
-                            due on the 28th with a meeting on the 23rd. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Again in this screen, you will see that the user currently has August 28th selected. This shows that there is an assignment with 3 work out videos;
-                            Rolling, Toe Touches, and Squat, due on August 28th. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Users, unless they disable the following feature, will also get a Push Notification sent to their device (Powered by Firebase) whenever one of the following occurrs. 
-                        </p>
-                        <ol>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The Child and/or Guardian recieve an assignment or if a meeting has been scheduled
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The Start Date of an assignment is today. (Notifications sent at 9am)
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The End Date of an assignment is today. (Notifications sent at 9am)
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                The End Date of an assignment has passed, and the assignment was not completed. 
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                Guardians and Therapists can get notifications when a child completes an assignment
-                            </p></li>
-                            <li><p style={Styles.Fonts.basicX}>
-                                A meeting is today. (Notifications sent at 9am)
-                            </p></li>
-                        </ol>
-                    </div>
-                </div>
-                <div style={{paddingTop: 0, padding: 20}}>
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4, padding: 20, paddingTop: 0}}>
-                        <p style={Styles.Fonts.basicX}>
-                            From the Calendar Menu you are also able to click "View All", bringing you to the "View All" screen. 
-                            From here, users are able to parse through all assignments and meetings, past and present. As you see in the first
-                            image, 'Show Expired' is selected, and returns every assignment the Child has ever had. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Clicking on an individual assignment will open up a module that shows the due date, start date, and all videos assigned. If 
-                            the assigned child completes any of the workouts while the assignment is active the video will return with a green background
-                            as opposed to a red one. This allows therapists, children, and guardians alike  to check the progress of the assignment.
-                        </p>
-                    </div>
-                    <div style={{flex: 8}}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <OstCard
-                                templateStyle={1}
-                                imageSrc={allAssign}
-                                style={{height: 700}}
-                            >
-                            </OstCard>
-                            <OstCard
-                                templateStyle={1}
-                                imageSrc={assignOpened}
-                                style={{height: 700}}
-                            >
-                            </OstCard>
-                        </div>
-                        
-                    </div>
-                </div>
-                </div>
-            </div>
-            )
-        }
-
-        // Fifth Part Account Structure
-        function renderAccountStructure(){
-            if (!renderAccStruc){
-                return
-            }
-            return(
-                <div style={{paddingTop: 20}}>
-                    <p style={Styles.Fonts.basicX}>
-                       The app is designed to supplement real life practices and systems. This means to say, the app was designed and will be most optimized for 
-                       Physical Therapists and their existing clients. Most client type users are invited by their therapist and can create an account through an email they recieve. 
-                       In order to do this, however; a therapist must first be a part of an Organization. Each organization has at least one founder account, which is typically also a 
-                       therapist. This organization can then invite therapists, and those therapists can then invite clients. Each 'client' consists of a Parent and a Child. The Data Structure looks as so
-                    </p>
-                    <div>
-                        <div>
-                            <OstCard
-                            templateStyle={1}
-                            imageSrc={modelStruc}
-                            style={{height: 500}}
-                            >
-
-                            </OstCard>
-                        </div>
-                    </div>
-                    <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Organization</div>
-                    <p style={Styles.Fonts.basicX}>
-                        The Organization Model is the parent to every other data model in the Kidz N Motion App. Organizations will <strong>have many</strong> Therapists, as well as a variety of other options that 
-                        will apply to all Therapists and thus all Clients. Some of these properties include the payment settings as well as video settings from the Therapeutic Practice. While you would be able to access the 
-                        information of Patients by finding the Therapists from the Organization and going down through the models that way, the Organization will also have direct relationships with the Clients and parents and children as well. 
-                    </p>
-                    <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Users</div>
-                    <p style={Styles.Fonts.basicX}>
-                        All users are a part of the User tabel in the database, meaning Therapists, Children and Guardians alike are all just instances of the User Model. There is, however
-                        <strong> role-specific properties</strong> attached to the user model that seperates Children from Guardians and Guardians from Therapists. This is mostly determined through the 'role' property which is 
-                        provided during the create call to the API. If the role provded is "THERAPIST", then the user model follows a different path in the API's code than it would had "GUARDIAN" been provided as 
-                        the role. These are the only two users that can directly sign up, as when signing up as a GUARDIAN, a CHILD user is automatically created alongside the parent using user provided information. 
-                    </p>
-
-                    <p style={Styles.Fonts.basicX}>
-                        All Users are created through the same mutation, <storng>signupUser</storng>. As previously mentioned, this will take a 'role' as a parameter and from there will add the user role 
-                        specific properties. Those properties include...
-                    </p>
-                    <div style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
-                        <strong style={{color: 'black'}}>Therapist Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableAppointmentNotifications </span>(This is true if the Therapist gets notified on confirmed appointments)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>clientCarePlans </span>(This is a list of all Clients belonging to the Therapist)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Guardian Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>messagesAreMuted</span> (This is true if the Therapist has the clien'st messages muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>appointmentsAreMuted</span> (This is true if the Therapist has the client's appointments muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableMissedDateNotifications</span> (This is true if the client has their missed asisignments muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUser</span> (This is true if the client is using this without a therapist)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUserStripeID</span> (This holds relevant payment IDs id a user is solo and has paid for full access)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>childCarePlans </span>(This is a list of all the Children objects associated with the Guardian)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Child Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessSettings</span> (This is true if Guardian enabled the child to change their settings)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessMessages</span> (This is true if Guardian enabled the child to be able to message the therapist)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>leaveApp</span> (This is true if Guardian enabled the child to leave the app or change sign in status)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan </span>(This the client care plan object for the child)</li>
-                        </ul>
-                    </div>
-                    <div style={{...Styles.Fonts.lessonHeader, fontSize: 22, width: '60%', marginLeft: '0%'}}>Clients / Care Plans</div>
-                    <p style={Styles.Fonts.basicX}>
-                        While the User models contain personal information, settings, and relationships to other users and models, they do not 
-                        contain data pertaining to the meetings or assignments that can be scheduled, nor do they contain therapist notes and 
-                        excersize progress. This is where the 'careplan' or Client object is needed.
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        The careplan is separated from the user, as a Therapist, a guardiana and the child should all have equal access to the model,
-                        as we do not want to have too much data linked directly to the child model. As you saw in the Model Relationship Chart shown above, the 
-                        client model also helps keep relationships a bit less confusing. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        As just mentioned, the CarePlan / Client models contain the following information
-                    </p>
-                    <div style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
-                        <strong style={{color: 'black'}}>Relationship Data</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>child </span>(Connected Child accounts)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>guardians </span>(Connected Guardian accounts)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>therapist </span>(Connected Therapist accounts)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoDetails </span>(This will be covered in more detail below)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>medals </span>(This will be covered in more detail below)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>assignments </span>(This will be covered in more detail below)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>meetings </span>(This will be covered in more detail below)</li>
-
-                        </ul>
-                        <strong style={{color: 'black'}}>Progression and Excersize</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>dailyStreak</span> (Tracks how many consecutive days a child earns a medal)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>functionalLevel</span> (This determines what level of videos the child has access to)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>blockedVideoIDs</span> (Lists video IDs of videos the Therapist has blocked the Child from accessing)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>generalNotes</span> (Notes left by the Therapist )</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Contents of 'videoDetail' model</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoID</span> (The ID of the video as it is hosted on Cloudinary. Used to track videos watched and which videos are blocked)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>medals</span> (All of the medals for this specific video and this specific care plan user)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoNotes</span> (Notes left by the Therapist for this specific video)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan</span> (The careplan which the video notes are connected to)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Contents of 'medal' model</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>grade</span> (bronze, silver, or gold)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>videoID</span> (The ID of the corresponding video as it is stored on Cloudinary)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>date</span> (The date the medal was earned)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>carePlan</span> (The careplan which the medal is connected to)</li>
-                        </ul>
-                    </div>
-                </div>
-            )
-        }
-
-        function renderAssignmentStructure(){
-            return(
-                <div style={{paddingTop: 20}}>
-                    <p style={Styles.Fonts.basicX}>
-
-                    </p>
-                </div>
-            )
-        }
+        const carePlanFields = [
+            {
+                title: "Relationships",
+                fields: [
+                    ["child", "The connected child account"],
+                    ["guardians", "The connected guardian accounts"],
+                    ["therapist", "The connected therapist account"],
+                    ["videoDetails", "Per-video notes and medals (below)"],
+                    ["medals", "Every medal earned (below)"],
+                    ["assignments", "Assigned workouts"],
+                    ["meetings", "Scheduled meetings"],
+                ],
+            },
+            {
+                title: "Progress and exercise",
+                fields: [
+                    ["dailyStreak", "How many days in a row the child has earned a medal"],
+                    ["functionalLevel", "Which level of videos the child can access"],
+                    ["blockedVideoIDs", "Videos the therapist has blocked for this child"],
+                    ["generalNotes", "Notes left by the therapist"],
+                ],
+            },
+            {
+                title: "videoDetail model",
+                fields: [
+                    ["videoID", "The video's ID on Cloudinary, used to track watched and blocked videos"],
+                    ["medals", "Every medal for this video and this care plan"],
+                    ["videoNotes", "The therapist's notes for this video"],
+                    ["carePlan", "The care plan the notes belong to"],
+                ],
+            },
+            {
+                title: "medal model",
+                fields: [
+                    ["grade", "Bronze, silver or gold"],
+                    ["videoID", "The video's ID on Cloudinary"],
+                    ["date", "When the medal was earned"],
+                    ["carePlan", "The care plan the medal belongs to"],
+                ],
+            },
+        ]
 
     /////////////////
     // Main Return //
     /////////////////
 
     return(
-        <div style={{backgroundColor: 'orange',  height: '100%', marginTop: -20}}>
-            <div className="codex-showcase-main" style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
-                <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
+        <CaseStudyPage>
+            <Hero
+                background={HERO_BG}
+                eyebrow="Professional Work · Therapy In Motion PA"
+                title="Kidz-N-Motion"
+                intro={<>
+                    The flagship app for Therapy In Motion PA, connecting children facing disabilities with their own Physical
+                    Therapist. I'm the sole developer of the app, the website and the database behind them.
+                </>}
+                actions={<>
+                    <ActionButton label="App Store ↗" onClick={() => open(IOS_LISTING)} ariaLabel="Kidz-N-Motion on the App Store (opens in a new tab)"/>
+                    <ActionButton label="Website ↗" variant="ghost" onClick={() => open(WEBSITE)} ariaLabel="Kidz-N-Motion website (opens in a new tab)"/>
+                </>}
+                aside={<Phone src={therScreen} alt="The Kidz-N-Motion therapist home screen" width={200}/>}
+            />
 
-                    {/*  Init */}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10, display: 'flex'}}>
-                        Kidz-N-Motion   
-                    </div>
-                    {renderInitialRambling()}
+            <FactRow
+                facts={[
+                    {label: "Role", value: "Sole developer"},
+                    {label: "Platforms", value: "iOS and Android"},
+                    {label: "Built with", value: "React Native, PostgreSQL"},
+                    {label: "Services", value: "Firebase, Cloudinary, Stripe"},
+                ]}
+            />
 
-                    {/* Render Distribution */}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
-                        Distribution
-                        <img 
-                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderListing ? chevup : chevdown}
-                            onClick={() => setRenderListing(!renderListing)}>
-                        </img>
-                    </div>
-                    {renderAppListing()}
+            <Section id="story" eyebrow="The Story" title="Physical therapy that kept going through COVID">
+                <P>
+                    Kidz-N-Motion was founded by <a href={FOUNDER} target="_blank" rel="noopener noreferrer" style={link}>Dr. LaFonda Beneby</a> during
+                    COVID, when she and her in-school Physical Therapist peers suddenly couldn't give their clients the services they
+                    needed. They could describe exercises to parents, but there was no way to <strong>show</strong> children the exercises,
+                    and no way to confirm the activities were actually done.
+                </P>
+                <P>
+                    To reconnect with the children who needed them, Dr. LaFonda founded Therapy In Motion and started building the
+                    Kidz-N-Motion app. Clients and their parents can reach their Physical Therapist with in-app instant messaging.
+                    Therapists assign workouts, and every workout comes with its own animation of a child doing the exercise, so
+                    clients can follow along. Therapists can also record clients during in-person sessions and send the videos to
+                    parents through the app, so parents can see how their child progresses.
+                </P>
+            </Section>
 
-                    {/* Account Types */}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
-                        Account Types
-                        <img 
-                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderAccTypes ? chevup : chevdown}
-                            onClick={() => setRenderAccTypes(!renderAccTypes)}>
-                        </img>
-                    </div>
-                    {renderAccountTypes()}
+            <Section id="distribution" eyebrow="Distribution" title="Shipping to both app stores">
+                <Split media={<WideShot src={listing} alt="The Kidz-N-Motion App Store listing" maxWidth={300}/>} mediaBasis={300}>
+                    <P>
+                        Kidz-N-Motion has been on the App Store and Google Play since 2021, used by therapists, clients and their parents
+                        alike. It's built with React Native and kept up to date with current SDKs, APIs and store requirements. I've been
+                        its sole architect, handling development, production and publishing, and I manage both the Apple Developer and
+                        Google Play accounts.
+                    </P>
+                    <P>
+                        This was my first professional project as a computer scientist, and it came with plenty of problems: my first
+                        Gradle build errors on Android and CocoaPods issues on iOS. With no senior developer to turn to, and before AI
+                        assistants were around to help, I worked through every compatibility issue and always got the app built and
+                        shipped.
+                    </P>
+                </Split>
+            </Section>
 
-                    {/* Calendar Types */}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
-                        Calendar Functionality and Assignments / Meetings
-                        <img 
-                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderCal ? chevup : chevdown}
-                            onClick={() => setRenderCal(!renderCal)}>
-                        </img>
-                    </div>
-                    {renderCalendarDetails()}
-
-                    {/* Account Structure */}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 20, display: 'flex'}}>
-                        Account Model Structure / Relationships
-                        <img 
-                            style={{marginLeft: 'auto', height: 35, width: 35}} src={renderAccStruc ? chevup : chevdown}
-                            onClick={() => setRenderAccStruc(!renderAccStruc)}>
-                        </img>
-                    </div>
-                    {renderAccountStructure()}
-
-
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>
-                        Assignmnent Structure
-                    </div>
-                    {renderAssignmentStructure()}
+            <Section
+                id="accounts"
+                eyebrow="Account Types"
+                title="One app, three experiences"
+                subtitle="Children, parents and therapists each come to the app for something different, so each gets its own version of it. Pick an account type to see what it can do."
+            >
+                <FeatureTabs items={accountTypes} ariaLabel="Account types"/>
+                <div style={{marginTop: 24}}>
+                    <P>
+                        Every user can personalize the app, too. There's a wide range of color palettes, including ones that stay
+                        readable for different types of color blindness. Users can change their avatar, request a change-password
+                        email, or reset a forgotten password through an emailed link to the website.
+                    </P>
                 </div>
-            </div>
-        </div>
+            </Section>
+
+            <Section id="calendar" eyebrow="Calendar" title="Assignments, meetings and reminders">
+                <Split media={<Phone src={therCal} alt="The calendar on a therapist account" caption="Therapist calendar, pink palette" width={240}/>}>
+                    <P>
+                        Therapists create assignments and meetings for their clients, and each one shows up on the therapist's,
+                        the child's and the guardian's calendars.
+                    </P>
+                    <P>
+                        This screenshot is a therapist account using the pink color palette. Assignment due dates are light pink dots
+                        under the date and meetings are darker fuchsia dots, so you can see an assignment due on the 28th and a meeting
+                        on the 23rd. August 28th is selected, showing an assignment with three workout videos: Rolling, Toe Touches and
+                        Squat.
+                    </P>
+                    <Checklist
+                        title="Push notifications (through Firebase) go out when…"
+                        items={[
+                            "A child or guardian receives an assignment, or a meeting is scheduled",
+                            "An assignment starts today (sent at 9am)",
+                            "An assignment is due today (sent at 9am)",
+                            "An assignment's due date passed without it being completed",
+                            "A child completes an assignment (for guardians and therapists)",
+                            "A meeting is today (sent at 9am)",
+                        ]}
+                    />
+                    <P style={{fontSize: 15.5, color: DOC.muted}}>Users can turn these off at any time.</P>
+                </Split>
+
+                <SubHeading>Every assignment, past and present</SubHeading>
+                <Split
+                    reverse
+                    mediaBasis={500}
+                    media={
+                        <PhoneRow style={{margin: 0}}>
+                            <Phone src={allAssign} alt="The View All screen listing every assignment" caption="View All, with expired shown" width={210}/>
+                            <Phone src={assignOpened} alt="An opened assignment showing its videos" caption="An opened assignment" width={210}/>
+                        </PhoneRow>
+                    }
+                >
+                    <P>
+                        From the calendar, "View All" opens a list of every assignment and meeting. In the first screenshot,
+                        "Show Expired" is on, so it lists every assignment the child has ever had.
+                    </P>
+                    <P>
+                        Tapping an assignment opens its start date, due date and every assigned video. Videos the child completed while
+                        the assignment was active have a green background instead of a red one, so therapists, children and guardians
+                        can all check progress at a glance.
+                    </P>
+                </Split>
+            </Section>
+
+            <Section
+                id="data-model"
+                eyebrow="Data Model"
+                title="How the accounts fit together"
+                subtitle="The app is built to support how physical therapy practices already work, so the data is shaped around organizations, therapists and their clients."
+            >
+                <P>
+                    Most clients are invited by their therapist and create their account from the emailed invite. For that to work,
+                    the therapist must belong to an Organization. Every organization has at least one founder account, usually also a
+                    therapist. Organizations invite therapists, and therapists invite clients. Each client is a parent and a child.
+                </P>
+                <WideShot src={modelStruc} alt="Diagram of how organizations, therapists, guardians, children and care plans relate" caption="How the main models relate"/>
+
+                <SubHeading>Organization</SubHeading>
+                <P>
+                    The Organization is the parent of every other model in the app. An organization <strong>has many</strong> therapists,
+                    plus settings that apply to all of its therapists and clients, such as payment and video settings. You could reach a
+                    client by going from the organization through their therapist, but organizations also link to their clients, parents
+                    and children directly.
+                </P>
+
+                <SubHeading>Users</SubHeading>
+                <P>
+                    Therapists, guardians and children are all rows in the same User table. What separates them is a set of
+                    role-specific properties, decided by the <Code>role</Code> passed when the account is created. A <Code>THERAPIST</Code> takes
+                    a different path through the API than a <Code>GUARDIAN</Code>. Those are the only two roles that can sign up directly;
+                    signing up as a guardian creates the matching child account automatically.
+                </P>
+                <P>
+                    Every user is created through the same mutation, <Code>signupUser</Code>, which adds these properties based on the role:
+                </P>
+                <FieldGroups groups={userFields}/>
+
+                <SubHeading>Care plans</SubHeading>
+                <P>
+                    Users hold personal details, settings and relationships, but not the assignments, meetings, therapist notes or
+                    exercise progress. Those live on the care plan (the Client model). Keeping it separate means the therapist, the
+                    guardian and the child all get equal access to it without piling data onto the child's account, and it keeps the
+                    relationships between models easier to follow.
+                </P>
+                <FieldGroups groups={carePlanFields} min={420}/>
+            </Section>
+        </CaseStudyPage>
     )
 }

@@ -1,29 +1,33 @@
 // React + Next
-import React, {useEffect, useState} from "react";
-import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
-// Recoil
+// Jotai
 import { useAtom } from "jotai";
-import { tokenState, tabBarState, directoryDataState } from "../../../jotai/atoms";
+import { tabBarState, directoryDataState } from "../../../jotai/atoms";
 
-// Styles 
-import Styles from "../../../styles/styles";
-
-// Ostrich
-import { OstCard } from "@ostrich_development/ostrich-components";
+// Showcase Kit
+import { Hero, ActionButton, Section, Notice } from "../../../components/Showcase/showcaseKit";
+import { CaseStudyPage, P, Code, SubHeading, FactRow, Phone, PhoneRow, WideShot, Split, FeatureTabs, Timeline } from "../../../components/Showcase/caseStudyKit";
 
 // Assets
-const listing = "../../../assets/showcase_images/ieee/ieeeAndListing.png";
-const listing2 = "../../../assets/showcase_images/ieee/ieeeAppListing.png";
-const new_ppl_and_events = "../../../assets/showcase_images/ieee/new_dash_poeple_and_events.png";
-const old_events = "../../../assets/showcase_images/ieee/old_events.png";
-const old_people = "../../../assets/showcase_images/ieee/old_people.png";
-const gSearch = "../../../assets/showcase_images/ieee/gSearch.png";
-const gSearchPeople = "../../../assets/showcase_images/ieee/gSearch_people.png";
-const gSearchEvents = "../../../assets/showcase_images/ieee/gSearch_events.png";
+const IMG = "/assets/showcase_images/ieee"
+const androidListing = `${IMG}/ieeeAndListing.png`
+const iosListing = `${IMG}/ieeeAppListing.png`
+const newDashboard = `${IMG}/new_dash_poeple_and_events.png`
+const oldEvents = `${IMG}/old_events.png`
+const oldPeople = `${IMG}/old_people.png`
+const gSearch = `${IMG}/gSearch.png`
+const gSearchPeople = `${IMG}/gSearch_people.png`
+const gSearchEvents = `${IMG}/gSearch_events.png`
 
+const IOS_LISTING = "https://apps.apple.com/us/app/ieee/id1259370915"
+const ANDROID_LISTING = "https://play.google.com/store/apps/details?id=org.ieee.mobile.mcoe.ieee&hl=en_US"
 
+// Navy into IEEE blue
+const HERO_BG = "linear-gradient(135deg, #11013b 0%, #0b2c63 50%, #00629B 100%)"
+const IEEE_BLUE = "#00629B"
 
+const open = (url) => window.open(url, "_blank", "noopener,noreferrer")
 
 
 export default function IEEEPage(){
@@ -32,416 +36,225 @@ export default function IEEEPage(){
     // State //
     ///////////
 
-    const [directory, setDirectory] = useAtom(directoryDataState)
-    const [activeTab, setActiveTab] = useAtom(tabBarState)
-    const router = useRouter()
+        const [directory, setDirectory] = useAtom(directoryDataState)
+        const [activeTab, setActiveTab] = useAtom(tabBarState)
 
     ////////////////
     // UseEffects //
     ////////////////
 
-    useEffect(() => {
-        setDirectory("Portfolio")            
-    }, [])
+        useEffect(() => {
+            setDirectory("Portfolio")
+            setActiveTab("Official Works")
+        }, [])
 
-    useEffect(() => {
-        setActiveTab("Official Works")
-    }, [])
+    ///////////////
+    // Constants //
+    ///////////////
 
-    ////////////////
-    // Renderings //
-    ////////////////
-
-
-        // First Paragraph
-        function renderInitialRambling(){
-            return(
-                <div style={{paddingTop: 20}}>
-                    <p style={Styles.Fonts.basicX}>
-                        The Flaghship app for IEEE, this app reaches millions of users across the world, and it is a priviledge 
-                        to say that I have contributed to such a widely used application. During my time at IEEE, I have maintained and 
-                        updated forward facing technologies to better the user experience of millions of users, while within my three years
-                        helping to increase total user downloads by 1.25 Million in 2026 (Goal was 750,000)
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Published in 2014, the app's codebase and support structure was built well before my arrival-- while also being built well before
-                        more modern Native frameworks had been released. That meant that the application was entirely powered by Cordova, a framework that had become
-                        fully deprecated by the time I had arrived at IEEE.
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Additionally, my time at IEEE saw a change in leadership at the CTO position, and with that change came some 
-                        repriortization on client-facing products. This lead to some major overhauls of the IEEE App that I was a large 
-                        and often times invaluable piece of.
-                    </p>
-                </div>
-            )
-        }
-
-        // Second Part ( Distribution )
-        function renderAppListing(){
-            return(
-                <div style={{paddingTop: 30}}>
-                    <div style={{flexDirection: 'row', display: 'flex', gap: 70}}>
-                        <OstCard
-                        templateStyle={1}
-                        style={{height: 450, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
-                        imageSrc={listing}
-                        >
-                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 48, fontWeight: 600}}>
-                                <a href="https://play.google.com/store/apps/details?id=org.ieee.mobile.mcoe.ieee&hl=en_US">Android Listing</a>
-                             </p>
-                        </OstCard>
-                        <OstCard
-                        templateStyle={1}
-                        style={{height: 450, flex: 6, backgroundColor: 'lightgrey', paddingTop: 30}}
-                        imageSrc={listing2}
-                        >
-                            <p style={{...Styles.Fonts.basicXL, padding: 0, margin: 0, fontSize: 48, fontWeight: 600}}>
-                                <a href="https://apps.apple.com/us/app/ieee/id1259370915">iOS Listing</a>
-                            </p>
-                        </OstCard>
-                    </div>
-                    <div style={{padding: 20, paddingTop: 0}}>
-                        <p style={Styles.Fonts.basicX}>
-                            As previously eluded to and as will be mentioned again under my contributions to the IEEE EventHub, one of the 
-                            major responsibilities of mine was keeping the app compliant with the ever changing Apple and Google Play Store Policies. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Such work includes the manual addition of PrivacyManifests for Apple Builds, as many of the libraries used in the app
-                            were deprecated and did not provide the modern security and permission information that iOS now looks for. 
-                            While the manual PrivacyManifests enabled us to continue releasing updates with new content and bug fixes on our anticipated
-                            schedule, it was not a permanent fix. This led me to integrate Capacitor into the app, leading to a Capacitor/Cordova hybrid project.
-                            In order to do this, however, I first needed to upgrade the Angular and Ionic versions.
-                        </p>
-                    </div>
-                </div>
-            )
-        }
-
-        // Third Part ( Account Types )
-        const[card1, setCard1] = useState(false)
-        const[card2, setCard2] = useState(false)
-        const[card3, setCard3] = useState(false)
-        const cardStyle = (flipped) => {
-            return(
-                {
-                    flex: 4,
-                    transformStyle: "preserve-3d",
-                    transition: "transform 0.6s",
-                    transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    height: 600, overflowY: "auto"
-                }
-            )
-            
-        }
-
-        // Renders Dashboard Changes Section
-        function renderDashboardElements(){
-            const renderCardOne = () =>{
-                if (!card1){
-                    return(
-                        <OstCard
-                        templateStyle={1}
-                        imageSrc={new_ppl_and_events}
-                        onClick={() => setCard1(!card1)}
-                        style={cardStyle(card1)}
-                        >
-                            New Dashboard featuring 'People' and 'Events'
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard1(!card1)}
-                        style={cardStyle(card1)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'teal'}}>New Modules</div>
-                                <p style={Styles.Fonts.basic}>
-                                    The newer designs were much less rigid and block like than their original counter parts. 
-                                    Despite looking more simple, the new modules actually contain more information than their original
-                                    counterparts do.  
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    For starters, the Events Cards are now colored to indicate what type of Event the are (Hybrid, In Person, or fully Remote)
-                                    Using flex-box sizing and dynamic SCSS, the text size is now dependent on the screen size. This means to say the fonts are bigger on 
-                                    larger screens. This prevents longer titles from being cut off on smaller phones while also allowing the Event modules to look good 
-                                    on bigger devices like iPads. 
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    The People Cards had one major transformation in mind. The Profile Pictures on the originals were way too small, and in the newer
-                                    designs they were intended to be the focus of the People Cards. We kept the coloring, as the lighter blue band around this individual's profile
-                                    indicates their "Traditonal Member" Member Grade. Other grades will have different colors. 
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
-            const renderCardTwo = () => {
-                if (!card2){
-                    return(
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={old_events}
-                            onClick={() => setCard2(!card2)}
-                            style={cardStyle(card2)}
-                        >
-                            Previous 'Events' cards
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard2(!card2)}
-                        style={cardStyle(card2)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'teal'}}>Event Cards</div>
-                                <p style={Styles.Fonts.basic}>
-                                    The previous Events Cards needed some work. While they clearly displayed the most important information, they felt claustrophobic with Events that 
-                                    have longer titles; which they often do. Their length also made it difficult to show off multiple events at a time on screen, and attributed to a monotonous design
-                                    on the dashboard page
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    For the redesign, we wanted to split the length in half to make the home dashboard have some visual variety. We also wanted to use flex styling to prevent
-                                    the longer titles from filling the card. Additionally, we wanted to add some color as well. 
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
-            const renderCardThree = () => {
-                if (!card3){
-                    return(
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={old_people}
-                            onClick={() => setCard3(!card3)}
-                            style={cardStyle(card3)}
-                        >
-                            Previous 'People' cards
-                        </OstCard>
-                    )
-                }
-                else{
-                    return(
-                        <OstCard
-                        onClick={() => setCard3(!card3)}
-                        style={cardStyle(card3)}
-                        >
-                            <div>
-                                <div style={{...Styles.Fonts.lessonHeader, backgroundColor: 'teal'}}>People Cards</div>
-                                <p style={Styles.Fonts.basic}>
-                                    The old design was a little safe if not a bit cluttered. The Member rank is shown by the color on the bottom of the card,
-                                    and their similarities to the current user's profile is displayed in the middle.
-                                </p>
-                                <p style={Styles.Fonts.basic}>
-                                    For the redesign, we wanted to make the component styled more like modern mobile apps often are. We wanted to add some color, make the 
-                                    profile picture more prominent, and add an indication that clicking the card routes the app to their profile page.
-                                </p>
-                            </div>
-                        </OstCard>
-                    )
-                }
-            }
-            return(
-                <div>
-                    <p style={Styles.Fonts.basicX}>
-                        Perhaps the largest undertaking I've been a part of at IEEE was the reinvention of the User Dashboard for the Flagship App. This involved a complete overhaul of our
-                        previous dahsboard in both functionality and design. In this section, we will focus on my impacts on the design. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        <strong>Click on each card to learn more about the different account types and different functionalities available to them</strong>
-                    </p>
-                    <div style={{flexDirection: 'row', display: 'flex', padding: 20, gap: 40}}>
-                        {renderCardTwo()}
-                        {renderCardThree()}
-                        {renderCardOne()}
-                    </div>
-                    <p style={Styles.Fonts.basicX}>
-                        Additionally, all users have the functionality to personalize their experience. We have a wide variety of color palletes for the app 
-                        that will allow users even with color blindness to find a palette that works for them and is visible in for their specific type of color
-                        blindness. 
-                    </p>
-                    <p style={Styles.Fonts.basicX}>
-                        Users can also change their profile Avatar (seen in the top right of each screen) and have a 'change password' email sent to them if 
-                        they desire a new password. Similarly, if they forgot their password they can request a temporary by entering their email, where a 
-                        a link will be provided that redirects users to the site where they can change thier password.
-                    </p>
-                </div>
-            )
-        }
-
-        // Fourth Part ( Calendar )
-        function renderGlobalSearch(){
-            return(
-            <div>
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4}}>
-                        <OstCard
-                            templateStyle={1}
-                            imageSrc={gSearch}
-                            style={{height: 500}}
-                        >
-                        </OstCard>
-                    </div>
-                    <div style={{flex: 8, padding: 20, paddingTop: 20}}>
-                        <p style={Styles.Fonts.basicX}>
-                           Two of IEEE's Core Values are <strong>supporting the development of technology and professionals</strong> and <strong> Connecting technical professionals worldwide</strong>. As such, providing users worldwide 
-                           a massive swath of data as well as a strong way to filter through this data. This is where the Global Search feature of our IEEE App comes into play. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Our app hosts hundreds of thousands of different pieces of content; spread between poeple, events, news, media and magazines. The Global Search 
-                            feature enables users to look for and filter content by type, title or keywords. 
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            The screen to the left shows what Users will see upon their landing to Global Search. An empty Search Bar with 
-                            recently released and user recommended content displayed already. In this case, our user's most immediate interests align with the 
-                            news items shown below the searchbar.
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            Once users begin to type in the Searchbar, they are able to select which (if any) type of content they would
-                            like to filter the results by. You will see this in the images below. 
-                        </p>
-                    </div>
-                </div>
-                <div style={{paddingTop: 0, padding: 20}}>
-                <div style={{flexDirection: 'row', display: 'flex', padding: 20}}>
-                    <div style={{flex: 4, padding: 20, paddingTop: 0}}>
-                        <p style={Styles.Fonts.basicX}>
-                            In the two exmaples to the right you will see two of the many pieces I specifically worked on for the Global Search.
-                            Foremost, the addition of category buttons to filter your search results to further assist users in finding the specific content they desire. This is 
-                            particularly important considering many Events will be named after the Magazine that hosts them, or many 
-                            news posts will have media attached thus they have the same title. This feature enables users to more quickly locate
-                            the content they desire, reduces frustration and asissted greatly in user retention.
-                        </p>
-                        <p style={Styles.Fonts.basicX}>
-                            The second aspect of work shown here is the Login Checker when looking up People Profiles. To protect user privacy,
-                            Guest Users (anyone not signed in) will be unable to look up or view any specific profiles. Placing the Check to verify users 
-                            were Authenticated was the simple part. The difficult aspect of this was implementing the ability to login through this screen,
-                            Our login is handled in an SSO page accessed through an In App Browser, and originally our app had issues populating the user profile and 
-                            updating the pages when users logged in from pages outside of the main dashboard. Through reworking the lifecycle of the Global Search page
-                            as well as retooling our Nrgx dispatchers enabled login to work seemlessly on this page as well as others. 
-                        </p>
-                    </div>
-                    <div style={{flex: 8}}>
-                        <div style={{display: 'flex', flexDirection: 'row', paddingTop: 100, gap: 20}}>
-                            <OstCard
-                                templateStyle={1}
-                                imageSrc={gSearchEvents}
-                                style={{height: 800}}
-                            >
-                            </OstCard>
-                            <OstCard
-                                templateStyle={1}
-                                imageSrc={gSearchPeople}
-                                style={{height: 800}}
-                            >
-                            </OstCard>
-                        </div>
-                        
-                    </div>
-                </div>
-                </div>
-            </div>
-            )
-        }
-
-        // Fifth Part Account Structure
-        function renderAccountStructure(){
-            return(
-                <div style={{paddingTop: 20}}>
-                    <p style={Styles.Fonts.basicX}>
-                       The app is designed to supplement real life practices and systems. This means to say, the app was designed and will be most optimized for 
-                       Physical Therapists and their existing clients. Most client type users are invited by their therapist and can create an account through an email they recieve. 
-                       In order to do this, however; a therapist must first be a part of an Organization. Each organization has at least one founder account, which is typically also a 
-                       therapist. This organization can then invite therapists, and those therapists can then invite clients. Each 'client' consists of a Parent and a Child. The Data Structure looks as so
-                    </p>
-                    <div>
-                        <div>
-                            <OstCard
-                            templateStyle={1}
-                            imageSrc={modelStruc}
-                            style={{height: 500}}
-                            >
-
-                            </OstCard>
-                        </div>
-                    </div>
-                    <div style={Styles.Fonts.lessonHeader}>Organization</div>
-                    <p style={Styles.Fonts.basicX}>
-                        The Organization Model is the parent to every other data model in the Kidz N Motion App. Organizations will <strong>have many</strong> Therapists, as well as a variety of other options that 
-                        will apply to all Therapists and thus all Clients. Some of these properties include the payment settings as well as video settings from the Therapeutic Practice. While you would be able to access the 
-                        information of Patients by finding the Therapists from the Organization and going down through the models that way, the Organization will also have direct relationships with the Clients and parents and children as well. 
-                    </p>
-                    <div style={Styles.Fonts.lessonHeader}>Users</div>
-                    <p style={Styles.Fonts.basicX}>
-                        All users are a part of the User tabel in the database, meaning Therapists, Children and Guardians alike are all just instances of the User Model. There is, however
-                        <strong> role-specific properties</strong> attached to the user model that seperates Children from Guardians and Guardians from Therapists. This is mostly determined through the 'role' property which is 
-                        provided during the create call to the API. If the role provded is "THERAPIST", then the user model follows a different path in the API's code than it would had "GUARDIAN" been provided as 
-                        the role. These are the only two users that can directly sign up, as when signing up as a GUARDIAN, a CHILD user is automatically created alongside the parent using user provided information. 
-                    </p>
-
-                    <p style={Styles.Fonts.basicX}>
-                        All Users are created through the same mutation, <storng>signupUser</storng>. As previously mentioned, this will take a 'role' as a parameter and from there will add the user role 
-                        specific properties. Those properties include...
-                    </p>
-                    <div style={{...Styles.Fonts.basicX, fontSize: 20, color: 'grey'}}>
-                        <strong style={{color: 'black'}}>Therapist Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>occationTitle</span></li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableAppointmentNotifications </span>(This is true if the Therapist gets notified on confirmed appointments)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Guardian Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>messagesAreMuted</span> (This is true if the Therapist has the clien'st messages muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>appointmentsAreMuted</span> (This is true if the Therapist has the client's appointments muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>enableMissedDateNotifications</span> (This is true if the client has their missed asisignments muted)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUser</span> (This is true if the client is using this without a therapist)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>soloUserStripeID</span> (This holds relevant payment IDs id a user is solo and has paid for full access)</li>
-                        </ul>
-                        <strong style={{color: 'black'}}>Child Specific</strong>
-                        <ul>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessSettings</span> (This is true if Guardian enabled the child to change their settings)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>canAccessMessages</span> (This is true if Guardian enabled the child to be able to message the therapist)</li>
-                            <li><span style={{...Styles.Code.code, fontSize: 20, color: 'black'}}>leaveApp</span> (This is true if Guardian enabled the child to leave the app or change sign in status)</li>
-                        </ul>
-                    </div>
-
-                </div>
-            )
-        }
+        const dashboardCards = [
+            {
+                title: "Old event cards",
+                image: oldEvents,
+                alt: "The previous event cards on the IEEE app dashboard",
+                caption: "The previous Events cards",
+                body: <>
+                    <P>
+                        The old Events cards showed the most important information clearly, but they felt cramped with longer event
+                        titles, which events often have. They were also long enough that only a few fit on screen at once, which made
+                        the dashboard feel monotonous.
+                    </P>
+                    <P>
+                        For the redesign we wanted to cut their length in half to give the dashboard some visual variety, use flex
+                        layout so long titles wouldn't fill the whole card, and add some color.
+                    </P>
+                </>,
+            },
+            {
+                title: "Old people cards",
+                image: oldPeople,
+                alt: "The previous people cards on the IEEE app dashboard",
+                caption: "The previous People cards",
+                body: <>
+                    <P>
+                        The old People cards were safe, if a little cluttered. The member's grade was shown by the color along the
+                        bottom of the card, and what they had in common with the current user sat in the middle.
+                    </P>
+                    <P>
+                        For the redesign we wanted them to look more like cards in modern mobile apps: more color, a much more
+                        prominent profile picture, and a clear hint that tapping the card opens that person's profile.
+                    </P>
+                </>,
+            },
+            {
+                title: "New dashboard",
+                image: newDashboard,
+                alt: "The redesigned IEEE app dashboard with new People and Events cards",
+                caption: "The new dashboard, with People and Events",
+                body: <>
+                    <P>
+                        The new modules are far less rigid and blocky than the originals. They look simpler, but they actually carry
+                        more information.
+                    </P>
+                    <P>
+                        Event cards are now colored by event type: hybrid, in person or fully remote. Using flexbox sizing and dynamic
+                        SCSS, the text scales with the screen, so long titles aren't cut off on small phones and the cards still look
+                        good on larger devices like iPads.
+                    </P>
+                    <P>
+                        The People cards had one main goal: the profile pictures were far too small, and in the new design they're the
+                        focus. We kept the color coding; the light blue ring around this person's photo shows their "Traditional Member"
+                        grade, and other grades get other colors.
+                    </P>
+                </>,
+            },
+        ]
 
     /////////////////
     // Main Return //
     /////////////////
 
     return(
-        <div style={{backgroundColor: '#00629B',  height: '100%', marginTop: -20}}>
-            <div className="codex-showcase-main" style={{marginLeft: '10%', marginRight:'10%', height: '100%', backgroundColor: 'white'}}>
-                <div style={{...Styles.Sections.lessonContent, paddingTop: 35}}>
-                <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>The IEEE App</div>
-                        {renderInitialRambling()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Distribution</div>
-                        {renderAppListing()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Dashboard Element Redesigns</div>
-                        {renderDashboardElements()}
-                    <div style={{...Styles.Fonts.lessonHeader, paddingTop: 10}}>Global Search Feature</div>
-                        {renderGlobalSearch()}
+        <CaseStudyPage>
+            <Hero
+                background={HERO_BG}
+                eyebrow="Professional Work · IEEE"
+                title="The IEEE App"
+                intro={<>
+                    IEEE's flagship app, used by millions of people around the world. I maintain and modernize its client-facing
+                    features, and helped grow downloads by 1.25 million in 2026, against a goal of 750,000.
+                </>}
+                actions={<>
+                    <ActionButton label="App Store ↗" onClick={() => open(IOS_LISTING)} ariaLabel="The IEEE app on the App Store (opens in a new tab)"/>
+                    <ActionButton label="Google Play ↗" variant="ghost" onClick={() => open(ANDROID_LISTING)} ariaLabel="The IEEE app on Google Play (opens in a new tab)"/>
+                </>}
+                aside={<Phone src={newDashboard} alt="The redesigned IEEE app dashboard" width={200}/>}
+            />
 
-                    <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
-                    
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Calendar Functionality and Assignments / Meetings</div> */}
-                        {/* {renderCalendarDetails()} */}
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Account Model Structure / Relationships</div> */}
-                        {/* {renderAccountStructure()} */}
-                    {/* <div style={{...Styles.Fonts.lessonHeader, paddingTop: 30}}>Assignmnent Structure</div> */}
+            <FactRow
+                facts={[
+                    {label: "Role", value: "Software engineer"},
+                    {label: "At IEEE since", value: "2023"},
+                    {label: "2026 downloads", value: "+1.25M (goal 750K)"},
+                    {label: "Built with", value: "Angular, Ionic, Capacitor"},
+                ]}
+            />
+
+            <Section id="story" eyebrow="The Story" title="Modernizing an app from 2014">
+                <P>
+                    The IEEE app reaches millions of users across the world, and it's a privilege to have contributed to something so
+                    widely used. During my time at IEEE I've maintained and updated its client-facing features to improve the
+                    experience for all of those users.
+                </P>
+                <P>
+                    The app was published in 2014, so its codebase and support structure were built long before I arrived, and before
+                    today's native frameworks existed. It was powered entirely by Cordova, which had been fully deprecated by the time
+                    I joined.
+                </P>
+                <P>
+                    My time at IEEE also saw a new CTO, and with that came new priorities for client-facing products. That led to some
+                    major overhauls of the IEEE app, which I was a large part of.
+                </P>
+            </Section>
+
+            <Section id="distribution" eyebrow="Distribution" title="Keeping it in the stores">
+                <div style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 22, maxWidth: 980}}>
+                    <WideShot src={androidListing} alt="The IEEE app's Google Play listing" caption="Google Play listing"/>
+                    <WideShot src={iosListing} alt="The IEEE app's App Store listing" caption="App Store listing"/>
                 </div>
-            </div>
-        </div>
+                <div style={{marginTop: 26}}>
+                    <P>
+                        One of my major responsibilities, here and on <a href="/showcases/works/eventhub" style={{color: IEEE_BLUE, fontWeight: 600}}>EventHub</a>,
+                        is keeping the app compliant with Apple's and Google Play's ever-changing policies.
+                    </P>
+                </div>
+                <Timeline
+                    color={IEEE_BLUE}
+                    items={[
+                        {
+                            when: "Step 1",
+                            title: "Privacy manifests, by hand",
+                            body: <P>
+                                Many of the app's libraries were deprecated and didn't provide the security and permission information iOS
+                                now requires. I added Privacy Manifests to the Apple builds manually, which kept updates, new content and
+                                bug fixes shipping on schedule.
+                            </P>,
+                        },
+                        {
+                            when: "Step 2",
+                            title: "Upgrading Angular and Ionic",
+                            body: <P>
+                                The manual manifests weren't a permanent fix. The real fix was Capacitor, but first the Angular and Ionic
+                                versions had to be upgraded.
+                            </P>,
+                        },
+                        {
+                            when: "Step 3",
+                            title: "A Capacitor / Cordova hybrid",
+                            body: <P>
+                                With the upgrades in place, I integrated Capacitor into the app, turning it into a Capacitor/Cordova hybrid
+                                project that can keep up with current store requirements.
+                            </P>,
+                        },
+                    ]}
+                />
+            </Section>
+
+            <Section
+                id="dashboard"
+                eyebrow="Dashboard Redesign"
+                title="A new home dashboard"
+                subtitle="The biggest project I've been part of at IEEE was reinventing the app's user dashboard, overhauling both how it works and how it looks. This section covers my impact on the design."
+            >
+                <FeatureTabs items={dashboardCards} ariaLabel="Dashboard redesign"/>
+            </Section>
+
+            <Section id="search" eyebrow="Global Search" title="Finding anything across IEEE">
+                <Split media={<Phone src={gSearch} alt="The Global Search landing screen" caption="Global Search, before typing" width={240}/>}>
+                    <P>
+                        Two of IEEE's core values are <strong>supporting the development of technology and professionals</strong> and <strong>connecting
+                        technical professionals worldwide</strong>. That means giving users a huge amount of content, and a strong way to filter
+                        through it. That's what the app's Global Search is for.
+                    </P>
+                    <P>
+                        The app hosts hundreds of thousands of pieces of content, spread across people, events, news, media and magazines.
+                        Global Search lets users find and filter that content by type, title or keywords.
+                    </P>
+                    <P>
+                        This screen is what users see when they first open Global Search: an empty search bar, with recently released and
+                        recommended content already showing. In this case, the user's interests line up with the news items under the
+                        search bar. Once they start typing, they can choose which type of content, if any, to filter the results by.
+                    </P>
+                </Split>
+
+                <SubHeading>Two pieces I built</SubHeading>
+                <Split
+                    reverse
+                    mediaBasis={500}
+                    media={
+                        <PhoneRow style={{margin: 0}}>
+                            <Phone src={gSearchEvents} alt="Global Search results filtered to events" caption="Filtering by category" width={210}/>
+                            <Phone src={gSearchPeople} alt="Global Search asking a guest to log in to see people" caption="The login check for people" width={210}/>
+                        </PhoneRow>
+                    }
+                >
+                    <P>
+                        <strong>Category filters.</strong> Buttons that narrow results to one type of content. This matters because many
+                        events are named after the magazine that hosts them, and many news posts share a title with their attached media.
+                        The filters get users to what they're looking for faster, cut down on frustration and helped a lot with user
+                        retention.
+                    </P>
+                    <P>
+                        <strong>The login check for people.</strong> To protect user privacy, guests (anyone not signed in) can't look up or
+                        view profiles. Adding the check was the easy part. The hard part was letting users log in from this screen: login
+                        happens on an SSO page in an in-app browser, and the app had trouble loading the user's profile and refreshing pages
+                        when they logged in from anywhere other than the main dashboard. By reworking the Global Search page's lifecycle and
+                        retooling our <Code>NgRx</Code> dispatchers, I made login work seamlessly here and on other pages too.
+                    </P>
+                </Split>
+            </Section>
+
+            <Notice>More about my work on the IEEE app is on the way.</Notice>
+        </CaseStudyPage>
     )
 }

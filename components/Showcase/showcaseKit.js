@@ -64,12 +64,13 @@ export function jumpTo(id) {
 // Hero //
 //////////
 
-export function Hero({ eyebrow, title, intro, actions, aside }) {
+// background: optional CSS background (gradient) to give a page its own brand color
+export function Hero({ eyebrow, title, intro, actions, aside, background }) {
     return (
         <OstCard
             noShadow
             style={{
-                backgroundColor: DOC.ink, backgroundImage: HERO_BG, color: "white",
+                backgroundColor: DOC.ink, backgroundImage: background || HERO_BG, color: "white",
                 borderRadius: 22, padding: "38px 40px", marginTop: 20,
                 boxShadow: "0 10px 30px rgba(17, 1, 59, 0.28)",
                 display: "flex", flexWrap: "wrap", alignItems: "center", gap: 36,
