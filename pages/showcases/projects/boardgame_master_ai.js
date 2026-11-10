@@ -17,7 +17,6 @@ const  S3Strcuture = '../../../assets/showcase_images/boardGameWizard/S3Structur
 const  BedrockKB = '../../../assets/showcase_images/boardGameWizard/BedrockKB.png'
 const  KB_Dash = '../../../assets/showcase_images/boardGameWizard/KB_Dashboard.png'
 
-import fullRequest from "../../../constants/projects/boardgame_master_ai/fullRequest";
 
 
 
@@ -35,6 +34,9 @@ export default function BoardGameMasterAIProjectPage() {
 
         // Messages
         const [messages, setMessages] = useState([])
+
+        // Waiting on the AI
+        const [loading, setLoading] = useState(false)
 
         // Directory
         const [directory, setDirectory] = useAtom(directoryDataState)
@@ -73,46 +75,44 @@ export default function BoardGameMasterAIProjectPage() {
           }
 
         function sendMessage(){
-            let newMessage = {
-                from: "User",
-                content: current
+            const question = current.trim()
+            if (!question || loading) return
+            if (!selGame) {
+                setMessages(prev => [...prev, {from: "AI", content: "Please pick a game from the dropdown first!", error: true}])
+                return
             }
-            let fullMessage = current
-            let makeRequest = fullRequest
-            fullMessage = makeRequest(selGame, current)
+            // Earlier turns (minus errors) let the AI handle follow-up questions
+            const history = messages
+                .filter(m => !m.error)
+                .map(m => ({ role: m.from === "User" ? "user" : "assistant", content: m.content }))
             setCurrent("")
-            setMessages(prev => [...prev, newMessage]);
-            handleRequestToScrapeFanDuel(fullMessage)
+            setMessages(prev => [...prev, {from: "User", content: question}])
+            handleRequestToBackend(selGame, question, history)
         }
 
-        async function handleRequestToScrapeFanDuel(fullMessage){
-            fetch("/api/boardGameWizard", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: fullMessage }),
-            })
-            .then(async (res) => {
-                const text = await res.text(); 
-                console.log("Raw API response:", text);
-                try {
-                    const json = JSON.parse(text);
-                    console.log("Parsed JSON:", json);
-                    let formattedReply = formatAIResponse(json.reply)
-                    let newMessage = {
-                        from: "AI",
-                        content: formattedReply
-                    }
-                    setMessages(prev => [...prev, newMessage])
-                } 
-                catch (err) {
-                    console.warn("BEDROCK IN RESPONSE ERROR:", JSON.stringify(err, null, 2));
-                    console.warn(JSON.stringify(err))
-                    res.status(500).json({ message: "Internal server error" });
-                }
-            })
-            .catch((err) => {
-                console.error("API call failed:", err);
-            });
+        async function handleRequestToBackend(game, question, history){
+            setLoading(true)
+            try {
+                const res = await fetch("/api/boardGameWizard", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ game, question, history }),
+                })
+                const json = await res.json().catch(() => ({}))
+                if (!res.ok) throw new Error(json.message || "Something went wrong. Please try again.")
+                setMessages(prev => [...prev, {
+                    from: "AI",
+                    content: formatAIResponse(json.reply),
+                    sources: json.sources || []
+                }])
+            }
+            catch (err) {
+                console.error("Board Game Master request failed:", err)
+                setMessages(prev => [...prev, {from: "AI", content: err.message, error: true}])
+            }
+            finally {
+                setLoading(false)
+            }
         }
     
     ////////////////
@@ -122,17 +122,32 @@ export default function BoardGameMasterAIProjectPage() {
 
     // Actual Content //
         function renderMessages(){
-            return messages.map(msg => {
+            const bubbles = messages.map((msg, i) => {
                 return (
-                    <div style={{width: '100%', display: 'flex', marginTop: 15, flexDirection:( msg.from === "User" ? 'row-reverse' : 'row')}}>
-                        <OstCard style={{maxWidth: '60%', backgroundColor: ( msg.from === "User" ? 'cyan' : 'white')}}>
-                            <p style={{...Styles.Fonts.basic, margin: 3, padding: 1}}> 
+                    <div key={i} style={{width: '100%', display: 'flex', marginTop: 15, flexDirection:( msg.from === "User" ? 'row-reverse' : 'row')}}>
+                        <OstCard style={{maxWidth: '60%', backgroundColor: ( msg.from === "User" ? 'cyan' : (msg.error ? '#f6d5d1' : 'white'))}}>
+                            <p style={{...Styles.Fonts.basic, margin: 3, padding: 1, whiteSpace: 'pre-wrap'}}> 
                                 {msg.content}
                             </p>
+                            {msg.sources && msg.sources.length > 0 &&
+                                <p style={{...Styles.Fonts.basic, margin: 3, padding: 1, fontSize: 13, color: 'grey'}}>
+                                    Rules used: {msg.sources.join(" · ")}
+                                </p>
+                            }
                         </OstCard>
                     </div>
                 )
             })
+            if (loading) {
+                bubbles.push(
+                    <div key="loading" style={{width: '100%', display: 'flex', marginTop: 15}}>
+                        <OstCard style={{backgroundColor: 'white'}}>
+                            <p style={{...Styles.Fonts.basic, margin: 3, padding: 1, color: 'grey'}}>Checking the rulebook...</p>
+                        </OstCard>
+                    </div>
+                )
+            }
+            return bubbles
         }
 
         function renderINTRO_REGION(){
@@ -147,17 +162,14 @@ export default function BoardGameMasterAIProjectPage() {
                             </p>
 
                             <p style={Styles.Fonts.basicXL}>
-                            This bot was deisgned using Amazon Bedrock. Its knowledge base was compiled by Nick Lanese but all the content was 
-                            information from the respecitve board games' official rules (when applicable).
+                            The knowledge base was compiled by Nick Lanese, and all of its content comes from the respective board games' 
+                            official rules (when applicable).
                             </p>
 
                             <p style={Styles.Fonts.basicXL}>
-                            The LLM at use is Titan Text Express and I am using Titan Embedding v2 to extract the information from the knowledge base. 
-                            </p>
-
-                            <p style={{...Styles.Fonts.basicXL, color: 'red'}}>
-                                Unfortunately, keeping this service running was costing me close to $200-300 a month, so it had to be taken down.
-                                If anyone would like a functioning demo, please email me
+                            The first version of this bot ran on Amazon Bedrock, but keeping it running cost close to $200-300 a month. 
+                            This version does its own retrieval: the rules are searched inside this website's code, and only the few 
+                            matching sections are sent to a hosted LLM (GPT-OSS 20B on Groq) to write the answer. Each question costs a fraction of a cent.
                             </p>
                         </div>
                     </OstCard>
@@ -218,7 +230,7 @@ export default function BoardGameMasterAIProjectPage() {
                     style={{alignSelf: 'flex-end', backgroundColor: 'white', marginLeft: '88%', marginTop: '-4.5%', width: '7.5%', justifyContent: 'center', display: 'flex', fontSize: 22, borderRadius: 0}}
                     onClick={() => sendMessage()}
                 >
-                    Send
+                    {loading ? "..." : "Send"}
                 </OstCard>
             </OstCard>
             )
@@ -266,7 +278,7 @@ export default function BoardGameMasterAIProjectPage() {
                             <span style={Styles.Code.bool}>{"{"}</span>
                             <span style={Styles.Code.var}>message</span>
                             <span style={Styles.Code.reg}>: </span>
-                            <span style={Styles.Code.var}>messaage</span>
+                            <span style={Styles.Code.var}>message</span>
                             <span style={Styles.Code.bool}>{"}"}</span>
                             <span style={Styles.Code.keyword}>{")"}</span>
                         </p>
@@ -536,6 +548,14 @@ export default function BoardGameMasterAIProjectPage() {
             )
         }
 
+        function renderCodeBlock(code){
+            return(
+                <div style={{...Styles.Sections.simpleLessonCode, width: '80%'}}>
+                    <pre style={{...Styles.Code.code, whiteSpace: 'pre-wrap', margin: 0}}>{code}</pre>
+                </div>
+            )
+        }
+
        
 
 return (
@@ -559,10 +579,61 @@ return (
         <div style={{...Styles.Sections.lessonContent, marginTop: 50}}>
             <OstCard style={{padding: 30}}>
 
-                {/* Constructing the Chatbot */}
+                {/* Version 2: Local RAG */}
                 <div>
                     <p style={Styles.Fonts.lessonHeaderXL}>
-                        Constructing the Request
+                        Version 2: Building the RAG Myself
+                    </p>
+                    <p style={Styles.Fonts.basicXL}>
+                    RAG (Retrieval-Augmented Generation) has two halves: find the parts of the rulebook that answer the question, then hand 
+                    just those parts to an LLM and have it write the answer. Bedrock did both halves for me, but it also kept a vector database 
+                    running around the clock, which is where most of the bill came from. A handful of rulebooks is small enough that the 
+                    first half can live right inside this website.
+                    </p>
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 26}}>Step 1: Chunk and Index the Rules (at build time)</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    A script splits every game's rules into sections of about 220 words, keeping track of which heading each section came from 
+                    ("Setup", "Castling", ...). It counts the words in each section and saves everything to a single JSON file that gets 
+                    deployed along with the site. No database and no AWS.
+                    </p>
+                    {renderCodeBlock(`node scripts/boardgame/buildRulesIndex.mjs
+// reads data/boardgame_rules/  →  writes constants/projects/boardgame_master_ai/rulesIndex.json`)}
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 26}}>Step 2: Search Only the Selected Game (at request time)</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    When you send a question, the API route only looks at the game you picked, so a question about Chess can never pull in 
+                    rules from Checkers. It ranks that game's sections with BM25, the classic search-engine scoring formula: sections that 
+                    use your question's rarer words ("castle", "en passant") more often score higher. Short rulebooks skip the search and 
+                    are sent whole, since then the model gets to see every rule.
+                    </p>
+                    {renderCodeBlock(`const gameIndex = rulesIndex.games[game]
+const { chunks } = retrieve(gameIndex, question)   // top 6 sections, or the whole rulebook if it's short`)}
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 26}}>Step 3: Let the LLM Write the Answer</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    The chosen sections are pasted into the prompt along with instructions to explain things to beginners and never invent 
+                    rules. That prompt goes to GPT-OSS 20B on Groq through the standard OpenAI-style chat API. Because nearly every provider 
+                    speaks that same format, switching models is a matter of changing environment variables, and during development I can point it 
+                    at Ollama on my own machine so the whole pipeline runs locally.
+                    </p>
+                    {renderCodeBlock(`fetch(\`\${LLM_BASE_URL}/chat/completions\`, {
+    method: "POST",
+    headers: { Authorization: \`Bearer \${LLM_API_KEY}\` },
+    body: JSON.stringify({
+        model: "openai/gpt-oss-20b",
+        messages: fullRequest(game, chunks, history, question),
+    }),
+})`)}
+                    <p style={Styles.Fonts.basicXL}>
+                    Each answer also lists the rulebook sections it was based on, so you can see which part of the rules it used.
+                    </p>
+                </div>
+
+                {/* Constructing the Chatbot */}
+                <div style={{marginTop: 75}}>
+                    <p style={Styles.Fonts.lessonHeaderXL}>
+                        Version 1 (Archived): Constructing the Request
                     </p>
                     <p style={Styles.Fonts.basicXL}>
                     Like everything else you see on this site, the UI was constructed using Ostrich React Components (Made by myself) on NextJS. 
@@ -599,7 +670,7 @@ return (
                     </p>
 
                     <p style={{...Styles.Fonts.lessonHeaderXL, marginTop: 75, marginBottom: 35}}>
-                        Setting up the Knowledge Base in AWS
+                        Version 1 (Archived): Setting up the Knowledge Base in AWS
                     </p>
 
                     <p style={Styles.Fonts.basicXL}>
@@ -640,7 +711,7 @@ return (
                 {/* Errors and Issues */}
                 <div style={{marginTop: 75}}>
                     <p style={{...Styles.Fonts.lessonHeaderXL, marginTop: 75, marginBottom: 35}}>
-                        Errors and Issues with Solutions
+                        Version 1 (Archived): Errors and Issues with Solutions
                     </p>
                     <div>
                         <div>

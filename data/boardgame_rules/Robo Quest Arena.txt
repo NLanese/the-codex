@@ -1,0 +1,839 @@
+## BASIC RULES AND OBJECTIVE: ##
+
+Players take turns controlliong their miniature robots. 
+Each turn, players use every card in their hand to move, attack, or purchase better gear from the armory. 
+Using certain cards, players will be able to damage other robots, thus taking the token and claiming it as a victory point for themselves. 
+Robots have a finite amount of health tokens, whenever a player's robot runs out of health tokens, that robot is removed from the board. 
+When a robot is 'knocked out' and removed, it returns to the board on its next turn, and refills its health tokens from the pool of remaining health tokens. 
+The player will fill all but one of their available health points with a red token, and the final health point with a blue token.
+**The game ends when a player who has been knocked out and is set ot return to the game board, but cannot since there are no blue health tokens remaining.** 
+At this point, the player with the most victory points wins!
+
+The rules say "Whoever built something" most recently goes first...
+ but that's pretty weird. So we say you all roll a die and whoever rolls lowest goes first. 
+From there, turns go in clockwise order
+
+## STARTING SETUP: ##
+
+- Shop and Supply Cards: 
+    Place 12 'Advanced Battery' cards on their respective spot on the board, face up
+    Place 12 'Heavy Hammer' cards on their respective spot on the board, face up
+    Place 12 'Rivet Gun' cards on their respective spot on the board, face up
+
+    Shuffle the rest of the cards and place them face down on the space entitled 'Shop Deck'
+    Draw 6 cards from this newly placed pile and place them on the six open spaces entitled 'Shop Card'
+
+    the 'Scrap Heap' Space will remain empty until payers scrap cards in game, so you can ignore this for now. 
+
+- Player Setup: 
+    Each player will select a robot and its corresponding 'Player Board.' 
+    This means to say the green robot gets the green player board.
+    Each board will have a number of green wrench icons towards the top. Each of these icons represents 1 potential health token. 
+    A red health token should be placed on each wrench, except the final wrench. This wrench should have a blue health token placed on it. 
+    These blue tokens are worth two victory points, while the reds are worth one. 
+    Most robots will have 4 health points, meaning 3 red and one blue. Some will have more health, however!
+
+    Players should then also be dealth the following cards: 
+        8 Battery Cards
+        1 Hammer Card
+        1 Jump Jets Card
+
+    Some Player Boards / Robots will be given an extra card, so be sure to read your Player Board and follow all instructions on that!
+
+    Players should then shuffle their deck and place it face down in front of them. After this, they draw the first 5 cards
+
+- Board Setup: 
+    This game supports 2-4 players; so each player should pick a corner tile and place their Robot minature there. 
+    If there are only two players, make sure they are on opposite corners. 
+
+    Addiitonally, there are 9 spaces to place 'obstacles.' These 'obstacles' are the thick, square tiles. 
+    We will cover later what they do, as each is different. For now, all that is needed is that these can be placed however the player likes;
+    however there is a traditional set up for players unfamiliar with the game and who do not want to experiment.
+    If you are unsure what these spaces are, they look like the center most tile, as that is one such 'obstacle' tile. 
+
+        If you were to number the tiles, with 0,0 being the upper left corner (the tile closest to the scrap heap), 
+        the spaces to place your minatures would be in...
+            0,0 - (This is the top left corner, closest to the Scrap Heap)
+            0,6
+            6,0, - (This is the top right corner)
+            6,6
+        and the tiles with 'obstacles' are 
+            0,3 - (This is the leftmost column, third row)
+            3,0 - (This is the top row, center colum)
+            3,6
+            6,3
+            3,3
+
+## PLAYER TURNS: ##
+- Turn Structure:
+    A Player's turn is broken up into the following phases...
+    - Start of Turn Phase: If you have any “at the start of tum”
+      effects, apply them. For example, if you are on any of the 9 spaces
+      in the center of the Game Board, you gain 1 Victory Point. If there
+      is currently a tile over the space, do not gain the 1 Victory Point.
+    - Respawn Phase: If you have been Knocked Out, put your robot
+      onto any unoccupied spawn tile and refill their Health. 
+    - Main (Action) Phase:  You may play cards, use abilities, spend Energy
+      to buy cards, and spend Mave to move your robot or push other
+      robots. You may do these as many times as you want to and in any
+      order you choose.
+    - End of Turn Phase: If you have any 'at the end of your turn' effects, 
+      apply them now
+    - Cleanup Phase: Put any cards you have in play into your
+      discard pile, then discard any cards left in your hand, then draw
+      5 new cards. You lose any unspent Energy and Movement.
+
+    During your turn, you may play cards from your hand one at a time.
+    Cards are free to play (you only pay costs when buying cards, see
+    the next section). When you play a card, put it “in play” next to your
+    Player Board, then do what the card says. At the end of your turn,
+    put any cards you have in play into your discard pile and discard any
+    cards left in your hand.
+    A player's hand will consist of 5 cards, unless otherwise specified. 
+    Each turn a player will discard the entire hand, whether or not a card is used. 
+    This means to say there is no strategic advantage in not using a card; unless that cards usage would actively hard you.
+
+    Each card has its own abilities; and there are several different kinds of cards which we will cover below...
+
+    - Battery Cards: 
+        Batteries give you a specified amount of energy. 
+        Energy is used to either move your robot (one energy moves your robot one tile; 
+        and robots CANNOT move diagonally unless otherwise specified)
+        or to make a purchase from the store. Items in the store have their 'energy price' shown in
+        the top right corner of the card. It takes that many energy to purchase this card. THIS IS NOT 
+        A MARKER OF HOW MUCH ENERGY IT TAKES TO USE THIS CARD ONCE ACQUIRED. For example, the Rocket Punch card is worth
+        3 energy. If I ahd three batteries in my hand, I could purchase this card. Once I have purchased it, 
+        I can use it without expending any energy the next time I get that card in my hand. We will cover more on 
+        purchase later. 
+
+        There are multiple kinds of batteries. 
+        Advanced Batteries are worth 3 energy, while regular batteries are worth 1. 
+        There are other ways to get energy, but batteries are the most regular and most reliable. 
+        It is a good strategy to try to acquire advanced batteries early in the game so that you can 
+        purchase higher level gear more quickly. 
+
+    - Function Cards:
+        Function Cards are the purple ones, and they are some of the most interesting in the game.
+        Most function cards enable different movement, better attack range, or even immediate acquisition of Victory Points.
+        Some will stay active, but most only have one-turn long durations. 
+        You cna play these cards whenever you like during the turn, and you have until the end of your turn to 
+        take the benefit of the card. This means to say when you use the card, you do NOT need to do everything in the Effect area right away.
+
+    - Attack Cards:
+        Attack Cards are a player's way of damaging others. They do not require energy to use once purchased. 
+        Every attack card will have a 'damage' and a 'range' value along the left hand side, beneath the purchase price. 
+        - Damage is how many health tokens / victory points you take from the player that was damaged. 
+        - Range indicates how many tiles away the other robot can be in order for your attack to hit. If the number is 1,
+          the enemy must be one tile away non diagonally. 
+          If the number is 2, the enemy can have a tile in between the attacking player and him/herself and still be damaged. 
+          Ranged attacks can never go diagonally unless otherwise specified by the attack card or a function card. 
+        - Sometimes, the card will not have a range icon and number, and will instead have a boxing glove icon to indicate this is a melee attack.
+          Melee Attacks will always have a range of one, but they ARE able to hit opponents diagonally.
+
+## FULL RULEBOOK (SCANNED) ##
+
+RULEBOOK
+
+In Robot Quest Arena, you are piloting your adorable Robot. Each turn, play your cards to attack,
+robot in an arena battle for fame and glory! gain Energy, or get other cool effects.
+
+as,
+Was
+
+=>
+Move your robot and buy powerful new cards Use Attack cards to remove Health cubes
+for your personal deck from the Shop. from your opponent's robot and
+
+add them to your Victory Point Pile.
+
+++
+
+When your robot gets Knocked Out, set them aside. If a robot would respawn but there are no blue
+
+At the beginning of your next turn, grab new Health cubes left in the Reserve, the game ends.
+Health cubes and respawn your robot. Whoever has the most Victory Points wins!
+Place the Supply cards in
+piles on the Game Board:
++ 12x Advanced Battery
+
++ 12x Heavy Hammer
++ 12x Rivet Gun
+
+8) Shuffle the remaining
+
+cards with numbers in the
+top right comer te form
+the Shop Deck and place
+
+it on the Game Beard.
+
+When you're told to
+“scrap” cards, add them
+face-up to the Scrap
+Heap. Scrapping your
+starting cards will let
+you draw your good
+cards mere often!
+
+LE)
+
+Fill the Shop (the 6
+
+“Shop Card” spaces)
+using cards from the
+top of the Shop Deck.
+
+Whoever built something
+most recently is the
+first player. Turns will
+proceed in clockwise
+order. .
+
+Each robot has a special ability noted on their Player Board.
+The first player chooses a Player Board, then the second
+player, and se on. Alternatively, shuffle the Player Boards
+and deal one to each player. Then each player gets their
+
+matching robot miniature.
+
+Each player puts their Player Board in front of them,
+
+then fills their Health bar as follows: put one blue cube
+ona ./* Health symbol, then put red cubes on the remaining
+Health symbols (4 red cubes for most robots).
+
+Discard Pile
+
+J2
+
+Deck
+
+Hand (5 Cards)
+
+in-Play Area
+oO 0
+
+Each player gets their own
+
+personal deck containing: Each player shuffles
+« 8x Battery their personal deck
++ Ix Hammer and draws 5 cards.
+
+« Ix Jump Jets
+
+Oo
+
+On your turn, you will play cards from your hand into your
+“in play” area. At the end of your turn, put those cards into
+your discard pile. Your discard pile is face up and players
+may review it at any time.
+
+Q
+
+Each player has their own Victory Paint Pile next to their
+Player Board. Cubes in these piles are Victory Points (@),
+not Health. Each player starts the game with a number of red
+cubes in their Victory Paint Pile as follows: 0 for the first
+player, 1 for the second, 2 for the third, and so on.
+
+6 Use the remaining cubes and gems to fill the Reserve
+spaces on the Game Beard as follows. You may add or
+
+subtract blue cubes for a longer or shorter game.
+
+2 PLAYERS: -—  3PLAYERS:  / 4 PLAYERS:
+GBhue Cubes “May 7BlueCubes “> 8 Blue Cubes
+AllRed Cubes =) All Red Cubes All Red Cubes
+and Gems . and Gems 1 and Gems
+
+Gems are worth 5 red cubes. Exchange as needed.
+
+oO
+
+If it is any player's first Most robots start the
+game, place tiles onte the game and respawn on
+Game Board as shown. Spawn tiles. The first
+PlayerBoard  HeaithBar = Victory Paint Pile If all players have played player places their robot
+Piri) before and feel confident, miniature on any
+—— they may agree ona unoccupied spawn tile,
+different tile layout. then the second player
+
+does, and so on until all
+robots are placed.
+
+a
+
+03
+GENERAL RULES ©
+
+TURN STRUCTURE
+
+The game is played over a series of turns. Whoever built samething
+most recently is the first player. Turns proceed in clockwise order.
+Each player's turn consists of the following phases:
+
+4. Start of Turn Phase - If you have any “at the start of tum”
+effects, apply them. For example, if you are on any of the 9 spaces
+in the center of the Game Board, you gain 1 Victory Point. If there
+is currently a tile over the space, do not gain the 1 Victory Point.
+
+2. Respawn Phase - If you have been Knocked Out, put your robot
+onto any unoccupied spawn tile and refill their Health. (See Getting
+Knocked Out & Respawning on page 7.)
+
+3. Main Phase - You may play cards, use abilities, spend Energy
+to buy cards, and spend Mave to move your robot or push other
+robots. You may do these as many times as you want to and in any
+order you choose. (See Playing Cards and Acquiring Cards to the
+right, Moving Your Robot on page 6, and Pushing & Knock Back on
+page 6.)
+
+4, End of Turn Phase -
+apply them.
+
+If you have any “at the end of turn” effects,
+
+5. Cleanup Phase - Put any cards you have in play into your
+discard pile, then discard any cards left in your hand, then draw
+5 new cards. You lose any unspent Energy and Move. 
+PLAYING CARDS
+
+During your turn, you may play cards from your hand one at a time.
+Cards are free to play (you only pay costs when buying cards, see
+the next section). When you play a card, put it “in play” next to your
+Player Board, then do what the card says. At the end of your turn,
+put any cards you have in play into your discard pile and discard any
+cards left in your hand.
+
+ACQUIRING CARDS AND THE SHOP
+
+During your turn, you may acquire cards from the Shop (the G
+“Shop Card” spaces) and/or from any of the 3 Supply card piles
+(Advanced Battery, Heavy Hammer, and Rivet Gun). You may do so
+by buying them (paying their cost) or for free (when so
+instructed). When you acquire a card, put it into your discard pile.
+
+Whenever a card leaves the Shop, immediately replace it with a
+new card from the top of the Shop Deck. If you have enough
+Energy, you may buy the new card in the same turn. Whenever the
+Shop Deck runs out of cards, shuffle all Shop cards from the
+Scrap Heap to form a new Shop Deck.
+
+_” Cost
+= —~—s
+
+ROCKET
+
+PUNCH | 73 Ting
+
+= 7)
+
+72
+
+Battery cards are orange and give you Energy. You may
+spend Energy during your turn. You don’t have to spend
+Energy right away. Any that you do not use will be lost
+
+at the end of the turn.
+
+You may spend Energy to:
+
+- Buy cards from the Shop
+
+« Buy Supply cards
+
+- Gain 1 Move for each 1 Energy you spend
+
+- Use certain abilities (For example, see the
+Strider Player Board)
+= |) sequirca cord ef enst
+ira a hes fee ae
+
+Attack cards are red and deal damage to enemy robots.
+
+When you play an Attack, do what it says, then apply
+its damage to the robot you are hitting Cequal to the
+number on the 23% symbol). You claim the Health cubes
+they lose as Victory Points (see Health on page 7).
+You may play multiple Attack cards on your turn, each
+against the same or different enemy robots. “1
+
+ra cs ; yy end
+I like to keep a Hommer = a
+q handy for close encounters! J
+
+=
+
+Function cards are purple and provide various effects
+such as drawing cards, gaining Victory Points, gaining
+Nove (see the next page), and other things.
+
+During your turn, you may play Function cards from your
+hand and immediately gain their effects.
+
+Note: Whenever you gain Nove or Energy, you do not need
+to spend it right away.
+
+Melee Attacks have the
+boxing glove icon.
+
+A melee attack can target an
+enemy robot in any space next
+to your robot (not diagonal).
+
+Ranged Attacks have
+the arrow icon.
+
+A ranged attack can target
+
+an enemy robot that is within
+
+range (a ring around your robot,
+
+as far out as the number on the :
+symbol, see diagram). The enemy must also be within
+
+line of sight (see Obstacles & Line of Sight on the next page).
+
+A range of Tis similar to melee, except it includes diagonals.
+You may perform a ranged attack on an enemy that is
+closer than maximum range. For example, you could use a
+3-range attack onan enemy that is right next to you.
+
+You can only play an attack if you have a valid target.
+You cannot attack friends, although you might damage
+them indirectly with cards like Laser Cannon.
+GENERAL RULES ©? sa
+
+During your turn, you may spend 1 Energy to gain 1 Nove.
+You may do this as many times as you ean afford.
+
+Mave gained from spending Energy, playing cards, etc., may be
+spent during your turn. You do not have to spend Move right away.
+Any that you do not use will be lost at the end of the turn.
+
+You may spend 1 Mave to advance your rebot 1 space straight up,
+down, left, or right. You may do this as many times as you can
+afford. Robots cannot move diagonally or aver obstacles that
+block movement (like other robots and Walls).
+
+When you play a card that lets you move over obstacles (like Jump
+Jets), it still casts 1 Move per space. You cannot stop moving on
+top of an obstacle that blocks movement. Additionally, when you
+move onto and/or off of a tile this turn, you may choose to ignore
+its effects, if any (for example, you may ignore Tacks).
+
+PUSHING AND KNOCK BACK
+
+During your turn, you may spend 2 Nove to push a robot that is next
+ta you (not diagonal). Pushing a robot has two steps: First you
+“knock back” the robot, moving them one space away from you ina
+straight line (not diagonal). Second, move your robot into that
+rabot’s previous space.
+
+Some effects can knock back robots too. In this case, only the
+knocked—back rabot maves.
+
+If a robot gets knocked into an obstacle that blocks movement
+(such as a Wall) they take 1 damage and nobody maves. Rabots may
+be knocked into the outer edge of the Arena as if it was a Wall. Ifa
+rebot gets knocked into another robot, each of them takes
+
+1 damage and nobody moves.
+
+You can’t push or knock back a Robot into the same obstacle
+(blocking their mavement) more than once per turn.
+
+Note: Whenever an enemy robot
+loses Health on your turn including
+by getting knocked into Walls or
+other robots, you claim the Health
+cubes they lost as Victory Points.
+See Health, Damage, & Victory
+Points on the next page.
+
+Gz,
+§ . ap
+
+Some effects (like Grappling Clamp) can pull robats. Pulling works
+similarly to knocking back, except the target moves toward you
+instead of away from you. When pulling at an angle, imagine a line
+extending from the center of your space through the center of the
+affected robot's space and pull them through the spaces on that
+line. When pulling at a 45-degree angle “onto the space next to you,”
+there may be two valid spaces. You choose either space.
+
+OBSTACLES AND LINE OF SIGHT
+
+An abstacle is samething that blecks movement and/or line of
+sight. Robots are obstacles that block both. Some tiles are
+obstacles too. For example, Wall tiles block movement and the
+Smoke tile blacks fine af sight.
+
+Line of sight is required to perform ranged attacks (the target
+must also be within range, see Attack Cards on the previous page).
+Line of sight is determined by drawing a line from the center of
+the space your robot is currently occupying to the center of the
+space of your target. ff the line passes through a space (not just
+touching the corner) containing an obstacle, line af sight is
+blocked. If no obstacles are blocking that line, the target is within
+
+: Bi
+
+Beane
+
+sien oe BY
+o Bes
+
+Se eo
+
+Spaces are within line of sight
+on red spaces. are not within line of sight.
+
+@ 3 @
+HEALTH (..°), DAMAGE (+=), AND VICTORY POINTS (> )
+
+Cubes on a Player Board represent a robot's Health. Cubes ina
+Victory Point Pile represent Victory Points. Robots start the game
+with and respawn with full Health (fill their Health bar by putting
+one blue cube ona 7 and red cubes on the rest).
+
+Damage causes robots to lose Health. Whenever a robat loses their
+last Health cube, they are Knocked Out (see the next section).
+Any extra damage has no effect.
+
+Whenever an enemy robot loses Health on your turn for any reason
+(for example, if you attack them or push them onto the Tacks tile),
+they lose that many Health cubes, removing them from their Player
+Board. You claim those cubes as Victory Points and add them te
+your Victory Point Pile. Red cubes are removed first and are worth
+1 point each. Blue cubes are removed last. Blue cubes on Player
+Boards represent 1 Health each, however, blue cubes in Victory
+Point Piles count as 2 Victory Points each!
+
+Whenever you or another friendly rabot loses Health on your turn
+(for example, if you willingly move onto the Tacks tile), you a/so lose
+Victory Points. When you lose a red Health cube you lose 1 Victory
+Paint, and when you lose a blue Health cube you lose 2 Victory
+Points. All red cubes (Health and Victory Points) lost this way go
+back to the Reserve. All blue cubes lost this way are returned to
+the Game Box (never return blue cubes to the Reserve).
+
+When an effect repairs Health (of), take that many red cubes
+from the Reserve and add them to your Player Board. A robot
+cannot exceed full Health.
+
+When an effect gives you Victory Paints ( ig ), claim that many
+red cubes from the Reserve and add them to your Victory Point Pile.
+
+GETTING KNOCKED OUT AND RESPAWNING
+
+Whenever a robot loses their last Health cube, they are Knocked Out
+and temporarily removed from the Game Board. If an effect says
+to Knock Out a robot, they also lose all of their Health.
+
+If your robot gets Knoeked Out, during your next Respawn Phase,
+place your robot on any uncecupied spawn tile. Then refill their
+Health using cubes from the Reserve (one .“ gets a blue cube and
+the rest get red cubes).
+
+Note: Whenever a robot respawns, their “start of turn” effects
+do not trigger that turn (for example, if Pug spawns on one
+of the 9 spaces in the center of the Game Board).
+
+DRAWING CARDS AND CLEANUP
+
+At the end of each of your turns, you will discard your hand and
+draw 5 cards from your personal deck.
+
+If you would draw a card from your personal deck but it is empty,
+shuffle your discard pile to create a new personal deck, then finish
+drawing. Fer example, it is the Cleanup Phase and you need to draw
+five cards, but you only have three cards left in your personal deck.
+So, you draw these three cards, shuffle your discard pile to create
+a new personal deck, then finish drawing two more cards.
+
+When a robot would respawn but there are ne blue Health cubes
+left in the Reserve, the game ends.
+
+Players count the Vietory Points in their Victery Point Piles.
+Each red cube is worth 1 point, each blue cube is worth 2 points,
+and each gem is worth 5 points. Do not count any cubes on
+Player Boards. The player with the mest Victory Points wins!
+
+In the event of a tie, the player with the most Health cubes on
+their Player Board wins. Otherwise, the victory is shared.
+
+1. Jeff's hand contains 1 Jump Jets, 2 Advanced 5. Jeff plays both Rivet Guns, dealing 4 damage tc the
+
+Batteries, and 2 Rivet Guns. His opponent has 4 Health. opposing robot. They only had 4 Health left, so this knocks
+them out, remaving them from the Game Board temporarily.
+Jeff claims the Health cubes they lost as Victory Paints.
+
+2. Jeff plays Jump Jets to gain 2 Move. He uses it to 6. Jeff wants to buy the Rev Motors card from the Shop,
+move two times, getting closer to his opponent. but it costs 5 Energy and he only has 2 left. So, he plays
+
+his second Advanced Battery to gain 3 more Energy.
+
+4. Jeff spends 1 Energy to gain 1 Move. (Now he has 2 8. Jeff finishes his turn, places all of his played cards
+Energy and 1 Mave.) He moves again, so he’s close into his discard pile, and draws 5 new cards.
+
+2-PLAYER RULES
+
+In a 2 player game, all rules remain the same except:
+
+- Each player gets 2 Player Boards at the start of
+the game and controls both of their robots with
+a single personal deck. Your Energy and Nove are
+shared between your robots.
+
+» When you play a card, you play it for one of
+your robots, not both. If it refers to you or your
+robot, it is referring to the robot you played it
+for. If it is an Attack card, its range
+is relative to the robot you played it for.
+
+- Ifa tile refers to you or your robot, it is referring
+to the robot on that tile.
+
+Robot Quest Arena can also be played with even
+teams. All rules remain the same except:
+
+- Players take their turns in the following order:
+a. Team A’s Player 1 takes turn 1
+b. Team B’s Player 1 takes turn 2
+c. Team A’s Player 2 takes turn 3
+d. Team B’s Player 2 takes turn 4
+e. Repeat
+
+» Remember, if your teammate loses Health
+during your turn, you (not your teammate)
+also lose that many Victory Points.
+
+- At the end of the game, players on the same
+team combine their Victory Points.
+
+PLAYABLE CHARACTERS AND ROBOTS:
+
+Robot Name: PUG
+Hero: RIYA
+
+Special Ability: Pug may spawn on any empty space among the
+9 spaces in the center of the board (including during setup).
+
+About this bot: Pug was originally designed as a simple companion
+rabot, built to assist Riya with small tasks around the home. But in the
+robot fighting world, Pug is highly prized for her quickness, stability,
+and mobility. She has a unique ability to rev up before battle, winding
+up like a spring that launches her into combat. Pug is always eager for
+a fight and often gets the jump on her opponents.
+
+Robot Name: PETRI
+Hero: JARI
+
+Special Ability: Whenever Petri Knocks Out an enemy robot,
+gain 1@ and draw a card.
+
+About this bot: Petri started life as a humble cleaning rabot. Now he
+loves to collect spare parts from the battlefield. He has gained great
+acclaim in the robot fighting world due to his low center of gravity and
+quick adaptability. When engaged in battle, Petri and Jari know that the
+key to victory is staying flexible and always being ready to attack. Since
+Petri came from humble beginnings, a victory with him always feels a
+little bit sweeter.
+
+A great robot is nothing
+without a great Robot Tech.
+These are some of the best!
+
+Soe: eA iw} mp f
+Robot Name: STRIDER
+Hero: VIOLA
+
+Special Ability: Once per turn, you may pay 2 @ to have Strider
+perform a 1 # 2 .* attack.
+
+About this bot: Strider is built with just as much attention to style
+as combat. The flowing lines, glossy paint job, and elegant details are
+all signatures of the great Team Ferrucci, the most prominent robot
+manufacturer and fighting team in the Carmine District of Rivet.
+
+But do not let the good locks fool you; Strider is just as dangerous
+
+in battle as any other rabot. She even has a built-in attack: a custom
+beam weapon integrated into the mid-section that packs a real punch!
+
+Robot Name: CRATE
+Hero: ROLF
+
+Special Ability: It costs +1 Nove to push Crate.
+
+About this bot: Crate was designed as an exploration robot that could
+be sent into tight or dangerous spaces and have a look around without
+putting people in danger. To do that job well, he is compact and very
+sturdy. He also sits on a very tough and effective tread system that
+allows him to move around easily on irregular terrain. The treads make
+Crate especially difficult to push around during a battle. All of these
+traits have been beneficial for Crate and Rolf.
+3 §PECIAL SPACES ©
+REPAIR PAD
+
+1D) At the start of your turn, if you are
+. on this tile, gain 1 @ and repair 1 ./
+_cogy SOLAR FARM
+)) At the start of your turn, if you are
+=) on this tile, gain 1
+
+At the start of your turn, if you are on any of the —
+S spaces in the center of the Game Beard, gain 1 &g
+
+Whenever you enter this tile,
+take 245
+
+Note: If there is currently a tile over that space,
+do not gain the 1 Gy
+
+POTHOLE
+Whenever you enter this tile, take 1
+
+It costs +17 Move to move your robot off
+this tile.
+
+These tiles are obstacles that block
+movement and line of sight.
+
+TRASH COMPACTOR
+
+Whenever you enter this tile, scrap the
+top card of the Shop Deck. If it costs
+6 @ or more, you are Knocked Out
+(lose all of your «/).
+
+JUNKYARD
+
+At the start of your turn, if you are
+on this tile, you may scrap a card
+in your hand.
+
+REMOTE TERMINAL
+
+At the start of your turn, if you are
+on this tile, draw a card and then
+discard a card. «
+
+This tile is an obstacle that blocks
+line of sight (but not movement).
+<@ TERM GLOSSARY
+
+Energy ( @)- You may spend Energy you gain throughout your turn.
+You may use it to buy cards or convert it into Move (1 fer 1).
+See Batteries & Energy on page 4.
+
+Move = You may spend Move you gain throughout your turn. You may use
+it ta take the move or push actions. See Moving Your Robot on page 6.
+
+The Reserve - Extra cubes and gems are placed
+in the Reserve, which is indicated by the blue and
+red areas along the bottom of the Game Board.
+
+Health (.") - Whenever a robot spawns,
+fill their Health bar with one blue cube and
+the rest with red cubes. See Health on page 7.
+
+Repair - Some effects give robots Health,
+adding red cubes te their Health bar. Robots
+cannot exceed full Health. See Health on page 7.
+
+Victory Points (9) - Claim Victory Points (add them to your
+
+Victory Point Pile) by damaging enemy robots or using effects.
+
+Red cubes are worth 1 point each, blue cubes are werth 2 points each,
+and gems are worth 5 points each. See Health on page 7.
+
+Acquire (Buy / For Free) = You may acquire cards from the Shop and
+Supply card piles by buying them (paying their cast) or for free
+(when so instructed). When yeu acquire a card, put it inte your
+discard pile. See Acquiring Cards on page 4.
+
+Shop - The Shop contains the 6 “Shop Card” spaces.
+
+Supply Cards - The 3 Supply card piles cantain Advanced Battery,
+Heavy Hammer, and Rivet Gun.
+
+Cost = How much Energy you must pay te buy a card is shown in
+the top right corner.
+
+Move Action - You may spend 1 Move to advance your rabot 1 space
+straight up, down, left, or right. Some cards allow you to move
+diagonally. See Moving Your Robot on page 6.
+
+Push Action = You may spend 2 Move ta push a robot that is next to
+
+you 1 space away. If they moved, move your robot into their last space.
+
+If you pushed them into a Wall, they take 1 damage instead. If you
+pushed them into another rabet, each of them takes 1 damage instead.
+See Pushing & Knock Back on page 6.
+
+Respawn - At the start of your turn, if you are Knocked Out,
+put your robot onto any unoccupied spawn tile and refill their Health.
+See Getting Knocked Out & Respawning on page 7.
+
+Diseard - When you discard a card, put it into your personal discard pile.
+
+Your discard pile is face-up and players may review it at any time.
+
+Scrap - When you scrap a card, put it into the Scrap Heap. The Scrap
+Heap is face-up and players may review it at any time.
+
+Target - Whatever you are attacking.
+
+Melee (>) = Some Attack cards have the melee symbol under their
+cost, meaning you may only use them against an enemy that is right
+next te you. See Attack Cards on page 5.
+
+Range (...-)- Some Attack cards have the range symbol under their
+cost. The number indicates how far away you may be when making the
+attack. You must also have line of sight. See Attack Cards an page 5.
+
+Line of Sight - imagine a fine from your robot to the enemy robot.
+
+| Any obstacles an that line break line of sight. See Obstacles on page 6.
+
+Damage (* §.)- When you damage an enemy robot, move that many of
+their Health cubes into your Victory Point Pile, taking red cubes first
+and blue cubes last. See Health on page 7.
+
+Knocked Out = When your robot's last Health cube is removed, they are
+Knocked Out. Remave them from the Game Board. They will respawn on
+your next turn. See Getting Knocked Out on page 7.
+
+Friendly = Your robots and your teammates’ robots are your friends.
+Enemy - Your apponents’ robots are your enemies.
+
+Space - Each of the squares in the 7-by-7 Arena is 1 space.
+
+Tile - Tiles are placed on spaces in the Arena. Spawn tiles determine
+where you may respawn. Many tiles have special effects while you are
+on them. See Tile Glossary on the previous page.
+
+Obstacle - Robots are obstacles that block movement and line of
+
+sight. Some tiles are also obstacles that block movement and/or line ©
+of sight. See Obstacles & Line of Sight on page 6.
+
+Empty - A space is empty if neither robots ner tiles are on it. 8)
+Occupied / Unoceupied - A space is occupied if a Robot is there.
+Otherwise, it’s unoccupied.
+
+Next to- One space straight up, dewn, left, or right.
+Ina Straight Line - Horizontally or vertically
+(not diagonally).
+
+In Any Direction - Horizontally, vertically,
+or diagonally.
+
+Horizontal = In the same row of the Arena.
+Vertical = In the same column of the Arena.
+Diagonal = At a 45-degree angle.

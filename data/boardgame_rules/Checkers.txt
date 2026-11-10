@@ -1,0 +1,25 @@
+Checkers is a board game played between two people on an 8x8 checked board. 
+Each player has 12 pieces that fit inside the boxes on the board and are placed on dark squares staggered by rows. 
+Players have differently colored pieces, often black and red or red and white.
+
+Players each sit across from one another, occupying opposide sides of the board. 
+Each player will put a single token on each of the black spaces in the front three rows
+
+Players take turns moving one piece at a time. A regular piece can move forward and to the left or forward and to the right one space. 
+This means they can only move diagonally one space. They cannot move to a space that is already occupied, however if the space in front of them is occupied by an opposing piece they may be able to Jump it. 
+Regular pieces can also be turned into King pieces, or be King'd by reaching the opposite side of the board. 
+As previously mentioned, a piece may also eliminate other pieces by Jumping them.
+
+A player wins a game of checkers when all opposing pieces have been removed from the board. 
+You can remove pieces by Jumping them. It is easier to Jump enemy pieces if your pieces have been King'd
+
+Regular Pieces can move diagonally forward one space as long as it is unoccupied. 
+If the space diagonally in front of them is occupied by an opposing piece, and the next diagonal space behind them is empty; a player may Jump over this piece and remove it. 
+If this same piece is again able to Jump over another opposing piece that is diagonally in front of it, it may continue to do so. The turn is over when this piece can no longer Jump, meaning the player may not take another regular move after Jumping. King'd pieces work very similarly, but they may move and jump in any direction, not just forward. 
+All pieces must move diagonally, a piece may never occupy a white or red space.
+
+A player Kings one of his/her pieces when they get one of their pieces into the opposite row of the board, furthest from the player. 
+Once here, a piece is King'd and to indicate this, it usually will have another piece of the same color placed on top of it. 
+King'd pieces may move and jump diagonlly in any direction.
+
+Players should try to make it to the King row (or the back row) as soon as possible while losing as few pieces as possible in the process. Pieces on the sides are safe since they cannot be Jumped, and players can defend their pieces by having other pieces behind them."

@@ -1,0 +1,90 @@
+Step 1. How To Setup The Chessboard
+At the beginning of the game the chessboard is laid out so that each player has the white (or light) color square in the bottom right-hand side. This similarly means the tile in the bottom left from each players’ view will be darker (or black)
+The chess pieces are then arranged the same way each time. 
+The second row (or rank) is filled with pawns. 
+The rooks go in the corners; one in the left corner and the other in the right. 
+The knights go next to the Rooks, so each knight is one to the left or right of each corner.
+The bishops follow, going next to the knights. This means each bishop is three removed from the corner.
+The queen always goes on her own matching color (white queen on white, black queen on black), 
+The king on the remaining square.
+The White Team always goes first. Players are free to decide who is which color on their own
+
+Step 2. How The Chess Pieces Move
+Each of the 6 different kinds of pieces moves differently. But here are the general movement rules
+Only one piece may be on a space at any given time
+Players alternate making one move at a time. They cannot skip a turn
+No pieces can take the place of another piece of the same color. This means a white piece cannot remove or replace another white piece.
+However, they can be moved to take the place of an opponent's piece which is then captured.
+All pieces except for Knights cannot move through other pieces. The knight can jump over other pieces, but and can never move onto a square with one of their own pieces. 
+Pieces are generally moved into positions where they can capture other pieces (by landing on their square and then replacing them), defend their own pieces in case of capture, or control important squares in the game.
+
+How to Move the King in Chess
+The king is the most important piece, but is one of the weakest. The king can only move one square in any direction - up, down, to the sides, and diagonally.
+The king has one major restriction in that he is not allowed to move into a space that he could be captured in. Any move that results in a potential capture of the King is thus invalid and cannot be made. 
+Any situation where the King is in danger of being captured is called ‘check’
+
+How To Move The Rook In Chess
+The rook may move as far as it wants, but only forward, backward, and to the sides. This means it cannot move diagonally. It also cannot jump over other pieces, whether they be the same color or not. 
+
+Rooks are very good at controlling entire rows or columns of the chess board, thus they are great at protecting other pieces or controlling lanes and preventing future attack. 
+These pieces are considered more valuable than Knights and Bishops but less than Queens.
+
+How To Move The Bishop In Chess
+The bishop may move as far as it wants, but only diagonally. Each bishop starts on one color (light or dark) and must always stay on that color. It cannot move straight forwards or backwards. It also cannot jump over other pieces, whether they be the same color or not. 
+
+Rooks are very good at working together to cause chaos or break into enemy formations that other pieces may have a harder time accessing. 
+
+How To Move The Knight In Chess
+Knights move in a very different way from the other pieces – going two squares in one direction, and then one more move at a 90-degree angle, just like the shape of an “L”.
+Knights are also the only pieces that can move over other pieces.
+
+Knights, while much more limited in how many spaces they can land in, and much weaker due to their inability to capture any pieces immediately around them, are the most versatile pieces in the game. They are the only piece that can be in range of a Queen without also being in her range. 
+
+How To Move The Pawn In Chess
+Pawns are unusual because they move and capture in different ways: they move forward but capture diagonally. Pawns can only move forward one square at a time, except for their very first move where they can move forward two squares.
+Pawns can only capture one square diagonally in front of them. They can never move or capture backward. If there is another piece directly in front of a pawn he cannot move past or capture that piece.
+
+Step 3. Discover The Special Rules Of Chess
+How To Promote A Pawn In Chess
+Pawns have another special ability and that is that if a pawn reaches the other side of the board it can become any other chess piece (called promotion) excluding a king (or pawn, for that matter).
+A pawn may be promoted to a knight, bishop, rook, or queen. A common misconception is that pawns may only be exchanged for a piece that has been captured. That is NOT true. A pawn is usually promoted to a queen. Only pawns may be promoted. This also means that you can have numerous Queens at a time. 
+
+How To Castle In Chess
+One other special chess rule is called castling. This move allows you to do two important things all in one move: get your king to safety (hopefully), and get your rook out of the corner and into the game. On a player's turn he may move his king two squares over to one side and then move the rook from that side's corner to right next to the king on the opposite side. (See the example below.) However, in order to castle, the following conditions must be met:
+it must be that king's very first move
+it must be that rook's very first move
+there cannot be any pieces between the king and rook to move
+the king may not be in check or pass through check
+Notice that when you castle one direction the king is closer to the side of the board. That is called castling "kingside". Castling to the other side, through where the queen sat, is called castling "queenside". Regardless of which side, the king always moves only two squares when castling.
+
+Step 4. How To Win A Game Of Chess
+There are several ways to win a game of chess, and a few more ways it can end without a winner. 
+
+Winning from Checkmate: The purpose of the game is to checkmate the opponent's king. This happens when the king is put into check and cannot get out of check. Recall that ‘Check’ means the King is in a position where he can be captured on the other player’s turn. 
+
+The end goal of Chess is for one player to put the other's king in Check. This means the attacking player is in a position 
+wherein on their next turn they could capture the opposing King. On the defending player's turn, they MUST make a move that gets their King out of check. 
+This could be done by moving a defending piece in the way of the attacking piece, by having a defending piece capture the attacking one, or by simply moving 
+the King to a safe spot on the board, as long as it is within the King's range and is unoccupied. A player cannot willingly or accidentally place him/herself 
+into Check. This means to say that if a player moves his or her King onto a spot that could result in the King's capture the very next turn, this is not a valid move
+thus it cannot be made.
+
+If a defending King is in check, and on that player's turn they have no means of removing themselves from Check, then they
+have become Checkmated and the game is over, the attacking player wins. Remember a player CANNOT put him/herself into Check, and that they 
+must have a turn in Check before they are Checkmated. 
+
+If a player is NOT in Check (their King is currently safe on the start of their turn) but cannot move anywhere on the board
+without being put into Check, then the game is considered a Stalemate and there is no winner. This can be a good defensive
+strategy for Players who have lost too many pieces and have no means of victory but do not want to lose. 
+
+
+Winning from Timeout: In timed chess, each player is timed during their moves. If a timer reaches 0, they lose. This of course only applies if you are playing timed chess.
+
+Ties: Stalemate: 
+There are two ways to get a stalemate: 
+The only pieces left on the board are a white and a black king. One king and one bishop each can also warrant the end of the game
+A player cannot make any moves on his turn.
+Both of these conditions will end the game in a tie
+
+
+

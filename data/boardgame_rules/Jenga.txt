@@ -1,0 +1,18 @@
+## BASIC RULES AND OBJECTIVE: ##
+Removing Blocks: Players take turns removing one block at a time from any level of the tower, except the one below an incomplete top level.
+Placing Blocks: The removed block is then placed on the top of the tower, aligning it perpendicular to the previous layer.
+Single Hand Use: Players can only use one hand at a time to remove or place blocks.
+
+The game continues until the tower collapses. The player who causes the tower to fall loses the game.
+
+## COMMON QUESTIONS ##
+- You cannot remove blocks from the top most layer
+- You cannot remove two blocks in one motion. If this somehow occurs by mistake and the tower does not fall, you may continue playing and it is the nect player's turn
+
+
+## Other Ways to Play ##
+Survival: You play with a group, whoever knocks down the tower is eliminated 
+and you keep remaking the tower and playing until only one playter remains
+
+Truth or Dare: Write Truth or Dare categories on each tile and do them when 
+you pull it from the tower
