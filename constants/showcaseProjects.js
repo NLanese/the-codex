@@ -114,9 +114,9 @@ export const PROJECTS = [
         group: "ai",
         title: "Board Game Wizard AI",
         image: `${ICONS}/BoardGameWizardIcon.jpeg`, fit: "cover",
-        blurb: "A chatbot that answers rules questions about a list of board games, using Amazon Bedrock and a knowledge base built from the official rulebooks. The live demo is offline due to hosting costs.",
-        tags: ["Amazon Bedrock", "Titan"],
-        status: "offline",
+        blurb: "A chatbot that answers rules questions about eight board games using only their official rulebooks. Rebuilt with its own search (RAG) and Google Gemini, so the live demo now runs for free.",
+        tags: ["RAG", "BM25 Search", "Gemini"],
+        status: "live",
         route: "/showcases/projects/boardgame_master_ai",
     },
     {

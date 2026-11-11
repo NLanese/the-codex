@@ -10,6 +10,7 @@
 //   LLM_BASE_URL   optional, default https://generativelanguage.googleapis.com/v1beta/openai
 //                  Groq: https://api.groq.com/openai/v1   Ollama (fully local, dev only): http://localhost:11434/v1
 
+import dns from "node:dns";
 import rulesIndex from "../../constants/projects/boardgame_master_ai/rulesIndex.json";
 import { retrieve } from "../../api/helpers/boardGameRag.mjs";
 import fullRequest from "../../constants/projects/boardgame_master_ai/fullRequest";
@@ -17,7 +18,12 @@ import fullRequest from "../../constants/projects/boardgame_master_ai/fullReques
 const BASE_URL = (process.env.LLM_BASE_URL || "https://generativelanguage.googleapis.com/v1beta/openai").replace(/\/$/, "");
 const MODEL = process.env.LLM_MODEL || "";
 
+// Try IPv4 before IPv6 when connecting to the AI. On networks where IPv6 doesn't really work,
+// Node otherwise waits 20+ seconds for it to fail before falling back, which makes every answer slow.
+dns.setDefaultResultOrder("ipv4first");
+
 const MAX_QUESTION_CHARS = 1000;
+const LLM_TIMEOUT_MS = 60_000;   // give up on the AI after 60 seconds instead of hanging forever
 const MAX_HISTORY_MESSAGES = 6;
 
 // Best-effort rate limit so a public page can't run up the API bill. Serverless instances
@@ -79,35 +85,105 @@ export default async function handler(req, res) {
     messages: fullRequest(game, chunks, prior, question.trim()),
     temperature: 0.3,
     max_tokens: 2500,
+    stream: true,   // send the answer piece by piece as it's written
   };
-  // Gemini and GPT-OSS models think before answering; "low" keeps answers fast and within the free limits.
+  // Gemini and GPT-OSS models think privately before answering. "low" keeps that short, so answers come faster.
   if (/gemini|gpt-oss/i.test(MODEL)) body.reasoning_effort = "low";
 
-  try {
-    const llmRes = await fetch(`${BASE_URL}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
-      },
-      body: JSON.stringify(body),
-    });
+  const sources = [...new Set(chunks.map((c) => c.heading))];
+  const started = Date.now();
+  console.log(`[boardGameWizard] asking ${MODEL} about ${game} (${mode}: ${chunks.length} sections)`);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
 
+  const askAI = (requestBody) => fetch(`${BASE_URL}/chat/completions`, {
+    method: "POST",
+    signal: controller.signal,
+    headers: {
+      "Content-Type": "application/json",
+      ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+    },
+    body: JSON.stringify(requestBody),
+  });
+
+  let streaming = false;
+  try {
+    let llmRes = await askAI(body);
+
+    // Some models reject the thinking setting. If so, log why and ask again without it rather than failing.
+    if (llmRes.status === 400 && body.reasoning_effort) {
+      console.warn("[boardGameWizard] AI rejected the request, retrying without reasoning_effort:", (await llmRes.text()).slice(0, 400));
+      const { reasoning_effort, ...withoutReasoning } = body;
+      llmRes = await askAI(withoutReasoning);
+    }
+
+    console.log(`[boardGameWizard] AI started answering (status ${llmRes.status}) after ${Date.now() - started} ms`);
     if (!llmRes.ok) {
       const detail = await llmRes.text();
-      console.error("LLM request failed", llmRes.status, detail.slice(0, 500));
+      console.error("[boardGameWizard] AI request failed", llmRes.status, detail.slice(0, 800));
       const message = llmRes.status === 429
         ? "The Board Game Master is busy right now. Please try again in a minute."
         : "The Board Game Master couldn't answer right now.";
       return res.status(502).json({ message });
     }
 
-    const data = await llmRes.json();
-    const reply = data.choices?.[0]?.message?.content?.trim() || "No response";
-    const sources = [...new Set(chunks.map((c) => c.heading))];
-    return res.status(200).json({ reply, sources, retrieval: mode });
+    // Pass the answer on to the page as it arrives, one JSON object per line:
+    //   {"type":"sources",...}  then many {"type":"text","text":"..."}  then {"type":"done"}
+    res.writeHead(200, {
+      "Content-Type": "application/x-ndjson; charset=utf-8",
+      "Cache-Control": "no-cache, no-transform",
+      "Content-Encoding": "none",   // stops compression from holding the stream back
+      "X-Accel-Buffering": "no",
+    });
+    streaming = true;
+    const send = (obj) => res.write(JSON.stringify(obj) + "\n");
+    send({ type: "sources", sources, retrieval: mode });
+
+    // The AI streams "server-sent events": lines like  data: {...json...}  ending with  data: [DONE]
+    const reader = llmRes.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let firstText = true;
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop();   // keep any half-received line for the next round
+      for (const line of lines) {
+        if (!line.startsWith("data:")) continue;
+        const data = line.slice(5).trim();
+        if (!data || data === "[DONE]") continue;
+        let text;
+        try { text = JSON.parse(data).choices?.[0]?.delta?.content; } catch { continue; }
+        if (!text) continue;
+        if (firstText) {
+          console.log(`[boardGameWizard] first words after ${Date.now() - started} ms`);
+          firstText = false;
+        }
+        send({ type: "text", text });
+      }
+    }
+    console.log(`[boardGameWizard] finished after ${Date.now() - started} ms`);
+    send({ type: "done" });
+    res.end();
+    return;
   } catch (err) {
-    console.error("Error calling LLM --", err);
-    return res.status(500).json({ message: "Internal server error" });
+    const timedOut = err.name === "AbortError";
+    console.error(timedOut
+      ? `[boardGameWizard] AI didn't finish within ${LLM_TIMEOUT_MS / 1000} seconds`
+      : "[boardGameWizard] Error calling the AI --", timedOut ? "" : err, err.cause || "");
+    const message = timedOut
+      ? "The Board Game Master took too long to answer. Please try again."
+      : "The Board Game Master couldn't reach the AI right now.";
+    // Once streaming has started the status can't change, so the error goes down the stream instead
+    if (streaming) {
+      res.write(JSON.stringify({ type: "error", message }) + "\n");
+      res.end();
+      return;
+    }
+    return res.status(timedOut ? 504 : 500).json({ message });
+  } finally {
+    clearTimeout(timer);
   }
 }
