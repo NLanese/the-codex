@@ -172,7 +172,7 @@ export default function BoardGameMasterAIProjectPage() {
                             <p style={Styles.Fonts.basicXL}>
                             The first version of this bot ran on Amazon Bedrock, but keeping it running cost close to $200-300 a month. 
                             This version does its own retrieval: the rules are searched inside this website's code, and only the few 
-                            matching sections are sent to a hosted LLM (GPT-OSS 20B on Groq) to write the answer. Each question costs a fraction of a cent.
+                            matching sections are sent to a hosted LLM (Google Gemini Flash) to write the answer, which keeps it within Gemini's free tier.
                             </p>
                         </div>
                     </OstCard>
@@ -597,7 +597,7 @@ return (
                     </p>
                     <p style={Styles.Fonts.basicXL}>
                     Version 1 used Amazon Bedrock, which did both steps on AWS and charged around the clock whether anyone used it or not. 
-                    In Version 2, this website's own code does the retrieval for free, and a hosted AI (GPT-OSS 20B on Groq) only does the writing.
+                    In Version 2, this website's own code does the retrieval for free, and a hosted AI (Google Gemini Flash) only does the writing.
                     </p>
 
                     <BoardGameFlowDiagram />
@@ -658,7 +658,7 @@ const { chunks } = retrieve(gameIndex, question)   // top 6 cards, or the whole 
                     and the new question.
                     </p>
                     <p style={Styles.Fonts.basicXL}>
-                    <b>The AI.</b> The prompt is sent over the internet to Groq, which runs the GPT-OSS 20B model to write the answer. This is the 
+                    <b>The AI.</b> The prompt is sent over the internet to Google's Gemini API, which runs a Gemini Flash model to write the answer. This is the 
                     only step that leaves the website. Because it uses the standard OpenAI-style chat format, switching to a different AI 
                     provider only means changing a few settings, and while developing I can point it at Ollama on my own computer so the 
                     whole thing runs locally.
@@ -667,7 +667,7 @@ const { chunks } = retrieve(gameIndex, question)   // top 6 cards, or the whole 
     method: "POST",
     headers: { Authorization: \`Bearer \${LLM_API_KEY}\` },
     body: JSON.stringify({
-        model: "openai/gpt-oss-20b",
+        model: LLM_MODEL,   // a Gemini Flash model
         messages: fullRequest(game, chunks, history, question),
     }),
 })`)}
@@ -678,7 +678,7 @@ const { chunks } = retrieve(gameIndex, question)   // top 6 cards, or the whole 
 
                     <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>Keeping the Key Secret</p>
                     <p style={Styles.Fonts.basicXL}>
-                    Groq needs an API key, which is like a password proving the request comes from my account. It is never written in the code, 
+                    Gemini needs an API key, which is like a password proving the request comes from my account. It is never written in the code, 
                     because the code lives on GitHub where anyone could copy it. Instead it's stored as an <b>environment variable</b>: a setting kept 
                     outside the code (in a <code>.env.local</code> file on my computer, and in Vercel's settings for the live site) that the 
                     server reads when it runs.
@@ -686,7 +686,7 @@ const { chunks } = retrieve(gameIndex, question)   // top 6 cards, or the whole 
 
                     <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>Cost and Upkeep</p>
                     <p style={Styles.Fonts.basicXL}>
-                    The bot runs on Groq's free tier, so instead of $200-300 a month it costs nothing. The only upkeep is re-running the build 
+                    The bot runs on Gemini's free tier, so instead of $200-300 a month it costs nothing. The only upkeep is re-running the build 
                     script and redeploying whenever I edit a rulebook.
                     </p>
                 </div>

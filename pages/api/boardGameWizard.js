@@ -2,20 +2,20 @@
 //
 // 1. Look up the selected game in rulesIndex.json (built by scripts/boardgame/buildRulesIndex.mjs).
 // 2. Find the rules chunks that best match the question with BM25 (no vector database, no AWS).
-// 3. Send those chunks + the question to any OpenAI-compatible chat API (Groq by default).
+// 3. Send those chunks + the question to any OpenAI-compatible chat API (Google Gemini by default).
 //
 // Env vars (set in Vercel → Settings → Environment Variables, and in .env.local for dev):
-//   LLM_API_KEY    required (a Groq key by default)
-//   LLM_BASE_URL   optional, default https://api.groq.com/openai/v1
-//                  for a fully local setup in dev, use Ollama: http://localhost:11434/v1
-//   LLM_MODEL      optional, default openai/gpt-oss-20b
+//   LLM_API_KEY    required (a Gemini key from Google AI Studio by default)
+//   LLM_MODEL      required, e.g. a current "gemini-...-flash" model name
+//   LLM_BASE_URL   optional, default https://generativelanguage.googleapis.com/v1beta/openai
+//                  Groq: https://api.groq.com/openai/v1   Ollama (fully local, dev only): http://localhost:11434/v1
 
 import rulesIndex from "../../constants/projects/boardgame_master_ai/rulesIndex.json";
 import { retrieve } from "../../api/helpers/boardGameRag.mjs";
 import fullRequest from "../../constants/projects/boardgame_master_ai/fullRequest";
 
-const BASE_URL = (process.env.LLM_BASE_URL || "https://api.groq.com/openai/v1").replace(/\/$/, "");
-const MODEL = process.env.LLM_MODEL || "openai/gpt-oss-20b";
+const BASE_URL = (process.env.LLM_BASE_URL || "https://generativelanguage.googleapis.com/v1beta/openai").replace(/\/$/, "");
+const MODEL = process.env.LLM_MODEL || "";
 
 const MAX_QUESTION_CHARS = 1000;
 const MAX_HISTORY_MESSAGES = 6;
@@ -65,8 +65,8 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.LLM_API_KEY;
-  if (!apiKey && !BASE_URL.includes("localhost")) {
-    return res.status(500).json({ message: "LLM_API_KEY is not configured on the server." });
+  if ((!apiKey && !BASE_URL.includes("localhost")) || !MODEL) {
+    return res.status(500).json({ message: "LLM_API_KEY or LLM_MODEL is not configured on the server." });
   }
 
   // Search with the previous user question too, so follow-ups like "what about on defense?" still find the right rules.
@@ -78,10 +78,10 @@ export default async function handler(req, res) {
     model: MODEL,
     messages: fullRequest(game, chunks, prior, question.trim()),
     temperature: 0.3,
-    max_tokens: 1500,
+    max_tokens: 2500,
   };
-  // GPT-OSS models think before answering; "low" keeps answers fast and cheap.
-  if (MODEL.includes("gpt-oss")) body.reasoning_effort = "low";
+  // Gemini and GPT-OSS models think before answering; "low" keeps answers fast and within the free limits.
+  if (/gemini|gpt-oss/i.test(MODEL)) body.reasoning_effort = "low";
 
   try {
     const llmRes = await fetch(`${BASE_URL}/chat/completions`, {

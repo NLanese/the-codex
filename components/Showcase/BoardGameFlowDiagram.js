@@ -46,7 +46,7 @@ export default function BoardGameFlowDiagram({ style }) {
             <Box x={40} y={165} w={130} color="teal" title="Your page" sub="game + question" />
             <Box x={190} y={165} w={130} color="teal" title="API route" sub="on Vercel" />
             <Box x={340} y={165} w={130} color="teal" title="Search" sub="picks sections" />
-            <Box x={490} y={165} w={130} color="coral" title="Groq (the AI)" sub="writes answer" />
+            <Box x={490} y={165} w={130} color="coral" title="Gemini (AI)" sub="writes answer" />
             <line x1={170} y1={193} x2={188} y2={193} {...arrow} />
             <line x1={320} y1={193} x2={338} y2={193} {...arrow} />
             <line x1={470} y1={193} x2={488} y2={193} {...arrow} />
