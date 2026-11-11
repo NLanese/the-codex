@@ -12,6 +12,9 @@ import Styles from "../../../styles/styles";
 import { OstCard } from "@ostrich_development/ostrich-components";
 import { OstrichDropDown } from "@ostrich_development/ostrich-components";
 
+// Diagram
+import BoardGameFlowDiagram from "../../../components/Showcase/BoardGameFlowDiagram";
+
 // Images
 const  S3Strcuture = '../../../assets/showcase_images/boardGameWizard/S3Structure.png'
 const  BedrockKB = '../../../assets/showcase_images/boardGameWizard/BedrockKB.png'
@@ -582,40 +585,83 @@ return (
                 {/* Version 2: Local RAG */}
                 <div>
                     <p style={Styles.Fonts.lessonHeaderXL}>
-                        Version 2: Building the RAG Myself
-                    </p>
-                    <p style={Styles.Fonts.basicXL}>
-                    RAG (Retrieval-Augmented Generation) has two halves: find the parts of the rulebook that answer the question, then hand 
-                    just those parts to an LLM and have it write the answer. Bedrock did both halves for me, but it also kept a vector database 
-                    running around the clock, which is where most of the bill came from. A handful of rulebooks is small enough that the 
-                    first half can live right inside this website.
+                        Version 2: How It Works (in Plain English)
                     </p>
 
-                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 26}}>Step 1: Chunk and Index the Rules (at build time)</p>
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>The Big Idea</p>
                     <p style={Styles.Fonts.basicXL}>
-                    A script splits every game's rules into sections of about 220 words, keeping track of which heading each section came from 
-                    ("Setup", "Castling", ...). It counts the words in each section and saves everything to a single JSON file that gets 
-                    deployed along with the site. No database and no AWS.
+                    Think of it as an open-book test. A language model is smart, but it doesn't reliably know the exact rules of 
+                    Robo Quest Arena, and if it guesses it may make rules up. So before asking it anything, the code first finds the relevant pages 
+                    of the rulebook and hands them over along with the question: "using only these pages, answer this." That's all RAG 
+                    (Retrieval-Augmented Generation) means. <i>Retrieval</i> is finding the right pages, and <i>generation</i> is the AI writing the answer.
+                    </p>
+                    <p style={Styles.Fonts.basicXL}>
+                    Version 1 used Amazon Bedrock, which did both steps on AWS and charged around the clock whether anyone used it or not. 
+                    In Version 2, this website's own code does the retrieval for free, and a hosted AI (GPT-OSS 20B on Groq) only does the writing.
+                    </p>
+
+                    <BoardGameFlowDiagram />
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>Part 1: Preparing the Rulebooks (top row)</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    This only happens when I add or change rules, never when someone uses the site.
+                    </p>
+                    <p style={Styles.Fonts.basicXL}>
+                    <b>The rules files</b> are plain text, one file per game, in <code>data/boardgame_rules/</code>.
+                    </p>
+                    <p style={Styles.Fonts.basicXL}>
+                    <b>The build script</b> reads each file and does two things. First, it <b>chops</b> each rulebook into bite-sized sections of 
+                    about 220 words, like tearing a manual into index cards. Each card remembers the heading it came from, such as 
+                    "How To Castle In Chess." Second, it <b>counts the words</b> on each card. Small connecting words like "the" and "and" are skipped, 
+                    and word endings are trimmed so "castle" and "castling" count as the same word. These counts are what make searching possible later.
                     </p>
                     {renderCodeBlock(`node scripts/boardgame/buildRulesIndex.mjs
 // reads data/boardgame_rules/  →  writes constants/projects/boardgame_master_ai/rulesIndex.json`)}
-
-                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 26}}>Step 2: Search Only the Selected Game (at request time)</p>
                     <p style={Styles.Fonts.basicXL}>
-                    When you send a question, the API route only looks at the game you picked, so a question about Chess can never pull in 
-                    rules from Checkers. It ranks that game's sections with BM25, the classic search-engine scoring formula: sections that 
-                    use your question's rarer words ("castle", "en passant") more often score higher. Short rulebooks skip the search and 
-                    are sent whole, since then the model gets to see every rule.
+                    <b>rulesIndex.json</b> is the result: all the index cards and their word counts in one file. It is deployed along with 
+                    the website like any other file, so there is no database or server to pay for.
+                    </p>
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>Part 2: When Someone Asks a Question (bottom row)</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    <b>The page.</b> When you pick "Chess" and type "How do I castle?", the page sends three things to the server: 
+                    the game name, the question, and the conversation so far, so that follow-ups like "what about queenside?" make sense. 
+                    It then shows "Checking the rulebook..." while it waits.
+                    </p>
+                    <p style={Styles.Fonts.basicXL}>
+                    <b>The API route</b> (<code>pages/api/boardGameWizard.js</code>) is the function that runs on Vercel's servers. In order, it:
+                    </p>
+                    <ol style={{...Styles.Fonts.basicXL, paddingLeft: 60}}>
+                        <li><b>Checks it's a real request.</b> Anything other than a submitted question is turned away.</li>
+                        <li><b>Checks the visitor isn't spamming.</b> More than 8 questions in a minute gets a polite "please wait."</li>
+                        <li><b>Checks the question makes sense.</b> A game must be picked, and the question can't be empty or longer than 1,000 characters.</li>
+                        <li><b>Checks it has rules for that game.</b> If not, it says "I don't have the rules for that game loaded yet."</li>
+                        <li><b>Checks the API key is set up.</b> A missing key gives a clear error instead of a mysterious failure.</li>
+                        <li><b>Tidies the conversation history.</b> It keeps only the last 6 messages, and only real "user" and "assistant" messages, so nobody can sneak in fake instructions.</li>
+                        <li><b>Searches the rulebook</b> (next section).</li>
+                        <li><b>Builds the prompt, asks the AI, and sends the answer back.</b></li>
+                    </ol>
+
+                    <p style={Styles.Fonts.basicXL}>
+                    <b>The search</b> only looks at the selected game's cards, so a Chess question can never pull in rules from Checkers. If the rulebook 
+                    is short (under 3,500 words), it skips searching and hands over the whole thing, so the AI sees every rule. Six of the eight 
+                    games are that size. For the long ones (Poker and Robo Quest Arena), it scores every card. A card scores higher when it contains 
+                    words from the question, especially rare words: "castle" counts for a lot, while "move" appears everywhere and counts for little. 
+                    The top 6 cards win. This scoring formula is called BM25, and it's how classic search engines rank results.
                     </p>
                     {renderCodeBlock(`const gameIndex = rulesIndex.games[game]
-const { chunks } = retrieve(gameIndex, question)   // top 6 sections, or the whole rulebook if it's short`)}
+const { chunks } = retrieve(gameIndex, question)   // top 6 cards, or the whole rulebook if it's short`)}
 
-                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 26}}>Step 3: Let the LLM Write the Answer</p>
                     <p style={Styles.Fonts.basicXL}>
-                    The chosen sections are pasted into the prompt along with instructions to explain things to beginners and never invent 
-                    rules. That prompt goes to GPT-OSS 20B on Groq through the standard OpenAI-style chat API. Because nearly every provider 
-                    speaks that same format, switching models is a matter of changing environment variables, and during development I can point it 
-                    at Ollama on my own machine so the whole pipeline runs locally.
+                    <b>Building the prompt.</b> <code>fullRequest.js</code> assembles the message for the AI. It contains the instructions 
+                    (treat people as beginners, give segmented answers, never make up rules), the winning rulebook cards, the earlier conversation, 
+                    and the new question.
+                    </p>
+                    <p style={Styles.Fonts.basicXL}>
+                    <b>The AI.</b> The prompt is sent over the internet to Groq, which runs the GPT-OSS 20B model to write the answer. This is the 
+                    only step that leaves the website. Because it uses the standard OpenAI-style chat format, switching to a different AI 
+                    provider only means changing a few settings, and while developing I can point it at Ollama on my own computer so the 
+                    whole thing runs locally.
                     </p>
                     {renderCodeBlock(`fetch(\`\${LLM_BASE_URL}/chat/completions\`, {
     method: "POST",
@@ -626,7 +672,22 @@ const { chunks } = retrieve(gameIndex, question)   // top 6 sections, or the who
     }),
 })`)}
                     <p style={Styles.Fonts.basicXL}>
-                    Each answer also lists the rulebook sections it was based on, so you can see which part of the rules it used.
+                    <b>Back to the page.</b> The function returns the answer plus the names of the rule sections it used, which show up as a small 
+                    "Rules used" line under each answer. If anything goes wrong, such as the AI being busy, a friendly message appears in the chat instead.
+                    </p>
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>Keeping the Key Secret</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    Groq needs an API key, which is like a password proving the request comes from my account. It is never written in the code, 
+                    because the code lives on GitHub where anyone could copy it. Instead it's stored as an <b>environment variable</b>: a setting kept 
+                    outside the code (in a <code>.env.local</code> file on my computer, and in Vercel's settings for the live site) that the 
+                    server reads when it runs.
+                    </p>
+
+                    <p style={{...Styles.Fonts.lessonHeaderXL, fontSize: 30}}>Cost and Upkeep</p>
+                    <p style={Styles.Fonts.basicXL}>
+                    The bot runs on Groq's free tier, so instead of $200-300 a month it costs nothing. The only upkeep is re-running the build 
+                    script and redeploying whenever I edit a rulebook.
                     </p>
                 </div>
 
