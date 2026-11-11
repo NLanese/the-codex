@@ -14,12 +14,11 @@ const CACHE_MS = CACHE_HOURS * 60 * 60 * 1000;
 // Last successful answer, kept between requests while this server instance is alive
 let cache = { bets: null, fetchedAt: 0 };
 
-function convertToAmericanOdds(price) {
-    if (price >= 2) {
-        return `+${Math.round((price - 1) * 100)}`;
-    } else {
-        return `${Math.round(-100 / (price - 1))}`;
-    }
+// The API sends American odds (oddsFormat: "american"). A real American price is a whole number
+// of at least 100 either way (-110, +250). Anything else, like a pulled line, is dropped.
+function formatAmerican(price) {
+    if (!Number.isFinite(price) || Math.abs(price) < 100) return null;
+    return price > 0 ? `+${price}` : `${price}`;
 }
 
 function findBookmakerByTitle(bookmakers, title) {
@@ -30,19 +29,23 @@ function findBookmakerByTitle(bookmakers, title) {
     const revisedOdds = {}
     rBook.markets.forEach(market => {
         if (market.key === "h2h"){
-            revisedOdds.moneyline = {
-                [market.outcomes[0].name]: convertToAmericanOdds(market.outcomes[0].price),
-                [market.outcomes[1].name]: convertToAmericanOdds(market.outcomes[1].price),
-            }
+            const moneyline = {}
+            market.outcomes.forEach(o => {
+                const odds = formatAmerican(o.price)
+                if (odds) moneyline[o.name] = odds
+            })
+            if (Object.keys(moneyline).length === 2) revisedOdds.moneyline = moneyline
         }
         else if (market.key === "spreads"){
-            revisedOdds.spread = {
-                [market.outcomes[0].name]: {odds: convertToAmericanOdds(market.outcomes[0].price), diff: market.outcomes[0].point},
-                [market.outcomes[1].name]: {odds: convertToAmericanOdds(market.outcomes[1].price), diff: market.outcomes[1].point}
-            }
+            const spread = {}
+            market.outcomes.forEach(o => {
+                const odds = formatAmerican(o.price)
+                if (odds && Number.isFinite(o.point)) spread[o.name] = { odds, diff: o.point }
+            })
+            if (Object.keys(spread).length === 2) revisedOdds.spread = spread
         }
     })
-    return revisedOdds
+    return (revisedOdds.moneyline || revisedOdds.spread) ? revisedOdds : undefined
 }
 
 function sendBets(res, bets, source) {
@@ -65,6 +68,7 @@ export default async function handler(req, res) {
                 apiKey: process.env.ODDS_API_KEY,
                 regions: 'us',              // FanDuel is in the "us" region; one region keeps each call at 2 credits
                 markets: 'spreads,h2h',
+                oddsFormat: 'american',     // whole-number odds like -110, so nothing needs converting
             },
             timeout: 15000,
         });

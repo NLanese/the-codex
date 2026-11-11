@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { directoryDataState, tabBarState } from "../../../jotai/atoms";
 
 // Ostrich
-import { OstCard, OstrichButton } from "@ostrich_development/ostrich-components";
+import { OstCard, OstrichButton, FormMultipleChoice } from "@ostrich_development/ostrich-components";
 
 // Showcase Kit
 import { Page, Hero, ActionButton, PillTabs, Section, Chip, Avatar, Notice, DOC, LIME, jumpTo } from "../../../components/Showcase/showcaseKit";
@@ -43,16 +43,62 @@ function tipTime(tipoff) {
     return new Date(tipoff).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
 }
 
+// A real American price is a whole number of at least 100 either way (-110, +250). Anything else, like "-Infinity", isn't shown.
+function validOdds(odds) {
+    const n = Number(odds)
+    return Number.isFinite(n) && Math.abs(n) >= 100
+}
+
 // Every line the bot shows for one team in one game
 function teamLines(game, team) {
     const spread = game?.bet?.spread?.[team]
     const moneyline = game?.bet?.moneyline?.[team]
     return {
-        spread: spread && spread.diff !== undefined ? { points: spread.diff, odds: spread.odds } : null,
-        moneyline: moneyline || null,
+        spread: spread && Number.isFinite(spread.diff) && validOdds(spread.odds) ? { points: spread.diff, odds: spread.odds } : null,
+        moneyline: validOdds(moneyline) ? moneyline : null,
     }
 }
 
+
+// "Boston Celtics" → "Celtics", "Portland Trail Blazers" → "Trail Blazers"
+function shortName(team) {
+    return team.endsWith("Trail Blazers") ? "Trail Blazers" : team.split(" ").pop()
+}
+
+function gameId(game) {
+    return `${game.tipoff}|${game.away}|${game.home}`
+}
+
+// Which bet types both teams have lines for, so every row lines up
+function gameBetTypes(game) {
+    return ["spread", "moneyline"].filter((type) => teamLines(game, game.away)[type] && teamLines(game, game.home)[type])
+}
+
+// Everything you could bet on in one game, as FormMultipleChoice options.
+// Ordered row by row: away team's lines, then home team's.
+function gameOptions(game) {
+    const types = gameBetTypes(game)
+    const options = []
+    for (const team of [game.away, game.home]) {
+        for (const type of types) {
+            const line = teamLines(game, team)[type]
+            const odds = type === "spread" ? line.odds : line
+            const chance = impliedChance(odds)
+            // Spread buttons:  Celtics -110 / -2.5 / 52% Implied
+            // Moneyline buttons: Celtics -125 / 56% Implied
+            const lines = [`${shortName(team)} ${odds}`]
+            if (type === "spread") lines.push(formatPoints(line.points))
+            if (chance) lines.push(`${chance.toFixed(0)}% Implied`)
+            options.push({
+                value: `${team}|${type}`,
+                tag: lines.join("\n"),
+                team, type, odds,
+                label: type === "spread" ? `Spread ${formatPoints(line.points)}` : "Moneyline",
+            })
+        }
+    }
+    return options
+}
 
 export default function BetBotProjectPage() {
 
@@ -118,23 +164,16 @@ export default function BetBotProjectPage() {
                 })
         }
 
-        function pickId(game, team, type){
-            return `${game.tipoff}|${game.away}|${game.home}|${team}|${type}`
-        }
-
-        // Clicking a line adds it to the slip; clicking it again takes it off
-        function togglePick(game, team, type){
-            const id = pickId(game, team, type)
-            if (slip.find((p) => p.id === id)) {
-                setSlip((prev) => prev.filter((p) => p.id !== id))
-                return
-            }
-            const lines = teamLines(game, team)
-            const opponent = team === game.away ? game.home : game.away
-            const pick = type === "spread"
-                ? { id, team, opponent, type, label: `Spread ${formatPoints(lines.spread.points)}`, odds: lines.spread.odds, tipoff: game.tipoff }
-                : { id, team, opponent, type, label: "Moneyline", odds: lines.moneyline, tipoff: game.tipoff }
-            setSlip((prev) => [...prev, pick])
+        // One pick per game: choosing a line replaces any other line from the same game
+        function setGamePick(game, value){
+            const id = gameId(game)
+            const option = gameOptions(game).find((o) => o.value === value)
+            setSlip((prev) => {
+                const others = prev.filter((p) => p.id !== id)
+                if (!option) return others
+                const opponent = option.team === game.away ? game.home : game.away
+                return [...others, { id, value, team: option.team, opponent, type: option.type, label: option.label, odds: option.odds, tipoff: game.tipoff }]
+            })
         }
 
         function removePick(id){
@@ -146,65 +185,16 @@ export default function BetBotProjectPage() {
     ////////////////
 
     // Odds //
-        // One clickable price (a spread or a moneyline), as an OstCard
-        function renderLineCell(game, team, type){
-            const lines = teamLines(game, team)
-            const line = lines[type]
-            if (!line) {
-                return (
-                    <OstCard noShadow style={{ ...cellBase, backgroundColor: DOC.wash, color: DOC.muted, cursor: "default" }}>
-                        <div style={{ fontSize: 15 }}>—</div>
-                    </OstCard>
-                )
-            }
-            const odds = type === "spread" ? line.odds : line
-            const chance = impliedChance(odds)
-            const picked = !!slip.find((p) => p.id === pickId(game, team, type))
-            return (
-                <OstCard
-                    noShadow
-                    onClick={() => togglePick(game, team, type)}
-                    aria-label={`${picked ? "Remove" : "Add"} ${team} ${type === "spread" ? `spread ${formatPoints(line.points)}` : "moneyline"} at ${odds}`}
-                    aria-pressed={picked}
-                    style={{
-                        ...cellBase,
-                        backgroundColor: picked ? DOC.ink : "white",
-                        border: `1px solid ${picked ? DOC.ink : DOC.line}`,
-                        color: picked ? "white" : DOC.ink,
-                    }}
-                    hoverStyle={{ backgroundColor: picked ? "#2a1a6e" : "#e3ecf8" }}
-                    pressedStyle={{ transform: "scale(0.97)" }}
-                >
-                    <div style={{ fontSize: 16, fontWeight: 700, lineHeight: 1.2 }}>
-                        {type === "spread" ? `${formatPoints(line.points)}  ` : ""}{odds}
-                    </div>
-                    {chance ? (
-                        <div style={{ fontSize: 12.5, marginTop: 3, color: picked ? LIME : DOC.muted }}>{chance.toFixed(0)}% implied</div>
-                    ) : null}
-                </OstCard>
-            )
-        }
-
-        function renderTeamRow(game, team, isHome){
-            return (
-                <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 104px 104px", gap: 10, alignItems: "center", marginTop: 10 }}>
-                    <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: 16.5, fontWeight: 700, color: DOC.ink, lineHeight: 1.25 }}>{team}</div>
-                        <div style={{ fontSize: 12.5, color: DOC.muted, marginTop: 2 }}>{isHome ? "Home" : "Away"}</div>
-                    </div>
-                    {renderLineCell(game, team, "spread")}
-                    {renderLineCell(game, team, "moneyline")}
-                </div>
-            )
-        }
-
-        // One game: tip-off time, then each team's spread and moneyline
+        // One game: its lines as a single-answer FormMultipleChoice, so only one bet per game can be picked
         function renderGameCard(game){
+            const types = gameBetTypes(game)
+            const options = gameOptions(game)
+            const picked = slip.find((p) => p.id === gameId(game))
             return (
                 <OstCard
-                    key={`${game.tipoff}-${game.away}-${game.home}`}
+                    key={gameId(game)}
                     noShadow
-                    style={{ backgroundColor: "white", border: `1px solid ${DOC.line}`, borderRadius: 18, padding: "16px 18px 18px", boxShadow: "0 4px 14px rgba(17, 1, 59, 0.08)" }}
+                    style={{ backgroundColor: "white", border: `1px solid ${DOC.line}`, borderRadius: 18, padding: "16px 18px 12px", boxShadow: "0 4px 14px rgba(17, 1, 59, 0.08)" }}
                 >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
                         <div style={{ fontSize: 14, fontWeight: 700, color: DOC.accentDeep, letterSpacing: 1, textTransform: "uppercase" }}>
@@ -212,13 +202,44 @@ export default function BetBotProjectPage() {
                         </div>
                         <Chip>FanDuel</Chip>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 104px 104px", gap: 10, marginTop: 12, fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: DOC.muted, fontWeight: 700 }}>
-                        <div>Team</div>
-                        <div style={{ textAlign: "center" }}>Spread</div>
-                        <div style={{ textAlign: "center" }}>Moneyline</div>
+                    <div style={{ fontSize: 19, fontWeight: 700, color: DOC.ink, marginTop: 6 }}>
+                        {game.away} <span style={{ color: DOC.muted, fontWeight: 400 }}>@</span> {game.home}
                     </div>
-                    {renderTeamRow(game, game.away, false)}
-                    {renderTeamRow(game, game.home, true)}
+
+                    {options.length === 0 ? (
+                        <div style={{ fontSize: 15, color: DOC.muted, marginTop: 10 }}>No lines posted for this game yet.</div>
+                    ) : (
+                        <div>
+                            <div style={{ display: "grid", gridTemplateColumns: `repeat(${types.length}, 1fr)`, gap: 10, marginTop: 12, fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: DOC.muted, fontWeight: 700, textAlign: "center" }}>
+                                {types.map((t) => <div key={t}>{t === "spread" ? "Spread" : "Moneyline"}</div>)}
+                            </div>
+                            <FormMultipleChoice
+                                fieldObj={{ id: gameId(game), type: "MC", template: "tabs", options, required: false }}
+                                options={options}
+                                singleOption
+                                allowDeselect
+                                value={picked ? picked.value : null}
+                                onChange={(field) => setGamePick(game, field.value[0])}
+                                inForm={false}
+                                itemsPerRow={types.length}
+                                showErrors={false}
+                                aria-label={`Pick one bet for ${game.away} at ${game.home}`}
+                                style={{ backgroundColor: "transparent", boxShadow: "none", border: "none", padding: 0, margin: "8px 0 0", width: "100%" }}
+                                contentStyle={{ padding: 0, width: "100%" }}
+                                optionsStyle={{ padding: 0 }}
+                                optionRowStyle={{ display: "grid", gridTemplateColumns: `repeat(${types.length}, 1fr)`, gap: 14, width: "100%", marginBottom: 12 }}
+                                tabStyle={{
+                                    display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
+                                    backgroundColor: "white", border: `1px solid ${DOC.line}`, borderRadius: 12, padding: "12px 14px", minHeight: 50,
+                                }}
+                                hoverTabStyle={{ backgroundColor: "#e3ecf8" }}
+                                activeTabStyle={{ backgroundColor: DOC.ink, border: `1px solid ${DOC.ink}` }}
+                                tabLabelStyle={{ fontFamily: DOC.font, fontSize: 16, fontWeight: 700, color: DOC.ink, textAlign: "center", whiteSpace: "pre-line", lineHeight: 1.45, margin: 0 }}
+                                activeTabLabelStyle={{ color: "white" }}
+                                hoverTabLabelStyle={{ color: DOC.ink }}
+                            />
+                        </div>
+                    )}
                 </OstCard>
             )
         }
@@ -263,7 +284,7 @@ export default function BetBotProjectPage() {
 
                     {slip.length === 0 ? (
                         <div style={{ fontSize: 15.5, lineHeight: 1.55, color: DOC.muted, marginTop: 12 }}>
-                            Click any spread or moneyline to add it here.
+                            Click any spread or moneyline to add it here. You can pick one bet per game.
                         </div>
                     ) : (
                         <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 14 }}>
@@ -273,7 +294,7 @@ export default function BetBotProjectPage() {
                                     <OstCard key={p.id} noShadow style={{ backgroundColor: DOC.wash, border: `1px solid ${DOC.line}`, borderRadius: 14, padding: "10px 12px", display: "flex", alignItems: "flex-start", gap: 10 }}>
                                         <div style={{ flex: 1, minWidth: 0 }}>
                                             <div style={{ fontSize: 15.5, fontWeight: 700, color: DOC.ink }}>{p.team}</div>
-                                            <div style={{ fontSize: 14, color: DOC.text, marginTop: 2 }}>{p.label} · {p.odds}</div>
+                                            <div style={{ fontSize: 14, color: DOC.text, marginTop: 2 }}>{p.type === "spread" ? `${p.label} at ${p.odds}` : `${p.label} ${p.odds}`}</div>
                                             <div style={{ fontSize: 12.5, color: DOC.muted, marginTop: 2 }}>
                                                 vs {p.opponent} · {dayLabel(p.tipoff)}{chance ? ` · ${chance.toFixed(0)}% implied` : ""}
                                             </div>
@@ -389,7 +410,7 @@ export default function BetBotProjectPage() {
                     { label: "Running cost", value: "$0 / month" },
                 ]} />
 
-                <Section id="lines" eyebrow="Odds" title="Upcoming games" subtitle="Times are shown in your time zone. Click a spread or moneyline to add it to your slip.">
+                <Section id="lines" eyebrow="Odds" title="Upcoming games" subtitle="Times are shown in your time zone. Pick one spread or moneyline per game to add it to your slip.">
                     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: 24 }}>
                         <div style={{ flex: "1 1 560px", minWidth: 0 }}>{renderGames()}</div>
                         <div style={{ flex: "0 1 320px", minWidth: 280 }}>{renderSlip()}</div>
@@ -408,7 +429,3 @@ export default function BetBotProjectPage() {
         )
 }
 
-const cellBase = {
-    display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-    textAlign: "center", borderRadius: 12, padding: "8px 6px", minHeight: 52, boxSizing: "border-box", cursor: "pointer",
-}
