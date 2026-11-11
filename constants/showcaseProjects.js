@@ -164,4 +164,4 @@ export const PROJECT_GROUPS = [
 ]
 
 // Shown on the Portfolio page under "Personal Projects"
-export const FEATURED_PROJECT_IDS = ["nightreign", "ostrich", "warhammer", "dungeondash"]
+export const FEATURED_PROJECT_IDS = ["nightreign", "ostrich", "boardgame", "dungeondash"]
