@@ -1,17 +1,58 @@
 // React
-import React, {useEffect, useState} from "react";
-import ReactModal from 'react-modal';
+import React, { useEffect, useState } from "react";
 
-// Recoil
+// Jotai
 import { useAtom } from "jotai";
-import { directoryDataState } from "../../../jotai/atoms";
-
-// Styles 
-import Styles from "../../../styles/styles";
+import { directoryDataState, tabBarState } from "../../../jotai/atoms";
 
 // Ostrich
-import { OstCard } from "@ostrich_development/ostrich-components";
-import { OstrichTabBar } from "@ostrich_development/ostrich-components";
+import { OstCard, OstrichButton } from "@ostrich_development/ostrich-components";
+
+// Showcase Kit
+import { Page, Hero, ActionButton, PillTabs, Section, Chip, Avatar, Notice, DOC, LIME, jumpTo } from "../../../components/Showcase/showcaseKit";
+import { P, SubHeading, FactRow, Panel, Timeline } from "../../../components/Showcase/caseStudyKit";
+
+
+/////////////
+// Helpers //
+/////////////
+
+// "+110" → 47.6, "-125" → 55.6 : the win chance the sportsbook's price implies
+function impliedChance(americanOdds) {
+    const n = parseInt(americanOdds, 10)
+    if (!n) return null
+    return n < 0 ? (-n / (-n + 100)) * 100 : (100 / (n + 100)) * 100
+}
+
+// -2.5 → "-2.5", 2.5 → "+2.5"
+function formatPoints(points) {
+    return points > 0 ? `+${points}` : `${points}`
+}
+
+// Groups by the visitor's own calendar day (tip-offs come in UTC, so a 7:30 PM game is "tomorrow" in UTC)
+function localDayKey(tipoff) {
+    const d = new Date(tipoff)
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+}
+
+function dayLabel(tipoff) {
+    return new Date(tipoff).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })
+}
+
+function tipTime(tipoff) {
+    return new Date(tipoff).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
+}
+
+// Every line the bot shows for one team in one game
+function teamLines(game, team) {
+    const spread = game?.bet?.spread?.[team]
+    const moneyline = game?.bet?.moneyline?.[team]
+    return {
+        spread: spread && spread.diff !== undefined ? { points: spread.diff, odds: spread.odds } : null,
+        moneyline: moneyline || null,
+    }
+}
+
 
 export default function BetBotProjectPage() {
 
@@ -19,602 +60,355 @@ export default function BetBotProjectPage() {
     // State //
     ///////////
 
-        // Directory
         const [directory, setDirectory] = useAtom(directoryDataState)
+        const [activeTab, setActiveTab] = useAtom(tabBarState)
 
-        // Loading
-        const [loading, setLoading] = useState(true)
+        // "loading" | "ready" | "credits" | "error"
+        const [status, setStatus] = useState("loading")
 
+        // All games with FanDuel lines
+        const [games, setGames] = useState([])
 
-            //
-            //// Bet States
-            const [hasLoadedBets, setHasLoadedBets] = useState(false)
+        // Game days, in order: [{ key, label }]
+        const [days, setDays] = useState([])
 
-            // All Scraped Bets
-            const [bets, setBets] = useState(false)
+        // Label of the selected game day
+        const [selectedDay, setSelectedDay] = useState(null)
 
-            // Bets matching Selected Date
-            const [daysBets, setDaysBets] = useState([])
+        // Picks on the bet slip
+        const [slip, setSlip] = useState([])
 
-            // All Dates of Found Games
-            const [dates, setDates] = useState([])
+    ////////////////
+    // UseEffects //
+    ////////////////
 
-            // Current Staged Bet Sheet
-            const [stagedBetSheet, setStagedBetSheet] = useState(false)
-
-            // All Added Bets for Checking
-            const [selectedBets, setSelectedBets] = useState(false)
-
-            // Currently Selected Date
-            const [selectedDate, setSelectedDate] = useState(false)
-
-        // Trigger for Add Bet Modal
-        const [addBetModal, setAddBetModal] = useState(false)
-
-        const dummyData = [
-            {
-                "away": "Miami Heat",
-                "home": "Atlanta Hawks",
-                "bet": {
-                    "moneyline": {
-                        "Atlanta Hawks": "+370",
-                        "Miami Heat": "-526"
-                    },
-                    "spread": {
-                        "Atlanta Hawks": {
-                            "odds": "-110",
-                            "diff": 6.5
-                        },
-                        "Miami Heat": {
-                            "odds": "-120",
-                            "diff": -6.5
-                        }
-                    }
-                },
-                "tipoff": "2025-04-18T23:05:24Z"
-            },
-            {
-                "away": "Dallas Mavericks",
-                "home": "Memphis Grizzlies",
-                "bet": {
-                    "moneyline": {
-                        "Dallas Mavericks": "+198",
-                        "Memphis Grizzlies": "-238"
-                    },
-                    "spread": {
-                        "Dallas Mavericks": {
-                            "odds": "-114",
-                            "diff": 6
-                        },
-                        "Memphis Grizzlies": {
-                            "odds": "-106",
-                            "diff": -6
-                        }
-                    }
-                },
-                "tipoff": "2025-04-19T01:30:00Z"
-            },
-            {
-                "away": "Milwaukee Bucks",
-                "home": "Indiana Pacers",
-                "bet": {
-                    "moneyline": {
-                        "Indiana Pacers": "-222",
-                        "Milwaukee Bucks": "+184"
-                    },
-                    "spread": {
-                        "Indiana Pacers": {
-                            "odds": "-110",
-                            "diff": -5.5
-                        },
-                        "Milwaukee Bucks": {
-                            "odds": "-110",
-                            "diff": 5.5
-                        }
-                    }
-                },
-                "tipoff": "2025-04-19T17:00:00Z"
-            },
-            {
-                "away": "Los Angeles Clippers",
-                "home": "Denver Nuggets",
-                "bet": {
-                    "moneyline": {
-                        "Denver Nuggets": "-145",
-                        "Los Angeles Clippers": "+122"
-                    },
-                    "spread": {
-                        "Denver Nuggets": {
-                            "odds": "-110",
-                            "diff": -2.5
-                        },
-                        "Los Angeles Clippers": {
-                            "odds": "-110",
-                            "diff": 2.5
-                        }
-                    }
-                },
-                "tipoff": "2025-04-19T19:30:00Z"
-            },
-            {
-                "away": "Detroit Pistons",
-                "home": "New York Knicks",
-                "bet": {
-                    "moneyline": {
-                        "Detroit Pistons": "+235",
-                        "New York Knicks": "-294"
-                    },
-                    "spread": {
-                        "Detroit Pistons": {
-                            "odds": "-106",
-                            "diff": 7
-                        },
-                        "New York Knicks": {
-                            "odds": "-114",
-                            "diff": -7
-                        }
-                    }
-                },
-                "tipoff": "2025-04-19T22:00:00Z"
-            },
-            {
-                "away": "Minnesota Timberwolves",
-                "home": "Los Angeles Lakers",
-                "bet": {
-                    "moneyline": {
-                        "Los Angeles Lakers": "-185",
-                        "Minnesota Timberwolves": "+156"
-                    },
-                    "spread": {
-                        "Los Angeles Lakers": {
-                            "odds": "-112",
-                            "diff": -4
-                        },
-                        "Minnesota Timberwolves": {
-                            "odds": "-108",
-                            "diff": 4
-                        }
-                    }
-                },
-                "tipoff": "2025-04-20T00:30:00Z"
-            },
-            {
-                "away": "Orlando Magic",
-                "home": "Boston Celtics",
-                "bet": {
-                    "moneyline": {
-                        "Boston Celtics": "-1000",
-                        "Orlando Magic": "+660"
-                    },
-                    "spread": {
-                        "Boston Celtics": {
-                            "odds": "-112",
-                            "diff": -13.5
-                        },
-                        "Orlando Magic": {
-                            "odds": "-108",
-                            "diff": 13.5
-                        }
-                    }
-                },
-                "tipoff": "2025-04-20T19:30:00Z"
-            },
-            {
-                "away": "Golden State Warriors",
-                "home": "Houston Rockets",
-                "bet": {
-                    "moneyline": {
-                        "Golden State Warriors": "-102",
-                        "Houston Rockets": "-116"
-                    },
-                    "spread": {
-                        "Golden State Warriors": {
-                            "odds": "-110",
-                            "diff": 1
-                        },
-                        "Houston Rockets": {
-                            "odds": "-110",
-                            "diff": -1
-                        }
-                    }
-                },
-                "tipoff": "2025-04-21T01:30:00Z"
-            }
-        ]
-
-
-
-        // Credits Error Message
-        const [outOfCredits, setOutOfCredits] = useState(false)
-
-    ///////////////
-    // UseEffect //
-    ///////////////
-
-        // On Init
         useEffect(() => {
-            if (!hasLoadedBets){
-                setDirectory("Portfolio")    
-                handleRequestToAPI()
-                setHasLoadedBets(true)
-            }
+            setDirectory("Portfolio")
+            setActiveTab("Ongoing Projects")
+            loadOdds()
         }, [])
-
-        useEffect(() => {
-            console.log(selectedDate)
-            if (bets){
-                let theseBets = bets.filter(bet => {
-                    if (extractDate(bet) === selectedDate){
-                        return bet
-                    }
-                })
-                setDaysBets([...theseBets])
-            }
-        }, [selectedDate])
-
-        useEffect(() => {
-            if (daysBets.length > 0){
-                setLoading(false)
-            }
-        }, [daysBets])
 
     ///////////////
     // Functions //
     ///////////////
 
-        // Grabs Bets from Odds API
-        async function handleRequestToAPI(){
-            setSelectedDate(false)
-            // GET (not POST) so Vercel can serve everyone the same saved copy of today's odds
+        // Gets the saved FanDuel odds (refreshed about twice a day; see pages/api/betBot/scrapeFanDuel.js)
+        function loadOdds(){
             fetch("/api/betBot/scrapeFanDuel")
-            .then(async (res) => {
-                const json = await res.json()
-                if (json.ERROR){
-                    if (json.ERROR === "OUT OF CREDITS"){
-                        setOutOfCredits(true)
+                .then((res) => res.json())
+                .then((json) => {
+                    if (json.ERROR) {
+                        setStatus(json.ERROR === "OUT OF CREDITS" ? "credits" : "error")
+                        return
                     }
-                    else {
-                        console.error("Couldn't load odds:", json.ERROR)
-                    }
-                    setLoading(false)
-                    return
-                }
-                // One tab per game day, in order
-                const newDates = []
-                json.forEach(bet => {
-                    const date = extractDate(bet)
-                    if (!newDates.includes(date)){
-                        newDates.push(date)
-                    }
+                    const sorted = [...json].sort((a, b) => new Date(a.tipoff) - new Date(b.tipoff))
+                    const foundDays = []
+                    sorted.forEach((game) => {
+                        const key = localDayKey(game.tipoff)
+                        if (!foundDays.find((d) => d.key === key)) foundDays.push({ key, label: dayLabel(game.tipoff) })
+                    })
+                    setGames(sorted)
+                    setDays(foundDays)
+                    setSelectedDay(foundDays[0] ? foundDays[0].label : null)
+                    setStatus("ready")
                 })
-                setDates(newDates)
-                setBets(json)
-                setSelectedDate(newDates[0] || false)
-                setLoading(false)
-            })
-            .catch((err) => {
-                console.error("Odds request failed:", err);
-                setLoading(false)
-            });
+                .catch((err) => {
+                    console.error("Odds request failed:", err)
+                    setStatus("error")
+                })
         }
 
-        // Finds the dates of each found game
-        function extractDate(game){
-            return(`${game.tipoff.split("-")[1]}-${game.tipoff.split("-")[2].split("T")[0]}`)
+        function pickId(game, team, type){
+            return `${game.tipoff}|${game.away}|${game.home}|${team}|${type}`
         }
 
-
-        // Adds a specific bet to the Bet Sheet
-        function selectBet(teamBetSheet){
-            setSelectedBets(prev => [...prev, teamBetSheet])
+        // Clicking a line adds it to the slip; clicking it again takes it off
+        function togglePick(game, team, type){
+            const id = pickId(game, team, type)
+            if (slip.find((p) => p.id === id)) {
+                setSlip((prev) => prev.filter((p) => p.id !== id))
+                return
+            }
+            const lines = teamLines(game, team)
+            const opponent = team === game.away ? game.home : game.away
+            const pick = type === "spread"
+                ? { id, team, opponent, type, label: `Spread ${formatPoints(lines.spread.points)}`, odds: lines.spread.odds, tipoff: game.tipoff }
+                : { id, team, opponent, type, label: "Moneyline", odds: lines.moneyline, tipoff: game.tipoff }
+            setSlip((prev) => [...prev, pick])
         }
 
-        function pickDate(tab){
-            setLoading(true)
-            setSelectedDate(tab)
+        function removePick(id){
+            setSlip((prev) => prev.filter((p) => p.id !== id))
         }
-    
+
     ////////////////
     // Renderings //
     ////////////////
 
-        // Render Text Preamble
-        function renderIntro(){
-            return(
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <div style={{...Styles.Sections.lessonContent, width: '80%', marginLeft: '10%', marginTop: 15}}>
-                        <p style={Styles.Fonts.basicX}>
-                        Here I have created a system that uses two seperate webscrapers combined with some AI to find all of today's
-                        NBA Bets from FanDuel, gets all relevant stats from the NBA API, sends the Data to an AI and determines how good 
-                        or bad a bet may be. 
-                        </p>
-
-                        <p style={Styles.Fonts.basicX}>
-                        As mentioned, all bets below are FanDuel odds pulled using the Odds API. Once bets are selected, all of the relevant
-                        infromation is scraped from the NBA API. This includes things like each player's full season game log, the team stats, and
-                        the specific head to head matchup stats between each team. 
-                        Once all of this information is scraped and collected, the backend server compiles a JSON document using this information
-                        and sends it up to the AWS Bedrock API. This API is also conencted to a knowledge base which holds details like Playoff Schedule and 
-                        significant player / general team analysis. 
-                        </p>
-
-                        <p style={Styles.Fonts.basicX}>
-                        Using all of the information given the AWS Model with the knowledge base then determines the odds of your bet coming to fruition. 
-                        If the AI's odds look better than what FanDuel has, it will return to you that it is a good value bet. If the AI determines
-                        the odds of your bet hitting are above 50%, it will return to you that it is a secure bet. 
-                        </p>
-
-                        <p style={Styles.Fonts.basicX}>
-                        I'm pretty sure I have to say something about responsible gambling here... so gamble responsibly, I'm not endorsing gambling. You get it.  
-                        </p>
-
-                        <p style={{...Styles.Fonts.basicXL, color: 'red'}}>
-                            Unfortunately, keeping this service running was costing me close to $200-300 a month, so it had to be taken down.
-                            If anyone would like a functioning demo, please email me
-                        </p>
+    // Odds //
+        // One clickable price (a spread or a moneyline), as an OstCard
+        function renderLineCell(game, team, type){
+            const lines = teamLines(game, team)
+            const line = lines[type]
+            if (!line) {
+                return (
+                    <OstCard noShadow style={{ ...cellBase, backgroundColor: DOC.wash, color: DOC.muted, cursor: "default" }}>
+                        <div style={{ fontSize: 15 }}>—</div>
+                    </OstCard>
+                )
+            }
+            const odds = type === "spread" ? line.odds : line
+            const chance = impliedChance(odds)
+            const picked = !!slip.find((p) => p.id === pickId(game, team, type))
+            return (
+                <OstCard
+                    noShadow
+                    onClick={() => togglePick(game, team, type)}
+                    aria-label={`${picked ? "Remove" : "Add"} ${team} ${type === "spread" ? `spread ${formatPoints(line.points)}` : "moneyline"} at ${odds}`}
+                    aria-pressed={picked}
+                    style={{
+                        ...cellBase,
+                        backgroundColor: picked ? DOC.ink : "white",
+                        border: `1px solid ${picked ? DOC.ink : DOC.line}`,
+                        color: picked ? "white" : DOC.ink,
+                    }}
+                    hoverStyle={{ backgroundColor: picked ? "#2a1a6e" : "#e3ecf8" }}
+                    pressedStyle={{ transform: "scale(0.97)" }}
+                >
+                    <div style={{ fontSize: 16, fontWeight: 700, lineHeight: 1.2 }}>
+                        {type === "spread" ? `${formatPoints(line.points)}  ` : ""}{odds}
                     </div>
-                    
+                    {chance ? (
+                        <div style={{ fontSize: 12.5, marginTop: 3, color: picked ? LIME : DOC.muted }}>{chance.toFixed(0)}% implied</div>
+                    ) : null}
+                </OstCard>
+            )
+        }
+
+        function renderTeamRow(game, team, isHome){
+            return (
+                <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 104px 104px", gap: 10, alignItems: "center", marginTop: 10 }}>
+                    <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: 16.5, fontWeight: 700, color: DOC.ink, lineHeight: 1.25 }}>{team}</div>
+                        <div style={{ fontSize: 12.5, color: DOC.muted, marginTop: 2 }}>{isHome ? "Home" : "Away"}</div>
+                    </div>
+                    {renderLineCell(game, team, "spread")}
+                    {renderLineCell(game, team, "moneyline")}
                 </div>
             )
         }
 
-        function renderDateTab(){
-            if (dates){
-                if (dates.length > 0 ){
-                    return(
-                        <OstCard 
-                        noShadow={true}
-                        style={{width: '90%', paddingBottom: 20, marginLeft: '5%'}}
-                        >
-                            <div style={{...Styles.Fonts.h1, boxShadow: '0', display: 'flex', justifyContent: 'center'}}>Pick a Date</div>
-                            <OstrichTabBar
-                                tabs={dates}
-                                onTabClick={(tab) => pickDate(tab)}
-                                showsActive={true}
-                                style={{width: '90%', marginLeft: '5%'}}  
-                            />
-                        </OstCard>
-                    )
-                }
-            }
-        }
-
-        function renderSelectYourBet(){
-            if (!loading && daysBets.length < 0){
-                return(
-                    <div style={{display: 'flex', flexDirection: 'row', marginLeft: '15%'}}>
-                        <div style={{...Styles.Fonts.pageTitle, fontSize: 30, width: '30%', marginLeft: '0%', marginBottom: 35, borderRadius: 0}}>
-                            Select Your Bets to Analyze! 
+        // One game: tip-off time, then each team's spread and moneyline
+        function renderGameCard(game){
+            return (
+                <OstCard
+                    key={`${game.tipoff}-${game.away}-${game.home}`}
+                    noShadow
+                    style={{ backgroundColor: "white", border: `1px solid ${DOC.line}`, borderRadius: 18, padding: "16px 18px 18px", boxShadow: "0 4px 14px rgba(17, 1, 59, 0.08)" }}
+                >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: DOC.accentDeep, letterSpacing: 1, textTransform: "uppercase" }}>
+                            Tip-off {tipTime(game.tipoff)}
                         </div>
+                        <Chip>FanDuel</Chip>
                     </div>
-                )
-            }
+                    <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 104px 104px", gap: 10, marginTop: 12, fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: DOC.muted, fontWeight: 700 }}>
+                        <div>Team</div>
+                        <div style={{ textAlign: "center" }}>Spread</div>
+                        <div style={{ textAlign: "center" }}>Moneyline</div>
+                    </div>
+                    {renderTeamRow(game, game.away, false)}
+                    {renderTeamRow(game, game.home, true)}
+                </OstCard>
+            )
         }
 
-        // Main Render for Betting Area
-        function renderBetCardArea(){
-            if (outOfCredits){
-                return(
-                    <OstCard style={{backgroundColor: 'red', width: '60%', marginLeft: '20%', ...Styles.Fonts.h2, fontSize: 42}}>
-                        Sorry! We've run out of credits for the month and cannot access the OneBet API until those Credits refill next month!
-                    </OstCard>
-                )
+        function renderGames(){
+            if (status === "loading") {
+                return <Panel><div style={{ color: DOC.muted, fontSize: 17 }}>Loading tonight's lines…</div></Panel>
             }
-            else if (loading){
-                return(
-                    <OstCard>
-                    </OstCard>
-                )
-            }
-            else{
-                return(
-                    <OstCard noShadow={true} rounded={false}>
-                        
-                            {renderBetCards()}
-                    </OstCard>
-                )
-            }
-        }
-
-        ///////////////
-        // Bet Cards 
-
-            // Renders all FanDuel Bets as individual Cards
-            function renderBetCards(){
-                let fullRenderList = []
-                let row = []
-                let i = 0
-                console.log(daysBets)
-                daysBets.forEach((betCard, index) => {
-                    const awayLine = betCard?.bet?.moneyline?.[betCard.away] ? betCard?.bet?.moneyline?.[betCard.away] : false
-                    const homeLine = betCard?.bet?.moneyline?.[betCard.home] ? betCard?.bet?.moneyline?.[betCard.home] : false
-
-                    const awayDiff = betCard?.bet?.spread?.[betCard.away]?.diff ? betCard?.bet?.spread?.[betCard.away]?.diff : false
-                    const homeDiff = betCard?.bet?.spread?.[betCard.home]?.diff ? betCard?.bet?.spread?.[betCard.home]?.diff : false
-
-                    const awaySpreadOdds = betCard?.bet?.spread?.[betCard.away]?.odds ? betCard?.bet?.spread?.[betCard.away]?.odds : "No Spread Betting"
-                    const homeSpreadOdds = betCard?.bet?.spread?.[betCard.home]?.odds ? betCard?.bet?.spread?.[betCard.home]?.odds : "No Spread Betting"
-
-                    const tipoff = betCard.tipoff
-
-                    row = [
-                        ...row, 
-                        (
-                        <OstCard 
-                        style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', flex: 4}}
-                        >
-                            <div style={{borderRadius: 15, paddingBottom: 0, marginBottom: 15, paddingRight: '3.3%', paddingLeft: '3.3%', backgroundColor: "#11013b"}}>
-                                <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 1, margin: 2, padding: 2, fontSize: 24, overflow: "hidden"}}>
-                                    {betCard.away} @ {betCard.home}
-                                </p>
-                                <p style={{...Styles.Fonts.basic, color: '#efefef', lineHeight: 1, margin: 2, padding: 2, paddingTop: 5}}>
-                                    {renderDate(betCard.tipoff)}
-                                </p>
-                            </div>
-                            <div style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-                                {renderTeamBetCard(betCard.away, awayLine, awayDiff, awaySpreadOdds, betCard.home, tipoff)}
-                                {renderTeamBetCard(betCard.home, homeLine, homeDiff, homeSpreadOdds, betCard.away, tipoff)}
-                            </div>
-                        </OstCard>
-                        )
-                    ]
-                    i = i + 1
-                    if (i == 3 || index >= daysBets.length - 1){
-                        fullRenderList = [
-                            ...fullRenderList,
-                            (
-                                <div style={{
-                                    display: 'flex', flexDirection: 'row', gap: 33,
-                                    width: '95%', marginLeft: '2.5%', 
-                                    borderTop: "4px solid #11013b", marginBottom: 20, paddingTop: 20
-                                }}>
-                                    {row}
-                                </div>
-                            )
-                        ]
-                        row = []
-                        i = 0
-                    }
-                   
-                })
-                return fullRenderList  
-            }
-
-            // Takes UTC Date String and Returns it Legibly
-            function renderDate(dateTime){
-                let dateArray = dateTime.split("-")
-                let time = dateArray[2].split("T")[1]
-                dateArray[2] = dateArray[2].split("T")[0]
-                dateArray = [...dateArray, time]
-                return `${dateArray[1]}-${dateArray[2]} at ${renderTime(dateArray[3])}`
-            }
-
-            // Takes Military Time and Converts it 
-            function renderTime(time){
-                let ampm = "am"
-                let hour = parseInt(time.split(":")[0], 10)
-                if (hour > 12){
-                    hour = hour - 12
-                    ampm = "pm"
-                }
-                if (hour == 0){
-                    hour = 12
-                }
-                return `${hour}:${time.split(":")[1]}${ampm}`
-            }
-
-            // Renders a single Moneyline / Spread Sheet
-            function renderTeamBetCard(team, line, points, spreadLine, opp, date){
-                return(
-                    <OstCard 
-                    style={{flex: 5, height: 230}}
-                    onClick={() => {
-                        setStagedBetSheet({team:team, line:line, points:points, spread:spreadLine, opp:opp, date:date})
-                        setAddBetModal(true)
-                    }}
-                    >
-                        <p style={{...Styles.Fonts.h2, fontSize: 23, paddingBottom: 10, height: 35}}>
-                            {team}
-                        </p>
-                        <p style={{...Styles.Fonts.basic, fontSize: 18, textAlign: 'center'}}>
-                            Moneyline: <span style={{color: 'darkgrey', fontWeight: 500}}>{line ? line : "No Moneyline"}</span>
-                        </p>
-                        <div>
-                            <p style={{...Styles.Fonts.basic, fontSize: 18, textAlign: 'center', margin: 0, padding: 0}}>
-                                {points ? ("Spread: " + points + " ") : "No Spread Betting"}
-                            </p>
-                            <p style={{color: 'darkgrey', fontWeight: 500, fontSize: 20,  margin: 0, padding: 0, textAlign: 'center'}}>
-                                {points ? spreadLine : null}
-                            </p>
-                        </div>
-                    </OstCard>
-                )
-            }
-
-        ///////////////////
-        // Selected Bets
-
-            // Renders Add Bet Modal
-            function renderAddbetModal(){
+            if (status === "credits") {
                 return (
-                    <ReactModal
-                    isOpen={addBetModal}
-                    style={{
-                    overlay: {
-                        zIndex: 9999,
-                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                    },
-                    content: {
-                        backgroundColor: 'white',
-                        width: '30%', marginLeft: '35%', minWidth: 300,
-                        height: '36%', marginTop: '20%', minHeight: 220,
-                        borderRadius: 20
-                    }   
-                    }}
-                    >
-                        <div
-                        >
-                            <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <div style={{flex: 9}}>
-                                    <h2 style={{...Styles.Fonts.h1, fontSize: 32, marginBottom: 0, marginTop: 10}}>Selected Team:</h2>
-                                    <h2 style={{color: "#11013b", paddingTop: 0, fontFamily: "Gilroy", marginTop: 0}}>{stagedBetSheet.team}</h2>
-                                </div>
-                                <div style={{flex: 3, display: 'flex', flexDirection: 'row-reverse'}}>
-                                        <OstCard 
-                                        style={{fontFamily: "Gilroy", fontSize: 40, color: 'red', marginTop: 10, padding: 10, paddingTop:6, border: "3px solid red", aspectRatio: 1, textAlign: 'center', width: 35, height:35, fontWeight: 700}}
-                                        onClick={() => setAddBetModal(false)}
-                                        >
-                                            X
-                                        </OstCard>
-                                </div>
-                            </div>
-                            
-                            <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-around", gap: '7%'}}>
-                                <OstCard style={{flex: 5}} onClick={() => selectBet(stagedBetSheet, "moneyline")}>
-                                    <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
-                                    Take Moneyline:
-                                    </p>
-                                    <p style={Styles.Fonts.h2}>
-                                        {stagedBetSheet.line ? stagedBetSheet.line : "No Moneyline"}
-                                    </p>
-                                </OstCard>
-                                <OstCard style={{flex: 5}} onClick={() => selectBet(stagedBetSheet, "spread")}>
-                                    <p style={{...Styles.Fonts.basic, fontSize: 20, textAlign: 'center'}}>
-                                        Take Spread: ({stagedBetSheet.points})
-                                    </p>
-                                    <p style={Styles.Fonts.h2}>
-                                        {stagedBetSheet.points ? stagedBetSheet.spread : "No Spread"} 
-                                    </p>
-                                </OstCard>
-                            </div>
-                            <OstCard style={{marginTop: '6%', height: '8%', backgroundColor: '#efefef'}} onClick={() => {
-                                console.log(stagedBetSheet)
-                            }}>
-                                <p style={{...Styles.Fonts.h2, padding: 0, margin: 0}}>
-                                    Add Bet 
-                                </p>
-                            </OstCard>
-                        </div>
-                    </ReactModal>
+                    <Notice>
+                        The odds feed has used up its free credits for the month, so lines will be back when they refill on the 1st. Sorry about that!
+                    </Notice>
                 )
             }
+            if (status === "error") {
+                return <Notice>Couldn't load the odds right now. Please try again in a little while.</Notice>
+            }
+            if (games.length === 0) {
+                return <Notice>No NBA games have FanDuel lines posted right now. Check back closer to game day.</Notice>
+            }
+            const day = days.find((d) => d.label === selectedDay)
+            const todays = games.filter((g) => day && localDayKey(g.tipoff) === day.key)
+            return (
+                <div>
+                    <PillTabs tabs={days.map((d) => d.label)} value={selectedDay} onChange={setSelectedDay} ariaLabel="Choose a game day" />
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 380px), 1fr))", gap: 18, marginTop: 20 }}>
+                        {todays.map(renderGameCard)}
+                    </div>
+                </div>
+            )
+        }
 
+    // Bet Slip //
+        function renderSlip(){
+            return (
+                <Panel style={{ position: "sticky", top: 90 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                        <div style={{ fontSize: 20, fontWeight: 700, color: DOC.ink }}>Your bet slip</div>
+                        <div style={{ fontSize: 14, color: DOC.muted }}>{slip.length} {slip.length === 1 ? "pick" : "picks"}</div>
+                    </div>
 
+                    {slip.length === 0 ? (
+                        <div style={{ fontSize: 15.5, lineHeight: 1.55, color: DOC.muted, marginTop: 12 }}>
+                            Click any spread or moneyline to add it here.
+                        </div>
+                    ) : (
+                        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 14 }}>
+                            {slip.map((p) => {
+                                const chance = impliedChance(p.odds)
+                                return (
+                                    <OstCard key={p.id} noShadow style={{ backgroundColor: DOC.wash, border: `1px solid ${DOC.line}`, borderRadius: 14, padding: "10px 12px", display: "flex", alignItems: "flex-start", gap: 10 }}>
+                                        <div style={{ flex: 1, minWidth: 0 }}>
+                                            <div style={{ fontSize: 15.5, fontWeight: 700, color: DOC.ink }}>{p.team}</div>
+                                            <div style={{ fontSize: 14, color: DOC.text, marginTop: 2 }}>{p.label} · {p.odds}</div>
+                                            <div style={{ fontSize: 12.5, color: DOC.muted, marginTop: 2 }}>
+                                                vs {p.opponent} · {dayLabel(p.tipoff)}{chance ? ` · ${chance.toFixed(0)}% implied` : ""}
+                                            </div>
+                                        </div>
+                                        <OstrichButton
+                                            label="✕"
+                                            onClick={() => removePick(p.id)}
+                                            aria-label={`Remove ${p.team} ${p.label}`}
+                                            style={{ backgroundColor: "transparent", border: `1px solid ${DOC.line}`, borderRadius: 999, padding: "2px 9px", minWidth: 0, height: "auto", boxShadow: "none" }}
+                                            hoverStyle={{ backgroundColor: "white" }}
+                                            labelStyle={{ fontFamily: DOC.font, fontSize: 13, color: DOC.muted }}
+                                        />
+                                    </OstCard>
+                                )
+                            })}
+                        </div>
+                    )}
+
+                    <div style={{ marginTop: 18, opacity: 0.55, pointerEvents: "none" }} aria-disabled="true">
+                        <ActionButton label="Analyze with AI" variant="dark" style={{ width: "100%" }} />
+                    </div>
+                    <div style={{ fontSize: 13.5, lineHeight: 1.5, color: DOC.muted, marginTop: 10 }}>
+                        AI analysis is being rebuilt and is coming soon. For now, the implied % shows the win chance FanDuel's price assumes.
+                    </div>
+                    {slip.length > 0 ? (
+                        <div style={{ marginTop: 12 }}>
+                            <ActionButton label="Clear slip" variant="light" onClick={() => setSlip([])} style={{ padding: "7px 14px" }} labelStyle={{ fontSize: 14 }} />
+                        </div>
+                    ) : null}
+                </Panel>
+            )
+        }
+
+    // How it works //
+        function renderHowItWorks(){
+            return (
+                <div>
+                    <SubHeading style={{ marginTop: 0 }}>Reading the lines</SubHeading>
+                    <P>
+                        <b>Moneyline</b> is a bet on who wins. A minus number is the favorite: −125 means you risk $125 to win $100. A plus
+                        number is the underdog: +110 means a $100 bet wins $110.
+                    </P>
+                    <P>
+                        <b>Spread</b> evens the game out with points. Celtics −2.5 only wins if Boston wins by 3 or more; Knicks +2.5 wins if
+                        New York wins outright or loses by 2 or fewer. Spreads usually cost about −110 on either side.
+                    </P>
+                    <P>
+                        <b>Implied %</b> turns a price into the win chance it assumes. −125 implies about 56%; +110 implies about 48%. The two
+                        sides add up to a little over 100%, and that extra bit is the sportsbook's cut. A bet only has value if its real chance is
+                        higher than its implied chance, which is exactly what the AI analysis will try to judge.
+                    </P>
+
+                    <SubHeading>What's live and what's next</SubHeading>
+                    <Timeline items={[
+                        {
+                            when: "Live now",
+                            title: "FanDuel odds, refreshed twice a day",
+                            body: <P style={{ margin: "0 0 12px" }}>
+                                Lines come from The Odds API. Its free plan allows 500 credits a month, so instead of asking on every page view,
+                                the site saves each answer for 12 hours and shows everyone that copy. That uses about 120 credits a month.
+                            </P>,
+                        },
+                        {
+                            when: "Next",
+                            title: "AI analysis of your slip",
+                            body: <P style={{ margin: "0 0 12px" }}>
+                                Your picks plus each team's recent numbers go to an AI, which estimates a real win chance and compares it with the
+                                implied one. It starts on Google Gemini, with Jev (a decision-making model that returns calibrated probabilities)
+                                planned once access opens up.
+                            </P>,
+                        },
+                        {
+                            when: "Planned",
+                            title: "15 seasons of history",
+                            body: <P style={{ margin: "0 0 12px" }}>
+                                Scripts will crunch years of game data into the numbers that matter: recent form, rest days, home and away records,
+                                and how often teams cover the spread. The AI gets a short, exact summary instead of a giant spreadsheet.
+                            </P>,
+                        },
+                    ]} />
+
+                    <SubHeading>Version 1</SubHeading>
+                    <P>
+                        The first BetBot pulled each team's season stats and head-to-head numbers from the NBA API and sent them, with a
+                        knowledge base of playoff schedules and team analysis, to a model on Amazon Bedrock. It worked, but running it cost close
+                        to $200–300 a month, so it was taken down and is being rebuilt to run for free.
+                    </P>
+                </div>
+            )
+        }
 
     /////////////////
-    // Main Render //
+    // Main Return //
     /////////////////
-    return (
-        <div style={{marginTop: 20}}>
-            <div style={Styles.Fonts.pageTitle}>The NBA BetBot </div>
-            <p style={{...Styles.Fonts.basicXL, color: 'red'}}>This page is under construction, more content to come!</p>
-            <p style={{...Styles.Fonts.basicXL, color: 'red'}}>Please forgive any errors, as much of this page's functionalities are being actively worked on or in beta</p>
-            <div>
-                {renderAddbetModal()}
-                {renderIntro()}
-                {renderDateTab()}
-                {renderBetCardArea()}
-            </div>
-        </div>
-    );
+
+        return (
+            <Page>
+                <Hero
+                    eyebrow="AI Experiment · Sports Data"
+                    title="The NBA BetBot"
+                    intro="Today's NBA lines from FanDuel, with the win chance each price implies. Build a bet slip from any spread or moneyline; AI analysis that judges whether a pick has real value is being rebuilt."
+                    actions={[
+                        <ActionButton key="odds" label="See the lines" onClick={() => jumpTo("lines")} />,
+                        <ActionButton key="how" label="How it works" variant="ghost" onClick={() => jumpTo("how-it-works")} />,
+                    ]}
+                    aside={<Avatar src="/assets/icons/big/BetBot.jpeg" alt="" size={190} />}
+                />
+
+                <FactRow facts={[
+                    { label: "Odds", value: "FanDuel, via The Odds API" },
+                    { label: "Refreshed", value: "Twice a day" },
+                    { label: "AI analysis", value: "Being rebuilt" },
+                    { label: "Running cost", value: "$0 / month" },
+                ]} />
+
+                <Section id="lines" eyebrow="Odds" title="Upcoming games" subtitle="Times are shown in your time zone. Click a spread or moneyline to add it to your slip.">
+                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: 24 }}>
+                        <div style={{ flex: "1 1 560px", minWidth: 0 }}>{renderGames()}</div>
+                        <div style={{ flex: "0 1 320px", minWidth: 280 }}>{renderSlip()}</div>
+                    </div>
+                </Section>
+
+                <Section id="how-it-works" eyebrow="Under the hood" title="How it works">
+                    {renderHowItWorks()}
+                </Section>
+
+                <Notice>
+                    I'm pretty sure I have to say something about responsible gambling here... so: this is a data project, not betting advice.
+                    Sportsbooks build their lines from the same public stats, so gamble responsibly (or not at all). You get it.
+                </Notice>
+            </Page>
+        )
+}
+
+const cellBase = {
+    display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+    textAlign: "center", borderRadius: 12, padding: "8px 6px", minHeight: 52, boxSizing: "border-box", cursor: "pointer",
 }
