@@ -264,49 +264,37 @@ export default function BetBotProjectPage() {
 
         // Grabs Bets from Odds API
         async function handleRequestToAPI(){
-            console.log("FETCHING")
             setSelectedDate(false)
-            fetch("/api/betBot/scrapeFanDuel", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-            })
+            // GET (not POST) so Vercel can serve everyone the same saved copy of today's odds
+            fetch("/api/betBot/scrapeFanDuel")
             .then(async (res) => {
-                const text = await res.text(); 
-                try {
-                    const json = JSON.parse(text);
-                    if (json.ERROR){
-                        if (json.ERROR === "OUT OF CREDITS"){
-                            setOutOfCredits(true)
-                        }
+                const json = await res.json()
+                if (json.ERROR){
+                    if (json.ERROR === "OUT OF CREDITS"){
+                        setOutOfCredits(true)
                     }
-                    else{
-                        let newBets = []
-                        let newDates = []
-                        json.forEach(bet => {
-                            let date = extractDate(bet)
-                            if (!newDates.includes(date)){
-                                newDates = [...newDates, date]
-                            }
-                            if (!newBets.includes(bet)){
-                                newBets = [...newBets, date]
-                            }
-                        })
-                        setDates(newDates)
-                        setBets(newBets)
-                        setSelectedDate(dates[0])
-                        setBets(json)
-                        setLoading(false)      
-                    }  
-                } 
-                catch (err) {
-                    console.error("BEDROCK ERROR:", JSON.stringify(err, null, 2));
-                    res.status(500).json({ message: "Internal server error" });
-                    setLoading(false)        
+                    else {
+                        console.error("Couldn't load odds:", json.ERROR)
+                    }
+                    setLoading(false)
+                    return
                 }
+                // One tab per game day, in order
+                const newDates = []
+                json.forEach(bet => {
+                    const date = extractDate(bet)
+                    if (!newDates.includes(date)){
+                        newDates.push(date)
+                    }
+                })
+                setDates(newDates)
+                setBets(json)
+                setSelectedDate(newDates[0] || false)
+                setLoading(false)
             })
             .catch((err) => {
-                console.error("API call failed:", err);
-                setLoading(false)        
+                console.error("Odds request failed:", err);
+                setLoading(false)
             });
         }
 
