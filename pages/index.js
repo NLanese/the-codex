@@ -18,6 +18,7 @@ import { Page, Hero, ActionButton, Avatar, Section, CardGrid, ProjectCard, Notic
 const OstCompImg = "/assets/icons/big/OstrichComponentsLogo.png";
 const NightreignImg = "/assets/icons/big/Nightreign.png";
 const HeadshotImg = "/assets/aboutMe/headshot.png";
+const AIProjectsImg = "/assets/icons/big/BoardGameWizardIcon.jpeg";
 
 // The Basics lessons that are live so far, in order
 const STARTER_LESSONS = ["Variables", "Operators", "Data Types", "Conditionals", "Printing and Debugging", "Functions"]
@@ -120,7 +121,7 @@ export default function Landing() {
   /////////////////
 
   return (
-    <Page>
+    <Page wide>
       <Hero
         eyebrow="The Codex"
         title="Learn to code, then see what it can build."
@@ -181,6 +182,13 @@ export default function Landing() {
             blurb="Games, build calculators and AI experiments I'm building in my free time."
             cta="Browse projects →"
             onClick={() => goTo("/showcases/projects/menu", "Ongoing Projects")}
+          />
+          <ProjectCard
+            image={AIProjectsImg}
+            title="AI Projects"
+            blurb="AI tools I've built from the ground up, like a board game rules expert and an NBA betting analyst."
+            cta="See AI projects →"
+            onClick={() => goTo("/showcases/projects/menu?group=ai", "Ongoing Projects")}
           />
           <ProjectCard
             image={OstCompImg}

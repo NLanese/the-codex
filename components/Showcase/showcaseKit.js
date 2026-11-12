@@ -41,11 +41,15 @@ export const CODEX_THEME = {
 // Layout //
 ////////////
 
-// Themed, centered page column with comfortable side gutters
-export function Page({ children }) {
+// Themed, centered page column with comfortable side gutters.
+// wide: narrower side margins and a wider column, for pages with rows of cards (the home page)
+export function Page({ children, wide = false }) {
     return (
         <OstrichTheme theme={CODEX_THEME}>
-            <div style={{ fontFamily: DOC.font, color: DOC.text, padding: "8px 6% 70px", maxWidth: 1280, margin: "0 auto", boxSizing: "border-box" }}>
+            <div style={{
+                fontFamily: DOC.font, color: DOC.text, boxSizing: "border-box", margin: "0 auto",
+                padding: wide ? "8px 3% 70px" : "8px 6% 70px", maxWidth: wide ? 1440 : 1280,
+            }}>
                 {children}
             </div>
         </OstrichTheme>

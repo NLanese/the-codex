@@ -124,9 +124,9 @@ export const PROJECTS = [
         group: "ai",
         title: "NBA BetBot AI",
         image: `${ICONS}/BetBot.jpeg`, fit: "cover",
-        blurb: "Today's NBA lines from FanDuel with the win chance each price implies, plus a bet slip. AI analysis of each pick is being rebuilt to run for free.",
-        tags: ["The Odds API", "Implied Odds", "AI (rebuilding)"],
-        status: "beta",
+        blurb: "Today's NBA lines from FanDuel, plus an AI that weighs 15 seasons of matchup data to estimate each pick's real chance and spot mispriced bets.",
+        tags: ["The Odds API", "NBA Stats", "Gemini"],
+        status: "live",
         route: "/showcases/projects/betbot",
     },
     {

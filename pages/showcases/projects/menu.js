@@ -35,6 +35,13 @@ export default function ProjectsMenu() {
         setActiveTab("Ongoing Projects")
       }, [])
 
+      // A link like /showcases/projects/menu?group=ai opens straight to that group (e.g. the home page's "AI Projects" card)
+      useEffect(() => {
+        if (!router.isReady) return
+        const group = PROJECT_GROUPS.find((g) => g.id === router.query.group)
+        if (group) setFilter(group.title)
+      }, [router.isReady, router.query.group])
+
     ////////////////
     // Renderings //
     ////////////////

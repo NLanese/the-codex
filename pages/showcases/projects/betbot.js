@@ -93,6 +93,7 @@ function gameOptions(game) {
                 value: `${team}|${type}`,
                 tag: lines.join("\n"),
                 team, type, odds,
+                points: type === "spread" ? line.points : null,
                 label: type === "spread" ? `Spread ${formatPoints(line.points)}` : "Moneyline",
             })
         }
@@ -123,6 +124,9 @@ export default function BetBotProjectPage() {
 
         // Picks on the bet slip
         const [slip, setSlip] = useState([])
+
+        // AI analysis of the slip: { status: "idle" | "loading" | "done" | "error", results, summary, message, slipKey }
+        const [analysis, setAnalysis] = useState({ status: "idle" })
 
     ////////////////
     // UseEffects //
@@ -172,12 +176,39 @@ export default function BetBotProjectPage() {
                 const others = prev.filter((p) => p.id !== id)
                 if (!option) return others
                 const opponent = option.team === game.away ? game.home : game.away
-                return [...others, { id, value, team: option.team, opponent, type: option.type, label: option.label, odds: option.odds, tipoff: game.tipoff }]
+                return [...others, {
+                    id, value, team: option.team, opponent, type: option.type, label: option.label,
+                    odds: option.odds, points: option.points, homeTeam: game.home, tipoff: game.tipoff,
+                }]
             })
         }
 
         function removePick(id){
             setSlip((prev) => prev.filter((p) => p.id !== id))
+        }
+
+        // A fingerprint of the slip, to notice when it changes after an analysis
+        const slipKey = (picks) => picks.map((p) => p.id + p.value).sort().join(";")
+
+        // Sends the slip to /api/betBot/analyze (matchup data + Gemini) and shows what comes back
+        async function analyzeSlip(){
+            if (!slip.length || analysis.status === "loading") return
+            setAnalysis({ status: "loading" })
+            try {
+                const res = await fetch("/api/betBot/analyze", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ picks: slip }),
+                    signal: AbortSignal.timeout(90000),
+                })
+                const json = await res.json().catch(() => ({}))
+                if (!res.ok) throw new Error(json.message || "Something went wrong. Please try again.")
+                setAnalysis({ status: "done", results: json.results, summary: json.summary, dataAsOf: json.dataAsOf, slipKey: slipKey(slip) })
+                setTimeout(() => jumpTo("analysis"), 50)
+            }
+            catch (err) {
+                setAnalysis({ status: "error", message: err.name === "TimeoutError" ? "The AI took too long. Please try again." : err.message })
+            }
         }
 
     ////////////////
@@ -313,11 +344,21 @@ export default function BetBotProjectPage() {
                         </div>
                     )}
 
-                    <div style={{ marginTop: 18, opacity: 0.55, pointerEvents: "none" }} aria-disabled="true">
-                        <ActionButton label="Analyze with AI" variant="dark" style={{ width: "100%" }} />
+                    <div
+                        style={{ marginTop: 18, opacity: slip.length && analysis.status !== "loading" ? 1 : 0.55, pointerEvents: slip.length && analysis.status !== "loading" ? "auto" : "none" }}
+                        aria-disabled={!slip.length || analysis.status === "loading"}
+                    >
+                        <ActionButton
+                            label={analysis.status === "loading" ? "Analyzing…" : "Analyze with AI"}
+                            variant="dark"
+                            onClick={analyzeSlip}
+                            style={{ width: "100%" }}
+                        />
                     </div>
                     <div style={{ fontSize: 13.5, lineHeight: 1.5, color: DOC.muted, marginTop: 10 }}>
-                        AI analysis is being rebuilt and is coming soon. For now, the implied % shows the win chance FanDuel's price assumes.
+                        {slip.length
+                            ? "The AI weighs each team's form, rest and defense, and how every key player historically does against this opponent."
+                            : "Add picks, then let the AI estimate each one's real chance and compare it with FanDuel's."}
                     </div>
                     {slip.length > 0 ? (
                         <div style={{ marginTop: 12 }}>
@@ -329,6 +370,87 @@ export default function BetBotProjectPage() {
         }
 
     // How it works //
+    // AI analysis //
+        const VERDICT_LOOK = {
+            "Value": { bg: "#dcfce9", fg: "#11733f" },
+            "Fair price": { bg: "#ececf2", fg: "#4b4f5c" },
+            "Avoid": { bg: "#fdecea", fg: "#8a1c12" },
+            "No estimate": { bg: "#ececf2", fg: "#4b4f5c" },
+        }
+
+        function renderResultCard(r){
+            const look = VERDICT_LOOK[r.verdict] || VERDICT_LOOK["No estimate"]
+            const number = (label, value, color) => (
+                <div style={{ flex: "1 1 110px" }}>
+                    <div style={{ fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: DOC.muted, fontWeight: 700 }}>{label}</div>
+                    <div style={{ fontSize: 26, fontWeight: 700, color: color || DOC.ink, marginTop: 2 }}>{value}</div>
+                </div>
+            )
+            return (
+                <OstCard key={r.id} noShadow style={{ backgroundColor: "white", border: `1px solid ${DOC.line}`, borderLeft: `6px solid ${look.fg}`, borderRadius: 14, padding: "16px 20px" }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                        <div>
+                            <div style={{ fontSize: 19, fontWeight: 700, color: DOC.ink }}>{r.team} · {r.type === "spread" ? `${r.label} at ${r.odds}` : `Moneyline ${r.odds}`}</div>
+                            <div style={{ fontSize: 14, color: DOC.muted, marginTop: 2 }}>vs {r.opponent}</div>
+                        </div>
+                        <div style={{ display: "flex", gap: 6 }}>
+                            <Chip color={look.fg} background={look.bg} border={null} style={{ fontWeight: 700, fontSize: 13, padding: "3px 12px" }}>{r.verdict}</Chip>
+                            {r.confidence ? <Chip>{r.confidence} confidence</Chip> : null}
+                        </div>
+                    </div>
+                    {r.noData ? (
+                        <P style={{ marginTop: 12 }}>No history found for this matchup, so the AI had little to go on.</P>
+                    ) : null}
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 14 }}>
+                        {number("AI estimate", r.estimate != null ? `${r.estimate.toFixed(0)}%` : "—")}
+                        {number("FanDuel implied", r.implied != null ? `${r.implied.toFixed(0)}%` : "—")}
+                        {number("Edge", r.edge != null ? `${r.edge > 0 ? "+" : ""}${r.edge.toFixed(1)}` : "—", look.fg)}
+                    </div>
+                    {r.reasons.length ? (
+                        <ul style={{ margin: "14px 0 0", paddingLeft: 20 }}>
+                            {r.reasons.map((reason, i) => <li key={i} style={{ fontSize: 15.5, lineHeight: 1.55, color: DOC.text, marginBottom: 4 }}>{reason}</li>)}
+                        </ul>
+                    ) : null}
+                    {r.key_matchup ? (
+                        <div style={{ fontSize: 15, lineHeight: 1.5, color: DOC.ink, marginTop: 10, padding: "8px 12px", backgroundColor: DOC.wash, borderRadius: 10 }}>
+                            <b>Key matchup:</b> {r.key_matchup}
+                        </div>
+                    ) : null}
+                </OstCard>
+            )
+        }
+
+        function renderAnalysis(){
+            if (analysis.status === "idle") return null
+            return (
+                <div id="analysis" style={{ marginTop: 28, scrollMarginTop: 90 }}>
+                    <Panel>
+                        <div style={{ fontSize: 13, letterSpacing: 2.5, textTransform: "uppercase", color: DOC.accentDeep, fontWeight: 700 }}>AI analysis</div>
+                        {analysis.status === "loading" ? (
+                            <P style={{ marginTop: 10, color: DOC.muted }}>Pulling up both teams' numbers and every key player's matchup history…</P>
+                        ) : analysis.status === "error" ? (
+                            <P style={{ marginTop: 10, color: "#8a1c12" }}>{analysis.message}</P>
+                        ) : (
+                            <div>
+                                {analysis.slipKey !== slipKey(slip) ? (
+                                    <P style={{ marginTop: 10, color: "#9a6200" }}>Your slip has changed since this analysis. Click Analyze with AI again to update it.</P>
+                                ) : null}
+                                {analysis.summary ? <P style={{ marginTop: 10, fontSize: 17 }}>{analysis.summary}</P> : null}
+                                <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 14 }}>
+                                    {analysis.results.map(renderResultCard)}
+                                </div>
+                                <div style={{ fontSize: 13.5, lineHeight: 1.55, color: DOC.muted, marginTop: 14 }}>
+                                    Edge = the AI's estimate minus FanDuel's implied chance. "Value" means the AI thinks the pick is at least 3 points
+                                    likelier than the price says; "Avoid" means at least 3 points less likely. The data has no injury or lineup news
+                                    (NBA stats through {analysis.dataAsOf}), so check who's playing. This is a data project, not betting advice.
+                                </div>
+                            </div>
+                        )}
+                    </Panel>
+                </div>
+            )
+        }
+
         function renderHowItWorks(){
             return (
                 <div>
@@ -350,7 +472,7 @@ export default function BetBotProjectPage() {
                     <SubHeading>What's live and what's next</SubHeading>
                     <Timeline items={[
                         {
-                            when: "Live now",
+                            when: "Odds",
                             title: "FanDuel odds, refreshed twice a day",
                             body: <P style={{ margin: "0 0 12px" }}>
                                 Lines come from The Odds API. Its free plan allows 500 credits a month, so instead of asking on every page view,
@@ -358,20 +480,30 @@ export default function BetBotProjectPage() {
                             </P>,
                         },
                         {
-                            when: "Next",
-                            title: "AI analysis of your slip",
+                            when: "Data",
+                            title: "15 seasons of NBA history",
                             body: <P style={{ margin: "0 0 12px" }}>
-                                Your picks plus each team's recent numbers go to an AI, which estimates a real win chance and compares it with the
-                                implied one. It starts on Google Gemini, with Jev (a decision-making model that returns calibrated probabilities)
-                                planned once access opens up.
+                                A separate pipeline downloads every game and box score since 2011 from NBA.com and labels each game with what the
+                                opponent was like going in: overall, inside and 3-point defense, rebounding, forcing turnovers, pace, age and size.
+                                From that, every player gets career trends against each kind of opponent (recent seasons weighted most), and the
+                                best players get a type: Elite (great against everyone) or Dominant (overwhelms weak defenses, contained by strong ones).
                             </P>,
                         },
                         {
-                            when: "Planned",
-                            title: "15 seasons of history",
+                            when: "Analysis",
+                            title: "AI estimates each pick",
                             body: <P style={{ margin: "0 0 12px" }}>
-                                Scripts will crunch years of game data into the numbers that matter: recent form, rest days, home and away records,
-                                and how often teams cover the spread. The AI gets a short, exact summary instead of a giant spreadsheet.
+                                For each pick, the server builds an exact matchup summary (form, rest, defensive ranks, and how each key player is
+                                expected to do against this specific opponent) and asks Google Gemini for a calibrated win chance. The verdict is
+                                plain arithmetic: the AI's chance minus FanDuel's implied chance.
+                            </P>,
+                        },
+                        {
+                            when: "Next",
+                            title: "Injuries and a decision model",
+                            body: <P style={{ margin: "0 0 12px" }}>
+                                Injury reports are the biggest missing piece. After that, Jev (a decision-making model that returns calibrated
+                                probabilities) is planned to replace Gemini for the estimate.
                             </P>,
                         },
                     ]} />
@@ -395,7 +527,7 @@ export default function BetBotProjectPage() {
                 <Hero
                     eyebrow="AI Experiment · Sports Data"
                     title="The NBA BetBot"
-                    intro="Today's NBA lines from FanDuel, with the win chance each price implies. Build a bet slip from any spread or moneyline; AI analysis that judges whether a pick has real value is being rebuilt."
+                    intro="Today's NBA lines from FanDuel, with the win chance each price implies. Build a bet slip, and an AI armed with 15 seasons of matchup data estimates each pick's real chance and flags the ones FanDuel may have mispriced."
                     actions={[
                         <ActionButton key="odds" label="See the lines" onClick={() => jumpTo("lines")} />,
                         <ActionButton key="how" label="How it works" variant="ghost" onClick={() => jumpTo("how-it-works")} />,
@@ -406,7 +538,7 @@ export default function BetBotProjectPage() {
                 <FactRow facts={[
                     { label: "Odds", value: "FanDuel, via The Odds API" },
                     { label: "Refreshed", value: "Twice a day" },
-                    { label: "AI analysis", value: "Being rebuilt" },
+                    { label: "AI analysis", value: "Gemini + 15 seasons of data" },
                     { label: "Running cost", value: "$0 / month" },
                 ]} />
 
@@ -415,6 +547,7 @@ export default function BetBotProjectPage() {
                         <div style={{ flex: "1 1 560px", minWidth: 0 }}>{renderGames()}</div>
                         <div style={{ flex: "0 1 320px", minWidth: 280 }}>{renderSlip()}</div>
                     </div>
+                    {renderAnalysis()}
                 </Section>
 
                 <Section id="how-it-works" eyebrow="Under the hood" title="How it works">
