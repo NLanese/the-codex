@@ -19,10 +19,10 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@helpers/*": ["api/helpers/*"],
+      "@helpers/*": ["server/helpers/*"],
       "@jotai/*": ["jotai/*"],  
       "@prismaDB": ["prisma/prismaDB.js"],
-      "@graphql/*": ["api/graphql/*"],
+      "@graphql/*": ["server/graphql/*"],
       "@Ostrich/*": ["OstrichComponents/*"],
       "@lessonAssets/*": ["public/assets/lesson_images/*"]
     }

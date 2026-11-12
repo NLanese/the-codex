@@ -1,8 +1,8 @@
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { ApolloServer } from '@apollo/server';
-import resolvers from '../../api/graphql/resolvers/index';
-const typeDefs = require("../../api/graphql/schema");
-import { handleAuth } from '../../api/helpers/AuthenticationHelpers/handleAuth';
+import resolvers from '../../server/graphql/resolvers/index';
+const typeDefs = require("../../server/graphql/schema");
+import { handleAuth } from '../../server/helpers/AuthenticationHelpers/handleAuth';
 
 
 const apolloServer = new ApolloServer({

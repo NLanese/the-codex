@@ -9,7 +9,7 @@
 // Uses the same AI settings as the Board Game Wizard: LLM_API_KEY, LLM_MODEL, optional LLM_BASE_URL.
 
 import dns from "node:dns";
-import { loadHistory, describePick, impliedChance, verdict } from "../../../api/helpers/betAnalysis.mjs";
+import { loadHistory, describePick, impliedChance, verdict } from "../../../server/helpers/betAnalysis.mjs";
 
 dns.setDefaultResultOrder("ipv4first");
 

@@ -13,7 +13,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { buildGameIndex } from "../../api/helpers/boardGameRag.mjs";
+import { buildGameIndex } from "../../server/helpers/boardGameRag.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const rulesDir = process.argv[2] ? path.resolve(process.argv[2]) : path.join(root, "data/boardgame_rules");

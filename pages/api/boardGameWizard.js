@@ -12,7 +12,7 @@
 
 import dns from "node:dns";
 import rulesIndex from "../../constants/projects/boardgame_master_ai/rulesIndex.json";
-import { retrieve } from "../../api/helpers/boardGameRag.mjs";
+import { retrieve } from "../../server/helpers/boardGameRag.mjs";
 import fullRequest from "../../constants/projects/boardgame_master_ai/fullRequest";
 
 const BASE_URL = (process.env.LLM_BASE_URL || "https://generativelanguage.googleapis.com/v1beta/openai").replace(/\/$/, "");
