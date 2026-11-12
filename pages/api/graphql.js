@@ -8,8 +8,8 @@ import { handleAuth } from '../../api/helpers/AuthenticationHelpers/handleAuth';
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  introspection: true,
-  playground: true,
+  // Lets tools download the full schema; only while developing, so the live site doesn't hand it out
+  introspection: process.env.NODE_ENV !== "production",
 });
 
 export default startServerAndCreateNextHandler(apolloServer, {
@@ -20,7 +20,6 @@ export default startServerAndCreateNextHandler(apolloServer, {
       }
     
       const token = req.headers.authorization;
-      console.log("TOKEN IN HEADER:::", token)
       if (typeof token === "string" && token !== "null") {
         return await handleAuth(token);
       }
