@@ -5,8 +5,10 @@
 //   - Vercel's network keeps the response and serves that copy to every visitor (the Cache-Control header below)
 //   - a copy is also kept in this server's memory, which covers local development
 // So the API is called at most a couple of times a day instead of once per page view.
+// Each game also carries both teams' injuries from ESPN's free injury report (see server/helpers/injuries.mjs).
 
 import axios from 'axios';
+import { getInjuries, injuriesForTeam } from '../../../server/helpers/injuries.mjs';
 
 const CACHE_HOURS = 12;
 const CACHE_MS = CACHE_HOURS * 60 * 60 * 1000;
@@ -83,6 +85,15 @@ export default async function handler(req, res) {
                 tipoff: bet.commence_time
             }))
             .filter(bet => bet.bet);   // skip games FanDuel hasn't posted lines for yet
+
+        // Who's out or day-to-day on each side (short form for the game cards)
+        const report = await getInjuries();
+        const short = (list) => list.map(i => ({ name: i.name, status: i.status, injury: i.injury, returnDate: i.returnDate }));
+        for (const bet of bets) {
+            bet.injuries = report
+                ? { [bet.away]: short(injuriesForTeam(report, bet.away)), [bet.home]: short(injuriesForTeam(report, bet.home)), updated: report.updated }
+                : null;
+        }
 
         cache = { bets, fetchedAt: Date.now() };
         return sendBets(res, bets, "odds-api");

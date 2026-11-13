@@ -5,6 +5,7 @@
 
 import fs from "fs";
 import path from "path";
+import { injuriesForTeam, injuryFor } from "./injuries.mjs";
 
 const DATA_DIR = path.join(process.cwd(), "constants", "projects", "betBot", "nbaHistory");
 
@@ -76,6 +77,13 @@ const signed = (x) => (x > 0 ? `+${r1(x)}` : `${r1(x)}`);
 // Matchup descriptions //
 /////////////////////////
 
+function describeInjuries(t, injuries) {
+  if (!injuries) return "  Injury report: unavailable right now.";
+  if (!injuries.length) return "  Injury report: nobody listed.";
+  return "  Injury report: " + injuries.map((i) =>
+    `${i.name} ${i.status.toUpperCase()}${i.injury ? ` (${i.injury})` : ""}${i.returnDate ? `, expected back ${i.returnDate}` : ""}`).join("; ") + ".";
+}
+
 function describeTeam(t, isHome, rest, traitInfo) {
   const tr = t.traits || {};
   const rank = (k) => (tr[k] ? `${traitInfo[k]?.label || k} #${tr[k].rank} (${tr[k].tier}, ${tr[k].value})` : null);
@@ -89,11 +97,13 @@ function describeTeam(t, isHome, rest, traitInfo) {
 }
 
 // How one player's career trends say he'll do against tonight's opponent
-function describePlayer(p, opp, traitInfo) {
+function describePlayer(p, opp, traitInfo, injuries) {
   const pr = p.profile || {};
   const o = p.overall;
   const type = pr.label ? `${pr.label}` : pr.matchup || "role player";
-  let line = `  ${p.name} (${type}, ${o.min} min): normal ${o.gmsc36} GmSc/36, ${o.pts} pts, ${o.fg3_pct ?? "-"}% from three.`;
+  const hurt = injuries ? injuryFor(injuries, p.name) : null;
+  const status = hurt ? `[${hurt.status.toUpperCase()}${hurt.injury ? `: ${hurt.injury}` : ""}] ` : "";
+  let line = `  ${status}${p.name} (${type}, ${o.min} min): normal ${o.gmsc36} GmSc/36, ${o.pts} pts, ${o.fg3_pct ?? "-"}% from three.`;
 
   // Real (t 2+) effects of tonight's opponent, from his career trends
   const effects = [];
@@ -127,7 +137,7 @@ function describePlayer(p, opp, traitInfo) {
 }
 
 // Everything the AI needs for one pick, as plain text
-export function describePick(history, pick, index) {
+export function describePick(history, pick, index, injuryReport) {
   const team = findTeam(history, pick.team);
   const opp = findTeam(history, pick.opponent);
   if (!team || !opp) return { ok: false, text: `Pick ${index + 1}: no history found for ${pick.team} vs ${pick.opponent}.` };
@@ -139,14 +149,18 @@ export function describePick(history, pick, index) {
       (pick.points < 0 ? `wins by more than ${Math.abs(pick.points)}` : `wins, or loses by less than ${pick.points}`)
     : `${team.team} moneyline at ${pick.odds}: wins if ${team.team} wins the game`;
 
+  const teamHurt = injuryReport ? injuriesForTeam(injuryReport, team.name) : null;
+  const oppHurt = injuryReport ? injuriesForTeam(injuryReport, opp.name) : null;
   const lines = [
     `PICK ${index + 1}: ${bet}. FanDuel's implied chance: ${r1(impliedChance(pick.odds))}%.`,
     describeTeam(team, teamHome === true, restDays(team.last_game, pick.tipoff), traitInfo),
+    describeInjuries(team, teamHurt),
     describeTeam(opp, teamHome === false, restDays(opp.last_game, pick.tipoff), traitInfo),
+    describeInjuries(opp, oppHurt),
     `${team.team} key players vs ${opp.team}:`,
-    ...(history.players[team.team] || []).slice(0, PLAYERS_PER_TEAM).map((p) => describePlayer(p, opp, traitInfo)),
+    ...(history.players[team.team] || []).slice(0, PLAYERS_PER_TEAM).map((p) => describePlayer(p, opp, traitInfo, teamHurt)),
     `${opp.team} key players vs ${team.team}:`,
-    ...(history.players[opp.team] || []).slice(0, PLAYERS_PER_TEAM).map((p) => describePlayer(p, team, traitInfo)),
+    ...(history.players[opp.team] || []).slice(0, PLAYERS_PER_TEAM).map((p) => describePlayer(p, team, traitInfo, oppHurt)),
   ];
   return { ok: true, text: lines.join("\n"), team, opp };
 }

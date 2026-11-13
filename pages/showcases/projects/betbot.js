@@ -84,10 +84,9 @@ function gameOptions(game) {
             const line = teamLines(game, team)[type]
             const odds = type === "spread" ? line.odds : line
             const chance = impliedChance(odds)
-            // Spread buttons:  Celtics -110 / -2.5 / 52% Implied
-            // Moneyline buttons: Celtics -125 / 56% Implied
-            const lines = [`${shortName(team)} ${odds}`]
-            if (type === "spread") lines.push(formatPoints(line.points))
+            // Spread buttons:     Celtics -2.5 / -110 / 52% Implied
+            // Moneyline buttons:  Celtics / -125 / 56% Implied
+            const lines = [type === "spread" ? `${shortName(team)} ${formatPoints(line.points)}` : shortName(team), odds]
             if (chance) lines.push(`${chance.toFixed(0)}% Implied`)
             options.push({
                 value: `${team}|${type}`,
@@ -271,7 +270,45 @@ export default function BetBotProjectPage() {
                             />
                         </div>
                     )}
+                    {renderInjuries(game)}
                 </OstCard>
+            )
+        }
+
+        // Who's out or day-to-day for each team, from ESPN's daily injury report
+        const INJURY_LOOK = {
+            "Out": { bg: "#fdecea", fg: "#8a1c12" },
+            "Day-To-Day": { bg: "#fff3d6", fg: "#9a6200" },
+        }
+        function renderInjuries(game){
+            if (!game.injuries) return null
+            const teams = [game.away, game.home].map((team) => ({ team, list: game.injuries[team] || [] }))
+            if (teams.every((t) => !t.list.length)) {
+                return <div style={{ fontSize: 13.5, color: DOC.muted, marginTop: 4 }}>No injuries reported for either team.</div>
+            }
+            // Two columns: team names on the left, each team's chips on the right. Chips that wrap stay in their
+            // column, so every line of chips starts at the same place, for both teams.
+            return (
+                <div style={{
+                    marginTop: 6, paddingTop: 12, borderTop: `1px solid ${DOC.line}`,
+                    display: "grid", gridTemplateColumns: "max-content 1fr", columnGap: 10, rowGap: 8, alignItems: "start",
+                }}>
+                    {teams.filter((t) => t.list.length).map(({ team, list }) => (
+                        <React.Fragment key={team}>
+                            <span style={{ fontSize: 13, fontWeight: 700, color: DOC.ink, lineHeight: "24px" }}>{shortName(team)}:</span>
+                            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                                {list.map((i) => {
+                                    const look = INJURY_LOOK[i.status] || { bg: DOC.wash, fg: DOC.muted }
+                                    return (
+                                        <Chip key={i.name} color={look.fg} background={look.bg} border={null} style={{ fontSize: 12.5 }}>
+                                            {i.name} · {i.status}{i.injury ? ` (${i.injury})` : ""}
+                                        </Chip>
+                                    )
+                                })}
+                            </div>
+                        </React.Fragment>
+                    ))}
+                </div>
             )
         }
 
@@ -358,7 +395,7 @@ export default function BetBotProjectPage() {
                     <div style={{ fontSize: 13.5, lineHeight: 1.5, color: DOC.muted, marginTop: 10 }}>
                         {slip.length
                             ? "The AI weighs each team's form, rest and defense, and how every key player historically does against this opponent."
-                            : "Add picks, then let the AI estimate each one's real chance and compare it with FanDuel's."}
+                            : "Add picks, then let the AI estimate each one's real chance (injuries included) and compare it with FanDuel's."}
                     </div>
                     {slip.length > 0 ? (
                         <div style={{ marginTop: 12 }}>
@@ -441,8 +478,9 @@ export default function BetBotProjectPage() {
                                 </div>
                                 <div style={{ fontSize: 13.5, lineHeight: 1.55, color: DOC.muted, marginTop: 14 }}>
                                     Edge = the AI's estimate minus FanDuel's implied chance. "Value" means the AI thinks the pick is at least 3 points
-                                    likelier than the price says; "Avoid" means at least 3 points less likely. The data has no injury or lineup news
-                                    (NBA stats through {analysis.dataAsOf}), so check who's playing. This is a data project, not betting advice.
+                                    likelier than the price says; "Avoid" means at least 3 points less likely. Stats run through {analysis.dataAsOf};
+                                    injuries come from ESPN's report{analysis.injuriesAsOf ? ` as of ${new Date(analysis.injuriesAsOf).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}` : " (unavailable for this analysis)"},
+                                    so late lineup news isn't included. This is a data project, not betting advice.
                                 </div>
                             </div>
                         )}
@@ -499,11 +537,18 @@ export default function BetBotProjectPage() {
                             </P>,
                         },
                         {
-                            when: "Next",
-                            title: "Injuries and a decision model",
+                            when: "Injuries",
+                            title: "Daily injury report",
                             body: <P style={{ margin: "0 0 12px" }}>
-                                Injury reports are the biggest missing piece. After that, Jev (a decision-making model that returns calibrated
-                                probabilities) is planned to replace Gemini for the estimate.
+                                ESPN's free injury feed is refreshed every 3 hours. Each game card shows who's out or day-to-day, and the analysis marks
+                                those players so the AI knows who won't (or might not) play.
+                            </P>,
+                        },
+                        {
+                            when: "Next",
+                            title: "A decision model",
+                            body: <P style={{ margin: "0 0 12px" }}>
+                                Jev (a decision-making model that returns calibrated probabilities) is planned to replace Gemini for the estimate.
                             </P>,
                         },
                     ]} />

@@ -1,7 +1,8 @@
 // NBA BetBot: "Analyze with AI".
 //
 // 1. For each pick on the slip, build an exact matchup summary from the NBA history files
-//    (team form, rest, defensive ranks, and how each key player's career trends say he'll do against this opponent).
+//    (team form, rest, defensive ranks, and how each key player's career trends say he'll do against this opponent),
+//    plus ESPN's injury report (who's out or day-to-day).
 // 2. Ask the AI for a calibrated chance that each pick wins, with its reasons.
 // 3. Compare that with FanDuel's implied chance. The verdict (Value / Fair price / Avoid) is worked out here
 //    from those two numbers, not by the AI.
@@ -10,6 +11,7 @@
 
 import dns from "node:dns";
 import { loadHistory, describePick, impliedChance, verdict } from "../../../server/helpers/betAnalysis.mjs";
+import { getInjuries } from "../../../server/helpers/injuries.mjs";
 
 dns.setDefaultResultOrder("ipv4first");
 
@@ -37,10 +39,14 @@ does against this kind of opponent ("Tonight: about X GmSc/36" is his expected p
 production per 36 minutes, about 10 is average, 20+ is a star night). Player types: Elite = steady against everyone;
 Dominant = great against weak defenses but contained by strong ones.
 
+Injuries: each team's injury report is listed, and key players are marked [OUT] or [DAY-TO-DAY]. An OUT player will not
+play: his matchup numbers don't apply, and his absence weakens his team (more so for Elite / Dominant players and big
+minutes). DAY-TO-DAY players may or may not play, so treat them as uncertain. Sportsbooks usually already price in
+injuries announced well before the game, so a missing star is not automatically value on the other side. News after the
+report's time is not included; say so if a late decision could swing the pick.
+
 Be calibrated. Sportsbook prices are usually close to right, so most estimates should land within about 5 points of the
-implied chance; only move further when several pieces of evidence agree. The data has NO injury or lineup information:
-if a key player might be out, the estimate could be wrong, so mention that when it matters. Early in a season, team
-numbers come from few games.
+implied chance; only move further when several pieces of evidence agree. Early in a season, team numbers come from few games.
 
 Reply with ONLY this JSON, no other text:
 {"picks": [{"pick": 1, "estimate": 54.0, "confidence": "low" | "medium" | "high",
@@ -80,11 +86,13 @@ export default async function handler(req, res) {
     return res.status(500).json({ message: "The NBA history data isn't available on the server." });
   }
 
-  const described = picks.map((p, i) => describePick(history, p, i));
+  const injuries = await getInjuries();   // null if ESPN can't be reached; the analysis says so
+  const described = picks.map((p, i) => describePick(history, p, i, injuries));
   const usable = described.filter((d) => d.ok);
   if (!usable.length) return res.status(400).json({ message: "Couldn't find history for the teams on your slip." });
 
-  const prompt = `${INSTRUCTIONS}\n\nData as of ${history.meta.generated} (season ${history.meta.season}).\n\n` +
+  const prompt = `${INSTRUCTIONS}\n\nStats as of ${history.meta.generated} (season ${history.meta.season}). ` +
+                 `Injury report as of ${injuries ? injuries.updated : "unavailable"}.\n\n` +
                  described.map((d) => d.text).join("\n\n");
 
   const body = { model: MODEL, messages: [{ role: "user", content: prompt }], temperature: 0.2, max_tokens: 3000 };
@@ -140,7 +148,8 @@ export default async function handler(req, res) {
         noData: !described[i].ok,
       };
     });
-    return res.status(200).json({ results, summary: parsed.summary || null, dataAsOf: history.meta.generated });
+    return res.status(200).json({ results, summary: parsed.summary || null, dataAsOf: history.meta.generated,
+                                  injuriesAsOf: injuries ? injuries.updated : null });
   } catch (err) {
     const timedOut = err.name === "AbortError";
     console.error(timedOut ? "[betBot/analyze] AI timed out" : "[betBot/analyze] error", timedOut ? "" : err);
