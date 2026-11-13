@@ -23,6 +23,16 @@ export const DOC = {
     codeBg: "#110b2b",
 }
 
+// Ostrich brand colors: the same purple and green as the header's tab bar.
+// Used for the docs pages' own look (hero, accents, hovers). The component demos keep the library's defaults.
+export const OST = {
+    purple: "#11013b",       // tab bar background
+    purpleHover: "#24105e",
+    green: "lime",           // tab bar text and borders
+    greenText: "#1b8a2e",    // lime is unreadable on white, so text on light backgrounds uses this
+    greenWash: "#ecffe8",    // light hover / note background
+}
+
 // Prop card colors by type (same family as the original prop cards)
 export const TYPE_COLORS = {
     String: "#eef2e4",
@@ -178,7 +188,7 @@ export function DocPage({ title, component, intro, imports, sections = [], child
         <PageId.Provider value={pageId}>
             <div style={{ fontFamily: DOC.font, color: DOC.text, marginBottom: 60 }}>
                 <OstCard style={{
-                    backgroundColor: DOC.ink, backgroundImage: `linear-gradient(135deg, ${DOC.ink} 0%, #2a1a6e 100%)`, color: "white",
+                    backgroundColor: OST.purple, color: "white", borderBottom: `3px solid ${OST.green}`,
                     borderRadius: 20, padding: "28px 32px", marginTop: 20, boxShadow: "0 8px 24px rgba(17, 1, 59, 0.25)",
                 }}>
                     <div style={{ fontSize: 14, letterSpacing: 2, textTransform: "uppercase", color: "lime", fontWeight: 600 }}>Ostrich Components</div>
@@ -204,7 +214,7 @@ export function DocPage({ title, component, intro, imports, sections = [], child
                                         backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.3)",
                                         borderRadius: 999, padding: "4px 12px", boxShadow: "none", minWidth: 0, height: "auto",
                                     }}
-                                    hoverStyle={{ backgroundColor: "rgba(255,255,255,0.18)" }}
+                                    hoverStyle={{ backgroundColor: "rgba(255,255,255,0.12)", border: `1px solid ${OST.green}` }}
                                     labelStyle={{ fontFamily: DOC.font, fontSize: 14, color: "white" }}
                                 />
                             ))}
@@ -225,7 +235,7 @@ export function Section({ title, children, id }) {
         <section id={id ?? `${pageId}-${slug(title)}`} style={{ marginTop: 44, scrollMarginTop: 80 }}>
             <h2 style={{
                 fontFamily: DOC.font, fontSize: 28, fontWeight: 700, color: DOC.ink, margin: "0 0 8px",
-                paddingLeft: 14, borderLeft: `5px solid ${DOC.accentDeep}`,
+                paddingLeft: 14, borderLeft: `5px solid ${OST.green}`,
             }}>{title}</h2>
             {children}
         </section>
@@ -238,7 +248,7 @@ export const SubHeading = ({ children }) => (
 
 export const Note = ({ children, tone = "info" }) => {
     const tones = {
-        info: { bg: "#ebf4ff", edge: DOC.accentDeep, label: "Note" },
+        info: { bg: OST.greenWash, edge: OST.greenText, label: "Note" },
         tip: { bg: "#eafbe9", edge: "#2e9e44", label: "Tip" },
         warn: { bg: "#fff5e5", edge: "#e08a00", label: "Heads up" },
     }

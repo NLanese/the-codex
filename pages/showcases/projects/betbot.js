@@ -24,6 +24,35 @@ function impliedChance(americanOdds) {
     return n < 0 ? (-n / (-n + 100)) * 100 : (100 / (n + 100)) * 100
 }
 
+// The whole slip as one parlay: every pick has to hit. Assumes the games are independent of each other.
+//   FanDuel's chance = 1 / (product of each pick's decimal payout), which is what the parlay price works out to.
+//   AI's chance      = product of the AI's per-pick estimates.
+//   Expected return  = what $100 on the parlay averages back, by the AI's numbers, minus the $100 stake.
+// Parlay chances get tiny fast, so percentage-point edges don't mean much here; the verdict uses expected return.
+function parlayOf(results) {
+    const legs = results.filter((r) => r.estimate != null && parseInt(r.odds, 10))
+    if (legs.length < 2) return null
+    const decimal = legs.reduce((acc, r) => {
+        const n = parseInt(r.odds, 10)
+        return acc * (n > 0 ? 1 + n / 100 : 1 + 100 / -n)
+    }, 1)
+    const ai = legs.reduce((acc, r) => acc * (r.estimate / 100), 1)
+    const implied = 1 / decimal
+    const american = decimal >= 2 ? Math.round((decimal - 1) * 100) : -Math.round(100 / (decimal - 1))
+    const ret = (ai * decimal - 1) * 100
+    const verdict = ret >= 10 ? "Value" : ret >= 3 ? "Lean bet" : ret > -3 ? "Fair price" : ret > -10 ? "Lean pass" : "Avoid"
+    return {
+        legs: legs.length, skipped: results.length - legs.length,
+        ai: ai * 100, implied: implied * 100, edge: (ai - implied) * 100,
+        odds: american > 0 ? `+${american}` : `${american}`, payout: decimal * 100, ret, verdict,
+    }
+}
+
+// Shows small chances with enough digits to tell them apart: 23%, 4.1%, 0.62%
+function pct(x) {
+    return x >= 10 ? `${x.toFixed(0)}%` : x >= 1 ? `${x.toFixed(1)}%` : `${x.toFixed(2)}%`
+}
+
 // -2.5 → "-2.5", 2.5 → "+2.5"
 function formatPoints(points) {
     return points > 0 ? `+${points}` : `${points}`
@@ -344,7 +373,7 @@ export default function BetBotProjectPage() {
     // Bet Slip //
         function renderSlip(){
             return (
-                <Panel style={{ position: "sticky", top: 90 }}>
+                <Panel>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                         <div style={{ fontSize: 20, fontWeight: 700, color: DOC.ink }}>Your bet slip</div>
                         <div style={{ fontSize: 14, color: DOC.muted }}>{slip.length} {slip.length === 1 ? "pick" : "picks"}</div>
@@ -389,7 +418,7 @@ export default function BetBotProjectPage() {
                             label={analysis.status === "loading" ? "Analyzing…" : "Analyze with AI"}
                             variant="dark"
                             onClick={analyzeSlip}
-                            style={{ width: "100%" }}
+                            style={{ width: "100%", boxSizing: "border-box" }}
                         />
                     </div>
                     <div style={{ fontSize: 13.5, lineHeight: 1.5, color: DOC.muted, marginTop: 10 }}>
@@ -410,7 +439,9 @@ export default function BetBotProjectPage() {
     // AI analysis //
         const VERDICT_LOOK = {
             "Value": { bg: "#dcfce9", fg: "#11733f" },
+            "Lean bet": { bg: "#effaf3", fg: "#3d8a5f" },
             "Fair price": { bg: "#ececf2", fg: "#4b4f5c" },
+            "Lean pass": { bg: "#fdf3ec", fg: "#a5531c" },
             "Avoid": { bg: "#fdecea", fg: "#8a1c12" },
             "No estimate": { bg: "#ececf2", fg: "#4b4f5c" },
         }
@@ -439,6 +470,7 @@ export default function BetBotProjectPage() {
                         <P style={{ marginTop: 12 }}>No history found for this matchup, so the AI had little to go on.</P>
                     ) : null}
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 14 }}>
+                        {r.model != null ? number("Stats model", `${r.model.toFixed(0)}%`) : null}
                         {number("AI estimate", r.estimate != null ? `${r.estimate.toFixed(0)}%` : "—")}
                         {number("FanDuel implied", r.implied != null ? `${r.implied.toFixed(0)}%` : "—")}
                         {number("Edge", r.edge != null ? `${r.edge > 0 ? "+" : ""}${r.edge.toFixed(1)}` : "—", look.fg)}
@@ -453,6 +485,42 @@ export default function BetBotProjectPage() {
                             <b>Key matchup:</b> {r.key_matchup}
                         </div>
                     ) : null}
+                </OstCard>
+            )
+        }
+
+        function renderParlayCard(results){
+            const parlay = parlayOf(results)
+            if (!parlay) return null
+            const look = VERDICT_LOOK[parlay.verdict]
+            const number = (label, value, color) => (
+                <div style={{ flex: "1 1 110px" }}>
+                    <div style={{ fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: DOC.muted, fontWeight: 700 }}>{label}</div>
+                    <div style={{ fontSize: 24, fontWeight: 800, color: color || DOC.ink, marginTop: 2 }}>{value}</div>
+                </div>
+            )
+            return (
+                <OstCard noShadow style={{ backgroundColor: DOC.wash, border: `1px solid ${DOC.line}`, borderLeft: `6px solid ${look.fg}`, borderRadius: 14, padding: "16px 20px", marginTop: 14 }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                        <div>
+                            <div style={{ fontSize: 19, fontWeight: 700, color: DOC.ink }}>Whole slip · {parlay.legs}-pick parlay at {parlay.odds}</div>
+                            <div style={{ fontSize: 14, color: DOC.muted, marginTop: 2 }}>
+                                Every pick has to hit. $100 pays ${Math.round(parlay.payout).toLocaleString()} back.
+                                {parlay.skipped ? ` ${parlay.skipped} pick${parlay.skipped === 1 ? "" : "s"} without an AI estimate left out.` : ""}
+                            </div>
+                        </div>
+                        <Chip color={look.fg} background={look.bg} border={null} style={{ fontWeight: 700, fontSize: 13, padding: "3px 12px" }}>{parlay.verdict}</Chip>
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 14 }}>
+                        {number("AI estimate", pct(parlay.ai))}
+                        {number("FanDuel implied", pct(parlay.implied))}
+                        {number("Edge", `${parlay.edge > 0 ? "+" : ""}${parlay.edge.toFixed(parlay.ai < 10 ? 2 : 1)}`, look.fg)}
+                        {number("Return on $100", `${parlay.ret >= 0 ? "+" : "−"}$${Math.abs(parlay.ret).toFixed(0)}`, look.fg)}
+                    </div>
+                    <div style={{ fontSize: 13.5, lineHeight: 1.5, color: DOC.muted, marginTop: 10 }}>
+                        Return on $100 is what the parlay would average per $100 bet if the AI's chances are right. Parlay chances get small fast,
+                        so this card's label uses that return (±$3 lean, ±$10 strong) rather than the edge. Assumes the games don't affect each other.
+                    </div>
                 </OstCard>
             )
         }
@@ -473,12 +541,15 @@ export default function BetBotProjectPage() {
                                     <P style={{ marginTop: 10, color: "#9a6200" }}>Your slip has changed since this analysis. Click Analyze with AI again to update it.</P>
                                 ) : null}
                                 {analysis.summary ? <P style={{ marginTop: 10, fontSize: 17 }}>{analysis.summary}</P> : null}
+                                {renderParlayCard(analysis.results)}
                                 <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 14 }}>
                                     {analysis.results.map(renderResultCard)}
                                 </div>
                                 <div style={{ fontSize: 13.5, lineHeight: 1.55, color: DOC.muted, marginTop: 14 }}>
-                                    Edge = the AI's estimate minus FanDuel's implied chance. "Value" means the AI thinks the pick is at least 3 points
-                                    likelier than the price says; "Avoid" means at least 3 points less likely. Stats run through {analysis.dataAsOf};
+                                    Stats model = a fixed estimate from net ratings, home court, rest and injuries; the AI can move it by at most 5 points
+                                    for matchups the model can't see. Edge = the AI's estimate minus FanDuel's implied chance. "Value" / "Avoid" mean the AI thinks the pick is at least 3 points
+                                    likelier / less likely than the price says; "Lean bet" / "Lean pass" mean 1 to 3 points, a direction rather than a
+                                    strong call; "Fair price" means within 1 point. Stats run through {analysis.dataAsOf};
                                     injuries come from ESPN's report{analysis.injuriesAsOf ? ` as of ${new Date(analysis.injuriesAsOf).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}` : " (unavailable for this analysis)"},
                                     so late lineup news isn't included. This is a data project, not betting advice.
                                 </div>
@@ -588,11 +659,26 @@ export default function BetBotProjectPage() {
                 ]} />
 
                 <Section id="lines" eyebrow="Odds" title="Upcoming games" subtitle="Times are shown in your time zone. Pick one spread or moneyline per game to add it to your slip.">
-                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: 24 }}>
-                        <div style={{ flex: "1 1 560px", minWidth: 0 }}>{renderGames()}</div>
-                        <div style={{ flex: "0 1 320px", minWidth: 280 }}>{renderSlip()}</div>
+                    {/* Games and analysis on the left, slip on the right. The slip column stretches to the full height of
+                        the left column, so the slip inside it can stay pinned (sticky) while you scroll. Under 980px wide
+                        the two columns stack and the slip sits under the games. */}
+                    <style>{`
+                        .betbot-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: stretch; }
+                        .betbot-slip { position: sticky; top: 90px; }
+                        @media (max-width: 980px) {
+                            .betbot-layout { grid-template-columns: minmax(0, 1fr); }
+                            .betbot-slip { position: static; }
+                        }
+                    `}</style>
+                    <div className="betbot-layout">
+                        <div style={{ minWidth: 0 }}>
+                            {renderGames()}
+                            {renderAnalysis()}
+                        </div>
+                        <div>
+                            <div className="betbot-slip">{renderSlip()}</div>
+                        </div>
                     </div>
-                    {renderAnalysis()}
                 </Section>
 
                 <Section id="how-it-works" eyebrow="Under the hood" title="How it works">

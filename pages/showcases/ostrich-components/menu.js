@@ -8,7 +8,7 @@ import { directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
 import { OstCard } from "@ostrich_development/ostrich-components";
-import { DocPage, P, C, DOC } from "../../../components/ostrich-components/docKit";
+import { DocPage, P, C, DOC, OST } from "../../../components/ostrich-components/docKit";
 import { DOC_PAGES } from "../../../components/ostrich-components/docPages";
 
 export default function OstrichShowcaseMenu() {
@@ -45,18 +45,18 @@ export default function OstrichShowcaseMenu() {
                             onClick={() => go(page.route)}
                             aria-label={`${page.title} docs`}
                             style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 6 }}
-                            hoverStyle={{ backgroundColor: "#ebf4ff" }}
+                            hoverStyle={{ backgroundColor: OST.greenWash }}
                         >
                             <div style={{ fontFamily: DOC.font, fontSize: 22, fontWeight: 700, color: DOC.ink }}>{page.title}</div>
-                            <div style={{ fontFamily: DOC.mono, fontSize: 13, color: DOC.accentDeep }}>{page.component}</div>
+                            <div style={{ fontFamily: DOC.mono, fontSize: 13, color: OST.greenText }}>{page.component}</div>
                             <div style={{ fontFamily: DOC.font, fontSize: 15.5, lineHeight: 1.45, color: DOC.text }}>{page.blurb}</div>
                         </OstCard>
                     ))}
                     <OstCard
                         onClick={() => go("showcase")}
                         aria-label="All components on one page"
-                        style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 6, backgroundColor: DOC.ink }}
-                        hoverStyle={{ backgroundColor: "#2a1a6e" }}
+                        style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 6, backgroundColor: OST.purple }}
+                        hoverStyle={{ backgroundColor: OST.purpleHover }}
                     >
                         <div style={{ fontFamily: DOC.font, fontSize: 22, fontWeight: 700, color: "white" }}>Everything</div>
                         <div style={{ fontFamily: DOC.mono, fontSize: 13, color: "lime" }}>All pages, one scroll</div>

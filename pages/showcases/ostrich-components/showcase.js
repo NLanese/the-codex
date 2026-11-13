@@ -7,7 +7,7 @@ import { directoryDataState } from "../../../jotai/atoms";
 
 // Ostrich
 import { OstCard, OstrichButton } from "@ostrich_development/ostrich-components";
-import { DOC } from "../../../components/ostrich-components/docKit";
+import { DOC, OST } from "../../../components/ostrich-components/docKit";
 import { DOC_PAGES } from "../../../components/ostrich-components/docPages";
 
 // Showcase Elements
@@ -65,7 +65,7 @@ export default function OstrichShowcase() {
                             label={page.title}
                             onClick={() => document.getElementById(`page-${page.route}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                             style={{ backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-start', padding: '6px 8px', borderRadius: 8, height: 'auto' }}
-                            hoverStyle={{ backgroundColor: '#ebf4ff' }}
+                            hoverStyle={{ backgroundColor: OST.greenWash }}
                             labelStyle={{ fontFamily: DOC.font, fontSize: 16, color: DOC.ink }}
                         />
                     ))}

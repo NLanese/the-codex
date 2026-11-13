@@ -3,14 +3,15 @@
 // 1. For each pick on the slip, build an exact matchup summary from the NBA history files
 //    (team form, rest, defensive ranks, and how each key player's career trends say he'll do against this opponent),
 //    plus ESPN's injury report (who's out or day-to-day).
-// 2. Ask the AI for a calibrated chance that each pick wins, with its reasons.
+// 2. Work out a fixed "stats model" chance for each pick (betAnalysis.mjs statsModel), then ask the AI to adjust it,
+//    by at most 5 points, for what the model can't see. temperature 0 so the same slip gets (nearly) the same answer.
 // 3. Compare that with FanDuel's implied chance. The verdict (Value / Fair price / Avoid) is worked out here
 //    from those two numbers, not by the AI.
 //
 // Uses the same AI settings as the Board Game Wizard: LLM_API_KEY, LLM_MODEL, optional LLM_BASE_URL.
 
 import dns from "node:dns";
-import { loadHistory, describePick, impliedChance, verdict } from "../../../server/helpers/betAnalysis.mjs";
+import { loadHistory, describePick, impliedChance, verdict, MODEL_SETTINGS } from "../../../server/helpers/betAnalysis.mjs";
 import { getInjuries } from "../../../server/helpers/injuries.mjs";
 
 dns.setDefaultResultOrder("ipv4first");
@@ -45,8 +46,10 @@ minutes). DAY-TO-DAY players may or may not play, so treat them as uncertain. Sp
 injuries announced well before the game, so a missing star is not automatically value on the other side. News after the
 report's time is not included; say so if a late decision could swing the pick.
 
-Be calibrated. Sportsbook prices are usually close to right, so most estimates should land within about 5 points of the
-implied chance; only move further when several pieces of evidence agree. Early in a season, team numbers come from few games.
+Each pick comes with a "Stats model" chance, worked out from net ratings, home court, rest and injuries. Start from that
+number. Adjust it, by at most 5 points either way, only for what the model can't see: player matchups, Elite/Dominant
+types, a key player's history against this opponent, day-to-day uncertainty. If nothing clearly points one way, keep the
+model's number. Your reasons should explain the adjustment (or why there isn't one).
 
 Reply with ONLY this JSON, no other text:
 {"picks": [{"pick": 1, "estimate": 54.0, "confidence": "low" | "medium" | "high",
@@ -95,7 +98,7 @@ export default async function handler(req, res) {
                  `Injury report as of ${injuries ? injuries.updated : "unavailable"}.\n\n` +
                  described.map((d) => d.text).join("\n\n");
 
-  const body = { model: MODEL, messages: [{ role: "user", content: prompt }], temperature: 0.2, max_tokens: 3000 };
+  const body = { model: MODEL, messages: [{ role: "user", content: prompt }], temperature: 0, max_tokens: 3000 };
   if (/gemini|gpt-oss/i.test(MODEL)) body.reasoning_effort = "low";
 
   const controller = new AbortController();
@@ -135,12 +138,20 @@ export default async function handler(req, res) {
     const results = picks.map((p, i) => {
       const ai = (parsed.picks || []).find((x) => Number(x.pick) === i + 1) || {};
       const implied = impliedChance(p.odds);
-      const estimate = Number.isFinite(Number(ai.estimate)) ? Math.max(1, Math.min(99, Number(ai.estimate))) : null;
+      // The AI's number, held to within AI_MAX_ADJUST points of the stats model. No AI number: use the model's.
+      const model = described[i].model || null;
+      let estimate = Number.isFinite(Number(ai.estimate)) ? Number(ai.estimate) : model ? model.chance : null;
+      if (estimate !== null && model) {
+        estimate = Math.max(model.chance - MODEL_SETTINGS.AI_MAX_ADJUST, Math.min(model.chance + MODEL_SETTINGS.AI_MAX_ADJUST, estimate));
+      }
+      if (estimate !== null) estimate = Math.round(Math.max(1, Math.min(99, estimate)) * 10) / 10;
       return {
         id: p.id,
         team: p.team, opponent: p.opponent, type: p.type, label: p.label, odds: p.odds,
         implied: implied === null ? null : Math.round(implied * 10) / 10,
         estimate,
+        model: model ? model.chance : null,
+        modelMargin: model ? model.margin : null,
         ...verdict(estimate, implied),
         confidence: ai.confidence || null,
         reasons: Array.isArray(ai.reasons) ? ai.reasons.slice(0, 4) : [],
