@@ -34,7 +34,7 @@ export const PRO_WORKS = [
         id: "ieee",
         title: "IEEE (Flagship App)",
         image: `${ICONS}/ieee.png`, fit: "logo",
-        blurb: "IEEE's flagship app, used by millions of people worldwide. I maintain and modernize its client-facing features; downloads grew by 1.25 million in 2026, against a goal of 750,000.",
+        blurb: "IEEE's flagship app, used by millions of people worldwide. I maintain and modernize its client-facing features; downloads grew by 650k million in 2026, against a goal of 250,000.",
         tags: ["Mobile", "Cordova"],
         status: "pro",
         route: "/showcases/works/ieee",

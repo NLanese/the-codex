@@ -72,28 +72,38 @@ export function jumpTo(id) {
 export function Hero({ eyebrow, title, intro, actions, aside, background }) {
     return (
         <OstCard
-            noShadow
-            style={{
-                backgroundColor: DOC.ink, backgroundImage: background || HERO_BG, color: "white",
-                borderRadius: 22, padding: "38px 40px", marginTop: 20,
-                boxShadow: "0 10px 30px rgba(17, 1, 59, 0.28)",
-                display: "flex", flexWrap: "wrap", alignItems: "center", gap: 36,
-            }}
-        >
+        noShadow
+        style={{
+            backgroundColor: DOC.ink, backgroundImage: background || HERO_BG, color: "white",
+            borderRadius: 22, padding: "38px 40px", marginTop: 20,
+            boxShadow: "0 10px 30px rgba(17, 1, 59, 0.28)",
+            display: "flex", flexWrap: "wrap", alignItems: "center", gap: 36,
+        }}>
             <div style={{ flex: "1 1 420px", minWidth: 0 }}>
+
+                {/* Eyebrow or Null */}
                 {eyebrow ? (
                     <div style={{ fontSize: 14, letterSpacing: 2.5, textTransform: "uppercase", color: LIME, fontWeight: 700 }}>{eyebrow}</div>
                 ) : null}
+
+                {/* Title */}
                 <h1 style={{ fontSize: "clamp(34px, 4.6vw, 52px)", lineHeight: 1.08, fontWeight: 700, margin: "10px 0 0", letterSpacing: 0.3 }}>{title}</h1>
+
+                {/* Intro or Null */}
                 {intro ? (
                     <div style={{ fontSize: 18.5, lineHeight: 1.6, marginTop: 16, maxWidth: 680, color: "#e4defd" }}>{intro}</div>
                 ) : null}
+
+                {/* Actions or Null */}
                 {actions ? (
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 26 }}>{actions}</div>
                 ) : null}
             </div>
+
+            {/* Footer Note or Null */}
             {aside ? <div style={{ flex: "0 1 auto", minWidth: 0, maxWidth: "100%", display: "flex", justifyContent: "center", margin: "0 auto" }}>{aside}</div> : null}
-        </OstCard>
+       
+       </OstCard>
     )
 }
 

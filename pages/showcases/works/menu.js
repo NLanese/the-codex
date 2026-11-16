@@ -202,8 +202,8 @@ export default function WorksMenu() {
             <div style={{marginTop: 26}}>
                 <StatRow
                     stats={[
-                        {value: "1.25M", label: "new IEEE app downloads in 2026, against a goal of 750K"},
-                        {value: "Millions", label: "of people worldwide use the IEEE apps I help maintain"},
+                        {value: "650k", label: "new IEEE app downloads in 2026, against a goal of 250k"},
+                        {value: "6.5+ Million", label: "People worldwide use the IEEE apps I help maintain"},
                         {value: "4", label: "professional apps and sites shipped and maintained"},
                     ]}
                 />

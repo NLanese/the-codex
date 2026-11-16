@@ -122,7 +122,7 @@ export default function IEEEPage(){
                 title="The IEEE App"
                 intro={<>
                     IEEE's flagship app, used by millions of people around the world. I maintain and modernize its client-facing
-                    features, and helped grow downloads by 1.25 million in 2026, against a goal of 750,000.
+                    features, and helped grow downloads by 650k million in 2026, against a goal of 250,000.
                 </>}
                 actions={<>
                     <ActionButton label="App Store ↗" onClick={() => open(IOS_LISTING)} ariaLabel="The IEEE app on the App Store (opens in a new tab)"/>
@@ -135,7 +135,7 @@ export default function IEEEPage(){
                 facts={[
                     {label: "Role", value: "Software engineer"},
                     {label: "At IEEE since", value: "2023"},
-                    {label: "2026 downloads", value: "+1.25M (goal 750K)"},
+                    {label: "2026 downloads", value: "+650k (goal 250k)"},
                     {label: "Built with", value: "Angular, Ionic, Capacitor"},
                 ]}
             />
