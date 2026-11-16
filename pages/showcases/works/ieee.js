@@ -196,6 +196,16 @@ export default function IEEEPage(){
                                 project that can keep up with current store requirements.
                             </P>,
                         },
+                        {
+                            when: "Step 4",
+                            title: "Leading the full upgrade",
+                            body: <P>
+                                The hybrid kept the app shipping, but it was still built on Angular 8 and Ionic 3. I eventually led the team
+                                in upgrading the entire app from Angular 8 to Angular 18 and from Ionic 3 to Ionic 8. As part of that, we
+                                removed every piece of Cordova and rebuilt the app entirely on Capacitor, leaving a modern codebase that's
+                                far easier to maintain and keep compliant with Apple's and Google's requirements.
+                            </P>,
+                        },
                     ]}
                 />
             </Section>

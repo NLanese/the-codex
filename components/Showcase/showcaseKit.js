@@ -81,7 +81,7 @@ export function Hero({ eyebrow, title, intro, actions, aside, background }) {
         }}>
             <div style={{ flex: "1 1 420px", minWidth: 0 }}>
 
-                {/* Eyebrow or Null */}
+                {/* Subtitle or Null */}
                 {eyebrow ? (
                     <div style={{ fontSize: 14, letterSpacing: 2.5, textTransform: "uppercase", color: LIME, fontWeight: 700 }}>{eyebrow}</div>
                 ) : null}
