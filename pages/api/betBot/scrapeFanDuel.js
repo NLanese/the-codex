@@ -1,10 +1,10 @@
 // NBA Bet Bot: today's FanDuel odds from The Odds API.
-//
+
 // The Odds API's free plan gives 500 credits a month, and each call costs (markets × regions) credits.
 // This route asks for 2 markets in 1 region (2 credits) and reuses the answer for CACHE_HOURS:
 //   - Vercel's network keeps the response and serves that copy to every visitor (the Cache-Control header below)
 //   - a copy is also kept in this server's memory, which covers local development
-// So the API is called at most a couple of times a day instead of once per page view.
+
 // Each game also carries both teams' injuries from ESPN's free injury report (see server/helpers/injuries.mjs).
 
 import axios from 'axios';
@@ -16,13 +16,13 @@ const CACHE_MS = CACHE_HOURS * 60 * 60 * 1000;
 // Last successful answer, kept between requests while this server instance is alive
 let cache = { bets: null, fetchedAt: 0 };
 
-// The API sends American odds (oddsFormat: "american"). A real American price is a whole number
-// of at least 100 either way (-110, +250). Anything else, like a pulled line, is dropped.
+// The API sends American odds (oddsFormat: "american")
 function formatAmerican(price) {
-    if (!Number.isFinite(price) || Math.abs(price) < 100) return null;
-    return price > 0 ? `+${price}` : `${price}`;
+    if (!Number.isFinite(price) || Math.abs(price) < 100) return null;      // If the odds is undefined or between -99 and 99, return null
+    return price > 0 ? `+${price}` : `${price}`;                            // Returns +100 or -100
 }
 
+// 
 function findBookmakerByTitle(bookmakers, title) {
     const rBook = bookmakers.find(bookmaker => bookmaker.key === title);
     if (!rBook){
