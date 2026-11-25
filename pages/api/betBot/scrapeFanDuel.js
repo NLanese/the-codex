@@ -30,7 +30,7 @@ function findBookmakerByTitle(bookmakers, title) {
     }
     const revisedOdds = {}
     rBook.markets.forEach(market => {
-        if (market.key === "h2h"){
+        if (market.key === "h2h"){              // Finds head to head market
             const moneyline = {}
             market.outcomes.forEach(o => {
                 const odds = formatAmerican(o.price)
