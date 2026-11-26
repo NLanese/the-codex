@@ -30,7 +30,9 @@ function findBookmakerByTitle(bookmakers, title) {
     }
     const revisedOdds = {}
     rBook.markets.forEach(market => {
-        if (market.key === "h2h"){              // Finds head to head market
+
+        // Finds the moneyline (h2h) odds, converts to American Betting Format
+        if (market.key === "h2h"){              
             const moneyline = {}
             market.outcomes.forEach(o => {
                 const odds = formatAmerican(o.price)
@@ -38,6 +40,8 @@ function findBookmakerByTitle(bookmakers, title) {
             })
             if (Object.keys(moneyline).length === 2) revisedOdds.moneyline = moneyline
         }
+
+        // Finds the spread (spreads) odds, converts to American Betting Format
         else if (market.key === "spreads"){
             const spread = {}
             market.outcomes.forEach(o => {
@@ -51,6 +55,7 @@ function findBookmakerByTitle(bookmakers, title) {
 }
 
 function sendBets(res, bets, source) {
+
     // Lets Vercel's network serve this same answer to everyone for CACHE_HOURS
     res.setHeader('Cache-Control', `public, s-maxage=${CACHE_HOURS * 3600}, stale-while-revalidate=3600`);
     res.setHeader('X-Odds-Source', source);
@@ -58,7 +63,6 @@ function sendBets(res, bets, source) {
 }
 
 export default async function handler(req, res) {
-
     // Still fresh? Don't spend any credits.
     if (cache.bets && Date.now() - cache.fetchedAt < CACHE_MS) {
         return sendBets(res, cache.bets, "memory");
